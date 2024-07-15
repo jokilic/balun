@@ -20,6 +20,7 @@ dependencies:
   hive_ce: 2.3.0
   hive_ce_flutter: 1.2.0
   logger: 2.3.0
+  sliding_up_panel2: 3.3.0+1
   watch_it: 1.4.2
 
 dev_dependencies:

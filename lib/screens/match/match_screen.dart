@@ -39,6 +39,7 @@ class _MatchScreenState extends State<MatchScreen> {
 
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: Animate(
           key: ValueKey(matchState),
           effects: const [
