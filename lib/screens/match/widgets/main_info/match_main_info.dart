@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
-import '../../../models/fixtures/fixture_response.dart';
-import '../../../routing.dart';
-import '../../../theme/theme.dart';
-import '../../../util/string.dart';
-import '../../../widgets/balun_button.dart';
-import 'match_app_bar.dart';
+import '../../../../constants.dart';
+import '../../../../models/fixtures/fixture_response.dart';
+import '../../../../routing.dart';
+import '../../../../theme/theme.dart';
+import '../../../../util/string.dart';
+import '../../../../widgets/balun_button.dart';
+import '../match_app_bar.dart';
 import 'match_logo.dart';
 import 'match_minute.dart';
 

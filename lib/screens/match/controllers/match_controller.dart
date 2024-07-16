@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../services/api_service.dart';
-import '../../services/logger_service.dart';
-import 'match_state.dart';
+import '../../../services/api_service.dart';
+import '../../../services/logger_service.dart';
+import '../match_state.dart';
 
 class MatchController extends ValueNotifier<MatchState> {
   final LoggerService logger;

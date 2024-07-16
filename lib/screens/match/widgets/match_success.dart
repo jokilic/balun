@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sliding_up_panel2/sliding_up_panel2.dart';
 
 import '../../../models/fixtures/fixture_response.dart';
-import 'match_main_info.dart';
+import '../../../theme/theme.dart';
+import 'main_info/match_main_info.dart';
+import 'sliding_info/match_sliding_info.dart';
 
 class MatchSuccess extends StatefulWidget {
   final FixtureResponse match;
@@ -18,13 +20,23 @@ class MatchSuccess extends StatefulWidget {
 class _MatchSuccessState extends State<MatchSuccess> {
   final widgetHeightKey = GlobalKey();
   late var panelHeight = 100.0;
+  late final ScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
+
+    scrollController = ScrollController();
+
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => getHeight(),
     );
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   void getHeight() {
@@ -59,11 +71,15 @@ class _MatchSuccessState extends State<MatchSuccess> {
           /// SLIDING CONTENT
           ///
           SlidingUpPanel(
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(40),
+            ),
+            color: context.colors.white,
+            scrollController: scrollController,
             minHeight: panelHeight,
-            maxHeight: MediaQuery.sizeOf(context).height,
-            panelBuilder: () => Container(
-              color: Colors.green,
-              child: const Text('hello there'),
+            maxHeight: MediaQuery.sizeOf(context).height - 144,
+            panelBuilder: () => MatchSlidingInfo(
+              scrollController: scrollController,
             ),
           ),
         ],

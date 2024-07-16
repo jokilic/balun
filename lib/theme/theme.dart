@@ -46,7 +46,7 @@ class BalunTheme {
     matchGoal: BalunTextStyles.matchGoal.copyWith(
       color: lightAppColors.black,
     ),
-    otherScores: BalunTextStyles.otherScores.copyWith(
+    matchSectionTitle: BalunTextStyles.matchSectionTitle.copyWith(
       color: lightAppColors.black,
     ),
   );

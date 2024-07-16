@@ -44,9 +44,6 @@ class _BalunButtonState extends State<BalunButton> with SingleTickerProviderStat
   Future<void> onTapUp(TapUpDetails details) async {
     await controller.forward();
     await controller.reverse();
-    await Future.delayed(
-      BalunConstants.buttonScaleDuration,
-    );
 
     if (widget.onPressed != null) {
       widget.onPressed!();

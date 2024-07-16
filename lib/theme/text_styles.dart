@@ -38,9 +38,9 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w500,
   );
 
-  static const otherScores = TextStyle(
+  static const matchSectionTitle = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 12,
+    fontSize: 20,
     fontWeight: FontWeight.w400,
   );
 }
@@ -52,7 +52,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchLeagueName;
   final TextStyle matchLeagueRound;
   final TextStyle matchGoal;
-  final TextStyle otherScores;
+  final TextStyle matchSectionTitle;
 
   const BalunTextThemesExtension({
     required this.fixturesMinute,
@@ -61,7 +61,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchLeagueName,
     required this.matchLeagueRound,
     required this.matchGoal,
-    required this.otherScores,
+    required this.matchSectionTitle,
   });
 
   @override
@@ -72,7 +72,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchLeagueName,
     TextStyle? matchLeagueRound,
     TextStyle? matchGoal,
-    TextStyle? otherScores,
+    TextStyle? matchSectionTitle,
   }) =>
       BalunTextThemesExtension(
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
@@ -81,7 +81,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchLeagueName: matchLeagueName ?? this.matchLeagueName,
         matchLeagueRound: matchLeagueRound ?? this.matchLeagueRound,
         matchGoal: matchGoal ?? this.matchGoal,
-        otherScores: otherScores ?? this.otherScores,
+        matchSectionTitle: matchSectionTitle ?? this.matchSectionTitle,
       );
 
   @override
@@ -100,7 +100,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchLeagueName: TextStyle.lerp(matchLeagueName, other.matchLeagueName, t)!,
       matchLeagueRound: TextStyle.lerp(matchLeagueRound, other.matchLeagueRound, t)!,
       matchGoal: TextStyle.lerp(matchGoal, other.matchGoal, t)!,
-      otherScores: TextStyle.lerp(otherScores, other.otherScores, t)!,
+      matchSectionTitle: TextStyle.lerp(matchSectionTitle, other.matchSectionTitle, t)!,
     );
   }
 }
