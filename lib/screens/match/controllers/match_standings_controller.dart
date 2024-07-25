@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/standings/league/league.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/state.dart';
 
-class MatchStandingsController extends ValueNotifier<BalunState<bool>> {
+class MatchStandingsController extends ValueNotifier<BalunState<League>> {
   final LoggerService logger;
   final APIService api;
 
@@ -35,35 +36,35 @@ class MatchStandingsController extends ValueNotifier<BalunState<bool>> {
     );
 
     /// Successful request
-    // if (response.standingsResponse != null && response.error == null) {
-    //   /// Errors exist, update to error state
-    //   if (response.standingsResponse!.errors?.isNotEmpty ?? false) {
-    //     value = Error(
-    //       error: response.standingsResponse!.errors?.map((error) => error.bug).toString(),
-    //     );
-    //   }
+    if (response.standingsResponse != null && response.error == null) {
+      /// Errors exist, update to error state
+      if (response.standingsResponse!.errors?.isNotEmpty ?? false) {
+        value = Error(
+          error: response.standingsResponse!.errors?.map((error) => error.bug).toString(),
+        );
+      }
 
-    //   /// Response is not null, update to success state
-    //   else if (response.standingsResponse!.response?.isNotEmpty ?? false) {
-    //     value = Success(
-    //       data: response.standingsResponse!.response!.first,
-    //     );
-    //   }
+      /// Response is not null, update to success state
+      else if (response.standingsResponse!.response?.firstOrNull?.league != null) {
+        value = Success(
+          data: response.standingsResponse!.response!.first.league!,
+        );
+      }
 
-    //   /// Response is null, update to error state
-    //   else {
-    //     value = Error(
-    //       error: 'Standings response is null',
-    //     );
-    //   }
-    // }
+      /// Response is null, update to error state
+      else {
+        value = Error(
+          error: 'Standings response is null',
+        );
+      }
+    }
 
-    // /// Failed request
-    // if (response.standingsResponse == null && response.error != null) {
-    //   /// Error is not null, update to error state
-    //   value = Error(
-    //     error: response.error,
-    //   );
-    // }
+    /// Failed request
+    if (response.standingsResponse == null && response.error != null) {
+      /// Error is not null, update to error state
+      value = Error(
+        error: response.error,
+      );
+    }
   }
 }

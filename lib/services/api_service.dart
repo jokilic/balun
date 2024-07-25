@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../models/fixtures/fixtures_response.dart';
+import '../models/standings/standings_response.dart';
 import '../models/teams/teams_response.dart';
 import '../util/isolates.dart';
 import 'logger_service.dart';
@@ -136,7 +137,7 @@ class APIService {
   /// `/standings`
   ///
 
-  Future<({bool? standingsResponse, String? error})> getStandings({
+  Future<({StandingsResponse? standingsResponse, String? error})> getStandings({
     required int leagueId,
     required int season,
   }) async {
@@ -154,8 +155,8 @@ class APIService {
         /// Response is successful
         case 200:
           try {
-            // final parsedResponse = await computeFixtures(response.data);
-            return (standingsResponse: true, error: null);
+            final parsedResponse = await computeStandings(response.data);
+            return (standingsResponse: parsedResponse, error: null);
           } catch (e) {
             final error = 'API -> getStandings -> parsing error -> $e';
             logger.e(error);
