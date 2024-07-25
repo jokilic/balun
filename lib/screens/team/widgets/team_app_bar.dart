@@ -27,7 +27,7 @@ class TeamAppBar extends StatelessWidget {
                 color: context.colors.white.withOpacity(0.4),
               ),
               child: const Icon(
-                Icons.arrow_back,
+                Icons.arrow_back_rounded,
                 size: 32,
               ),
             ),

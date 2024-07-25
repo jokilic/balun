@@ -31,6 +31,7 @@ class MatchActiveSection extends StatelessWidget {
             referee: match.fixture?.referee,
             venue: match.fixture?.venue,
             status: match.fixture?.status,
+            league: match.league,
           ),
         MatchSection(
           matchSectionEnum: MatchSectionEnum.league,

@@ -29,9 +29,19 @@ void openTeam(BuildContext context, {required int teamId}) => pushScreen(
 
 /// Opens [VenueScreen]
 void openVenue(BuildContext context, {required int venueId}) {
-  log('Open venue $venueId');
+  log('Open venue -> $venueId');
   // pushScreen(
   //   VenueScreen(venueId: venueId),
+  //   context: context,
+  //   isCircularTransition: true,
+  // );
+}
+
+/// Opens [LeagueScreen]
+void openLeague(BuildContext context, {required int leagueId}) {
+  log('Open league -> $leagueId');
+  // pushScreen(
+  //   LeagueScreen(leagueId: leagueId),
   //   context: context,
   //   isCircularTransition: true,
   // );
