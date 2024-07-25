@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import '../../../../../models/fixtures/fixture/fixture_status.dart';
 import '../../../../../models/fixtures/fixture/fixture_venue.dart';
 import '../../../../../routing.dart';
+import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
 import '../../../../../util/date_time.dart';
 import '../../../../../widgets/balun_button.dart';
@@ -38,15 +39,20 @@ class MatchInfoSection extends StatelessWidget {
           if (matchDateTime != null)
             Row(
               children: [
-                const Icon(
-                  Icons.punch_clock_rounded,
-                  size: 48,
+                Image.asset(
+                  BalunIcons.matchDateTime,
+                  height: 52,
+                  width: 52,
                 ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text(
+                        'Time',
+                        style: context.textStyles.matchInfoSectionTitle,
+                      ),
                       Text(
                         DateFormat('d. MMMM y.').format(matchDateTime),
                         style: context.textStyles.matchInfoSectionText,
@@ -62,7 +68,7 @@ class MatchInfoSection extends StatelessWidget {
               ],
             ),
 
-          const SizedBox(height: 16),
+          const SizedBox(height: 24),
 
           ///
           /// MATCH STATUS
@@ -70,21 +76,31 @@ class MatchInfoSection extends StatelessWidget {
           if (status != null)
             Row(
               children: [
-                const Icon(
-                  Icons.sports_soccer_rounded,
-                  size: 48,
+                Image.asset(
+                  BalunIcons.matchStatus,
+                  height: 52,
+                  width: 52,
                 ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: Text(
-                    status!.long ?? status!.short ?? 'Nothing',
-                    style: context.textStyles.matchInfoSectionText,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Status',
+                        style: context.textStyles.matchInfoSectionTitle,
+                      ),
+                      Text(
+                        status!.long ?? status!.short ?? 'Nothing',
+                        style: context.textStyles.matchInfoSectionText,
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
 
-          const SizedBox(height: 16),
+          const SizedBox(height: 24),
 
           ///
           /// REFEREE
@@ -92,21 +108,31 @@ class MatchInfoSection extends StatelessWidget {
           if (referee != null)
             Row(
               children: [
-                const Icon(
-                  Icons.refresh_rounded,
-                  size: 48,
+                Image.asset(
+                  BalunIcons.referee,
+                  height: 52,
+                  width: 52,
                 ),
                 const SizedBox(width: 16),
                 Expanded(
-                  child: Text(
-                    referee!,
-                    style: context.textStyles.matchInfoSectionText,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Referee',
+                        style: context.textStyles.matchInfoSectionTitle,
+                      ),
+                      Text(
+                        referee!,
+                        style: context.textStyles.matchInfoSectionText,
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
 
-          const SizedBox(height: 16),
+          const SizedBox(height: 24),
 
           ///
           /// STADIUM
@@ -121,15 +147,20 @@ class MatchInfoSection extends StatelessWidget {
                   : null,
               child: Row(
                 children: [
-                  const Icon(
-                    Icons.stadium_rounded,
-                    size: 48,
+                  Image.asset(
+                    BalunIcons.matchVenue,
+                    height: 52,
+                    width: 52,
                   ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(
+                          'Venue',
+                          style: context.textStyles.matchInfoSectionTitle,
+                        ),
                         if (venue?.name != null) ...[
                           Text(
                             venue!.name!,

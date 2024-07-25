@@ -39,6 +39,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/fonts/
+    - assets/icons/
   fonts:
     - family: Lufga
       fonts:
