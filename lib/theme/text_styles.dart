@@ -43,6 +43,18 @@ abstract class BalunTextStyles {
     fontSize: 20,
     fontWeight: FontWeight.w400,
   );
+
+  static const matchInfoSectionTitle = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const matchInfoSectionText = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -53,6 +65,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchLeagueRound;
   final TextStyle matchGoal;
   final TextStyle matchSectionTitle;
+  final TextStyle matchInfoSectionTitle;
+  final TextStyle matchInfoSectionText;
 
   const BalunTextThemesExtension({
     required this.fixturesMinute,
@@ -62,6 +76,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchLeagueRound,
     required this.matchGoal,
     required this.matchSectionTitle,
+    required this.matchInfoSectionTitle,
+    required this.matchInfoSectionText,
   });
 
   @override
@@ -73,6 +89,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchLeagueRound,
     TextStyle? matchGoal,
     TextStyle? matchSectionTitle,
+    TextStyle? matchInfoSectionTitle,
+    TextStyle? matchInfoSectionText,
   }) =>
       BalunTextThemesExtension(
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
@@ -82,6 +100,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchLeagueRound: matchLeagueRound ?? this.matchLeagueRound,
         matchGoal: matchGoal ?? this.matchGoal,
         matchSectionTitle: matchSectionTitle ?? this.matchSectionTitle,
+        matchInfoSectionTitle: matchInfoSectionTitle ?? this.matchInfoSectionTitle,
+        matchInfoSectionText: matchInfoSectionText ?? this.matchInfoSectionText,
       );
 
   @override
@@ -101,6 +121,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchLeagueRound: TextStyle.lerp(matchLeagueRound, other.matchLeagueRound, t)!,
       matchGoal: TextStyle.lerp(matchGoal, other.matchGoal, t)!,
       matchSectionTitle: TextStyle.lerp(matchSectionTitle, other.matchSectionTitle, t)!,
+      matchInfoSectionTitle: TextStyle.lerp(matchInfoSectionTitle, other.matchInfoSectionTitle, t)!,
+      matchInfoSectionText: TextStyle.lerp(matchInfoSectionText, other.matchInfoSectionText, t)!,
     );
   }
 }

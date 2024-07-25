@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'screens/fixtures/fixtures_screen.dart';
@@ -13,18 +15,24 @@ void openFixtures(BuildContext context) => pushScreen(
 
 /// Opens [MatchScreen]
 void openMatch(BuildContext context, {required int matchId}) => pushScreen(
-      MatchScreen(
-        matchId: matchId,
-      ),
+      MatchScreen(matchId: matchId),
       context: context,
       isCircularTransition: true,
     );
 
 /// Opens [TeamScreen]
 void openTeam(BuildContext context, {required int teamId}) => pushScreen(
-      TeamScreen(
-        teamId: teamId,
-      ),
+      TeamScreen(teamId: teamId),
       context: context,
       isCircularTransition: true,
     );
+
+/// Opens [VenueScreen]
+void openVenue(BuildContext context, {required int venueId}) {
+  log('Open venue $venueId');
+  // pushScreen(
+  //   VenueScreen(venueId: venueId),
+  //   context: context,
+  //   isCircularTransition: true,
+  // );
+}

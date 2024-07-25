@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../constants.dart';
+import '../../../../models/fixtures/fixture_response.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
 import '../../controllers/match_section_controller.dart';
@@ -10,9 +11,11 @@ import 'match_active_section.dart';
 import 'match_section_titles.dart';
 
 class MatchSlidingInfo extends WatchingWidget {
+  final FixtureResponse match;
   final ScrollController scrollController;
 
   const MatchSlidingInfo({
+    required this.match,
     required this.scrollController,
   });
 
@@ -63,6 +66,7 @@ class MatchSlidingInfo extends WatchingWidget {
             ),
           ],
           child: MatchActiveSection(
+            match: match,
             matchSection: matchSection,
           ),
         ),

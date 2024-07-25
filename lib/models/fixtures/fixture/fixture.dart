@@ -28,7 +28,12 @@ class Fixture {
         referee: map['referee'] != null ? map['referee'] as String : null,
         timezone: map['timezone'] != null ? map['timezone'] as String : null,
         date: map['date'] != null ? DateTime.parse(map['date'] as String) : null,
-        timestamp: map['timestamp'] != null ? DateTime.fromMillisecondsSinceEpoch(map['timestamp'] as int) : null,
+        timestamp: map['timestamp'] != null
+            ? DateTime.fromMillisecondsSinceEpoch(
+                (map['timestamp'] as int) * 1000,
+                isUtc: true,
+              )
+            : null,
         periods: map['periods'] != null ? FixturePeriods.fromMap(map['periods'] as Map<String, dynamic>) : null,
         venue: map['venue'] != null ? FixtureVenue.fromMap(map['venue'] as Map<String, dynamic>) : null,
         status: map['status'] != null ? FixtureStatus.fromMap(map['status'] as Map<String, dynamic>) : null,

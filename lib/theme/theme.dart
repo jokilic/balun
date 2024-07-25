@@ -49,6 +49,12 @@ class BalunTheme {
     matchSectionTitle: BalunTextStyles.matchSectionTitle.copyWith(
       color: lightAppColors.black,
     ),
+    matchInfoSectionTitle: BalunTextStyles.matchInfoSectionTitle.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
+    matchInfoSectionText: BalunTextStyles.matchInfoSectionText.copyWith(
+      color: lightAppColors.black,
+    ),
   );
 }
 

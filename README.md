@@ -12,8 +12,12 @@ A simple Flutter application for football scores.
 * Tapping team icon can open `TeamScreen`
 * Tapping big score will open expanded list with values in fixture -> score
 * Tabs
-    * Fixture info - Stadium, date, league, referee, etc.
-    * League info
+    * Fixture info
+        * Date and time of match
+        * Referee
+        * Stadium name and city - Tappable (opens Venue by id)
+        * Match status (finished, cancelled, etc.)
+        * League name, country, logo, season and round - Tappable (opens League by id)
     * Events
     * Lineups
     * Formations
@@ -45,7 +49,6 @@ A simple Flutter application for football scores.
 ### `FixturesScreen`
 
 * Show fixtures by date
-* 
 
 ### `PlayerScreen`
 

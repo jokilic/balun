@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../../../models/fixtures/fixture_response.dart';
 import '../../../../models/match_section.dart';
 import 'sections/match_events_section.dart';
 import 'sections/match_formations_section.dart';
@@ -12,9 +13,11 @@ import 'sections/match_lineups_section.dart';
 import 'sections/match_statistics_section.dart';
 
 class MatchActiveSection extends StatelessWidget {
+  final FixtureResponse match;
   final MatchSection matchSection;
 
   const MatchActiveSection({
+    required this.match,
     required this.matchSection,
   });
 
@@ -23,7 +26,12 @@ class MatchActiveSection extends StatelessWidget {
         MatchSection(
           matchSectionEnum: MatchSectionEnum.info,
         ) =>
-          MatchInfoSection(),
+          MatchInfoSection(
+            timestamp: match.fixture?.timestamp,
+            referee: match.fixture?.referee,
+            venue: match.fixture?.venue,
+            status: match.fixture?.status,
+          ),
         MatchSection(
           matchSectionEnum: MatchSectionEnum.league,
         ) =>

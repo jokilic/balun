@@ -39,22 +39,18 @@ class _MatchSuccessState extends State<MatchSuccess> {
     super.dispose();
   }
 
-  void getHeight() {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
-        if (widgetHeightKey.currentContext != null) {
-          final renderBox = widgetHeightKey.currentContext?.findRenderObject() as RenderBox?;
-          final columnHeight = renderBox?.size.height;
+  void getHeight() => WidgetsBinding.instance.addPostFrameCallback(
+        (_) {
+          if (widgetHeightKey.currentContext != null) {
+            final renderBox = widgetHeightKey.currentContext?.findRenderObject() as RenderBox?;
+            final columnHeight = renderBox?.size.height;
 
-          if (columnHeight != null) {
-            setState(
-              () => panelHeight = columnHeight,
-            );
+            if (columnHeight != null) {
+              setState(() => panelHeight = columnHeight);
+            }
           }
-        }
-      },
-    );
-  }
+        },
+      );
 
   @override
   Widget build(BuildContext context) => Stack(
@@ -79,6 +75,7 @@ class _MatchSuccessState extends State<MatchSuccess> {
             minHeight: panelHeight,
             maxHeight: MediaQuery.sizeOf(context).height - 144,
             panelBuilder: () => MatchSlidingInfo(
+              match: widget.match,
               scrollController: scrollController,
             ),
           ),
