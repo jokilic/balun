@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../theme/theme.dart';
+import '../../../util/state.dart';
 import '../../../widgets/balun_loader.dart';
-import '../fixtures_state.dart';
 import 'fixtures_success.dart';
 
 class FixturesContent extends StatelessWidget {
-  final FixturesState fixturesState;
+  final BalunState fixturesState;
 
   const FixturesContent({
     required this.fixturesState,
@@ -14,20 +14,20 @@ class FixturesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (fixturesState) {
-        FixturesStateInitial() => Container(color: Colors.green),
-        FixturesStateLoading() => Center(child: BalunLoader()),
-        FixturesStateEmpty() => Container(color: Colors.grey),
-        FixturesStateError() => Container(
+        Initial() => Container(color: Colors.green),
+        Loading() => Center(child: BalunLoader()),
+        Empty() => Container(color: Colors.grey),
+        Error() => Container(
             color: Colors.red,
             child: Center(
               child: Text(
-                (fixturesState as FixturesStateError).error ?? 'Generic fixtures error',
+                (fixturesState as Error).error ?? 'Generic fixtures error',
                 style: context.textStyles.fixturesName,
               ),
             ),
           ),
-        FixturesStateSuccess() => FixturesSuccess(
-            fixtures: (fixturesState as FixturesStateSuccess).fixtures,
+        Success() => FixturesSuccess(
+            fixtures: (fixturesState as Success).data,
           ),
       };
 }

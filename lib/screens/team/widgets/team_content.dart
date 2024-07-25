@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../theme/theme.dart';
+import '../../../util/state.dart';
 import '../../../widgets/balun_loader.dart';
-import '../team_state.dart';
 import 'team_success.dart';
 
 class TeamContent extends StatelessWidget {
-  final TeamState teamState;
+  final BalunState teamState;
 
   const TeamContent({
     required this.teamState,
@@ -14,20 +14,20 @@ class TeamContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (teamState) {
-        TeamStateInitial() => Container(color: Colors.green),
-        TeamStateLoading() => Center(child: BalunLoader()),
-        TeamStateEmpty() => Container(color: Colors.grey),
-        TeamStateError() => Container(
+        Initial() => Container(color: Colors.green),
+        Loading() => Center(child: BalunLoader()),
+        Empty() => Container(color: Colors.grey),
+        Error() => Container(
             color: Colors.red,
             child: Center(
               child: Text(
-                (teamState as TeamStateError).error ?? 'Generic Team error',
+                (teamState as Error).error ?? 'Generic Team error',
                 style: context.textStyles.fixturesName,
               ),
             ),
           ),
-        TeamStateSuccess() => TeamSuccess(
-            team: (teamState as TeamStateSuccess).team,
+        Success() => TeamSuccess(
+            team: (teamState as Success).data,
           ),
       };
 }

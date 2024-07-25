@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../../models/fixtures/fixture_response.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
-import 'fixtures_state.dart';
+import '../../util/state.dart';
 
-class FixturesController extends ValueNotifier<FixturesState> {
+class FixturesController extends ValueNotifier<BalunState<List<FixtureResponse>>> {
   final LoggerService logger;
   final APIService api;
 
   FixturesController({
     required this.logger,
     required this.api,
-  }) : super(FixturesStateInitial())
+  }) : super(Initial())
 
   ///
   /// INIT
@@ -26,7 +27,7 @@ class FixturesController extends ValueNotifier<FixturesState> {
   ///
 
   Future<void> getFixtures() async {
-    value = FixturesStateLoading();
+    value = Loading();
 
     final response = await api.getFixtures();
 
@@ -34,21 +35,21 @@ class FixturesController extends ValueNotifier<FixturesState> {
     if (response.fixturesResponse != null && response.error == null) {
       /// Errors exist, update to error state
       if (response.fixturesResponse!.errors?.isNotEmpty ?? false) {
-        value = FixturesStateError(
+        value = Error(
           error: response.fixturesResponse!.errors?.map((error) => error.bug).toString(),
         );
       }
 
       /// Response is not null, update to success state
       else if (response.fixturesResponse!.response != null) {
-        value = FixturesStateSuccess(
-          fixtures: response.fixturesResponse!.response!,
+        value = Success(
+          data: response.fixturesResponse!.response!,
         );
       }
 
       /// Response is null, update to error state
       else {
-        value = FixturesStateError(
+        value = Error(
           error: 'Fixtures response is null',
         );
       }
@@ -57,7 +58,7 @@ class FixturesController extends ValueNotifier<FixturesState> {
     /// Failed request
     if (response.fixturesResponse == null && response.error != null) {
       /// Error is not null, update to error state
-      value = FixturesStateError(
+      value = Error(
         error: response.error,
       );
     }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../theme/theme.dart';
+import '../../../util/state.dart';
 import '../../../widgets/balun_loader.dart';
-import '../match_state.dart';
 import 'match_success.dart';
 
 class MatchContent extends StatelessWidget {
-  final MatchState matchState;
+  final BalunState matchState;
 
   const MatchContent({
     required this.matchState,
@@ -14,20 +14,20 @@ class MatchContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (matchState) {
-        MatchStateInitial() => Container(color: Colors.green),
-        MatchStateLoading() => Center(child: BalunLoader()),
-        MatchStateEmpty() => Container(color: Colors.grey),
-        MatchStateError() => Container(
+        Initial() => Container(color: Colors.green),
+        Loading() => Center(child: BalunLoader()),
+        Empty() => Container(color: Colors.grey),
+        Error() => Container(
             color: Colors.red,
             child: Center(
               child: Text(
-                (matchState as MatchStateError).error ?? 'Generic match error',
+                (matchState as Error).error ?? 'Generic match error',
                 style: context.textStyles.fixturesName,
               ),
             ),
           ),
-        MatchStateSuccess() => MatchSuccess(
-            match: (matchState as MatchStateSuccess).match,
+        Success() => MatchSuccess(
+            match: (matchState as Success).data,
           ),
       };
 }

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../../models/teams/team_response.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
-import 'team_state.dart';
+import '../../util/state.dart';
 
-class TeamController extends ValueNotifier<TeamState> {
+class TeamController extends ValueNotifier<BalunState<TeamResponse>> {
   final LoggerService logger;
   final APIService api;
 
   TeamController({
     required this.logger,
     required this.api,
-  }) : super(TeamStateInitial());
+  }) : super(Initial());
 
   ///
   /// METHODS
@@ -20,7 +21,7 @@ class TeamController extends ValueNotifier<TeamState> {
   Future<void> getTeam({
     required int teamId,
   }) async {
-    value = TeamStateLoading();
+    value = Loading();
 
     final response = await api.getTeam(
       teamId: teamId,
@@ -30,21 +31,21 @@ class TeamController extends ValueNotifier<TeamState> {
     if (response.teamsResponse != null && response.error == null) {
       /// Errors exist, update to error state
       if (response.teamsResponse!.errors?.isNotEmpty ?? false) {
-        value = TeamStateError(
+        value = Error(
           error: response.teamsResponse!.errors?.map((error) => error.bug).toString(),
         );
       }
 
       /// Response is not null, update to success state
       else if (response.teamsResponse!.response != null) {
-        value = TeamStateSuccess(
-          team: response.teamsResponse!.response!.first,
+        value = Success(
+          data: response.teamsResponse!.response!.first,
         );
       }
 
       /// Response is null, update to error state
       else {
-        value = TeamStateError(
+        value = Error(
           error: 'Team response is null',
         );
       }
@@ -53,7 +54,7 @@ class TeamController extends ValueNotifier<TeamState> {
     /// Failed request
     if (response.teamsResponse == null && response.error != null) {
       /// Error is not null, update to error state
-      value = TeamStateError(
+      value = Error(
         error: response.error,
       );
     }

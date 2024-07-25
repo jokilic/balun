@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/fixtures/fixture_response.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
-import '../match_state.dart';
+import '../../../util/state.dart';
 
-class MatchController extends ValueNotifier<MatchState> {
+class MatchController extends ValueNotifier<BalunState<FixtureResponse>> {
   final LoggerService logger;
   final APIService api;
 
   MatchController({
     required this.logger,
     required this.api,
-  }) : super(MatchStateInitial());
+  }) : super(Initial());
 
   ///
   /// METHODS
@@ -20,7 +21,7 @@ class MatchController extends ValueNotifier<MatchState> {
   Future<void> getMatch({
     required int matchId,
   }) async {
-    value = MatchStateLoading();
+    value = Loading();
 
     final response = await api.getMatch(
       matchId: matchId,
@@ -30,21 +31,21 @@ class MatchController extends ValueNotifier<MatchState> {
     if (response.fixturesResponse != null && response.error == null) {
       /// Errors exist, update to error state
       if (response.fixturesResponse!.errors?.isNotEmpty ?? false) {
-        value = MatchStateError(
+        value = Error(
           error: response.fixturesResponse!.errors?.map((error) => error.bug).toString(),
         );
       }
 
       /// Response is not null, update to success state
       else if (response.fixturesResponse!.response != null) {
-        value = MatchStateSuccess(
-          match: response.fixturesResponse!.response!.first,
+        value = Success(
+          data: response.fixturesResponse!.response!.first,
         );
       }
 
       /// Response is null, update to error state
       else {
-        value = MatchStateError(
+        value = Error(
           error: 'Match response is null',
         );
       }
@@ -53,7 +54,7 @@ class MatchController extends ValueNotifier<MatchState> {
     /// Failed request
     if (response.fixturesResponse == null && response.error != null) {
       /// Error is not null, update to error state
-      value = MatchStateError(
+      value = Error(
         error: response.error,
       );
     }
