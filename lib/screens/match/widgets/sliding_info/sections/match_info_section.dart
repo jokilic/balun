@@ -29,6 +29,7 @@ class MatchInfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final matchDateTime = parseTimestamp(timestamp);
+    final matchDateTimeAgo = parseDateTimeago(timestamp);
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -40,7 +41,7 @@ class MatchInfoSection extends StatelessWidget {
           ///
           /// DATE
           ///
-          if (matchDateTime != null)
+          if (matchDateTime != null) ...[
             Row(
               children: [
                 Image.asset(
@@ -58,26 +59,27 @@ class MatchInfoSection extends StatelessWidget {
                         style: context.textStyles.matchInfoSectionTitle,
                       ),
                       Text(
-                        DateFormat('d. MMMM y.').format(matchDateTime),
+                        DateFormat('d. MMMM y. - HH:mm').format(matchDateTime),
                         style: context.textStyles.matchInfoSectionText,
                       ),
                       const SizedBox(height: 2),
-                      Text(
-                        DateFormat('HH:mm').format(matchDateTime),
-                        style: context.textStyles.matchInfoSectionText,
-                      ),
+                      if (matchDateTimeAgo != null)
+                        Text(
+                          matchDateTimeAgo,
+                          style: context.textStyles.matchInfoSectionText,
+                        ),
                     ],
                   ),
                 ),
               ],
             ),
-
-          const SizedBox(height: 24),
+            const SizedBox(height: 24),
+          ],
 
           ///
           /// MATCH STATUS
           ///
-          if (status != null)
+          if (status != null) ...[
             Row(
               children: [
                 Image.asset(
@@ -103,13 +105,13 @@ class MatchInfoSection extends StatelessWidget {
                 ),
               ],
             ),
-
-          const SizedBox(height: 24),
+            const SizedBox(height: 24),
+          ],
 
           ///
           /// LEAGUE
           ///
-          if (league != null)
+          if (league != null) ...[
             BalunButton(
               onPressed: league?.id != null
                   ? () => openLeague(
@@ -158,13 +160,13 @@ class MatchInfoSection extends StatelessWidget {
                 ],
               ),
             ),
-
-          const SizedBox(height: 24),
+            const SizedBox(height: 24),
+          ],
 
           ///
           /// ROUND
           ///
-          if (league != null)
+          if (league != null) ...[
             BalunButton(
               onPressed: league?.id != null
                   ? () => openLeague(
@@ -206,13 +208,13 @@ class MatchInfoSection extends StatelessWidget {
                 ],
               ),
             ),
-
-          const SizedBox(height: 24),
+            const SizedBox(height: 24),
+          ],
 
           ///
           /// REFEREE
           ///
-          if (referee != null)
+          if (referee != null) ...[
             Row(
               children: [
                 Image.asset(
@@ -238,13 +240,13 @@ class MatchInfoSection extends StatelessWidget {
                 ),
               ],
             ),
-
-          const SizedBox(height: 24),
+            const SizedBox(height: 24),
+          ],
 
           ///
           /// STADIUM
           ///
-          if (venue != null)
+          if (venue != null) ...[
             BalunButton(
               onPressed: venue?.id != null
                   ? () => openVenue(
@@ -286,8 +288,8 @@ class MatchInfoSection extends StatelessWidget {
                 ],
               ),
             ),
-
-          const SizedBox(height: 24),
+            const SizedBox(height: 24),
+          ],
         ],
       ),
     );

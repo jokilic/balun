@@ -3,6 +3,7 @@ import 'package:sliding_up_panel2/sliding_up_panel2.dart';
 
 import '../../../models/fixtures/fixture_response.dart';
 import '../../../theme/theme.dart';
+import '../../../widgets/widget_size.dart';
 import 'main_info/match_main_info.dart';
 import 'sliding_info/match_sliding_info.dart';
 
@@ -18,19 +19,13 @@ class MatchSuccess extends StatefulWidget {
 }
 
 class _MatchSuccessState extends State<MatchSuccess> {
-  final widgetHeightKey = GlobalKey();
   late var panelHeight = 100.0;
   late final ScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
-
     scrollController = ScrollController();
-
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => getHeight(),
-    );
   }
 
   @override
@@ -39,28 +34,19 @@ class _MatchSuccessState extends State<MatchSuccess> {
     super.dispose();
   }
 
-  void getHeight() => WidgetsBinding.instance.addPostFrameCallback(
-        (_) {
-          if (widgetHeightKey.currentContext != null) {
-            final renderBox = widgetHeightKey.currentContext?.findRenderObject() as RenderBox?;
-            final columnHeight = renderBox?.size.height;
-
-            if (columnHeight != null) {
-              setState(() => panelHeight = columnHeight);
-            }
-          }
-        },
-      );
-
   @override
   Widget build(BuildContext context) => Stack(
         children: [
           ///
           /// TOP CONTENT
           ///
-          MatchMainInfo(
-            match: widget.match,
-            widgetHeightKey: widgetHeightKey,
+          WidgetSize(
+            onChange: (size) => setState(
+              () => panelHeight = (MediaQuery.sizeOf(context).height - size.height) - 80,
+            ),
+            child: MatchMainInfo(
+              match: widget.match,
+            ),
           ),
 
           ///

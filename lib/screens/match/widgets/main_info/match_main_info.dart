@@ -12,16 +12,13 @@ import 'match_minute.dart';
 
 class MatchMainInfo extends StatelessWidget {
   final FixtureResponse match;
-  final GlobalKey widgetHeightKey;
 
   const MatchMainInfo({
     required this.match,
-    required this.widgetHeightKey,
   });
 
   @override
   Widget build(BuildContext context) => Padding(
-        key: widgetHeightKey,
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 8,
@@ -131,7 +128,7 @@ class MatchMainInfo extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 28),
+            const SizedBox(height: 16),
 
             ///
             /// SCORE & GOALSCORERS
