@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../constants.dart';
 import '../../../../models/fixtures/fixture_response.dart';
 import '../../../../theme/theme.dart';
+import '../../../../util/string.dart';
 import '../../../../widgets/balun_button.dart';
 import 'fixtures_list_tile_logo.dart';
 import 'fixtures_list_tile_minute.dart';
@@ -45,7 +46,10 @@ class FixturesListTile extends StatelessWidget {
                   /// MINUTE
                   ///
                   FixturesListTileMinute(
-                    minutes: fixture.fixture?.status?.elapsed ?? 0,
+                    status: getMatchStatusMinutes(
+                      statusShort: fixture.fixture?.status?.short ?? '?',
+                      minutes: fixture.fixture?.status?.elapsed ?? 0,
+                    ),
                   ),
 
                   ///

@@ -131,4 +131,47 @@ class APIService {
       return (teamsResponse: null, error: error);
     }
   }
+
+  ///
+  /// `/standings`
+  ///
+
+  Future<({bool? standingsResponse, String? error})> getStandings({
+    required int leagueId,
+    required int season,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/standings',
+        queryParameters: {
+          'league': leagueId,
+          'season': season,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            // final parsedResponse = await computeFixtures(response.data);
+            return (standingsResponse: true, error: null);
+          } catch (e) {
+            final error = 'API -> getStandings -> parsing error -> $e';
+            logger.e(error);
+            return (standingsResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getStandings -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (standingsResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = 'API -> getStandings -> catch -> $e';
+      logger.e(error);
+      return (standingsResponse: null, error: error);
+    }
+  }
 }

@@ -37,7 +37,7 @@ class MatchController extends ValueNotifier<BalunState<FixtureResponse>> {
       }
 
       /// Response is not null, update to success state
-      else if (response.fixturesResponse!.response != null) {
+      else if (response.fixturesResponse!.response?.isNotEmpty ?? false) {
         value = Success(
           data: response.fixturesResponse!.response!.first,
         );

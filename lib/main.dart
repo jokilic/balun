@@ -44,8 +44,8 @@ class BalunApp extends StatelessWidget {
                 color: context.colors.red,
                 location: BannerLocation.topEnd,
                 layoutDirection: TextDirection.ltr,
-                child: child ?? BalunLoader(),
+                child: child ?? const BalunLoader(),
               )
-            : child ?? BalunLoader(),
+            : child ?? const BalunLoader(),
       );
 }

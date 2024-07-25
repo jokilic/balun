@@ -37,7 +37,7 @@ class TeamController extends ValueNotifier<BalunState<TeamResponse>> {
       }
 
       /// Response is not null, update to success state
-      else if (response.teamsResponse!.response != null) {
+      else if (response.teamsResponse!.response?.isNotEmpty ?? false) {
         value = Success(
           data: response.teamsResponse!.response!.first,
         );

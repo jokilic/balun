@@ -25,3 +25,14 @@ String getMatchStatus(String statusShort) => switch (statusShort) {
       'LIVE' => 'In progress',
       _ => 'Unknown',
     };
+
+String getMatchStatusMinutes({
+  required String statusShort,
+  required int minutes,
+}) =>
+    switch (statusShort) {
+      'TBD' || 'NS' => '---',
+      '1H' || '2H' || 'ET' => '$minutes',
+      'FT' || 'AET' || 'PEN' => 'FT',
+      _ => statusShort,
+    };

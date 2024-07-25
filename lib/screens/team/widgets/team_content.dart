@@ -15,7 +15,7 @@ class TeamContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) => switch (teamState) {
         Initial() => Container(color: Colors.green),
-        Loading() => Center(child: BalunLoader()),
+        Loading() => const Center(child: BalunLoader()),
         Empty() => Container(color: Colors.grey),
         Error() => Container(
             color: Colors.red,

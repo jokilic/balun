@@ -91,7 +91,10 @@ class MatchMainInfo extends StatelessWidget {
                       /// MINUTE
                       ///
                       MatchMinute(
-                        minutes: match.fixture?.status?.elapsed ?? 0,
+                        status: getMatchStatusMinutes(
+                          statusShort: match.fixture?.status?.short ?? '?',
+                          minutes: match.fixture?.status?.elapsed ?? 0,
+                        ),
                       ),
                     ],
                   ),

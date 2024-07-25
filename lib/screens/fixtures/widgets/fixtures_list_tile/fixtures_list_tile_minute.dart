@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../../theme/theme.dart';
 
 class FixturesListTileMinute extends StatelessWidget {
-  final int minutes;
+  final String status;
 
   const FixturesListTileMinute({
-    required this.minutes,
+    required this.status,
   });
 
   @override
@@ -27,18 +27,19 @@ class FixturesListTileMinute extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Text(
-              '$minutes',
+              status,
               style: context.textStyles.fixturesMinute,
               textAlign: TextAlign.center,
             ),
-            Positioned(
-              right: -6,
-              child: Text(
-                "'",
-                style: context.textStyles.fixturesMinute,
-                textAlign: TextAlign.center,
+            if (int.tryParse(status) != null)
+              Positioned(
+                right: -6,
+                child: Text(
+                  "'",
+                  style: context.textStyles.fixturesMinute,
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
           ],
         ),
       );

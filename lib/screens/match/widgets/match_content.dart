@@ -15,7 +15,7 @@ class MatchContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) => switch (matchState) {
         Initial() => Container(color: Colors.green),
-        Loading() => Center(child: BalunLoader()),
+        Loading() => const Center(child: BalunLoader()),
         Empty() => Container(color: Colors.grey),
         Error() => Container(
             color: Colors.red,

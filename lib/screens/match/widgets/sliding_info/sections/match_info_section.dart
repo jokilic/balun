@@ -20,11 +20,11 @@ class MatchInfoSection extends StatelessWidget {
   final League? league;
 
   const MatchInfoSection({
-    this.timestamp,
-    this.referee,
-    this.venue,
-    this.status,
-    this.league,
+    required this.timestamp,
+    required this.referee,
+    required this.venue,
+    required this.status,
+    required this.league,
   });
 
   @override

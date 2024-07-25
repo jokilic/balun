@@ -6,6 +6,7 @@ import '../../constants.dart';
 import '../../util/dependencies.dart';
 import 'controllers/match_controller.dart';
 import 'controllers/match_section_controller.dart';
+import 'controllers/match_standings_controller.dart';
 import 'widgets/match_content.dart';
 
 class MatchScreen extends WatchingStatefulWidget {
@@ -32,7 +33,8 @@ class _MatchScreenState extends State<MatchScreen> {
   void dispose() {
     getIt
       ..resetLazySingleton<MatchController>()
-      ..resetLazySingleton<MatchSectionController>();
+      ..resetLazySingleton<MatchSectionController>()
+      ..resetLazySingleton<MatchStandingsController>();
 
     super.dispose();
   }
