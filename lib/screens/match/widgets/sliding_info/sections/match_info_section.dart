@@ -8,6 +8,7 @@ import '../../../../../routing.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
 import '../../../../../util/date_time.dart';
+import '../../../../../util/string.dart';
 import '../../../../../widgets/balun_button.dart';
 import '../../../../../widgets/balun_image.dart';
 
@@ -97,7 +98,7 @@ class MatchInfoSection extends StatelessWidget {
                         style: context.textStyles.matchInfoSectionTitle,
                       ),
                       Text(
-                        status!.long ?? status!.short ?? 'Nothing',
+                        getMatchStatus(status!.short ?? ''),
                         style: context.textStyles.matchInfoSectionText,
                       ),
                     ],
