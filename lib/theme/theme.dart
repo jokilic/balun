@@ -55,6 +55,15 @@ class BalunTheme {
     matchInfoSectionText: BalunTextStyles.matchInfoSectionText.copyWith(
       color: lightAppColors.black,
     ),
+    matchStandingsSectionTitle: BalunTextStyles.matchStandingsSectionTitle.copyWith(
+      color: lightAppColors.black,
+    ),
+    matchStandingsSectionText: BalunTextStyles.matchStandingsSectionText.copyWith(
+      color: lightAppColors.black,
+    ),
+    matchStandingsRank: BalunTextStyles.matchStandingsRank.copyWith(
+      color: lightAppColors.black,
+    ),
   );
 }
 

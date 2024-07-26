@@ -9,8 +9,8 @@ import 'sections/match_head_to_head_section.dart';
 import 'sections/match_info_section.dart';
 import 'sections/match_injuries_section.dart';
 import 'sections/match_lineups_section.dart';
-import 'sections/match_standings_section.dart';
 import 'sections/match_statistics_section.dart';
+import 'sections/standings/match_standings_section.dart';
 
 class MatchActiveSection extends StatelessWidget {
   final FixtureResponse match;

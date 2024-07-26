@@ -55,6 +55,24 @@ abstract class BalunTextStyles {
     fontSize: 20,
     fontWeight: FontWeight.w400,
   );
+
+  static const matchStandingsSectionTitle = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 28,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const matchStandingsSectionText = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const matchStandingsRank = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -67,6 +85,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchSectionTitle;
   final TextStyle matchInfoSectionTitle;
   final TextStyle matchInfoSectionText;
+  final TextStyle matchStandingsSectionTitle;
+  final TextStyle matchStandingsSectionText;
+  final TextStyle matchStandingsRank;
 
   const BalunTextThemesExtension({
     required this.fixturesMinute,
@@ -78,6 +99,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchSectionTitle,
     required this.matchInfoSectionTitle,
     required this.matchInfoSectionText,
+    required this.matchStandingsSectionTitle,
+    required this.matchStandingsSectionText,
+    required this.matchStandingsRank,
   });
 
   @override
@@ -91,6 +115,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchSectionTitle,
     TextStyle? matchInfoSectionTitle,
     TextStyle? matchInfoSectionText,
+    TextStyle? matchStandingsSectionTitle,
+    TextStyle? matchStandingsSectionText,
+    TextStyle? matchStandingsRank,
   }) =>
       BalunTextThemesExtension(
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
@@ -102,6 +129,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchSectionTitle: matchSectionTitle ?? this.matchSectionTitle,
         matchInfoSectionTitle: matchInfoSectionTitle ?? this.matchInfoSectionTitle,
         matchInfoSectionText: matchInfoSectionText ?? this.matchInfoSectionText,
+        matchStandingsSectionTitle: matchStandingsSectionTitle ?? this.matchStandingsSectionTitle,
+        matchStandingsSectionText: matchStandingsSectionText ?? this.matchStandingsSectionText,
+        matchStandingsRank: matchStandingsRank ?? this.matchStandingsRank,
       );
 
   @override
@@ -123,6 +153,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchSectionTitle: TextStyle.lerp(matchSectionTitle, other.matchSectionTitle, t)!,
       matchInfoSectionTitle: TextStyle.lerp(matchInfoSectionTitle, other.matchInfoSectionTitle, t)!,
       matchInfoSectionText: TextStyle.lerp(matchInfoSectionText, other.matchInfoSectionText, t)!,
+      matchStandingsSectionTitle: TextStyle.lerp(matchStandingsSectionTitle, other.matchStandingsSectionTitle, t)!,
+      matchStandingsSectionText: TextStyle.lerp(matchStandingsSectionText, other.matchStandingsSectionText, t)!,
+      matchStandingsRank: TextStyle.lerp(matchStandingsRank, other.matchStandingsRank, t)!,
     );
   }
 }

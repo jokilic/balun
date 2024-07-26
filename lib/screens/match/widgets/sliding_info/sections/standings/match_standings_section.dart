@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../theme/theme.dart';
-import '../../../../../util/dependencies.dart';
-import '../../../../../util/state.dart';
-import '../../../../../widgets/balun_loader.dart';
-import '../../../controllers/match_standings_controller.dart';
+import '../../../../../../constants.dart';
+import '../../../../../../theme/theme.dart';
+import '../../../../../../util/dependencies.dart';
+import '../../../../../../util/state.dart';
+import '../../../../../../widgets/balun_loader.dart';
+import '../../../../controllers/match_standings_controller.dart';
+import 'match_standings_content.dart';
 
 class MatchStandingsSection extends WatchingStatefulWidget {
   final int? leagueId;
@@ -69,10 +70,8 @@ class _MatchStandingsSectionState extends State<MatchStandingsSection> {
               ),
             ),
           ),
-        Success() => Container(
-            color: Colors.blue,
-            height: 100,
-            width: 100,
+        Success() => MatchStandingsContent(
+            league: (standingsState as Success).data,
           ),
       },
     );

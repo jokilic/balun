@@ -15,6 +15,12 @@ class MatchStandingsController extends ValueNotifier<BalunState<League>> {
   }) : super(Initial());
 
   ///
+  /// VARIABLES
+  ///
+
+  var fetched = false;
+
+  ///
   /// METHODS
   ///
 
@@ -26,6 +32,10 @@ class MatchStandingsController extends ValueNotifier<BalunState<League>> {
       value = Error(
         error: 'Passed leagueId or season is null',
       );
+    }
+
+    if (fetched) {
+      return;
     }
 
     value = Loading();
@@ -46,6 +56,7 @@ class MatchStandingsController extends ValueNotifier<BalunState<League>> {
 
       /// Response is not null, update to success state
       else if (response.standingsResponse!.response?.firstOrNull?.league != null) {
+        fetched = true;
         value = Success(
           data: response.standingsResponse!.response!.first.league!,
         );
