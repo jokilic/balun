@@ -35,7 +35,7 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                 children: [
                   Text(
                     '${widget.standing.rank ?? '--'}',
-                    style: context.textStyles.matchStandingsRank,
+                    style: context.textStyles.matchStandingsSectionText,
                   ),
                   const SizedBox(width: 12),
                   BalunImage(
@@ -47,7 +47,7 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                   Expanded(
                     child: Text(
                       widget.standing.team?.name ?? '--',
-                      style: context.textStyles.matchStandingsRank,
+                      style: context.textStyles.matchStandingsSectionText,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -57,9 +57,9 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                     width: 36,
                     child: Text(
                       '${widget.standing.all?.played ?? '--'}',
-                      style: context.textStyles.matchStandingsRank,
+                      style: context.textStyles.matchStandingsSectionText,
                       maxLines: 1,
-                      textAlign: TextAlign.right,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -67,9 +67,9 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                     width: 36,
                     child: Text(
                       '${widget.standing.goalsDiff ?? '--'}',
-                      style: context.textStyles.matchStandingsRank,
+                      style: context.textStyles.matchStandingsSectionText,
                       maxLines: 1,
-                      textAlign: TextAlign.right,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -77,9 +77,9 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                     width: 36,
                     child: Text(
                       '${widget.standing.points ?? '--'}',
-                      style: context.textStyles.matchStandingsRank,
+                      style: context.textStyles.matchStandingsSectionText,
                       maxLines: 1,
-                      textAlign: TextAlign.right,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ],
@@ -88,10 +88,179 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                 duration: BalunConstants.animationDuration,
                 curve: Curves.easeIn,
                 child: expanded
-                    ? Container(
-                        height: 100,
-                        width: 100,
-                        color: Colors.indigo,
+                    ? Padding(
+                        padding: const EdgeInsets.fromLTRB(60, 8, 8, 8),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'Points',
+                                  style: context.textStyles.matchStandingsSectionText.copyWith(
+                                    color: context.colors.black.withOpacity(0.5),
+                                  ),
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '${widget.standing.points ?? '--'}',
+                                  style: context.textStyles.matchStandingsSectionText,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                Text(
+                                  'Goal difference',
+                                  style: context.textStyles.matchStandingsSectionText.copyWith(
+                                    color: context.colors.black.withOpacity(0.5),
+                                  ),
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '${widget.standing.goalsDiff ?? '--'}',
+                                  style: context.textStyles.matchStandingsSectionText,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                Text(
+                                  'Played games',
+                                  style: context.textStyles.matchStandingsSectionText.copyWith(
+                                    color: context.colors.black.withOpacity(0.5),
+                                  ),
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '${widget.standing.all?.played ?? '--'}',
+                                  style: context.textStyles.matchStandingsSectionText,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                Text(
+                                  'Won games',
+                                  style: context.textStyles.matchStandingsSectionText.copyWith(
+                                    color: context.colors.black.withOpacity(0.5),
+                                  ),
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '${widget.standing.all?.win ?? '--'}',
+                                  style: context.textStyles.matchStandingsSectionText,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                Text(
+                                  'Drew games',
+                                  style: context.textStyles.matchStandingsSectionText.copyWith(
+                                    color: context.colors.black.withOpacity(0.5),
+                                  ),
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '${widget.standing.all?.draw ?? '--'}',
+                                  style: context.textStyles.matchStandingsSectionText,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                Text(
+                                  'Lost games',
+                                  style: context.textStyles.matchStandingsSectionText.copyWith(
+                                    color: context.colors.black.withOpacity(0.5),
+                                  ),
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '${widget.standing.all?.lose ?? '--'}',
+                                  style: context.textStyles.matchStandingsSectionText,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                Text(
+                                  'Scored goals',
+                                  style: context.textStyles.matchStandingsSectionText.copyWith(
+                                    color: context.colors.black.withOpacity(0.5),
+                                  ),
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '${widget.standing.all?.goals?.goalsFor ?? '--'}',
+                                  style: context.textStyles.matchStandingsSectionText,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                Text(
+                                  'Conceded goals',
+                                  style: context.textStyles.matchStandingsSectionText.copyWith(
+                                    color: context.colors.black.withOpacity(0.5),
+                                  ),
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  '${widget.standing.all?.goals?.goalsAgainst ?? '--'}',
+                                  style: context.textStyles.matchStandingsSectionText,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            if (widget.standing.description != null) ...[
+                              const SizedBox(height: 16),
+                              Text(
+                                widget.standing.description!,
+                                style: context.textStyles.matchStandingsSectionTextAlternate,
+                              ),
+                            ],
+                            const SizedBox(height: 8),
+                          ],
+                        ),
                       )
                     : const SizedBox.shrink(),
               ),

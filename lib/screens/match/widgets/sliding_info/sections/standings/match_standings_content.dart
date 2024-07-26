@@ -41,7 +41,42 @@ class MatchStandingsContent extends StatelessWidget {
                 'Season ${league.season}',
                 style: context.textStyles.matchStandingsSectionText,
               ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(
+                  width: 36,
+                  child: Text(
+                    'PL',
+                    style: context.textStyles.matchStandingsSectionText,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                SizedBox(
+                  width: 36,
+                  child: Text(
+                    'GD',
+                    style: context.textStyles.matchStandingsSectionText,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                SizedBox(
+                  width: 36,
+                  child: Text(
+                    'PTS',
+                    style: context.textStyles.matchStandingsSectionText,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
             ...standings!
                 .map(
                   (standing) => MatchStandingsListTile(

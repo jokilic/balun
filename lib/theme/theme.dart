@@ -61,8 +61,8 @@ class BalunTheme {
     matchStandingsSectionText: BalunTextStyles.matchStandingsSectionText.copyWith(
       color: lightAppColors.black,
     ),
-    matchStandingsRank: BalunTextStyles.matchStandingsRank.copyWith(
-      color: lightAppColors.black,
+    matchStandingsSectionTextAlternate: BalunTextStyles.matchStandingsSectionTextAlternate.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
     ),
   );
 }
