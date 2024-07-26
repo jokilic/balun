@@ -1,43 +1,8 @@
-import 'package:flutter/foundation.dart';
-
 import '../team/team.dart';
 import 'standing_statistics.dart';
 
-class Standing {
-  final List<StandingSingle>? standing;
-
-  Standing({
-    this.standing,
-  });
-
-  factory Standing.fromMap(Map<String, dynamic> map) => Standing(
-        standing: map['standing'] != null
-            ? List<StandingSingle>.from(
-                (map['standing'] as List).map<StandingSingle?>(
-                  (x) => StandingSingle.fromMap(x as Map<String, dynamic>),
-                ),
-              )
-            : null,
-      );
-
-  @override
-  String toString() => 'Standing(standing: $standing)';
-
-  @override
-  bool operator ==(covariant Standing other) {
-    if (identical(this, other)) {
-      return true;
-    }
-
-    return listEquals(other.standing, standing);
-  }
-
-  @override
-  int get hashCode => standing.hashCode;
-}
-
-class StandingSingle {
-  final int? position;
+class TeamStanding {
+  final int? rank;
   final Team? team;
   final int? points;
   final int? goalsDiff;
@@ -50,8 +15,8 @@ class StandingSingle {
   final StandingStatistics? away;
   final DateTime? update;
 
-  StandingSingle({
-    this.position,
+  TeamStanding({
+    this.rank,
     this.team,
     this.points,
     this.goalsDiff,
@@ -65,8 +30,8 @@ class StandingSingle {
     this.update,
   });
 
-  factory StandingSingle.fromMap(Map<String, dynamic> map) => StandingSingle(
-        position: map['position'] != null ? map['position'] as int : null,
+  factory TeamStanding.fromMap(Map<String, dynamic> map) => TeamStanding(
+        rank: map['rank'] != null ? map['rank'] as int : null,
         team: map['team'] != null ? Team.fromMap(map['team'] as Map<String, dynamic>) : null,
         points: map['points'] != null ? map['points'] as int : null,
         goalsDiff: map['goalsDiff'] != null ? map['goalsDiff'] as int : null,
@@ -77,20 +42,20 @@ class StandingSingle {
         all: map['all'] != null ? StandingStatistics.fromMap(map['all'] as Map<String, dynamic>) : null,
         home: map['home'] != null ? StandingStatistics.fromMap(map['home'] as Map<String, dynamic>) : null,
         away: map['away'] != null ? StandingStatistics.fromMap(map['away'] as Map<String, dynamic>) : null,
-        update: map['update'] != null ? DateTime.fromMillisecondsSinceEpoch(map['update'] as int) : null,
+        update: map['update'] != null ? DateTime.parse(map['update'] as String) : null,
       );
 
   @override
   String toString() =>
-      'StandingSingle(position: $position, team: $team, points: $points, goalsDiff: $goalsDiff, group: $group, form: $form, status: $status, description: $description, all: $all, home: $home, away: $away, update: $update)';
+      'TeamStanding(rank: $rank, team: $team, points: $points, goalsDiff: $goalsDiff, group: $group, form: $form, status: $status, description: $description, all: $all, home: $home, away: $away, update: $update)';
 
   @override
-  bool operator ==(covariant StandingSingle other) {
+  bool operator ==(covariant TeamStanding other) {
     if (identical(this, other)) {
       return true;
     }
 
-    return other.position == position &&
+    return other.rank == rank &&
         other.team == team &&
         other.points == points &&
         other.goalsDiff == goalsDiff &&
@@ -106,7 +71,7 @@ class StandingSingle {
 
   @override
   int get hashCode =>
-      position.hashCode ^
+      rank.hashCode ^
       team.hashCode ^
       points.hashCode ^
       goalsDiff.hashCode ^

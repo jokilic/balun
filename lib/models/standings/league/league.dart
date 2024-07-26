@@ -1,6 +1,8 @@
+// ignore_for_file: unnecessary_lambdas
+
 import 'package:flutter/foundation.dart';
 
-import '../standing/standing.dart';
+import '../standing/team_standing.dart';
 
 class League {
   final int? id;
@@ -9,7 +11,7 @@ class League {
   final String? logo;
   final String? flag;
   final int? season;
-  final List<Standing>? standings;
+  final List<List<TeamStanding>>? standings;
 
   League({
     this.id,
@@ -29,9 +31,13 @@ class League {
         flag: map['flag'] != null ? map['flag'] as String : null,
         season: map['season'] != null ? map['season'] as int : null,
         standings: map['standings'] != null
-            ? List<Standing>.from(
-                (map['standings'] as List).map<Standing?>(
-                  (x) => Standing.fromMap(x as Map<String, dynamic>),
+            ? List<List<TeamStanding>>.from(
+                map['standings'].map(
+                  (standingList) => List<TeamStanding>.from(
+                    standingList.map(
+                      (standing) => TeamStanding.fromMap(standing),
+                    ),
+                  ),
                 ),
               )
             : null,
