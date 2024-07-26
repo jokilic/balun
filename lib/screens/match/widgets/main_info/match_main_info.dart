@@ -104,28 +104,36 @@ class MatchMainInfo extends StatelessWidget {
                 /// AWAY
                 ///
                 Expanded(
-                  child: Column(
-                    children: [
-                      ///
-                      /// AWAY LOGO
-                      ///
-                      MatchLogo(
-                        logo: match.teams?.away?.logo ?? BalunImages.placeholderLogo,
-                      ),
+                  child: BalunButton(
+                    onPressed: match.teams?.away?.id != null
+                        ? () => openTeam(
+                              context,
+                              teamId: match.teams!.away!.id!,
+                            )
+                        : null,
+                    child: Column(
+                      children: [
+                        ///
+                        /// AWAY LOGO
+                        ///
+                        MatchLogo(
+                          logo: match.teams?.away?.logo ?? BalunImages.placeholderLogo,
+                        ),
 
-                      const SizedBox(height: 16),
+                        const SizedBox(height: 16),
 
-                      ///
-                      /// AWAY NAME
-                      ///
-                      Text(
-                        match.teams?.away?.name ?? 'No name',
-                        style: context.textStyles.fixturesName,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                        ///
+                        /// AWAY NAME
+                        ///
+                        Text(
+                          match.teams?.away?.name ?? 'No name',
+                          style: context.textStyles.fixturesName,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
