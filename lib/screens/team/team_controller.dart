@@ -32,7 +32,7 @@ class TeamController extends ValueNotifier<BalunState<TeamResponse>> {
       /// Errors exist, update to error state
       if (response.teamsResponse!.errors?.isNotEmpty ?? false) {
         value = Error(
-          error: response.teamsResponse!.errors?.map((error) => error.bug).toString(),
+          error: response.teamsResponse!.errors!.toString(),
         );
       }
 

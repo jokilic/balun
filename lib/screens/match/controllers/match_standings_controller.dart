@@ -40,7 +40,7 @@ class MatchStandingsController extends ValueNotifier<BalunState<League>> {
       /// Errors exist, update to error state
       if (response.standingsResponse!.errors?.isNotEmpty ?? false) {
         value = Error(
-          error: response.standingsResponse!.errors?.map((error) => error.bug).toString(),
+          error: response.standingsResponse!.errors!.toString(),
         );
       }
 

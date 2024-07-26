@@ -36,7 +36,7 @@ class FixturesController extends ValueNotifier<BalunState<List<FixtureResponse>>
       /// Errors exist, update to error state
       if (response.fixturesResponse!.errors?.isNotEmpty ?? false) {
         value = Error(
-          error: response.fixturesResponse!.errors?.map((error) => error.bug).toString(),
+          error: response.fixturesResponse!.errors?.map((key, value) => value).toString(),
         );
       }
 

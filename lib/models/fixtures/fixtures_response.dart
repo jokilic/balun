@@ -1,11 +1,10 @@
 import 'package:flutter/foundation.dart';
 
-import '../error_response.dart';
 import '../paging_response.dart';
 import 'fixture_response.dart';
 
 class FixturesResponse {
-  final List<ErrorResponse>? errors;
+  final dynamic errors;
   final int? results;
   final PagingResponse? paging;
   final List<FixtureResponse>? response;
@@ -18,13 +17,7 @@ class FixturesResponse {
   });
 
   factory FixturesResponse.fromMap(Map<String, dynamic> map) => FixturesResponse(
-        errors: map['errors'] != null
-            ? List<ErrorResponse>.from(
-                (map['errors'] as List).map<ErrorResponse?>(
-                  (x) => ErrorResponse.fromMap(x as Map<String, dynamic>),
-                ),
-              )
-            : null,
+        errors: map['errors'],
         results: map['results'] != null ? map['results'] as int : null,
         paging: map['paging'] != null ? PagingResponse.fromMap(map['paging'] as Map<String, dynamic>) : null,
         response: map['response'] != null
@@ -45,7 +38,7 @@ class FixturesResponse {
       return true;
     }
 
-    return listEquals(other.errors, errors) && other.results == results && other.paging == paging && listEquals(other.response, response);
+    return mapEquals(other.errors, errors) && other.results == results && other.paging == paging && listEquals(other.response, response);
   }
 
   @override
