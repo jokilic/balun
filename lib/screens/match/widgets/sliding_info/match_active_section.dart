@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../../../models/fixtures/fixture_response.dart';
 import '../../../../models/match_section.dart';
-import 'sections/match_events_section.dart';
+import 'sections/events/match_events_section.dart';
 import 'sections/match_formations_section.dart';
 import 'sections/match_head_to_head_section.dart';
 import 'sections/match_info_section.dart';
@@ -34,7 +34,9 @@ class MatchActiveSection extends StatelessWidget {
             leagueId: match.league?.id,
             season: match.league?.season,
           ),
-        MatchSection(matchSectionEnum: MatchSectionEnum.events) => MatchEventsSection(),
+        MatchSection(matchSectionEnum: MatchSectionEnum.events) => MatchEventsSection(
+            events: match.events,
+          ),
         MatchSection(matchSectionEnum: MatchSectionEnum.lineups) => MatchLineupsSection(),
         MatchSection(matchSectionEnum: MatchSectionEnum.formations) => MatchFormationsSection(),
         MatchSection(matchSectionEnum: MatchSectionEnum.headToHead) => MatchHeadToHeadSection(),
