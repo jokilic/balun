@@ -89,8 +89,9 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                 curve: Curves.easeIn,
                 child: expanded
                     ? Padding(
-                        padding: const EdgeInsets.fromLTRB(60, 8, 8, 8),
+                        padding: const EdgeInsets.fromLTRB(60, 16, 8, 8),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: [

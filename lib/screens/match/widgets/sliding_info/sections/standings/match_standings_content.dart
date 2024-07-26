@@ -25,9 +25,6 @@ class MatchStandingsContent extends StatelessWidget {
       ),
       child: Column(
         children: [
-          ///
-          /// STANDINGS
-          ///
           if (standings?.isNotEmpty ?? false) ...[
             if (league.name != null) ...[
               Text(
