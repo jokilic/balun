@@ -54,12 +54,10 @@ List<Event>? getEventsList({
 
   eventsScores.sort(
     (a, b) {
-      final aTime = a.time ?? EventTime();
-      final bTime = b.time ?? EventTime();
+      final aTime = a.time?.elapsed ?? 0;
+      final bTime = b.time?.elapsed ?? 0;
 
-      return aTime.elapsed!.compareTo(
-        bTime.elapsed!,
-      );
+      return aTime.compareTo(bTime);
     },
   );
 

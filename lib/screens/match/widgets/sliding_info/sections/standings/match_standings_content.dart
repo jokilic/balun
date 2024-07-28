@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../models/standings/league/league.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/standings.dart';
 import 'match_standings_list_tile.dart';
 
 class MatchStandingsContent extends StatelessWidget {
@@ -13,10 +14,9 @@ class MatchStandingsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final standings = league.standings?.first
-      ?..sort(
-        (a, b) => a.rank!.compareTo(b.rank!),
-      );
+    final standings = getStandingsList(
+      league: league,
+    );
 
     return Padding(
       padding: const EdgeInsets.symmetric(
