@@ -41,7 +41,7 @@ class MatchSectionTitles extends StatelessWidget {
                 curve: Curves.easeIn,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(32),
-                  color: activeMatchSection == section ? context.colors.black : context.colors.black.withOpacity(0.1),
+                  color: activeMatchSection == section ? context.colors.black : context.colors.black.withOpacity(0.075),
                 ),
                 child: Text(
                   section.getMatchSectionName(),

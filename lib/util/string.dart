@@ -37,7 +37,7 @@ String getMatchStatusMinutes({
       _ => statusShort,
     };
 
-String getEvent({
+String getEventText({
   required String eventType,
   required String eventDetail,
 }) =>

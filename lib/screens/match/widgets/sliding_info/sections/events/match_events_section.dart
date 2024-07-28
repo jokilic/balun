@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/event/event.dart';
+import '../../../../../../theme/theme.dart';
 import 'match_events_list_tile.dart';
 
 class MatchEventsSection extends StatelessWidget {
-  final List<Event>? events;
+  final List<Event>? eventsScoresList;
+  final int? awayTeamId;
 
   const MatchEventsSection({
-    required this.events,
+    required this.eventsScoresList,
+    required this.awayTeamId,
   });
 
   @override
@@ -17,14 +20,28 @@ class MatchEventsSection extends StatelessWidget {
           vertical: 8,
         ),
         child: Column(
-          children: (events?.isNotEmpty ?? false)
-              ? events!
-                  .map(
-                    (event) => MatchEventsListTile(
-                      event: event,
+          children: (eventsScoresList?.isNotEmpty ?? false)
+              ? [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Match started',
+                          style: context.textStyles.matchEventsSectionResult,
+                        ),
+                      ],
                     ),
-                  )
-                  .toList()
+                  ),
+                  ...eventsScoresList!
+                      .map(
+                        (event) => MatchEventsListTile(
+                          event: event,
+                          isAwayTeam: event.team?.id == awayTeamId,
+                        ),
+                      )
+                      .toList(),
+                ]
               : [
                   Container(
                     height: 100,
