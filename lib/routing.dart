@@ -46,3 +46,13 @@ void openLeague(BuildContext context, {required int leagueId}) {
   //   isCircularTransition: true,
   // );
 }
+
+/// Opens [CoachScreen]
+void openCoach(BuildContext context, {required int coachId}) {
+  log('Open coach -> $coachId');
+  // pushScreen(
+  //   CoachScreen(coachId: coachId),
+  //   context: context,
+  //   isCircularTransition: true,
+  // );
+}

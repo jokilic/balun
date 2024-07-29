@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 class FieldPainter extends CustomPainter {
+  final Color linesColor;
+
+  FieldPainter({
+    required this.linesColor,
+  });
+
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white
+      ..color = linesColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
 

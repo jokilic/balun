@@ -25,6 +25,7 @@ class BalunTheme {
     black: BalunColors.black,
     greenish: BalunColors.greenish,
     red: BalunColors.red,
+    green: BalunColors.green,
   );
 
   static final lightTextTheme = BalunTextThemesExtension(
@@ -72,6 +73,21 @@ class BalunTheme {
     ),
     matchEventsSectionResult: BalunTextStyles.matchEventsSectionResult.copyWith(
       color: lightAppColors.black,
+    ),
+    matchLineupsSectionTitle: BalunTextStyles.matchLineupsSectionTitle.copyWith(
+      color: lightAppColors.black,
+    ),
+    matchLineupsSectionText: BalunTextStyles.matchLineupsSectionText.copyWith(
+      color: lightAppColors.black,
+    ),
+    matchLineupsSectionTextSmall: BalunTextStyles.matchLineupsSectionTextSmall.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
+    matchLineupsSectionPlayer: BalunTextStyles.matchLineupsSectionPlayer.copyWith(
+      color: lightAppColors.white,
+    ),
+    matchLineupsSectionNumber: BalunTextStyles.matchLineupsSectionNumber.copyWith(
+      color: lightAppColors.white,
     ),
   );
 }

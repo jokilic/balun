@@ -43,7 +43,12 @@ class MatchActiveSection extends StatelessWidget {
             awayTeamId: match.teams?.away?.id,
           ),
         MatchSection(matchSectionEnum: MatchSectionEnum.lineups) => MatchLineupsSection(
-            lineups: match.lineups,
+            homeLineup: match.lineups?.firstWhere(
+              (lineup) => lineup.team?.id == match.teams?.home?.id,
+            ),
+            awayLineup: match.lineups?.firstWhere(
+              (lineup) => lineup.team?.id == match.teams?.away?.id,
+            ),
           ),
         MatchSection(matchSectionEnum: MatchSectionEnum.formations) => MatchFormationsSection(),
         MatchSection(matchSectionEnum: MatchSectionEnum.headToHead) => MatchHeadToHeadSection(),

@@ -91,6 +91,36 @@ abstract class BalunTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
+
+  static const matchLineupsSectionTitle = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const matchLineupsSectionText = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const matchLineupsSectionTextSmall = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const matchLineupsSectionPlayer = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const matchLineupsSectionNumber = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -109,6 +139,11 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchEventsSectionTime;
   final TextStyle matchEventsSectionText;
   final TextStyle matchEventsSectionResult;
+  final TextStyle matchLineupsSectionTitle;
+  final TextStyle matchLineupsSectionText;
+  final TextStyle matchLineupsSectionTextSmall;
+  final TextStyle matchLineupsSectionPlayer;
+  final TextStyle matchLineupsSectionNumber;
 
   const BalunTextThemesExtension({
     required this.fixturesMinute,
@@ -126,6 +161,11 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchEventsSectionTime,
     required this.matchEventsSectionText,
     required this.matchEventsSectionResult,
+    required this.matchLineupsSectionTitle,
+    required this.matchLineupsSectionText,
+    required this.matchLineupsSectionTextSmall,
+    required this.matchLineupsSectionPlayer,
+    required this.matchLineupsSectionNumber,
   });
 
   @override
@@ -145,6 +185,11 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchEventsSectionTime,
     TextStyle? matchEventsSectionText,
     TextStyle? matchEventsSectionResult,
+    TextStyle? matchLineupsSectionTitle,
+    TextStyle? matchLineupsSectionText,
+    TextStyle? matchLineupsSectionTextSmall,
+    TextStyle? matchLineupsSectionPlayer,
+    TextStyle? matchLineupsSectionNumber,
   }) =>
       BalunTextThemesExtension(
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
@@ -162,6 +207,11 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchEventsSectionTime: matchEventsSectionTime ?? this.matchEventsSectionTime,
         matchEventsSectionText: matchEventsSectionText ?? this.matchEventsSectionText,
         matchEventsSectionResult: matchEventsSectionResult ?? this.matchEventsSectionResult,
+        matchLineupsSectionTitle: matchLineupsSectionTitle ?? this.matchLineupsSectionTitle,
+        matchLineupsSectionText: matchLineupsSectionText ?? this.matchLineupsSectionText,
+        matchLineupsSectionTextSmall: matchLineupsSectionTextSmall ?? this.matchLineupsSectionTextSmall,
+        matchLineupsSectionPlayer: matchLineupsSectionPlayer ?? this.matchLineupsSectionPlayer,
+        matchLineupsSectionNumber: matchLineupsSectionNumber ?? this.matchLineupsSectionNumber,
       );
 
   @override
@@ -189,6 +239,11 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchEventsSectionTime: TextStyle.lerp(matchEventsSectionTime, other.matchEventsSectionTime, t)!,
       matchEventsSectionText: TextStyle.lerp(matchEventsSectionText, other.matchEventsSectionText, t)!,
       matchEventsSectionResult: TextStyle.lerp(matchEventsSectionResult, other.matchEventsSectionResult, t)!,
+      matchLineupsSectionTitle: TextStyle.lerp(matchLineupsSectionTitle, other.matchLineupsSectionTitle, t)!,
+      matchLineupsSectionText: TextStyle.lerp(matchLineupsSectionText, other.matchLineupsSectionText, t)!,
+      matchLineupsSectionTextSmall: TextStyle.lerp(matchLineupsSectionTextSmall, other.matchLineupsSectionTextSmall, t)!,
+      matchLineupsSectionPlayer: TextStyle.lerp(matchLineupsSectionPlayer, other.matchLineupsSectionPlayer, t)!,
+      matchLineupsSectionNumber: TextStyle.lerp(matchLineupsSectionNumber, other.matchLineupsSectionNumber, t)!,
     );
   }
 }
