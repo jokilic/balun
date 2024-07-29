@@ -18,6 +18,7 @@ class MatchSectionTitles extends StatelessWidget {
   Widget build(BuildContext context) => SizedBox(
         height: 76,
         child: ListView.separated(
+          key: const PageStorageKey('matchSectionTitles'),
           padding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 8,

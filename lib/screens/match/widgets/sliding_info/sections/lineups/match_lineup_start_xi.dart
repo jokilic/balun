@@ -35,6 +35,7 @@ class MatchLineupStartXI extends StatelessWidget {
                   color: context.colors.green,
                   width: 2,
                 ),
+                borderRadius: BorderRadius.circular(8),
               ),
               child: CustomPaint(
                 painter: FieldPainter(

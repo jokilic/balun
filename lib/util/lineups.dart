@@ -1,4 +1,5 @@
 import '../models/fixtures/lineup/lineup.dart';
+import '../models/fixtures/lineup/lineup_player.dart';
 
 List<int>? parseFormation(Lineup? lineup) {
   if (lineup?.formation != null) {
@@ -49,4 +50,34 @@ double calculateXPosition(int positionInRow, int playersInRow) {
 
   /// Calculate the x position
   return startPoint + (positionInRow * spacing);
+}
+
+List<LineupPlayer>? sortSubstitutions(List<LineupPlayer>? players) {
+  final posOrder = {
+    'G': 0,
+    'D': 1,
+    'M': 2,
+    'F': 3,
+  };
+
+  players?.sort(
+    (a, b) {
+      final playerA = a.player;
+      final playerB = b.player;
+
+      /// First, compare by `pos`
+      final posComparison = posOrder[playerA?.pos]?.compareTo(
+        posOrder[playerB?.pos] ?? 0,
+      );
+
+      /// If positions are the same, compare by `number`
+      if (posComparison == 0) {
+        return playerA?.number?.compareTo(playerB?.number ?? 0) ?? 0;
+      }
+
+      return posComparison ?? 0;
+    },
+  );
+
+  return players;
 }

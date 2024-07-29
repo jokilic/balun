@@ -27,16 +27,6 @@ void openTeam(BuildContext context, {required int teamId}) => pushScreen(
       isCircularTransition: true,
     );
 
-/// Opens [VenueScreen]
-void openVenue(BuildContext context, {required int venueId}) {
-  log('Open venue -> $venueId');
-  // pushScreen(
-  //   VenueScreen(venueId: venueId),
-  //   context: context,
-  //   isCircularTransition: true,
-  // );
-}
-
 /// Opens [LeagueScreen]
 void openLeague(BuildContext context, {required int leagueId}) {
   log('Open league -> $leagueId');
@@ -47,11 +37,31 @@ void openLeague(BuildContext context, {required int leagueId}) {
   // );
 }
 
+/// Opens [PlayerScreen]
+void openPlayer(BuildContext context, {required int playerId}) {
+  log('Open player -> $playerId');
+  // pushScreen(
+  //   PlayerScreen(playerId: playerId),
+  //   context: context,
+  //   isCircularTransition: true,
+  // );
+}
+
 /// Opens [CoachScreen]
 void openCoach(BuildContext context, {required int coachId}) {
   log('Open coach -> $coachId');
   // pushScreen(
   //   CoachScreen(coachId: coachId),
+  //   context: context,
+  //   isCircularTransition: true,
+  // );
+}
+
+/// Opens [VenueScreen]
+void openVenue(BuildContext context, {required int venueId}) {
+  log('Open venue -> $venueId');
+  // pushScreen(
+  //   VenueScreen(venueId: venueId),
   //   context: context,
   //   isCircularTransition: true,
   // );

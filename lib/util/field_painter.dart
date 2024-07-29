@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class FieldPainter extends CustomPainter {
   final Color linesColor;
+  final double cornerRadius;
 
   FieldPainter({
     required this.linesColor,
+    this.cornerRadius = 8,
   });
 
   @override
@@ -14,43 +16,63 @@ class FieldPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
 
-    /// Draw center line
-    canvas
-      ..drawLine(
-        Offset(0, size.height / 2),
-        Offset(size.width, size.height / 2),
-        paint,
-      )
-
-      /// Draw center circle
-      ..drawCircle(
-        Offset(size.width / 2, size.height / 2),
-        size.width / 5,
-        paint,
+    /// Draw field border
+    final borderPath = Path()
+      ..addRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(0, 0, size.width, size.height),
+          Radius.circular(cornerRadius),
+        ),
       );
+    canvas.drawPath(borderPath, paint);
+
+    /// Draw center line
+    final centerLinePath = Path()
+      ..moveTo(0, size.height / 2)
+      ..lineTo(size.width, size.height / 2);
+    canvas.drawPath(centerLinePath, paint);
+
+    /// Draw center circle
+    final centerCirclePath = Path()
+      ..addOval(
+        Rect.fromCircle(
+          center: Offset(size.width / 2, size.height / 2),
+          radius: size.width / 5,
+        ),
+      );
+    canvas.drawPath(centerCirclePath, paint);
 
     /// Draw penalty areas
     final penaltyAreaWidth = size.width * 0.6;
     final penaltyAreaHeight = size.height * 0.2;
-    canvas
-      ..drawRect(
-        Rect.fromLTWH(
-          (size.width - penaltyAreaWidth) / 2,
-          0,
-          penaltyAreaWidth,
-          penaltyAreaHeight,
+
+    final topPenaltyAreaPath = Path()
+      ..addRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(
+            (size.width - penaltyAreaWidth) / 2,
+            0,
+            penaltyAreaWidth,
+            penaltyAreaHeight,
+          ),
+          Radius.circular(cornerRadius),
         ),
-        paint,
-      )
-      ..drawRect(
-        Rect.fromLTWH(
-          (size.width - penaltyAreaWidth) / 2,
-          size.height - penaltyAreaHeight,
-          penaltyAreaWidth,
-          penaltyAreaHeight,
-        ),
-        paint,
       );
+    canvas.drawPath(topPenaltyAreaPath, paint);
+
+    final bottomPenaltyAreaPath = Path()
+      ..addRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(
+            (size.width - penaltyAreaWidth) / 2,
+            size.height - penaltyAreaHeight,
+            penaltyAreaWidth,
+            penaltyAreaHeight,
+          ),
+          Radius.circular(cornerRadius),
+        ),
+      );
+    canvas.drawPath(bottomPenaltyAreaPath, paint);
   }
 
   @override

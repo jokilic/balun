@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/lineup/lineup_colors.dart';
 import '../../../../../../models/fixtures/lineup/lineup_player.dart';
+import '../../../../../../routing.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
 import '../../../../../../util/lineups.dart';
-import '../../../../../../util/player_kit_painter.dart';
-import '../../../../../../util/string.dart';
 import '../../../../../../widgets/balun_button.dart';
 
 class MatchLineupsPlayer extends StatelessWidget {
@@ -50,16 +49,18 @@ class MatchLineupsPlayer extends StatelessWidget {
       );
 
       /// Set player sizes & colors
-      const playerSize = 48.0;
+      const playerSize = 32.0;
 
       final playerPrimaryColor = textToColor(
             player?.player?.pos == 'G' ? playerColors?.goalkeeper?.primary : playerColors?.player?.primary,
           ) ??
           context.colors.white;
+
       final playerBorderColor = textToColor(
             player?.player?.pos == 'G' ? playerColors?.goalkeeper?.border : playerColors?.player?.border,
           ) ??
           context.colors.white;
+
       final playerNumberColor = textToColor(
             player?.player?.pos == 'G' ? playerColors?.goalkeeper?.number : playerColors?.player?.number,
           ) ??
@@ -69,31 +70,43 @@ class MatchLineupsPlayer extends StatelessWidget {
         left: xPosition * fieldWidth! - playerSize / 2,
         top: yPosition * fieldHeight! - playerSize / 2,
         child: BalunButton(
-          onPressed: () {},
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
+          onPressed: player?.player?.id != null
+              ? () => openPlayer(
+                    context,
+                    playerId: player!.player!.id!,
+                  )
+              : null,
+          child: Stack(
+            alignment: Alignment.center,
+            clipBehavior: Clip.none,
             children: [
-              CustomPaint(
-                painter: PlayerKitPainter(
-                  primaryColor: playerPrimaryColor,
-                  borderColor: playerBorderColor,
-                  numberColor: playerNumberColor,
-                  number: player?.player?.number,
-                  context: context,
+              Container(
+                alignment: Alignment.center,
+                height: playerSize,
+                width: playerSize,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: playerPrimaryColor,
+                  border: Border.all(
+                    color: playerBorderColor,
+                    width: 2.5,
+                  ),
                 ),
-                size: const Size(playerSize, playerSize),
+                child: Text(
+                  '${player?.player?.number ?? '--'}',
+                  style: context.textStyles.matchLineupsSectionNumber.copyWith(
+                    color: playerNumberColor,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
               if (player?.player?.name != null) ...[
-                const SizedBox(height: 8),
-                SizedBox(
-                  width: playerSize,
+                Positioned(
+                  bottom: -24,
                   child: Text(
-                    getLastWord(player!.player!.name!),
+                    player!.player!.name!,
                     style: context.textStyles.matchLineupsSectionPlayer,
                     textAlign: TextAlign.center,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],

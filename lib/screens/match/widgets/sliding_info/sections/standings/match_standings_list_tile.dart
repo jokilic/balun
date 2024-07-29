@@ -27,7 +27,8 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
   @override
   Widget build(BuildContext context) => BalunButton(
         onPressed: toggleExpanded,
-        child: Padding(
+        child: Container(
+          color: Colors.transparent,
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Column(
             children: [
