@@ -13,18 +13,13 @@ A simple Flutter application for football scores.
 * Tapping big score will open expanded list with values in fixture -> score
 * Tabs
     * Fixture info
-        * Date and time of match
-        * Referee
-        * Stadium name and city - Tappable (opens Venue by id)
-        * Match status (finished, cancelled, etc.)
-        * League name, country, logo, season and round - Tappable (opens League by id)
+    * Standings - another API call
     * Events
     * Lineups
-    * Formations
-    * Head to head
+    * Head to head - another API call
     * Statistics
-    * Players statistics (think about this)
-    * Injuries
+    * Players statistics
+    * Injuries - another API call
 
 ### `TeamScreen`
 

@@ -6,12 +6,12 @@ import '../../../../models/match_section.dart';
 import '../../../../util/events.dart';
 import 'sections/events/match_events_section.dart';
 import 'sections/lineups/match_lineups_section.dart';
-import 'sections/match_formations_section.dart';
 import 'sections/match_head_to_head_section.dart';
 import 'sections/match_info_section.dart';
 import 'sections/match_injuries_section.dart';
-import 'sections/match_statistics_section.dart';
+import 'sections/match_player_statistics_section.dart';
 import 'sections/standings/match_standings_section.dart';
+import 'sections/statistics/match_statistics_section.dart';
 
 class MatchActiveSection extends StatelessWidget {
   final FixtureResponse match;
@@ -24,25 +24,37 @@ class MatchActiveSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (matchSection) {
-        MatchSection(matchSectionEnum: MatchSectionEnum.info) => MatchInfoSection(
+        MatchSection(
+          matchSectionEnum: MatchSectionEnum.info,
+        ) =>
+          MatchInfoSection(
             timestamp: match.fixture?.timestamp,
             referee: match.fixture?.referee,
             venue: match.fixture?.venue,
             status: match.fixture?.status,
             league: match.league,
           ),
-        MatchSection(matchSectionEnum: MatchSectionEnum.standings) => MatchStandingsSection(
+        MatchSection(
+          matchSectionEnum: MatchSectionEnum.standings,
+        ) =>
+          MatchStandingsSection(
             leagueId: match.league?.id,
             season: match.league?.season,
           ),
-        MatchSection(matchSectionEnum: MatchSectionEnum.events) => MatchEventsSection(
+        MatchSection(
+          matchSectionEnum: MatchSectionEnum.events,
+        ) =>
+          MatchEventsSection(
             eventsScoresList: getEventsList(
               events: match.events,
               score: match.score,
             ),
             awayTeamId: match.teams?.away?.id,
           ),
-        MatchSection(matchSectionEnum: MatchSectionEnum.lineups) => MatchLineupsSection(
+        MatchSection(
+          matchSectionEnum: MatchSectionEnum.lineups,
+        ) =>
+          MatchLineupsSection(
             homeLineup: match.lineups?.firstWhere(
               (lineup) => lineup.team?.id == match.teams?.home?.id,
             ),
@@ -50,9 +62,28 @@ class MatchActiveSection extends StatelessWidget {
               (lineup) => lineup.team?.id == match.teams?.away?.id,
             ),
           ),
-        MatchSection(matchSectionEnum: MatchSectionEnum.formations) => MatchFormationsSection(),
-        MatchSection(matchSectionEnum: MatchSectionEnum.headToHead) => MatchHeadToHeadSection(),
-        MatchSection(matchSectionEnum: MatchSectionEnum.statistics) => MatchStatisticsSection(),
-        MatchSection(matchSectionEnum: MatchSectionEnum.injuries) => MatchInjuriesSection(),
+        MatchSection(
+          matchSectionEnum: MatchSectionEnum.headToHead,
+        ) =>
+          MatchHeadToHeadSection(),
+        MatchSection(
+          matchSectionEnum: MatchSectionEnum.statistics,
+        ) =>
+          MatchStatisticsSection(
+            homeStatistic: match.statistics?.firstWhere(
+              (statistic) => statistic.team?.id == match.teams?.home?.id,
+            ),
+            awayStatistic: match.statistics?.firstWhere(
+              (statistic) => statistic.team?.id == match.teams?.away?.id,
+            ),
+          ),
+        MatchSection(
+          matchSectionEnum: MatchSectionEnum.playerStatistics,
+        ) =>
+          MatchPlayerStatisticsSection(),
+        MatchSection(
+          matchSectionEnum: MatchSectionEnum.injuries,
+        ) =>
+          MatchInjuriesSection(),
       };
 }

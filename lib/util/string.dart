@@ -1,3 +1,5 @@
+import '../models/fixtures/statistic/statistic_data.dart';
+
 String getLastWord(String input) {
   final words = input.split(' ');
   return words.isNotEmpty ? words.last : '';
@@ -61,4 +63,27 @@ String getEventText({
           _ => 'VAR',
         },
       _ => '---',
+    };
+
+String getStatisticText({
+  required StatisticData statisticData,
+}) =>
+    switch (statisticData.type?.toLowerCase()) {
+      'shots on goal' => 'Shots on goal',
+      'shots off goal' => 'Shots off goal',
+      'shots insidebox' => 'Shots inside box',
+      'shots outsidebox' => 'Shots outside box',
+      'total shots' => 'Total shots',
+      'blocked shots' => 'Blocked shots',
+      'fouls' => 'Fouls',
+      'corner kicks' => 'Corner kicks',
+      'offsides' => 'Offsides',
+      'ball possession' => 'Ball possession',
+      'yellow cards' => 'Yellow cards',
+      'red cards' => 'Red cards',
+      'goalkeeper saves' => 'Goalkeeper saves',
+      'total passes' => 'Total passes',
+      'passes accurate' => 'Passes accurate',
+      'passes %' => 'Passes %',
+      _ => 'Unknown',
     };

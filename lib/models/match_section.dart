@@ -3,9 +3,9 @@ enum MatchSectionEnum {
   standings,
   events,
   lineups,
-  formations,
   headToHead,
   statistics,
+  playerStatistics,
   injuries,
 }
 
@@ -21,9 +21,9 @@ class MatchSection {
         MatchSectionEnum.standings => 'Standings',
         MatchSectionEnum.events => 'Events',
         MatchSectionEnum.lineups => 'Lineups',
-        MatchSectionEnum.formations => 'Formations',
         MatchSectionEnum.headToHead => 'h2h',
         MatchSectionEnum.statistics => 'Statistics',
+        MatchSectionEnum.playerStatistics => 'Player statistics',
         MatchSectionEnum.injuries => 'Injuries',
       };
 

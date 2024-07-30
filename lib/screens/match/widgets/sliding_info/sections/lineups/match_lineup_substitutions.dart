@@ -6,6 +6,7 @@ import '../../../../../../routing.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
 import '../../../../../../widgets/balun_button.dart';
+import '../../../../../../widgets/balun_seperator.dart';
 
 class MatchLineupSubstitutions extends StatelessWidget {
   final List<LineupPlayer>? players;
@@ -76,13 +77,6 @@ class MatchLineupSubstitutions extends StatelessWidget {
             ),
           );
         },
-        separatorBuilder: (_, index) => Container(
-          margin: const EdgeInsets.symmetric(vertical: 4),
-          height: 1,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: context.colors.greenish,
-          ),
-        ),
+        separatorBuilder: (_, __) => BalunSeperator(),
       );
 }

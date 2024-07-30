@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 abstract class BalunColors {
   static const white = Color(0xFFFFFFFF);
+  static const grey = Color(0xFFD5D6DB);
+  static const darkGrey = Color(0xFFCBCCD1);
+  static const lightBlack = Color(0xFFB8B9BD);
+  static const darkBlack = Color(0xFF505360);
   static const black = Color(0xFF000000);
   static const greenish = Color(0xFFBFCABD);
   static const red = Color(0xFFFF5B5B);

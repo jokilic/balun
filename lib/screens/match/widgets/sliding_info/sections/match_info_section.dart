@@ -123,10 +123,13 @@ class MatchInfoSection extends StatelessWidget {
               child: Row(
                 children: [
                   if (league?.logo != null)
-                    BalunImage(
-                      imageUrl: league!.logo!,
-                      height: 52,
-                      width: 52,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: BalunImage(
+                        imageUrl: league!.logo!,
+                        height: 52,
+                        width: 52,
+                      ),
                     )
                   else
                     Image.asset(

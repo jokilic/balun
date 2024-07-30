@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../models/standings/league/league.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/standings.dart';
+import '../../../../../../widgets/balun_seperator.dart';
 import 'match_standings_list_tile.dart';
 
 class MatchStandingsContent extends StatelessWidget {
@@ -81,14 +82,7 @@ class MatchStandingsContent extends StatelessWidget {
               itemBuilder: (_, index) => MatchStandingsListTile(
                 standing: standings![index],
               ),
-              separatorBuilder: (_, index) => Container(
-                margin: const EdgeInsets.symmetric(vertical: 4),
-                height: 1,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: context.colors.greenish,
-                ),
-              ),
+              separatorBuilder: (_, __) => BalunSeperator(),
             ),
           ],
         ],
