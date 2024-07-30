@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/statistic/statistic.dart';
-import '../../../../../../widgets/balun_seperator.dart';
 import 'match_statistics_list_tile.dart';
 
 class MatchStatisticsSection extends StatelessWidget {
@@ -31,6 +30,6 @@ class MatchStatisticsSection extends StatelessWidget {
             awayStatisticData: awayStatisticData,
           );
         },
-        separatorBuilder: (_, __) => BalunSeperator(),
+        separatorBuilder: (_, __) => const SizedBox(height: 28),
       );
 }

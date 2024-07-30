@@ -77,6 +77,6 @@ class MatchLineupSubstitutions extends StatelessWidget {
             ),
           );
         },
-        separatorBuilder: (_, __) => BalunSeperator(),
+        separatorBuilder: (_, __) => const BalunSeperator(),
       );
 }

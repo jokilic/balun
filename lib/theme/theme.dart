@@ -89,6 +89,12 @@ class BalunTheme {
     matchLineupsSectionNumber: BalunTextStyles.matchLineupsSectionNumber.copyWith(
       color: lightAppColors.white,
     ),
+    matchStatisticsSectionText: BalunTextStyles.matchStatisticsSectionText.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
+    matchStatisticsSectionNumber: BalunTextStyles.matchStatisticsSectionNumber.copyWith(
+      color: lightAppColors.black,
+    ),
   );
 }
 

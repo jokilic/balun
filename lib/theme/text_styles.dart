@@ -121,6 +121,18 @@ abstract class BalunTextStyles {
     fontSize: 18,
     fontWeight: FontWeight.w600,
   );
+
+  static const matchStatisticsSectionText = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const matchStatisticsSectionNumber = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 26,
+    fontWeight: FontWeight.w700,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -144,6 +156,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchLineupsSectionTextSmall;
   final TextStyle matchLineupsSectionPlayer;
   final TextStyle matchLineupsSectionNumber;
+  final TextStyle matchStatisticsSectionText;
+  final TextStyle matchStatisticsSectionNumber;
 
   const BalunTextThemesExtension({
     required this.fixturesMinute,
@@ -166,6 +180,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchLineupsSectionTextSmall,
     required this.matchLineupsSectionPlayer,
     required this.matchLineupsSectionNumber,
+    required this.matchStatisticsSectionText,
+    required this.matchStatisticsSectionNumber,
   });
 
   @override
@@ -190,6 +206,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchLineupsSectionTextSmall,
     TextStyle? matchLineupsSectionPlayer,
     TextStyle? matchLineupsSectionNumber,
+    TextStyle? matchStatisticsSectionText,
+    TextStyle? matchStatisticsSectionNumber,
   }) =>
       BalunTextThemesExtension(
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
@@ -212,6 +230,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchLineupsSectionTextSmall: matchLineupsSectionTextSmall ?? this.matchLineupsSectionTextSmall,
         matchLineupsSectionPlayer: matchLineupsSectionPlayer ?? this.matchLineupsSectionPlayer,
         matchLineupsSectionNumber: matchLineupsSectionNumber ?? this.matchLineupsSectionNumber,
+        matchStatisticsSectionText: matchStatisticsSectionText ?? this.matchStatisticsSectionText,
+        matchStatisticsSectionNumber: matchStatisticsSectionNumber ?? this.matchStatisticsSectionNumber,
       );
 
   @override
@@ -244,6 +264,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchLineupsSectionTextSmall: TextStyle.lerp(matchLineupsSectionTextSmall, other.matchLineupsSectionTextSmall, t)!,
       matchLineupsSectionPlayer: TextStyle.lerp(matchLineupsSectionPlayer, other.matchLineupsSectionPlayer, t)!,
       matchLineupsSectionNumber: TextStyle.lerp(matchLineupsSectionNumber, other.matchLineupsSectionNumber, t)!,
+      matchStatisticsSectionText: TextStyle.lerp(matchStatisticsSectionText, other.matchStatisticsSectionText, t)!,
+      matchStatisticsSectionNumber: TextStyle.lerp(matchStatisticsSectionNumber, other.matchStatisticsSectionNumber, t)!,
     );
   }
 }

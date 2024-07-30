@@ -82,7 +82,7 @@ class MatchStandingsContent extends StatelessWidget {
               itemBuilder: (_, index) => MatchStandingsListTile(
                 standing: standings![index],
               ),
-              separatorBuilder: (_, __) => BalunSeperator(),
+              separatorBuilder: (_, __) => const BalunSeperator(),
             ),
           ],
         ],
