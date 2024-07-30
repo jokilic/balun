@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import '../models/fixtures/fixtures_response.dart';
 import '../models/standings/standings_response.dart';
@@ -6,14 +7,16 @@ import '../models/teams/teams_response.dart';
 import '../util/isolates.dart';
 import 'logger_service.dart';
 
-class APIService {
+class APIService extends ValueNotifier<int> {
   final LoggerService logger;
   final Dio dio;
 
   APIService({
     required this.logger,
     required this.dio,
-  });
+  }) : super(0);
+
+  void incrementState() => value = value + 1;
 
   ///
   /// `/fixtures`
@@ -28,6 +31,8 @@ class APIService {
           'last': 15,
         },
       );
+
+      incrementState();
 
       /// Handle status codes
       switch (response.statusCode) {
@@ -65,6 +70,8 @@ class APIService {
           'id': matchId,
         },
       );
+
+      incrementState();
 
       /// Handle status codes
       switch (response.statusCode) {
@@ -106,6 +113,8 @@ class APIService {
           'id': teamId,
         },
       );
+
+      incrementState();
 
       /// Handle status codes
       switch (response.statusCode) {
@@ -149,6 +158,8 @@ class APIService {
           'season': season,
         },
       );
+
+      incrementState();
 
       /// Handle status codes
       switch (response.statusCode) {
