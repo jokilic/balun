@@ -80,7 +80,14 @@ class MatchActiveSection extends StatelessWidget {
         MatchSection(
           matchSectionEnum: MatchSectionEnum.playerStatistics,
         ) =>
-          MatchPlayerStatisticsSection(),
+          MatchPlayerStatisticsSection(
+            homePlayerStatistic: match.playerStatistics?.firstWhere(
+              (playerStatistic) => playerStatistic.team?.id == match.teams?.home?.id,
+            ),
+            awayPlayerStatistic: match.playerStatistics?.firstWhere(
+              (playerStatistic) => playerStatistic.team?.id == match.teams?.away?.id,
+            ),
+          ),
         MatchSection(
           matchSectionEnum: MatchSectionEnum.injuries,
         ) =>

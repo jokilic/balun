@@ -5,6 +5,7 @@ import 'fixture/fixture.dart';
 import 'goals/goals.dart';
 import 'league/league.dart';
 import 'lineup/lineup.dart';
+import 'player_statistic/player_statistic.dart';
 import 'score/score.dart';
 import 'statistic/statistic.dart';
 import 'teams/teams.dart';
@@ -18,6 +19,7 @@ class FixtureResponse {
   final List<Event>? events;
   final List<Lineup>? lineups;
   final List<Statistic>? statistics;
+  final List<PlayerStatistic>? playerStatistics;
 
   FixtureResponse({
     this.fixture,
@@ -28,6 +30,7 @@ class FixtureResponse {
     this.events,
     this.lineups,
     this.statistics,
+    this.playerStatistics,
   });
 
   factory FixtureResponse.fromMap(Map<String, dynamic> map) => FixtureResponse(
@@ -57,11 +60,18 @@ class FixtureResponse {
                 ),
               )
             : null,
+        playerStatistics: map['players'] != null
+            ? List<PlayerStatistic>.from(
+                (map['players'] as List).map<PlayerStatistic?>(
+                  (x) => PlayerStatistic.fromMap(x as Map<String, dynamic>),
+                ),
+              )
+            : null,
       );
 
   @override
   String toString() =>
-      'FixtureResponse(fixture: $fixture, league: $league, teams: $teams, goals: $goals, score: $score, events: $events, lineups: $lineups, statistics: $statistics)';
+      'FixtureResponse(fixture: $fixture, league: $league, teams: $teams, goals: $goals, score: $score, events: $events, lineups: $lineups, statistics: $statistics, playerStatistics: $playerStatistics)';
 
   @override
   bool operator ==(covariant FixtureResponse other) {
@@ -76,9 +86,11 @@ class FixtureResponse {
         other.score == score &&
         listEquals(other.events, events) &&
         listEquals(other.lineups, lineups) &&
-        listEquals(other.statistics, statistics);
+        listEquals(other.statistics, statistics) &&
+        listEquals(other.playerStatistics, playerStatistics);
   }
 
   @override
-  int get hashCode => fixture.hashCode ^ league.hashCode ^ teams.hashCode ^ goals.hashCode ^ score.hashCode ^ events.hashCode ^ lineups.hashCode ^ statistics.hashCode;
+  int get hashCode =>
+      fixture.hashCode ^ league.hashCode ^ teams.hashCode ^ goals.hashCode ^ score.hashCode ^ events.hashCode ^ lineups.hashCode ^ statistics.hashCode ^ playerStatistics.hashCode;
 }
