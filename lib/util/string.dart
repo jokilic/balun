@@ -86,5 +86,6 @@ String getStatisticText({
       'passes accurate' => 'Passes accurate',
       'passes %' => 'Passes %',
       'expected_goals' => 'Expected goals',
+      'goals_prevented' => 'Prevented goals',
       _ => statisticData.type ?? 'Unknown',
     };
