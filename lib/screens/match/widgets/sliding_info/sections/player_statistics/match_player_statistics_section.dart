@@ -46,6 +46,8 @@ class MatchPlayerStatisticsSection extends StatelessWidget {
             MatchPlayerStatisticsContent(
               playerStatistic: awayPlayerStatistic,
             ),
+
+            const SizedBox(height: 24),
           ],
         ),
       );

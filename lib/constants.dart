@@ -11,5 +11,5 @@ class BalunEndpoints {
 }
 
 class BalunImages {
-  static const placeholderLogo = '';
+  static const placeholderLogo = 'assets/icon.png';
 }

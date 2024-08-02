@@ -19,12 +19,19 @@ class BalunImage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => CachedNetworkImage(
-        imageUrl: imageUrl,
-        height: height,
-        width: width,
-        fit: fit,
-        placeholder: (_, __) => loadingWidget ?? const SizedBox.shrink(),
-        errorWidget: (_, __, ___) => errorWidget ?? const SizedBox.shrink(),
-      );
+  Widget build(BuildContext context) => imageUrl.contains('assets/')
+      ? Image.asset(
+          imageUrl,
+          height: height,
+          width: width,
+          fit: fit,
+        )
+      : CachedNetworkImage(
+          imageUrl: imageUrl,
+          height: height,
+          width: width,
+          fit: fit,
+          placeholder: (_, __) => loadingWidget ?? const SizedBox.shrink(),
+          errorWidget: (_, __, ___) => errorWidget ?? const SizedBox.shrink(),
+        );
 }

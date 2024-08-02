@@ -15,10 +15,7 @@ class MatchStatisticsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ListView.separated(
         shrinkWrap: true,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
-        ),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
         physics: const NeverScrollableScrollPhysics(),
         itemCount: homeStatistic?.statistics?.length ?? awayStatistic?.statistics?.length ?? 0,
         itemBuilder: (_, index) {

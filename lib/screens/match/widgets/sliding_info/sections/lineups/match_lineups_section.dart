@@ -46,6 +46,8 @@ class MatchLineupsSection extends StatelessWidget {
             MatchLineupContent(
               lineup: awayLineup,
             ),
+
+            const SizedBox(height: 24),
           ],
         ),
       );

@@ -84,6 +84,7 @@ class MatchStandingsContent extends StatelessWidget {
               ),
               separatorBuilder: (_, __) => const BalunSeperator(),
             ),
+            const SizedBox(height: 24),
           ],
         ],
       ),

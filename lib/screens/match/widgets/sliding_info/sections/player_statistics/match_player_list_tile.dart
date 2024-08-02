@@ -39,21 +39,21 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                   color: Colors.transparent,
                   child: Row(
                     children: [
-                      if (widget.statisticData?.player?.photo != null) ...[
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: BalunImage(
-                            imageUrl: widget.statisticData!.player!.photo!,
-                            height: 56,
-                            width: 56,
-                          ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: BalunImage(
+                          imageUrl: widget.statisticData?.player?.photo ?? BalunImages.placeholderLogo,
+                          height: 56,
+                          width: 56,
                         ),
-                        const SizedBox(width: 12),
-                      ],
+                      ),
+                      const SizedBox(width: 12),
                       Expanded(
                         child: Text(
                           widget.statisticData?.player?.name ?? '---',
-                          style: context.textStyles.matchPlayerStatisticsName,
+                          style: context.textStyles.matchPlayerStatisticsName.copyWith(
+                            color: (widget.statisticData?.statistic?.first.games?.substitute ?? false) ? context.colors.black.withOpacity(0.4) : null,
+                          ),
                         ),
                       ),
                     ],
