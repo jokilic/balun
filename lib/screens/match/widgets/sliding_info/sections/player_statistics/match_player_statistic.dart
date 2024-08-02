@@ -16,7 +16,7 @@ class MatchPlayerStatistic extends StatelessWidget {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: statistics?.length ?? 0,
-        itemBuilder: (context, index) => MatchPlayerListTile(
+        itemBuilder: (_, index) => MatchPlayerListTile(
           statisticData: statistics![index],
         ),
         separatorBuilder: (_, __) => const BalunSeperator(),
