@@ -100,6 +100,50 @@ class APIService extends ValueNotifier<int> {
   }
 
   ///
+  /// `/fixtures`
+  ///
+
+  Future<({FixturesResponse? head2HeadResponse, String? error})> getHead2Head({
+    required int homeTeamId,
+    required int awayTeamId,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/fixtures/headtohead',
+        queryParameters: {
+          'h2h': '$homeTeamId-$awayTeamId',
+        },
+      );
+
+      incrementState();
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computeFixtures(response.data);
+            return (head2HeadResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getHead2Head -> parsing error -> $e';
+            logger.e(error);
+            return (head2HeadResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getHead2Head -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (head2HeadResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = 'API -> getHead2Head -> catch -> $e';
+      logger.e(error);
+      return (head2HeadResponse: null, error: error);
+    }
+  }
+
+  ///
   /// `/teams`
   ///
 

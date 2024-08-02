@@ -7,45 +7,45 @@ import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
 import '../../../../../../widgets/balun_loader.dart';
-import '../../../../controllers/match_standings_controller.dart';
-import 'match_standings_content.dart';
+import '../../../../controllers/match_h2h_controller.dart';
+import 'match_h2h_content.dart';
 
-class MatchStandingsSection extends WatchingStatefulWidget {
-  final int? leagueId;
-  final int? season;
+class MatchHead2HeadSection extends WatchingStatefulWidget {
+  final int? homeTeamId;
+  final int? awayTeamId;
 
-  const MatchStandingsSection({
-    required this.leagueId,
-    required this.season,
+  const MatchHead2HeadSection({
+    required this.homeTeamId,
+    required this.awayTeamId,
   });
 
   @override
-  State<MatchStandingsSection> createState() => _MatchStandingsSectionState();
+  State<MatchHead2HeadSection> createState() => _MatchHead2HeadSectionState();
 }
 
-class _MatchStandingsSectionState extends State<MatchStandingsSection> {
+class _MatchHead2HeadSectionState extends State<MatchHead2HeadSection> {
   @override
   void initState() {
     super.initState();
-    getIt.get<MatchStandingsController>().getStandings(
-          leagueId: widget.leagueId,
-          season: widget.season,
+    getIt.get<MatchHead2HeadController>().getHead2Head(
+          homeTeamId: widget.homeTeamId,
+          awayTeamId: widget.awayTeamId,
         );
   }
 
   @override
   Widget build(BuildContext context) {
-    final standingsState = watchIt<MatchStandingsController>().value;
+    final head2HeadState = watchIt<MatchHead2HeadController>().value;
 
     return Animate(
-      key: ValueKey(standingsState),
+      key: ValueKey(head2HeadState),
       effects: const [
         FadeEffect(
           curve: Curves.easeIn,
           duration: BalunConstants.animationDuration,
         ),
       ],
-      child: switch (standingsState) {
+      child: switch (head2HeadState) {
         Initial() => Container(
             color: Colors.green,
             height: 100,
@@ -65,13 +65,13 @@ class _MatchStandingsSectionState extends State<MatchStandingsSection> {
             color: Colors.red,
             child: Center(
               child: Text(
-                (standingsState as Error).error ?? 'Generic standings error',
+                (head2HeadState as Error).error ?? 'Generic head2head error',
                 style: context.textStyles.fixturesName,
               ),
             ),
           ),
-        Success() => MatchStandingsContent(
-            league: (standingsState as Success).data,
+        Success() => MatchHead2HeadContent(
+            fixtures: (head2HeadState as Success).data,
           ),
       },
     );

@@ -5,8 +5,8 @@ import '../../../../models/fixtures/fixture_response.dart';
 import '../../../../models/match_section.dart';
 import '../../../../util/events.dart';
 import 'sections/events/match_events_section.dart';
+import 'sections/h2h/match_h2h_section.dart';
 import 'sections/lineups/match_lineups_section.dart';
-import 'sections/match_head_to_head_section.dart';
 import 'sections/match_info_section.dart';
 import 'sections/match_injuries_section.dart';
 import 'sections/player_statistics/match_player_statistics_section.dart';
@@ -65,7 +65,10 @@ class MatchActiveSection extends StatelessWidget {
         MatchSection(
           matchSectionEnum: MatchSectionEnum.headToHead,
         ) =>
-          MatchHeadToHeadSection(),
+          MatchHead2HeadSection(
+            homeTeamId: match.teams?.home?.id,
+            awayTeamId: match.teams?.away?.id,
+          ),
         MatchSection(
           matchSectionEnum: MatchSectionEnum.statistics,
         ) =>

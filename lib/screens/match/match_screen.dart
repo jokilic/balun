@@ -5,6 +5,7 @@ import 'package:watch_it/watch_it.dart';
 import '../../constants.dart';
 import '../../util/dependencies.dart';
 import 'controllers/match_controller.dart';
+import 'controllers/match_h2h_controller.dart';
 import 'controllers/match_section_controller.dart';
 import 'controllers/match_standings_controller.dart';
 import 'widgets/match_content.dart';
@@ -34,7 +35,8 @@ class _MatchScreenState extends State<MatchScreen> {
     getIt
       ..resetLazySingleton<MatchController>()
       ..resetLazySingleton<MatchSectionController>()
-      ..resetLazySingleton<MatchStandingsController>();
+      ..resetLazySingleton<MatchStandingsController>()
+      ..resetLazySingleton<MatchHead2HeadController>();
 
     super.dispose();
   }

@@ -1,18 +1,18 @@
 class StatisticData {
   final String? type;
   final dynamic value;
-  final double? valueDouble;
+  final double valueDouble;
 
   StatisticData({
+    required this.valueDouble,
     this.type,
     this.value,
-    this.valueDouble,
   });
 
   factory StatisticData.fromMap(Map<String, dynamic> map) => StatisticData(
         type: map['type'] != null ? map['type'] as String : null,
         value: map['value'],
-        valueDouble: map['value'] != null ? double.tryParse('${map['value']}'.replaceAll('%', '')) : null,
+        valueDouble: map['value'] != null ? double.tryParse('${map['value']}'.replaceAll('%', '')) ?? 0.0 : 0.0,
       );
 
   @override

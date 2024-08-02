@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 
 import '../screens/fixtures/fixtures_controller.dart';
 import '../screens/match/controllers/match_controller.dart';
+import '../screens/match/controllers/match_h2h_controller.dart';
 import '../screens/match/controllers/match_section_controller.dart';
 import '../screens/match/controllers/match_standings_controller.dart';
 import '../screens/team/team_controller.dart';
@@ -49,6 +50,12 @@ void initializeControllers() => getIt
   )
   ..registerLazySingleton(
     () => MatchStandingsController(
+      logger: getIt.get<LoggerService>(),
+      api: getIt.get<APIService>(),
+    ),
+  )
+  ..registerLazySingleton(
+    () => MatchHead2HeadController(
       logger: getIt.get<LoggerService>(),
       api: getIt.get<APIService>(),
     ),
