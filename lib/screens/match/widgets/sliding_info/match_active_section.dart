@@ -9,7 +9,7 @@ import 'sections/lineups/match_lineups_section.dart';
 import 'sections/match_head_to_head_section.dart';
 import 'sections/match_info_section.dart';
 import 'sections/match_injuries_section.dart';
-import 'sections/match_player_statistics_section.dart';
+import 'sections/player_statistics/match_player_statistics_section.dart';
 import 'sections/standings/match_standings_section.dart';
 import 'sections/statistics/match_statistics_section.dart';
 

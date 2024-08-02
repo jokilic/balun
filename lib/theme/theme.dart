@@ -95,6 +95,18 @@ class BalunTheme {
     matchStatisticsSectionNumber: BalunTextStyles.matchStatisticsSectionNumber.copyWith(
       color: lightAppColors.black,
     ),
+    matchPlayerStatisticsName: BalunTextStyles.matchPlayerStatisticsName.copyWith(
+      color: lightAppColors.black,
+    ),
+    matchPlayerStatisticsTitle: BalunTextStyles.matchPlayerStatisticsTitle.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
+    matchPlayerStatisticsText: BalunTextStyles.matchPlayerStatisticsText.copyWith(
+      color: lightAppColors.black,
+    ),
+    matchPlayerStatisticsValue: BalunTextStyles.matchPlayerStatisticsValue.copyWith(
+      color: lightAppColors.black,
+    ),
   );
 }
 

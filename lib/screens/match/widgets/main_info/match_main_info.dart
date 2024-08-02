@@ -53,28 +53,31 @@ class MatchMainInfo extends StatelessWidget {
                               teamId: match.teams!.home!.id!,
                             )
                         : null,
-                    child: Column(
-                      children: [
-                        ///
-                        /// HOME LOGO
-                        ///
-                        MatchLogo(
-                          logo: match.teams?.home?.logo ?? BalunImages.placeholderLogo,
-                        ),
+                    child: Container(
+                      color: Colors.transparent,
+                      child: Column(
+                        children: [
+                          ///
+                          /// HOME LOGO
+                          ///
+                          MatchLogo(
+                            logo: match.teams?.home?.logo ?? BalunImages.placeholderLogo,
+                          ),
 
-                        const SizedBox(height: 16),
+                          const SizedBox(height: 16),
 
-                        ///
-                        /// HOME NAME
-                        ///
-                        Text(
-                          match.teams?.home?.name ?? 'No name',
-                          style: context.textStyles.fixturesName,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                          ///
+                          /// HOME NAME
+                          ///
+                          Text(
+                            match.teams?.home?.name ?? 'No name',
+                            style: context.textStyles.fixturesName,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -111,28 +114,31 @@ class MatchMainInfo extends StatelessWidget {
                               teamId: match.teams!.away!.id!,
                             )
                         : null,
-                    child: Column(
-                      children: [
-                        ///
-                        /// AWAY LOGO
-                        ///
-                        MatchLogo(
-                          logo: match.teams?.away?.logo ?? BalunImages.placeholderLogo,
-                        ),
+                    child: Container(
+                      color: Colors.transparent,
+                      child: Column(
+                        children: [
+                          ///
+                          /// AWAY LOGO
+                          ///
+                          MatchLogo(
+                            logo: match.teams?.away?.logo ?? BalunImages.placeholderLogo,
+                          ),
 
-                        const SizedBox(height: 16),
+                          const SizedBox(height: 16),
 
-                        ///
-                        /// AWAY NAME
-                        ///
-                        Text(
-                          match.teams?.away?.name ?? 'No name',
-                          style: context.textStyles.fixturesName,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
+                          ///
+                          /// AWAY NAME
+                          ///
+                          Text(
+                            match.teams?.away?.name ?? 'No name',
+                            style: context.textStyles.fixturesName,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
