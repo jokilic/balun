@@ -70,16 +70,29 @@ flutter_icons:
   android: true
   ios: true
   image_path: 'assets/icon.png'
-  adaptive_icon_background: '#F2E2BA'
+  min_sdk_android: 21
+  adaptive_icon_background: '#417B5A'
   adaptive_icon_foreground: 'assets/icon.png'
+  web:
+    generate: true
+    image_path: 'assets/icon.png'
+    background_color: '#417B5A'
+    theme_color: '#417B5A'
+  windows:
+    generate: true
+    image_path: 'assets/icon.png'
+    icon_size: 48
+  macos:
+    generate: true
+    image_path: 'assets/icon.png'
 
 # Configuration for 'flutter_native_splash'
 # Run splash screen generation with 'dart run flutter_native_splash:create'
 flutter_native_splash:
-  android: true
-  ios: true
-  color: '#F2E2BA'
-  color_dark: '#444B6E'
+  background_image: 'assets/splash.png'
+  background_image_dark: 'assets/splash.png'
   android_12:
-    color: '#F2E2BA'
-    color_dark: '#444B6E'
+    image: 'assets/splash_icon.png'
+    color: '#417B5A'
+    image_dark: 'assets/splash_icon.png'
+    color_dark: '#417B5A'
