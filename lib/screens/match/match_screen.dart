@@ -15,6 +15,7 @@ class MatchScreen extends WatchingStatefulWidget {
 
   const MatchScreen({
     required this.matchId,
+    super.key,
   });
 
   @override

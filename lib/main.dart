@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:watch_it/watch_it.dart';
 
-import 'screens/fixtures/fixtures_screen.dart';
+import 'screens/match/match_screen.dart';
 import 'services/api_service.dart';
 import 'theme/theme.dart';
 import 'util/dependencies.dart';
@@ -35,7 +35,9 @@ class BalunApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: FixturesScreen(),
+        home: const MatchScreen(
+          matchId: 1034844,
+        ),
         onGenerateTitle: (_) => 'Balun',
         theme: BalunTheme.light,
         builder: (_, child) => BalunWidget(

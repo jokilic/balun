@@ -15,7 +15,10 @@ void openFixtures(BuildContext context) => pushScreen(
 
 /// Opens [MatchScreen]
 void openMatch(BuildContext context, {required int matchId}) => pushScreen(
-      MatchScreen(matchId: matchId),
+      MatchScreen(
+        matchId: matchId,
+        key: ValueKey(matchId),
+      ),
       context: context,
       isCircularTransition: true,
     );

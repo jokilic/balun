@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/fixture_response.dart';
+import '../../../../../../routing.dart';
 import '../../../../../../widgets/balun_seperator.dart';
+import 'match_h2h_list_tile.dart';
 
 class MatchHead2HeadContent extends StatelessWidget {
   final List<FixtureResponse>? fixtures;
@@ -22,16 +24,11 @@ class MatchHead2HeadContent extends StatelessWidget {
         itemBuilder: (_, index) {
           final fixture = fixtures![index];
 
-          return Container(
-            height: 40,
-            width: 40,
-            color: Colors.orange,
-            child: Text(
-              fixture.teams?.home?.name ?? 'No',
-              style: const TextStyle(
-                fontSize: 28,
-                color: Colors.white,
-              ),
+          return MatchH2HListTile(
+            fixture: fixture,
+            fixturePressed: () => openMatch(
+              context,
+              matchId: fixture.fixture!.id!,
             ),
           );
         },
