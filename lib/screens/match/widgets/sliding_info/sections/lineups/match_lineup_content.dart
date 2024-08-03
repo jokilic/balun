@@ -37,6 +37,9 @@ class MatchLineupContent extends StatelessWidget {
           ),
           const SizedBox(height: 12),
 
+          ///
+          /// MANAGERS
+          ///
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

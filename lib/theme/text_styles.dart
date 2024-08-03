@@ -80,6 +80,12 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w500,
   );
 
+  static const matchStandingsSectionForm = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
+
   static const matchEventsSectionTime = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 14,
@@ -204,6 +210,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchStandingsSectionTitle;
   final TextStyle matchStandingsSectionText;
   final TextStyle matchStandingsSectionTextAlternate;
+  final TextStyle matchStandingsSectionForm;
   final TextStyle matchEventsSectionTime;
   final TextStyle matchEventsSectionText;
   final TextStyle matchEventsSectionResult;
@@ -237,6 +244,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchStandingsSectionTitle,
     required this.matchStandingsSectionText,
     required this.matchStandingsSectionTextAlternate,
+    required this.matchStandingsSectionForm,
     required this.matchEventsSectionTime,
     required this.matchEventsSectionText,
     required this.matchEventsSectionResult,
@@ -272,6 +280,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchStandingsSectionTitle,
     TextStyle? matchStandingsSectionText,
     TextStyle? matchStandingsSectionTextAlternate,
+    TextStyle? matchStandingsSectionForm,
     TextStyle? matchEventsSectionTime,
     TextStyle? matchEventsSectionText,
     TextStyle? matchEventsSectionResult,
@@ -305,6 +314,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchStandingsSectionTitle: matchStandingsSectionTitle ?? this.matchStandingsSectionTitle,
         matchStandingsSectionText: matchStandingsSectionText ?? this.matchStandingsSectionText,
         matchStandingsSectionTextAlternate: matchStandingsSectionTextAlternate ?? this.matchStandingsSectionTextAlternate,
+        matchStandingsSectionForm: matchStandingsSectionForm ?? this.matchStandingsSectionForm,
         matchEventsSectionTime: matchEventsSectionTime ?? this.matchEventsSectionTime,
         matchEventsSectionText: matchEventsSectionText ?? this.matchEventsSectionText,
         matchEventsSectionResult: matchEventsSectionResult ?? this.matchEventsSectionResult,
@@ -348,6 +358,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchStandingsSectionTitle: TextStyle.lerp(matchStandingsSectionTitle, other.matchStandingsSectionTitle, t)!,
       matchStandingsSectionText: TextStyle.lerp(matchStandingsSectionText, other.matchStandingsSectionText, t)!,
       matchStandingsSectionTextAlternate: TextStyle.lerp(matchStandingsSectionTextAlternate, other.matchStandingsSectionTextAlternate, t)!,
+      matchStandingsSectionForm: TextStyle.lerp(matchStandingsSectionForm, other.matchStandingsSectionForm, t)!,
       matchEventsSectionTime: TextStyle.lerp(matchEventsSectionTime, other.matchEventsSectionTime, t)!,
       matchEventsSectionText: TextStyle.lerp(matchEventsSectionText, other.matchEventsSectionText, t)!,
       matchEventsSectionResult: TextStyle.lerp(matchEventsSectionResult, other.matchEventsSectionResult, t)!,

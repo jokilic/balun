@@ -97,6 +97,50 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                             Row(
                               children: [
                                 Text(
+                                  'Form',
+                                  style: context.textStyles.matchStandingsSectionText.copyWith(
+                                    color: context.colors.black.withOpacity(0.5),
+                                  ),
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(width: 8),
+                                if (widget.standing.form != null)
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: widget.standing.form!.split('').map(
+                                      (letter) {
+                                        final color = switch (letter.toUpperCase()) {
+                                          'W' => context.colors.green,
+                                          'L' => context.colors.red,
+                                          'D' => context.colors.black.withOpacity(0.4),
+                                          _ => context.colors.blue,
+                                        };
+
+                                        return Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(4),
+                                            color: color,
+                                          ),
+                                          child: Text(
+                                            letter,
+                                            style: context.textStyles.matchStandingsSectionForm,
+                                          ),
+                                        );
+                                      },
+                                    ).toList(),
+                                  ),
+                                Text(
+                                  widget.standing.form ?? '--',
+                                  style: context.textStyles.matchStandingsSectionText,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
                                   'Points',
                                   style: context.textStyles.matchStandingsSectionText.copyWith(
                                     color: context.colors.black.withOpacity(0.5),
