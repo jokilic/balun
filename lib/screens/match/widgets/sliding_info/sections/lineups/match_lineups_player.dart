@@ -12,41 +12,44 @@ class MatchLineupsPlayer extends StatelessWidget {
   final LineupPlayer? player;
   final double? fieldHeight;
   final double? fieldWidth;
-  final List<int>? formationLayers;
-  final int? totalRows;
+  final List<int>? formation;
   final LineupColors? playerColors;
+  final bool isHome;
 
   const MatchLineupsPlayer({
     required this.player,
     required this.fieldHeight,
     required this.fieldWidth,
-    required this.formationLayers,
-    required this.totalRows,
+    required this.formation,
     required this.playerColors,
+    required this.isHome,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (player?.player != null && fieldHeight != null && fieldWidth != null && (formationLayers?.isNotEmpty ?? false) && totalRows != null) {
+    if (player?.player != null && fieldHeight != null && fieldWidth != null && (formation?.isNotEmpty ?? false)) {
       final gridParts = player!.player!.grid!.split(':');
       final row = int.parse(gridParts[0]);
       final positionInRow = int.parse(gridParts[1]);
 
       /// Calculate y position with enhanced spacing
-      final rowSpacings = calculateRowSpacings(
-        totalRows ?? 0,
-      );
+      final rowSpacings = calculateRowSpacings(formation?.length ?? 0);
       final yPosition = calculateYPosition(
         row,
         rowSpacings,
+        isHome,
       );
 
       /// Calculate x position with enhanced spacing
-      final playersInRow = formationLayers![row - 1];
+      final playersInRow = formation![row - 1];
       final xPosition = calculateXPosition(
         positionInRow,
         playersInRow,
       );
+
+      /// Adjust positions based on whether it's home or away team
+      final adjustedYPosition = isHome ? yPosition / 2 : 0.5 + yPosition / 2;
+      final adjustedXPosition = isHome ? xPosition : 1 - xPosition;
 
       /// Set player sizes & colors
       const playerSize = 32.0;
@@ -67,8 +70,8 @@ class MatchLineupsPlayer extends StatelessWidget {
           context.colors.black;
 
       return Positioned(
-        left: xPosition * fieldWidth! - playerSize / 2,
-        top: yPosition * fieldHeight! - playerSize / 2,
+        left: adjustedXPosition * fieldWidth! - playerSize / 2,
+        top: adjustedYPosition * fieldHeight! - playerSize / 2,
         child: BalunButton(
           onPressed: player?.player?.id != null
               ? () => openPlayer(

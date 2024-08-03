@@ -11,31 +11,38 @@ List<int>? parseFormation(Lineup? lineup) {
 List<double> calculateRowSpacings(int totalRows) {
   /// Assign weights to spaces between rows
   /// More weight means more space
-  final weights = [1.25]; // Space before first row (goalkeeper)
+  final weights = [2]; // Slightly increased space before first row (goalkeeper)
 
-  for (var i = 1; i < totalRows; i++) {
+  for (var i = 1; i < totalRows - 1; i++) {
     weights
       ..add(2) // Space for player row
-      ..add(2); // Space between rows
+      ..add(4 + i); // Further increased space between rows
   }
 
   weights
     ..add(2) // Space for last player row
-    ..add(2); // Space after last row
+    ..add(6); // Increased space after last row (before center)
 
   final totalWeight = weights.reduce((a, b) => a + b);
 
   return weights.map((w) => w / totalWeight).toList();
 }
 
-double calculateYPosition(int row, List<double> spacings) {
+double calculateYPosition(int row, List<double> spacings, bool isHome) {
   var position = 0.0;
 
   for (var i = 0; i < (row * 2) - 1; i++) {
     position += spacings[i];
   }
 
-  return position;
+  /// Adjust position based on whether it's home or away team
+  if (isHome) {
+    /// Move home team players slightly towards center
+    return position * 0.9 + 0.02;
+  } else {
+    /// Move away team players slightly towards center
+    return 1 - (position * 0.9 + 0.02);
+  }
 }
 
 double calculateXPosition(int positionInRow, int playersInRow) {

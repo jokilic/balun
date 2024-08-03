@@ -56,8 +56,7 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
                     const SizedBox(width: 16),
                     Expanded(
                       child: Text(
-                        'aa',
-                        // widget.playerStatistic!.team!.name ?? '---',
+                        widget.playerStatistic!.team!.name ?? '---',
                         style: context.textStyles.matchLineupsSectionTitle,
                       ),
                     ),
@@ -92,7 +91,7 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
                         Align(
                           alignment: Alignment.centerRight,
                           child: Text(
-                            'Statistics',
+                            'Player statistics',
                             style: context.textStyles.matchLineupsSectionTitle,
                           ),
                         ),

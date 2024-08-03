@@ -56,6 +56,9 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                           ),
                         ),
                       ),
+                      Text(
+                        '${widget.statisticData!.statistic!.first.games?.rating}',
+                      ),
                     ],
                   ),
                 ),

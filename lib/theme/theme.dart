@@ -63,7 +63,7 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     matchStandingsSectionTextAlternate: BalunTextStyles.matchStandingsSectionTextAlternate.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black,
     ),
     matchEventsSectionTime: BalunTextStyles.matchEventsSectionTime.copyWith(
       color: lightAppColors.black.withOpacity(0.5),

@@ -14,11 +14,31 @@ A simple Flutter application for football scores.
 * Tabs
     * Fixture info
     * Standings - another API call
+        * Streak - color code it
     * Events
     * Lineups
     * Head to head - another API call
     * Statistics
     * Players statistics
+        * Dodaj ocjene pored imena igrača
+            * Zeleno - > 7.0
+            * Žuto - < 7.0 && > 6.5
+            * Narančasto - < 6.5 && > 5.5
+            * Crveno - < 5.5
+        * Kartoni
+            * Ako ima žuti, stavi ikonu žutog
+            * Ako ima dva žuta, dva mala žuta i veći crveni
+            * Ako ima crveni, stavi ikonu crvenog
+        * Golovi
+            * Ako je jedan, samo jedna ikona lopte
+            * Ako su dva ili više, ikona lopte i mali broj golova iznad
+        * Asistencije
+            * Ako je jedna, samo jedna ikona asistencije
+            * Ako su dvije ili više, ikona asistencije i mali broj asistencija iznad
+        * Izmjene
+            * Ako je izašao, ikonica izlaska
+            * Ako je ušao, ikonica ulaska
+
 
 ### `TeamScreen`
 
