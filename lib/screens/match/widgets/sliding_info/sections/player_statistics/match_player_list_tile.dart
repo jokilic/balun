@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../models/fixtures/player_statistic/player_statistic_data.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/player_statistics.dart';
 import '../../../../../../widgets/balun_button.dart';
@@ -28,6 +29,11 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
   @override
   Widget build(BuildContext context) {
     final rating = widget.statisticData?.statistic?.first.games?.rating;
+    final yellowCards = widget.statisticData?.statistic?.first.cards?.yellow;
+    final redCards = widget.statisticData?.statistic?.first.cards?.red;
+    final goals = widget.statisticData?.statistic?.first.goals?.total;
+    final assists = widget.statisticData?.statistic?.first.goals?.assists;
+    final substitute = widget.statisticData?.statistic?.first.games?.substitute;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -43,6 +49,9 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                 color: Colors.transparent,
                 child: Row(
                   children: [
+                    ///
+                    /// PHOTO
+                    ///
                     ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: BalunImage(
@@ -52,19 +61,83 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                       ),
                     ),
                     const SizedBox(width: 12),
+
+                    ///
+                    /// NAME
+                    ///
                     Expanded(
                       child: Text(
                         widget.statisticData?.player?.name ?? '---',
-                        style: context.textStyles.matchPlayerStatisticsName,
+                        style: context.textStyles.matchPlayerStatisticsName.copyWith(
+                          color: (substitute ?? false) && rating == null ? context.colors.black.withOpacity(0.4) : null,
+                        ),
                       ),
                     ),
-                    if (rating != null)
+                    const SizedBox(width: 8),
+
+                    ///
+                    /// ASSISTS
+                    ///
+                    if ((assists ?? 0) > 0) ...[
+                      Image.asset(
+                        BalunIcons.assist,
+                        height: 40,
+                        width: 40,
+                      ),
+                      const SizedBox(width: 8),
+                    ],
+
+                    ///
+                    /// GOALS
+                    ///
+                    if ((goals ?? 0) > 0) ...[
+                      Image.asset(
+                        BalunIcons.goalBall,
+                        height: 40,
+                        width: 40,
+                      ),
+                      const SizedBox(width: 8),
+                    ],
+
+                    ///
+                    /// YELLOW CARDS
+                    ///
+                    if ((yellowCards ?? 0) > 0) ...[
+                      Image.asset(
+                        yellowCards == 1 ? BalunIcons.yellowCard : BalunIcons.cards,
+                        height: 40,
+                        width: 40,
+                      ),
+                      const SizedBox(width: 8),
+                    ],
+
+                    ///
+                    /// RED CARDS
+                    ///
+                    if ((redCards ?? 0) > 0 && (yellowCards ?? 0) == 0) ...[
+                      Image.asset(
+                        BalunIcons.redCard,
+                        height: 40,
+                        width: 40,
+                      ),
+                      const SizedBox(width: 8),
+                    ],
+
+                    ///
+                    /// RATING
+                    ///
+                    if (rating != null) ...[
+                      const SizedBox(width: 8),
                       Container(
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(6),
                         decoration: BoxDecoration(
                           color: getRatingColor(
                             rating,
                             context: context,
+                          ),
+                          border: Border.all(
+                            color: context.colors.black,
+                            width: 2,
                           ),
                           borderRadius: BorderRadius.circular(4),
                         ),
@@ -73,6 +146,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                           style: context.textStyles.matchPlayerStatisticsRating,
                         ),
                       ),
+                    ],
                   ],
                 ),
               ),

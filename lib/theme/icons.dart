@@ -12,6 +12,6 @@ class BalunIcons {
   static const playerOut = 'assets/icons/player_out.png';
   static const playerIn = 'assets/icons/player_in.png';
   static const varIcon = 'assets/icons/var.png';
-  static const event = 'assets/icons/event.png';
+  static const assist = 'assets/icons/assist.png';
   static const arrowDown = 'assets/icons/arrow_down.png';
 }

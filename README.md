@@ -20,20 +20,6 @@ A simple Flutter application for football scores.
     * Head to head - another API call
     * Statistics
     * Players statistics
-        * Kartoni
-            * Ako ima žuti, stavi ikonu žutog
-            * Ako ima dva žuta, dva mala žuta i veći crveni
-            * Ako ima crveni, stavi ikonu crvenog
-        * Golovi
-            * Ako je jedan, samo jedna ikona lopte
-            * Ako su dva ili više, ikona lopte i mali broj golova iznad
-        * Asistencije
-            * Ako je jedna, samo jedna ikona asistencije
-            * Ako su dvije ili više, ikona asistencije i mali broj asistencija iznad
-        * Izmjene
-            * Ako je izašao, ikonica izlaska
-            * Ako je ušao, ikonica ulaska
-
 
 ### `TeamScreen`
 

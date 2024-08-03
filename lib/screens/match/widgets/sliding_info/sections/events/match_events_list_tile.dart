@@ -339,7 +339,7 @@ class MatchEventsListTile extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.asset(
-                BalunIcons.event,
+                BalunIcons.assist,
                 height: 28,
                 width: 28,
               ),
