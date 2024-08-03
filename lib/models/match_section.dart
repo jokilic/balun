@@ -6,7 +6,6 @@ enum MatchSectionEnum {
   headToHead,
   statistics,
   playerStatistics,
-  injuries,
 }
 
 class MatchSection {
@@ -24,7 +23,6 @@ class MatchSection {
         MatchSectionEnum.headToHead => 'h2h',
         MatchSectionEnum.statistics => 'Statistics',
         MatchSectionEnum.playerStatistics => 'Player statistics',
-        MatchSectionEnum.injuries => 'Injuries',
       };
 
   @override

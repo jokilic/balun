@@ -19,7 +19,6 @@ A simple Flutter application for football scores.
     * Head to head - another API call
     * Statistics
     * Players statistics
-    * Injuries - another API call
 
 ### `TeamScreen`
 
