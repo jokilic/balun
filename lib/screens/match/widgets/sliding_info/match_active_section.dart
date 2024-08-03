@@ -49,18 +49,23 @@ class MatchActiveSection extends StatelessWidget {
               events: match.events,
               score: match.score,
             ),
+            elapsed: match.fixture?.status?.elapsed,
             awayTeamId: match.teams?.away?.id,
           ),
         MatchSection(
           matchSectionEnum: MatchSectionEnum.lineups,
         ) =>
           MatchLineupsSection(
-            homeLineup: match.lineups?.firstWhere(
-              (lineup) => lineup.team?.id == match.teams?.home?.id,
-            ),
-            awayLineup: match.lineups?.firstWhere(
-              (lineup) => lineup.team?.id == match.teams?.away?.id,
-            ),
+            homeLineup: match.lineups
+                ?.where(
+                  (lineup) => lineup.team?.id == match.teams?.home?.id,
+                )
+                .firstOrNull,
+            awayLineup: match.lineups
+                ?.where(
+                  (lineup) => lineup.team?.id == match.teams?.away?.id,
+                )
+                .firstOrNull,
           ),
         MatchSection(
           matchSectionEnum: MatchSectionEnum.headToHead,
@@ -74,23 +79,31 @@ class MatchActiveSection extends StatelessWidget {
           matchSectionEnum: MatchSectionEnum.statistics,
         ) =>
           MatchStatisticsSection(
-            homeStatistic: match.statistics?.firstWhere(
-              (statistic) => statistic.team?.id == match.teams?.home?.id,
-            ),
-            awayStatistic: match.statistics?.firstWhere(
-              (statistic) => statistic.team?.id == match.teams?.away?.id,
-            ),
+            homeStatistic: match.statistics
+                ?.where(
+                  (statistic) => statistic.team?.id == match.teams?.home?.id,
+                )
+                .firstOrNull,
+            awayStatistic: match.statistics
+                ?.where(
+                  (statistic) => statistic.team?.id == match.teams?.away?.id,
+                )
+                .firstOrNull,
           ),
         MatchSection(
           matchSectionEnum: MatchSectionEnum.playerStatistics,
         ) =>
           MatchPlayerStatisticsSection(
-            homePlayerStatistic: match.playerStatistics?.firstWhere(
-              (playerStatistic) => playerStatistic.team?.id == match.teams?.home?.id,
-            ),
-            awayPlayerStatistic: match.playerStatistics?.firstWhere(
-              (playerStatistic) => playerStatistic.team?.id == match.teams?.away?.id,
-            ),
+            homePlayerStatistic: match.playerStatistics
+                ?.where(
+                  (playerStatistic) => playerStatistic.team?.id == match.teams?.home?.id,
+                )
+                .firstOrNull,
+            awayPlayerStatistic: match.playerStatistics
+                ?.where(
+                  (playerStatistic) => playerStatistic.team?.id == match.teams?.away?.id,
+                )
+                .firstOrNull,
           ),
       };
 }

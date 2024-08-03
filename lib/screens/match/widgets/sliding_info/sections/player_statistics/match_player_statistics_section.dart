@@ -22,30 +22,41 @@ class MatchPlayerStatisticsSection extends StatelessWidget {
         child: Column(
           children: [
             ///
-            /// HOME
+            /// NO STATISTICS
             ///
-            MatchPlayerStatisticsContent(
-              playerStatistic: homePlayerStatistic,
-            ),
+            if (homePlayerStatistic == null && awayPlayerStatistic == null)
+              // TODO: Illustration for missing player statistics
+              const Text('No player statistics')
+            else ...[
+              ///
+              /// HOME
+              ///
+              if (homePlayerStatistic != null)
+                MatchPlayerStatisticsContent(
+                  playerStatistic: homePlayerStatistic,
+                ),
 
-            ///
-            /// DIVIDER
-            ///
-            Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: 80,
-                vertical: 20,
-              ),
-              height: 4,
-              color: context.colors.greenish,
-            ),
+              ///
+              /// DIVIDER
+              ///
+              if (homePlayerStatistic != null && awayPlayerStatistic != null)
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 80,
+                    vertical: 20,
+                  ),
+                  height: 4,
+                  color: context.colors.greenish,
+                ),
 
-            ///
-            /// HOME
-            ///
-            MatchPlayerStatisticsContent(
-              playerStatistic: awayPlayerStatistic,
-            ),
+              ///
+              /// HOME
+              ///
+              if (awayPlayerStatistic != null)
+                MatchPlayerStatisticsContent(
+                  playerStatistic: awayPlayerStatistic,
+                ),
+            ],
 
             const SizedBox(height: 24),
           ],

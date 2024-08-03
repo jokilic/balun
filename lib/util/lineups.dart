@@ -52,7 +52,7 @@ double calculateXPosition(int positionInRow, int playersInRow) {
   return startPoint + (positionInRow * spacing);
 }
 
-List<LineupPlayer>? sortSubstitutions(List<LineupPlayer>? players) {
+List<LineupPlayer>? sortPlayersByPosition(List<LineupPlayer>? players) {
   final posOrder = {
     'G': 0,
     'D': 1,

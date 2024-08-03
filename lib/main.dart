@@ -33,7 +33,7 @@ class BalunApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
         home: const MatchScreen(
-          matchId: 1034844,
+          matchId: 33285,
         ),
         onGenerateTitle: (_) => 'Balun',
         theme: BalunTheme.light,

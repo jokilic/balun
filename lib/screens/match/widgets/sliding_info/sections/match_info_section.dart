@@ -112,7 +112,7 @@ class MatchInfoSection extends StatelessWidget {
           ///
           /// LEAGUE
           ///
-          if (league != null) ...[
+          if (league?.id != null) ...[
             BalunButton(
               onPressed: league?.id != null
                   ? () => openLeague(
@@ -173,7 +173,7 @@ class MatchInfoSection extends StatelessWidget {
           ///
           /// ROUND
           ///
-          if (league != null) ...[
+          if (league?.id != null) ...[
             BalunButton(
               onPressed: league?.id != null
                   ? () => openLeague(
@@ -224,7 +224,7 @@ class MatchInfoSection extends StatelessWidget {
           ///
           /// REFEREE
           ///
-          if (referee != null) ...[
+          if (referee?.isEmpty ?? false) ...[
             Row(
               children: [
                 Image.asset(
@@ -256,7 +256,7 @@ class MatchInfoSection extends StatelessWidget {
           ///
           /// STADIUM
           ///
-          if (venue != null) ...[
+          if (venue?.id != null) ...[
             BalunButton(
               onPressed: venue?.id != null
                   ? () => openVenue(

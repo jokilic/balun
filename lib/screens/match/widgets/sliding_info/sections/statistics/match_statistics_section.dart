@@ -13,20 +13,24 @@ class MatchStatisticsSection extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => ListView.separated(
-        shrinkWrap: true,
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: homeStatistic?.statistics?.length ?? awayStatistic?.statistics?.length ?? 0,
-        itemBuilder: (_, index) {
-          final homeStatisticData = homeStatistic!.statistics![index];
-          final awayStatisticData = awayStatistic!.statistics![index];
+  Widget build(BuildContext context) => homeStatistic == null && awayStatistic == null
+      ? const Center(
+          child: Text('No statistics'),
+        )
+      : ListView.separated(
+          shrinkWrap: true,
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: homeStatistic?.statistics?.length ?? awayStatistic?.statistics?.length ?? 0,
+          itemBuilder: (_, index) {
+            final homeStatisticData = homeStatistic?.statistics?[index];
+            final awayStatisticData = awayStatistic?.statistics?[index];
 
-          return MatchStatisticsListTile(
-            homeStatisticData: homeStatisticData,
-            awayStatisticData: awayStatisticData,
-          );
-        },
-        separatorBuilder: (_, __) => const SizedBox(height: 28),
-      );
+            return MatchStatisticsListTile(
+              homeStatisticData: homeStatisticData,
+              awayStatisticData: awayStatisticData,
+            );
+          },
+          separatorBuilder: (_, __) => const SizedBox(height: 28),
+        );
 }

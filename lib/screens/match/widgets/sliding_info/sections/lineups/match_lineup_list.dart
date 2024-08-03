@@ -8,11 +8,11 @@ import '../../../../../../util/color.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 
-class MatchLineupSubstitutions extends StatelessWidget {
+class MatchLineupList extends StatelessWidget {
   final List<LineupPlayer>? players;
   final LineupColors? playerColors;
 
-  const MatchLineupSubstitutions({
+  const MatchLineupList({
     required this.players,
     required this.playerColors,
   });

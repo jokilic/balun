@@ -8,8 +8,8 @@ import '../../../../../../theme/theme.dart';
 import '../../../../../../util/lineups.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
+import 'match_lineup_list.dart';
 import 'match_lineup_start_xi.dart';
-import 'match_lineup_substitutions.dart';
 
 class MatchLineupContent extends StatefulWidget {
   final Lineup? lineup;
@@ -138,8 +138,8 @@ class _MatchLineupContentState extends State<MatchLineupContent> {
                           ),
                         ),
                         const SizedBox(height: 12),
-                        MatchLineupSubstitutions(
-                          players: sortSubstitutions(
+                        MatchLineupList(
+                          players: sortPlayersByPosition(
                             widget.lineup?.substitutes,
                           ),
                           playerColors: widget.lineup?.team?.colors,

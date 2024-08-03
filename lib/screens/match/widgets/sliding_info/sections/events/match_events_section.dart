@@ -6,10 +6,12 @@ import 'match_events_list_tile.dart';
 
 class MatchEventsSection extends StatelessWidget {
   final List<Event>? eventsScoresList;
+  final int? elapsed;
   final int? awayTeamId;
 
   const MatchEventsSection({
     required this.eventsScoresList,
+    required this.elapsed,
     required this.awayTeamId,
   });
 
@@ -37,6 +39,7 @@ class MatchEventsSection extends StatelessWidget {
                       .map(
                         (event) => MatchEventsListTile(
                           event: event,
+                          elapsed: elapsed,
                           isAwayTeam: event.team?.id == awayTeamId,
                         ),
                       )

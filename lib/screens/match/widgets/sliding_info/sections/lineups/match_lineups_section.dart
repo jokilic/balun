@@ -22,31 +22,40 @@ class MatchLineupsSection extends StatelessWidget {
         child: Column(
           children: [
             ///
-            /// HOME
+            /// NO LINEUPS
             ///
-            MatchLineupContent(
-              lineup: homeLineup,
-            ),
+            if (homeLineup == null && awayLineup == null)
+              const Text('No lineups')
+            else ...[
+              ///
+              /// HOME
+              ///
+              if (homeLineup != null)
+                MatchLineupContent(
+                  lineup: homeLineup,
+                ),
 
-            ///
-            /// DIVIDER
-            ///
-            Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: 80,
-                vertical: 20,
-              ),
-              height: 4,
-              color: context.colors.greenish,
-            ),
+              ///
+              /// DIVIDER
+              ///
+              if (homeLineup != null && awayLineup != null)
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 80,
+                    vertical: 20,
+                  ),
+                  height: 4,
+                  color: context.colors.greenish,
+                ),
 
-            ///
-            /// AWAY
-            ///
-            MatchLineupContent(
-              lineup: awayLineup,
-            ),
-
+              ///
+              /// AWAY
+              ///
+              if (awayLineup != null)
+                MatchLineupContent(
+                  lineup: awayLineup,
+                ),
+            ],
             const SizedBox(height: 24),
           ],
         ),

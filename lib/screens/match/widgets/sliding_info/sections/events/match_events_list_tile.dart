@@ -7,65 +7,74 @@ import '../../../../../../util/string.dart';
 
 class MatchEventsListTile extends StatelessWidget {
   final Event event;
+  final int? elapsed;
   final bool? isAwayTeam;
 
   const MatchEventsListTile({
     required this.event,
+    required this.elapsed,
     required this.isAwayTeam,
   });
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Row(
-          mainAxisAlignment: isAwayTeam ?? false ? MainAxisAlignment.end : MainAxisAlignment.start,
-          children: (event.type?.contains('time') ?? false)
-              ? [
+  Widget build(BuildContext context) {
+    final scoreWidget = getScoreWidget(
+      elapsed: elapsed,
+      eventType: event.type ?? '',
+      eventDetail: event.detail ?? '',
+      context: context,
+    );
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        mainAxisAlignment: isAwayTeam ?? false ? MainAxisAlignment.end : MainAxisAlignment.start,
+        children: (event.type?.contains('time') ?? false)
+            ? [
+                if (scoreWidget != null)
                   Flexible(
-                    child: getScoreWidget(
+                    child: scoreWidget,
+                  ),
+              ]
+            : [
+                if (!(isAwayTeam ?? false)) ...[
+                  Text(
+                    event.time?.elapsed != null ? "${event.time!.elapsed}'" : '---',
+                    style: context.textStyles.matchEventsSectionTime,
+                  ),
+                  const SizedBox(width: 8),
+                ],
+                Flexible(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 16,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: context.colors.black.withOpacity(0.075),
+                    ),
+                    child: getEventWidget(
                       eventType: event.type ?? '',
                       eventDetail: event.detail ?? '',
                       context: context,
                     ),
                   ),
-                ]
-              : [
-                  if (!(isAwayTeam ?? false)) ...[
-                    Text(
-                      event.time?.elapsed != null ? "${event.time!.elapsed}'" : '---',
-                      style: context.textStyles.matchEventsSectionTime,
-                    ),
-                    const SizedBox(width: 8),
-                  ],
-                  Flexible(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 16,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: context.colors.black.withOpacity(0.075),
-                      ),
-                      child: getEventWidget(
-                        eventType: event.type ?? '',
-                        eventDetail: event.detail ?? '',
-                        context: context,
-                      ),
-                    ),
+                ),
+                if (isAwayTeam ?? false) ...[
+                  const SizedBox(width: 8),
+                  Text(
+                    event.time?.elapsed != null ? "${event.time!.elapsed}'" : '---',
+                    style: context.textStyles.matchEventsSectionTime,
                   ),
-                  if (isAwayTeam ?? false) ...[
-                    const SizedBox(width: 8),
-                    Text(
-                      event.time?.elapsed != null ? "${event.time!.elapsed}'" : '---',
-                      style: context.textStyles.matchEventsSectionTime,
-                    ),
-                  ],
                 ],
-        ),
-      );
+              ],
+      ),
+    );
+  }
 
-  Widget getScoreWidget({
+  Widget? getScoreWidget({
+    required int? elapsed,
     required String eventType,
     required String eventDetail,
     required BuildContext context,
@@ -74,26 +83,28 @@ class MatchEventsListTile extends StatelessWidget {
         ///
         /// HALF TIME
         ///
-        'halftime' => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: Text(
-                    '2nd half',
-                    style: context.textStyles.matchEventsSectionResult,
-                  ),
+        'halftime' => (elapsed ?? 0) > 45
+            ? Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        '2nd half',
+                        style: context.textStyles.matchEventsSectionResult,
+                      ),
+                    ),
+                    Flexible(
+                      child: Text(
+                        eventDetail,
+                        style: context.textStyles.matchEventsSectionResult,
+                      ),
+                    ),
+                  ],
                 ),
-                Flexible(
-                  child: Text(
-                    eventDetail,
-                    style: context.textStyles.matchEventsSectionResult,
-                  ),
-                ),
-              ],
-            ),
-          ),
+              )
+            : null,
 
         ///
         /// FULL TIME

@@ -43,11 +43,9 @@ class TeamController extends ValueNotifier<BalunState<TeamResponse>> {
         );
       }
 
-      /// Response is null, update to error state
+      /// Response is null, update to empty state
       else {
-        value = Error(
-          error: 'Team response is null',
-        );
+        value = Empty();
       }
     }
 

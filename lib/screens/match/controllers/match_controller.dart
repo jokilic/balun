@@ -43,11 +43,9 @@ class MatchController extends ValueNotifier<BalunState<FixtureResponse>> {
         );
       }
 
-      /// Response is null, update to error state
+      /// Response is null, update to empty state
       else {
-        value = Error(
-          error: 'Match response is null',
-        );
+        value = Empty();
       }
     }
 

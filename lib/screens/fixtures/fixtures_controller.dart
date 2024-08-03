@@ -47,11 +47,9 @@ class FixturesController extends ValueNotifier<BalunState<List<FixtureResponse>>
         );
       }
 
-      /// Response is null, update to error state
+      /// Response is null, update to empty state
       else {
-        value = Error(
-          error: 'Fixtures response is null',
-        );
+        value = Empty();
       }
     }
 

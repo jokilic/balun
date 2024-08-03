@@ -62,11 +62,10 @@ class MatchStandingsController extends ValueNotifier<BalunState<League>> {
         );
       }
 
-      /// Response is null, update to error state
+      /// Response is null, update to empty state
       else {
-        value = Error(
-          error: 'Standings response is null',
-        );
+        fetched = true;
+        value = Empty();
       }
     }
 
