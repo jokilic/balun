@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../../routing.dart';
-import '../../../../../../widgets/balun_seperator.dart';
 import 'match_h2h_list_tile.dart';
 
 class MatchHead2HeadContent extends StatelessWidget {
@@ -15,10 +14,7 @@ class MatchHead2HeadContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ListView.separated(
         shrinkWrap: true,
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
-        ),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
         physics: const BouncingScrollPhysics(),
         itemCount: fixtures?.length ?? 0,
         itemBuilder: (_, index) {
@@ -32,6 +28,6 @@ class MatchHead2HeadContent extends StatelessWidget {
             ),
           );
         },
-        separatorBuilder: (_, __) => const BalunSeperator(),
+        separatorBuilder: (_, __) => const SizedBox(height: 8),
       );
 }

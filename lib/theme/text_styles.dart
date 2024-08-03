@@ -157,6 +157,25 @@ abstract class BalunTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
+
+  static const matchH2HScore = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 40,
+    fontWeight: FontWeight.w300,
+    height: 1,
+  );
+
+  static const matchH2HTitle = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const matchH2HText = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -186,6 +205,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchPlayerStatisticsTitle;
   final TextStyle matchPlayerStatisticsText;
   final TextStyle matchPlayerStatisticsValue;
+  final TextStyle matchH2HScore;
+  final TextStyle matchH2HTitle;
+  final TextStyle matchH2HText;
 
   const BalunTextThemesExtension({
     required this.fixturesMinute,
@@ -214,6 +236,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchPlayerStatisticsTitle,
     required this.matchPlayerStatisticsText,
     required this.matchPlayerStatisticsValue,
+    required this.matchH2HScore,
+    required this.matchH2HTitle,
+    required this.matchH2HText,
   });
 
   @override
@@ -244,6 +269,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchPlayerStatisticsTitle,
     TextStyle? matchPlayerStatisticsText,
     TextStyle? matchPlayerStatisticsValue,
+    TextStyle? matchH2HScore,
+    TextStyle? matchH2HTitle,
+    TextStyle? matchH2HText,
   }) =>
       BalunTextThemesExtension(
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
@@ -272,6 +300,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchPlayerStatisticsTitle: matchPlayerStatisticsTitle ?? this.matchPlayerStatisticsTitle,
         matchPlayerStatisticsText: matchPlayerStatisticsText ?? this.matchPlayerStatisticsText,
         matchPlayerStatisticsValue: matchPlayerStatisticsValue ?? this.matchPlayerStatisticsValue,
+        matchH2HScore: matchH2HScore ?? this.matchH2HScore,
+        matchH2HTitle: matchH2HTitle ?? this.matchH2HTitle,
+        matchH2HText: matchH2HText ?? this.matchH2HText,
       );
 
   @override
@@ -310,6 +341,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchPlayerStatisticsTitle: TextStyle.lerp(matchPlayerStatisticsTitle, other.matchPlayerStatisticsTitle, t)!,
       matchPlayerStatisticsText: TextStyle.lerp(matchPlayerStatisticsText, other.matchPlayerStatisticsText, t)!,
       matchPlayerStatisticsValue: TextStyle.lerp(matchPlayerStatisticsValue, other.matchPlayerStatisticsValue, t)!,
+      matchH2HScore: TextStyle.lerp(matchH2HScore, other.matchH2HScore, t)!,
+      matchH2HTitle: TextStyle.lerp(matchH2HTitle, other.matchH2HTitle, t)!,
+      matchH2HText: TextStyle.lerp(matchH2HText, other.matchH2HText, t)!,
     );
   }
 }

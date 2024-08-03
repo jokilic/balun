@@ -107,6 +107,15 @@ class BalunTheme {
     matchPlayerStatisticsValue: BalunTextStyles.matchPlayerStatisticsValue.copyWith(
       color: lightAppColors.black,
     ),
+    matchH2HScore: BalunTextStyles.matchH2HScore.copyWith(
+      color: lightAppColors.black,
+    ),
+    matchH2HTitle: BalunTextStyles.matchH2HTitle.copyWith(
+      color: lightAppColors.black,
+    ),
+    matchH2HText: BalunTextStyles.matchH2HText.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
   );
 }
 
