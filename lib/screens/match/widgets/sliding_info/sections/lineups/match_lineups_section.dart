@@ -25,6 +25,7 @@ class MatchLineupsSection extends StatelessWidget {
             /// NO LINEUPS
             ///
             if (homeLineup == null && awayLineup == null)
+              // TODO: Implement empty state
               const Text('No lineups')
             else ...[
               ///

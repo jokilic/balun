@@ -53,6 +53,7 @@ class _MatchHead2HeadSectionState extends State<MatchHead2HeadSection> {
           duration: BalunConstants.animationDuration,
         ),
       ],
+      // TODO: Implement all states
       child: switch (head2HeadState) {
         Initial() => Container(
             color: Colors.green,

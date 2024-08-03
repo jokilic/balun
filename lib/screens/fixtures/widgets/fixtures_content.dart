@@ -12,6 +12,7 @@ class FixturesContent extends StatelessWidget {
     required this.fixturesState,
   });
 
+// TODO: Implement all states
   @override
   Widget build(BuildContext context) => switch (fixturesState) {
         Initial() => Container(color: Colors.green),

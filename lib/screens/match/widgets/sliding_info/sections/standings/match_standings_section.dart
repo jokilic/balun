@@ -53,6 +53,7 @@ class _MatchStandingsSectionState extends State<MatchStandingsSection> {
           duration: BalunConstants.animationDuration,
         ),
       ],
+      // TODO: Implement all states
       child: switch (standingsState) {
         Initial() => Container(
             color: Colors.green,

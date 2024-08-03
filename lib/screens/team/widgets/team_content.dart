@@ -12,6 +12,7 @@ class TeamContent extends StatelessWidget {
     required this.teamState,
   });
 
+// TODO: Implement all states
   @override
   Widget build(BuildContext context) => switch (teamState) {
         Initial() => Container(color: Colors.green),

@@ -25,7 +25,7 @@ class MatchPlayerStatisticsSection extends StatelessWidget {
             /// NO STATISTICS
             ///
             if (homePlayerStatistic == null && awayPlayerStatistic == null)
-              // TODO: Illustration for missing player statistics
+              // TODO: Implement empty state
               const Text('No player statistics')
             else ...[
               ///
