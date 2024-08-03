@@ -76,30 +76,6 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     const SizedBox(width: 8),
 
                     ///
-                    /// ASSISTS
-                    ///
-                    if ((assists ?? 0) > 0) ...[
-                      Image.asset(
-                        BalunIcons.assist,
-                        height: 40,
-                        width: 40,
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-
-                    ///
-                    /// GOALS
-                    ///
-                    if ((goals ?? 0) > 0) ...[
-                      Image.asset(
-                        BalunIcons.goalBall,
-                        height: 40,
-                        width: 40,
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-
-                    ///
                     /// YELLOW CARDS
                     ///
                     if ((yellowCards ?? 0) > 0) ...[
@@ -117,6 +93,30 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     if ((redCards ?? 0) > 0 && (yellowCards ?? 0) == 0) ...[
                       Image.asset(
                         BalunIcons.redCard,
+                        height: 40,
+                        width: 40,
+                      ),
+                      const SizedBox(width: 8),
+                    ],
+
+                    ///
+                    /// ASSISTS
+                    ///
+                    if ((assists ?? 0) > 0) ...[
+                      Image.asset(
+                        BalunIcons.assist,
+                        height: 40,
+                        width: 40,
+                      ),
+                      const SizedBox(width: 8),
+                    ],
+
+                    ///
+                    /// GOALS
+                    ///
+                    if ((goals ?? 0) > 0) ...[
+                      Image.asset(
+                        BalunIcons.goalBall,
                         height: 40,
                         width: 40,
                       ),
