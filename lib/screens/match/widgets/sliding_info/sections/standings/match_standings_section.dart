@@ -6,6 +6,7 @@ import '../../../../../../constants.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
+import '../../../../../../widgets/balun_error.dart';
 import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/match_standings_controller.dart';
 import 'match_standings_content.dart';
@@ -70,14 +71,8 @@ class _MatchStandingsSectionState extends State<MatchStandingsSection> {
             height: 100,
             width: 100,
           ),
-        Error() => Container(
-            color: Colors.red,
-            child: Center(
-              child: Text(
-                (standingsState as Error).error ?? 'Generic standings error',
-                style: context.textStyles.fixturesName,
-              ),
-            ),
+        Error() => BalunError(
+            error: (standingsState as Error).error ?? 'Generic standings error',
           ),
         Success() => MatchStandingsContent(
             league: (standingsState as Success).data,

@@ -1,3 +1,4 @@
+// TODO: Pick better icons
 class BalunIcons {
   static const referee = 'assets/icons/referee.png';
   static const matchDateTime = 'assets/icons/match_date_time.png';
@@ -14,4 +15,5 @@ class BalunIcons {
   static const varIcon = 'assets/icons/var.png';
   static const assist = 'assets/icons/assist.png';
   static const arrowDown = 'assets/icons/arrow_down.png';
+  static const error = 'assets/icons/error.png';
 }

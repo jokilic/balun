@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 abstract class BalunTextStyles {
+  static const error = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 24,
+    fontWeight: FontWeight.w500,
+  );
+
   static const fixturesMinute = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 26,
@@ -185,6 +191,7 @@ abstract class BalunTextStyles {
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
+  final TextStyle error;
   final TextStyle fixturesMinute;
   final TextStyle fixturesName;
   final TextStyle fixturesScore;
@@ -217,6 +224,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchH2HText;
 
   const BalunTextThemesExtension({
+    required this.error,
     required this.fixturesMinute,
     required this.fixturesName,
     required this.fixturesScore,
@@ -251,6 +259,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
 
   @override
   ThemeExtension<BalunTextThemesExtension> copyWith({
+    TextStyle? error,
     TextStyle? fixturesMinute,
     TextStyle? fixturesName,
     TextStyle? fixturesScore,
@@ -283,6 +292,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchH2HText,
   }) =>
       BalunTextThemesExtension(
+        error: error ?? this.error,
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
         fixturesName: fixturesName ?? this.fixturesName,
         fixturesScore: fixturesScore ?? this.fixturesScore,
@@ -325,6 +335,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     }
 
     return BalunTextThemesExtension(
+      error: TextStyle.lerp(error, other.error, t)!,
       fixturesMinute: TextStyle.lerp(fixturesMinute, other.fixturesMinute, t)!,
       fixturesName: TextStyle.lerp(fixturesName, other.fixturesName, t)!,
       fixturesScore: TextStyle.lerp(fixturesScore, other.fixturesScore, t)!,

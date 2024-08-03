@@ -32,6 +32,9 @@ class BalunTheme {
   );
 
   static final lightTextTheme = BalunTextThemesExtension(
+    error: BalunTextStyles.error.copyWith(
+      color: lightAppColors.black,
+    ),
     fixturesMinute: BalunTextStyles.fixturesMinute.copyWith(
       color: lightAppColors.black.withOpacity(0.5),
     ),

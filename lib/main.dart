@@ -54,7 +54,7 @@ class BalunWidget extends WatchingWidget {
   Widget build(BuildContext context) => kDebugMode
       ? Banner(
           message: 'Debug'.toUpperCase(),
-          color: context.colors.red,
+          color: context.colors.blue,
           location: BannerLocation.topEnd,
           layoutDirection: TextDirection.ltr,
           child: Stack(

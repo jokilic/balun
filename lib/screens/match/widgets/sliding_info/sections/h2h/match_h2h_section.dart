@@ -6,6 +6,7 @@ import '../../../../../../constants.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
+import '../../../../../../widgets/balun_error.dart';
 import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/match_h2h_controller.dart';
 import 'match_h2h_content.dart';
@@ -70,14 +71,8 @@ class _MatchHead2HeadSectionState extends State<MatchHead2HeadSection> {
             height: 100,
             width: 100,
           ),
-        Error() => Container(
-            color: Colors.red,
-            child: Center(
-              child: Text(
-                (head2HeadState as Error).error ?? 'Generic head2head error',
-                style: context.textStyles.fixturesName,
-              ),
-            ),
+        Error() => BalunError(
+            error: (head2HeadState as Error).error ?? 'Generic head2head error',
           ),
         Success() => MatchHead2HeadContent(
             fixtures: (head2HeadState as Success).data,
