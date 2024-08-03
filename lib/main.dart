@@ -21,9 +21,6 @@ Future<void> main() async {
   /// Initialize services
   initializeServices();
 
-  /// Initialize lazy controllers
-  initializeControllers();
-
   /// Wait for initialization to finish
   await getIt.allReady();
 

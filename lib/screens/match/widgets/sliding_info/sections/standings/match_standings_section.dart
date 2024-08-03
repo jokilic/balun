@@ -11,10 +11,12 @@ import '../../../../controllers/match_standings_controller.dart';
 import 'match_standings_content.dart';
 
 class MatchStandingsSection extends WatchingStatefulWidget {
+  final int? matchId;
   final int? leagueId;
   final int? season;
 
   const MatchStandingsSection({
+    required this.matchId,
     required this.leagueId,
     required this.season,
   });
@@ -27,7 +29,11 @@ class _MatchStandingsSectionState extends State<MatchStandingsSection> {
   @override
   void initState() {
     super.initState();
-    getIt.get<MatchStandingsController>().getStandings(
+    getIt
+        .get<MatchStandingsController>(
+          instanceName: '${widget.matchId}',
+        )
+        .getStandings(
           leagueId: widget.leagueId,
           season: widget.season,
         );
@@ -35,7 +41,9 @@ class _MatchStandingsSectionState extends State<MatchStandingsSection> {
 
   @override
   Widget build(BuildContext context) {
-    final standingsState = watchIt<MatchStandingsController>().value;
+    final standingsState = watchIt<MatchStandingsController>(
+      instanceName: '${widget.matchId}',
+    ).value;
 
     return Animate(
       key: ValueKey(standingsState),

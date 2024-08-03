@@ -3,6 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../constants.dart';
+import '../../services/api_service.dart';
+import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
 import 'team_controller.dart';
 import 'widgets/team_content.dart';
@@ -22,20 +24,37 @@ class _TeamScreenState extends State<TeamScreen> {
   @override
   void initState() {
     super.initState();
-    getIt.get<TeamController>().getTeam(
+
+    getIt.registerLazySingleton(
+      () => TeamController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.teamId}',
+    );
+
+    getIt
+        .get<TeamController>(
+          instanceName: '${widget.teamId}',
+        )
+        .getTeam(
           teamId: widget.teamId,
         );
   }
 
   @override
   void dispose() {
-    getIt.resetLazySingleton<TeamController>();
+    getIt.resetLazySingleton<TeamController>(
+      instanceName: '${widget.teamId}',
+    );
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final teamState = watchIt<TeamController>().value;
+    final teamState = watchIt<TeamController>(
+      instanceName: '${widget.teamId}',
+    ).value;
 
     return Scaffold(
       body: SafeArea(

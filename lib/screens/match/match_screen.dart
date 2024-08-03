@@ -3,6 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../constants.dart';
+import '../../services/api_service.dart';
+import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
 import 'controllers/match_controller.dart';
 import 'controllers/match_h2h_controller.dart';
@@ -26,7 +28,41 @@ class _MatchScreenState extends State<MatchScreen> {
   @override
   void initState() {
     super.initState();
-    getIt.get<MatchController>().getMatch(
+
+    getIt
+      ..registerLazySingleton(
+        () => MatchController(
+          logger: getIt.get<LoggerService>(),
+          api: getIt.get<APIService>(),
+        ),
+        instanceName: '${widget.matchId}',
+      )
+      ..registerLazySingleton(
+        () => MatchSectionController(
+          logger: getIt.get<LoggerService>(),
+        ),
+        instanceName: '${widget.matchId}',
+      )
+      ..registerLazySingleton(
+        () => MatchStandingsController(
+          logger: getIt.get<LoggerService>(),
+          api: getIt.get<APIService>(),
+        ),
+        instanceName: '${widget.matchId}',
+      )
+      ..registerLazySingleton(
+        () => MatchHead2HeadController(
+          logger: getIt.get<LoggerService>(),
+          api: getIt.get<APIService>(),
+        ),
+        instanceName: '${widget.matchId}',
+      );
+
+    getIt
+        .get<MatchController>(
+          instanceName: '${widget.matchId}',
+        )
+        .getMatch(
           matchId: widget.matchId,
         );
   }
@@ -34,17 +70,27 @@ class _MatchScreenState extends State<MatchScreen> {
   @override
   void dispose() {
     getIt
-      ..resetLazySingleton<MatchController>()
-      ..resetLazySingleton<MatchSectionController>()
-      ..resetLazySingleton<MatchStandingsController>()
-      ..resetLazySingleton<MatchHead2HeadController>();
+      ..unregister<MatchController>(
+        instanceName: '${widget.matchId}',
+      )
+      ..unregister<MatchSectionController>(
+        instanceName: '${widget.matchId}',
+      )
+      ..unregister<MatchStandingsController>(
+        instanceName: '${widget.matchId}',
+      )
+      ..unregister<MatchHead2HeadController>(
+        instanceName: '${widget.matchId}',
+      );
 
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final matchState = watchIt<MatchController>().value;
+    final matchState = watchIt<MatchController>(
+      instanceName: '${widget.matchId}',
+    ).value;
 
     return Scaffold(
       body: SafeArea(

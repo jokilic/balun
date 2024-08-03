@@ -38,6 +38,7 @@ class MatchActiveSection extends StatelessWidget {
           matchSectionEnum: MatchSectionEnum.standings,
         ) =>
           MatchStandingsSection(
+            matchId: match.fixture?.id,
             leagueId: match.league?.id,
             season: match.league?.season,
           ),
@@ -66,6 +67,7 @@ class MatchActiveSection extends StatelessWidget {
           matchSectionEnum: MatchSectionEnum.headToHead,
         ) =>
           MatchHead2HeadSection(
+            matchId: match.fixture?.id,
             homeTeamId: match.teams?.home?.id,
             awayTeamId: match.teams?.away?.id,
           ),

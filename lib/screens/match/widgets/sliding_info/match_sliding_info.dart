@@ -21,7 +21,9 @@ class MatchSlidingInfo extends WatchingWidget {
 
   @override
   Widget build(BuildContext context) {
-    final matchSection = watchIt<MatchSectionController>().value;
+    final matchSection = watchIt<MatchSectionController>(
+      instanceName: '${match.fixture?.id}',
+    ).value;
 
     return ListView(
       controller: scrollController,
@@ -49,7 +51,11 @@ class MatchSlidingInfo extends WatchingWidget {
         ///
         MatchSectionTitles(
           activeMatchSection: matchSection,
-          titlePressed: getIt.get<MatchSectionController>().updateState,
+          titlePressed: getIt
+              .get<MatchSectionController>(
+                instanceName: '${match.fixture?.id}',
+              )
+              .updateState,
         ),
 
         const SizedBox(height: 24),

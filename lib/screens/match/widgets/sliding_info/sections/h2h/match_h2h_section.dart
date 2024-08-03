@@ -11,10 +11,12 @@ import '../../../../controllers/match_h2h_controller.dart';
 import 'match_h2h_content.dart';
 
 class MatchHead2HeadSection extends WatchingStatefulWidget {
+  final int? matchId;
   final int? homeTeamId;
   final int? awayTeamId;
 
   const MatchHead2HeadSection({
+    required this.matchId,
     required this.homeTeamId,
     required this.awayTeamId,
   });
@@ -27,7 +29,11 @@ class _MatchHead2HeadSectionState extends State<MatchHead2HeadSection> {
   @override
   void initState() {
     super.initState();
-    getIt.get<MatchHead2HeadController>().getHead2Head(
+    getIt
+        .get<MatchHead2HeadController>(
+          instanceName: '${widget.matchId}',
+        )
+        .getHead2Head(
           homeTeamId: widget.homeTeamId,
           awayTeamId: widget.awayTeamId,
         );
@@ -35,7 +41,9 @@ class _MatchHead2HeadSectionState extends State<MatchHead2HeadSection> {
 
   @override
   Widget build(BuildContext context) {
-    final head2HeadState = watchIt<MatchHead2HeadController>().value;
+    final head2HeadState = watchIt<MatchHead2HeadController>(
+      instanceName: '${widget.matchId}',
+    ).value;
 
     return Animate(
       key: ValueKey(head2HeadState),
