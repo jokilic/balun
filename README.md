@@ -20,11 +20,6 @@ A simple Flutter application for football scores.
     * Head to head - another API call
     * Statistics
     * Players statistics
-        * Dodaj ocjene pored imena igrača
-            * Zeleno - > 7.0
-            * Žuto - < 7.0 && > 6.5
-            * Narančasto - < 6.5 && > 5.5
-            * Crveno - < 5.5
         * Kartoni
             * Ako ima žuti, stavi ikonu žutog
             * Ako ima dva žuta, dva mala žuta i veći crveni

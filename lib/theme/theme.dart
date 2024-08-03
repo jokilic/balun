@@ -26,6 +26,9 @@ class BalunTheme {
     greenish: BalunColors.greenish,
     red: BalunColors.red,
     green: BalunColors.green,
+    blue: BalunColors.blue,
+    yellow: BalunColors.yellow,
+    orange: BalunColors.orange,
   );
 
   static final lightTextTheme = BalunTextThemesExtension(
@@ -106,6 +109,9 @@ class BalunTheme {
     ),
     matchPlayerStatisticsValue: BalunTextStyles.matchPlayerStatisticsValue.copyWith(
       color: lightAppColors.black,
+    ),
+    matchPlayerStatisticsRating: BalunTextStyles.matchPlayerStatisticsRating.copyWith(
+      color: lightAppColors.white,
     ),
     matchH2HScore: BalunTextStyles.matchH2HScore.copyWith(
       color: lightAppColors.black,
