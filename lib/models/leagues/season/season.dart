@@ -17,8 +17,8 @@ class Season {
 
   factory Season.fromMap(Map<String, dynamic> map) => Season(
         year: map['year'] != null ? map['year'] as int : null,
-        start: map['start'] != null ? DateTime.fromMillisecondsSinceEpoch(map['start'] as int) : null,
-        end: map['end'] != null ? DateTime.fromMillisecondsSinceEpoch(map['end'] as int) : null,
+        start: map['start'] != null ? DateTime.parse(map['start'] as String) : null,
+        end: map['end'] != null ? DateTime.parse(map['end'] as String) : null,
         current: map['current'] != null ? map['current'] as bool : null,
         coverage: map['coverage'] != null ? SeasonCoverage.fromMap(map['coverage'] as Map<String, dynamic>) : null,
       );

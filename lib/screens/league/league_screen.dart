@@ -14,7 +14,7 @@ class LeagueScreen extends WatchingStatefulWidget {
 
   const LeagueScreen({
     required this.leagueId,
-    super.key,
+    required super.key,
   });
 
   @override

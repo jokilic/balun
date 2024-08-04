@@ -14,7 +14,7 @@ class TeamScreen extends WatchingStatefulWidget {
 
   const TeamScreen({
     required this.teamId,
-    super.key,
+    required super.key,
   });
 
   @override

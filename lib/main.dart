@@ -36,6 +36,13 @@ class BalunApp extends StatelessWidget {
           leagueId: 210,
           key: ValueKey(210),
         ),
+        // home: const FixturesScreen(
+        //   key: ValueKey('fixtures'),
+        // ),
+        // home: const MatchScreen(
+        //   matchId: 1034844,
+        //   key: ValueKey(1034844),
+        // ),
         onGenerateTitle: (_) => 'Balun',
         theme: BalunTheme.light,
         builder: (_, child) => BalunWidget(
