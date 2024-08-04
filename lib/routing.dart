@@ -3,13 +3,16 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import 'screens/fixtures/fixtures_screen.dart';
+import 'screens/league/league_screen.dart';
 import 'screens/match/match_screen.dart';
 import 'screens/team/team_screen.dart';
 import 'util/navigation.dart';
 
 /// Opens [FixturesScreen]
 void openFixtures(BuildContext context) => pushScreen(
-      FixturesScreen(),
+      const FixturesScreen(
+        key: ValueKey('fixtures'),
+      ),
       context: context,
     );
 
@@ -25,20 +28,23 @@ void openMatch(BuildContext context, {required int matchId}) => pushScreen(
 
 /// Opens [TeamScreen]
 void openTeam(BuildContext context, {required int teamId}) => pushScreen(
-      TeamScreen(teamId: teamId),
+      TeamScreen(
+        teamId: teamId,
+        key: ValueKey(teamId),
+      ),
       context: context,
       isCircularTransition: true,
     );
 
 /// Opens [LeagueScreen]
-void openLeague(BuildContext context, {required int leagueId}) {
-  log('Open league -> $leagueId');
-  // pushScreen(
-  //   LeagueScreen(leagueId: leagueId),
-  //   context: context,
-  //   isCircularTransition: true,
-  // );
-}
+void openLeague(BuildContext context, {required int leagueId}) => pushScreen(
+      LeagueScreen(
+        leagueId: leagueId,
+        key: ValueKey(leagueId),
+      ),
+      context: context,
+      isCircularTransition: true,
+    );
 
 /// Opens [PlayerScreen]
 void openPlayer(BuildContext context, {required int playerId}) {

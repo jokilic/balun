@@ -2,11 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../models/fixtures/fixtures_response.dart';
+import '../models/leagues/leagues_response.dart';
 import '../models/standings/standings_response.dart';
 import '../models/teams/teams_response.dart';
 import '../util/isolates.dart';
 import 'logger_service.dart';
 
+// TODO: Remove API counter
 class APIService extends ValueNotifier<int> {
   final LoggerService logger;
   final Dio dio;
@@ -27,6 +29,7 @@ class APIService extends ValueNotifier<int> {
       final response = await dio.get(
         '/fixtures',
         queryParameters: {
+          // TODO: Implement this properly
           // 'live': 'all',
           'last': 15,
         },
@@ -100,7 +103,7 @@ class APIService extends ValueNotifier<int> {
   }
 
   ///
-  /// `/fixtures`
+  /// `/fixtures/headtohead`
   ///
 
   Future<({FixturesResponse? head2HeadResponse, String? error})> getHead2Head({
@@ -228,6 +231,49 @@ class APIService extends ValueNotifier<int> {
       final error = 'API -> getStandings -> catch -> $e';
       logger.e(error);
       return (standingsResponse: null, error: error);
+    }
+  }
+
+  ///
+  /// `/leagues`
+  ///
+
+  Future<({LeaguesResponse? leaguesResponse, String? error})> getLeague({
+    required int leagueId,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/leagues',
+        queryParameters: {
+          'id': leagueId,
+        },
+      );
+
+      incrementState();
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computeLeagues(response.data);
+            return (leaguesResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getLeague -> parsing error -> $e';
+            logger.e(error);
+            return (leaguesResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getLeague -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (leaguesResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = 'API -> getLeague -> catch -> $e';
+      logger.e(error);
+      return (leaguesResponse: null, error: error);
     }
   }
 }

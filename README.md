@@ -23,7 +23,7 @@ A simple Flutter application for football scores.
 * Team by ID
 * Leagues by team API
 * Standings from team
-* Coachs from team
+* Coaches from team
 * Players from team
 * Transfers team
 

@@ -6,69 +6,71 @@ import '../../constants.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
-import 'team_controller.dart';
-import 'widgets/team_content.dart';
+import 'controllers/league_controller.dart';
+import 'widgets/league_content.dart';
 
-class TeamScreen extends WatchingStatefulWidget {
-  final int teamId;
+class LeagueScreen extends WatchingStatefulWidget {
+  final int leagueId;
 
-  const TeamScreen({
-    required this.teamId,
+  const LeagueScreen({
+    required this.leagueId,
     super.key,
   });
 
   @override
-  State<TeamScreen> createState() => _TeamScreenState();
+  State<LeagueScreen> createState() => _LeagueScreenState();
 }
 
-class _TeamScreenState extends State<TeamScreen> {
+class _LeagueScreenState extends State<LeagueScreen> {
   @override
   void initState() {
     super.initState();
 
     getIt.registerLazySingleton(
-      () => TeamController(
+      () => LeagueController(
         logger: getIt.get<LoggerService>(),
         api: getIt.get<APIService>(),
       ),
-      instanceName: '${widget.teamId}',
+      instanceName: '${widget.leagueId}',
     );
 
     getIt
-        .get<TeamController>(
-          instanceName: '${widget.teamId}',
+        .get<LeagueController>(
+          instanceName: '${widget.leagueId}',
         )
-        .getTeam(
-          teamId: widget.teamId,
+        .getLeague(
+          leagueId: widget.leagueId,
         );
   }
 
   @override
   void dispose() {
-    getIt.resetLazySingleton<TeamController>(
-      instanceName: '${widget.teamId}',
+    getIt.unregister<LeagueController>(
+      instanceName: '${widget.leagueId}',
     );
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final teamState = watchIt<TeamController>(
-      instanceName: '${widget.teamId}',
+    final leagueState = watchIt<LeagueController>(
+      instanceName: '${widget.leagueId}',
     ).value;
 
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: Animate(
-          key: ValueKey(teamState),
+          key: ValueKey(leagueState),
           effects: const [
             FadeEffect(
               curve: Curves.easeIn,
               duration: BalunConstants.animationDuration,
             ),
           ],
-          child: TeamContent(
-            teamState: teamState,
+          child: LeagueContent(
+            leagueState: leagueState,
           ),
         ),
       ),
