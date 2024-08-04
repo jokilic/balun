@@ -82,7 +82,7 @@ abstract class BalunTextStyles {
 
   static const matchStandingsSectionForm = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.w600,
   );
 

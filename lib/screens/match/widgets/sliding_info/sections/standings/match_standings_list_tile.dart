@@ -118,6 +118,10 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                                         };
 
                                         return Container(
+                                          alignment: Alignment.center,
+                                          width: 32,
+                                          margin: const EdgeInsets.symmetric(horizontal: 2),
+                                          padding: const EdgeInsets.symmetric(vertical: 2),
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(4),
                                             color: color,
@@ -130,12 +134,6 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                                       },
                                     ).toList(),
                                   ),
-                                Text(
-                                  widget.standing.form ?? '--',
-                                  style: context.textStyles.matchStandingsSectionText,
-                                  maxLines: 1,
-                                  textAlign: TextAlign.center,
-                                ),
                               ],
                             ),
                             Row(

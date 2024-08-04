@@ -80,9 +80,10 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     ///
                     if ((yellowCards ?? 0) > 0) ...[
                       Image.asset(
-                        yellowCards == 1 ? BalunIcons.yellowCard : BalunIcons.cards,
+                        yellowCards == 1 ? BalunIcons.card : BalunIcons.cards,
                         height: 40,
                         width: 40,
+                        color: yellowCards == 1 ? context.colors.yellow : null,
                       ),
                       const SizedBox(width: 8),
                     ],
@@ -92,9 +93,10 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     ///
                     if ((redCards ?? 0) > 0 && (yellowCards ?? 0) == 0) ...[
                       Image.asset(
-                        BalunIcons.redCard,
+                        BalunIcons.card,
                         height: 40,
                         width: 40,
+                        color: context.colors.red,
                       ),
                       const SizedBox(width: 8),
                     ],

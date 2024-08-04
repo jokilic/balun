@@ -224,7 +224,7 @@ class MatchInfoSection extends StatelessWidget {
           ///
           /// REFEREE
           ///
-          if (referee?.isEmpty ?? false) ...[
+          if (referee?.isNotEmpty ?? false) ...[
             Row(
               children: [
                 Image.asset(

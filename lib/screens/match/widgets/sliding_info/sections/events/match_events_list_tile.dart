@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../../../../../models/fixtures/event/event.dart';
 import '../../../../../../theme/icons.dart';
@@ -236,10 +237,9 @@ class MatchEventsListTile extends StatelessWidget {
         'card' => Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(
-                getCardIcon(eventDetail),
-                height: 28,
-                width: 28,
+              getCardWidget(
+                eventDetail,
+                context: context,
               ),
               const SizedBox(width: 8),
               Flexible(
@@ -269,6 +269,7 @@ class MatchEventsListTile extends StatelessWidget {
                       BalunIcons.playerOut,
                       height: 28,
                       width: 28,
+                      color: context.colors.red,
                     ),
                     const SizedBox(width: 8),
                     Flexible(
@@ -294,6 +295,7 @@ class MatchEventsListTile extends StatelessWidget {
                       BalunIcons.playerIn,
                       height: 28,
                       width: 28,
+                      color: context.colors.green,
                     ),
                     const SizedBox(width: 8),
                     Flexible(
@@ -354,9 +356,23 @@ class MatchEventsListTile extends StatelessWidget {
           ),
       };
 
-  String getCardIcon(String eventDetail) => switch (eventDetail.toLowerCase()) {
-        'yellow card' => BalunIcons.yellowCard,
-        'red card' => BalunIcons.redCard,
-        _ => BalunIcons.cards,
+  Widget getCardWidget(String eventDetail, {required BuildContext context}) => switch (eventDetail.toLowerCase()) {
+        'yellow card' => Image.asset(
+            BalunIcons.card,
+            height: 28,
+            width: 28,
+            color: context.colors.yellow,
+          ),
+        'red card' => Image.asset(
+            BalunIcons.card,
+            height: 28,
+            width: 28,
+            color: context.colors.red,
+          ),
+        _ => Image.asset(
+            BalunIcons.cards,
+            height: 28,
+            width: 28,
+          ),
       };
 }
