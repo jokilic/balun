@@ -8,7 +8,7 @@ class MatchSectionController extends ValueNotifier<MatchSection> {
 
   MatchSectionController({
     required this.logger,
-  }) : super(MatchSection(matchSectionEnum: MatchSectionEnum.info));
+  }) : super(MatchSection(matchSectionEnum: MatchSectionEnum.events));
 
   ///
   /// METHODS

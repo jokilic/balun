@@ -1,11 +1,11 @@
 enum MatchSectionEnum {
   info,
-  standings,
   events,
   lineups,
-  headToHead,
   statistics,
   playerStatistics,
+  standings,
+  headToHead,
 }
 
 class MatchSection {
@@ -17,12 +17,12 @@ class MatchSection {
 
   String getMatchSectionName() => switch (matchSectionEnum) {
         MatchSectionEnum.info => 'Info',
-        MatchSectionEnum.standings => 'Standings',
         MatchSectionEnum.events => 'Events',
         MatchSectionEnum.lineups => 'Lineups',
-        MatchSectionEnum.headToHead => 'h2h',
         MatchSectionEnum.statistics => 'Statistics',
         MatchSectionEnum.playerStatistics => 'Player statistics',
+        MatchSectionEnum.standings => 'Standings',
+        MatchSectionEnum.headToHead => 'Head-to-head',
       };
 
   @override

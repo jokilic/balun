@@ -7,29 +7,6 @@ A simple Flutter application for football scores.
 
 # Screens
 
-### `MatchScreen`
-
-* Tapping team icon can open `TeamScreen`
-* Tapping big score will open expanded list with values in fixture -> score
-* Tabs
-    * Fixture info
-    * Standings - another API call
-        * Streak - color code it
-    * Events
-    * Lineups
-    * Head to head - another API call
-    * Statistics
-    * Players statistics
-
-### `TeamScreen`
-
-* Team by ID
-* Leagues by team API
-* Standings from team
-* Coachs from team
-* Players from team
-* Transfers team
-
 ### `LeagueScreen`
 
 * League by ID
@@ -40,6 +17,15 @@ A simple Flutter application for football scores.
 * Top assists from league ID and season
 * Top yellow cards from league ID and season
 * Top red cards from league ID and season
+
+### `TeamScreen`
+
+* Team by ID
+* Leagues by team API
+* Standings from team
+* Coachs from team
+* Players from team
+* Transfers team
 
 ### `FixturesScreen`
 
