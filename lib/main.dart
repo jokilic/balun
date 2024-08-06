@@ -33,6 +33,7 @@ class BalunApp extends StatelessWidget {
         home: const LeagueScreen(
           leagueId: 210,
           key: ValueKey(210),
+          season: 2021,
         ),
         // home: const FixturesScreen(
         //   key: ValueKey('fixtures'),

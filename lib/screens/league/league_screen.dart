@@ -7,15 +7,18 @@ import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
 import 'controllers/league_controller.dart';
+import 'controllers/league_season_controller.dart';
 import 'controllers/league_section_controller.dart';
 import 'controllers/league_teams_controller.dart';
 import 'widgets/league_content.dart';
 
 class LeagueScreen extends WatchingStatefulWidget {
   final int leagueId;
+  final int season;
 
   const LeagueScreen({
     required this.leagueId,
+    required this.season,
     required super.key,
   });
 
@@ -43,38 +46,28 @@ class _LeagueScreenState extends State<LeagueScreen> {
         instanceName: '${widget.leagueId}',
       )
       ..registerLazySingleton(
+        () => LeagueSeasonController(
+          logger: getIt.get<LoggerService>(),
+          api: getIt.get<APIService>(),
+          initialSeason: widget.season,
+        ),
+        instanceName: '${widget.leagueId}',
+      )
+      ..registerLazySingleton(
         () => LeagueController(
           logger: getIt.get<LoggerService>(),
           api: getIt.get<APIService>(),
-          section: getIt.get<LeagueSectionController>(
-            instanceName: '${widget.leagueId}',
-          ),
-          teams: getIt.get<LeagueTeamsController>(
-            instanceName: '${widget.leagueId}',
-          ),
         ),
         instanceName: '${widget.leagueId}',
       );
 
-    Future.wait(
-      [
-        getIt
-            .get<LeagueController>(
-              instanceName: '${widget.leagueId}',
-            )
-            .getLeague(
-              leagueId: widget.leagueId,
-            ),
-        getIt
-            .get<LeagueController>(
-              instanceName: '${widget.leagueId}',
-            )
-            .getSlidingInfoData(
-              leagueId: widget.leagueId,
-              season: 2023,
-            ),
-      ],
-    );
+    getIt
+        .get<LeagueController>(
+          instanceName: '${widget.leagueId}',
+        )
+        .getLeague(
+          leagueId: widget.leagueId,
+        );
   }
 
   @override
@@ -84,6 +77,9 @@ class _LeagueScreenState extends State<LeagueScreen> {
         instanceName: '${widget.leagueId}',
       )
       ..unregister<LeagueSectionController>(
+        instanceName: '${widget.leagueId}',
+      )
+      ..unregister<LeagueSeasonController>(
         instanceName: '${widget.leagueId}',
       )
       ..unregister<LeagueTeamsController>(

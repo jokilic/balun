@@ -197,13 +197,49 @@ abstract class BalunTextStyles {
 
   static const leagueName = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: FontWeight.w600,
+  );
+
+  static const leagueCountry = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const leagueSeason = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const leagueSeasonDropdown = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 22,
+    fontWeight: FontWeight.w400,
   );
 
   static const leagueCountryName = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 18,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const leagueTeamsTitle = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 22,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const leagueTeamsCountry = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const leagueTeamsFounded = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 14,
     fontWeight: FontWeight.w500,
   );
 }
@@ -242,6 +278,12 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchH2HTitle;
   final TextStyle matchH2HText;
   final TextStyle leagueName;
+  final TextStyle leagueCountry;
+  final TextStyle leagueSeason;
+  final TextStyle leagueSeasonDropdown;
+  final TextStyle leagueTeamsTitle;
+  final TextStyle leagueTeamsCountry;
+  final TextStyle leagueTeamsFounded;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -277,6 +319,12 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchH2HTitle,
     required this.matchH2HText,
     required this.leagueName,
+    required this.leagueCountry,
+    required this.leagueSeason,
+    required this.leagueSeasonDropdown,
+    required this.leagueTeamsTitle,
+    required this.leagueTeamsCountry,
+    required this.leagueTeamsFounded,
   });
 
   @override
@@ -314,6 +362,12 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchH2HTitle,
     TextStyle? matchH2HText,
     TextStyle? leagueName,
+    TextStyle? leagueCountry,
+    TextStyle? leagueSeason,
+    TextStyle? leagueSeasonDropdown,
+    TextStyle? leagueTeamsTitle,
+    TextStyle? leagueTeamsCountry,
+    TextStyle? leagueTeamsFounded,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -349,6 +403,12 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchH2HTitle: matchH2HTitle ?? this.matchH2HTitle,
         matchH2HText: matchH2HText ?? this.matchH2HText,
         leagueName: leagueName ?? this.leagueName,
+        leagueCountry: leagueCountry ?? this.leagueCountry,
+        leagueSeason: leagueSeason ?? this.leagueSeason,
+        leagueSeasonDropdown: leagueSeasonDropdown ?? this.leagueSeasonDropdown,
+        leagueTeamsTitle: leagueTeamsTitle ?? this.leagueTeamsTitle,
+        leagueTeamsCountry: leagueTeamsCountry ?? this.leagueTeamsCountry,
+        leagueTeamsFounded: leagueTeamsFounded ?? this.leagueTeamsFounded,
       );
 
   @override
@@ -394,6 +454,12 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchH2HTitle: TextStyle.lerp(matchH2HTitle, other.matchH2HTitle, t)!,
       matchH2HText: TextStyle.lerp(matchH2HText, other.matchH2HText, t)!,
       leagueName: TextStyle.lerp(leagueName, other.leagueName, t)!,
+      leagueCountry: TextStyle.lerp(leagueCountry, other.leagueCountry, t)!,
+      leagueSeason: TextStyle.lerp(leagueSeason, other.leagueSeason, t)!,
+      leagueSeasonDropdown: TextStyle.lerp(leagueSeasonDropdown, other.leagueSeasonDropdown, t)!,
+      leagueTeamsTitle: TextStyle.lerp(leagueTeamsTitle, other.leagueTeamsTitle, t)!,
+      leagueTeamsCountry: TextStyle.lerp(leagueTeamsCountry, other.leagueTeamsCountry, t)!,
+      leagueTeamsFounded: TextStyle.lerp(leagueTeamsFounded, other.leagueTeamsFounded, t)!,
     );
   }
 }

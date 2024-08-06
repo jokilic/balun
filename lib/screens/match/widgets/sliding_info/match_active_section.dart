@@ -7,7 +7,7 @@ import '../../../../util/events.dart';
 import 'sections/events/match_events_section.dart';
 import 'sections/h2h/match_h2h_section.dart';
 import 'sections/lineups/match_lineups_section.dart';
-import 'sections/match_info_section.dart';
+import 'sections/info/match_info_section.dart';
 import 'sections/player_statistics/match_player_statistics_section.dart';
 import 'sections/standings/match_standings_section.dart';
 import 'sections/statistics/match_statistics_section.dart';

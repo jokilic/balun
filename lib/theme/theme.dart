@@ -131,6 +131,24 @@ class BalunTheme {
     leagueName: BalunTextStyles.leagueName.copyWith(
       color: lightAppColors.black,
     ),
+    leagueCountry: BalunTextStyles.leagueCountry.copyWith(
+      color: lightAppColors.black,
+    ),
+    leagueSeason: BalunTextStyles.leagueSeason.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
+    leagueSeasonDropdown: BalunTextStyles.leagueSeasonDropdown.copyWith(
+      color: lightAppColors.black,
+    ),
+    leagueTeamsTitle: BalunTextStyles.leagueTeamsTitle.copyWith(
+      color: lightAppColors.black,
+    ),
+    leagueTeamsCountry: BalunTextStyles.leagueTeamsCountry.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
+    leagueTeamsFounded: BalunTextStyles.leagueTeamsFounded.copyWith(
+      color: lightAppColors.black,
+    ),
   );
 }
 

@@ -37,9 +37,15 @@ void openTeam(BuildContext context, {required int teamId}) => pushScreen(
     );
 
 /// Opens [LeagueScreen]
-void openLeague(BuildContext context, {required int leagueId}) => pushScreen(
+void openLeague(
+  BuildContext context, {
+  required int leagueId,
+  required int season,
+}) =>
+    pushScreen(
       LeagueScreen(
         leagueId: leagueId,
+        season: season,
         key: ValueKey(leagueId),
       ),
       context: context,

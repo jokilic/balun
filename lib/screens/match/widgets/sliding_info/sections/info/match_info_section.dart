@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../models/fixtures/fixture/fixture_status.dart';
-import '../../../../../models/fixtures/fixture/fixture_venue.dart';
-import '../../../../../models/fixtures/league/league.dart';
-import '../../../../../routing.dart';
-import '../../../../../theme/icons.dart';
-import '../../../../../theme/theme.dart';
-import '../../../../../util/date_time.dart';
-import '../../../../../util/string.dart';
-import '../../../../../widgets/balun_button.dart';
-import '../../../../../widgets/balun_image.dart';
+import '../../../../../../models/fixtures/fixture/fixture_status.dart';
+import '../../../../../../models/fixtures/fixture/fixture_venue.dart';
+import '../../../../../../models/fixtures/league/league.dart';
+import '../../../../../../routing.dart';
+import '../../../../../../theme/icons.dart';
+import '../../../../../../theme/theme.dart';
+import '../../../../../../util/date_time.dart';
+import '../../../../../../util/string.dart';
+import '../../../../../../widgets/balun_button.dart';
+import '../../../../../../widgets/balun_image.dart';
 
 class MatchInfoSection extends StatelessWidget {
   final DateTime? timestamp;
@@ -118,6 +118,7 @@ class MatchInfoSection extends StatelessWidget {
                   ? () => openLeague(
                         context,
                         leagueId: league!.id!,
+                        season: league!.season!,
                       )
                   : null,
               child: Container(
@@ -179,6 +180,7 @@ class MatchInfoSection extends StatelessWidget {
                   ? () => openLeague(
                         context,
                         leagueId: league!.id!,
+                        season: league!.season!,
                       )
                   : null,
               child: Container(
