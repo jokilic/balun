@@ -194,6 +194,18 @@ abstract class BalunTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
+
+  static const leagueName = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const leagueCountryName = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -229,6 +241,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchH2HScore;
   final TextStyle matchH2HTitle;
   final TextStyle matchH2HText;
+  final TextStyle leagueName;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -263,6 +276,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchH2HScore,
     required this.matchH2HTitle,
     required this.matchH2HText,
+    required this.leagueName,
   });
 
   @override
@@ -299,6 +313,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchH2HScore,
     TextStyle? matchH2HTitle,
     TextStyle? matchH2HText,
+    TextStyle? leagueName,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -333,6 +348,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchH2HScore: matchH2HScore ?? this.matchH2HScore,
         matchH2HTitle: matchH2HTitle ?? this.matchH2HTitle,
         matchH2HText: matchH2HText ?? this.matchH2HText,
+        leagueName: leagueName ?? this.leagueName,
       );
 
   @override
@@ -377,6 +393,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchH2HScore: TextStyle.lerp(matchH2HScore, other.matchH2HScore, t)!,
       matchH2HTitle: TextStyle.lerp(matchH2HTitle, other.matchH2HTitle, t)!,
       matchH2HText: TextStyle.lerp(matchH2HText, other.matchH2HText, t)!,
+      leagueName: TextStyle.lerp(leagueName, other.leagueName, t)!,
     );
   }
 }

@@ -28,11 +28,13 @@ class _FixturesScreenState extends State<FixturesScreen> {
       ),
       instanceName: 'fixtures',
     );
+
+    getIt.get<FixturesController>().getFixtures();
   }
 
   @override
   void dispose() {
-    getIt.resetLazySingleton<FixturesController>(
+    getIt.unregister<FixturesController>(
       instanceName: 'fixtures',
     );
     super.dispose();

@@ -189,6 +189,47 @@ class APIService extends ValueNotifier<int> {
     }
   }
 
+  Future<({TeamsResponse? teamsResponse, String? error})> getTeamsFromLeagueAndSeason({
+    required int leagueId,
+    required int season,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/teams',
+        queryParameters: {
+          'league': leagueId,
+          'season': season,
+        },
+      );
+
+      incrementState();
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computeTeams(response.data);
+            return (teamsResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getTeamsFromLeagueAndSeason -> parsing error -> $e';
+            logger.e(error);
+            return (teamsResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getTeamsFromLeagueAndSeason -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (teamsResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = 'API -> getTeamsFromLeagueAndSeason -> catch -> $e';
+      logger.e(error);
+      return (teamsResponse: null, error: error);
+    }
+  }
+
   ///
   /// `/standings`
   ///

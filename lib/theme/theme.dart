@@ -128,6 +128,9 @@ class BalunTheme {
     matchH2HText: BalunTextStyles.matchH2HText.copyWith(
       color: lightAppColors.black.withOpacity(0.5),
     ),
+    leagueName: BalunTextStyles.leagueName.copyWith(
+      color: lightAppColors.black,
+    ),
   );
 }
 

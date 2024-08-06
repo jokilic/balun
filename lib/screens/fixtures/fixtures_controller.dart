@@ -12,15 +12,7 @@ class FixturesController extends ValueNotifier<BalunState<List<FixtureResponse>>
   FixturesController({
     required this.logger,
     required this.api,
-  }) : super(Initial())
-
-  ///
-  /// INIT
-  ///
-
-  {
-    getFixtures();
-  }
+  }) : super(Initial());
 
   ///
   /// METHODS

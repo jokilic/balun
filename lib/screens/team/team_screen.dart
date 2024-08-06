@@ -45,7 +45,7 @@ class _TeamScreenState extends State<TeamScreen> {
 
   @override
   void dispose() {
-    getIt.resetLazySingleton<TeamController>(
+    getIt.unregister<TeamController>(
       instanceName: '${widget.teamId}',
     );
     super.dispose();

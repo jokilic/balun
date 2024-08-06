@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:sliding_up_panel2/sliding_up_panel2.dart';
 
 import '../../../models/leagues/league_response.dart';
+import '../../../theme/theme.dart';
+import '../../../widgets/widget_size.dart';
+import 'main_info/league_main_info.dart';
+import 'sliding_info/league_sliding_info.dart';
 
-class LeagueSuccess extends StatelessWidget {
+class LeagueSuccess extends StatefulWidget {
   final LeagueResponse league;
 
   const LeagueSuccess({
@@ -10,5 +15,56 @@ class LeagueSuccess extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => const Placeholder();
+  State<LeagueSuccess> createState() => _LeagueSuccessState();
+}
+
+class _LeagueSuccessState extends State<LeagueSuccess> {
+  late var panelHeight = 100.0;
+  late final ScrollController scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Stack(
+        children: [
+          ///
+          /// TOP CONTENT
+          ///
+          WidgetSize(
+            onChange: (size) => setState(
+              () => panelHeight = (MediaQuery.sizeOf(context).height - size.height) - 80,
+            ),
+            child: LeagueMainInfo(
+              league: widget.league,
+            ),
+          ),
+
+          ///
+          /// SLIDING CONTENT
+          ///
+          SlidingUpPanel(
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(40),
+            ),
+            color: context.colors.white,
+            scrollController: scrollController,
+            minHeight: panelHeight,
+            maxHeight: MediaQuery.sizeOf(context).height - 144,
+            panelBuilder: () => LeagueSlidingInfo(
+              league: widget.league,
+              scrollController: scrollController,
+            ),
+          ),
+        ],
+      );
 }
