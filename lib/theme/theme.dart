@@ -149,6 +149,9 @@ class BalunTheme {
     leagueTeamsFounded: BalunTextStyles.leagueTeamsFounded.copyWith(
       color: lightAppColors.black,
     ),
+    leagueFixturesTitle: BalunTextStyles.leagueFixturesTitle.copyWith(
+      color: lightAppColors.black,
+    ),
   );
 }
 

@@ -22,16 +22,6 @@ List<Event>? getEventsList({
     );
   }
 
-  if (score?.fulltime?.home != null && score?.fulltime?.away != null) {
-    eventsScores.add(
-      Event(
-        type: 'fulltime',
-        detail: '${score?.fulltime?.home}:${score?.fulltime?.away}',
-        time: EventTime(elapsed: 90),
-      ),
-    );
-  }
-
   if (score?.extratime?.home != null && score?.extratime?.away != null) {
     eventsScores.add(
       Event(
@@ -54,8 +44,8 @@ List<Event>? getEventsList({
 
   eventsScores.sort(
     (a, b) {
-      final aTime = a.time?.elapsed ?? 0;
-      final bTime = b.time?.elapsed ?? 0;
+      final aTime = (a.time?.elapsed ?? 0) + (a.time?.extra ?? 0);
+      final bTime = (b.time?.elapsed ?? 0) + (b.time?.extra ?? 0);
 
       return aTime.compareTo(bTime);
     },

@@ -242,6 +242,12 @@ abstract class BalunTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w500,
   );
+
+  static const leagueFixturesTitle = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 22,
+    fontWeight: FontWeight.w600,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -284,6 +290,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle leagueTeamsTitle;
   final TextStyle leagueTeamsCountry;
   final TextStyle leagueTeamsFounded;
+  final TextStyle leagueFixturesTitle;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -325,6 +332,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.leagueTeamsTitle,
     required this.leagueTeamsCountry,
     required this.leagueTeamsFounded,
+    required this.leagueFixturesTitle,
   });
 
   @override
@@ -368,6 +376,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? leagueTeamsTitle,
     TextStyle? leagueTeamsCountry,
     TextStyle? leagueTeamsFounded,
+    TextStyle? leagueFixturesTitle,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -409,6 +418,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         leagueTeamsTitle: leagueTeamsTitle ?? this.leagueTeamsTitle,
         leagueTeamsCountry: leagueTeamsCountry ?? this.leagueTeamsCountry,
         leagueTeamsFounded: leagueTeamsFounded ?? this.leagueTeamsFounded,
+        leagueFixturesTitle: leagueFixturesTitle ?? this.leagueFixturesTitle,
       );
 
   @override
@@ -460,6 +470,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       leagueTeamsTitle: TextStyle.lerp(leagueTeamsTitle, other.leagueTeamsTitle, t)!,
       leagueTeamsCountry: TextStyle.lerp(leagueTeamsCountry, other.leagueTeamsCountry, t)!,
       leagueTeamsFounded: TextStyle.lerp(leagueTeamsFounded, other.leagueTeamsFounded, t)!,
+      leagueFixturesTitle: TextStyle.lerp(leagueFixturesTitle, other.leagueFixturesTitle, t)!,
     );
   }
 }

@@ -49,6 +49,7 @@ class MatchActiveSection extends StatelessWidget {
               events: match.events,
               score: match.score,
             ),
+            score: match.score,
             elapsed: match.fixture?.status?.elapsed,
             awayTeamId: match.teams?.away?.id,
           ),

@@ -26,7 +26,7 @@ class LeagueFixturesListTile extends StatelessWidget {
     return BalunButton(
       onPressed: fixturePressed,
       child: Container(
-        margin: const EdgeInsets.all(4),
+        margin: const EdgeInsets.symmetric(horizontal: 4),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: context.colors.black.withOpacity(0.075),
@@ -37,49 +37,10 @@ class LeagueFixturesListTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(32),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 8),
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (fixture.league != null)
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          fixture.league!.round ?? '---',
-                          style: context.textStyles.matchH2HTitle,
-                        ),
-                        Text(
-                          fixture.league!.name ?? '---',
-                          style: context.textStyles.matchH2HText,
-                        ),
-                      ],
-                    ),
-                  ),
-                if (matchDateTime != null)
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          DateFormat('d. MMMM y.').format(matchDateTime),
-                          style: context.textStyles.matchH2HTitle,
-                        ),
-                        Text(
-                          DateFormat('HH:mm').format(matchDateTime),
-                          style: context.textStyles.matchH2HText,
-                        ),
-                      ],
-                    ),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ///
                 /// HOME
@@ -92,8 +53,6 @@ class LeagueFixturesListTile extends StatelessWidget {
                     width: 56,
                   ),
                 ),
-
-                const SizedBox(width: 24),
 
                 ///
                 /// SCORE
@@ -113,8 +72,6 @@ class LeagueFixturesListTile extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
 
-                const SizedBox(width: 24),
-
                 ///
                 /// AWAY
                 ///
@@ -128,6 +85,21 @@ class LeagueFixturesListTile extends StatelessWidget {
                 ),
               ],
             ),
+            if (matchDateTime != null) ...[
+              const SizedBox(height: 12),
+              Column(
+                children: [
+                  Text(
+                    DateFormat('d. MMMM y.').format(matchDateTime),
+                    style: context.textStyles.matchH2HTitle,
+                  ),
+                  Text(
+                    DateFormat('HH:mm').format(matchDateTime),
+                    style: context.textStyles.matchH2HText,
+                  ),
+                ],
+              ),
+            ],
           ],
         ),
       ),

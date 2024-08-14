@@ -26,6 +26,8 @@ class MatchEventsListTile extends StatelessWidget {
       context: context,
     );
 
+    final eventTime = event.time?.elapsed != null ? (event.time?.elapsed ?? 0) + (event.time?.extra ?? 0) : null;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -40,7 +42,7 @@ class MatchEventsListTile extends StatelessWidget {
             : [
                 if (!(isAwayTeam ?? false)) ...[
                   Text(
-                    event.time?.elapsed != null ? "${event.time!.elapsed}'" : '---',
+                    eventTime != null ? "$eventTime'" : '---',
                     style: context.textStyles.matchEventsSectionTime,
                   ),
                   const SizedBox(width: 8),
