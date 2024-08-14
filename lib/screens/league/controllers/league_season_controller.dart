@@ -5,6 +5,7 @@ import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/dependencies.dart';
 import 'league_section_controller.dart';
+import 'league_standings_controller.dart';
 import 'league_teams_controller.dart';
 
 class LeagueSeasonController extends ValueNotifier<int> {
@@ -33,6 +34,9 @@ class LeagueSeasonController extends ValueNotifier<int> {
 
       /// Fetch new data, depending on active section
       switch (section.value) {
+        ///
+        /// TEAMS
+        ///
         case LeagueSection(leagueSectionEnum: LeagueSectionEnum.teams):
           getIt
               .get<LeagueTeamsController>(
@@ -43,7 +47,20 @@ class LeagueSeasonController extends ValueNotifier<int> {
                 season: newSeason,
               );
           break;
-        default:
+
+        ///
+        /// STANDINGS
+        ///
+        case LeagueSection(leagueSectionEnum: LeagueSectionEnum.standings):
+          getIt
+              .get<LeagueStandingsController>(
+                instanceName: '$leagueId',
+              )
+              .getStandingsFromLeagueAndSeason(
+                leagueId: leagueId,
+                season: newSeason,
+              );
+          break;
       }
     }
   }
