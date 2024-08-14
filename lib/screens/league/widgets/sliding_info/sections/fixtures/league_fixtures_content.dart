@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:grouped_list/grouped_list.dart';
 
 import '../../../../../../models/fixtures/fixture_response.dart';
-import '../../../../../../routing.dart';
-import '../../../../../../theme/theme.dart';
 import '../../../../../../util/fixtures.dart';
-import 'league_fixtures_list_tile.dart';
+import 'league_fixtures_group.dart';
 
 class LeagueFixturesContent extends StatelessWidget {
   final List<FixtureResponse>? fixtures;
@@ -15,29 +12,21 @@ class LeagueFixturesContent extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => GroupedListView<FixtureResponse, String>(
-        shrinkWrap: true,
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
-        physics: const BouncingScrollPhysics(),
-        elements: fixtures ?? [],
-        groupBy: (fixture) => fixture.league?.round ?? '',
-        groupSeparatorBuilder: (groupByValue) => Center(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 32, bottom: 16),
-            child: Text(
-              groupByValue,
-              style: context.textStyles.leagueFixturesTitle,
+  Widget build(BuildContext context) {
+    final groupedFixtures = getGroupedFixtures(fixtures ?? []);
+
+    return ListView(
+      shrinkWrap: true,
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
+      physics: const BouncingScrollPhysics(),
+      children: groupedFixtures.entries
+          .map(
+            (entry) => LeagueFixturesGroup(
+              round: entry.key,
+              fixtures: entry.value,
             ),
-          ),
-        ),
-        separator: const SizedBox(height: 24),
-        groupComparator: compareRounds,
-        itemBuilder: (_, fixture) => LeagueFixturesListTile(
-          fixture: fixture,
-          fixturePressed: () => openMatch(
-            context,
-            matchId: fixture.fixture!.id!,
-          ),
-        ),
-      );
+          )
+          .toList(),
+    );
+  }
 }

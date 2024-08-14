@@ -41,7 +41,7 @@ class MatchSectionTitles extends StatelessWidget {
                 duration: BalunConstants.animationDuration,
                 curve: Curves.easeIn,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(32),
+                  borderRadius: BorderRadius.circular(16),
                   color: activeMatchSection == section ? context.colors.black : context.colors.black.withOpacity(0.075),
                 ),
                 child: Text(

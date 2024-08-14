@@ -34,7 +34,7 @@ class LeagueFixturesListTile extends StatelessWidget {
             color: context.colors.black,
             width: 2,
           ),
-          borderRadius: BorderRadius.circular(32),
+          borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
           children: [

@@ -1,3 +1,5 @@
+import '../models/fixtures/fixture_response.dart';
+
 int compareRounds(String a, String b) {
   /// Extract numbers from Strings if they exist
   final regexNumber = RegExp(r'\d+');
@@ -27,3 +29,31 @@ int compareRounds(String a, String b) {
     return a.compareTo(b);
   }
 }
+
+Map<String, List<FixtureResponse>> getGroupedFixtures(List<FixtureResponse> fixtures) {
+  final groupedFixtures = groupFixtures(fixtures);
+
+  final sortedGroupedFixtures = Map.fromEntries(
+    groupedFixtures.entries.toList()
+      ..sort(
+        (a, b) => compareRounds(a.key, b.key),
+      ),
+  );
+
+  return sortedGroupedFixtures;
+}
+
+Map<String, List<FixtureResponse>> groupFixtures(List<FixtureResponse> fixtures) => fixtures.fold<Map<String, List<FixtureResponse>>>(
+      {},
+      (map, fixture) {
+        final round = fixture.league?.round;
+
+        if (!map.containsKey(round)) {
+          map[round!] = [];
+        }
+
+        map[round]!.add(fixture);
+
+        return map;
+      },
+    );

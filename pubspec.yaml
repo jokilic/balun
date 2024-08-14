@@ -10,14 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  accordion: 2.6.0
   cached_network_image: 3.3.1
   dio: 5.4.3+1
-  dough: 2.0.0
   flutter_animate: 4.5.0
-  flutter_spinkit: 5.2.1
   get_it: 7.7.0
-  grouped_list: 6.0.0
   hive_ce: 2.3.0
   hive_ce_flutter: 1.2.0
   internet_connection_checker_plus: 2.5.1

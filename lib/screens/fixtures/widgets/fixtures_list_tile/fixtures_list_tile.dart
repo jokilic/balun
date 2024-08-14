@@ -25,7 +25,7 @@ class FixturesListTile extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: context.colors.white.withOpacity(0.5),
-            borderRadius: BorderRadius.circular(32),
+            borderRadius: BorderRadius.circular(16),
           ),
           child: Column(
             children: [

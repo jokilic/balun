@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../theme/theme.dart';
 
@@ -11,8 +10,12 @@ class BalunLoader extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => SpinKitWanderingCubes(
-        color: color ?? context.colors.white,
-        size: 40,
+  Widget build(BuildContext context) => Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: color ?? context.colors.white,
+        ),
+        height: 40,
+        width: 40,
       );
 }

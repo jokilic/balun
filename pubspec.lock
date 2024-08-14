@@ -14,14 +14,6 @@ packages:
     description: dart
     source: sdk
     version: "0.1.0"
-  accordion:
-    dependency: "direct main"
-    description:
-      name: accordion
-      sha256: "0eca3d1c619c6df63d6e384010fd2ef1164e7385d7102f88a6b56f658f160cd0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.6.0"
   analyzer:
     dependency: transitive
     description:
@@ -270,14 +262,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.3+1"
-  dough:
-    dependency: "direct main"
-    description:
-      name: dough
-      sha256: f491b78cea2a2080f024b2c2015b6fac0edf553771dd090e6571c5346f086142
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   envied:
     dependency: transitive
     description:
@@ -371,14 +355,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.2"
-  flutter_spinkit:
-    dependency: "direct main"
-    description:
-      name: flutter_spinkit
-      sha256: d2696eed13732831414595b98863260e33e8882fc069ee80ec35d4ac9ddb0472
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.2.1"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -400,14 +376,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  get:
-    dependency: transitive
-    description:
-      name: get
-      sha256: e4e7335ede17452b391ed3b2ede016545706c01a02292a6c97619705e7d2a85e
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.6.6"
   get_it:
     dependency: "direct main"
     description:
@@ -432,14 +400,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  grouped_list:
-    dependency: "direct main"
-    description:
-      name: grouped_list
-      sha256: c52551bc17699e304634d4653b824a1aa7c6b1d3a2c1a0da1a80839f867353fb
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.0"
   hive_ce:
     dependency: "direct main"
     description:
@@ -600,14 +560,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   nm:
     dependency: transitive
     description:
@@ -720,14 +672,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
-  provider:
-    dependency: transitive
-    description:
-      name: provider
-      sha256: c8a055ee5ce3fd98d6fc872478b03823ffdb448699c6ebdbbc71d59b596fd48c
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.1.2"
   pub_semver:
     dependency: transitive
     description:
@@ -760,14 +704,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
-  scroll_to_index:
-    dependency: transitive
-    description:
-      name: scroll_to_index
-      sha256: b707546e7500d9f070d63e5acf74fd437ec7eeeb68d3412ef7b0afada0b4f176
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.1"
   shelf:
     dependency: transitive
     description:
