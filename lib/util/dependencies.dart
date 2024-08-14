@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 import '../services/api_service.dart';
 import '../services/dio_service.dart';
@@ -20,6 +21,7 @@ void initializeServices() => getIt
     () async => APIService(
       logger: getIt.get<LoggerService>(),
       dio: getIt.get<DioService>().dio,
+      internetConnection: InternetConnection(),
     ),
     dependsOn: [LoggerService, DioService],
   );

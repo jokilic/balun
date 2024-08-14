@@ -9,6 +9,7 @@ import '../../util/dependencies.dart';
 import 'controllers/league_controller.dart';
 import 'controllers/league_season_controller.dart';
 import 'controllers/league_section_controller.dart';
+import 'controllers/league_standings_controller.dart';
 import 'controllers/league_teams_controller.dart';
 import 'widgets/league_content.dart';
 
@@ -46,6 +47,13 @@ class _LeagueScreenState extends State<LeagueScreen> {
         instanceName: '${widget.leagueId}',
       )
       ..registerLazySingleton(
+        () => LeagueStandingsController(
+          logger: getIt.get<LoggerService>(),
+          api: getIt.get<APIService>(),
+        ),
+        instanceName: '${widget.leagueId}',
+      )
+      ..registerLazySingleton(
         () => LeagueSeasonController(
           logger: getIt.get<LoggerService>(),
           api: getIt.get<APIService>(),
@@ -77,16 +85,19 @@ class _LeagueScreenState extends State<LeagueScreen> {
   @override
   void dispose() {
     getIt
-      ..unregister<LeagueController>(
+      ..unregister<LeagueSectionController>(
         instanceName: '${widget.leagueId}',
       )
-      ..unregister<LeagueSectionController>(
+      ..unregister<LeagueTeamsController>(
+        instanceName: '${widget.leagueId}',
+      )
+      ..unregister<LeagueStandingsController>(
         instanceName: '${widget.leagueId}',
       )
       ..unregister<LeagueSeasonController>(
         instanceName: '${widget.leagueId}',
       )
-      ..unregister<LeagueTeamsController>(
+      ..unregister<LeagueController>(
         instanceName: '${widget.leagueId}',
       );
 

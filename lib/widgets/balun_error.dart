@@ -12,24 +12,27 @@ class BalunError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(40),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
+        child: ListView(
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 40,
+            vertical: 104,
+          ),
+          children: [
+            Center(
+              child: Image.asset(
                 BalunIcons.error,
                 height: 144,
                 width: 144,
               ),
-              const SizedBox(height: 40),
-              Text(
-                error,
-                style: context.textStyles.error,
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 40),
+            Text(
+              error,
+              style: context.textStyles.error,
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       );
 }

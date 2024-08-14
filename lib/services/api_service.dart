@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
@@ -8,17 +8,16 @@ import '../models/teams/teams_response.dart';
 import '../util/isolates.dart';
 import 'logger_service.dart';
 
-// TODO: Remove API counter
-class APIService extends ValueNotifier<int> {
+class APIService {
   final LoggerService logger;
   final Dio dio;
+  final InternetConnection internetConnection;
 
   APIService({
     required this.logger,
     required this.dio,
-  }) : super(0);
-
-  void incrementState() => value = value + 1;
+    required this.internetConnection,
+  });
 
   ///
   /// `/fixtures`
@@ -34,8 +33,6 @@ class APIService extends ValueNotifier<int> {
           'last': 15,
         },
       );
-
-      incrementState();
 
       /// Handle status codes
       switch (response.statusCode) {
@@ -57,8 +54,10 @@ class APIService extends ValueNotifier<int> {
           return (fixturesResponse: null, error: error);
       }
     } catch (e) {
-      final error = 'API -> getFixtures -> catch -> $e';
-      logger.e(error);
+      final error = await handleCatch(
+        methodName: 'getFixtures',
+        mainError: '$e',
+      );
       return (fixturesResponse: null, error: error);
     }
   }
@@ -73,8 +72,6 @@ class APIService extends ValueNotifier<int> {
           'id': matchId,
         },
       );
-
-      incrementState();
 
       /// Handle status codes
       switch (response.statusCode) {
@@ -96,8 +93,10 @@ class APIService extends ValueNotifier<int> {
           return (fixturesResponse: null, error: error);
       }
     } catch (e) {
-      final error = 'API -> getMatch -> catch -> $e';
-      logger.e(error);
+      final error = await handleCatch(
+        methodName: 'getMatch',
+        mainError: '$e',
+      );
       return (fixturesResponse: null, error: error);
     }
   }
@@ -117,8 +116,6 @@ class APIService extends ValueNotifier<int> {
           'h2h': '$homeTeamId-$awayTeamId',
         },
       );
-
-      incrementState();
 
       /// Handle status codes
       switch (response.statusCode) {
@@ -140,8 +137,10 @@ class APIService extends ValueNotifier<int> {
           return (head2HeadResponse: null, error: error);
       }
     } catch (e) {
-      final error = 'API -> getHead2Head -> catch -> $e';
-      logger.e(error);
+      final error = await handleCatch(
+        methodName: 'getHead2Head',
+        mainError: '$e',
+      );
       return (head2HeadResponse: null, error: error);
     }
   }
@@ -160,8 +159,6 @@ class APIService extends ValueNotifier<int> {
           'id': teamId,
         },
       );
-
-      incrementState();
 
       /// Handle status codes
       switch (response.statusCode) {
@@ -183,8 +180,10 @@ class APIService extends ValueNotifier<int> {
           return (teamsResponse: null, error: error);
       }
     } catch (e) {
-      final error = 'API -> getTeam -> catch -> $e';
-      logger.e(error);
+      final error = await handleCatch(
+        methodName: 'getTeam',
+        mainError: '$e',
+      );
       return (teamsResponse: null, error: error);
     }
   }
@@ -201,8 +200,6 @@ class APIService extends ValueNotifier<int> {
           'season': season,
         },
       );
-
-      incrementState();
 
       /// Handle status codes
       switch (response.statusCode) {
@@ -224,8 +221,10 @@ class APIService extends ValueNotifier<int> {
           return (teamsResponse: null, error: error);
       }
     } catch (e) {
-      final error = 'API -> getTeamsFromLeagueAndSeason -> catch -> $e';
-      logger.e(error);
+      final error = await handleCatch(
+        methodName: 'getTeamsFromLeagueAndSeason',
+        mainError: '$e',
+      );
       return (teamsResponse: null, error: error);
     }
   }
@@ -247,8 +246,6 @@ class APIService extends ValueNotifier<int> {
         },
       );
 
-      incrementState();
-
       /// Handle status codes
       switch (response.statusCode) {
         /// Response is successful
@@ -269,8 +266,10 @@ class APIService extends ValueNotifier<int> {
           return (standingsResponse: null, error: error);
       }
     } catch (e) {
-      final error = 'API -> getStandings -> catch -> $e';
-      logger.e(error);
+      final error = await handleCatch(
+        methodName: 'getStandings',
+        mainError: '$e',
+      );
       return (standingsResponse: null, error: error);
     }
   }
@@ -289,8 +288,6 @@ class APIService extends ValueNotifier<int> {
           'id': leagueId,
         },
       );
-
-      incrementState();
 
       /// Handle status codes
       switch (response.statusCode) {
@@ -312,9 +309,23 @@ class APIService extends ValueNotifier<int> {
           return (leaguesResponse: null, error: error);
       }
     } catch (e) {
-      final error = 'API -> getLeague -> catch -> $e';
-      logger.e(error);
+      final error = await handleCatch(
+        methodName: 'getLeague',
+        mainError: '$e',
+      );
       return (leaguesResponse: null, error: error);
     }
+  }
+
+  /// Checks for internet connection and returns error message
+  Future<String> handleCatch({
+    required String methodName,
+    required String mainError,
+  }) async {
+    final hasInternet = await internetConnection.hasInternetAccess;
+    final generatedError = hasInternet ? mainError : 'Internet connection error';
+    final error = 'API -> $methodName -> catch -> $generatedError';
+    logger.e(error);
+    return error;
   }
 }
