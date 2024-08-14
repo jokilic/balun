@@ -4,6 +4,7 @@ import '../../../models/league_section.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/dependencies.dart';
+import 'league_fixtures_controller.dart';
 import 'league_section_controller.dart';
 import 'league_standings_controller.dart';
 import 'league_teams_controller.dart';
@@ -57,6 +58,20 @@ class LeagueSeasonController extends ValueNotifier<int> {
                 instanceName: '$leagueId',
               )
               .getStandingsFromLeagueAndSeason(
+                leagueId: leagueId,
+                season: newSeason,
+              );
+          break;
+
+        ///
+        /// FIXTURES
+        ///
+        case LeagueSection(leagueSectionEnum: LeagueSectionEnum.fixtures):
+          getIt
+              .get<LeagueFixturesController>(
+                instanceName: '$leagueId',
+              )
+              .getFixturesFromLeagueAndSeason(
                 leagueId: leagueId,
                 season: newSeason,
               );

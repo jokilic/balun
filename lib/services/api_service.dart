@@ -62,6 +62,47 @@ class APIService {
     }
   }
 
+  Future<({FixturesResponse? fixturesResponse, String? error})> getFixturesFromLeagueAndSeason({
+    required int leagueId,
+    required int season,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/fixtures',
+        queryParameters: {
+          'league': leagueId,
+          'season': season,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computeFixtures(response.data);
+            return (fixturesResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getFixturesFromLeagueAndSeason -> parsing error -> $e';
+            logger.e(error);
+            return (fixturesResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getFixturesFromLeagueAndSeason -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (fixturesResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getFixturesFromLeagueAndSeason',
+        mainError: '$e',
+      );
+      return (fixturesResponse: null, error: error);
+    }
+  }
+
   Future<({FixturesResponse? fixturesResponse, String? error})> getMatch({
     required int matchId,
   }) async {

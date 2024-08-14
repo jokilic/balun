@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../models/league_section.dart';
 import '../../../../models/leagues/league_response.dart';
+import 'sections/fixtures/league_fixtures_section.dart';
 import 'sections/standings/league_standings_section.dart';
 import 'sections/teams/league_teams_section.dart';
 
@@ -35,7 +36,10 @@ class LeagueActiveSection extends StatelessWidget {
         LeagueSection(
           leagueSectionEnum: LeagueSectionEnum.fixtures,
         ) =>
-          Container(),
+          LeagueFixturesSection(
+            leagueId: league.league?.id,
+            season: activeSeason,
+          ),
         LeagueSection(
           leagueSectionEnum: LeagueSectionEnum.topScorers,
         ) =>

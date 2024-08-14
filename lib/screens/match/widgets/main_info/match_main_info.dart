@@ -165,34 +165,41 @@ class MatchMainInfo extends StatelessWidget {
                       if (match.events?.isNotEmpty ?? false)
                         ...match.events!
                             .where(
-                              (event) => event.team?.id == match.teams?.home?.id && event.type == 'Goal',
-                            )
+                          (event) => event.team?.id == match.teams?.home?.id && event.type == 'Goal',
+                        )
                             .map(
-                              (event) => Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 2),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "${event.time?.elapsed}'",
-                                      style: context.textStyles.matchGoal.copyWith(
-                                        color: context.colors.black.withOpacity(0.4),
-                                      ),
+                          (event) {
+                            final playerName = getLastWord(event.player?.name ?? '---');
+
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 2),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${event.time?.elapsed}'",
+                                    style: context.textStyles.matchGoal.copyWith(
+                                      color: context.colors.black.withOpacity(0.4),
                                     ),
-                                    const SizedBox(width: 8),
-                                    Flexible(
-                                      child: Text(
-                                        getLastWord(event.player?.name ?? '---'),
-                                        style: context.textStyles.matchGoal,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Flexible(
+                                    child: Text(
+                                      event.detail?.toLowerCase() == 'penalty'
+                                          ? '$playerName (P)'
+                                          : event.detail?.toLowerCase() == 'own goal'
+                                              ? '$playerName (OG)'
+                                              : playerName,
+                                      style: context.textStyles.matchGoal,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            )
-                            .toList(),
+                            );
+                          },
+                        ).toList(),
                     ],
                   ),
                 ),
