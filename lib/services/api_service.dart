@@ -3,6 +3,7 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 
 import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
+import '../models/players/players_response.dart';
 import '../models/standings/standings_response.dart';
 import '../models/teams/teams_response.dart';
 import '../util/isolates.dart';
@@ -355,6 +356,51 @@ class APIService {
         mainError: '$e',
       );
       return (leaguesResponse: null, error: error);
+    }
+  }
+
+  ///
+  /// `/players/topscorers`
+  ///
+
+  Future<({PlayersResponse? playersResponse, String? error})> getTopScorers({
+    required int leagueId,
+    required int season,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/players/topscorers',
+        queryParameters: {
+          'league': leagueId,
+          'season': season,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computePlayers(response.data);
+            return (playersResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getTopScorers -> parsing error -> $e';
+            logger.e(error);
+            return (playersResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getTopScorers -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (playersResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getTopScorers',
+        mainError: '$e',
+      );
+      return (playersResponse: null, error: error);
     }
   }
 
