@@ -7,10 +7,12 @@ import 'sections/teams/league_teams_section.dart';
 class LeagueActiveSection extends StatelessWidget {
   final LeagueResponse league;
   final LeagueSection leagueSection;
+  final int activeSeason;
 
   const LeagueActiveSection({
     required this.league,
     required this.leagueSection,
+    required this.activeSeason,
   });
 
   @override
@@ -20,7 +22,7 @@ class LeagueActiveSection extends StatelessWidget {
         ) =>
           LeagueTeamsSection(
             leagueId: league.league?.id,
-            season: league.seasons?.first.year,
+            season: activeSeason,
           ),
         LeagueSection(
           leagueSectionEnum: LeagueSectionEnum.standings,

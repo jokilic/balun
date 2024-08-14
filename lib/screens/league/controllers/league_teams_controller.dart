@@ -18,7 +18,7 @@ class LeagueTeamsController extends ValueNotifier<BalunState<List<TeamResponse>>
   /// VARIABLES
   ///
 
-  var fetched = false;
+  int? fetchedSeason;
 
   ///
   /// METHODS
@@ -34,7 +34,7 @@ class LeagueTeamsController extends ValueNotifier<BalunState<List<TeamResponse>>
       );
     }
 
-    if (fetched) {
+    if (fetchedSeason == season) {
       return;
     }
 
@@ -56,7 +56,7 @@ class LeagueTeamsController extends ValueNotifier<BalunState<List<TeamResponse>>
 
       /// Response is not null, update to success state
       else if (response.teamsResponse!.response?.isNotEmpty ?? false) {
-        fetched = true;
+        fetchedSeason = season;
         value = Success(
           data: response.teamsResponse!.response!,
         );
@@ -64,7 +64,7 @@ class LeagueTeamsController extends ValueNotifier<BalunState<List<TeamResponse>>
 
       /// Response is null, update to empty state
       else {
-        fetched = true;
+        fetchedSeason = season;
         value = Empty();
       }
     }

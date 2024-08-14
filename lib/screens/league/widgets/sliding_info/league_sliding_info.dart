@@ -6,6 +6,7 @@ import '../../../../constants.dart';
 import '../../../../models/leagues/league_response.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
+import '../../controllers/league_season_controller.dart';
 import '../../controllers/league_section_controller.dart';
 import 'league_active_section.dart';
 import 'league_section_titles.dart';
@@ -22,6 +23,10 @@ class LeagueSlidingInfo extends WatchingWidget {
   @override
   Widget build(BuildContext context) {
     final leagueSection = watchIt<LeagueSectionController>(
+      instanceName: '${league.league?.id}',
+    ).value;
+
+    final leagueSeason = watchIt<LeagueSeasonController>(
       instanceName: '${league.league?.id}',
     ).value;
 
@@ -74,6 +79,7 @@ class LeagueSlidingInfo extends WatchingWidget {
           child: LeagueActiveSection(
             league: league,
             leagueSection: leagueSection,
+            activeSeason: leagueSeason,
           ),
         ),
       ],

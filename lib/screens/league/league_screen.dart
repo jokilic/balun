@@ -49,6 +49,10 @@ class _LeagueScreenState extends State<LeagueScreen> {
         () => LeagueSeasonController(
           logger: getIt.get<LoggerService>(),
           api: getIt.get<APIService>(),
+          section: getIt.get<LeagueSectionController>(
+            instanceName: '${widget.leagueId}',
+          ),
+          leagueId: widget.leagueId,
           initialSeason: widget.season,
         ),
         instanceName: '${widget.leagueId}',
