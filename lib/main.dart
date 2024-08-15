@@ -2,8 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'screens/league/league_screen.dart';
-import 'screens/match/match_screen.dart';
 import 'screens/team/team_screen.dart';
 import 'theme/theme.dart';
 import 'util/dependencies.dart';
@@ -41,12 +39,12 @@ class BalunApp extends StatelessWidget {
         //   key: ValueKey(210),
         //   season: 2021,
         // ),
-        // home: const FixturesScreen(
-        //   key: ValueKey('fixtures'),
-        // ),
         // home: const MatchScreen(
         //   matchId: 1034682,
         //   key: ValueKey(1034682),
+        // ),
+        // home: const FixturesScreen(
+        //   key: ValueKey('fixtures'),
         // ),
         onGenerateTitle: (_) => 'Balun',
         theme: BalunTheme.light,

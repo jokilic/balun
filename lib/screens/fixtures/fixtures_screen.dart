@@ -29,7 +29,11 @@ class _FixturesScreenState extends State<FixturesScreen> {
       instanceName: 'fixtures',
     );
 
-    getIt.get<FixturesController>().getFixtures();
+    getIt
+        .get<FixturesController>(
+          instanceName: 'fixtures',
+        )
+        .getFixtures();
   }
 
   @override
