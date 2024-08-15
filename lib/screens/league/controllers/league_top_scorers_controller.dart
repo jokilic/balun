@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/players/player_response.dart';
-import '../../../models/teams/team_response.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/state.dart';

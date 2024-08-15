@@ -9,6 +9,7 @@ import '../../../../../../util/state.dart';
 import '../../../../../../widgets/balun_error.dart';
 import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/league_top_scorers_controller.dart';
+import 'league_top_scorers_content.dart';
 
 class LeagueTopScorersSection extends WatchingStatefulWidget {
   final int? leagueId;
@@ -72,7 +73,7 @@ class _LeagueTopScorersSectionState extends State<LeagueTopScorersSection> {
             error: (topScorersState as Error).error ?? 'Generic top scorers error',
           ),
         Success() => LeagueTopScorersContent(
-            teams: (topScorersState as Success).data,
+            scorers: (topScorersState as Success).data,
           ),
       },
     );
