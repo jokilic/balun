@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../models/team_section.dart';
 import '../../../../models/teams/team_response.dart';
+import 'sections/leagues/team_leagues_section.dart';
 import 'sections/stadium/team_stadium_section.dart';
 
 class TeamActiveSection extends StatelessWidget {
@@ -24,7 +25,9 @@ class TeamActiveSection extends StatelessWidget {
         TeamSection(
           teamSectionEnum: TeamSectionEnum.leagues,
         ) =>
-          Container(),
+          TeamLeaguesSection(
+            teamId: team.team?.id,
+          ),
         TeamSection(
           teamSectionEnum: TeamSectionEnum.standings,
         ) =>

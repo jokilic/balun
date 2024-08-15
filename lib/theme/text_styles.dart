@@ -248,6 +248,12 @@ abstract class BalunTextStyles {
     fontSize: 22,
     fontWeight: FontWeight.w600,
   );
+
+  static const teamLeaguesSeason = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -291,6 +297,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle leagueTeamsCountry;
   final TextStyle leagueTeamsFounded;
   final TextStyle leagueFixturesTitle;
+  final TextStyle teamLeaguesSeason;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -333,6 +340,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.leagueTeamsCountry,
     required this.leagueTeamsFounded,
     required this.leagueFixturesTitle,
+    required this.teamLeaguesSeason,
   });
 
   @override
@@ -377,6 +385,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? leagueTeamsCountry,
     TextStyle? leagueTeamsFounded,
     TextStyle? leagueFixturesTitle,
+    TextStyle? teamLeaguesSeason,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -419,6 +428,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         leagueTeamsCountry: leagueTeamsCountry ?? this.leagueTeamsCountry,
         leagueTeamsFounded: leagueTeamsFounded ?? this.leagueTeamsFounded,
         leagueFixturesTitle: leagueFixturesTitle ?? this.leagueFixturesTitle,
+        teamLeaguesSeason: teamLeaguesSeason ?? this.teamLeaguesSeason,
       );
 
   @override
@@ -471,6 +481,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       leagueTeamsCountry: TextStyle.lerp(leagueTeamsCountry, other.leagueTeamsCountry, t)!,
       leagueTeamsFounded: TextStyle.lerp(leagueTeamsFounded, other.leagueTeamsFounded, t)!,
       leagueFixturesTitle: TextStyle.lerp(leagueFixturesTitle, other.leagueFixturesTitle, t)!,
+      teamLeaguesSeason: TextStyle.lerp(teamLeaguesSeason, other.teamLeaguesSeason, t)!,
     );
   }
 }

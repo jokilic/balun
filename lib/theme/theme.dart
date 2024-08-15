@@ -152,6 +152,9 @@ class BalunTheme {
     leagueFixturesTitle: BalunTextStyles.leagueFixturesTitle.copyWith(
       color: lightAppColors.black,
     ),
+    teamLeaguesSeason: BalunTextStyles.teamLeaguesSeason.copyWith(
+      color: lightAppColors.black,
+    ),
   );
 }
 
