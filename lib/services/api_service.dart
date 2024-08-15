@@ -449,6 +449,51 @@ class APIService {
     }
   }
 
+  ///
+  /// `/players/topyellowcards`
+  ///
+
+  Future<({PlayersResponse? playersResponse, String? error})> getTopYellowCards({
+    required int leagueId,
+    required int season,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/players/topyellowcards',
+        queryParameters: {
+          'league': leagueId,
+          'season': season,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computePlayers(response.data);
+            return (playersResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getTopYellowCards -> parsing error -> $e';
+            logger.e(error);
+            return (playersResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getTopYellowCards -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (playersResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getTopYellowCards',
+        mainError: '$e',
+      );
+      return (playersResponse: null, error: error);
+    }
+  }
+
   /// Checks for internet connection and returns error message
   Future<String> handleCatch({
     required String methodName,

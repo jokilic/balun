@@ -7,6 +7,7 @@ import 'sections/standings/league_standings_section.dart';
 import 'sections/teams/league_teams_section.dart';
 import 'sections/top_assists/league_top_assists_section.dart';
 import 'sections/top_scorers/league_top_scorers_section.dart';
+import 'sections/top_yellow_cards/league_top_yellow_cards_section.dart';
 
 class LeagueActiveSection extends StatelessWidget {
   final LeagueResponse league;
@@ -59,7 +60,10 @@ class LeagueActiveSection extends StatelessWidget {
         LeagueSection(
           leagueSectionEnum: LeagueSectionEnum.topYellowCards,
         ) =>
-          Container(),
+          LeagueTopYellowCardsSection(
+            leagueId: league.league?.id,
+            season: activeSeason,
+          ),
         LeagueSection(leagueSectionEnum: LeagueSectionEnum.topRedCards) => Container(),
       };
 }

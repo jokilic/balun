@@ -7,19 +7,19 @@ import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
-class LeagueTopAssistsListTile extends StatelessWidget {
-  final PlayerResponse? assist;
+class LeagueTopYellowCardsListTile extends StatelessWidget {
+  final PlayerResponse? yellowCard;
 
-  const LeagueTopAssistsListTile({
-    required this.assist,
+  const LeagueTopYellowCardsListTile({
+    required this.yellowCard,
   });
 
   @override
   Widget build(BuildContext context) => BalunButton(
-        onPressed: assist?.player?.id != null
+        onPressed: yellowCard?.player?.id != null
             ? () => openPlayer(
                   context,
-                  playerId: assist!.player!.id!,
+                  playerId: yellowCard!.player!.id!,
                 )
             : null,
         child: Container(
@@ -30,7 +30,7 @@ class LeagueTopAssistsListTile extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
-                  imageUrl: assist?.player?.photo ?? BalunImages.placeholderLogo,
+                  imageUrl: yellowCard?.player?.photo ?? BalunImages.placeholderLogo,
                   height: 56,
                   width: 56,
                 ),
@@ -39,14 +39,14 @@ class LeagueTopAssistsListTile extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (assist?.player?.name != null)
+                  if (yellowCard?.player?.name != null)
                     Text(
-                      assist!.player!.name!,
+                      yellowCard!.player!.name!,
                       style: context.textStyles.leagueTeamsTitle,
                     ),
-                  if (assist?.statistics?.isNotEmpty ?? false)
+                  if (yellowCard?.statistics?.isNotEmpty ?? false)
                     Text(
-                      '${assist!.statistics!.fold(0, (sum, statistic) => sum + (statistic.goals?.assists ?? 0))} assists',
+                      '${yellowCard!.statistics!.fold(0, (sum, statistic) => sum + (statistic.cards?.yellow ?? 0))} yellow cards',
                       style: context.textStyles.leagueTeamsCountry,
                     ),
                 ],
