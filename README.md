@@ -7,13 +7,6 @@ A simple Flutter application for football scores.
 
 # Screens
 
-### `LeagueScreen`
-
-* Top scorers from league ID and season
-* Top assists from league ID and season
-* Top yellow cards from league ID and season
-* Top red cards from league ID and season
-
 ### `TeamScreen`
 
 * Team by ID

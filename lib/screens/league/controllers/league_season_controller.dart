@@ -9,6 +9,7 @@ import 'league_section_controller.dart';
 import 'league_standings_controller.dart';
 import 'league_teams_controller.dart';
 import 'league_top_assists_controller.dart';
+import 'league_top_red_cards_controller.dart';
 import 'league_top_scorers_controller.dart';
 import 'league_top_yellow_cards_controller.dart';
 
@@ -117,6 +118,20 @@ class LeagueSeasonController extends ValueNotifier<int> {
                 instanceName: '$leagueId',
               )
               .getTopYellowCards(
+                leagueId: leagueId,
+                season: newSeason,
+              );
+          break;
+
+        ///
+        /// TOP RED CARDS
+        ///
+        case LeagueSection(leagueSectionEnum: LeagueSectionEnum.topRedCards):
+          getIt
+              .get<LeagueTopRedCardsController>(
+                instanceName: '$leagueId',
+              )
+              .getTopRedCards(
                 leagueId: leagueId,
                 season: newSeason,
               );

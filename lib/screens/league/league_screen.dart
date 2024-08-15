@@ -13,6 +13,7 @@ import 'controllers/league_section_controller.dart';
 import 'controllers/league_standings_controller.dart';
 import 'controllers/league_teams_controller.dart';
 import 'controllers/league_top_assists_controller.dart';
+import 'controllers/league_top_red_cards_controller.dart';
 import 'controllers/league_top_scorers_controller.dart';
 import 'controllers/league_top_yellow_cards_controller.dart';
 import 'widgets/league_content.dart';
@@ -86,6 +87,13 @@ class _LeagueScreenState extends State<LeagueScreen> {
         instanceName: '${widget.leagueId}',
       )
       ..registerLazySingleton(
+        () => LeagueTopRedCardsController(
+          logger: getIt.get<LoggerService>(),
+          api: getIt.get<APIService>(),
+        ),
+        instanceName: '${widget.leagueId}',
+      )
+      ..registerLazySingleton(
         () => LeagueSeasonController(
           logger: getIt.get<LoggerService>(),
           api: getIt.get<APIService>(),
@@ -136,6 +144,9 @@ class _LeagueScreenState extends State<LeagueScreen> {
         instanceName: '${widget.leagueId}',
       )
       ..unregister<LeagueTopYellowCardsController>(
+        instanceName: '${widget.leagueId}',
+      )
+      ..unregister<LeagueTopRedCardsController>(
         instanceName: '${widget.leagueId}',
       )
       ..unregister<LeagueSeasonController>(
