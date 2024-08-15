@@ -10,6 +10,7 @@ A simple Flutter application for football scores.
 ### `TeamScreen`
 
 * Team by ID
+* Stadium
 * Leagues by team API
 * Standings from team
 * Coaches from team

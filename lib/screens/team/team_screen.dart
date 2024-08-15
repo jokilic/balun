@@ -6,7 +6,8 @@ import '../../constants.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
-import 'team_controller.dart';
+import 'controllers/team_controller.dart';
+import 'controllers/team_section_controller.dart';
 import 'widgets/team_content.dart';
 
 class TeamScreen extends WatchingStatefulWidget {
@@ -26,13 +27,20 @@ class _TeamScreenState extends State<TeamScreen> {
   void initState() {
     super.initState();
 
-    getIt.registerLazySingleton(
-      () => TeamController(
-        logger: getIt.get<LoggerService>(),
-        api: getIt.get<APIService>(),
-      ),
-      instanceName: '${widget.teamId}',
-    );
+    getIt
+      ..registerLazySingleton(
+        () => TeamSectionController(
+          logger: getIt.get<LoggerService>(),
+        ),
+        instanceName: '${widget.teamId}',
+      )
+      ..registerLazySingleton(
+        () => TeamController(
+          logger: getIt.get<LoggerService>(),
+          api: getIt.get<APIService>(),
+        ),
+        instanceName: '${widget.teamId}',
+      );
 
     getIt
         .get<TeamController>(
@@ -45,9 +53,14 @@ class _TeamScreenState extends State<TeamScreen> {
 
   @override
   void dispose() {
-    getIt.unregister<TeamController>(
-      instanceName: '${widget.teamId}',
-    );
+    getIt
+      ..unregister<TeamSectionController>(
+        instanceName: '${widget.teamId}',
+      )
+      ..unregister<TeamController>(
+        instanceName: '${widget.teamId}',
+      );
+
     super.dispose();
   }
 

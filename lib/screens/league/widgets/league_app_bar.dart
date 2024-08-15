@@ -43,16 +43,18 @@ class LeagueAppBar extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  league.name!,
-                  style: context.textStyles.matchLeagueName,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  league.type!,
-                  style: context.textStyles.matchLeagueRound,
-                ),
+                if (league.name != null)
+                  Text(
+                    league.name!,
+                    style: context.textStyles.matchLeagueName,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                if (league.type != null)
+                  Text(
+                    league.type!,
+                    style: context.textStyles.matchLeagueRound,
+                  ),
               ],
             ),
           ),

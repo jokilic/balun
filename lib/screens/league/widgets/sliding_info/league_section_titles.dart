@@ -16,7 +16,7 @@ class LeagueSectionTitles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        height: 76,
+        height: 70,
         child: ListView.separated(
           key: const PageStorageKey('leagueSectionTitles'),
           padding: const EdgeInsets.symmetric(
@@ -36,12 +36,12 @@ class LeagueSectionTitles extends StatelessWidget {
               child: AnimatedContainer(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 32,
-                  vertical: 16,
+                  vertical: 14,
                 ),
                 duration: BalunConstants.animationDuration,
                 curve: Curves.easeIn,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(100),
                   color: activeLeagueSection == section ? context.colors.black : context.colors.black.withOpacity(0.075),
                 ),
                 child: Text(

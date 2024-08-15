@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/teams/team/team.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/balun_button.dart';
 
 class TeamAppBar extends StatelessWidget {
   final Function() onPressed;
-  final String teamName;
+  final Team? team;
 
   const TeamAppBar({
     required this.onPressed,
-    required this.teamName,
+    required this.team,
   });
 
   @override
@@ -39,11 +40,22 @@ class TeamAppBar extends StatelessWidget {
           /// TEXT
           ///
           Expanded(
-            child: Text(
-              teamName,
-              style: context.textStyles.matchLeagueName,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (team?.name != null)
+                  Text(
+                    team!.name!,
+                    style: context.textStyles.matchLeagueName,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                if (team?.country != null)
+                  Text(
+                    team!.country!,
+                    style: context.textStyles.matchLeagueRound,
+                  ),
+              ],
             ),
           ),
         ],

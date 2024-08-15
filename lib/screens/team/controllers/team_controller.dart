@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../models/teams/team_response.dart';
-import '../../services/api_service.dart';
-import '../../services/logger_service.dart';
-import '../../util/state.dart';
+import '../../../models/teams/team_response.dart';
+import '../../../services/api_service.dart';
+import '../../../services/logger_service.dart';
+import '../../../util/state.dart';
 
 class TeamController extends ValueNotifier<BalunState<TeamResponse>> {
   final LoggerService logger;

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'screens/league/league_screen.dart';
+import 'screens/team/team_screen.dart';
 import 'theme/theme.dart';
 import 'util/dependencies.dart';
 import 'widgets/balun_loader.dart';
@@ -30,11 +31,15 @@ class BalunApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const LeagueScreen(
-          leagueId: 210,
-          key: ValueKey(210),
-          season: 2021,
+        home: const TeamScreen(
+          teamId: 620,
+          key: ValueKey(620),
         ),
+        // home: const LeagueScreen(
+        //   leagueId: 210,
+        //   key: ValueKey(210),
+        //   season: 2021,
+        // ),
         // home: const FixturesScreen(
         //   key: ValueKey('fixtures'),
         // ),

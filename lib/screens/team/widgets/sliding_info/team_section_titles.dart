@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
-import '../../../../models/match_section.dart';
+import '../../../../models/team_section.dart';
 import '../../../../theme/theme.dart';
 import '../../../../widgets/balun_button.dart';
 
-class MatchSectionTitles extends StatelessWidget {
-  final MatchSection activeMatchSection;
-  final Function(MatchSection pressedSection) titlePressed;
+class TeamSectionTitles extends StatelessWidget {
+  final TeamSection activeTeamSection;
+  final Function(TeamSection pressedSection) titlePressed;
 
-  const MatchSectionTitles({
-    required this.activeMatchSection,
+  const TeamSectionTitles({
+    required this.activeTeamSection,
     required this.titlePressed,
   });
 
@@ -18,17 +18,17 @@ class MatchSectionTitles extends StatelessWidget {
   Widget build(BuildContext context) => SizedBox(
         height: 70,
         child: ListView.separated(
-          key: const PageStorageKey('matchSectionTitles'),
+          key: const PageStorageKey('teamSectionTitles'),
           padding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 8,
           ),
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          itemCount: MatchSectionEnum.values.length,
+          itemCount: TeamSectionEnum.values.length,
           itemBuilder: (context, index) {
-            final section = MatchSection(
-              matchSectionEnum: MatchSectionEnum.values[index],
+            final section = TeamSection(
+              teamSectionEnum: TeamSectionEnum.values[index],
             );
 
             return BalunButton(
@@ -42,12 +42,12 @@ class MatchSectionTitles extends StatelessWidget {
                 curve: Curves.easeIn,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: activeMatchSection == section ? context.colors.black : context.colors.black.withOpacity(0.075),
+                  color: activeTeamSection == section ? context.colors.black : context.colors.black.withOpacity(0.075),
                 ),
                 child: Text(
-                  section.getMatchSectionName(),
+                  section.getTeamSectionName(),
                   style: context.textStyles.matchSectionTitle.copyWith(
-                    color: activeMatchSection == section ? context.colors.white : context.colors.black,
+                    color: activeTeamSection == section ? context.colors.white : context.colors.black,
                   ),
                 ),
               ),
