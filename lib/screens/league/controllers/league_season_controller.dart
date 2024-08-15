@@ -8,6 +8,7 @@ import 'league_fixtures_controller.dart';
 import 'league_section_controller.dart';
 import 'league_standings_controller.dart';
 import 'league_teams_controller.dart';
+import 'league_top_assists_controller.dart';
 import 'league_top_scorers_controller.dart';
 
 class LeagueSeasonController extends ValueNotifier<int> {
@@ -87,6 +88,20 @@ class LeagueSeasonController extends ValueNotifier<int> {
                 instanceName: '$leagueId',
               )
               .getTopScorers(
+                leagueId: leagueId,
+                season: newSeason,
+              );
+          break;
+
+        ///
+        /// TOP ASSISTS
+        ///
+        case LeagueSection(leagueSectionEnum: LeagueSectionEnum.topAssists):
+          getIt
+              .get<LeagueTopAssistsController>(
+                instanceName: '$leagueId',
+              )
+              .getTopAssists(
                 leagueId: leagueId,
                 season: newSeason,
               );

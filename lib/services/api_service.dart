@@ -404,6 +404,51 @@ class APIService {
     }
   }
 
+  ///
+  /// `/players/topassists`
+  ///
+
+  Future<({PlayersResponse? playersResponse, String? error})> getTopAssists({
+    required int leagueId,
+    required int season,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/players/topassists',
+        queryParameters: {
+          'league': leagueId,
+          'season': season,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computePlayers(response.data);
+            return (playersResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getTopAssists -> parsing error -> $e';
+            logger.e(error);
+            return (playersResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getTopAssists -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (playersResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getTopAssists',
+        mainError: '$e',
+      );
+      return (playersResponse: null, error: error);
+    }
+  }
+
   /// Checks for internet connection and returns error message
   Future<String> handleCatch({
     required String methodName,
