@@ -23,7 +23,7 @@ class StatisticGames {
         minutes: map['minutes'] != null ? map['minutes'] as int : null,
         number: map['number'] != null ? map['number'] as int : null,
         position: map['position'] != null ? map['position'] as String : null,
-        rating: map['rating'] != null ? double.parse(map['rating'] as String) : null,
+        rating: map['rating'] != null ? double.tryParse(map['rating'] as String) : null,
         captain: map['captain'] != null ? map['captain'] as bool : null,
       );
 

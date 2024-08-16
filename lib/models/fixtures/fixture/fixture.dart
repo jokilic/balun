@@ -27,7 +27,7 @@ class Fixture {
         id: map['id'] != null ? map['id'] as int : null,
         referee: map['referee'] != null ? map['referee'] as String : null,
         timezone: map['timezone'] != null ? map['timezone'] as String : null,
-        date: map['date'] != null ? DateTime.parse(map['date'] as String) : null,
+        date: map['date'] != null ? DateTime.tryParse(map['date'] as String) : null,
         timestamp: map['timestamp'] != null
             ? DateTime.fromMillisecondsSinceEpoch(
                 (map['timestamp'] as int) * 1000,

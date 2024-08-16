@@ -15,7 +15,7 @@ class PlayerStatisticTeam {
         id: map['id'] != null ? map['id'] as int : null,
         name: map['name'] != null ? map['name'] as String : null,
         logo: map['logo'] != null ? map['logo'] as String : null,
-        update: map['date'] != null ? DateTime.parse(map['date'] as String) : null,
+        update: map['date'] != null ? DateTime.tryParse(map['date'] as String) : null,
       );
 
   @override

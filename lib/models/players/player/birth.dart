@@ -10,7 +10,7 @@ class Birth {
   });
 
   factory Birth.fromMap(Map<String, dynamic> map) => Birth(
-        date: map['date'] != null ? DateTime.parse(map['date'] as String) : null,
+        date: map['date'] != null ? DateTime.tryParse(map['date'] as String) : null,
         place: map['place'] != null ? map['place'] as String : null,
         country: map['country'] != null ? map['country'] as String : null,
       );

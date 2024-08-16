@@ -42,7 +42,7 @@ class TeamStanding {
         all: map['all'] != null ? StandingStatistics.fromMap(map['all'] as Map<String, dynamic>) : null,
         home: map['home'] != null ? StandingStatistics.fromMap(map['home'] as Map<String, dynamic>) : null,
         away: map['away'] != null ? StandingStatistics.fromMap(map['away'] as Map<String, dynamic>) : null,
-        update: map['update'] != null ? DateTime.parse(map['update'] as String) : null,
+        update: map['update'] != null ? DateTime.tryParse(map['update'] as String) : null,
       );
 
   @override

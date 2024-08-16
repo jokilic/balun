@@ -20,6 +20,21 @@ class TeamStadiumSection extends StatelessWidget {
         child: Column(
           children: [
             ///
+            /// IMAGE
+            ///
+            if (stadium?.image != null) ...[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: BalunImage(
+                  imageUrl: stadium!.image!,
+                  height: 200,
+                  width: double.infinity,
+                ),
+              ),
+              const SizedBox(height: 32),
+            ],
+
+            ///
             /// NAME & CAPACITY
             ///
             if (stadium?.name != null || stadium?.capacity != null)
@@ -30,7 +45,7 @@ class TeamStadiumSection extends StatelessWidget {
                   /// NAME
                   ///
                   if (stadium?.name != null)
-                    Flexible(
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -46,21 +61,25 @@ class TeamStadiumSection extends StatelessWidget {
                       ),
                     ),
 
+                  const SizedBox(width: 24),
+
                   ///
                   /// CAPACITY
                   ///
                   if (stadium?.capacity != null)
-                    Flexible(
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             'Capacity',
                             style: context.textStyles.matchInfoSectionTitle,
+                            textAlign: TextAlign.right,
                           ),
                           Text(
                             '${stadium!.capacity!}',
                             style: context.textStyles.matchInfoSectionText,
+                            textAlign: TextAlign.right,
                           ),
                         ],
                       ),
@@ -81,7 +100,7 @@ class TeamStadiumSection extends StatelessWidget {
                   /// ADDRESS
                   ///
                   if (stadium?.address != null)
-                    Flexible(
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -97,41 +116,31 @@ class TeamStadiumSection extends StatelessWidget {
                       ),
                     ),
 
+                  const SizedBox(width: 24),
+
                   ///
                   /// CITY
                   ///
                   if (stadium?.city != null)
-                    Flexible(
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             'City',
                             style: context.textStyles.matchInfoSectionTitle,
+                            textAlign: TextAlign.right,
                           ),
                           Text(
                             stadium!.city!,
                             style: context.textStyles.matchInfoSectionText,
+                            textAlign: TextAlign.right,
                           ),
                         ],
                       ),
                     ),
                 ],
               ),
-
-            ///
-            /// IMAGE
-            ///
-            if (stadium?.image != null) ...[
-              const SizedBox(height: 32),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: BalunImage(
-                  imageUrl: stadium!.image!,
-                  height: 184,
-                ),
-              ),
-            ],
           ],
         ),
       );

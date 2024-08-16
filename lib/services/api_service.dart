@@ -8,6 +8,7 @@ import '../models/players/players_response.dart';
 import '../models/squads/squads_response.dart';
 import '../models/standings/standings_response.dart';
 import '../models/teams/teams_response.dart';
+import '../models/transfers/transfers_response.dart';
 import '../util/isolates.dart';
 import 'logger_service.dart';
 
@@ -704,6 +705,49 @@ class APIService {
         mainError: '$e',
       );
       return (coachesResponse: null, error: error);
+    }
+  }
+
+  ///
+  /// `/transfers`
+  ///
+
+  Future<({TransfersResponse? transfersResponse, String? error})> getTransfersFromTeam({
+    required int teamId,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/transfers',
+        queryParameters: {
+          'team': teamId,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computeTransfers(response.data);
+            return (transfersResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getTransfersFromTeam -> parsing error -> $e';
+            logger.e(error);
+            return (transfersResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getTransfersFromTeam -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (transfersResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getTransfersFromTeam',
+        mainError: '$e',
+      );
+      return (transfersResponse: null, error: error);
     }
   }
 

@@ -59,13 +59,26 @@ class TeamMainInfo extends StatelessWidget {
             ///
             /// COUNTRY
             ///
-            Text(
-              team.team?.country ?? 'No name',
-              style: context.textStyles.leagueCountry,
-              textAlign: TextAlign.center,
-            ),
+            if (team.team?.country != null)
+              Text(
+                team.team?.country ?? 'No name',
+                style: context.textStyles.leagueCountry,
+                textAlign: TextAlign.center,
+              ),
 
-            const SizedBox(height: 40),
+            ///
+            /// FOUNDED
+            ///
+            if (team.team?.founded != null) ...[
+              const SizedBox(height: 4),
+              Text(
+                'Founded ${team.team?.founded}',
+                style: context.textStyles.teamFounded,
+                textAlign: TextAlign.center,
+              ),
+            ],
+
+            const SizedBox(height: 32),
           ],
         ),
       );

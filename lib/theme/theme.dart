@@ -155,6 +155,9 @@ class BalunTheme {
     teamLeaguesSeason: BalunTextStyles.teamLeaguesSeason.copyWith(
       color: lightAppColors.black,
     ),
+    teamFounded: BalunTextStyles.teamFounded.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
     teamCoachCareerTeam: BalunTextStyles.teamCoachCareerTeam.copyWith(
       color: lightAppColors.black,
     ),
@@ -162,6 +165,9 @@ class BalunTheme {
       color: lightAppColors.black.withOpacity(0.5),
     ),
     teamCoachCareerValue: BalunTextStyles.teamCoachCareerValue.copyWith(
+      color: lightAppColors.black,
+    ),
+    teamTransferTeam: BalunTextStyles.teamTransferTeam.copyWith(
       color: lightAppColors.black,
     ),
   );

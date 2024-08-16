@@ -13,8 +13,8 @@ class Career {
 
   factory Career.fromMap(Map<String, dynamic> map) => Career(
         team: map['team'] != null ? Team.fromMap(map['team'] as Map<String, dynamic>) : null,
-        start: map['start'] != null ? DateTime.parse(map['start'] as String) : null,
-        end: map['end'] != null ? DateTime.parse(map['end'] as String) : null,
+        start: map['start'] != null ? DateTime.tryParse(map['start'] as String) : null,
+        end: map['end'] != null ? DateTime.tryParse(map['end'] as String) : null,
       );
 
   @override

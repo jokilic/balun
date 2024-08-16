@@ -255,6 +255,12 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w600,
   );
 
+  static const teamFounded = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+
   static const teamCoachCareerTeam = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 20,
@@ -271,6 +277,12 @@ abstract class BalunTextStyles {
     fontFamily: 'Lufga',
     fontSize: 18,
     fontWeight: FontWeight.w400,
+  );
+
+  static const teamTransferTeam = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
   );
 }
 
@@ -316,9 +328,11 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle leagueTeamsFounded;
   final TextStyle leagueFixturesTitle;
   final TextStyle teamLeaguesSeason;
+  final TextStyle teamFounded;
   final TextStyle teamCoachCareerTeam;
   final TextStyle teamCoachCareerTitle;
   final TextStyle teamCoachCareerValue;
+  final TextStyle teamTransferTeam;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -362,9 +376,11 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.leagueTeamsFounded,
     required this.leagueFixturesTitle,
     required this.teamLeaguesSeason,
+    required this.teamFounded,
     required this.teamCoachCareerTeam,
     required this.teamCoachCareerTitle,
     required this.teamCoachCareerValue,
+    required this.teamTransferTeam,
   });
 
   @override
@@ -410,9 +426,11 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? leagueTeamsFounded,
     TextStyle? leagueFixturesTitle,
     TextStyle? teamLeaguesSeason,
+    TextStyle? teamFounded,
     TextStyle? teamCoachCareerTeam,
     TextStyle? teamCoachCareerTitle,
     TextStyle? teamCoachCareerValue,
+    TextStyle? teamTransferTeam,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -456,9 +474,11 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         leagueTeamsFounded: leagueTeamsFounded ?? this.leagueTeamsFounded,
         leagueFixturesTitle: leagueFixturesTitle ?? this.leagueFixturesTitle,
         teamLeaguesSeason: teamLeaguesSeason ?? this.teamLeaguesSeason,
+        teamFounded: teamFounded ?? this.teamFounded,
         teamCoachCareerTeam: teamCoachCareerTeam ?? this.teamCoachCareerTeam,
         teamCoachCareerTitle: teamCoachCareerTitle ?? this.teamCoachCareerTitle,
         teamCoachCareerValue: teamCoachCareerValue ?? this.teamCoachCareerValue,
+        teamTransferTeam: teamTransferTeam ?? this.teamTransferTeam,
       );
 
   @override
@@ -512,9 +532,11 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       leagueTeamsFounded: TextStyle.lerp(leagueTeamsFounded, other.leagueTeamsFounded, t)!,
       leagueFixturesTitle: TextStyle.lerp(leagueFixturesTitle, other.leagueFixturesTitle, t)!,
       teamLeaguesSeason: TextStyle.lerp(teamLeaguesSeason, other.teamLeaguesSeason, t)!,
+      teamFounded: TextStyle.lerp(teamFounded, other.teamFounded, t)!,
       teamCoachCareerTeam: TextStyle.lerp(teamCoachCareerTeam, other.teamCoachCareerTeam, t)!,
       teamCoachCareerTitle: TextStyle.lerp(teamCoachCareerTitle, other.teamCoachCareerTitle, t)!,
       teamCoachCareerValue: TextStyle.lerp(teamCoachCareerValue, other.teamCoachCareerValue, t)!,
+      teamTransferTeam: TextStyle.lerp(teamTransferTeam, other.teamTransferTeam, t)!,
     );
   }
 }
