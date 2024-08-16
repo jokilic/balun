@@ -20,21 +20,6 @@ class TeamStadiumSection extends StatelessWidget {
         child: Column(
           children: [
             ///
-            /// IMAGE
-            ///
-            if (stadium?.image != null) ...[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: BalunImage(
-                  imageUrl: stadium!.image!,
-                  height: 200,
-                  width: double.infinity,
-                ),
-              ),
-              const SizedBox(height: 32),
-            ],
-
-            ///
             /// NAME & CAPACITY
             ///
             if (stadium?.name != null || stadium?.capacity != null)
@@ -141,6 +126,21 @@ class TeamStadiumSection extends StatelessWidget {
                     ),
                 ],
               ),
+
+            ///
+            /// IMAGE
+            ///
+            if (stadium?.image != null) ...[
+              const SizedBox(height: 32),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: BalunImage(
+                  imageUrl: stadium!.image!,
+                  height: 200,
+                  width: double.infinity,
+                ),
+              ),
+            ],
           ],
         ),
       );

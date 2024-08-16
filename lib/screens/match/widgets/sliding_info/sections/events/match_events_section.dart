@@ -47,23 +47,6 @@ class MatchEventsSection extends StatelessWidget {
                         ),
                       )
                       .toList(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Match finished',
-                          style: context.textStyles.matchEventsSectionResult,
-                        ),
-                        if (score?.fulltime?.home != null && score?.fulltime?.away != null)
-                          Text(
-                            '${score?.fulltime?.home}:${score?.fulltime?.away}',
-                            style: context.textStyles.matchEventsSectionResult,
-                          ),
-                      ],
-                    ),
-                  ),
                   const SizedBox(height: 24),
                 ]
               : [
