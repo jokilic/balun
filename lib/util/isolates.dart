@@ -4,6 +4,7 @@ import '../models/coaches/coaches_response.dart';
 import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
 import '../models/players/players_response.dart';
+import '../models/squads/squads_response.dart';
 import '../models/standings/standings_response.dart';
 import '../models/teams/teams_response.dart';
 
@@ -24,3 +25,6 @@ PlayersResponse parsePlayers(data) => PlayersResponse.fromMap(data);
 
 Future<CoachesResponse> computeCoaches(data) async => compute(parseCoaches, data);
 CoachesResponse parseCoaches(data) => CoachesResponse.fromMap(data);
+
+Future<SquadsResponse> computeSquads(data) async => compute(parseSquads, data);
+SquadsResponse parseSquads(data) => SquadsResponse.fromMap(data);

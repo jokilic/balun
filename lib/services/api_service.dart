@@ -5,6 +5,7 @@ import '../models/coaches/coaches_response.dart';
 import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
 import '../models/players/players_response.dart';
+import '../models/squads/squads_response.dart';
 import '../models/standings/standings_response.dart';
 import '../models/teams/teams_response.dart';
 import '../util/isolates.dart';
@@ -437,6 +438,49 @@ class APIService {
         mainError: '$e',
       );
       return (leaguesResponse: null, error: error);
+    }
+  }
+
+  ///
+  /// `/players/squads`
+  ///
+
+  Future<({SquadsResponse? squadsResponse, String? error})> getPlayersFromTeam({
+    required int teamId,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/players/squads',
+        queryParameters: {
+          'team': teamId,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computeSquads(response.data);
+            return (squadsResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getPlayersFromTeam -> parsing error -> $e';
+            logger.e(error);
+            return (squadsResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getPlayersFromTeam -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (squadsResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getPlayersFromTeam',
+        mainError: '$e',
+      );
+      return (squadsResponse: null, error: error);
     }
   }
 

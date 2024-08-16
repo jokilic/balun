@@ -4,6 +4,7 @@ import '../../../../models/team_section.dart';
 import '../../../../models/teams/team_response.dart';
 import 'sections/coaches/team_coaches_section.dart';
 import 'sections/leagues/team_leagues_section.dart';
+import 'sections/players/team_players_section.dart';
 import 'sections/stadium/team_stadium_section.dart';
 import 'sections/standings/team_standings_section.dart';
 
@@ -48,7 +49,9 @@ class TeamActiveSection extends StatelessWidget {
         TeamSection(
           teamSectionEnum: TeamSectionEnum.players,
         ) =>
-          Container(),
+          TeamPlayersSection(
+            teamId: team.team?.id,
+          ),
         TeamSection(
           teamSectionEnum: TeamSectionEnum.transfers,
         ) =>

@@ -13,6 +13,7 @@ class BalunError extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
         child: ListView(
+          shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(
             horizontal: 40,
