@@ -8,44 +8,44 @@ import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
 import '../../../../../../widgets/balun_error.dart';
 import '../../../../../../widgets/balun_loader.dart';
-import '../../../../controllers/league_teams_controller.dart';
-import 'league_teams_content.dart';
+import '../../../../controllers/team_standings_controller.dart';
+import 'team_standings_content.dart';
 
-class LeagueTeamsSection extends WatchingStatefulWidget {
-  final int? leagueId;
+class TeamStandingsSection extends WatchingStatefulWidget {
+  final int? teamId;
   final int? season;
 
-  const LeagueTeamsSection({
-    required this.leagueId,
+  const TeamStandingsSection({
+    required this.teamId,
     required this.season,
   });
 
   @override
-  State<LeagueTeamsSection> createState() => _LeagueTeamsSectionState();
+  State<TeamStandingsSection> createState() => _TeamStandingsSectionState();
 }
 
-class _LeagueTeamsSectionState extends State<LeagueTeamsSection> {
+class _TeamStandingsSectionState extends State<TeamStandingsSection> {
   @override
   void initState() {
     super.initState();
     getIt
-        .get<LeagueTeamsController>(
-          instanceName: '${widget.leagueId}',
+        .get<TeamStandingsController>(
+          instanceName: '${widget.teamId}',
         )
-        .getTeamsFromLeagueAndSeason(
-          leagueId: widget.leagueId,
+        .getStandingsFromTeam(
+          teamId: widget.teamId,
           season: widget.season,
         );
   }
 
   @override
   Widget build(BuildContext context) {
-    final teamsState = watchIt<LeagueTeamsController>(
-      instanceName: '${widget.leagueId}',
+    final standingsState = watchIt<TeamStandingsController>(
+      instanceName: '${widget.teamId}',
     ).value;
 
     return Animate(
-      key: ValueKey(teamsState),
+      key: ValueKey(standingsState),
       effects: const [
         FadeEffect(
           curve: Curves.easeIn,
@@ -53,7 +53,7 @@ class _LeagueTeamsSectionState extends State<LeagueTeamsSection> {
         ),
       ],
       // TODO: Implement all states
-      child: switch (teamsState) {
+      child: switch (standingsState) {
         Initial() => Container(
             color: Colors.green,
             height: 100,
@@ -70,11 +70,11 @@ class _LeagueTeamsSectionState extends State<LeagueTeamsSection> {
             width: 100,
           ),
         Error() => BalunError(
-            error: (teamsState as Error).error ?? 'Generic teams error',
+            error: (standingsState as Error).error ?? 'Generic team standings error',
           ),
-        Success() => LeagueTeamsContent(
-            teams: (teamsState as Success).data,
-            season: widget.season ?? DateTime.now().year,
+        Success() => TeamStandingsContent(
+            standings: (standingsState as Success).data,
+            season: widget.season,
           ),
       },
     );

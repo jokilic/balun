@@ -13,10 +13,12 @@ import 'team_section_titles.dart';
 class TeamSlidingInfo extends WatchingWidget {
   final TeamResponse team;
   final ScrollController scrollController;
+  final int season;
 
   const TeamSlidingInfo({
     required this.team,
     required this.scrollController,
+    required this.season,
   });
 
   @override
@@ -74,6 +76,7 @@ class TeamSlidingInfo extends WatchingWidget {
           child: TeamActiveSection(
             team: team,
             teamSection: teamSection,
+            season: season,
           ),
         ),
       ],

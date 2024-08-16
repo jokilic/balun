@@ -9,9 +9,11 @@ import '../../../../../../widgets/balun_image.dart';
 
 class LeagueTeamsListTile extends StatelessWidget {
   final TeamResponse team;
+  final int season;
 
   const LeagueTeamsListTile({
     required this.team,
+    required this.season,
   });
 
   @override
@@ -20,6 +22,7 @@ class LeagueTeamsListTile extends StatelessWidget {
             ? () => openTeam(
                   context,
                   teamId: team.team!.id!,
+                  season: season,
                 )
             : null,
         child: Container(

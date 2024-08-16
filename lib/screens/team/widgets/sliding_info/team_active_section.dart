@@ -4,14 +4,17 @@ import '../../../../models/team_section.dart';
 import '../../../../models/teams/team_response.dart';
 import 'sections/leagues/team_leagues_section.dart';
 import 'sections/stadium/team_stadium_section.dart';
+import 'sections/standings/team_standings_section.dart';
 
 class TeamActiveSection extends StatelessWidget {
   final TeamResponse team;
   final TeamSection teamSection;
+  final int season;
 
   const TeamActiveSection({
     required this.team,
     required this.teamSection,
+    required this.season,
   });
 
   @override
@@ -31,7 +34,10 @@ class TeamActiveSection extends StatelessWidget {
         TeamSection(
           teamSectionEnum: TeamSectionEnum.standings,
         ) =>
-          Container(),
+          TeamStandingsSection(
+            teamId: team.team?.id,
+            season: season,
+          ),
         TeamSection(
           teamSectionEnum: TeamSectionEnum.coaches,
         ) =>

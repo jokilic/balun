@@ -105,6 +105,7 @@ class MatchActiveSection extends StatelessWidget {
                   (playerStatistic) => playerStatistic.team?.id == match.teams?.away?.id,
                 )
                 .firstOrNull,
+            season: match.league?.season ?? DateTime.now().year,
           ),
       };
 }

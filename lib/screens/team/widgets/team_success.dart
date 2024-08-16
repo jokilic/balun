@@ -9,9 +9,11 @@ import 'sliding_info/team_sliding_info.dart';
 
 class TeamSuccess extends StatefulWidget {
   final TeamResponse team;
+  final int season;
 
   const TeamSuccess({
     required this.team,
+    required this.season,
   });
 
   @override
@@ -63,6 +65,7 @@ class _TeamSuccessState extends State<TeamSuccess> {
             panelBuilder: () => TeamSlidingInfo(
               team: widget.team,
               scrollController: scrollController,
+              season: widget.season,
             ),
           ),
         ],

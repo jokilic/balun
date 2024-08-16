@@ -7,10 +7,12 @@ import 'match_player_statistics_content.dart';
 class MatchPlayerStatisticsSection extends StatelessWidget {
   final PlayerStatistic? homePlayerStatistic;
   final PlayerStatistic? awayPlayerStatistic;
+  final int season;
 
   const MatchPlayerStatisticsSection({
     required this.homePlayerStatistic,
     required this.awayPlayerStatistic,
+    required this.season,
   });
 
   @override
@@ -34,6 +36,7 @@ class MatchPlayerStatisticsSection extends StatelessWidget {
               if (homePlayerStatistic != null)
                 MatchPlayerStatisticsContent(
                   playerStatistic: homePlayerStatistic,
+                  season: season,
                 ),
 
               ///
@@ -55,6 +58,7 @@ class MatchPlayerStatisticsSection extends StatelessWidget {
               if (awayPlayerStatistic != null)
                 MatchPlayerStatisticsContent(
                   playerStatistic: awayPlayerStatistic,
+                  season: season,
                 ),
             ],
 

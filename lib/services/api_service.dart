@@ -275,7 +275,7 @@ class APIService {
   /// `/standings`
   ///
 
-  Future<({StandingsResponse? standingsResponse, String? error})> getStandings({
+  Future<({StandingsResponse? standingsResponse, String? error})> getStandingsFromLeague({
     required int leagueId,
     required int season,
   }) async {
@@ -296,20 +296,61 @@ class APIService {
             final parsedResponse = await computeStandings(response.data);
             return (standingsResponse: parsedResponse, error: null);
           } catch (e) {
-            final error = 'API -> getStandings -> parsing error -> $e';
+            final error = 'API -> getStandingsFromLeague -> parsing error -> $e';
             logger.e(error);
             return (standingsResponse: null, error: error);
           }
 
         /// Response is not successful
         default:
-          final error = 'API -> getStandings -> StatusCode ${response.statusCode}';
+          final error = 'API -> getStandingsFromLeague -> StatusCode ${response.statusCode}';
           logger.e(error);
           return (standingsResponse: null, error: error);
       }
     } catch (e) {
       final error = await handleCatch(
-        methodName: 'getStandings',
+        methodName: 'getStandingsFromLeague',
+        mainError: '$e',
+      );
+      return (standingsResponse: null, error: error);
+    }
+  }
+
+  Future<({StandingsResponse? standingsResponse, String? error})> getStandingsFromTeam({
+    required int teamId,
+    required int season,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/standings',
+        queryParameters: {
+          'team': teamId,
+          'season': season,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computeStandings(response.data);
+            return (standingsResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getStandingsFromTeam -> parsing error -> $e';
+            logger.e(error);
+            return (standingsResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getStandingsFromTeam -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (standingsResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getStandingsFromTeam',
         mainError: '$e',
       );
       return (standingsResponse: null, error: error);

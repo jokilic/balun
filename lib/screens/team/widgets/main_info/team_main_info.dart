@@ -65,7 +65,7 @@ class TeamMainInfo extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
 
-            const SizedBox(height: 24),
+            const SizedBox(height: 40),
           ],
         ),
       );

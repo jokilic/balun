@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/standings/league/league.dart';
+import '../../../models/standings/standing_response.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/state.dart';
 
-class MatchStandingsController extends ValueNotifier<BalunState<League>> {
+class TeamStandingsController extends ValueNotifier<BalunState<List<StandingResponse>>> {
   final LoggerService logger;
   final APIService api;
 
-  MatchStandingsController({
+  TeamStandingsController({
     required this.logger,
     required this.api,
   }) : super(Initial());
@@ -24,13 +24,13 @@ class MatchStandingsController extends ValueNotifier<BalunState<League>> {
   /// METHODS
   ///
 
-  Future<void> getStandings({
-    required int? leagueId,
+  Future<void> getStandingsFromTeam({
+    required int? teamId,
     required int? season,
   }) async {
-    if (leagueId == null || season == null) {
+    if (teamId == null || season == null) {
       value = Error(
-        error: 'Passed leagueId or season is null',
+        error: 'Passed teamId or season is null',
       );
     }
 
@@ -40,8 +40,8 @@ class MatchStandingsController extends ValueNotifier<BalunState<League>> {
 
     value = Loading();
 
-    final response = await api.getStandingsFromLeague(
-      leagueId: leagueId!,
+    final response = await api.getStandingsFromTeam(
+      teamId: teamId!,
       season: season!,
     );
 
@@ -55,10 +55,10 @@ class MatchStandingsController extends ValueNotifier<BalunState<League>> {
       }
 
       /// Response is not null, update to success state
-      else if (response.standingsResponse!.response?.firstOrNull?.league != null) {
+      else if (response.standingsResponse!.response?.isNotEmpty ?? false) {
         fetched = true;
         value = Success(
-          data: response.standingsResponse!.response!.first.league!,
+          data: response.standingsResponse!.response!,
         );
       }
 

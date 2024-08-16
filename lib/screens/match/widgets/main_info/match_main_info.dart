@@ -51,6 +51,7 @@ class MatchMainInfo extends StatelessWidget {
                         ? () => openTeam(
                               context,
                               teamId: match.teams!.home!.id!,
+                              season: match.league?.season ?? DateTime.now().year,
                             )
                         : null,
                     child: Container(
@@ -112,6 +113,7 @@ class MatchMainInfo extends StatelessWidget {
                         ? () => openTeam(
                               context,
                               teamId: match.teams!.away!.id!,
+                              season: match.league?.season ?? DateTime.now().year,
                             )
                         : null,
                     child: Container(

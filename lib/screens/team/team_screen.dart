@@ -9,13 +9,16 @@ import '../../util/dependencies.dart';
 import 'controllers/team_controller.dart';
 import 'controllers/team_leagues_controller.dart';
 import 'controllers/team_section_controller.dart';
+import 'controllers/team_standings_controller.dart';
 import 'widgets/team_content.dart';
 
 class TeamScreen extends WatchingStatefulWidget {
   final int teamId;
+  final int season;
 
   const TeamScreen({
     required this.teamId,
+    required this.season,
     required super.key,
   });
 
@@ -37,6 +40,13 @@ class _TeamScreenState extends State<TeamScreen> {
       )
       ..registerLazySingleton(
         () => TeamLeaguesController(
+          logger: getIt.get<LoggerService>(),
+          api: getIt.get<APIService>(),
+        ),
+        instanceName: '${widget.teamId}',
+      )
+      ..registerLazySingleton(
+        () => TeamStandingsController(
           logger: getIt.get<LoggerService>(),
           api: getIt.get<APIService>(),
         ),
@@ -68,6 +78,9 @@ class _TeamScreenState extends State<TeamScreen> {
       ..unregister<TeamLeaguesController>(
         instanceName: '${widget.teamId}',
       )
+      ..unregister<TeamStandingsController>(
+        instanceName: '${widget.teamId}',
+      )
       ..unregister<TeamController>(
         instanceName: '${widget.teamId}',
       );
@@ -93,6 +106,7 @@ class _TeamScreenState extends State<TeamScreen> {
           ],
           child: TeamContent(
             teamState: teamState,
+            season: widget.season,
           ),
         ),
       ),

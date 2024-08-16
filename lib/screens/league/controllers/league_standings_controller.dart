@@ -40,7 +40,7 @@ class LeagueStandingsController extends ValueNotifier<BalunState<League>> {
 
     value = Loading();
 
-    final response = await api.getStandings(
+    final response = await api.getStandingsFromLeague(
       leagueId: leagueId!,
       season: season!,
     );

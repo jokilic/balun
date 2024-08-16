@@ -6,9 +6,11 @@ import 'league_teams_list_tile.dart';
 
 class LeagueTeamsContent extends StatelessWidget {
   final List<TeamResponse> teams;
+  final int season;
 
   const LeagueTeamsContent({
     required this.teams,
+    required this.season,
   });
 
   @override
@@ -19,6 +21,7 @@ class LeagueTeamsContent extends StatelessWidget {
         itemCount: teams.length,
         itemBuilder: (_, index) => LeagueTeamsListTile(
           team: teams[index],
+          season: season,
         ),
         separatorBuilder: (_, __) => const BalunSeperator(),
       );

@@ -11,9 +11,11 @@ import 'match_player_statistic.dart';
 
 class MatchPlayerStatisticsContent extends StatefulWidget {
   final PlayerStatistic? playerStatistic;
+  final int season;
 
   const MatchPlayerStatisticsContent({
     required this.playerStatistic,
+    required this.season,
   });
 
   @override
@@ -45,6 +47,7 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
                           ? () => openTeam(
                                 context,
                                 teamId: widget.playerStatistic!.team!.id!,
+                                season: widget.season,
                               )
                           : null,
                       child: BalunImage(
