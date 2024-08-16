@@ -1,6 +1,10 @@
-import 'birth.dart';
+import 'package:flutter/foundation.dart';
 
-class Player {
+import 'birth/birth.dart';
+import 'career/career.dart';
+import 'team/team.dart';
+
+class CoachResponse {
   final int? id;
   final String? name;
   final String? firstName;
@@ -10,10 +14,11 @@ class Player {
   final String? nationality;
   final String? height;
   final String? weight;
-  final bool? injured;
   final String? photo;
+  final Team? team;
+  final List<Career>? career;
 
-  Player({
+  CoachResponse({
     this.id,
     this.name,
     this.firstName,
@@ -23,11 +28,12 @@ class Player {
     this.nationality,
     this.height,
     this.weight,
-    this.injured,
     this.photo,
+    this.team,
+    this.career,
   });
 
-  factory Player.fromMap(Map<String, dynamic> map) => Player(
+  factory CoachResponse.fromMap(Map<String, dynamic> map) => CoachResponse(
         id: map['id'] != null ? map['id'] as int : null,
         name: map['name'] != null ? map['name'] as String : null,
         firstName: map['firstname'] != null ? map['firstname'] as String : null,
@@ -37,16 +43,23 @@ class Player {
         nationality: map['nationality'] != null ? map['nationality'] as String : null,
         height: map['height'] != null ? map['height'] as String : null,
         weight: map['weight'] != null ? map['weight'] as String : null,
-        injured: map['injured'] != null ? map['injured'] as bool : null,
         photo: map['photo'] != null ? map['photo'] as String : null,
+        team: map['team'] != null ? Team.fromMap(map['team'] as Map<String, dynamic>) : null,
+        career: map['career'] != null
+            ? List<Career>.from(
+                (map['career'] as List).map<Career?>(
+                  (x) => Career.fromMap(x as Map<String, dynamic>),
+                ),
+              )
+            : null,
       );
 
   @override
   String toString() =>
-      'Player(id: $id, name: $name, firstName: $firstName, lastName: $lastName, age: $age, birth: $birth, nationality: $nationality, height: $height, weight: $weight, injured: $injured, photo: $photo)';
+      'CoachResponse(id: $id, name: $name, firstName: $firstName, lastName: $lastName, age: $age, birth: $birth, nationality: $nationality, height: $height, weight: $weight, photo: $photo, team: $team, career: $career)';
 
   @override
-  bool operator ==(covariant Player other) {
+  bool operator ==(covariant CoachResponse other) {
     if (identical(this, other)) {
       return true;
     }
@@ -60,8 +73,9 @@ class Player {
         other.nationality == nationality &&
         other.height == height &&
         other.weight == weight &&
-        other.injured == injured &&
-        other.photo == photo;
+        other.photo == photo &&
+        other.team == team &&
+        listEquals(other.career, career);
   }
 
   @override
@@ -75,6 +89,7 @@ class Player {
       nationality.hashCode ^
       height.hashCode ^
       weight.hashCode ^
-      injured.hashCode ^
-      photo.hashCode;
+      photo.hashCode ^
+      team.hashCode ^
+      career.hashCode;
 }

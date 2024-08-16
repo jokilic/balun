@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../models/team_section.dart';
 import '../../../../models/teams/team_response.dart';
+import 'sections/coaches/team_coaches_section.dart';
 import 'sections/leagues/team_leagues_section.dart';
 import 'sections/stadium/team_stadium_section.dart';
 import 'sections/standings/team_standings_section.dart';
@@ -41,7 +42,9 @@ class TeamActiveSection extends StatelessWidget {
         TeamSection(
           teamSectionEnum: TeamSectionEnum.coaches,
         ) =>
-          Container(),
+          TeamCoachesSection(
+            teamId: team.team?.id,
+          ),
         TeamSection(
           teamSectionEnum: TeamSectionEnum.players,
         ) =>

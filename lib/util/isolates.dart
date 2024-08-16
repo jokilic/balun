@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+import '../models/coaches/coaches_response.dart';
 import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
 import '../models/players/players_response.dart';
@@ -20,3 +21,6 @@ LeaguesResponse parseLeagues(data) => LeaguesResponse.fromMap(data);
 
 Future<PlayersResponse> computePlayers(data) async => compute(parsePlayers, data);
 PlayersResponse parsePlayers(data) => PlayersResponse.fromMap(data);
+
+Future<CoachesResponse> computeCoaches(data) async => compute(parseCoaches, data);
+CoachesResponse parseCoaches(data) => CoachesResponse.fromMap(data);

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
+import '../models/coaches/coaches_response.dart';
 import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
 import '../models/players/players_response.dart';
@@ -616,6 +617,49 @@ class APIService {
         mainError: '$e',
       );
       return (playersResponse: null, error: error);
+    }
+  }
+
+  ///
+  /// `/coachs`
+  ///
+
+  Future<({CoachesResponse? coachesResponse, String? error})> getCoachesFromTeam({
+    required int teamId,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/coachs',
+        queryParameters: {
+          'team': teamId,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computeCoaches(response.data);
+            return (coachesResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getCoachesFromTeam -> parsing error -> $e';
+            logger.e(error);
+            return (coachesResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getCoachesFromTeam -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (coachesResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getCoachesFromTeam',
+        mainError: '$e',
+      );
+      return (coachesResponse: null, error: error);
     }
   }
 

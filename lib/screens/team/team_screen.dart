@@ -6,6 +6,7 @@ import '../../constants.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
+import 'controllers/team_coaches_controller.dart';
 import 'controllers/team_controller.dart';
 import 'controllers/team_leagues_controller.dart';
 import 'controllers/team_section_controller.dart';
@@ -53,6 +54,13 @@ class _TeamScreenState extends State<TeamScreen> {
         instanceName: '${widget.teamId}',
       )
       ..registerLazySingleton(
+        () => TeamCoachesController(
+          logger: getIt.get<LoggerService>(),
+          api: getIt.get<APIService>(),
+        ),
+        instanceName: '${widget.teamId}',
+      )
+      ..registerLazySingleton(
         () => TeamController(
           logger: getIt.get<LoggerService>(),
           api: getIt.get<APIService>(),
@@ -79,6 +87,9 @@ class _TeamScreenState extends State<TeamScreen> {
         instanceName: '${widget.teamId}',
       )
       ..unregister<TeamStandingsController>(
+        instanceName: '${widget.teamId}',
+      )
+      ..unregister<TeamCoachesController>(
         instanceName: '${widget.teamId}',
       )
       ..unregister<TeamController>(
