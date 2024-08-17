@@ -1,7 +1,7 @@
 enum PlayerSectionEnum {
   info,
   statistics,
-  injuries,
+
   transfers,
   sidelined,
   trophies,
@@ -17,7 +17,6 @@ class PlayerSection {
   String getPlayerSectionName() => switch (playerSectionEnum) {
         PlayerSectionEnum.info => 'Info',
         PlayerSectionEnum.statistics => 'Statistics',
-        PlayerSectionEnum.injuries => 'Injuries',
         PlayerSectionEnum.transfers => 'Transfers',
         PlayerSectionEnum.sidelined => 'Sidelined',
         PlayerSectionEnum.trophies => 'Trophies',

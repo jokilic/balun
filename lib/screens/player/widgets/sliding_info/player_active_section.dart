@@ -32,10 +32,6 @@ class PlayerActiveSection extends StatelessWidget {
             season: activeSeason,
           ),
         PlayerSection(
-          playerSectionEnum: PlayerSectionEnum.injuries,
-        ) =>
-          Container(),
-        PlayerSection(
           playerSectionEnum: PlayerSectionEnum.transfers,
         ) =>
           Container(),
