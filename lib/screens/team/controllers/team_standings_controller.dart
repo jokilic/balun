@@ -18,7 +18,7 @@ class TeamStandingsController extends ValueNotifier<BalunState<List<StandingResp
   /// VARIABLES
   ///
 
-  var fetched = false;
+  int? fetchedSeason;
 
   ///
   /// METHODS
@@ -34,7 +34,7 @@ class TeamStandingsController extends ValueNotifier<BalunState<List<StandingResp
       );
     }
 
-    if (fetched) {
+    if (fetchedSeason == season) {
       return;
     }
 
@@ -56,7 +56,7 @@ class TeamStandingsController extends ValueNotifier<BalunState<List<StandingResp
 
       /// Response is not null, update to success state
       else if (response.standingsResponse!.response?.isNotEmpty ?? false) {
-        fetched = true;
+        fetchedSeason = season;
         value = Success(
           data: response.standingsResponse!.response!,
         );
@@ -64,7 +64,7 @@ class TeamStandingsController extends ValueNotifier<BalunState<List<StandingResp
 
       /// Response is null, update to empty state
       else {
-        fetched = true;
+        fetchedSeason = season;
         value = Empty();
       }
     }

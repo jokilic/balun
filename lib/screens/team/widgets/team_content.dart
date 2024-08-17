@@ -7,11 +7,9 @@ import 'team_success.dart';
 
 class TeamContent extends StatelessWidget {
   final BalunState teamState;
-  final int season;
 
   const TeamContent({
     required this.teamState,
-    required this.season,
   });
 
 // TODO: Implement all states
@@ -25,7 +23,6 @@ class TeamContent extends StatelessWidget {
           ),
         Success() => TeamSuccess(
             team: (teamState as Success).data,
-            season: season,
           ),
       };
 }

@@ -74,7 +74,6 @@ class _TeamStandingsSectionState extends State<TeamStandingsSection> {
           ),
         Success() => TeamStandingsContent(
             standings: (standingsState as Success).data,
-            season: widget.season,
           ),
       },
     );

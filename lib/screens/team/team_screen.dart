@@ -10,6 +10,7 @@ import 'controllers/team_coaches_controller.dart';
 import 'controllers/team_controller.dart';
 import 'controllers/team_leagues_controller.dart';
 import 'controllers/team_players_controller.dart';
+import 'controllers/team_season_controller.dart';
 import 'controllers/team_section_controller.dart';
 import 'controllers/team_standings_controller.dart';
 import 'controllers/team_transfers_controller.dart';
@@ -77,6 +78,18 @@ class _TeamScreenState extends State<TeamScreen> {
         instanceName: '${widget.teamId}',
       )
       ..registerLazySingleton(
+        () => TeamSeasonController(
+          logger: getIt.get<LoggerService>(),
+          api: getIt.get<APIService>(),
+          section: getIt.get<TeamSectionController>(
+            instanceName: '${widget.teamId}',
+          ),
+          teamId: widget.teamId,
+          initialSeason: widget.season,
+        ),
+        instanceName: '${widget.teamId}',
+      )
+      ..registerLazySingleton(
         () => TeamController(
           logger: getIt.get<LoggerService>(),
           api: getIt.get<APIService>(),
@@ -114,6 +127,9 @@ class _TeamScreenState extends State<TeamScreen> {
       ..unregister<TeamTransfersController>(
         instanceName: '${widget.teamId}',
       )
+      ..unregister<TeamSeasonController>(
+        instanceName: '${widget.teamId}',
+      )
       ..unregister<TeamController>(
         instanceName: '${widget.teamId}',
       );
@@ -139,7 +155,6 @@ class _TeamScreenState extends State<TeamScreen> {
           ],
           child: TeamContent(
             teamState: teamState,
-            season: widget.season,
           ),
         ),
       ),

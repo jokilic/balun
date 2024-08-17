@@ -6,6 +6,7 @@ import '../../../../constants.dart';
 import '../../../../models/teams/team_response.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
+import '../../controllers/team_season_controller.dart';
 import '../../controllers/team_section_controller.dart';
 import 'team_active_section.dart';
 import 'team_section_titles.dart';
@@ -13,17 +14,19 @@ import 'team_section_titles.dart';
 class TeamSlidingInfo extends WatchingWidget {
   final TeamResponse team;
   final ScrollController scrollController;
-  final int season;
 
   const TeamSlidingInfo({
     required this.team,
     required this.scrollController,
-    required this.season,
   });
 
   @override
   Widget build(BuildContext context) {
     final teamSection = watchIt<TeamSectionController>(
+      instanceName: '${team.team?.id}',
+    ).value;
+
+    final teamSeason = watchIt<TeamSeasonController>(
       instanceName: '${team.team?.id}',
     ).value;
 
@@ -76,7 +79,7 @@ class TeamSlidingInfo extends WatchingWidget {
           child: TeamActiveSection(
             team: team,
             teamSection: teamSection,
-            season: season,
+            activeSeason: teamSeason,
           ),
         ),
       ],

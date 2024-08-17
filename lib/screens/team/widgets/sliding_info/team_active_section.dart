@@ -12,12 +12,12 @@ import 'sections/transfers/team_transfers_section.dart';
 class TeamActiveSection extends StatelessWidget {
   final TeamResponse team;
   final TeamSection teamSection;
-  final int season;
+  final int activeSeason;
 
   const TeamActiveSection({
     required this.team,
     required this.teamSection,
-    required this.season,
+    required this.activeSeason,
   });
 
   @override
@@ -39,7 +39,7 @@ class TeamActiveSection extends StatelessWidget {
         ) =>
           TeamStandingsSection(
             teamId: team.team?.id,
-            season: season,
+            season: activeSeason,
           ),
         TeamSection(
           teamSectionEnum: TeamSectionEnum.coaches,

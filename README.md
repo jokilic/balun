@@ -24,10 +24,6 @@ A simple Flutter application for football scores.
 * Main screen, part of the navigation
 * Think about how to approach this
 
-### `TeamScreen`
-
-* Implement season picker like in `LeagueScreen`
-
 ### `PlayerScreen`
 
 * Implement season picker like in `LeagueScreen`
