@@ -7,6 +7,7 @@ import '../../../../../../theme/theme.dart';
 import '../../../../../../util/player_statistics.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
+import 'match_player_list_tile_value.dart';
 
 class MatchPlayerListTile extends StatefulWidget {
   final PlayerStatisticData? statisticData;
@@ -422,37 +423,4 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
       ),
     );
   }
-}
-
-class MatchPlayerListTileValue extends StatelessWidget {
-  final String title;
-  final String text;
-
-  const MatchPlayerListTileValue({
-    required this.title,
-    required this.text,
-  });
-
-  @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(bottom: 4),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Flexible(
-              child: Text(
-                title,
-                style: context.textStyles.matchPlayerStatisticsText,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Flexible(
-              child: Text(
-                text,
-                style: context.textStyles.matchPlayerStatisticsValue,
-              ),
-            )
-          ],
-        ),
-      );
 }

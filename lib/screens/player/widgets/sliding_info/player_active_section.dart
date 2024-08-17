@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../models/player_section.dart';
 import '../../../../models/players/player_response.dart';
 import 'sections/info/player_info_section.dart';
+import 'sections/statistics/player_statistics_section.dart';
 
 class PlayerActiveSection extends StatelessWidget {
   final PlayerResponse player;
@@ -26,7 +27,10 @@ class PlayerActiveSection extends StatelessWidget {
         PlayerSection(
           playerSectionEnum: PlayerSectionEnum.statistics,
         ) =>
-          Container(),
+          PlayerStatisticsSection(
+            playerId: player.player?.id,
+            season: activeSeason,
+          ),
         PlayerSection(
           playerSectionEnum: PlayerSectionEnum.injuries,
         ) =>

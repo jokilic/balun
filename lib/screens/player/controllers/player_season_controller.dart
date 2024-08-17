@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/player_section.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
+import '../../../util/dependencies.dart';
 import 'player_section_controller.dart';
+import 'player_statistics_controller.dart';
 
 class PlayerSeasonController extends ValueNotifier<int> {
   final LoggerService logger;
@@ -29,7 +32,21 @@ class PlayerSeasonController extends ValueNotifier<int> {
       value = newSeason;
 
       /// Fetch new data, depending on active section
-      switch (section.value) {}
+      switch (section.value) {
+        ///
+        /// STATISTICS
+        ///
+        case PlayerSection(playerSectionEnum: PlayerSectionEnum.statistics):
+          getIt
+              .get<PlayerStatisticsController>(
+                instanceName: '$playerId',
+              )
+              .getPlayerStatistics(
+                playerId: playerId,
+                season: newSeason,
+              );
+          break;
+      }
     }
   }
 }
