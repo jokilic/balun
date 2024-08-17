@@ -36,25 +36,27 @@ class LeagueTeamsListTile extends StatelessWidget {
                 width: 56,
               ),
               const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (team.team?.name != null)
-                    Text(
-                      team.team!.name!,
-                      style: context.textStyles.leagueTeamsTitle,
-                    ),
-                  if (team.team?.country != null)
-                    Text(
-                      team.team!.country!,
-                      style: context.textStyles.leagueTeamsCountry,
-                    ),
-                  if (team.team?.founded != null)
-                    Text(
-                      'Founded ${team.team!.founded}',
-                      style: context.textStyles.leagueTeamsFounded,
-                    ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (team.team?.name != null)
+                      Text(
+                        team.team!.name!,
+                        style: context.textStyles.leagueTeamsTitle,
+                      ),
+                    if (team.team?.country != null)
+                      Text(
+                        team.team!.country!,
+                        style: context.textStyles.leagueTeamsCountry,
+                      ),
+                    if (team.team?.founded != null)
+                      Text(
+                        'Founded ${team.team!.founded}',
+                        style: context.textStyles.leagueTeamsFounded,
+                      ),
+                  ],
+                ),
               ),
             ],
           ),

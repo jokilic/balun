@@ -64,7 +64,7 @@ void openPlayer(
   required int playerId,
   required int season,
 }) {
-  log('Open player -> $playerId');
+  log('Open player -> $playerId -> season -> $season');
   // pushScreen(
   //   PlayerScreen(playerId: playerId),
   //   context: context,
