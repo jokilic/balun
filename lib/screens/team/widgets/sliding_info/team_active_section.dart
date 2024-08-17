@@ -52,6 +52,7 @@ class TeamActiveSection extends StatelessWidget {
         ) =>
           TeamPlayersSection(
             teamId: team.team?.id,
+            season: activeSeason,
           ),
         TeamSection(
           teamSectionEnum: TeamSectionEnum.transfers,

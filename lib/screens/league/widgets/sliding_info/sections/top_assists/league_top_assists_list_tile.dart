@@ -9,9 +9,11 @@ import '../../../../../../widgets/balun_image.dart';
 
 class LeagueTopAssistsListTile extends StatelessWidget {
   final PlayerResponse? assist;
+  final int season;
 
   const LeagueTopAssistsListTile({
     required this.assist,
+    required this.season,
   });
 
   @override
@@ -20,6 +22,7 @@ class LeagueTopAssistsListTile extends StatelessWidget {
             ? () => openPlayer(
                   context,
                   playerId: assist!.player!.id!,
+                  season: season,
                 )
             : null,
         child: Container(

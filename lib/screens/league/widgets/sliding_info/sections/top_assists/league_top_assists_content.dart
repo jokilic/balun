@@ -6,9 +6,11 @@ import 'league_top_assists_list_tile.dart';
 
 class LeagueTopAssistsContent extends StatelessWidget {
   final List<PlayerResponse>? assists;
+  final int season;
 
   const LeagueTopAssistsContent({
     required this.assists,
+    required this.season,
   });
 
   @override
@@ -19,6 +21,7 @@ class LeagueTopAssistsContent extends StatelessWidget {
         itemCount: assists?.length ?? 0,
         itemBuilder: (_, index) => LeagueTopAssistsListTile(
           assist: assists![index],
+          season: season,
         ),
         separatorBuilder: (_, __) => const BalunSeperator(),
       );

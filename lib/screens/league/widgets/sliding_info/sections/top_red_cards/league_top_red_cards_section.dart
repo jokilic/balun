@@ -74,6 +74,7 @@ class _LeagueTopRedCardsSectionState extends State<LeagueTopRedCardsSection> {
           ),
         Success() => LeagueTopRedCardsContent(
             redCards: (topRedCardsState as Success).data,
+            season: widget.season ?? DateTime.now().year,
           ),
       },
     );

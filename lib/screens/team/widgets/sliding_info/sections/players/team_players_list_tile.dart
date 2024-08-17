@@ -10,9 +10,11 @@ import '../../../../../../widgets/balun_image.dart';
 
 class TeamPlayersListTile extends StatelessWidget {
   final Player player;
+  final int season;
 
   const TeamPlayersListTile({
     required this.player,
+    required this.season,
   });
 
   @override
@@ -21,6 +23,7 @@ class TeamPlayersListTile extends StatelessWidget {
             ? () => openPlayer(
                   context,
                   playerId: player.id!,
+                  season: season,
                 )
             : null,
         child: Container(

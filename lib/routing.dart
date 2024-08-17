@@ -59,7 +59,11 @@ void openLeague(
     );
 
 /// Opens [PlayerScreen]
-void openPlayer(BuildContext context, {required int playerId}) {
+void openPlayer(
+  BuildContext context, {
+  required int playerId,
+  required int season,
+}) {
   log('Open player -> $playerId');
   // pushScreen(
   //   PlayerScreen(playerId: playerId),

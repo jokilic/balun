@@ -15,6 +15,7 @@ class MatchLineupsPlayer extends StatelessWidget {
   final List<int>? formation;
   final LineupColors? playerColors;
   final bool isHome;
+  final int season;
 
   const MatchLineupsPlayer({
     required this.player,
@@ -23,6 +24,7 @@ class MatchLineupsPlayer extends StatelessWidget {
     required this.formation,
     required this.playerColors,
     required this.isHome,
+    required this.season,
   });
 
   @override
@@ -77,6 +79,7 @@ class MatchLineupsPlayer extends StatelessWidget {
               ? () => openPlayer(
                     context,
                     playerId: player!.player!.id!,
+                    season: season,
                   )
               : null,
           child: Stack(

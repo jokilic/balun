@@ -10,12 +10,14 @@ class MatchLineupsList extends StatelessWidget {
   final List<LineupPlayer>? awayPlayers;
   final LineupColors? homePlayerColors;
   final LineupColors? awayPlayerColors;
+  final int season;
 
   const MatchLineupsList({
     required this.homePlayers,
     required this.awayPlayers,
     required this.homePlayerColors,
     required this.awayPlayerColors,
+    required this.season,
   });
 
   @override
@@ -29,6 +31,7 @@ class MatchLineupsList extends StatelessWidget {
             child: MatchLineupList(
               players: homePlayers,
               colors: homePlayerColors,
+              season: season,
             ),
           ),
 
@@ -39,6 +42,7 @@ class MatchLineupsList extends StatelessWidget {
             child: MatchLineupList(
               players: awayPlayers,
               colors: awayPlayerColors,
+              season: season,
             ),
           ),
         ],
@@ -48,10 +52,12 @@ class MatchLineupsList extends StatelessWidget {
 class MatchLineupList extends StatelessWidget {
   final List<LineupPlayer>? players;
   final LineupColors? colors;
+  final int season;
 
   const MatchLineupList({
     required this.players,
     required this.colors,
+    required this.season,
   });
 
   @override
@@ -65,6 +71,7 @@ class MatchLineupList extends StatelessWidget {
           return MatchLineupListTile(
             player: player,
             colors: colors,
+            season: season,
           );
         },
         separatorBuilder: (_, __) => const BalunSeperator(),

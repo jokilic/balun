@@ -74,6 +74,7 @@ class _LeagueTopScorersSectionState extends State<LeagueTopScorersSection> {
           ),
         Success() => LeagueTopScorersContent(
             scorers: (topScorersState as Success).data,
+            season: widget.season ?? DateTime.now().year,
           ),
       },
     );

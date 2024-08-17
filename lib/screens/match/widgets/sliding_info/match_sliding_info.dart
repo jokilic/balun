@@ -13,10 +13,12 @@ import 'match_section_titles.dart';
 class MatchSlidingInfo extends WatchingWidget {
   final FixtureResponse match;
   final ScrollController scrollController;
+  final int season;
 
   const MatchSlidingInfo({
     required this.match,
     required this.scrollController,
+    required this.season,
   });
 
   @override
@@ -74,6 +76,7 @@ class MatchSlidingInfo extends WatchingWidget {
           child: MatchActiveSection(
             match: match,
             matchSection: matchSection,
+            season: season,
           ),
         ),
       ],

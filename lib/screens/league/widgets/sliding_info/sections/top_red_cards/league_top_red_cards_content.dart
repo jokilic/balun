@@ -6,9 +6,11 @@ import 'league_top_red_cards_list_tile.dart';
 
 class LeagueTopRedCardsContent extends StatelessWidget {
   final List<PlayerResponse>? redCards;
+  final int season;
 
   const LeagueTopRedCardsContent({
     required this.redCards,
+    required this.season,
   });
 
   @override
@@ -19,6 +21,7 @@ class LeagueTopRedCardsContent extends StatelessWidget {
         itemCount: redCards?.length ?? 0,
         itemBuilder: (_, index) => LeagueTopRedCardsListTile(
           redCard: redCards![index],
+          season: season,
         ),
         separatorBuilder: (_, __) => const BalunSeperator(),
       );

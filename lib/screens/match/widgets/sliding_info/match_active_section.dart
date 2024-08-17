@@ -15,10 +15,12 @@ import 'sections/statistics/match_statistics_section.dart';
 class MatchActiveSection extends StatelessWidget {
   final FixtureResponse match;
   final MatchSection matchSection;
+  final int season;
 
   const MatchActiveSection({
     required this.match,
     required this.matchSection,
+    required this.season,
   });
 
   @override
@@ -67,6 +69,7 @@ class MatchActiveSection extends StatelessWidget {
                   (lineup) => lineup.team?.id == match.teams?.away?.id,
                 )
                 .firstOrNull,
+            season: season,
           ),
         MatchSection(
           matchSectionEnum: MatchSectionEnum.headToHead,

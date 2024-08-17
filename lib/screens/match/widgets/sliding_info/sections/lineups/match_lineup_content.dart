@@ -11,10 +11,12 @@ import 'match_lineups_start_xi.dart';
 class MatchLineupContent extends StatelessWidget {
   final Lineup? homeLineup;
   final Lineup? awayLineup;
+  final int season;
 
   const MatchLineupContent({
     required this.homeLineup,
     required this.awayLineup,
+    required this.season,
   });
 
   @override
@@ -34,6 +36,7 @@ class MatchLineupContent extends StatelessWidget {
           MatchLineupsStartXI(
             homeLineup: homeLineup,
             awayLineup: awayLineup,
+            season: season,
           ),
           const SizedBox(height: 12),
 
@@ -104,6 +107,7 @@ class MatchLineupContent extends StatelessWidget {
             ),
             homePlayerColors: homeLineup?.team?.colors,
             awayPlayerColors: awayLineup?.team?.colors,
+            season: season,
           ),
 
           const SizedBox(height: 24),

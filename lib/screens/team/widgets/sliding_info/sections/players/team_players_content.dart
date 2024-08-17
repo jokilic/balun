@@ -6,9 +6,11 @@ import 'team_players_list_tile.dart';
 
 class TeamPlayersContent extends StatelessWidget {
   final List<Player>? players;
+  final int season;
 
   const TeamPlayersContent({
     required this.players,
+    required this.season,
   });
 
   @override
@@ -19,6 +21,7 @@ class TeamPlayersContent extends StatelessWidget {
         itemCount: players?.length ?? 0,
         itemBuilder: (_, index) => TeamPlayersListTile(
           player: players![index],
+          season: season,
         ),
         separatorBuilder: (_, __) => const BalunSeperator(),
       );

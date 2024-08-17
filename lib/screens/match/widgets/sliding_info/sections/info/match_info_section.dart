@@ -118,7 +118,7 @@ class MatchInfoSection extends StatelessWidget {
                   ? () => openLeague(
                         context,
                         leagueId: league!.id!,
-                        season: league!.season!,
+                        season: league?.season ?? DateTime.now().year,
                       )
                   : null,
               child: Container(
@@ -180,7 +180,7 @@ class MatchInfoSection extends StatelessWidget {
                   ? () => openLeague(
                         context,
                         leagueId: league!.id!,
-                        season: league!.season!,
+                        season: league?.season ?? DateTime.now().year,
                       )
                   : null,
               child: Container(

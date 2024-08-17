@@ -9,9 +9,11 @@ import '../../../../../../widgets/balun_image.dart';
 
 class LeagueTopRedCardsListTile extends StatelessWidget {
   final PlayerResponse? redCard;
+  final int season;
 
   const LeagueTopRedCardsListTile({
     required this.redCard,
+    required this.season,
   });
 
   @override
@@ -20,6 +22,7 @@ class LeagueTopRedCardsListTile extends StatelessWidget {
             ? () => openPlayer(
                   context,
                   playerId: redCard!.player!.id!,
+                  season: season,
                 )
             : null,
         child: Container(

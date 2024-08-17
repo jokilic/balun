@@ -6,10 +6,12 @@ import 'match_lineup_content.dart';
 class MatchLineupsSection extends StatelessWidget {
   final Lineup? homeLineup;
   final Lineup? awayLineup;
+  final int season;
 
   const MatchLineupsSection({
     required this.homeLineup,
     required this.awayLineup,
+    required this.season,
   });
 
   @override
@@ -34,6 +36,7 @@ class MatchLineupsSection extends StatelessWidget {
               MatchLineupContent(
                 homeLineup: homeLineup,
                 awayLineup: awayLineup,
+                season: season,
               ),
 
             const SizedBox(height: 24),

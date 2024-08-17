@@ -13,9 +13,11 @@ import 'team_players_content.dart';
 
 class TeamPlayersSection extends WatchingStatefulWidget {
   final int? teamId;
+  final int season;
 
   const TeamPlayersSection({
     required this.teamId,
+    required this.season,
   });
 
   @override
@@ -71,6 +73,7 @@ class _TeamPlayersSectionState extends State<TeamPlayersSection> {
           ),
         Success() => TeamPlayersContent(
             players: (playersState as Success).data,
+            season: widget.season,
           ),
       },
     );

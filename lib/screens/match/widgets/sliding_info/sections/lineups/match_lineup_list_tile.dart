@@ -10,10 +10,12 @@ import '../../../../../../widgets/balun_button.dart';
 class MatchLineupListTile extends StatelessWidget {
   final LineupPlayerInside? player;
   final LineupColors? colors;
+  final int season;
 
   const MatchLineupListTile({
     required this.player,
     required this.colors,
+    required this.season,
   });
 
   @override
@@ -22,6 +24,7 @@ class MatchLineupListTile extends StatelessWidget {
             ? () => openPlayer(
                   context,
                   playerId: player!.id!,
+                  season: season,
                 )
             : null,
         child: Container(

@@ -6,9 +6,11 @@ import 'league_top_yellow_cards_list_tile.dart';
 
 class LeagueTopYellowCardsContent extends StatelessWidget {
   final List<PlayerResponse>? yellowCards;
+  final int season;
 
   const LeagueTopYellowCardsContent({
     required this.yellowCards,
+    required this.season,
   });
 
   @override
@@ -19,6 +21,7 @@ class LeagueTopYellowCardsContent extends StatelessWidget {
         itemCount: yellowCards?.length ?? 0,
         itemBuilder: (_, index) => LeagueTopYellowCardsListTile(
           yellowCard: yellowCards![index],
+          season: season,
         ),
         separatorBuilder: (_, __) => const BalunSeperator(),
       );
