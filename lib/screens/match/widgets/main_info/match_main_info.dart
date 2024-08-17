@@ -71,7 +71,7 @@ class MatchMainInfo extends StatelessWidget {
                           /// HOME NAME
                           ///
                           Text(
-                            match.teams?.home?.name ?? 'No name',
+                            match.teams?.home?.name ?? '---',
                             style: context.textStyles.fixturesName,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -133,7 +133,7 @@ class MatchMainInfo extends StatelessWidget {
                           /// AWAY NAME
                           ///
                           Text(
-                            match.teams?.away?.name ?? 'No name',
+                            match.teams?.away?.name ?? '---',
                             style: context.textStyles.fixturesName,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,

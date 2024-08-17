@@ -443,6 +443,51 @@ class APIService {
   }
 
   ///
+  /// `/players`
+  ///
+
+  Future<({PlayersResponse? playersResponse, String? error})> getPlayer({
+    required int playerId,
+    required int season,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/players',
+        queryParameters: {
+          'id': playerId,
+          'season': season,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computePlayers(response.data);
+            return (playersResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getPlayer -> parsing error -> $e';
+            logger.e(error);
+            return (playersResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getPlayer -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (playersResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getPlayer',
+        mainError: '$e',
+      );
+      return (playersResponse: null, error: error);
+    }
+  }
+
+  ///
   /// `/players/squads`
   ///
 

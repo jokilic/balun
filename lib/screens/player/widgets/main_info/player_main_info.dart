@@ -2,26 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../constants.dart';
-import '../../../../models/teams/team_response.dart';
+import '../../../../models/players/player_response.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
 import '../../../../util/team_seasons.dart';
 import '../../../../widgets/balun_image.dart';
-import '../../controllers/team_season_controller.dart';
-import '../team_app_bar.dart';
+import '../../controllers/player_season_controller.dart';
+import '../player_app_bar.dart';
 
-class TeamMainInfo extends WatchingWidget {
-  final TeamResponse team;
+class PlayerMainInfo extends WatchingWidget {
+  final PlayerResponse player;
 
-  const TeamMainInfo({
-    required this.team,
+  const PlayerMainInfo({
+    required this.player,
   });
 
   @override
   Widget build(BuildContext context) {
-    final seasonState = watchIt<TeamSeasonController>(
-      instanceName: '${team.team?.id}',
+    final seasonState = watchIt<PlayerSeasonController>(
+      instanceName: '${player.player?.id}',
     ).value;
 
     final years = generateYearList();
@@ -35,11 +35,11 @@ class TeamMainInfo extends WatchingWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           ///
-          /// BACK & TEAM NAME
+          /// BACK & LEAGUE
           ///
-          TeamAppBar(
+          PlayerAppBar(
             onPressed: Navigator.of(context).pop,
-            team: team.team,
+            player: player.player,
           ),
 
           const SizedBox(height: 48),
@@ -50,8 +50,7 @@ class TeamMainInfo extends WatchingWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: BalunImage(
-              imageUrl: team.team?.logo ?? BalunImages.placeholderLogo,
-              fit: BoxFit.contain,
+              imageUrl: player.player?.photo ?? BalunImages.placeholderLogo,
               height: 120,
               width: 120,
             ),
@@ -63,7 +62,7 @@ class TeamMainInfo extends WatchingWidget {
           /// NAME
           ///
           Text(
-            team.team?.name ?? '---',
+            player.player?.name ?? '---',
             style: context.textStyles.leagueName,
             textAlign: TextAlign.center,
           ),
@@ -71,25 +70,12 @@ class TeamMainInfo extends WatchingWidget {
           ///
           /// COUNTRY
           ///
-          if (team.team?.country != null)
-            Text(
-              team.team?.country ?? '---',
-              style: context.textStyles.leagueCountry,
-              textAlign: TextAlign.center,
-            ),
-
-          ///
-          /// FOUNDED
-          ///
-          if (team.team?.founded != null) ...[
-            const SizedBox(height: 4),
-            Text(
-              'Founded ${team.team?.founded}',
-              style: context.textStyles.teamFounded,
-              textAlign: TextAlign.center,
-            ),
-          ],
-          const SizedBox(height: 8),
+          Text(
+            player.player?.nationality ?? '---',
+            style: context.textStyles.leagueCountry,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
 
           ///
           /// SEASON
@@ -101,8 +87,8 @@ class TeamMainInfo extends WatchingWidget {
           ),
           DropdownButton<int>(
             onChanged: getIt
-                .get<TeamSeasonController>(
-                  instanceName: '${team.team?.id}',
+                .get<PlayerSeasonController>(
+                  instanceName: '${player.player?.id}',
                 )
                 .updateState,
             value: seasonState,
@@ -143,7 +129,6 @@ class TeamMainInfo extends WatchingWidget {
                 )
                 .toList(),
           ),
-          const SizedBox(height: 24),
         ],
       ),
     );

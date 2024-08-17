@@ -63,7 +63,7 @@ class TeamTransferListTile extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        transfer.teams?.teamOut?.name ?? 'No name',
+                        transfer.teams?.teamOut?.name ?? '---',
                         style: context.textStyles.teamTransferTeam,
                         textAlign: TextAlign.center,
                         maxLines: 1,
@@ -146,7 +146,7 @@ class TeamTransferListTile extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        transfer.teams?.teamIn?.name ?? 'No name',
+                        transfer.teams?.teamIn?.name ?? '---',
                         style: context.textStyles.teamTransferTeam,
                         textAlign: TextAlign.center,
                         maxLines: 1,

@@ -76,7 +76,7 @@ class FixturesListTile extends StatelessWidget {
                   ///
                   Expanded(
                     child: Text(
-                      fixture.teams?.home?.name ?? 'No name',
+                      fixture.teams?.home?.name ?? '---',
                       style: context.textStyles.fixturesName,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -112,7 +112,7 @@ class FixturesListTile extends StatelessWidget {
                   ///
                   Expanded(
                     child: Text(
-                      fixture.teams?.away?.name ?? 'No name',
+                      fixture.teams?.away?.name ?? '---',
                       style: context.textStyles.fixturesName,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,

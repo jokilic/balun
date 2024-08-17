@@ -59,7 +59,7 @@ class LeagueMainInfo extends WatchingWidget {
           /// NAME
           ///
           Text(
-            league.league?.name ?? 'No name',
+            league.league?.name ?? '---',
             style: context.textStyles.leagueName,
             textAlign: TextAlign.center,
           ),
@@ -68,7 +68,7 @@ class LeagueMainInfo extends WatchingWidget {
           /// COUNTRY
           ///
           Text(
-            league.country?.name ?? 'No name',
+            league.country?.name ?? '---',
             style: context.textStyles.leagueCountry,
             textAlign: TextAlign.center,
           ),
