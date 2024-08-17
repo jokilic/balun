@@ -110,14 +110,16 @@ class PlayerInfoSection extends StatelessWidget {
                           'Birth place',
                           style: context.textStyles.matchInfoSectionTitle,
                         ),
-                        Text(
-                          player!.birth!.place!,
-                          style: context.textStyles.matchInfoSectionText,
-                        ),
-                        Text(
-                          player!.birth!.country!,
-                          style: context.textStyles.matchInfoSectionText,
-                        ),
+                        if (player?.birth?.place != null)
+                          Text(
+                            player!.birth!.place!,
+                            style: context.textStyles.matchInfoSectionText,
+                          ),
+                        if (player?.birth?.country != null)
+                          Text(
+                            player!.birth!.country ?? '---',
+                            style: context.textStyles.matchInfoSectionText,
+                          ),
                       ],
                     ),
                   ),
