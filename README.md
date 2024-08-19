@@ -28,7 +28,6 @@ A simple Flutter application for football scores.
 
 * Implement season picker like in `LeagueScreen`
 * Player from ID and season
-* Injuries from player and season
 * Transfers player
 * Sidelined player
 * Trophies player

@@ -128,7 +128,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                                 ),
                                 PlayerStatisticsListTileValue(
                                   title: 'Rating',
-                                  text: '${widget.statistic?.games?.rating ?? '---'}',
+                                  text: widget.statistic?.games?.rating?.toStringAsFixed(2) ?? '---',
                                 ),
                                 PlayerStatisticsListTileValue(
                                   title: 'Captain',
