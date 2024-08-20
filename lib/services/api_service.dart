@@ -796,6 +796,45 @@ class APIService {
     }
   }
 
+  Future<({TransfersResponse? transfersResponse, String? error})> getTransfersFromPlayer({
+    required int playerId,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/transfers',
+        queryParameters: {
+          'player': playerId,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computeTransfers(response.data);
+            return (transfersResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getTransfersFromPlayer -> parsing error -> $e';
+            logger.e(error);
+            return (transfersResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getTransfersFromPlayer -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (transfersResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getTransfersFromPlayer',
+        mainError: '$e',
+      );
+      return (transfersResponse: null, error: error);
+    }
+  }
+
   /// Checks for internet connection and returns error message
   Future<String> handleCatch({
     required String methodName,

@@ -1,7 +1,6 @@
 enum PlayerSectionEnum {
   info,
   statistics,
-
   transfers,
   sidelined,
   trophies,
