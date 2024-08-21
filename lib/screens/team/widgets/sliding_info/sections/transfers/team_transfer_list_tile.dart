@@ -23,8 +23,7 @@ class TeamTransferListTile extends StatelessWidget {
       transfer.date,
     );
 
-    return Container(
-      color: Colors.transparent,
+    return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,

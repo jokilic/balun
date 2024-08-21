@@ -5,6 +5,7 @@ import '../models/coaches/coaches_response.dart';
 import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
 import '../models/players/players_response.dart';
+import '../models/sidelined/sidelined_response.dart';
 import '../models/squads/squads_response.dart';
 import '../models/standings/standings_response.dart';
 import '../models/teams/teams_response.dart';
@@ -832,6 +833,49 @@ class APIService {
         mainError: '$e',
       );
       return (transfersResponse: null, error: error);
+    }
+  }
+
+  ///
+  /// `/sidelined`
+  ///
+
+  Future<({SidelinedResponse? sidelinedResponse, String? error})> getSidelinedFromPlayer({
+    required int playerId,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/sidelined',
+        queryParameters: {
+          'player': playerId,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computeSidelined(response.data);
+            return (sidelinedResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getSidelinedFromPlayer -> parsing error -> $e';
+            logger.e(error);
+            return (sidelinedResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getSidelinedFromPlayer -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (sidelinedResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getSidelinedFromPlayer',
+        mainError: '$e',
+      );
+      return (sidelinedResponse: null, error: error);
     }
   }
 

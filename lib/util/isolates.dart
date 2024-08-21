@@ -4,6 +4,7 @@ import '../models/coaches/coaches_response.dart';
 import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
 import '../models/players/players_response.dart';
+import '../models/sidelined/sidelined_response.dart';
 import '../models/squads/squads_response.dart';
 import '../models/standings/standings_response.dart';
 import '../models/teams/teams_response.dart';
@@ -32,3 +33,6 @@ SquadsResponse parseSquads(data) => SquadsResponse.fromMap(data);
 
 Future<TransfersResponse> computeTransfers(data) async => compute(parseTransfers, data);
 TransfersResponse parseTransfers(data) => TransfersResponse.fromMap(data);
+
+Future<SidelinedResponse> computeSidelined(data) async => compute(parseSidelined, data);
+SidelinedResponse parseSidelined(data) => SidelinedResponse.fromMap(data);
