@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BalunImage extends StatelessWidget {
   final String imageUrl;
@@ -26,12 +27,19 @@ class BalunImage extends StatelessWidget {
           width: width,
           fit: fit,
         )
-      : CachedNetworkImage(
-          imageUrl: imageUrl,
-          height: height,
-          width: width,
-          fit: fit,
-          placeholder: (_, __) => loadingWidget ?? const SizedBox.shrink(),
-          errorWidget: (_, __, ___) => errorWidget ?? const SizedBox.shrink(),
-        );
+      : imageUrl.contains('.svg')
+          ? SvgPicture.network(
+              imageUrl,
+              height: height,
+              width: width,
+              fit: fit,
+            )
+          : CachedNetworkImage(
+              imageUrl: imageUrl,
+              height: height,
+              width: width,
+              fit: fit,
+              placeholder: (_, __) => loadingWidget ?? const SizedBox.shrink(),
+              errorWidget: (_, __, ___) => errorWidget ?? const SizedBox.shrink(),
+            );
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:watch_it/watch_it.dart';
 
-import 'screens/player/player_screen.dart';
+import 'services/balun_screen_service.dart';
 import 'theme/theme.dart';
 import 'util/dependencies.dart';
 import 'widgets/balun_loader.dart';
@@ -26,12 +27,13 @@ Future<void> main() async {
   runApp(BalunApp());
 }
 
-class BalunApp extends StatelessWidget {
+class BalunApp extends WatchingWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        // home: const FixturesScreen(
-        //   key: ValueKey('fixtures'),
+        home: watchIt<BalunScreenService>().value,
+        // home: const CountriesScreen(
+        //   key: ValueKey('countries'),
         // ),
         // home: const MatchScreen(
         //   matchId: 1034682,
@@ -47,11 +49,11 @@ class BalunApp extends StatelessWidget {
         //   key: ValueKey(620),
         //   season: 2023,
         // ),
-        home: const PlayerScreen(
-          playerId: 611,
-          key: ValueKey(611),
-          season: 2023,
-        ),
+        // home: const PlayerScreen(
+        //   playerId: 611,
+        //   key: ValueKey(611),
+        //   season: 2023,
+        // ),
         onGenerateTitle: (_) => 'Balun',
         theme: BalunTheme.light,
         builder: (_, child) => kDebugMode

@@ -170,6 +170,9 @@ class BalunTheme {
     teamTransferTeam: BalunTextStyles.teamTransferTeam.copyWith(
       color: lightAppColors.black,
     ),
+    countriesName: BalunTextStyles.countriesName.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
   );
 }
 

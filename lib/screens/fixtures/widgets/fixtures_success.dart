@@ -13,10 +13,6 @@ class FixturesSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView.builder(
-        padding: EdgeInsets.only(
-          top: MediaQuery.paddingOf(context).top,
-          bottom: MediaQuery.paddingOf(context).bottom,
-        ),
         physics: const BouncingScrollPhysics(),
         itemCount: fixtures.length,
         itemBuilder: (_, index) {

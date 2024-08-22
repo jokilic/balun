@@ -284,6 +284,12 @@ abstract class BalunTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w600,
   );
+
+  static const countriesName = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -333,6 +339,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle teamCoachCareerTitle;
   final TextStyle teamCoachCareerValue;
   final TextStyle teamTransferTeam;
+  final TextStyle countriesName;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -381,6 +388,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.teamCoachCareerTitle,
     required this.teamCoachCareerValue,
     required this.teamTransferTeam,
+    required this.countriesName,
   });
 
   @override
@@ -431,6 +439,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? teamCoachCareerTitle,
     TextStyle? teamCoachCareerValue,
     TextStyle? teamTransferTeam,
+    TextStyle? countriesName,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -479,6 +488,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         teamCoachCareerTitle: teamCoachCareerTitle ?? this.teamCoachCareerTitle,
         teamCoachCareerValue: teamCoachCareerValue ?? this.teamCoachCareerValue,
         teamTransferTeam: teamTransferTeam ?? this.teamTransferTeam,
+        countriesName: countriesName ?? this.countriesName,
       );
 
   @override
@@ -537,6 +547,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       teamCoachCareerTitle: TextStyle.lerp(teamCoachCareerTitle, other.teamCoachCareerTitle, t)!,
       teamCoachCareerValue: TextStyle.lerp(teamCoachCareerValue, other.teamCoachCareerValue, t)!,
       teamTransferTeam: TextStyle.lerp(teamTransferTeam, other.teamTransferTeam, t)!,
+      countriesName: TextStyle.lerp(countriesName, other.countriesName, t)!,
     );
   }
 }

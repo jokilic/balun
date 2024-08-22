@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import '../models/coaches/coaches_response.dart';
+import '../models/countries/countries_response.dart';
 import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
 import '../models/players/players_response.dart';
@@ -40,3 +41,6 @@ SidelinedResponse parseSidelined(data) => SidelinedResponse.fromMap(data);
 
 Future<TrophiesResponse> computeTrophies(data) async => compute(parseTrophies, data);
 TrophiesResponse parseTrophies(data) => TrophiesResponse.fromMap(data);
+
+Future<CountriesResponse> computeCountries(data) async => compute(parseCountries, data);
+CountriesResponse parseCountries(data) => CountriesResponse.fromMap(data);

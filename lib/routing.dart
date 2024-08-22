@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
+import 'screens/countries/countries_screen.dart';
 import 'screens/fixtures/fixtures_screen.dart';
 import 'screens/league/league_screen.dart';
 import 'screens/match/match_screen.dart';
@@ -13,6 +14,14 @@ import 'util/navigation.dart';
 void openFixtures(BuildContext context) => pushScreen(
       const FixturesScreen(
         key: ValueKey('fixtures'),
+      ),
+      context: context,
+    );
+
+/// Opens [CountriesScreen]
+void openCountries(BuildContext context) => pushScreen(
+      const CountriesScreen(
+        key: ValueKey('countries'),
       ),
       context: context,
     );

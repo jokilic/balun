@@ -7,64 +7,64 @@ import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
 import '../../widgets/balun_navigation_bar.dart';
-import 'fixtures_controller.dart';
-import 'widgets/fixtures_content.dart';
+import 'countries_controller.dart';
+import 'widgets/countries_content.dart';
 
-class FixturesScreen extends WatchingStatefulWidget {
-  const FixturesScreen({required super.key});
+class CountriesScreen extends WatchingStatefulWidget {
+  const CountriesScreen({required super.key});
 
   @override
-  State<FixturesScreen> createState() => _FixturesScreenState();
+  State<CountriesScreen> createState() => _CountriesScreenState();
 }
 
-class _FixturesScreenState extends State<FixturesScreen> {
+class _CountriesScreenState extends State<CountriesScreen> {
   @override
   void initState() {
     super.initState();
 
-    if (!getIt.isRegistered<FixturesController>(instanceName: 'fixtures')) {
+    if (!getIt.isRegistered<CountriesController>(instanceName: 'countries')) {
       getIt.registerLazySingleton(
-        () => FixturesController(
+        () => CountriesController(
           logger: getIt.get<LoggerService>(),
           api: getIt.get<APIService>(),
         ),
-        instanceName: 'fixtures',
+        instanceName: 'countries',
       );
 
       getIt
-          .get<FixturesController>(
-            instanceName: 'fixtures',
+          .get<CountriesController>(
+            instanceName: 'countries',
           )
-          .getFixtures();
+          .getCountries();
     }
   }
 
   // @override
   // void dispose() {
-  //   getIt.unregister<FixturesController>(
-  //     instanceName: 'fixtures',
+  //   getIt.unregister<CountriesController>(
+  //     instanceName: 'countries',
   //   );
   //   super.dispose();
   // }
 
   @override
   Widget build(BuildContext context) {
-    final fixturesState = watchIt<FixturesController>(
-      instanceName: 'fixtures',
+    final countriesState = watchIt<CountriesController>(
+      instanceName: 'countries',
     ).value;
 
     return Scaffold(
       bottomNavigationBar: BalunNavigationBar(),
       body: Animate(
-        key: ValueKey(fixturesState),
+        key: ValueKey(countriesState),
         effects: const [
           FadeEffect(
             curve: Curves.easeIn,
             duration: BalunConstants.animationDuration,
           ),
         ],
-        child: FixturesContent(
-          fixturesState: fixturesState,
+        child: CountriesContent(
+          countriesState: countriesState,
         ),
       ),
     );
