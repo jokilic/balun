@@ -10,7 +10,7 @@ import 'fixtures_list_tile_minute.dart';
 
 class FixturesListTile extends StatelessWidget {
   final FixtureResponse fixture;
-  final Function() fixturePressed;
+  final Function()? fixturePressed;
 
   const FixturesListTile({
     required this.fixture,

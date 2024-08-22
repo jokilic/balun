@@ -12,19 +12,27 @@ class FixturesSuccess extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: fixtures.length,
-        itemBuilder: (_, index) {
-          final fixture = fixtures[index];
+  Widget build(BuildContext context) => Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: fixtures.length,
+              itemBuilder: (_, index) {
+                final fixture = fixtures[index];
 
-          return FixturesListTile(
-            fixture: fixture,
-            fixturePressed: () => openMatch(
-              context,
-              matchId: fixture.fixture!.id!,
+                return FixturesListTile(
+                  fixture: fixture,
+                  fixturePressed: fixture.fixture?.id != null
+                      ? () => openMatch(
+                            context,
+                            matchId: fixture.fixture!.id!,
+                          )
+                      : null,
+                );
+              },
             ),
-          );
-        },
+          ),
+        ],
       );
 }

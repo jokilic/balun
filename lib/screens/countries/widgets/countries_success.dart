@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/countries/country_response.dart';
+import '../../../routing.dart';
 import 'countries_list_tile.dart';
 
 class CountriesSuccess extends StatelessWidget {
@@ -19,7 +20,12 @@ class CountriesSuccess extends StatelessWidget {
 
           return CountriesListTile(
             country: country,
-            countryPressed: () {},
+            countryPressed: country.name != null
+                ? () => openLeagues(
+                      context,
+                      country: country.name!,
+                    )
+                : null,
           );
         },
       );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../screens/countries/countries_screen.dart';
 import '../screens/fixtures/fixtures_screen.dart';
+import '../screens/search/search_screen.dart';
 import '../util/dependencies.dart';
 import '../widgets/balun_loader.dart';
 import 'balun_navigation_bar_service.dart';
@@ -29,8 +30,8 @@ class BalunScreenService extends ValueNotifier<Widget> {
         BalunNavigationBarEnum.countries => const CountriesScreen(
             key: ValueKey('countries'),
           ),
-        BalunNavigationBarEnum.search => Container(
-            color: Colors.indigo,
+        BalunNavigationBarEnum.search => const SearchScreen(
+            key: ValueKey('search'),
           ),
       };
 }

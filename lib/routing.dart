@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'screens/countries/countries_screen.dart';
 import 'screens/fixtures/fixtures_screen.dart';
 import 'screens/league/league_screen.dart';
+import 'screens/leagues/leagues_screen.dart';
 import 'screens/match/match_screen.dart';
 import 'screens/player/player_screen.dart';
+import 'screens/search/search_screen.dart';
 import 'screens/team/team_screen.dart';
 import 'util/navigation.dart';
 
@@ -22,6 +24,23 @@ void openFixtures(BuildContext context) => pushScreen(
 void openCountries(BuildContext context) => pushScreen(
       const CountriesScreen(
         key: ValueKey('countries'),
+      ),
+      context: context,
+    );
+
+/// Opens [SearchScreen]
+void openSearch(BuildContext context) => pushScreen(
+      const SearchScreen(
+        key: ValueKey('search'),
+      ),
+      context: context,
+    );
+
+/// Opens [LeaguesScreen]
+void openLeagues(BuildContext context, {required String country}) => pushScreen(
+      LeaguesScreen(
+        country: country,
+        key: ValueKey(country),
       ),
       context: context,
     );

@@ -8,7 +8,7 @@ import '../../../models/countries/country_response.dart';
 
 class CountriesListTile extends StatelessWidget {
   final CountryResponse country;
-  final Function() countryPressed;
+  final Function()? countryPressed;
 
   const CountriesListTile({
     required this.country,
