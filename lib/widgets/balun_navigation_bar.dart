@@ -14,7 +14,7 @@ class BalunNavigationBar extends WatchingWidget {
           top: Radius.circular(32),
         ),
         child: NavigationBar(
-          backgroundColor: context.colors.green.withOpacity(0.25),
+          backgroundColor: context.colors.green.withOpacity(0.5),
           elevation: 0,
           indicatorColor: Colors.transparent,
           labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
@@ -30,14 +30,14 @@ class BalunNavigationBar extends WatchingWidget {
             NavigationDestination(
               icon: Image.asset(
                 BalunIcons.ball,
-                height: 28,
-                width: 28,
-                color: context.colors.white.withOpacity(0.3),
+                height: 26,
+                width: 26,
+                color: context.colors.white.withOpacity(0.2),
               ),
               selectedIcon: Image.asset(
                 BalunIcons.ball,
-                height: 28,
-                width: 28,
+                height: 26,
+                width: 26,
                 color: context.colors.white,
               ),
               label: '',
@@ -49,14 +49,14 @@ class BalunNavigationBar extends WatchingWidget {
             NavigationDestination(
               icon: Image.asset(
                 BalunIcons.globe,
-                height: 28,
-                width: 28,
-                color: context.colors.white.withOpacity(0.3),
+                height: 26,
+                width: 26,
+                color: context.colors.white.withOpacity(0.2),
               ),
               selectedIcon: Image.asset(
                 BalunIcons.globe,
-                height: 28,
-                width: 28,
+                height: 26,
+                width: 26,
                 color: context.colors.white,
               ),
               label: '',
@@ -68,14 +68,14 @@ class BalunNavigationBar extends WatchingWidget {
             NavigationDestination(
               icon: Image.asset(
                 BalunIcons.search,
-                height: 28,
-                width: 28,
-                color: context.colors.white.withOpacity(0.3),
+                height: 26,
+                width: 26,
+                color: context.colors.white.withOpacity(0.2),
               ),
               selectedIcon: Image.asset(
                 BalunIcons.search,
-                height: 28,
-                width: 28,
+                height: 26,
+                width: 26,
                 color: context.colors.white,
               ),
               label: '',

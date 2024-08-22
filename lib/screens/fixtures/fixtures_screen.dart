@@ -7,7 +7,8 @@ import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
 import '../../widgets/balun_navigation_bar.dart';
-import 'fixtures_controller.dart';
+import 'controllers/fixtures_controller.dart';
+import 'controllers/fixtures_date_controller.dart';
 import 'widgets/fixtures_content.dart';
 
 class FixturesScreen extends WatchingStatefulWidget {
@@ -18,18 +19,30 @@ class FixturesScreen extends WatchingStatefulWidget {
 }
 
 class _FixturesScreenState extends State<FixturesScreen> {
+  late final DateTime now;
+
   @override
   void initState() {
     super.initState();
 
+    now = DateTime.now();
+
     if (!getIt.isRegistered<FixturesController>(instanceName: 'fixtures')) {
-      getIt.registerLazySingleton(
-        () => FixturesController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: 'fixtures',
-      );
+      getIt
+        ..registerLazySingleton(
+          () => FixturesController(
+            logger: getIt.get<LoggerService>(),
+            api: getIt.get<APIService>(),
+          ),
+          instanceName: 'fixtures',
+        )
+        ..registerLazySingleton(
+          () => FixturesDateController(
+            logger: getIt.get<LoggerService>(),
+            now: now,
+          ),
+          instanceName: 'fixtures',
+        );
 
       getIt
           .get<FixturesController>(
@@ -41,9 +54,14 @@ class _FixturesScreenState extends State<FixturesScreen> {
 
   // @override
   // void dispose() {
-  //   getIt.unregister<FixturesController>(
-  //     instanceName: 'fixtures',
-  //   );
+  //   getIt
+  //     ..unregister<FixturesController>(
+  //       instanceName: 'fixtures',
+  //     )
+  //     ..unregister<FixturesDateController>(
+  //       instanceName: 'fixtures',
+  //     );
+
   //   super.dispose();
   // }
 
@@ -55,16 +73,19 @@ class _FixturesScreenState extends State<FixturesScreen> {
 
     return Scaffold(
       bottomNavigationBar: BalunNavigationBar(),
-      body: Animate(
-        key: ValueKey(fixturesState),
-        effects: const [
-          FadeEffect(
-            curve: Curves.easeIn,
-            duration: BalunConstants.animationDuration,
+      body: SafeArea(
+        child: Animate(
+          key: ValueKey(fixturesState),
+          effects: const [
+            FadeEffect(
+              curve: Curves.easeIn,
+              duration: BalunConstants.animationDuration,
+            ),
+          ],
+          child: FixturesContent(
+            fixturesState: fixturesState,
+            now: now,
           ),
-        ],
-        child: FixturesContent(
-          fixturesState: fixturesState,
         ),
       ),
     );
