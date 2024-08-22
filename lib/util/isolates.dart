@@ -9,6 +9,7 @@ import '../models/squads/squads_response.dart';
 import '../models/standings/standings_response.dart';
 import '../models/teams/teams_response.dart';
 import '../models/transfers/transfers_response.dart';
+import '../models/trophies/trophies_response.dart';
 
 Future<FixturesResponse> computeFixtures(data) async => compute(parseFixtures, data);
 FixturesResponse parseFixtures(data) => FixturesResponse.fromMap(data);
@@ -36,3 +37,6 @@ TransfersResponse parseTransfers(data) => TransfersResponse.fromMap(data);
 
 Future<SidelinedResponse> computeSidelined(data) async => compute(parseSidelined, data);
 SidelinedResponse parseSidelined(data) => SidelinedResponse.fromMap(data);
+
+Future<TrophiesResponse> computeTrophies(data) async => compute(parseTrophies, data);
+TrophiesResponse parseTrophies(data) => TrophiesResponse.fromMap(data);

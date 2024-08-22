@@ -24,12 +24,6 @@ A simple Flutter application for football scores.
 * Main screen, part of the navigation
 * Think about how to approach this
 
-### `PlayerScreen`
-
-* Transfers player
-* Sidelined player
-* Trophies player
-
 ### `CoachScreen`
 
 * Coach from ID

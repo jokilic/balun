@@ -6,6 +6,7 @@ import 'sections/info/player_info_section.dart';
 import 'sections/sidelined/player_sidelined_section.dart';
 import 'sections/statistics/player_statistics_section.dart';
 import 'sections/transfers/player_transfers_section.dart';
+import 'sections/trophies/player_trophies_section.dart';
 
 class PlayerActiveSection extends StatelessWidget {
   final PlayerResponse player;
@@ -48,6 +49,8 @@ class PlayerActiveSection extends StatelessWidget {
         PlayerSection(
           playerSectionEnum: PlayerSectionEnum.trophies,
         ) =>
-          Container(),
+          PlayerTrophiesSection(
+            playerId: player.player?.id,
+          ),
       };
 }

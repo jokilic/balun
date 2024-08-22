@@ -10,6 +10,7 @@ import '../models/squads/squads_response.dart';
 import '../models/standings/standings_response.dart';
 import '../models/teams/teams_response.dart';
 import '../models/transfers/transfers_response.dart';
+import '../models/trophies/trophies_response.dart';
 import '../util/isolates.dart';
 import 'logger_service.dart';
 
@@ -876,6 +877,49 @@ class APIService {
         mainError: '$e',
       );
       return (sidelinedResponse: null, error: error);
+    }
+  }
+
+  ///
+  /// `/trophies`
+  ///
+
+  Future<({TrophiesResponse? trophiesResponse, String? error})> getTrophiesFromPlayer({
+    required int playerId,
+  }) async {
+    try {
+      final response = await dio.get(
+        '/trophies',
+        queryParameters: {
+          'player': playerId,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+          try {
+            final parsedResponse = await computeTrophies(response.data);
+            return (trophiesResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getTrophiesFromPlayer -> parsing error -> $e';
+            logger.e(error);
+            return (trophiesResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getTrophiesFromPlayer -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (trophiesResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getTrophiesFromPlayer',
+        mainError: '$e',
+      );
+      return (trophiesResponse: null, error: error);
     }
   }
 

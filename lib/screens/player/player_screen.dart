@@ -12,6 +12,7 @@ import 'controllers/player_section_controller.dart';
 import 'controllers/player_sidelined_controller.dart';
 import 'controllers/player_statistics_controller.dart';
 import 'controllers/player_transfers_controller.dart';
+import 'controllers/player_trophies_controller.dart';
 import 'widgets/player_content.dart';
 
 class PlayerScreen extends WatchingStatefulWidget {
@@ -62,6 +63,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
         instanceName: '${widget.playerId}',
       )
       ..registerLazySingleton(
+        () => PlayerTrophiesController(
+          logger: getIt.get<LoggerService>(),
+          api: getIt.get<APIService>(),
+        ),
+        instanceName: '${widget.playerId}',
+      )
+      ..registerLazySingleton(
         () => PlayerSeasonController(
           logger: getIt.get<LoggerService>(),
           api: getIt.get<APIService>(),
@@ -104,6 +112,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
         instanceName: '${widget.playerId}',
       )
       ..unregister<PlayerSidelinedController>(
+        instanceName: '${widget.playerId}',
+      )
+      ..unregister<PlayerTrophiesController>(
         instanceName: '${widget.playerId}',
       )
       ..unregister<PlayerSeasonController>(
