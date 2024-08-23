@@ -27,10 +27,9 @@ class CountriesListTile extends StatelessWidget {
           child: Row(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(6),
                 child: BalunImage(
                   imageUrl: country.flag ?? BalunImages.placeholderLogo,
-                  height: 56,
                   width: 56,
                 ),
               ),

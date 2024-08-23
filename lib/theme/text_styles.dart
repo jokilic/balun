@@ -288,7 +288,7 @@ abstract class BalunTextStyles {
   static const countriesName = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 20,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w600,
   );
 
   static const fixtureDatePickerActive = TextStyle(
