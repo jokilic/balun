@@ -18,10 +18,12 @@ class FixturesController extends ValueNotifier<BalunState<List<FixtureResponse>>
   /// METHODS
   ///
 
-  Future<void> getFixtures() async {
+  Future<void> getFixturesFromDate({required String dateString}) async {
     value = Loading();
 
-    final response = await api.getFixtures();
+    final response = await api.getFixturesFromDate(
+      dateString: dateString,
+    );
 
     /// Successful request
     if (response.fixturesResponse != null && response.error == null) {

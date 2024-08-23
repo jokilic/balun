@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:intl/intl.dart';
 
 import '../models/coaches/coaches_response.dart';
 import '../models/countries/countries_response.dart';
@@ -68,14 +69,14 @@ class APIService {
   /// `/fixtures`
   ///
 
-  Future<({FixturesResponse? fixturesResponse, String? error})> getFixtures() async {
+  Future<({FixturesResponse? fixturesResponse, String? error})> getFixturesFromDate({
+    required String dateString,
+  }) async {
     try {
       final response = await dio.get(
         '/fixtures',
         queryParameters: {
-          // TODO: Implement this properly
-          // 'live': 'all',
-          'last': 15,
+          'date': dateString,
         },
       );
 

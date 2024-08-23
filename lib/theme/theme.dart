@@ -173,6 +173,12 @@ class BalunTheme {
     countriesName: BalunTextStyles.countriesName.copyWith(
       color: lightAppColors.black.withOpacity(0.5),
     ),
+    fixtureDatePickerActive: BalunTextStyles.fixtureDatePickerActive.copyWith(
+      color: lightAppColors.green.withOpacity(0.5),
+    ),
+    fixtureDatePickerInactive: BalunTextStyles.fixtureDatePickerInactive.copyWith(
+      color: lightAppColors.white,
+    ),
   );
 }
 

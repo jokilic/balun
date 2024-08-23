@@ -290,6 +290,18 @@ abstract class BalunTextStyles {
     fontSize: 20,
     fontWeight: FontWeight.w400,
   );
+
+  static const fixtureDatePickerActive = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+  );
+
+  static const fixtureDatePickerInactive = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -340,6 +352,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle teamCoachCareerValue;
   final TextStyle teamTransferTeam;
   final TextStyle countriesName;
+  final TextStyle fixtureDatePickerActive;
+  final TextStyle fixtureDatePickerInactive;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -389,6 +403,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.teamCoachCareerValue,
     required this.teamTransferTeam,
     required this.countriesName,
+    required this.fixtureDatePickerActive,
+    required this.fixtureDatePickerInactive,
   });
 
   @override
@@ -440,6 +456,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? teamCoachCareerValue,
     TextStyle? teamTransferTeam,
     TextStyle? countriesName,
+    TextStyle? fixtureDatePickerActive,
+    TextStyle? fixtureDatePickerInactive,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -489,6 +507,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         teamCoachCareerValue: teamCoachCareerValue ?? this.teamCoachCareerValue,
         teamTransferTeam: teamTransferTeam ?? this.teamTransferTeam,
         countriesName: countriesName ?? this.countriesName,
+        fixtureDatePickerActive: fixtureDatePickerActive ?? this.fixtureDatePickerActive,
+        fixtureDatePickerInactive: fixtureDatePickerInactive ?? this.fixtureDatePickerInactive,
       );
 
   @override
@@ -548,6 +568,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       teamCoachCareerValue: TextStyle.lerp(teamCoachCareerValue, other.teamCoachCareerValue, t)!,
       teamTransferTeam: TextStyle.lerp(teamTransferTeam, other.teamTransferTeam, t)!,
       countriesName: TextStyle.lerp(countriesName, other.countriesName, t)!,
+      fixtureDatePickerActive: TextStyle.lerp(fixtureDatePickerActive, other.fixtureDatePickerActive, t)!,
+      fixtureDatePickerInactive: TextStyle.lerp(fixtureDatePickerInactive, other.fixtureDatePickerInactive, t)!,
     );
   }
 }

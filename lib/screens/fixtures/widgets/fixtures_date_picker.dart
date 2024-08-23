@@ -1,78 +1,130 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:watch_it/watch_it.dart';
 
 import '../../../theme/theme.dart';
+import '../../../util/dependencies.dart';
+import '../../../widgets/balun_button.dart';
+import '../controllers/fixtures_date_controller.dart';
 
-class FixturesDatePicker extends StatefulWidget {
-  final DateTime now;
+class FixturesDatePicker extends WatchingWidget {
+  final DateTime currentDate;
 
   const FixturesDatePicker({
-    required this.now,
+    required this.currentDate,
   });
 
   @override
-  State<FixturesDatePicker> createState() => _FixturesDatePickerState();
-}
+  Widget build(BuildContext context) {
+    final activeDate = watchIt<FixturesDateController>(
+      instanceName: 'fixtures',
+    ).value;
 
-class _FixturesDatePickerState extends State<FixturesDatePicker> {
-  late final CarouselController controller;
+    return SizedBox(
+      height: 80,
+      child: PageView(
+        controller: getIt
+            .get<FixturesDateController>(
+              instanceName: 'fixtures',
+            )
+            .controller,
+        physics: const BouncingScrollPhysics(),
+        children: [
+          ///
+          /// CHOOSE CUSTOM DATE
+          ///
+          BalunButton(
+            onPressed: () => getIt
+                .get<FixturesDateController>(
+                  instanceName: 'fixtures',
+                )
+                .updateDateViaPickerAndRefetch(context),
+            child: Container(
+              margin: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: context.colors.green.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.calendar_month_rounded,
+                  size: 28,
+                  color: context.colors.white,
+                ),
+              ),
+            ),
+          ),
 
-  @override
-  void initState() {
-    super.initState();
-    controller = CarouselController(initialItem: 3);
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) => SizedBox(
-        height: 80,
-        child: PageView(
-          // controller: controller,
-          // elevation: 0,
-          // onTap: (value) => getIt
-          //     .get<FixturesDateController>(
-          //       instanceName: 'fixtures',
-          //     )
-          //     .updateDate(value),
-          // overlayColor: const WidgetStatePropertyAll(Colors.transparent),
-          // itemSnapping: true,
-          // padding: EdgeInsets.zero,
-          // shape: RoundedRectangleBorder(
-          //   borderRadius: BorderRadius.circular(8),
-          // ),
-          // backgroundColor: Colors.transparent,
-          // itemExtent: 144,
-          children: List.generate(
+          ///
+          /// DATES
+          ///
+          ...List.generate(
             7,
             (index) {
-              final date = widget.now.add(Duration(days: index - 3));
-
-              return Container(
-                margin: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: index == 3 ? context.colors.white : context.colors.green.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(100),
+              final date = currentDate.add(
+                Duration(
+                  days: index -
+                      getIt
+                          .get<FixturesDateController>(
+                            instanceName: 'fixtures',
+                          )
+                          .initialPage,
                 ),
-                child: Center(
-                  child: Text(
-                    DateFormat('d MMM').format(date).toUpperCase(),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: index == 3 ? context.colors.green.withOpacity(0.5) : context.colors.white,
-                      fontSize: 16,
-                      fontWeight: index == 3 ? FontWeight.bold : null,
+              );
+
+              return BalunButton(
+                onPressed: () => getIt
+                    .get<FixturesDateController>(
+                      instanceName: 'fixtures',
+                    )
+                    .updateDateAndRefetch(index),
+                child: Container(
+                  margin: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: activeDate == date ? context.colors.white : context.colors.green.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Center(
+                    child: Text(
+                      DateFormat('d MMM').format(date).toUpperCase(),
+                      style: activeDate == date ? context.textStyles.fixtureDatePickerActive : context.textStyles.fixtureDatePickerInactive,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
               );
             },
           ),
-        ),
-      );
+
+          ///
+          /// CHOOSE CUSTOM DATE
+          ///
+          BalunButton(
+            onPressed: () => getIt
+                .get<FixturesDateController>(
+                  instanceName: 'fixtures',
+                )
+                .updateDateViaPickerAndRefetch(context),
+            child: Container(
+              margin: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: context.colors.green.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.calendar_month_rounded,
+                  size: 28,
+                  color: context.colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

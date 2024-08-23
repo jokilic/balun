@@ -10,6 +10,7 @@ import '../../widgets/balun_navigation_bar.dart';
 import 'controllers/fixtures_controller.dart';
 import 'controllers/fixtures_date_controller.dart';
 import 'widgets/fixtures_content.dart';
+import 'widgets/fixtures_date_picker.dart';
 
 class FixturesScreen extends WatchingStatefulWidget {
   const FixturesScreen({required super.key});
@@ -19,13 +20,14 @@ class FixturesScreen extends WatchingStatefulWidget {
 }
 
 class _FixturesScreenState extends State<FixturesScreen> {
-  late final DateTime now;
+  late final DateTime currentDate;
 
   @override
   void initState() {
     super.initState();
 
-    now = DateTime.now();
+    final now = DateTime.now();
+    currentDate = DateTime(now.year, now.month, now.day);
 
     if (!getIt.isRegistered<FixturesController>(instanceName: 'fixtures')) {
       getIt
@@ -39,7 +41,7 @@ class _FixturesScreenState extends State<FixturesScreen> {
         ..registerLazySingleton(
           () => FixturesDateController(
             logger: getIt.get<LoggerService>(),
-            now: now,
+            currentDate: currentDate,
           ),
           instanceName: 'fixtures',
         );
@@ -48,7 +50,13 @@ class _FixturesScreenState extends State<FixturesScreen> {
           .get<FixturesController>(
             instanceName: 'fixtures',
           )
-          .getFixtures();
+          .getFixturesFromDate(
+            dateString: getIt
+                .get<FixturesDateController>(
+                  instanceName: 'fixtures',
+                )
+                .getDateForBackend(),
+          );
     }
   }
 
@@ -74,18 +82,32 @@ class _FixturesScreenState extends State<FixturesScreen> {
     return Scaffold(
       bottomNavigationBar: BalunNavigationBar(),
       body: SafeArea(
-        child: Animate(
-          key: ValueKey(fixturesState),
-          effects: const [
-            FadeEffect(
-              curve: Curves.easeIn,
-              duration: BalunConstants.animationDuration,
+        child: Column(
+          children: [
+            ///
+            /// DATE PICKER
+            ///
+            FixturesDatePicker(currentDate: currentDate),
+
+            ///
+            /// CONTENT
+            ///
+            Expanded(
+              child: Animate(
+                key: ValueKey(fixturesState),
+                effects: const [
+                  FadeEffect(
+                    curve: Curves.easeIn,
+                    duration: BalunConstants.animationDuration,
+                  ),
+                ],
+                child: FixturesContent(
+                  fixturesState: fixturesState,
+                  currentDate: currentDate,
+                ),
+              ),
             ),
           ],
-          child: FixturesContent(
-            fixturesState: fixturesState,
-            now: now,
-          ),
         ),
       ),
     );
