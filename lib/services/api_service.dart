@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:intl/intl.dart';
 
 import '../models/coaches/coaches_response.dart';
 import '../models/countries/countries_response.dart';
@@ -18,12 +17,14 @@ import 'logger_service.dart';
 
 class APIService {
   final LoggerService logger;
-  final Dio dio;
+  final Dio noCacheDio;
+  final Dio cacheDio;
   final InternetConnection internetConnection;
 
   APIService({
     required this.logger,
-    required this.dio,
+    required this.noCacheDio,
+    required this.cacheDio,
     required this.internetConnection,
   });
 
@@ -33,7 +34,7 @@ class APIService {
 
   Future<({CountriesResponse? countriesResponse, String? error})> getCountries() async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/countries',
       );
 
@@ -41,6 +42,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeCountries(response.data);
             return (countriesResponse: parsedResponse, error: null);
@@ -73,10 +75,13 @@ class APIService {
     required String dateString,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await noCacheDio.get(
         '/fixtures',
         queryParameters: {
-          'date': dateString,
+          // 'date': dateString,
+          // TODO: Remove this below and potentially filter by leagues
+          // 'next': 5,
+          'last': 5,
         },
       );
 
@@ -84,6 +89,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeFixtures(response.data);
             return (fixturesResponse: parsedResponse, error: null);
@@ -113,7 +119,7 @@ class APIService {
     required int season,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/fixtures',
         queryParameters: {
           'league': leagueId,
@@ -125,6 +131,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeFixtures(response.data);
             return (fixturesResponse: parsedResponse, error: null);
@@ -153,7 +160,7 @@ class APIService {
     required int matchId,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await noCacheDio.get(
         '/fixtures',
         queryParameters: {
           'id': matchId,
@@ -164,6 +171,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeFixtures(response.data);
             return (fixturesResponse: parsedResponse, error: null);
@@ -197,7 +205,7 @@ class APIService {
     required int awayTeamId,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/fixtures/headtohead',
         queryParameters: {
           'h2h': '$homeTeamId-$awayTeamId',
@@ -208,6 +216,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeFixtures(response.data);
             return (head2HeadResponse: parsedResponse, error: null);
@@ -240,7 +249,7 @@ class APIService {
     required int teamId,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/teams',
         queryParameters: {
           'id': teamId,
@@ -251,6 +260,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeTeams(response.data);
             return (teamsResponse: parsedResponse, error: null);
@@ -280,7 +290,7 @@ class APIService {
     required int season,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/teams',
         queryParameters: {
           'league': leagueId,
@@ -292,6 +302,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeTeams(response.data);
             return (teamsResponse: parsedResponse, error: null);
@@ -325,7 +336,7 @@ class APIService {
     required int season,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/standings',
         queryParameters: {
           'league': leagueId,
@@ -337,6 +348,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeStandings(response.data);
             return (standingsResponse: parsedResponse, error: null);
@@ -366,7 +378,7 @@ class APIService {
     required int season,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/standings',
         queryParameters: {
           'team': teamId,
@@ -378,6 +390,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeStandings(response.data);
             return (standingsResponse: parsedResponse, error: null);
@@ -410,7 +423,7 @@ class APIService {
     required int leagueId,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/leagues',
         queryParameters: {
           'id': leagueId,
@@ -421,6 +434,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeLeagues(response.data);
             return (leaguesResponse: parsedResponse, error: null);
@@ -449,7 +463,7 @@ class APIService {
     required int teamId,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/leagues',
         queryParameters: {
           'team': teamId,
@@ -460,6 +474,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeLeagues(response.data);
             return (leaguesResponse: parsedResponse, error: null);
@@ -493,7 +508,7 @@ class APIService {
     required int season,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/players',
         queryParameters: {
           'id': playerId,
@@ -505,6 +520,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computePlayers(response.data);
             return (playersResponse: parsedResponse, error: null);
@@ -537,7 +553,7 @@ class APIService {
     required int teamId,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/players/squads',
         queryParameters: {
           'team': teamId,
@@ -548,6 +564,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeSquads(response.data);
             return (squadsResponse: parsedResponse, error: null);
@@ -581,7 +598,7 @@ class APIService {
     required int season,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/players/topscorers',
         queryParameters: {
           'league': leagueId,
@@ -593,6 +610,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computePlayers(response.data);
             return (playersResponse: parsedResponse, error: null);
@@ -626,7 +644,7 @@ class APIService {
     required int season,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/players/topassists',
         queryParameters: {
           'league': leagueId,
@@ -638,6 +656,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computePlayers(response.data);
             return (playersResponse: parsedResponse, error: null);
@@ -671,7 +690,7 @@ class APIService {
     required int season,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/players/topyellowcards',
         queryParameters: {
           'league': leagueId,
@@ -683,6 +702,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computePlayers(response.data);
             return (playersResponse: parsedResponse, error: null);
@@ -716,7 +736,7 @@ class APIService {
     required int season,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/players/topredcards',
         queryParameters: {
           'league': leagueId,
@@ -728,6 +748,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computePlayers(response.data);
             return (playersResponse: parsedResponse, error: null);
@@ -760,7 +781,7 @@ class APIService {
     required int teamId,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/coachs',
         queryParameters: {
           'team': teamId,
@@ -771,6 +792,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeCoaches(response.data);
             return (coachesResponse: parsedResponse, error: null);
@@ -803,7 +825,7 @@ class APIService {
     required int teamId,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/transfers',
         queryParameters: {
           'team': teamId,
@@ -814,6 +836,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeTransfers(response.data);
             return (transfersResponse: parsedResponse, error: null);
@@ -842,7 +865,7 @@ class APIService {
     required int playerId,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/transfers',
         queryParameters: {
           'player': playerId,
@@ -853,6 +876,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeTransfers(response.data);
             return (transfersResponse: parsedResponse, error: null);
@@ -885,7 +909,7 @@ class APIService {
     required int playerId,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/sidelined',
         queryParameters: {
           'player': playerId,
@@ -896,6 +920,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeSidelined(response.data);
             return (sidelinedResponse: parsedResponse, error: null);
@@ -928,7 +953,7 @@ class APIService {
     required int playerId,
   }) async {
     try {
-      final response = await dio.get(
+      final response = await cacheDio.get(
         '/trophies',
         queryParameters: {
           'player': playerId,
@@ -939,6 +964,7 @@ class APIService {
       switch (response.statusCode) {
         /// Response is successful
         case 200:
+        case 304:
           try {
             final parsedResponse = await computeTrophies(response.data);
             return (trophiesResponse: parsedResponse, error: null);

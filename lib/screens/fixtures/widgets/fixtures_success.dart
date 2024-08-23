@@ -15,6 +15,7 @@ class FixturesSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView.builder(
+        padding: const EdgeInsets.symmetric(vertical: 16),
         physics: const BouncingScrollPhysics(),
         itemCount: fixtures.length,
         itemBuilder: (_, index) {

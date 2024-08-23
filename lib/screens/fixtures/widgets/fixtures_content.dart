@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../util/state.dart';
 import '../../../widgets/balun_error.dart';
 import '../../../widgets/balun_loader.dart';
-import 'fixtures_date_picker.dart';
 import 'fixtures_success.dart';
 
 class FixturesContent extends StatelessWidget {

@@ -49,8 +49,12 @@ class LoggerService {
 
 class DioLoggerInterceptor implements Interceptor {
   final LoggerService logger;
+  final bool isCached;
 
-  DioLoggerInterceptor(this.logger);
+  DioLoggerInterceptor({
+    required this.logger,
+    required this.isCached,
+  });
 
   ///
   /// METHODS
@@ -69,7 +73,7 @@ class DioLoggerInterceptor implements Interceptor {
     final requestData = '${exception.requestOptions.data}';
 
     logger
-      ..e('❌ ERROR FETCHING RESPONSE ❌')
+      ..e('❌ ERROR FETCHING${isCached ? ' CACHED' : ''} RESPONSE ❌')
       ..e('--------------------')
       ..e('Endpoint: $endpoint')
       ..e('HTTP Method: $httpMethod')
@@ -93,7 +97,7 @@ class DioLoggerInterceptor implements Interceptor {
     final jsonResponse = jsonEncode(response.data);
 
     logger
-      ..t('✅ RESPONSE SUCCESSFULLY FETCHED ✅')
+      ..t('✅${isCached ? ' CACHED' : ''} RESPONSE SUCCESSFULLY FETCHED ✅')
       ..t('--------------------')
       ..t('Endpoint: $endpoint')
       ..t('HTTP Method: $httpMethod')

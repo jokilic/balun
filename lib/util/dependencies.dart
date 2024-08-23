@@ -14,15 +14,20 @@ void initializeServices() => getIt
     () async => LoggerService(),
   )
   ..registerSingletonAsync(
-    () async => DioService(
-      getIt.get<LoggerService>(),
-    ),
+    () async {
+      final dio = DioService(
+        logger: getIt.get<LoggerService>(),
+      );
+      await dio.init();
+      return dio;
+    },
     dependsOn: [LoggerService],
   )
   ..registerSingletonAsync(
     () async => APIService(
       logger: getIt.get<LoggerService>(),
-      dio: getIt.get<DioService>().dio,
+      noCacheDio: getIt.get<DioService>().noCacheDio,
+      cacheDio: getIt.get<DioService>().cacheDio,
       internetConnection: InternetConnection(),
     ),
     dependsOn: [LoggerService, DioService],
