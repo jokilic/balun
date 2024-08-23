@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/fixture_response.dart';
-import '../../../../../../util/fixtures.dart';
+import '../../../../../../util/league_fixtures.dart';
 import 'league_fixtures_group.dart';
 
 class LeagueFixturesContent extends StatelessWidget {

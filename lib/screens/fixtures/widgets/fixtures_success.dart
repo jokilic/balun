@@ -6,11 +6,9 @@ import 'fixtures_list_tile/fixtures_list_tile.dart';
 
 class FixturesSuccess extends StatelessWidget {
   final List<FixtureResponse> fixtures;
-  final DateTime currentDate;
 
   const FixturesSuccess({
     required this.fixtures,
-    required this.currentDate,
   });
 
   @override

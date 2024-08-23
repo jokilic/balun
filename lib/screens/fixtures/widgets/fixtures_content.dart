@@ -7,11 +7,9 @@ import 'fixtures_success.dart';
 
 class FixturesContent extends StatelessWidget {
   final BalunState fixturesState;
-  final DateTime currentDate;
 
   const FixturesContent({
     required this.fixturesState,
-    required this.currentDate,
   });
 
 // TODO: Implement all states
@@ -27,7 +25,6 @@ class FixturesContent extends StatelessWidget {
           ),
         Success() => FixturesSuccess(
             fixtures: (fixturesState as Success).data,
-            currentDate: currentDate,
           ),
       };
 }

@@ -103,7 +103,6 @@ class _FixturesScreenState extends State<FixturesScreen> {
                 ],
                 child: FixturesContent(
                   fixturesState: fixturesState,
-                  currentDate: currentDate,
                 ),
               ),
             ),
