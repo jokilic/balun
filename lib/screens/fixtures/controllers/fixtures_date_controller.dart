@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../constants.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/dependencies.dart';
 import 'fixtures_controller.dart';
@@ -18,6 +19,14 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
     controller = PageController(
       initialPage: initialPage,
       viewportFraction: 0.4,
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => controller.animateTo(
+        initialPage * 200,
+        duration: BalunConstants.animationDuration,
+        curve: Curves.easeIn,
+      ),
     );
   }
 
