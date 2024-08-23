@@ -499,6 +499,46 @@ class APIService {
     }
   }
 
+  Future<({LeaguesResponse? leaguesResponse, String? error})> getLeaguesFromCountry({
+    required String country,
+  }) async {
+    try {
+      final response = await cacheDio.get(
+        '/leagues',
+        queryParameters: {
+          'country': country,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+        case 304:
+          try {
+            final parsedResponse = await computeLeagues(response.data);
+            return (leaguesResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getLeaguesFromCountry -> parsing error -> $e';
+            logger.e(error);
+            return (leaguesResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getLeaguesFromCountry -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (leaguesResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getLeaguesFromCountry',
+        mainError: '$e',
+      );
+      return (leaguesResponse: null, error: error);
+    }
+  }
+
   ///
   /// `/players`
   ///

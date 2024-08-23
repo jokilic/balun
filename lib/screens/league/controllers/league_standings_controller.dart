@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/standings/league/league.dart';
+import '../../../models/standings/standing_response.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/state.dart';
 
-class LeagueStandingsController extends ValueNotifier<BalunState<League>> {
+class LeagueStandingsController extends ValueNotifier<BalunState<List<StandingResponse>>> {
   final LoggerService logger;
   final APIService api;
 
@@ -58,7 +58,7 @@ class LeagueStandingsController extends ValueNotifier<BalunState<League>> {
       else if (response.standingsResponse!.response?.isNotEmpty ?? false) {
         fetchedSeason = season;
         value = Success(
-          data: response.standingsResponse!.response!.first.league!,
+          data: response.standingsResponse!.response!,
         );
       }
 

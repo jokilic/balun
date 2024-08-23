@@ -65,6 +65,9 @@ class BalunTheme {
     matchStandingsSectionTitle: BalunTextStyles.matchStandingsSectionTitle.copyWith(
       color: lightAppColors.black,
     ),
+    matchStandingsSectionSubtitle: BalunTextStyles.matchStandingsSectionSubtitle.copyWith(
+      color: lightAppColors.black,
+    ),
     matchStandingsSectionText: BalunTextStyles.matchStandingsSectionText.copyWith(
       color: lightAppColors.black,
     ),
