@@ -1,15 +1,8 @@
+import '../constants.dart';
 import '../models/countries/country_response.dart';
 
 List<CountryResponse> sortCountries(List<CountryResponse> countries) {
-  final posOrder = {
-    'World': 0,
-    'Croatia': 1,
-    'England': 2,
-    'Spain': 3,
-    'Germany': 4,
-    'Italy': 5,
-    'France': 6,
-  };
+  const posOrder = BalunConstants.countriesOrder;
 
   countries.sort((a, b) {
     // Handle null names

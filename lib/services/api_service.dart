@@ -78,10 +78,7 @@ class APIService {
       final response = await noCacheDio.get(
         '/fixtures',
         queryParameters: {
-          // 'date': dateString,
-          // TODO: Remove this below and potentially filter by leagues
-          // 'next': 5,
-          'last': 5,
+          'date': dateString,
         },
       );
 
