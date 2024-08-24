@@ -15,7 +15,7 @@ abstract class BalunTextStyles {
 
   static const fixturesLeague = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: FontWeight.w500,
   );
 

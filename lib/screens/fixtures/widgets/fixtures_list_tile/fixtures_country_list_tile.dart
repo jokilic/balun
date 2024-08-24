@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
 import '../../../../models/fixtures/fixture_response.dart';
-import '../../../../routing.dart';
 import '../../../../theme/theme.dart';
 import '../../../../widgets/balun_button.dart';
-import '../fixtures_list_tile/fixtures_list_tile.dart';
+import 'fixtures_league_list_tile.dart';
 
 class FixturesCountryListTile extends StatefulWidget {
   final String? country;
@@ -72,43 +71,9 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                       final leagueName = widget.leagues?.keys.elementAtOrNull(leagueIndex);
                       final fixtures = widget.leagues?[leagueName];
 
-                      return Column(
-                        children: [
-                          ///
-                          /// LEAGUE TITLE
-                          ///
-                          if (leagueName != null)
-                            Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Text(
-                                leagueName,
-                                style: context.textStyles.fixturesLeague,
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-
-                          ///
-                          /// FIXTURES
-                          ///
-                          ListView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: fixtures?.length,
-                            itemBuilder: (_, fixtureIndex) {
-                              final fixture = fixtures![fixtureIndex];
-
-                              return FixturesListTile(
-                                fixture: fixture,
-                                fixturePressed: fixture.fixture?.id != null
-                                    ? () => openMatch(
-                                          context,
-                                          matchId: fixture.fixture!.id!,
-                                        )
-                                    : null,
-                              );
-                            },
-                          ),
-                        ],
+                      return FixturesLeagueListTile(
+                        leagueName: leagueName,
+                        fixtures: fixtures,
                       );
                     },
                   )
