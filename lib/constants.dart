@@ -6,6 +6,7 @@ class BalunConstants {
   static const shimmerDuration = Duration(milliseconds: 1500);
   static const cacheDuration = Duration(days: 3);
 
+  // TODO: Update this with all values
   static const countriesOrder = {
     'World': 0,
     'Croatia': 1,

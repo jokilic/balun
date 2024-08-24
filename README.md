@@ -30,6 +30,11 @@ A simple Flutter application for football scores.
 * Sidelined coach
 * Trophies coach
 
+### `VenueScreen`
+
+* Think about this
+* Venue from ID
+
 ### General To-Dos
 
 * Localization
