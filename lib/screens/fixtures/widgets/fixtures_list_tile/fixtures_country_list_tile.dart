@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
 import '../../../../models/fixtures/fixture_response.dart';
+import '../../../../models/fixtures/league/league.dart';
 import '../../../../theme/theme.dart';
 import '../../../../widgets/balun_button.dart';
+import '../../../../widgets/balun_image.dart';
 import 'fixtures_league_list_tile.dart';
 
 class FixturesCountryListTile extends StatefulWidget {
-  final String? country;
-  final Map<String, List<FixtureResponse>>? leagues;
+  final League? countryLeague;
+  final Map<League, List<FixtureResponse>>? leagues;
   final bool initiallyExpanded;
 
   const FixturesCountryListTile({
-    required this.country,
+    required this.countryLeague,
     required this.leagues,
     required this.initiallyExpanded,
   });
@@ -44,11 +46,19 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
               ),
               child: Row(
                 children: [
-                  Expanded(
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: BalunImage(
+                      imageUrl: widget.countryLeague?.flag ?? BalunImages.placeholderLogo,
+                      height: 40,
+                      width: 40,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Flexible(
                     child: Text(
-                      widget.country ?? 'Unknown',
+                      widget.countryLeague?.country ?? 'Unknown',
                       style: context.textStyles.fixturesCountry,
-                      textAlign: TextAlign.center,
                     ),
                   ),
                 ],
@@ -66,20 +76,21 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                 ? ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: widget.leagues?.length,
+                    itemCount: widget.leagues?.length ?? 0,
                     itemBuilder: (_, leagueIndex) {
-                      final leagueName = widget.leagues?.keys.elementAtOrNull(leagueIndex);
-                      final fixtures = widget.leagues?[leagueName];
+                      final league = widget.leagues?.keys.elementAtOrNull(leagueIndex);
+                      final fixtures = widget.leagues?[league];
 
                       return FixturesLeagueListTile(
-                        leagueName: leagueName,
+                        league: league,
                         fixtures: fixtures,
+                        initiallyExpanded: BalunConstants.leaguesOrder.keys.contains(league?.id),
                       );
                     },
                   )
                 : const SizedBox.shrink(),
           ),
-          if (expanded) const SizedBox(height: 16),
+          const SizedBox(height: 32),
         ],
       );
 }

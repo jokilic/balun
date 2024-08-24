@@ -16,7 +16,7 @@ class CountriesSuccess extends StatelessWidget {
   Widget build(BuildContext context) {
     final sortedCountries = sortCountries(countries);
 
-    return ListView.builder(
+    return ListView.separated(
       physics: const BouncingScrollPhysics(),
       itemCount: sortedCountries.length,
       itemBuilder: (_, index) {
@@ -32,6 +32,7 @@ class CountriesSuccess extends StatelessWidget {
               : null,
         );
       },
+      separatorBuilder: (_, __) => const SizedBox(height: 4),
     );
   }
 }

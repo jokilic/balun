@@ -77,6 +77,7 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
   Future<void> updateDateViaPickerAndRefetch(BuildContext context) async {
     final oldValue = value;
 
+    // TODO: Update date picker
     value = await showDatePicker(
           context: context,
           firstDate: DateTime(2010),

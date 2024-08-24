@@ -1,32 +1,45 @@
 import '../constants.dart';
 import '../models/fixtures/fixture_response.dart';
+import '../models/fixtures/league/league.dart';
 
-Map<String, Map<String, List<FixtureResponse>>> groupFixtures(
+Map<League, Map<League, List<FixtureResponse>>> groupFixtures(
   List<FixtureResponse> fixtures,
 ) {
-  final groupedData = <String, Map<String, List<FixtureResponse>>>{};
+  final groupedData = <League, Map<League, List<FixtureResponse>>>{};
 
   for (final fixture in fixtures) {
     if (fixture.league != null) {
-      final country = fixture.league!.country ?? 'Unknown';
-      final leagueName = fixture.league!.name ?? 'Unknown';
+      final league = fixture.league!;
 
-      /// Create country group if it doesn't exist
-      groupedData.putIfAbsent(country, () => {});
+      /// Find or create the country entry
+      final countryLeague = groupedData.keys.firstWhere(
+        (key) => key.country == league.country,
+        orElse: () {
+          final newCountryLeague = League(
+            id: -1,
+            country: league.country,
+            flag: league.flag,
+          );
+
+          groupedData[newCountryLeague] = {};
+
+          return newCountryLeague;
+        },
+      );
 
       /// Create league group if it doesn't exist
-      groupedData[country]?.putIfAbsent(leagueName, () => []);
+      groupedData[countryLeague]!.putIfAbsent(league, () => []);
 
-      // Add the current fixture to the appropriate group
-      groupedData[country]?[leagueName]?.add(fixture);
+      /// Add the current fixture to the appropriate group
+      groupedData[countryLeague]![league]!.add(fixture);
     }
   }
 
   return groupedData;
 }
 
-Map<String, Map<String, List<FixtureResponse>>> sortGroupedFixtures(
-  Map<String, Map<String, List<FixtureResponse>>> groupedFixtures,
+Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixtures(
+  Map<League, Map<League, List<FixtureResponse>>> groupedFixtures,
 ) {
   const countryOrder = BalunConstants.countriesOrder;
   const leagueOrder = BalunConstants.leaguesOrder;
@@ -35,10 +48,10 @@ Map<String, Map<String, List<FixtureResponse>>> sortGroupedFixtures(
   final sortedCountries = groupedFixtures.entries.toList()
     ..sort(
       (a, b) {
-        final priorityA = countryOrder[a.key] ?? countryOrder.length;
-        final priorityB = countryOrder[b.key] ?? countryOrder.length;
+        final priorityA = countryOrder[a.key.country] ?? countryOrder.length;
+        final priorityB = countryOrder[b.key.country] ?? countryOrder.length;
 
-        return priorityA != priorityB ? priorityA.compareTo(priorityB) : a.key.compareTo(b.key);
+        return priorityA != priorityB ? priorityA.compareTo(priorityB) : a.key.country!.compareTo(b.key.country!);
       },
     );
 
@@ -49,10 +62,10 @@ Map<String, Map<String, List<FixtureResponse>>> sortGroupedFixtures(
         final sortedLeagues = countryEntry.value.entries.toList()
           ..sort(
             (a, b) {
-              final priorityA = leagueOrder[a.key] ?? leagueOrder.length;
-              final priorityB = leagueOrder[b.key] ?? leagueOrder.length;
+              final priorityA = leagueOrder[a.key.id] ?? leagueOrder.length;
+              final priorityB = leagueOrder[b.key.id] ?? leagueOrder.length;
 
-              return priorityA != priorityB ? priorityA.compareTo(priorityB) : a.key.compareTo(b.key);
+              return priorityA != priorityB ? priorityA.compareTo(priorityB) : a.key.id!.compareTo(b.key.id!);
             },
           );
 

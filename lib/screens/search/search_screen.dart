@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/balun_error.dart';
 import '../../widgets/balun_navigation_bar.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -8,8 +9,8 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         bottomNavigationBar: BalunNavigationBar(),
-        body: Container(
-          color: Colors.cyanAccent,
+        body: const BalunError(
+          error: 'Search is still under construction',
         ),
       );
 }

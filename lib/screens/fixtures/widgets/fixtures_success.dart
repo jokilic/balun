@@ -23,13 +23,15 @@ class FixturesSuccess extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       itemCount: sortedGroupedFixtures.length,
       itemBuilder: (_, countryIndex) {
-        final country = sortedGroupedFixtures.keys.elementAtOrNull(countryIndex);
-        final leagues = sortedGroupedFixtures[country];
+        final countryLeague = sortedGroupedFixtures.keys.elementAtOrNull(countryIndex);
+        final leagues = sortedGroupedFixtures[countryLeague];
 
         return FixturesCountryListTile(
-          country: country,
+          countryLeague: countryLeague,
           leagues: leagues,
-          initiallyExpanded: BalunConstants.countriesOrder.containsKey(country),
+          initiallyExpanded: BalunConstants.countriesOrder.containsKey(
+            countryLeague?.country,
+          ),
         );
       },
     );

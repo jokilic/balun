@@ -7,6 +7,7 @@ class BalunConstants {
   static const cacheDuration = Duration(days: 3);
 
   // TODO: Update this with all values
+  /// Keys are country names from the backend
   static const countriesOrder = {
     'World': 0,
     'Croatia': 1,
@@ -18,10 +19,11 @@ class BalunConstants {
   };
 
   // TODO: Update this with all values
+  /// Keys are league IDs from the backend
   static const leaguesOrder = {
-    'HNL': 0,
-    'World Cup': 1,
-    'Euro Cup': 2,
+    210: 0,
+    33: 1,
+    11: 2,
   };
 }
 

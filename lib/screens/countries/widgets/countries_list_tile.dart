@@ -27,21 +27,20 @@ class CountriesListTile extends StatelessWidget {
           child: Row(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(8),
                 child: BalunImage(
                   imageUrl: country.flag ?? BalunImages.placeholderLogo,
-                  height: 56,
-                  width: 56,
+                  height: 40,
+                  width: 40,
                 ),
               ),
-              const SizedBox(width: 12),
-              if (country.name != null)
-                Expanded(
-                  child: Text(
-                    country.name!,
-                    style: context.textStyles.countriesName,
-                  ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  country.name ?? 'Unknown',
+                  style: context.textStyles.countriesName,
                 ),
+              ),
             ],
           ),
         ),

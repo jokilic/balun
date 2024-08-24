@@ -2,18 +2,22 @@ import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
 import '../../../../models/fixtures/fixture_response.dart';
+import '../../../../models/fixtures/league/league.dart';
 import '../../../../routing.dart';
 import '../../../../theme/theme.dart';
 import '../../../../widgets/balun_button.dart';
+import '../../../../widgets/balun_image.dart';
 import 'fixtures_list_tile.dart';
 
 class FixturesLeagueListTile extends StatefulWidget {
-  final String? leagueName;
+  final League? league;
   final List<FixtureResponse>? fixtures;
+  final bool initiallyExpanded;
 
   const FixturesLeagueListTile({
-    required this.leagueName,
+    required this.league,
     required this.fixtures,
+    required this.initiallyExpanded,
   });
 
   @override
@@ -21,7 +25,7 @@ class FixturesLeagueListTile extends StatefulWidget {
 }
 
 class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
-  late var expanded = false;
+  late var expanded = widget.initiallyExpanded;
 
   void toggleExpanded() => setState(
         () => expanded = !expanded,
@@ -39,12 +43,22 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
               color: Colors.transparent,
               padding: const EdgeInsets.all(16),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Expanded(
+                  Flexible(
                     child: Text(
-                      widget.leagueName ?? 'Unknown',
+                      widget.league?.name ?? 'Unknown',
                       style: context.textStyles.fixturesLeague,
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: BalunImage(
+                      imageUrl: widget.league?.logo ?? BalunImages.placeholderLogo,
+                      height: 40,
+                      width: 40,
                     ),
                   ),
                 ],
@@ -79,7 +93,6 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
                   )
                 : const SizedBox.shrink(),
           ),
-          if (expanded) const SizedBox(height: 16),
         ],
       );
 }
