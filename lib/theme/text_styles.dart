@@ -7,6 +7,18 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w500,
   );
 
+  static const fixturesCountry = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 26,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const fixturesLeague = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
+  );
+
   static const fixturesMinute = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 26,
@@ -312,6 +324,8 @@ abstract class BalunTextStyles {
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
   final TextStyle error;
+  final TextStyle fixturesCountry;
+  final TextStyle fixturesLeague;
   final TextStyle fixturesMinute;
   final TextStyle fixturesName;
   final TextStyle fixturesScore;
@@ -364,6 +378,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
 
   const BalunTextThemesExtension({
     required this.error,
+    required this.fixturesCountry,
+    required this.fixturesLeague,
     required this.fixturesMinute,
     required this.fixturesName,
     required this.fixturesScore,
@@ -418,6 +434,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   @override
   ThemeExtension<BalunTextThemesExtension> copyWith({
     TextStyle? error,
+    TextStyle? fixturesCountry,
+    TextStyle? fixturesLeague,
     TextStyle? fixturesMinute,
     TextStyle? fixturesName,
     TextStyle? fixturesScore,
@@ -470,6 +488,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
+        fixturesCountry: fixturesCountry ?? this.fixturesCountry,
+        fixturesLeague: fixturesLeague ?? this.fixturesLeague,
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
         fixturesName: fixturesName ?? this.fixturesName,
         fixturesScore: fixturesScore ?? this.fixturesScore,
@@ -532,6 +552,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
 
     return BalunTextThemesExtension(
       error: TextStyle.lerp(error, other.error, t)!,
+      fixturesCountry: TextStyle.lerp(fixturesCountry, other.fixturesCountry, t)!,
+      fixturesLeague: TextStyle.lerp(fixturesLeague, other.fixturesLeague, t)!,
       fixturesMinute: TextStyle.lerp(fixturesMinute, other.fixturesMinute, t)!,
       fixturesName: TextStyle.lerp(fixturesName, other.fixturesName, t)!,
       fixturesScore: TextStyle.lerp(fixturesScore, other.fixturesScore, t)!,

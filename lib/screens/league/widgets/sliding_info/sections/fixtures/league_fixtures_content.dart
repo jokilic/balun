@@ -13,7 +13,7 @@ class LeagueFixturesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final groupedFixtures = getGroupedFixtures(fixtures ?? []);
+    final groupedFixtures = getGroupedLeagueFixtures(fixtures ?? []);
 
     return ListView(
       shrinkWrap: true,

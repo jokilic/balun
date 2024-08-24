@@ -35,6 +35,12 @@ class BalunTheme {
     error: BalunTextStyles.error.copyWith(
       color: lightAppColors.black,
     ),
+    fixturesCountry: BalunTextStyles.fixturesCountry.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
+    fixturesLeague: BalunTextStyles.fixturesLeague.copyWith(
+      color: lightAppColors.black,
+    ),
     fixturesMinute: BalunTextStyles.fixturesMinute.copyWith(
       color: lightAppColors.black.withOpacity(0.5),
     ),
