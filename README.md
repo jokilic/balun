@@ -7,18 +7,6 @@ A simple Flutter application for football scores.
 
 # Screens
 
-### `CountriesScreen`
-
-* Main screen, part of the navigation
-* Shows countries, then tapping shows leagues, then teams
-* Prioritise world, Croatia, lige petice and similar (ask Claude how to do it, perhaps with a Map or something)
-
-### `FixturesScreen`
-
-* Main screen, part of the navigation
-* Show fixtures by date
-* Prioritise world, Croatia, lige petice and similar (ask Claude how to do it, perhaps with a Map or something)
-
 ### `SearchScreen`
 
 * Main screen, part of the navigation
@@ -38,6 +26,7 @@ A simple Flutter application for football scores.
 ### General To-Dos
 
 * Localization
+* TODOs
 * Loading screens for all
 * Empty screens for all
 * Error screens for all
