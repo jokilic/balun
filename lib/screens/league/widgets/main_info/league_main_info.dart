@@ -83,6 +83,8 @@ class LeagueMainInfo extends WatchingWidget {
               style: context.textStyles.leagueSeason,
               textAlign: TextAlign.center,
             ),
+
+            // TODO: Use `PageView` here
             DropdownButton<int>(
               onChanged: getIt
                   .get<LeagueSeasonController>(
