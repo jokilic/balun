@@ -22,12 +22,22 @@ List<Event>? getEventsList({
     );
   }
 
+  if (score?.fulltime?.home != null && score?.fulltime?.away != null) {
+    eventsScores.add(
+      Event(
+        type: 'fulltime',
+        detail: '${score?.fulltime?.home}:${score?.fulltime?.away}',
+        time: EventTime(elapsed: 1001),
+      ),
+    );
+  }
+
   if (score?.extratime?.home != null && score?.extratime?.away != null) {
     eventsScores.add(
       Event(
         type: 'extratime',
         detail: '${score?.extratime?.home}:${score?.extratime?.away}',
-        time: EventTime(elapsed: 120),
+        time: EventTime(elapsed: 1002),
       ),
     );
   }
@@ -37,7 +47,7 @@ List<Event>? getEventsList({
       Event(
         type: 'penalty',
         detail: '${score?.penalty?.home}:${score?.penalty?.away}',
-        time: EventTime(elapsed: 120),
+        time: EventTime(elapsed: 1003),
       ),
     );
   }
