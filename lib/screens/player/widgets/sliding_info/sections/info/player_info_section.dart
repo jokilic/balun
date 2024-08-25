@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../models/players/player/player.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
 
@@ -28,13 +29,25 @@ class PlayerInfoSection extends StatelessWidget {
           ///
           /// INJURED
           ///
-          // TODO: UI for injured
-          if (player?.injured ?? false)
-            Container(
-              height: 40,
-              width: 40,
-              color: context.colors.red,
+          if (player?.injured ?? false) ...[
+            Row(
+              children: [
+                Image.asset(
+                  BalunIcons.injury,
+                  height: 52,
+                  width: 52,
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    '${player?.firstName} is injured.',
+                    style: context.textStyles.matchInfoSectionText,
+                  ),
+                ),
+              ],
             ),
+            const SizedBox(height: 16),
+          ],
 
           ///
           /// NAME & AGE
