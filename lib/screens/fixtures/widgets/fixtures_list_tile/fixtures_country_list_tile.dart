@@ -84,7 +84,7 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                       return FixturesLeagueListTile(
                         league: league,
                         fixtures: fixtures,
-                        initiallyExpanded: BalunConstants.leaguesOrder.keys.contains(league?.id),
+                        initiallyExpanded: false,
                       );
                     },
                   )

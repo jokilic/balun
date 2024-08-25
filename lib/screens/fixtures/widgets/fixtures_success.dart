@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
 import '../../../models/fixtures/fixture_response.dart';
 import '../../../util/fixtures.dart';
 import 'fixtures_list_tile/fixtures_country_list_tile.dart';
@@ -29,9 +28,7 @@ class FixturesSuccess extends StatelessWidget {
         return FixturesCountryListTile(
           countryLeague: countryLeague,
           leagues: leagues,
-          initiallyExpanded: BalunConstants.countriesOrder.containsKey(
-            countryLeague?.country,
-          ),
+          initiallyExpanded: false,
         );
       },
     );

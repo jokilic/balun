@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../models/coach_section.dart';
 import '../../../../models/coaches/coach_response.dart';
+import 'sections/career/coach_career_section.dart';
+import 'sections/info/coach_info_section.dart';
 
 class CoachActiveSection extends StatelessWidget {
   final CoachResponse coach;
@@ -17,13 +19,15 @@ class CoachActiveSection extends StatelessWidget {
         CoachSection(
           coachSectionEnum: CoachSectionEnum.info,
         ) =>
-          Container(
-            height: 100,
-            color: Colors.blue,
+          CoachInfoSection(
+            coach: coach,
           ),
-        // CoachInfoSection(
-        //   coach: coach,
-        // ),
+        CoachSection(
+          coachSectionEnum: CoachSectionEnum.career,
+        ) =>
+          CoachCareerSection(
+            career: coach.career,
+          ),
         CoachSection(
           coachSectionEnum: CoachSectionEnum.sidelined,
         ) =>

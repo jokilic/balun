@@ -1,5 +1,6 @@
 enum CoachSectionEnum {
   info,
+  career,
   sidelined,
   trophies,
 }
@@ -13,6 +14,7 @@ class CoachSection {
 
   String getCoachSectionName() => switch (coachSectionEnum) {
         CoachSectionEnum.info => 'Info',
+        CoachSectionEnum.career => 'Career',
         CoachSectionEnum.sidelined => 'Sidelined',
         CoachSectionEnum.trophies => 'Trophies',
       };

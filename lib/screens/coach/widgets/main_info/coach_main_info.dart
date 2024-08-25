@@ -3,7 +3,9 @@ import 'package:watch_it/watch_it.dart';
 
 import '../../../../constants.dart';
 import '../../../../models/coaches/coach_response.dart';
+import '../../../../routing.dart';
 import '../../../../theme/theme.dart';
+import '../../../../widgets/balun_button.dart';
 import '../../../../widgets/balun_image.dart';
 import '../coach_app_bar.dart';
 
@@ -51,7 +53,7 @@ class CoachMainInfo extends WatchingWidget {
             /// NAME
             ///
             Text(
-              '${coach.firstName} ${coach.lastName}',
+              '${coach.firstName ?? '--'} ${coach.lastName ?? '--'}',
               style: context.textStyles.leagueName,
               textAlign: TextAlign.center,
             ),
@@ -64,7 +66,46 @@ class CoachMainInfo extends WatchingWidget {
               style: context.textStyles.leagueCountry,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 4),
+
+            ///
+            /// TEAM
+            ///
+            if (coach.team != null)
+              BalunButton(
+                onPressed: coach.team?.id != null
+                    ? () => openTeam(
+                          context,
+                          teamId: coach.team!.id!,
+                          season: DateTime.now().year,
+                        )
+                    : null,
+                child: Container(
+                  color: Colors.transparent,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: BalunImage(
+                          imageUrl: coach.team?.logo ?? BalunImages.placeholderLogo,
+                          height: 32,
+                          width: 32,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          coach.team?.name ?? '---',
+                          style: context.textStyles.leagueCountry,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            const SizedBox(height: 8),
           ],
         ),
       );
