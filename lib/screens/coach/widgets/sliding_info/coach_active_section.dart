@@ -4,6 +4,8 @@ import '../../../../models/coach_section.dart';
 import '../../../../models/coaches/coach_response.dart';
 import 'sections/career/coach_career_section.dart';
 import 'sections/info/coach_info_section.dart';
+import 'sections/sidelined/coach_sidelined_section.dart';
+import 'sections/trophies/coach_trophies_section.dart';
 
 class CoachActiveSection extends StatelessWidget {
   final CoachResponse coach;
@@ -31,22 +33,14 @@ class CoachActiveSection extends StatelessWidget {
         CoachSection(
           coachSectionEnum: CoachSectionEnum.sidelined,
         ) =>
-          Container(
-            height: 100,
-            color: Colors.green,
+          CoachSidelinedSection(
+            coachId: coach.id,
           ),
-        // CoachSidelinedSection(
-        //   coachId: coach.id,
-        // ),
         CoachSection(
           coachSectionEnum: CoachSectionEnum.trophies,
         ) =>
-          Container(
-            height: 100,
-            color: Colors.deepPurple,
+          CoachTrophiesSection(
+            coachId: coach.id,
           ),
-        // CoachTrophiesSection(
-        //   coachId: coach.id,
-        // ),
       };
 }

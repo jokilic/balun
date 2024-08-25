@@ -14,7 +14,6 @@ A simple Flutter application for football scores.
 
 ### `CoachScreen`
 
-* Coach from ID
 * Sidelined coach
 * Trophies coach
 

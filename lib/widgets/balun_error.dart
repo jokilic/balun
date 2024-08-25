@@ -5,9 +5,11 @@ import '../theme/theme.dart';
 
 class BalunError extends StatelessWidget {
   final String error;
+  final double verticalPadding;
 
   const BalunError({
     required this.error,
+    this.verticalPadding = 104,
   });
 
   @override
@@ -15,9 +17,9 @@ class BalunError extends StatelessWidget {
         child: ListView(
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             horizontal: 40,
-            vertical: 104,
+            vertical: verticalPadding,
           ),
           children: [
             Center(
