@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
+import 'screens/coach/coach_screen.dart';
 import 'screens/countries/countries_screen.dart';
 import 'screens/fixtures/fixtures_screen.dart';
 import 'screens/league/league_screen.dart';
@@ -18,6 +19,7 @@ void openFixtures(BuildContext context) => pushScreen(
         key: ValueKey('fixtures'),
       ),
       context: context,
+      isCircularTransition: true,
     );
 
 /// Opens [CountriesScreen]
@@ -26,6 +28,7 @@ void openCountries(BuildContext context) => pushScreen(
         key: ValueKey('countries'),
       ),
       context: context,
+      isCircularTransition: true,
     );
 
 /// Opens [SearchScreen]
@@ -34,6 +37,7 @@ void openSearch(BuildContext context) => pushScreen(
         key: ValueKey('search'),
       ),
       context: context,
+      isCircularTransition: true,
     );
 
 /// Opens [LeaguesScreen]
@@ -43,6 +47,7 @@ void openLeagues(BuildContext context, {required String country}) => pushScreen(
         key: ValueKey(country),
       ),
       context: context,
+      isCircularTransition: true,
     );
 
 /// Opens [MatchScreen]
@@ -104,14 +109,14 @@ void openPlayer(
     );
 
 /// Opens [CoachScreen]
-void openCoach(BuildContext context, {required int coachId}) {
-  log('Open coach -> $coachId');
-  // pushScreen(
-  //   CoachScreen(coachId: coachId),
-  //   context: context,
-  //   isCircularTransition: true,
-  // );
-}
+void openCoach(BuildContext context, {required int coachId}) => pushScreen(
+      CoachScreen(
+        coachId: coachId,
+        key: ValueKey(coachId),
+      ),
+      context: context,
+      isCircularTransition: true,
+    );
 
 /// Opens [VenueScreen]
 void openVenue(BuildContext context, {required int venueId}) {

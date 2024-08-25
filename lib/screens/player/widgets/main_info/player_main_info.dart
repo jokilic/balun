@@ -62,7 +62,7 @@ class PlayerMainInfo extends WatchingWidget {
           /// NAME
           ///
           Text(
-            player.player?.name ?? '---',
+            '${player.player?.firstName} ${player.player?.lastName}',
             style: context.textStyles.leagueName,
             textAlign: TextAlign.center,
           ),

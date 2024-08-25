@@ -814,6 +814,46 @@ class APIService {
   /// `/coachs`
   ///
 
+  Future<({CoachesResponse? coachesResponse, String? error})> getCoach({
+    required int coachId,
+  }) async {
+    try {
+      final response = await cacheDio.get(
+        '/coachs',
+        queryParameters: {
+          'id': coachId,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+        case 304:
+          try {
+            final parsedResponse = await computeCoaches(response.data);
+            return (coachesResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getCoach -> parsing error -> $e';
+            logger.e(error);
+            return (coachesResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getCoach -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (coachesResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getCoach',
+        mainError: '$e',
+      );
+      return (coachesResponse: null, error: error);
+    }
+  }
+
   Future<({CoachesResponse? coachesResponse, String? error})> getCoachesFromTeam({
     required int teamId,
   }) async {
