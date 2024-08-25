@@ -83,20 +83,33 @@ class FixturesDatePicker extends WatchingWidget {
                     )
                     .updateDateAndRefetch(index),
                 child: Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 12,
-                  ),
-                  padding: const EdgeInsets.all(4),
+                  // margin: const EdgeInsets.symmetric(
+                  //   horizontal: 8,
+                  //   vertical: 12,
+                  // ),
+                  // padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
                     color: activeDate == date ? context.colors.white : context.colors.green.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: Center(
-                    child: Text(
-                      date == currentDate ? 'Today'.toUpperCase() : DateFormat('d MMM').format(date).toUpperCase(),
-                      style: activeDate == date ? context.textStyles.fixtureDatePickerActive : context.textStyles.fixtureDatePickerInactive,
-                      textAlign: TextAlign.center,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          date == currentDate ? 'Today'.toUpperCase() : DateFormat('E').format(date).toUpperCase(),
+                          style: activeDate == date ? context.textStyles.fixtureDatePickerActive : context.textStyles.fixtureDatePickerInactive,
+                          textAlign: TextAlign.center,
+                        ),
+                        if (date != currentDate)
+                          Text(
+                            DateFormat('d MMM').format(date).toUpperCase(),
+                            style: activeDate == date
+                                ? context.textStyles.fixtureDatePickerActive.copyWith(fontSize: 14)
+                                : context.textStyles.fixtureDatePickerInactive.copyWith(fontSize: 14),
+                            textAlign: TextAlign.center,
+                          ),
+                      ],
                     ),
                   ),
                 ),
