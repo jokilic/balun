@@ -5,7 +5,6 @@ import '../../../../../../routing.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/lineups.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_seperator.dart';
 import 'match_lineups_list.dart';
 import 'match_lineups_start_xi.dart';
 

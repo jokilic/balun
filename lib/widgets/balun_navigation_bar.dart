@@ -11,10 +11,12 @@ class BalunNavigationBar extends WatchingWidget {
   @override
   Widget build(BuildContext context) => ClipRRect(
         borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(32),
+          top: Radius.circular(20),
         ),
         child: NavigationBar(
-          backgroundColor: context.colors.green.withOpacity(0.5),
+          height: 88,
+          backgroundColor: context.colors.black,
+          overlayColor: const WidgetStatePropertyAll(Colors.transparent),
           elevation: 0,
           indicatorColor: Colors.transparent,
           labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
@@ -28,17 +30,31 @@ class BalunNavigationBar extends WatchingWidget {
             /// FIXTURES
             ///
             NavigationDestination(
-              icon: Image.asset(
-                BalunIcons.ball,
-                height: 26,
-                width: 26,
-                color: context.colors.white.withOpacity(0.2),
+              icon: Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: context.colors.grey,
+                ),
+                child: Image.asset(
+                  BalunIcons.ball,
+                  height: 24,
+                  width: 24,
+                  color: context.colors.white.withOpacity(0.25),
+                ),
               ),
-              selectedIcon: Image.asset(
-                BalunIcons.ball,
-                height: 26,
-                width: 26,
-                color: context.colors.white,
+              selectedIcon: Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: context.colors.white,
+                ),
+                child: Image.asset(
+                  BalunIcons.ball,
+                  height: 24,
+                  width: 24,
+                  color: context.colors.black,
+                ),
               ),
               label: '',
             ),
@@ -47,17 +63,31 @@ class BalunNavigationBar extends WatchingWidget {
             /// COUNTRIES
             ///
             NavigationDestination(
-              icon: Image.asset(
-                BalunIcons.globe,
-                height: 26,
-                width: 26,
-                color: context.colors.white.withOpacity(0.2),
+              icon: Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: context.colors.grey,
+                ),
+                child: Image.asset(
+                  BalunIcons.globe,
+                  height: 24,
+                  width: 24,
+                  color: context.colors.white.withOpacity(0.25),
+                ),
               ),
-              selectedIcon: Image.asset(
-                BalunIcons.globe,
-                height: 26,
-                width: 26,
-                color: context.colors.white,
+              selectedIcon: Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: context.colors.white,
+                ),
+                child: Image.asset(
+                  BalunIcons.globe,
+                  height: 24,
+                  width: 24,
+                  color: context.colors.black,
+                ),
               ),
               label: '',
             ),
@@ -66,17 +96,31 @@ class BalunNavigationBar extends WatchingWidget {
             /// SEARCH
             ///
             NavigationDestination(
-              icon: Image.asset(
-                BalunIcons.search,
-                height: 26,
-                width: 26,
-                color: context.colors.white.withOpacity(0.2),
+              icon: Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: context.colors.grey,
+                ),
+                child: Image.asset(
+                  BalunIcons.search,
+                  height: 24,
+                  width: 24,
+                  color: context.colors.white.withOpacity(0.25),
+                ),
               ),
-              selectedIcon: Image.asset(
-                BalunIcons.search,
-                height: 26,
-                width: 26,
-                color: context.colors.white,
+              selectedIcon: Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: context.colors.white,
+                ),
+                child: Image.asset(
+                  BalunIcons.search,
+                  height: 24,
+                  width: 24,
+                  color: context.colors.black,
+                ),
               ),
               label: '',
             ),

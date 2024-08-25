@@ -43,13 +43,12 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
               color: Colors.transparent,
               padding: const EdgeInsets.all(16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  const SizedBox(width: 72),
                   Flexible(
                     child: Text(
                       widget.league?.name ?? 'Unknown',
                       style: context.textStyles.fixturesLeague,
-                      textAlign: TextAlign.right,
                     ),
                   ),
                   const SizedBox(width: 16),

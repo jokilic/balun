@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 abstract class BalunColors {
   static const white = Color(0xFFFFFFFF);
   static const black = Color(0xFF000000);
+  static const grey = Color(0xFF37393B);
   static const greenish = Color(0xFFBFCABD);
   static const red = Color(0xFFFF5B5B);
   static const green = Color(0xFF417B5A);
@@ -14,6 +15,7 @@ abstract class BalunColors {
 class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
   final Color white;
   final Color black;
+  final Color grey;
   final Color greenish;
   final Color red;
   final Color green;
@@ -24,6 +26,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
   BalunColorsExtension({
     required this.white,
     required this.black,
+    required this.grey,
     required this.greenish,
     required this.red,
     required this.green,
@@ -36,6 +39,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
   ThemeExtension<BalunColorsExtension> copyWith({
     Color? white,
     Color? black,
+    Color? grey,
     Color? greenish,
     Color? red,
     Color? green,
@@ -46,6 +50,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
       BalunColorsExtension(
         white: white ?? this.white,
         black: black ?? this.black,
+        grey: grey ?? this.grey,
         greenish: greenish ?? this.greenish,
         red: red ?? this.red,
         green: green ?? this.green,
@@ -66,6 +71,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     return BalunColorsExtension(
       white: Color.lerp(white, other.white, t)!,
       black: Color.lerp(black, other.black, t)!,
+      grey: Color.lerp(grey, other.grey, t)!,
       greenish: Color.lerp(greenish, other.greenish, t)!,
       red: Color.lerp(red, other.red, t)!,
       green: Color.lerp(green, other.green, t)!,

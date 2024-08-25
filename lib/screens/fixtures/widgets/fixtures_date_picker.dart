@@ -40,8 +40,11 @@ class FixturesDatePicker extends WatchingWidget {
                 )
                 .updateDateViaPickerAndRefetch(context),
             child: Container(
-              margin: const EdgeInsets.all(8),
-              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 12,
+              ),
+              padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
                 color: context.colors.green.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(100),
@@ -80,8 +83,11 @@ class FixturesDatePicker extends WatchingWidget {
                     )
                     .updateDateAndRefetch(index),
                 child: Container(
-                  margin: const EdgeInsets.all(8),
-                  padding: const EdgeInsets.all(8),
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 12,
+                  ),
+                  padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
                     color: activeDate == date ? context.colors.white : context.colors.green.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(100),
@@ -108,8 +114,11 @@ class FixturesDatePicker extends WatchingWidget {
                 )
                 .updateDateViaPickerAndRefetch(context),
             child: Container(
-              margin: const EdgeInsets.all(8),
-              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 12,
+              ),
+              padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
                 color: context.colors.green.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(100),

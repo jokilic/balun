@@ -23,6 +23,7 @@ class BalunTheme {
   static final lightAppColors = BalunColorsExtension(
     white: BalunColors.white,
     black: BalunColors.black,
+    grey: BalunColors.grey,
     greenish: BalunColors.greenish,
     red: BalunColors.red,
     green: BalunColors.green,
@@ -36,10 +37,10 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     fixturesCountry: BalunTextStyles.fixturesCountry.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black,
     ),
     fixturesLeague: BalunTextStyles.fixturesLeague.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.black.withOpacity(0.5),
     ),
     fixturesMinute: BalunTextStyles.fixturesMinute.copyWith(
       color: lightAppColors.black.withOpacity(0.5),
