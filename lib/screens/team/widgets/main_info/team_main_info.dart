@@ -115,7 +115,7 @@ class TeamMainInfo extends WatchingWidget {
             icon: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Image.asset(
-                BalunIcons.arrowDown,
+                BalunIcons.ball,
                 color: context.colors.black,
                 height: 20,
                 width: 20,

@@ -215,23 +215,62 @@ class MatchEventsListTile extends StatelessWidget {
         ///
         /// GOAL
         ///
-        'goal' => Row(
+        'goal' => Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                BalunIcons.goalBall,
-                height: 28,
-                width: 28,
-              ),
-              const SizedBox(width: 8),
+              ///
+              /// ASSIST
+              ///
+              if (event.assist != null)
+                Flexible(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        BalunIcons.assist,
+                        height: 28,
+                        width: 28,
+                      ),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          event.assist?.name ?? '---',
+                          style: context.textStyles.matchEventsSectionText,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+              const SizedBox(height: 4),
+
+              ///
+              /// SCORER
+              ///
               Flexible(
-                child: Text(
-                  eventDetail.toLowerCase() == 'penalty'
-                      ? '${event.player?.name ?? '---'} (P)'
-                      : eventDetail.toLowerCase() == 'own goal'
-                          ? '${event.player?.name ?? '---'} (OG)'
-                          : event.player?.name ?? '---',
-                  style: context.textStyles.matchEventsSectionText,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(
+                      BalunIcons.goalBall,
+                      height: 28,
+                      width: 28,
+                    ),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        eventDetail.toLowerCase() == 'penalty'
+                            ? '${event.player?.name ?? '---'} (P)'
+                            : eventDetail.toLowerCase() == 'own goal'
+                                ? '${event.player?.name ?? '---'} (OG)'
+                                : event.player?.name ?? '---',
+                        style: context.textStyles.matchEventsSectionText.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -280,7 +319,7 @@ class MatchEventsListTile extends StatelessWidget {
                     const SizedBox(width: 8),
                     Flexible(
                       child: Text(
-                        event.player?.name ?? '---',
+                        event.assist?.name ?? '---',
                         style: context.textStyles.matchEventsSectionText,
                       ),
                     ),
@@ -306,8 +345,10 @@ class MatchEventsListTile extends StatelessWidget {
                     const SizedBox(width: 8),
                     Flexible(
                       child: Text(
-                        event.assist?.name ?? '---',
-                        style: context.textStyles.matchEventsSectionText,
+                        event.player?.name ?? '---',
+                        style: context.textStyles.matchEventsSectionText.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ],
