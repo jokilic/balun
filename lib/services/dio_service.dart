@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
+import 'package:flutter/material.dart';
 
 import '../constants.dart';
 import '../util/env.dart';
@@ -13,7 +14,7 @@ import 'logger_service.dart';
 /// Contains methods that ease our networking logic
 ///
 
-class DioService {
+class DioService extends ValueNotifier<int?> {
   ///
   /// CONSTRUCTOR
   ///
@@ -22,7 +23,7 @@ class DioService {
 
   DioService({
     required this.logger,
-  });
+  }) : super(null);
 
   ///
   /// VARIABLES
@@ -53,10 +54,28 @@ class DioService {
         },
         validateStatus: (_) => true,
       ),
-    )..interceptors.add(
+    )
+      ..interceptors.add(
         DioLoggerInterceptor(
           logger: logger,
           isCached: false,
+        ),
+      )
+      ..interceptors.add(
+        InterceptorsWrapper(
+          onRequest: (options, handler) => handler.next(options),
+          onResponse: (response, handler) {
+            updateRemainingRequests(
+              headers: response.headers,
+            );
+            return handler.next(response);
+          },
+          onError: (error, handler) {
+            updateRemainingRequests(
+              headers: error.response?.headers,
+            );
+            return handler.next(error);
+          },
         ),
       );
 
@@ -78,6 +97,35 @@ class DioService {
       )
       ..interceptors.add(
         DioCacheInterceptor(options: cacheOptions),
+      )
+      ..interceptors.add(
+        InterceptorsWrapper(
+          onRequest: (options, handler) => handler.next(options),
+          onResponse: (response, handler) {
+            updateRemainingRequests(
+              headers: response.headers,
+            );
+            return handler.next(response);
+          },
+          onError: (error, handler) {
+            updateRemainingRequests(
+              headers: error.response?.headers,
+            );
+            return handler.next(error);
+          },
+        ),
       );
+  }
+
+  void updateRemainingRequests({required Headers? headers}) {
+    if (headers != null) {
+      final remainingRequests = headers.value(
+        'x-ratelimit-requests-remaining',
+      );
+
+      if (remainingRequests != null) {
+        value = int.tryParse(remainingRequests);
+      }
+    }
   }
 }
