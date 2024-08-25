@@ -145,7 +145,6 @@ class TeamMainInfo extends WatchingWidget {
                 )
                 .toList(),
           ),
-          const SizedBox(height: 24),
         ],
       ),
     );

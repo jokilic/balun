@@ -17,7 +17,7 @@ class FixturesSuccess extends StatelessWidget {
       groupFixtures(fixtures),
     );
 
-    return ListView.builder(
+    return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 16),
       physics: const BouncingScrollPhysics(),
       itemCount: sortedGroupedFixtures.length,
@@ -31,6 +31,7 @@ class FixturesSuccess extends StatelessWidget {
           initiallyExpanded: false,
         );
       },
+      separatorBuilder: (_, __) => const SizedBox(height: 16),
     );
   }
 }

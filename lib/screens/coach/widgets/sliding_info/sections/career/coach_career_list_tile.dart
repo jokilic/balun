@@ -10,85 +10,83 @@ import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
 class CoachCareerListTile extends StatelessWidget {
-  final Career careerValue;
+  final Career career;
 
   const CoachCareerListTile({
-    required this.careerValue,
+    required this.career,
   });
 
   @override
   Widget build(BuildContext context) {
-    final startDate = parseTimestamp(
-      careerValue.start,
+    final startLocal = parseTimestamp(
+      career.start,
     );
-    final endDate = parseTimestamp(
-      careerValue.end,
+    final endLocal = parseTimestamp(
+      career.end,
     );
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 12,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          BalunButton(
-            onPressed: careerValue.team?.id != null
-                ? () => openTeam(
-                      context,
-                      teamId: careerValue.team!.id!,
-                      season: careerValue.start?.year ?? DateTime.now().year,
-                    )
-                : null,
-            child: Container(
-              color: Colors.transparent,
-              child: Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: BalunImage(
-                      imageUrl: careerValue.team?.logo ?? BalunImages.placeholderLogo,
-                      height: 40,
-                      width: 40,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Text(
-                    careerValue.team?.name ?? 'Unknown',
-                    style: context.textStyles.countriesName,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 4),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 58),
-            child: Column(
+    return BalunButton(
+      onPressed: career.team?.id != null
+          ? () => openTeam(
+                context,
+                teamId: career.team!.id!,
+                season: endLocal?.year ?? startLocal?.year ?? DateTime.now().year,
+              )
+          : null,
+      child: Container(
+        color: Colors.transparent,
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Start',
-                  style: context.textStyles.teamTransferTeam,
+                BalunImage(
+                  imageUrl: career.team?.logo ?? BalunImages.placeholderLogo,
+                  height: 32,
+                  width: 32,
                 ),
-                Text(
-                  startDate != null ? DateFormat('d. MMMM y.').format(startDate) : '---',
-                  style: context.textStyles.teamCoachCareerValue,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  'End',
-                  style: context.textStyles.teamTransferTeam,
-                ),
-                Text(
-                  endDate != null ? DateFormat('d. MMMM y.').format(endDate) : '---',
-                  style: context.textStyles.teamCoachCareerValue,
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        career.team?.name ?? '--',
+                        style: context.textStyles.teamCoachCareerTeam,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      if (startLocal != null) ...[
+                        const SizedBox(height: 4),
+                        Text(
+                          'Start',
+                          style: context.textStyles.teamCoachCareerTitle,
+                        ),
+                        Text(
+                          DateFormat('d. MMMM y.').format(startLocal),
+                          style: context.textStyles.teamCoachCareerValue,
+                        ),
+                      ],
+                      if (endLocal != null) ...[
+                        const SizedBox(height: 4),
+                        Text(
+                          'End',
+                          style: context.textStyles.teamCoachCareerTitle,
+                        ),
+                        Text(
+                          DateFormat('d. MMMM y.').format(endLocal),
+                          style: context.textStyles.teamCoachCareerValue,
+                        ),
+                      ],
+                    ],
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -5,6 +5,7 @@ import '../../../../../../routing.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/lineups.dart';
 import '../../../../../../widgets/balun_button.dart';
+import '../../../../../../widgets/balun_seperator.dart';
 import 'match_lineups_list.dart';
 import 'match_lineups_start_xi.dart';
 
@@ -43,6 +44,15 @@ class MatchLineupContent extends StatelessWidget {
           ///
           /// MANAGERS
           ///
+          const SizedBox(height: 4),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Managers',
+              style: context.textStyles.matchLineupsSectionTitle,
+            ),
+          ),
+          const SizedBox(height: 4),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

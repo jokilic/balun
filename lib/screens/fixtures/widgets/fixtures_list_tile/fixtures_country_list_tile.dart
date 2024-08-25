@@ -90,7 +90,6 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                   )
                 : const SizedBox.shrink(),
           ),
-          const SizedBox(height: 32),
         ],
       );
 }

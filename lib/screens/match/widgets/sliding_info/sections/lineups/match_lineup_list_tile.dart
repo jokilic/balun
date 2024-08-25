@@ -5,6 +5,7 @@ import '../../../../../../models/fixtures/lineup/lineup_player.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
+import '../../../../../../util/string.dart';
 import '../../../../../../widgets/balun_button.dart';
 
 class MatchLineupListTile extends StatelessWidget {
@@ -64,8 +65,10 @@ class MatchLineupListTile extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  player?.name ?? '---',
+                  getLastWord(player?.name ?? '---'),
                   style: context.textStyles.matchStandingsSectionText,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
               const SizedBox(width: 8),

@@ -6,6 +6,7 @@ import '../../../../../../routing.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
 import '../../../../../../util/lineups.dart';
+import '../../../../../../util/string.dart';
 import '../../../../../../widgets/balun_button.dart';
 
 class MatchLineupsPlayer extends StatelessWidget {
@@ -110,7 +111,7 @@ class MatchLineupsPlayer extends StatelessWidget {
                 Positioned(
                   bottom: -24,
                   child: Text(
-                    player!.player!.name!,
+                    getLastWord(player!.player!.name!),
                     style: context.textStyles.matchLineupsSectionPlayer,
                     textAlign: TextAlign.center,
                   ),

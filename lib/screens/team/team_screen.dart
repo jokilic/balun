@@ -145,6 +145,7 @@ class _TeamScreenState extends State<TeamScreen> {
 
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: Animate(
           key: ValueKey(teamState),
           effects: const [

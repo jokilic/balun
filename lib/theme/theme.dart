@@ -39,7 +39,7 @@ class BalunTheme {
       color: lightAppColors.black.withOpacity(0.5),
     ),
     fixturesLeague: BalunTextStyles.fixturesLeague.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black,
     ),
     fixturesMinute: BalunTextStyles.fixturesMinute.copyWith(
       color: lightAppColors.black.withOpacity(0.5),

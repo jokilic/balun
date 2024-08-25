@@ -105,7 +105,6 @@ class CoachMainInfo extends WatchingWidget {
                   ),
                 ),
               ),
-            const SizedBox(height: 8),
           ],
         ),
       );

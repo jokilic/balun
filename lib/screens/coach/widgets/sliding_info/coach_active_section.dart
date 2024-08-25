@@ -28,7 +28,7 @@ class CoachActiveSection extends StatelessWidget {
           coachSectionEnum: CoachSectionEnum.career,
         ) =>
           CoachCareerSection(
-            career: coach.career,
+            careers: coach.career,
           ),
         CoachSection(
           coachSectionEnum: CoachSectionEnum.sidelined,
