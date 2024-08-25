@@ -88,7 +88,7 @@ class FixturesDatePicker extends WatchingWidget {
                   ),
                   child: Center(
                     child: Text(
-                      DateFormat('d MMM').format(date).toUpperCase(),
+                      date == currentDate ? 'Today'.toUpperCase() : DateFormat('d MMM').format(date).toUpperCase(),
                       style: activeDate == date ? context.textStyles.fixtureDatePickerActive : context.textStyles.fixtureDatePickerInactive,
                       textAlign: TextAlign.center,
                     ),
@@ -115,7 +115,9 @@ class FixturesDatePicker extends WatchingWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                child: Icon(
+                child:
+                    // TODO: Use something else here
+                    Icon(
                   Icons.calendar_month_rounded,
                   size: 28,
                   color: context.colors.white,
