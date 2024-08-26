@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../constants.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import '../../../models/leagues/league_response.dart';
+import '../../../theme/icons.dart';
 
 class LeaguesListTile extends StatelessWidget {
   final LeagueResponse league;
@@ -28,27 +28,37 @@ class LeaguesListTile extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: BalunImage(
-                  imageUrl: league.league?.logo ?? BalunImages.placeholderIcon,
-                  height: 56,
-                  width: 56,
-                  fit: BoxFit.fill,
-                ),
+                child: league.league?.logo != null
+                    ? BalunImage(
+                        imageUrl: league.league!.logo!,
+                        height: 40,
+                        width: 40,
+                      )
+                    : Container(
+                        color: context.colors.green.withOpacity(0.5),
+                        child: Image.asset(
+                          BalunIcons.splashIcon,
+                          height: 48,
+                          width: 56,
+                        ),
+                      ),
               ),
-              const SizedBox(width: 12),
-              Expanded(
+              const SizedBox(width: 16),
+              Flexible(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (league.league?.name != null)
                       Text(
                         league.league!.name!,
-                        style: context.textStyles.countriesName,
+                        style: context.textStyles.fixturesCountry,
                       ),
                     if (league.league?.type != null)
                       Text(
                         league.league!.type!,
-                        style: context.textStyles.countriesName,
+                        style: context.textStyles.fixturesLeague.copyWith(
+                          color: context.colors.black.withOpacity(0.5),
+                        ),
                       ),
                   ],
                 ),

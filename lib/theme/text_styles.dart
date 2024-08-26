@@ -297,12 +297,6 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w600,
   );
 
-  static const countriesName = TextStyle(
-    fontFamily: 'Lufga',
-    fontSize: 22,
-    fontWeight: FontWeight.w600,
-  );
-
   static const fixtureDatePickerActive = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 20,
@@ -377,7 +371,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle teamCoachCareerTitle;
   final TextStyle teamCoachCareerValue;
   final TextStyle teamTransferTeam;
-  final TextStyle countriesName;
   final TextStyle fixtureDatePickerActive;
   final TextStyle fixtureDatePickerInactive;
   final TextStyle seasonPickerActive;
@@ -432,7 +425,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.teamCoachCareerTitle,
     required this.teamCoachCareerValue,
     required this.teamTransferTeam,
-    required this.countriesName,
     required this.fixtureDatePickerActive,
     required this.fixtureDatePickerInactive,
     required this.seasonPickerActive,
@@ -489,7 +481,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? teamCoachCareerTitle,
     TextStyle? teamCoachCareerValue,
     TextStyle? teamTransferTeam,
-    TextStyle? countriesName,
     TextStyle? fixtureDatePickerActive,
     TextStyle? fixtureDatePickerInactive,
     TextStyle? seasonPickerActive,
@@ -544,7 +535,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         teamCoachCareerTitle: teamCoachCareerTitle ?? this.teamCoachCareerTitle,
         teamCoachCareerValue: teamCoachCareerValue ?? this.teamCoachCareerValue,
         teamTransferTeam: teamTransferTeam ?? this.teamTransferTeam,
-        countriesName: countriesName ?? this.countriesName,
         fixtureDatePickerActive: fixtureDatePickerActive ?? this.fixtureDatePickerActive,
         fixtureDatePickerInactive: fixtureDatePickerInactive ?? this.fixtureDatePickerInactive,
         seasonPickerActive: seasonPickerActive ?? this.seasonPickerActive,
@@ -609,7 +599,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       teamCoachCareerTitle: TextStyle.lerp(teamCoachCareerTitle, other.teamCoachCareerTitle, t)!,
       teamCoachCareerValue: TextStyle.lerp(teamCoachCareerValue, other.teamCoachCareerValue, t)!,
       teamTransferTeam: TextStyle.lerp(teamTransferTeam, other.teamTransferTeam, t)!,
-      countriesName: TextStyle.lerp(countriesName, other.countriesName, t)!,
       fixtureDatePickerActive: TextStyle.lerp(fixtureDatePickerActive, other.fixtureDatePickerActive, t)!,
       fixtureDatePickerInactive: TextStyle.lerp(fixtureDatePickerInactive, other.fixtureDatePickerInactive, t)!,
       seasonPickerActive: TextStyle.lerp(seasonPickerActive, other.seasonPickerActive, t)!,

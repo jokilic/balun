@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../theme/theme.dart';
+import '../../../../../../theme/theme.dart';
+import '../../../util/color.dart';
 
-class FixturesCountryLoadingListTile extends StatelessWidget {
+class CountriesListTileLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
-          vertical: 8,
+          vertical: 12,
         ),
         child: Row(
           children: [
@@ -16,16 +17,16 @@ class FixturesCountryLoadingListTile extends StatelessWidget {
               width: 56,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: context.colors.white.withOpacity(0.5),
+                color: getRandomBalunColor(context),
               ),
             ),
             const SizedBox(width: 16),
             Container(
               height: 24,
-              width: 240,
+              width: 200,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: context.colors.white.withOpacity(0.5),
+                color: context.colors.black.withOpacity(0.25),
               ),
             ),
           ],

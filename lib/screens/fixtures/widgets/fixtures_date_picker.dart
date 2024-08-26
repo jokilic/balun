@@ -48,6 +48,7 @@ class FixturesDatePicker extends WatchingWidget {
               ),
               child: Center(
                 child: Icon(
+                  // TODO: Update this UI
                   Icons.calendar_month_rounded,
                   size: 28,
                   color: context.colors.white,

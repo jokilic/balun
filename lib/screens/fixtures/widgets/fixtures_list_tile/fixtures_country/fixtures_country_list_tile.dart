@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../constants.dart';
 import '../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../models/fixtures/league/league.dart';
+import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
 import '../../../../../widgets/balun_button.dart';
 import '../../../../../widgets/balun_image.dart';
@@ -48,11 +49,20 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: BalunImage(
-                      imageUrl: widget.countryLeague?.flag ?? BalunImages.placeholderIcon,
-                      height: 40,
-                      width: 40,
-                    ),
+                    child: widget.countryLeague?.flag != null
+                        ? BalunImage(
+                            imageUrl: widget.countryLeague!.flag!,
+                            height: 40,
+                            width: 40,
+                          )
+                        : Container(
+                            color: context.colors.green.withOpacity(0.5),
+                            child: Image.asset(
+                              BalunIcons.splashIcon,
+                              height: 48,
+                              width: 56,
+                            ),
+                          ),
                   ),
                   const SizedBox(width: 16),
                   Flexible(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../constants.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import '../../../models/countries/country_response.dart';
+import '../../../theme/icons.dart';
 
 class CountriesListTile extends StatelessWidget {
   final CountryResponse country;
@@ -28,17 +28,26 @@ class CountriesListTile extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: BalunImage(
-                  imageUrl: country.flag ?? BalunImages.placeholderIcon,
-                  height: 40,
-                  width: 40,
-                ),
+                child: country.flag != null
+                    ? BalunImage(
+                        imageUrl: country.flag!,
+                        height: 40,
+                        width: 40,
+                      )
+                    : Container(
+                        color: context.colors.green.withOpacity(0.5),
+                        child: Image.asset(
+                          BalunIcons.splashIcon,
+                          height: 48,
+                          width: 56,
+                        ),
+                      ),
               ),
               const SizedBox(width: 16),
-              Expanded(
+              Flexible(
                 child: Text(
                   country.name ?? 'Unknown',
-                  style: context.textStyles.countriesName,
+                  style: context.textStyles.fixturesCountry,
                 ),
               ),
             ],

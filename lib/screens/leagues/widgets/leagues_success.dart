@@ -12,7 +12,7 @@ class LeaguesSuccess extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => ListView.builder(
+  Widget build(BuildContext context) => ListView.separated(
         physics: const BouncingScrollPhysics(),
         itemCount: leagues.length,
         itemBuilder: (_, index) {
@@ -29,5 +29,6 @@ class LeaguesSuccess extends StatelessWidget {
                 : null,
           );
         },
+        separatorBuilder: (_, __) => const SizedBox(height: 4),
       );
 }

@@ -87,7 +87,9 @@ class _FixturesScreenState extends State<FixturesScreen> {
             ///
             /// DATE PICKER
             ///
-            FixturesDatePicker(currentDate: currentDate),
+            FixturesDatePicker(
+              currentDate: currentDate,
+            ),
 
             ///
             /// CONTENT

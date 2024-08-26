@@ -69,7 +69,7 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
               onPressed: Navigator.of(context).pop,
               country: widget.country,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
 
             ///
             /// CONTENT

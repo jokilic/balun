@@ -8,6 +8,7 @@ import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
 import '../../widgets/balun_navigation_bar.dart';
 import 'countries_controller.dart';
+import 'widgets/countries_app_bar.dart';
 import 'widgets/countries_content.dart';
 
 class CountriesScreen extends WatchingStatefulWidget {
@@ -55,16 +56,33 @@ class _CountriesScreenState extends State<CountriesScreen> {
 
     return Scaffold(
       bottomNavigationBar: BalunNavigationBar(),
-      body: Animate(
-        key: ValueKey(countriesState),
-        effects: const [
-          FadeEffect(
-            curve: Curves.easeIn,
-            duration: BalunConstants.animationDuration,
-          ),
-        ],
-        child: CountriesContent(
-          countriesState: countriesState,
+      body: SafeArea(
+        child: Column(
+          children: [
+            ///
+            /// APP BAR
+            ///
+            CountriesAppBar(),
+            const SizedBox(height: 8),
+
+            ///
+            /// CONTENT
+            ///
+            Expanded(
+              child: Animate(
+                key: ValueKey(countriesState),
+                effects: const [
+                  FadeEffect(
+                    curve: Curves.easeIn,
+                    duration: BalunConstants.animationDuration,
+                  ),
+                ],
+                child: CountriesContent(
+                  countriesState: countriesState,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
