@@ -147,9 +147,6 @@ class BalunTheme {
     leagueSeason: BalunTextStyles.leagueSeason.copyWith(
       color: lightAppColors.black.withOpacity(0.5),
     ),
-    leagueSeasonDropdown: BalunTextStyles.leagueSeasonDropdown.copyWith(
-      color: lightAppColors.black,
-    ),
     leagueTeamsTitle: BalunTextStyles.leagueTeamsTitle.copyWith(
       color: lightAppColors.black,
     ),
@@ -188,6 +185,12 @@ class BalunTheme {
     ),
     fixtureDatePickerInactive: BalunTextStyles.fixtureDatePickerInactive.copyWith(
       color: lightAppColors.white,
+    ),
+    seasonPickerActive: BalunTextStyles.seasonPickerActive.copyWith(
+      color: lightAppColors.black,
+    ),
+    seasonPickerInactive: BalunTextStyles.seasonPickerInactive.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
     ),
   );
 }

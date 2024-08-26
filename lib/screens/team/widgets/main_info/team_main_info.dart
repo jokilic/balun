@@ -3,10 +3,10 @@ import 'package:watch_it/watch_it.dart';
 
 import '../../../../constants.dart';
 import '../../../../models/teams/team_response.dart';
-import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
 import '../../../../util/team_seasons.dart';
+import '../../../../widgets/balun_button.dart';
 import '../../../../widgets/balun_image.dart';
 import '../../controllers/team_season_controller.dart';
 import '../team_app_bar.dart';
@@ -92,7 +92,7 @@ class TeamMainInfo extends WatchingWidget {
           const SizedBox(height: 8),
 
           ///
-          /// SEASON
+          /// SEASON TITLE
           ///
           Text(
             'Season',
@@ -100,50 +100,41 @@ class TeamMainInfo extends WatchingWidget {
             textAlign: TextAlign.center,
           ),
 
-          // TODO: Use `PageView` here
-          DropdownButton<int>(
-            onChanged: getIt
-                .get<TeamSeasonController>(
-                  instanceName: '${team.team?.id}',
-                )
-                .updateState,
-            value: seasonState,
-            borderRadius: BorderRadius.circular(8),
-            dropdownColor: context.colors.white,
-            style: context.textStyles.leagueSeasonDropdown,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            icon: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Image.asset(
-                BalunIcons.ball,
-                color: context.colors.black,
-                height: 20,
-                width: 20,
-              ),
-            ),
-            items: years
-                .map(
-                  (year) => DropdownMenuItem(
-                    value: year,
-                    child: Text(
-                      '$year',
-                      style: context.textStyles.leagueSeasonDropdown,
-                    ),
-                  ),
-                )
-                .toList(),
-            selectedItemBuilder: (context) => years
-                .map(
-                  (year) => Center(
-                    child: Text(
-                      '$year',
-                      style: context.textStyles.leagueSeasonDropdown.copyWith(
-                        fontWeight: FontWeight.w500,
+          ///
+          /// SEASONS
+          ///
+          SizedBox(
+            height: 48,
+            width: 200,
+            child: PageView(
+              controller: getIt
+                  .get<TeamSeasonController>(
+                    instanceName: '${team.team?.id}',
+                  )
+                  .controller,
+              physics: const BouncingScrollPhysics(),
+              children: List.generate(
+                years.length,
+                (index) {
+                  final year = years[index];
+
+                  return BalunButton(
+                    onPressed: () => getIt
+                        .get<TeamSeasonController>(
+                          instanceName: '${team.team?.id}',
+                        )
+                        .updateState(year),
+                    child: Center(
+                      child: Text(
+                        '$year',
+                        style: seasonState == year ? context.textStyles.seasonPickerActive : context.textStyles.seasonPickerInactive,
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                  ),
-                )
-                .toList(),
+                  );
+                },
+              ),
+            ),
           ),
         ],
       ),

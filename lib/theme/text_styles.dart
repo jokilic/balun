@@ -231,12 +231,6 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w500,
   );
 
-  static const leagueSeasonDropdown = TextStyle(
-    fontFamily: 'Lufga',
-    fontSize: 22,
-    fontWeight: FontWeight.w400,
-  );
-
   static const leagueCountryName = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 18,
@@ -320,6 +314,18 @@ abstract class BalunTextStyles {
     fontSize: 18,
     fontWeight: FontWeight.w400,
   );
+
+  static const seasonPickerActive = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+  );
+
+  static const seasonPickerInactive = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -361,7 +367,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle leagueName;
   final TextStyle leagueCountry;
   final TextStyle leagueSeason;
-  final TextStyle leagueSeasonDropdown;
   final TextStyle leagueTeamsTitle;
   final TextStyle leagueTeamsCountry;
   final TextStyle leagueTeamsFounded;
@@ -375,6 +380,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle countriesName;
   final TextStyle fixtureDatePickerActive;
   final TextStyle fixtureDatePickerInactive;
+  final TextStyle seasonPickerActive;
+  final TextStyle seasonPickerInactive;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -415,7 +422,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.leagueName,
     required this.leagueCountry,
     required this.leagueSeason,
-    required this.leagueSeasonDropdown,
     required this.leagueTeamsTitle,
     required this.leagueTeamsCountry,
     required this.leagueTeamsFounded,
@@ -429,6 +435,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.countriesName,
     required this.fixtureDatePickerActive,
     required this.fixtureDatePickerInactive,
+    required this.seasonPickerActive,
+    required this.seasonPickerInactive,
   });
 
   @override
@@ -471,7 +479,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? leagueName,
     TextStyle? leagueCountry,
     TextStyle? leagueSeason,
-    TextStyle? leagueSeasonDropdown,
     TextStyle? leagueTeamsTitle,
     TextStyle? leagueTeamsCountry,
     TextStyle? leagueTeamsFounded,
@@ -485,6 +492,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? countriesName,
     TextStyle? fixtureDatePickerActive,
     TextStyle? fixtureDatePickerInactive,
+    TextStyle? seasonPickerActive,
+    TextStyle? seasonPickerInactive,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -525,7 +534,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         leagueName: leagueName ?? this.leagueName,
         leagueCountry: leagueCountry ?? this.leagueCountry,
         leagueSeason: leagueSeason ?? this.leagueSeason,
-        leagueSeasonDropdown: leagueSeasonDropdown ?? this.leagueSeasonDropdown,
         leagueTeamsTitle: leagueTeamsTitle ?? this.leagueTeamsTitle,
         leagueTeamsCountry: leagueTeamsCountry ?? this.leagueTeamsCountry,
         leagueTeamsFounded: leagueTeamsFounded ?? this.leagueTeamsFounded,
@@ -539,6 +547,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         countriesName: countriesName ?? this.countriesName,
         fixtureDatePickerActive: fixtureDatePickerActive ?? this.fixtureDatePickerActive,
         fixtureDatePickerInactive: fixtureDatePickerInactive ?? this.fixtureDatePickerInactive,
+        seasonPickerActive: seasonPickerActive ?? this.seasonPickerActive,
+        seasonPickerInactive: seasonPickerInactive ?? this.seasonPickerInactive,
       );
 
   @override
@@ -589,7 +599,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       leagueName: TextStyle.lerp(leagueName, other.leagueName, t)!,
       leagueCountry: TextStyle.lerp(leagueCountry, other.leagueCountry, t)!,
       leagueSeason: TextStyle.lerp(leagueSeason, other.leagueSeason, t)!,
-      leagueSeasonDropdown: TextStyle.lerp(leagueSeasonDropdown, other.leagueSeasonDropdown, t)!,
       leagueTeamsTitle: TextStyle.lerp(leagueTeamsTitle, other.leagueTeamsTitle, t)!,
       leagueTeamsCountry: TextStyle.lerp(leagueTeamsCountry, other.leagueTeamsCountry, t)!,
       leagueTeamsFounded: TextStyle.lerp(leagueTeamsFounded, other.leagueTeamsFounded, t)!,
@@ -603,6 +612,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       countriesName: TextStyle.lerp(countriesName, other.countriesName, t)!,
       fixtureDatePickerActive: TextStyle.lerp(fixtureDatePickerActive, other.fixtureDatePickerActive, t)!,
       fixtureDatePickerInactive: TextStyle.lerp(fixtureDatePickerInactive, other.fixtureDatePickerInactive, t)!,
+      seasonPickerActive: TextStyle.lerp(seasonPickerActive, other.seasonPickerActive, t)!,
+      seasonPickerInactive: TextStyle.lerp(seasonPickerInactive, other.seasonPickerInactive, t)!,
     );
   }
 }

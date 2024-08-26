@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../../models/league_section.dart';
 import '../../../services/api_service.dart';
@@ -13,7 +16,7 @@ import 'league_top_red_cards_controller.dart';
 import 'league_top_scorers_controller.dart';
 import 'league_top_yellow_cards_controller.dart';
 
-class LeagueSeasonController extends ValueNotifier<int> {
+class LeagueSeasonController extends ValueNotifier<int> implements Disposable {
   final LoggerService logger;
   final APIService api;
   final LeagueSectionController section;
@@ -26,7 +29,27 @@ class LeagueSeasonController extends ValueNotifier<int> {
     required this.section,
     required this.leagueId,
     required this.initialSeason,
-  }) : super(initialSeason);
+  }) : super(initialSeason) {
+    controller = PageController(
+      initialPage: initialSeason,
+      viewportFraction: 0.4,
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => controller.jumpToPage(initialSeason),
+    );
+  }
+
+  @override
+  FutureOr onDispose() {
+    controller.dispose();
+  }
+
+  ///
+  /// VARIABLES
+  ///
+
+  late final PageController controller;
 
   ///
   /// METHODS
