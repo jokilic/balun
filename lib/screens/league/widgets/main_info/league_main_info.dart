@@ -47,7 +47,7 @@ class LeagueMainInfo extends WatchingWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: BalunImage(
-              imageUrl: league.league?.logo ?? BalunImages.placeholderLogo,
+              imageUrl: league.league?.logo ?? BalunImages.placeholderIcon,
               height: 120,
               width: 120,
             ),

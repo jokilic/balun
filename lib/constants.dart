@@ -13,9 +13,11 @@ class BalunConstants {
     'Croatia': 1,
     'England': 2,
     'Spain': 3,
-    'Germany': 4,
     'Italy': 5,
+    'Germany': 4,
     'France': 6,
+    // 'Netherlands': 7,
+    // 'Portugal': 8,
   };
 
   // TODO: Update this with all values
@@ -32,6 +34,5 @@ class BalunEndpoints {
 }
 
 class BalunImages {
-  // TODO: Proper placeholder image
-  static const placeholderLogo = 'assets/icon.png';
+  static const placeholderIcon = 'assets/icons/placeholder_icon.png';
 }

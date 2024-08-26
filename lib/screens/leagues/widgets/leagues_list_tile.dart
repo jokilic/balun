@@ -29,7 +29,7 @@ class LeaguesListTile extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: BalunImage(
-                  imageUrl: league.league?.logo ?? BalunImages.placeholderLogo,
+                  imageUrl: league.league?.logo ?? BalunImages.placeholderIcon,
                   height: 56,
                   width: 56,
                   fit: BoxFit.fill,

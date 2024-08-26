@@ -55,7 +55,7 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: BalunImage(
-                      imageUrl: widget.league?.logo ?? BalunImages.placeholderLogo,
+                      imageUrl: widget.league?.logo ?? BalunImages.placeholderIcon,
                       height: 40,
                       width: 40,
                     ),

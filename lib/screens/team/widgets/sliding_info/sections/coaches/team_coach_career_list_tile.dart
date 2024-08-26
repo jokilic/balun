@@ -43,7 +43,7 @@ class TeamCoachCareerListTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BalunImage(
-                  imageUrl: career.team?.logo ?? BalunImages.placeholderLogo,
+                  imageUrl: career.team?.logo ?? BalunImages.placeholderIcon,
                   height: 32,
                   width: 32,
                 ),

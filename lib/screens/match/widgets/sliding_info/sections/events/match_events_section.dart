@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../models/fixtures/event/event.dart';
 import '../../../../../../models/fixtures/score/score.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/events.dart';
 import 'match_events_list_tile.dart';
 
 class MatchEventsSection extends StatelessWidget {
@@ -44,6 +45,10 @@ class MatchEventsSection extends StatelessWidget {
                           event: event,
                           elapsed: elapsed,
                           isAwayTeam: event.team?.id == awayTeamId,
+                          isSecondYellowCard: isSecondYellowCard(
+                            eventsScoresList ?? [],
+                            event,
+                          ),
                         ),
                       )
                       .toList(),

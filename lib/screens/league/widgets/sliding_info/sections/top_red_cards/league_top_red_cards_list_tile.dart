@@ -33,7 +33,7 @@ class LeagueTopRedCardsListTile extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
-                  imageUrl: redCard?.player?.photo ?? BalunImages.placeholderLogo,
+                  imageUrl: redCard?.player?.photo ?? BalunImages.placeholderIcon,
                   height: 56,
                   width: 56,
                 ),

@@ -50,7 +50,7 @@ class PlayerMainInfo extends WatchingWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: BalunImage(
-              imageUrl: player.player?.photo ?? BalunImages.placeholderLogo,
+              imageUrl: player.player?.photo ?? BalunImages.placeholderIcon,
               height: 120,
               width: 120,
             ),

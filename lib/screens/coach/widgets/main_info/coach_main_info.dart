@@ -41,7 +41,7 @@ class CoachMainInfo extends WatchingWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(100),
               child: BalunImage(
-                imageUrl: coach.photo ?? BalunImages.placeholderLogo,
+                imageUrl: coach.photo ?? BalunImages.placeholderIcon,
                 height: 120,
                 width: 120,
               ),
@@ -88,7 +88,7 @@ class CoachMainInfo extends WatchingWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: BalunImage(
-                          imageUrl: coach.team?.logo ?? BalunImages.placeholderLogo,
+                          imageUrl: coach.team?.logo ?? BalunImages.placeholderIcon,
                           height: 32,
                           width: 32,
                         ),

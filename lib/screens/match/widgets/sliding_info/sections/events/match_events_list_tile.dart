@@ -10,23 +10,25 @@ class MatchEventsListTile extends StatelessWidget {
   final Event event;
   final int? elapsed;
   final bool? isAwayTeam;
+  final bool isSecondYellowCard;
 
   const MatchEventsListTile({
     required this.event,
     required this.elapsed,
     required this.isAwayTeam,
+    required this.isSecondYellowCard,
   });
 
   @override
   Widget build(BuildContext context) {
+    final eventTime = event.time?.elapsed != null ? (event.time?.elapsed ?? 0) + (event.time?.extra ?? 0) : null;
+
     final scoreWidget = getScoreWidget(
-      elapsed: elapsed,
+      elapsed: eventTime,
       eventType: event.type ?? '',
       eventDetail: event.detail ?? '',
       context: context,
     );
-
-    final eventTime = event.time?.elapsed != null ? (event.time?.elapsed ?? 0) + (event.time?.extra ?? 0) : null;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
@@ -60,6 +62,7 @@ class MatchEventsListTile extends StatelessWidget {
                     child: getEventWidget(
                       eventType: event.type ?? '',
                       eventDetail: event.detail ?? '',
+                      isSecondYellowCard: isSecondYellowCard,
                       context: context,
                     ),
                   ),
@@ -67,7 +70,7 @@ class MatchEventsListTile extends StatelessWidget {
                 if (isAwayTeam ?? false) ...[
                   const SizedBox(width: 8),
                   Text(
-                    event.time?.elapsed != null ? "${event.time!.elapsed}'" : '---',
+                    eventTime != null ? "$eventTime'" : '---',
                     style: context.textStyles.matchEventsSectionTime,
                   ),
                 ],
@@ -209,6 +212,7 @@ class MatchEventsListTile extends StatelessWidget {
   Widget getEventWidget({
     required String eventType,
     required String eventDetail,
+    required bool isSecondYellowCard,
     required BuildContext context,
   }) =>
       switch (eventType.toLowerCase()) {
@@ -222,7 +226,7 @@ class MatchEventsListTile extends StatelessWidget {
               ///
               /// ASSIST
               ///
-              if (event.assist != null)
+              if (event.assist?.name != null) ...[
                 Flexible(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -235,15 +239,15 @@ class MatchEventsListTile extends StatelessWidget {
                       const SizedBox(width: 8),
                       Flexible(
                         child: Text(
-                          event.assist?.name ?? '---',
+                          event.assist!.name!,
                           style: context.textStyles.matchEventsSectionText,
                         ),
                       ),
                     ],
                   ),
                 ),
-
-              const SizedBox(height: 4),
+                const SizedBox(height: 4),
+              ],
 
               ///
               /// SCORER
@@ -253,7 +257,7 @@ class MatchEventsListTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Image.asset(
-                      BalunIcons.goalBall,
+                      BalunIcons.ball,
                       height: 28,
                       width: 28,
                     ),
@@ -279,20 +283,56 @@ class MatchEventsListTile extends StatelessWidget {
         ///
         /// CARD
         ///
-        'card' => Row(
+        'card' => Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              getCardWidget(
-                eventDetail,
-                context: context,
-              ),
-              const SizedBox(width: 8),
+              ///
+              /// PLAYER
+              ///
               Flexible(
-                child: Text(
-                  event.player?.name ?? '---',
-                  style: context.textStyles.matchEventsSectionText,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    getCardWidget(
+                      eventDetail,
+                      playerId: event.player?.id,
+                      isSecondYellowCard: isSecondYellowCard,
+                      context: context,
+                    ),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        event.player?.name ?? '---',
+                        style: context.textStyles.matchEventsSectionText.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
+
+              ///
+              /// REASON
+              ///
+              if (event.comments != null) ...[
+                const SizedBox(height: 4),
+                Flexible(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(width: 36),
+                      Flexible(
+                        child: Text(
+                          event.comments!,
+                          style: context.textStyles.matchEventsSectionText,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ],
           ),
 
@@ -403,12 +443,18 @@ class MatchEventsListTile extends StatelessWidget {
           ),
       };
 
-  Widget getCardWidget(String eventDetail, {required BuildContext context}) => switch (eventDetail.toLowerCase()) {
+  Widget getCardWidget(
+    String eventDetail, {
+    required int? playerId,
+    required bool isSecondYellowCard,
+    required BuildContext context,
+  }) =>
+      switch (eventDetail.toLowerCase()) {
         'yellow card' => Image.asset(
-            BalunIcons.card,
+            isSecondYellowCard ? BalunIcons.cards : BalunIcons.card,
             height: 28,
             width: 28,
-            color: context.colors.yellow,
+            color: isSecondYellowCard ? null : context.colors.yellow,
           ),
         'red card' => Image.asset(
             BalunIcons.card,

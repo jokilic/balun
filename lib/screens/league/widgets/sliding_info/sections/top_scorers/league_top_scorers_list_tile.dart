@@ -33,7 +33,7 @@ class LeagueTopScorersListTile extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
-                  imageUrl: scorer?.player?.photo ?? BalunImages.placeholderLogo,
+                  imageUrl: scorer?.player?.photo ?? BalunImages.placeholderIcon,
                   height: 56,
                   width: 56,
                 ),

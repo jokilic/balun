@@ -49,7 +49,7 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: BalunImage(
-                      imageUrl: widget.countryLeague?.flag ?? BalunImages.placeholderLogo,
+                      imageUrl: widget.countryLeague?.flag ?? BalunImages.placeholderIcon,
                       height: 40,
                       width: 40,
                     ),

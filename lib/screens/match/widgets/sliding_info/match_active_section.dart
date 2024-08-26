@@ -47,9 +47,11 @@ class MatchActiveSection extends StatelessWidget {
           matchSectionEnum: MatchSectionEnum.events,
         ) =>
           MatchEventsSection(
-            eventsScoresList: getEventsList(
-              events: match.events,
-              score: match.score,
+            eventsScoresList: calculatedCardsEvents(
+              getEventsList(
+                events: match.events,
+                score: match.score,
+              ),
             ),
             score: match.score,
             elapsed: match.fixture?.status?.elapsed,

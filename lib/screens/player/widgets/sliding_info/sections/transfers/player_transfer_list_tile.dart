@@ -55,7 +55,7 @@ class PlayerTransferListTile extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: BalunImage(
-                          imageUrl: transfer.teams?.teamOut?.logo ?? BalunImages.placeholderLogo,
+                          imageUrl: transfer.teams?.teamOut?.logo ?? BalunImages.placeholderIcon,
                           height: 48,
                           width: 48,
                         ),
@@ -139,7 +139,7 @@ class PlayerTransferListTile extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       BalunImage(
-                        imageUrl: transfer.teams?.teamIn?.logo ?? BalunImages.placeholderLogo,
+                        imageUrl: transfer.teams?.teamIn?.logo ?? BalunImages.placeholderIcon,
                         height: 48,
                         width: 48,
                       ),
