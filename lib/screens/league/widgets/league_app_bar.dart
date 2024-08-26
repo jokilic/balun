@@ -27,8 +27,8 @@ class LeagueAppBar extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: context.colors.white.withOpacity(0.4),
               ),
+              // TODO: Update all instances of this icon
               child: const Icon(
-                // TODO: Update all instances of this icon
                 Icons.arrow_back_rounded,
                 size: 32,
               ),

@@ -47,8 +47,8 @@ class FixturesDatePicker extends WatchingWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
+                // TODO: Update this UI
                 child: Icon(
-                  // TODO: Update this UI
                   Icons.calendar_month_rounded,
                   size: 28,
                   color: context.colors.white,
@@ -129,9 +129,8 @@ class FixturesDatePicker extends WatchingWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                child:
-                    // TODO: Use something else here
-                    Icon(
+                // TODO: Use something else here
+                child: Icon(
                   Icons.calendar_month_rounded,
                   size: 28,
                   color: context.colors.white,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../util/state.dart';
+import '../../../widgets/balun_empty.dart';
 import '../../../widgets/balun_error.dart';
-import '../../../widgets/balun_loader.dart';
+import 'league_loading.dart';
 import 'league_success.dart';
 
 class LeagueContent extends StatelessWidget {
@@ -14,9 +15,13 @@ class LeagueContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (leagueState) {
-        Initial() => Container(color: Colors.green),
-        Loading() => const Center(child: BalunLoader()),
-        Empty() => Container(color: Colors.grey),
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
+          ),
+        Loading() => LeagueLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There are no league',
+          ),
         Error() => BalunError(
             error: (leagueState as Error).error ?? 'Generic league error',
           ),
