@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../util/state.dart';
+import '../../../widgets/balun_empty.dart';
 import '../../../widgets/balun_error.dart';
-import '../../../widgets/balun_loader.dart';
+import 'fixtures_loading.dart';
 import 'fixtures_success.dart';
 
 class FixturesContent extends StatelessWidget {
@@ -12,14 +13,15 @@ class FixturesContent extends StatelessWidget {
     required this.fixturesState,
   });
 
-// TODO: Implement all states
   @override
   Widget build(BuildContext context) => switch (fixturesState) {
-        Initial() => Container(color: Colors.green),
-        Loading() => const Center(
-            child: BalunLoader(),
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
           ),
-        Empty() => Container(color: Colors.grey),
+        Loading() => FixturesLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There are no fixtures',
+          ),
         Error() => BalunError(
             error: (fixturesState as Error).error ?? 'Generic fixtures error',
           ),

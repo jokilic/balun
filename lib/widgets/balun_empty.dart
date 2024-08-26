@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import '../theme/icons.dart';
 import '../theme/theme.dart';
 
-class BalunError extends StatelessWidget {
-  final String error;
+class BalunEmpty extends StatelessWidget {
+  final String message;
   final double verticalPadding;
 
-  const BalunError({
-    required this.error,
+  const BalunEmpty({
+    required this.message,
     this.verticalPadding = 104,
   });
 
@@ -24,14 +24,14 @@ class BalunError extends StatelessWidget {
           children: [
             Center(
               child: Image.asset(
-                BalunIcons.error,
+                BalunIcons.goalBall,
                 height: 144,
                 width: 144,
               ),
             ),
             const SizedBox(height: 32),
             Text(
-              error,
+              message,
               style: context.textStyles.error,
               textAlign: TextAlign.center,
             ),

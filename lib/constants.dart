@@ -3,10 +3,9 @@ import 'util/env.dart';
 class BalunConstants {
   static const animationDuration = Duration(milliseconds: 250);
   static const buttonScaleDuration = Duration(milliseconds: 125);
-  static const loadingDuration = Duration(milliseconds: 1500);
+  static const shimmerDuration = Duration(milliseconds: 1500);
   static const cacheDuration = Duration(days: 3);
 
-  // TODO: Update this with all values
   /// Keys are country names from the backend
   static const countriesOrder = {
     'World': 0,
@@ -16,8 +15,6 @@ class BalunConstants {
     'Italy': 5,
     'Germany': 4,
     'France': 6,
-    // 'Netherlands': 7,
-    // 'Portugal': 8,
   };
 
   // TODO: Update this with all values
@@ -34,5 +31,6 @@ class BalunEndpoints {
 }
 
 class BalunImages {
+  // TODO: Update this
   static const placeholderIcon = 'assets/icons/placeholder_icon.png';
 }

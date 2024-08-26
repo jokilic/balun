@@ -26,7 +26,7 @@ class _BalunLoaderState extends State<BalunLoader> with SingleTickerProviderStat
   void initState() {
     super.initState();
     controller = AnimationController(
-      duration: BalunConstants.loadingDuration,
+      duration: BalunConstants.shimmerDuration,
       vsync: this,
     )..repeat();
   }

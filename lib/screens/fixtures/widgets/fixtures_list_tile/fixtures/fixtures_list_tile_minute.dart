@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../theme/theme.dart';
+import '../../../../../theme/theme.dart';
 
 class FixturesListTileMinute extends StatelessWidget {
   final String status;

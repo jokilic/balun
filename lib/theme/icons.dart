@@ -14,6 +14,8 @@ class BalunIcons {
   static const assist = 'assets/icons/assist.png';
   static const error = 'assets/icons/error.png';
   static const injury = 'assets/icons/injury.png';
+  static const goalBall = 'assets/icons/goal_ball.png';
+  static const ballNavigation = 'assets/icons/ball_navigation.png';
   static const globe = 'assets/icons/globe.png';
   static const search = 'assets/icons/search.png';
 }

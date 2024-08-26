@@ -37,7 +37,7 @@ class BalunNavigationBar extends WatchingWidget {
                   color: context.colors.grey,
                 ),
                 child: Image.asset(
-                  BalunIcons.ball,
+                  BalunIcons.ballNavigation,
                   height: 24,
                   width: 24,
                   color: context.colors.white.withOpacity(0.25),
@@ -50,7 +50,7 @@ class BalunNavigationBar extends WatchingWidget {
                   color: context.colors.white,
                 ),
                 child: Image.asset(
-                  BalunIcons.ball,
+                  BalunIcons.ballNavigation,
                   height: 24,
                   width: 24,
                   color: context.colors.black,
