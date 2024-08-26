@@ -9,13 +9,13 @@ abstract class BalunTextStyles {
 
   static const fixturesCountry = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: FontWeight.w600,
   );
 
   static const fixturesLeague = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.w500,
   );
 

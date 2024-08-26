@@ -73,8 +73,12 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
             duration: BalunConstants.animationDuration,
             curve: Curves.easeIn,
             child: expanded
-                ? ListView.builder(
+                ? ListView.separated(
                     shrinkWrap: true,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 16,
+                    ),
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: widget.leagues?.length ?? 0,
                     itemBuilder: (_, leagueIndex) {
@@ -87,6 +91,7 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                         initiallyExpanded: false,
                       );
                     },
+                    separatorBuilder: (_, __) => const SizedBox(height: 12),
                   )
                 : const SizedBox.shrink(),
           ),

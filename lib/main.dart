@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:watch_it/watch_it.dart';
 
-import 'screens/match/match_screen.dart';
+import 'services/balun_screen_service.dart';
 import 'theme/theme.dart';
 import 'util/dependencies.dart';
 import 'widgets/balun_loader.dart';
@@ -31,11 +31,7 @@ class BalunApp extends WatchingWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        // home: watchIt<BalunScreenService>().value,
-        home: const MatchScreen(
-          matchId: 1215873,
-          key: ValueKey(1215873),
-        ),
+        home: watchIt<BalunScreenService>().value,
         onGenerateTitle: (_) => 'Balun',
         theme: BalunTheme.light,
         builder: (_, child) => kDebugMode
