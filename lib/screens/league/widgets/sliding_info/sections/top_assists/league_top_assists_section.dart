@@ -3,13 +3,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../../../constants.dart';
-import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import '../../../../../../widgets/balun_error.dart';
-import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/league_top_assists_controller.dart';
 import 'league_top_assists_content.dart';
+import 'league_top_assists_loading.dart';
 
 class LeagueTopAssistsSection extends WatchingStatefulWidget {
   final int? leagueId;
@@ -52,22 +52,13 @@ class _LeagueTopAssistsSectionState extends State<LeagueTopAssistsSection> {
           duration: BalunConstants.animationDuration,
         ),
       ],
-      // TODO: Implement all states
       child: switch (topAssistsState) {
-        Initial() => Container(
-            color: Colors.green,
-            height: 100,
-            width: 100,
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
           ),
-        Loading() => Center(
-            child: BalunLoader(
-              color: context.colors.green,
-            ),
-          ),
-        Empty() => Container(
-            color: Colors.grey,
-            height: 100,
-            width: 100,
+        Loading() => LeagueTopAssistsLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There are no top assists',
           ),
         Error() => BalunError(
             error: (topAssistsState as Error).error ?? 'Generic top assists error',

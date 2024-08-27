@@ -3,12 +3,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../../../constants.dart';
-import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
 import '../../../../../../widgets/balun_empty.dart';
 import '../../../../../../widgets/balun_error.dart';
-import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/league_top_scorers_controller.dart';
 import 'league_top_scorers_content.dart';
 import 'league_top_scorers_loading.dart';

@@ -6,7 +6,7 @@ import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 
-class LeagueTopScorersLoading extends StatelessWidget {
+class LeagueTopRedCardsLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Animate(
         onPlay: (controller) => controller.loop(

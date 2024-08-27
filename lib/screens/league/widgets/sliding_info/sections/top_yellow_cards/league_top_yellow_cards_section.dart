@@ -3,13 +3,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../../../constants.dart';
-import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import '../../../../../../widgets/balun_error.dart';
-import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/league_top_yellow_cards_controller.dart';
 import 'league_top_yellow_cards_content.dart';
+import 'league_top_yellow_cards_loading.dart';
 
 class LeagueTopYellowCardsSection extends WatchingStatefulWidget {
   final int? leagueId;
@@ -52,22 +52,13 @@ class _LeagueTopYellowCardsSectionState extends State<LeagueTopYellowCardsSectio
           duration: BalunConstants.animationDuration,
         ),
       ],
-      // TODO: Implement all states
       child: switch (topYellowCardsState) {
-        Initial() => Container(
-            color: Colors.green,
-            height: 100,
-            width: 100,
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
           ),
-        Loading() => Center(
-            child: BalunLoader(
-              color: context.colors.green,
-            ),
-          ),
-        Empty() => Container(
-            color: Colors.grey,
-            height: 100,
-            width: 100,
+        Loading() => LeagueTopYellowCardsLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There are no top yellow cards',
           ),
         Error() => BalunError(
             error: (topYellowCardsState as Error).error ?? 'Generic top yellow cards error',
