@@ -3,13 +3,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../../../constants.dart';
-import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import '../../../../../../widgets/balun_error.dart';
-import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/league_fixtures_controller.dart';
 import 'league_fixtures_content.dart';
+import 'league_fixtures_loading.dart';
 
 class LeagueFixturesSection extends WatchingStatefulWidget {
   final int? leagueId;
@@ -52,22 +52,13 @@ class _LeagueFixturesSectionState extends State<LeagueFixturesSection> {
           duration: BalunConstants.animationDuration,
         ),
       ],
-      // TODO: Implement all states
       child: switch (fixturesState) {
-        Initial() => Container(
-            color: Colors.green,
-            height: 100,
-            width: 100,
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
           ),
-        Loading() => Center(
-            child: BalunLoader(
-              color: context.colors.green,
-            ),
-          ),
-        Empty() => Container(
-            color: Colors.grey,
-            height: 100,
-            width: 100,
+        Loading() => LeagueFixturesLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There are no fixtures',
           ),
         Error() => BalunError(
             error: (fixturesState as Error).error ?? 'Generic fixtures error',
