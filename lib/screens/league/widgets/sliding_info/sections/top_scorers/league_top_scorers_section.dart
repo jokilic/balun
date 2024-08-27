@@ -6,10 +6,12 @@ import '../../../../../../constants.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import '../../../../../../widgets/balun_error.dart';
 import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/league_top_scorers_controller.dart';
 import 'league_top_scorers_content.dart';
+import 'league_top_scorers_loading.dart';
 
 class LeagueTopScorersSection extends WatchingStatefulWidget {
   final int? leagueId;
@@ -52,22 +54,13 @@ class _LeagueTopScorersSectionState extends State<LeagueTopScorersSection> {
           duration: BalunConstants.animationDuration,
         ),
       ],
-      // TODO: Implement all states
       child: switch (topScorersState) {
-        Initial() => Container(
-            color: Colors.green,
-            height: 100,
-            width: 100,
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
           ),
-        Loading() => Center(
-            child: BalunLoader(
-              color: context.colors.green,
-            ),
-          ),
-        Empty() => Container(
-            color: Colors.grey,
-            height: 100,
-            width: 100,
+        Loading() => LeagueTopScorersLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There are no top scorers',
           ),
         Error() => BalunError(
             error: (topScorersState as Error).error ?? 'Generic top scorers error',
