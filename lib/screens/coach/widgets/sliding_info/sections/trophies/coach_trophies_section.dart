@@ -20,7 +20,7 @@ class CoachTrophiesSection extends StatelessWidget {
           children: [
             BalunError(
               error: 'Trophies is still under construction',
-              verticalPadding: 8,
+              verticalPadding: 0,
             ),
           ],
         ),

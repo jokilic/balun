@@ -59,6 +59,7 @@ class _PlayerStatisticsSectionState extends State<PlayerStatisticsSection> {
         Loading() => PlayerStatisticsLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no statistics',
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (statisticsState as Error).error ?? 'Generic player statistics error',

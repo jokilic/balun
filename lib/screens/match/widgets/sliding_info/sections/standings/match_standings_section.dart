@@ -61,7 +61,7 @@ class _MatchStandingsSectionState extends State<MatchStandingsSection> {
         Loading() => MatchStandingsLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no standings',
-            verticalPadding: 8,
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (standingsState as Error).error ?? 'Generic standings error',

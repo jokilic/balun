@@ -59,6 +59,7 @@ class _LeagueTopRedCardsSectionState extends State<LeagueTopRedCardsSection> {
         Loading() => LeagueTopRedCardsLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no top red cards',
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (topRedCardsState as Error).error ?? 'Generic top red cards error',

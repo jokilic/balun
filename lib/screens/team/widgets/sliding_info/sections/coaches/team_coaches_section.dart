@@ -56,7 +56,7 @@ class _TeamCoachesSectionState extends State<TeamCoachesSection> {
         Loading() => TeamCoachesLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no team coaches',
-            verticalPadding: 8,
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (coachesState as Error).error ?? 'Generic team coaches error',

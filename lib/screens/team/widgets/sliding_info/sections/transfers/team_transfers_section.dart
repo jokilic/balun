@@ -56,6 +56,7 @@ class _TeamTransfersSectionState extends State<TeamTransfersSection> {
         Loading() => TeamTransfersLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no team transfers',
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (transfersState as Error).error ?? 'Generic team transfers error',

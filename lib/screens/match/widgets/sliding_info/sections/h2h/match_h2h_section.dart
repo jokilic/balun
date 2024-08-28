@@ -61,6 +61,7 @@ class _MatchHead2HeadSectionState extends State<MatchHead2HeadSection> {
         Loading() => MatchHead2HeadLoading(),
         Empty() => const BalunEmpty(
             message: 'There is no head-to-head',
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (head2HeadState as Error).error ?? 'Generic head2head error',

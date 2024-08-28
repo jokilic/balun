@@ -59,6 +59,7 @@ class _LeagueTopScorersSectionState extends State<LeagueTopScorersSection> {
         Loading() => LeagueTopScorersLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no top scorers',
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (topScorersState as Error).error ?? 'Generic top scorers error',

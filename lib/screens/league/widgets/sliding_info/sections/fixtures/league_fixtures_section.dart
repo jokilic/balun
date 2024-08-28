@@ -59,6 +59,7 @@ class _LeagueFixturesSectionState extends State<LeagueFixturesSection> {
         Loading() => LeagueFixturesLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no fixtures',
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (fixturesState as Error).error ?? 'Generic fixtures error',

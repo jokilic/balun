@@ -58,6 +58,7 @@ class _TeamPlayersSectionState extends State<TeamPlayersSection> {
         Loading() => TeamPlayersLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no team players',
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (playersState as Error).error ?? 'Generic team players error',

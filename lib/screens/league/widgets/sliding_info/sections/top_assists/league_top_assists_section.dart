@@ -59,6 +59,7 @@ class _LeagueTopAssistsSectionState extends State<LeagueTopAssistsSection> {
         Loading() => LeagueTopAssistsLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no top assists',
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (topAssistsState as Error).error ?? 'Generic top assists error',

@@ -30,7 +30,7 @@ class MatchPlayerStatisticsSection extends StatelessWidget {
             if (homePlayerStatistic == null && awayPlayerStatistic == null)
               const BalunEmpty(
                 message: 'No player statistics',
-                verticalPadding: 8,
+                verticalPadding: 0,
               )
             else ...[
               ///

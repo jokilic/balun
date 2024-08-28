@@ -59,6 +59,7 @@ class _LeagueTeamsSectionState extends State<LeagueTeamsSection> {
         Loading() => LeagueTeamsLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no teams',
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (teamsState as Error).error ?? 'Generic teams error',

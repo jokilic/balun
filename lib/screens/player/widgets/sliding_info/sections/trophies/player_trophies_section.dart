@@ -56,7 +56,7 @@ class _PlayerTrophiesSectionState extends State<PlayerTrophiesSection> {
         Loading() => PlayerTrophiesLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no player trophies',
-            verticalPadding: 8,
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (trophiesState as Error).error ?? 'Generic player trophies error',

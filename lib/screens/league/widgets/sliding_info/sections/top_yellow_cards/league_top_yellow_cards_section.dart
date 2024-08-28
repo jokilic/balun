@@ -59,6 +59,7 @@ class _LeagueTopYellowCardsSectionState extends State<LeagueTopYellowCardsSectio
         Loading() => LeagueTopYellowCardsLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no top yellow cards',
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (topYellowCardsState as Error).error ?? 'Generic top yellow cards error',

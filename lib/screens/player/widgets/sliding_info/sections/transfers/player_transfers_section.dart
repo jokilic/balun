@@ -56,7 +56,7 @@ class _PlayerTransfersSectionState extends State<PlayerTransfersSection> {
         Loading() => PlayerTransfersLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no player transfers',
-            verticalPadding: 8,
+            verticalPadding: 0,
           ),
         Error() => BalunError(
             error: (transfersState as Error).error ?? 'Generic player transfers error',

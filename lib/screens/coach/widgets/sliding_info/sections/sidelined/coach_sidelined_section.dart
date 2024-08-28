@@ -20,7 +20,7 @@ class CoachSidelinedSection extends StatelessWidget {
           children: [
             BalunError(
               error: 'Sidelined is still under construction',
-              verticalPadding: 8,
+              verticalPadding: 0,
             ),
           ],
         ),

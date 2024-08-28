@@ -29,7 +29,7 @@ class MatchLineupsSection extends StatelessWidget {
             if (homeLineup == null && awayLineup == null)
               const BalunEmpty(
                 message: 'No lineups',
-                verticalPadding: 8,
+                verticalPadding: 0,
               )
 
             ///
