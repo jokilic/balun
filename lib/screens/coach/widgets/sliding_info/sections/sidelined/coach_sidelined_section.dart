@@ -11,7 +11,7 @@ import '../../../../controllers/coach_sidelined_controller.dart';
 import 'coach_sidelined_content.dart';
 import 'coach_sidelined_loading.dart';
 
-class CoachSidelinedSection extends StatefulWidget {
+class CoachSidelinedSection extends WatchingStatefulWidget {
   final int? coachId;
 
   const CoachSidelinedSection({

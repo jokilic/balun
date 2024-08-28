@@ -11,7 +11,7 @@ import '../../../../controllers/coach_trophies_controller.dart';
 import 'coach_trophies_content.dart';
 import 'coach_trophies_loading.dart';
 
-class CoachTrophiesSection extends StatefulWidget {
+class CoachTrophiesSection extends WatchingStatefulWidget {
   final int? coachId;
 
   const CoachTrophiesSection({
