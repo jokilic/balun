@@ -19,7 +19,6 @@ void openFixtures(BuildContext context) => pushScreen(
         key: ValueKey('fixtures'),
       ),
       context: context,
-      isCircularTransition: true,
     );
 
 /// Opens [CountriesScreen]
@@ -28,7 +27,6 @@ void openCountries(BuildContext context) => pushScreen(
         key: ValueKey('countries'),
       ),
       context: context,
-      isCircularTransition: true,
     );
 
 /// Opens [SearchScreen]
@@ -37,7 +35,6 @@ void openSearch(BuildContext context) => pushScreen(
         key: ValueKey('search'),
       ),
       context: context,
-      isCircularTransition: true,
     );
 
 /// Opens [LeaguesScreen]
@@ -47,7 +44,6 @@ void openLeagues(BuildContext context, {required String country}) => pushScreen(
         key: ValueKey(country),
       ),
       context: context,
-      isCircularTransition: true,
     );
 
 /// Opens [MatchScreen]
@@ -57,7 +53,6 @@ void openMatch(BuildContext context, {required int matchId}) => pushScreen(
         key: ValueKey(matchId),
       ),
       context: context,
-      isCircularTransition: true,
     );
 
 /// Opens [TeamScreen]
@@ -73,7 +68,6 @@ void openTeam(
         key: ValueKey(teamId),
       ),
       context: context,
-      isCircularTransition: true,
     );
 
 /// Opens [LeagueScreen]
@@ -89,7 +83,6 @@ void openLeague(
         key: ValueKey(leagueId),
       ),
       context: context,
-      isCircularTransition: true,
     );
 
 /// Opens [PlayerScreen]
@@ -105,7 +98,6 @@ void openPlayer(
         key: ValueKey(playerId),
       ),
       context: context,
-      isCircularTransition: true,
     );
 
 /// Opens [CoachScreen]
@@ -115,7 +107,6 @@ void openCoach(BuildContext context, {required int coachId}) => pushScreen(
         key: ValueKey(coachId),
       ),
       context: context,
-      isCircularTransition: true,
     );
 
 /// Opens [VenueScreen]
@@ -124,6 +115,5 @@ void openVenue(BuildContext context, {required int venueId}) {
   // pushScreen(
   //   VenueScreen(venueId: venueId),
   //   context: context,
-  //   isCircularTransition: true,
   // );
 }

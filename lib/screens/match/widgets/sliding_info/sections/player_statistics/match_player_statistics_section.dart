@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/player_statistic/player_statistic.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import 'match_player_statistics_content.dart';
 
 class MatchPlayerStatisticsSection extends StatelessWidget {
@@ -27,8 +28,10 @@ class MatchPlayerStatisticsSection extends StatelessWidget {
             /// NO STATISTICS
             ///
             if (homePlayerStatistic == null && awayPlayerStatistic == null)
-              // TODO: Implement empty state
-              const Text('No player statistics')
+              const BalunEmpty(
+                message: 'No player statistics',
+                verticalPadding: 8,
+              )
             else ...[
               ///
               /// HOME

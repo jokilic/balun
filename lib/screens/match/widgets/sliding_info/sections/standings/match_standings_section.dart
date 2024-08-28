@@ -3,13 +3,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../../../constants.dart';
-import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import '../../../../../../widgets/balun_error.dart';
-import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/match_standings_controller.dart';
 import 'match_standings_content.dart';
+import 'match_standings_loading.dart';
 
 class MatchStandingsSection extends WatchingStatefulWidget {
   final int? matchId;
@@ -54,22 +54,14 @@ class _MatchStandingsSectionState extends State<MatchStandingsSection> {
           duration: BalunConstants.animationDuration,
         ),
       ],
-      // TODO: Implement all states
       child: switch (standingsState) {
-        Initial() => Container(
-            color: Colors.green,
-            height: 100,
-            width: 100,
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
           ),
-        Loading() => Center(
-            child: BalunLoader(
-              color: context.colors.green,
-            ),
-          ),
-        Empty() => Container(
-            color: Colors.grey,
-            height: 100,
-            width: 100,
+        Loading() => MatchStandingsLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There are no standings',
+            verticalPadding: 8,
           ),
         Error() => BalunError(
             error: (standingsState as Error).error ?? 'Generic standings error',

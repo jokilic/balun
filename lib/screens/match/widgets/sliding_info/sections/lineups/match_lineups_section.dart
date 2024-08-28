@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/lineup/lineup.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import 'match_lineup_content.dart';
 
 class MatchLineupsSection extends StatelessWidget {
@@ -26,8 +27,10 @@ class MatchLineupsSection extends StatelessWidget {
             /// NO LINEUPS
             ///
             if (homeLineup == null && awayLineup == null)
-              // TODO: Implement empty state
-              const Text('No lineups')
+              const BalunEmpty(
+                message: 'No lineups',
+                verticalPadding: 8,
+              )
 
             ///
             /// FIELD
