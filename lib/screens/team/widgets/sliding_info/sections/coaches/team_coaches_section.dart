@@ -3,13 +3,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../../../constants.dart';
-import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import '../../../../../../widgets/balun_error.dart';
-import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/team_coaches_controller.dart';
 import 'team_coaches_content.dart';
+import 'team_coaches_loading.dart';
 
 class TeamCoachesSection extends WatchingStatefulWidget {
   final int? teamId;
@@ -49,22 +49,14 @@ class _TeamCoachesSectionState extends State<TeamCoachesSection> {
           duration: BalunConstants.animationDuration,
         ),
       ],
-      // TODO: Implement all states
       child: switch (coachesState) {
-        Initial() => Container(
-            color: Colors.green,
-            height: 100,
-            width: 100,
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
           ),
-        Loading() => Center(
-            child: BalunLoader(
-              color: context.colors.green,
-            ),
-          ),
-        Empty() => Container(
-            color: Colors.grey,
-            height: 100,
-            width: 100,
+        Loading() => TeamCoachesLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There are no team coaches',
+            verticalPadding: 8,
           ),
         Error() => BalunError(
             error: (coachesState as Error).error ?? 'Generic team coaches error',

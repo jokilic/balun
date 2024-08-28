@@ -3,13 +3,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../../../constants.dart';
-import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import '../../../../../../widgets/balun_error.dart';
-import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/player_statistics_controller.dart';
 import 'player_statistics_content.dart';
+import 'player_statistics_loading.dart';
 
 class PlayerStatisticsSection extends WatchingStatefulWidget {
   final int? playerId;
@@ -52,22 +52,13 @@ class _PlayerStatisticsSectionState extends State<PlayerStatisticsSection> {
           duration: BalunConstants.animationDuration,
         ),
       ],
-      // TODO: Implement all states
       child: switch (statisticsState) {
-        Initial() => Container(
-            color: Colors.green,
-            height: 100,
-            width: 100,
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
           ),
-        Loading() => Center(
-            child: BalunLoader(
-              color: context.colors.green,
-            ),
-          ),
-        Empty() => Container(
-            color: Colors.grey,
-            height: 100,
-            width: 100,
+        Loading() => PlayerStatisticsLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There are no statistics',
           ),
         Error() => BalunError(
             error: (statisticsState as Error).error ?? 'Generic player statistics error',
