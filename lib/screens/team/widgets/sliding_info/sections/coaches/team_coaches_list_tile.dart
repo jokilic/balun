@@ -40,7 +40,7 @@ class _TeamCoachesListTileState extends State<TeamCoachesListTile> {
                 child: Row(
                   children: [
                     BalunImage(
-                      imageUrl: widget.coach.photo ?? BalunImages.placeholderIcon,
+                      imageUrl: widget.coach.photo ?? BalunImages.placeholderPlayer,
                       height: 56,
                       width: 56,
                     ),

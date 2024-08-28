@@ -55,7 +55,7 @@ class _PlayerSidelinedSectionState extends State<PlayerSidelinedSection> {
           ),
         Loading() => PlayerSidelinedLoading(),
         Empty() => const BalunEmpty(
-            message: 'There are no sidelined',
+            message: 'There is no player sidelined',
             verticalPadding: 0,
           ),
         Error() => BalunError(

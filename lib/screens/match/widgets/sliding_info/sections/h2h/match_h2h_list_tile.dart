@@ -87,7 +87,7 @@ class MatchH2HListTile extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: BalunImage(
-                    imageUrl: fixture.teams?.home?.logo ?? BalunImages.placeholderIcon,
+                    imageUrl: fixture.teams?.home?.logo ?? BalunImages.placeholderTeam,
                     height: 56,
                     width: 56,
                   ),
@@ -121,7 +121,7 @@ class MatchH2HListTile extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: BalunImage(
-                    imageUrl: fixture.teams?.away?.logo ?? BalunImages.placeholderIcon,
+                    imageUrl: fixture.teams?.away?.logo ?? BalunImages.placeholderTeam,
                     height: 56,
                     width: 56,
                   ),

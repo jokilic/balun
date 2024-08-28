@@ -1022,6 +1022,46 @@ class APIService {
     }
   }
 
+  Future<({SidelinedResponse? sidelinedResponse, String? error})> getSidelinedFromCoach({
+    required int coachId,
+  }) async {
+    try {
+      final response = await cacheDio.get(
+        '/sidelined',
+        queryParameters: {
+          'coach': coachId,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+        case 304:
+          try {
+            final parsedResponse = await computeSidelined(response.data);
+            return (sidelinedResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getSidelinedFromCoach -> parsing error -> $e';
+            logger.e(error);
+            return (sidelinedResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getSidelinedFromCoach -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (sidelinedResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getSidelinedFromCoach',
+        mainError: '$e',
+      );
+      return (sidelinedResponse: null, error: error);
+    }
+  }
+
   ///
   /// `/trophies`
   ///
@@ -1060,6 +1100,46 @@ class APIService {
     } catch (e) {
       final error = await handleCatch(
         methodName: 'getTrophiesFromPlayer',
+        mainError: '$e',
+      );
+      return (trophiesResponse: null, error: error);
+    }
+  }
+
+  Future<({TrophiesResponse? trophiesResponse, String? error})> getTrophiesFromCoach({
+    required int coachId,
+  }) async {
+    try {
+      final response = await cacheDio.get(
+        '/trophies',
+        queryParameters: {
+          'coach': coachId,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+        case 304:
+          try {
+            final parsedResponse = await computeTrophies(response.data);
+            return (trophiesResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getTrophiesFromCoach -> parsing error -> $e';
+            logger.e(error);
+            return (trophiesResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getTrophiesFromCoach -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (trophiesResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getTrophiesFromCoach',
         mainError: '$e',
       );
       return (trophiesResponse: null, error: error);

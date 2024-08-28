@@ -40,7 +40,7 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                 child: Row(
                   children: [
                     BalunImage(
-                      imageUrl: widget.league.league?.logo ?? BalunImages.placeholderIcon,
+                      imageUrl: widget.league.league?.logo ?? BalunImages.placeholderLeague,
                       height: 56,
                       width: 56,
                     ),

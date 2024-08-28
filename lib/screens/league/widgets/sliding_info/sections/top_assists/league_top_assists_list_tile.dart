@@ -33,7 +33,7 @@ class LeagueTopAssistsListTile extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
-                  imageUrl: assist?.player?.photo ?? BalunImages.placeholderIcon,
+                  imageUrl: assist?.player?.photo ?? BalunImages.placeholderPlayer,
                   height: 56,
                   width: 56,
                 ),

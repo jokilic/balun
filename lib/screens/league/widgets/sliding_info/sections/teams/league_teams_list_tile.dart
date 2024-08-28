@@ -31,7 +31,7 @@ class LeagueTeamsListTile extends StatelessWidget {
           child: Row(
             children: [
               BalunImage(
-                imageUrl: team.team?.logo ?? BalunImages.placeholderIcon,
+                imageUrl: team.team?.logo ?? BalunImages.placeholderTeam,
                 height: 56,
                 width: 56,
               ),

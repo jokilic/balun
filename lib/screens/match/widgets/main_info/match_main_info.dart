@@ -62,7 +62,7 @@ class MatchMainInfo extends StatelessWidget {
                           /// HOME LOGO
                           ///
                           MatchLogo(
-                            logo: match.teams?.home?.logo ?? BalunImages.placeholderIcon,
+                            logo: match.teams?.home?.logo ?? BalunImages.placeholderTeam,
                           ),
 
                           const SizedBox(height: 16),
@@ -124,7 +124,7 @@ class MatchMainInfo extends StatelessWidget {
                           /// AWAY LOGO
                           ///
                           MatchLogo(
-                            logo: match.teams?.away?.logo ?? BalunImages.placeholderIcon,
+                            logo: match.teams?.away?.logo ?? BalunImages.placeholderTeam,
                           ),
 
                           const SizedBox(height: 16),

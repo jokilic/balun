@@ -38,7 +38,7 @@ class FixturesListTile extends StatelessWidget {
                   /// HOME LOGO
                   ///
                   FixturesListTileLogo(
-                    logo: fixture.teams?.home?.logo ?? BalunImages.placeholderIcon,
+                    logo: fixture.teams?.home?.logo ?? BalunImages.placeholderTeam,
                   ),
 
                   ///
@@ -55,7 +55,7 @@ class FixturesListTile extends StatelessWidget {
                   /// AWAY LOGO
                   ///
                   FixturesListTileLogo(
-                    logo: fixture.teams?.away?.logo ?? BalunImages.placeholderIcon,
+                    logo: fixture.teams?.away?.logo ?? BalunImages.placeholderTeam,
                   ),
                 ],
               ),

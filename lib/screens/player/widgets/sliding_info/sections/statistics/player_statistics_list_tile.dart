@@ -49,7 +49,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: BalunImage(
-                          imageUrl: widget.statistic?.team?.logo ?? BalunImages.placeholderIcon,
+                          imageUrl: widget.statistic?.team?.logo ?? BalunImages.placeholderTeam,
                           height: 56,
                           width: 56,
                         ),

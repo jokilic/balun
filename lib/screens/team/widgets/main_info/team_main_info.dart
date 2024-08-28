@@ -51,7 +51,7 @@ class TeamMainInfo extends WatchingWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: BalunImage(
-              imageUrl: team.team?.logo ?? BalunImages.placeholderIcon,
+              imageUrl: team.team?.logo ?? BalunImages.placeholderTeam,
               fit: BoxFit.contain,
               height: 120,
               width: 120,

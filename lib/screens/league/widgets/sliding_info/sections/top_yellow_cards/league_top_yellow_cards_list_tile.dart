@@ -33,7 +33,7 @@ class LeagueTopYellowCardsListTile extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
-                  imageUrl: yellowCard?.player?.photo ?? BalunImages.placeholderIcon,
+                  imageUrl: yellowCard?.player?.photo ?? BalunImages.placeholderPlayer,
                   height: 56,
                   width: 56,
                 ),

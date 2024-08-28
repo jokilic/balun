@@ -56,7 +56,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(100),
                       child: BalunImage(
-                        imageUrl: widget.statisticData?.player?.photo ?? BalunImages.placeholderIcon,
+                        imageUrl: widget.statisticData?.player?.photo ?? BalunImages.placeholderPlayer,
                         height: 56,
                         width: 56,
                       ),

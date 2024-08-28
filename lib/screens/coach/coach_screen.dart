@@ -8,6 +8,7 @@ import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
 import 'controllers/coach_controller.dart';
 import 'controllers/coach_section_controller.dart';
+import 'controllers/coach_sidelined_controller.dart';
 import 'widgets/coach_content.dart';
 
 class CoachScreen extends WatchingStatefulWidget {
@@ -35,6 +36,13 @@ class _CoachScreenState extends State<CoachScreen> {
         instanceName: '${widget.coachId}',
       )
       ..registerLazySingleton(
+        () => CoachSidelinedController(
+          logger: getIt.get<LoggerService>(),
+          api: getIt.get<APIService>(),
+        ),
+        instanceName: '${widget.coachId}',
+      )
+      ..registerLazySingleton(
         () => CoachController(
           logger: getIt.get<LoggerService>(),
           api: getIt.get<APIService>(),
@@ -55,6 +63,9 @@ class _CoachScreenState extends State<CoachScreen> {
   void dispose() {
     getIt
       ..unregister<CoachSectionController>(
+        instanceName: '${widget.coachId}',
+      )
+      ..unregister<CoachSidelinedController>(
         instanceName: '${widget.coachId}',
       )
       ..unregister<CoachController>(

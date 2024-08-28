@@ -17,7 +17,7 @@ class BalunConstants {
     'France': 6,
   };
 
-  // TODO: Update this with all values
+  // TODO: Update this with all values - https://dashboard.api-football.com/soccer/ids
   /// Keys are league IDs from the backend
   static const leaguesOrder = {
     210: 0,
@@ -31,6 +31,7 @@ class BalunEndpoints {
 }
 
 class BalunImages {
-  // TODO: Update this
-  static const placeholderIcon = 'assets/icons/placeholder_icon.png';
+  static const placeholderPlayer = 'assets/icons/placeholder_player.png';
+  static const placeholderLeague = 'assets/icons/placeholder_league.png';
+  static const placeholderTeam = 'assets/icons/placeholder_team.png';
 }
