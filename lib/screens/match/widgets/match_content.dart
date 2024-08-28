@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../util/state.dart';
+import '../../../widgets/balun_empty.dart';
 import '../../../widgets/balun_error.dart';
-import '../../../widgets/balun_loader.dart';
+import 'match_loading.dart';
 import 'match_success.dart';
 
 class MatchContent extends StatelessWidget {
@@ -15,9 +16,13 @@ class MatchContent extends StatelessWidget {
 // TODO: Implement all states
   @override
   Widget build(BuildContext context) => switch (matchState) {
-        Initial() => Container(color: Colors.green),
-        Loading() => const Center(child: BalunLoader()),
-        Empty() => Container(color: Colors.grey),
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
+          ),
+        Loading() => MatchLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There is no match',
+          ),
         Error() => BalunError(
             error: (matchState as Error).error ?? 'Generic match error',
           ),
