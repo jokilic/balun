@@ -12,7 +12,7 @@ class BalunLoader extends StatefulWidget {
 
   const BalunLoader({
     this.color,
-    this.size = 32,
+    this.size = 40,
   });
 
   @override

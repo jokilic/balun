@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../util/state.dart';
+import '../../../widgets/balun_empty.dart';
 import '../../../widgets/balun_error.dart';
-import '../../../widgets/balun_loader.dart';
+import 'coach_loading.dart';
 import 'coach_success.dart';
 
 class CoachContent extends StatelessWidget {
@@ -14,9 +15,13 @@ class CoachContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (coachState) {
-        Initial() => Container(color: Colors.green),
-        Loading() => const Center(child: BalunLoader()),
-        Empty() => Container(color: Colors.grey),
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
+          ),
+        Loading() => CoachLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There is no coach',
+          ),
         Error() => BalunError(
             error: (coachState as Error).error ?? 'Generic coach error',
           ),
