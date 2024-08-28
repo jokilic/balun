@@ -56,6 +56,19 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
 
   final initialPage = 3;
   late final PageController controller;
+  late final dates = List.generate(
+    7,
+    (index) => currentDate.add(
+      Duration(
+        days: index -
+            getIt
+                .get<FixturesDateController>(
+                  instanceName: 'fixtures',
+                )
+                .initialPage,
+      ),
+    ),
+  );
 
   ///
   /// METHODS
@@ -69,14 +82,10 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
     return '$year-$month-$day';
   }
 
-  void updateDateAndRefetch(int index) {
+  void updateDateAndRefetch(DateTime newDate) {
     final oldValue = value;
 
-    value = currentDate.add(
-      Duration(
-        days: index - initialPage,
-      ),
-    );
+    value = newDate;
 
     if (oldValue != value) {
       getIt
@@ -92,13 +101,14 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
   Future<void> updateDateViaPickerAndRefetch(BuildContext context) async {
     final oldValue = value;
 
-    // TODO: Update date picker
     value = await showDatePicker(
           context: context,
           firstDate: DateTime(2010),
           lastDate: currentDate.add(
             const Duration(days: 2 * 365),
           ),
+          cancelText: 'Cancel'.toUpperCase(),
+          confirmText: 'Confirm'.toUpperCase(),
         ) ??
         value;
 

@@ -22,6 +22,12 @@ class FixturesDatePicker extends WatchingWidget {
       instanceName: 'fixtures',
     ).value;
 
+    final dates = getIt
+        .get<FixturesDateController>(
+          instanceName: 'fixtures',
+        )
+        .dates;
+
     return SizedBox(
       height: 80,
       child: PageView(
@@ -47,15 +53,28 @@ class FixturesDatePicker extends WatchingWidget {
               margin: const EdgeInsets.all(8),
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                color: context.colors.green.withOpacity(0.5),
+                color: !dates.contains(activeDate) ? context.colors.white : context.colors.green.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                child: Image.asset(
-                  BalunIcons.calendar,
-                  height: 28,
-                  width: 28,
-                  color: context.colors.white,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(
+                      BalunIcons.calendar,
+                      height: 20,
+                      width: 20,
+                      color: !dates.contains(activeDate) ? context.colors.green.withOpacity(0.5) : context.colors.white,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      DateFormat('d MMM').format(activeDate).toUpperCase(),
+                      style: !dates.contains(activeDate)
+                          ? context.textStyles.fixtureDatePickerActive.copyWith(fontSize: 14)
+                          : context.textStyles.fixtureDatePickerInactive.copyWith(fontSize: 14),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -64,57 +83,49 @@ class FixturesDatePicker extends WatchingWidget {
           ///
           /// DATES
           ///
-          ...List.generate(
-            7,
-            (index) {
-              final date = currentDate.add(
-                Duration(
-                  days: index -
-                      getIt
-                          .get<FixturesDateController>(
-                            instanceName: 'fixtures',
-                          )
-                          .initialPage,
-                ),
-              );
-
-              return BalunButton(
-                onPressed: () => getIt
-                    .get<FixturesDateController>(
-                      instanceName: 'fixtures',
-                    )
-                    .updateDateAndRefetch(index),
-                child: Container(
-                  margin: const EdgeInsets.all(8),
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    color: activeDate == date ? context.colors.white : context.colors.green.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          date == currentDate ? 'Today'.toUpperCase() : DateFormat('E').format(date).toUpperCase(),
-                          style: activeDate == date ? context.textStyles.fixtureDatePickerActive : context.textStyles.fixtureDatePickerInactive,
-                          textAlign: TextAlign.center,
-                        ),
-                        if (date != currentDate)
+          ...getIt
+              .get<FixturesDateController>(
+                instanceName: 'fixtures',
+              )
+              .dates
+              .map(
+                (date) => BalunButton(
+                  onPressed: () => getIt
+                      .get<FixturesDateController>(
+                        instanceName: 'fixtures',
+                      )
+                      .updateDateAndRefetch(date),
+                  child: Container(
+                    margin: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: activeDate == date ? context.colors.white : context.colors.green.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
                           Text(
-                            DateFormat('d MMM').format(date).toUpperCase(),
-                            style: activeDate == date
-                                ? context.textStyles.fixtureDatePickerActive.copyWith(fontSize: 14)
-                                : context.textStyles.fixtureDatePickerInactive.copyWith(fontSize: 14),
+                            date == currentDate ? 'Today'.toUpperCase() : DateFormat('E').format(date).toUpperCase(),
+                            style: activeDate == date ? context.textStyles.fixtureDatePickerActive : context.textStyles.fixtureDatePickerInactive,
                             textAlign: TextAlign.center,
                           ),
-                      ],
+                          if (date != currentDate)
+                            Text(
+                              DateFormat('d MMM').format(date).toUpperCase(),
+                              style: activeDate == date
+                                  ? context.textStyles.fixtureDatePickerActive.copyWith(fontSize: 14)
+                                  : context.textStyles.fixtureDatePickerInactive.copyWith(fontSize: 14),
+                              textAlign: TextAlign.center,
+                            ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              );
-            },
-          ),
+              )
+              .toList(),
 
           ///
           /// CHOOSE CUSTOM DATE

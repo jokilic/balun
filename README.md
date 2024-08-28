@@ -7,11 +7,6 @@ A simple Flutter application for football scores.
 
 # Screens
 
-### `SearchScreen`
-
-* Main screen, part of the navigation
-* Think about how to approach this
-
 ### `CoachScreen`
 
 * Sidelined coach
