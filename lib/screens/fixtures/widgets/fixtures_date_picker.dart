@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:watch_it/watch_it.dart';
 
+import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/custom_page_scroll_physics.dart';
 import '../../../util/dependencies.dart';
 import '../../../widgets/balun_button.dart';
 import '../controllers/fixtures_date_controller.dart';
@@ -28,7 +30,9 @@ class FixturesDatePicker extends WatchingWidget {
               instanceName: 'fixtures',
             )
             .controller,
-        physics: const BouncingScrollPhysics(),
+        physics: const CustomPageScrollPhysics(
+          viewportFraction: 0.4,
+        ),
         children: [
           ///
           /// CHOOSE CUSTOM DATE
@@ -47,10 +51,10 @@ class FixturesDatePicker extends WatchingWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                // TODO: Update this UI
-                child: Icon(
-                  Icons.calendar_month_rounded,
-                  size: 28,
+                child: Image.asset(
+                  BalunIcons.calendar,
+                  height: 28,
+                  width: 28,
                   color: context.colors.white,
                 ),
               ),
@@ -129,10 +133,10 @@ class FixturesDatePicker extends WatchingWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                // TODO: Use something else here
-                child: Icon(
-                  Icons.calendar_month_rounded,
-                  size: 28,
+                child: Image.asset(
+                  BalunIcons.calendar,
+                  height: 32,
+                  width: 32,
                   color: context.colors.white,
                 ),
               ),

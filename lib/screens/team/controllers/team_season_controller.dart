@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../constants.dart';
 import '../../../models/team_section.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
@@ -24,13 +25,32 @@ class TeamSeasonController extends ValueNotifier<int> implements Disposable {
     required this.teamId,
     required this.initialSeason,
   }) : super(initialSeason) {
+    const viewportFraction = 0.4;
+
     controller = PageController(
       initialPage: initialSeason,
-      viewportFraction: 0.4,
+      viewportFraction: viewportFraction,
     );
 
     WidgetsBinding.instance.addPostFrameCallback(
-      (_) => controller.jumpToPage(initialSeason),
+      (_) {
+        final pageOffset = initialSeason * viewportFraction;
+        const centeringOffset = (1 - viewportFraction) / 2;
+
+        controller
+            .animateToPage(
+              initialSeason,
+              duration: BalunConstants.animationDuration,
+              curve: Curves.easeIn,
+            )
+            .then(
+              (_) => controller.animateTo(
+                (pageOffset + centeringOffset) * controller.position.viewportDimension,
+                duration: BalunConstants.animationDuration,
+                curve: Curves.easeIn,
+              ),
+            );
+      },
     );
   }
 

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../constants.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/dependencies.dart';
 import 'fixtures_controller.dart';
@@ -15,13 +16,32 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
     required this.currentDate,
     required this.logger,
   }) : super(currentDate) {
+    const viewportFraction = 0.4;
+
     controller = PageController(
       initialPage: initialPage,
-      viewportFraction: 0.4,
+      viewportFraction: viewportFraction,
     );
 
     WidgetsBinding.instance.addPostFrameCallback(
-      (_) => controller.jumpToPage(initialPage),
+      (_) {
+        final pageOffset = initialPage * viewportFraction;
+        const centeringOffset = (1 - viewportFraction) / 2;
+
+        controller
+            .animateToPage(
+              initialPage,
+              duration: BalunConstants.animationDuration,
+              curve: Curves.easeIn,
+            )
+            .then(
+              (_) => controller.animateTo(
+                (pageOffset + centeringOffset) * controller.position.viewportDimension,
+                duration: BalunConstants.animationDuration,
+                curve: Curves.easeIn,
+              ),
+            );
+      },
     );
   }
 

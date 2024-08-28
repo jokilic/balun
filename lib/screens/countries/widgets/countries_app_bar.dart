@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/balun_button.dart';
 
@@ -23,10 +24,11 @@ class CountriesAppBar extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: context.colors.white.withOpacity(0.4),
                 ),
-                // TODO: Icon here
-                child: const SizedBox(
+                child: Image.asset(
+                  BalunIcons.globe,
                   height: 32,
                   width: 32,
+                  color: context.colors.black,
                 ),
               ),
             ),

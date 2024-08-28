@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/fixtures/league/league.dart';
+import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/balun_button.dart';
 
@@ -27,9 +28,10 @@ class MatchAppBar extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: context.colors.white.withOpacity(0.4),
               ),
-              child: const Icon(
-                Icons.arrow_back_rounded,
-                size: 32,
+              child: Image.asset(
+                BalunIcons.back,
+                height: 32,
+                width: 32,
               ),
             ),
           ),
