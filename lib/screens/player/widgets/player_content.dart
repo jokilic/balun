@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../util/state.dart';
+import '../../../widgets/balun_empty.dart';
 import '../../../widgets/balun_error.dart';
-import '../../../widgets/balun_loader.dart';
+import 'player_loading.dart';
 import 'player_success.dart';
 
 class PlayerContent extends StatelessWidget {
@@ -14,9 +15,13 @@ class PlayerContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (playerState) {
-        Initial() => Container(color: Colors.green),
-        Loading() => const Center(child: BalunLoader()),
-        Empty() => Container(color: Colors.grey),
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
+          ),
+        Loading() => PlayerLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There is no player',
+          ),
         Error() => BalunError(
             error: (playerState as Error).error ?? 'Generic player error',
           ),
