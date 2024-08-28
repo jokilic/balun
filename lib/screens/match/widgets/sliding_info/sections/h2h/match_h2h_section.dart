@@ -3,13 +3,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../../../constants.dart';
-import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import '../../../../../../widgets/balun_error.dart';
-import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/match_h2h_controller.dart';
 import 'match_h2h_content.dart';
+import 'match_h2h_loading.dart';
 
 class MatchHead2HeadSection extends WatchingStatefulWidget {
   final int? matchId;
@@ -54,22 +54,13 @@ class _MatchHead2HeadSectionState extends State<MatchHead2HeadSection> {
           duration: BalunConstants.animationDuration,
         ),
       ],
-      // TODO: Implement all states
       child: switch (head2HeadState) {
-        Initial() => Container(
-            color: Colors.green,
-            height: 100,
-            width: 100,
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
           ),
-        Loading() => Center(
-            child: BalunLoader(
-              color: context.colors.green,
-            ),
-          ),
-        Empty() => Container(
-            color: Colors.grey,
-            height: 100,
-            width: 100,
+        Loading() => MatchHead2HeadLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There is no head-to-head',
           ),
         Error() => BalunError(
             error: (head2HeadState as Error).error ?? 'Generic head2head error',

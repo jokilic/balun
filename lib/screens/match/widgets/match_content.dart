@@ -13,7 +13,6 @@ class MatchContent extends StatelessWidget {
     required this.matchState,
   });
 
-// TODO: Implement all states
   @override
   Widget build(BuildContext context) => switch (matchState) {
         Initial() => const BalunEmpty(
