@@ -3,13 +3,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../../../constants.dart';
-import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import '../../../../../../widgets/balun_error.dart';
-import '../../../../../../widgets/balun_loader.dart';
 import '../../../../controllers/player_sidelined_controller.dart';
 import 'player_sidelined_content.dart';
+import 'player_sidelined_loading.dart';
 
 class PlayerSidelinedSection extends WatchingStatefulWidget {
   final int? playerId;
@@ -49,22 +49,13 @@ class _PlayerSidelinedSectionState extends State<PlayerSidelinedSection> {
           duration: BalunConstants.animationDuration,
         ),
       ],
-      // TODO: Implement all states
       child: switch (sidelinedState) {
-        Initial() => Container(
-            color: Colors.green,
-            height: 100,
-            width: 100,
+        Initial() => const BalunEmpty(
+            message: "Initial state, this shouldn't happen",
           ),
-        Loading() => Center(
-            child: BalunLoader(
-              color: context.colors.green,
-            ),
-          ),
-        Empty() => Container(
-            color: Colors.grey,
-            height: 100,
-            width: 100,
+        Loading() => PlayerSidelinedLoading(),
+        Empty() => const BalunEmpty(
+            message: 'There are no sidelined',
           ),
         Error() => BalunError(
             error: (sidelinedState as Error).error ?? 'Generic player sidelined error',
