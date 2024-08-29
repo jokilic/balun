@@ -17,7 +17,10 @@ class BalunIcons {
   static const error = 'assets/icons/error.png';
   static const injury = 'assets/icons/injury.png';
   static const goalBall = 'assets/icons/goal_ball.png';
-  static const globeColor = 'assets/icons/globe_color.png';
+  static const countryPlaceholder = 'assets/icons/globe_color.png';
+  static const placeholderPlayer = 'assets/icons/placeholder_player.png';
+  static const placeholderLeague = 'assets/icons/placeholder_league.png';
+  static const placeholderTeam = 'assets/icons/placeholder_team.png';
   static const calendar = 'assets/icons/calendar.png';
   static const back = 'assets/icons/back.png';
   static const ballNavigation = 'assets/icons/ball_navigation.png';

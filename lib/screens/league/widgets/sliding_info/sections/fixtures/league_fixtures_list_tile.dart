@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../constants.dart';
 import '../../../../../../models/fixtures/fixture_response.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
 import '../../../../../../widgets/balun_button.dart';
@@ -48,7 +48,7 @@ class LeagueFixturesListTile extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: BalunImage(
-                    imageUrl: fixture.teams?.home?.logo ?? BalunImages.placeholderTeam,
+                    imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
                     height: 56,
                     width: 56,
                   ),
@@ -78,7 +78,7 @@ class LeagueFixturesListTile extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: BalunImage(
-                    imageUrl: fixture.teams?.away?.logo ?? BalunImages.placeholderTeam,
+                    imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
                     height: 56,
                     width: 56,
                   ),

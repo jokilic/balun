@@ -38,7 +38,7 @@ class SearchCountriesListTile extends StatelessWidget {
                         padding: const EdgeInsets.all(8),
                         color: context.colors.white.withOpacity(0.5),
                         child: Image.asset(
-                          BalunIcons.globeColor,
+                          BalunIcons.countryPlaceholder,
                           height: 32,
                           width: 44,
                         ),

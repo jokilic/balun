@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../models/players/statistic/statistic.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
@@ -49,7 +50,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: BalunImage(
-                          imageUrl: widget.statistic?.team?.logo ?? BalunImages.placeholderTeam,
+                          imageUrl: widget.statistic?.team?.logo ?? BalunIcons.placeholderTeam,
                           height: 56,
                           width: 56,
                         ),

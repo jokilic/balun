@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../constants.dart';
 import '../../../../../../models/transfers/transfer/transfer.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
@@ -55,7 +54,7 @@ class TeamTransferListTile extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: BalunImage(
-                          imageUrl: transfer.teams?.teamOut?.logo ?? BalunImages.placeholderTeam,
+                          imageUrl: transfer.teams?.teamOut?.logo ?? BalunIcons.placeholderTeam,
                           height: 48,
                           width: 48,
                         ),
@@ -139,7 +138,7 @@ class TeamTransferListTile extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       BalunImage(
-                        imageUrl: transfer.teams?.teamIn?.logo ?? BalunImages.placeholderTeam,
+                        imageUrl: transfer.teams?.teamIn?.logo ?? BalunIcons.placeholderTeam,
                         height: 48,
                         width: 48,
                       ),

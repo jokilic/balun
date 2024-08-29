@@ -5,7 +5,7 @@ import '../../../../../constants.dart';
 import '../../../../../theme/theme.dart';
 import '../../../../../util/color.dart';
 
-class SearchCountriesLoading extends StatelessWidget {
+class SearchLeaguesLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Animate(
         onPlay: (controller) => controller.loop(
@@ -30,20 +30,34 @@ class SearchCountriesLoading extends StatelessWidget {
               children: [
                 Container(
                   height: 40,
-                  width: 56,
+                  width: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: getRandomBalunColor(context),
                   ),
                 ),
                 const SizedBox(width: 16),
-                Container(
-                  height: 24,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: context.colors.black.withOpacity(0.25),
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 24,
+                      width: 240,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: context.colors.black.withOpacity(0.25),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Container(
+                      height: 16,
+                      width: 104,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: context.colors.black.withOpacity(0.15),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

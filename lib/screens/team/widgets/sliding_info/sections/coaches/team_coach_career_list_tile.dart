@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../../constants.dart';
 import '../../../../../../models/coaches/career/career.dart';
 import '../../../../../../routing.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
 import '../../../../../../widgets/balun_button.dart';
@@ -43,7 +43,7 @@ class TeamCoachCareerListTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BalunImage(
-                  imageUrl: career.team?.logo ?? BalunImages.placeholderTeam,
+                  imageUrl: career.team?.logo ?? BalunIcons.placeholderTeam,
                   height: 32,
                   width: 32,
                 ),

@@ -29,9 +29,3 @@ class BalunConstants {
 class BalunEndpoints {
   static final baseUrl = Env.apiFootballBaseUrl;
 }
-
-class BalunImages {
-  static const placeholderPlayer = 'assets/icons/placeholder_player.png';
-  static const placeholderLeague = 'assets/icons/placeholder_league.png';
-  static const placeholderTeam = 'assets/icons/placeholder_team.png';
-}

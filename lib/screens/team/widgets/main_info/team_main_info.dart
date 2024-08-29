@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
-import '../../../../constants.dart';
 import '../../../../models/teams/team_response.dart';
+import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/custom_page_scroll_physics.dart';
 import '../../../../util/dependencies.dart';
@@ -51,7 +51,7 @@ class TeamMainInfo extends WatchingWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: BalunImage(
-              imageUrl: team.team?.logo ?? BalunImages.placeholderTeam,
+              imageUrl: team.team?.logo ?? BalunIcons.placeholderTeam,
               fit: BoxFit.contain,
               height: 120,
               width: 120,

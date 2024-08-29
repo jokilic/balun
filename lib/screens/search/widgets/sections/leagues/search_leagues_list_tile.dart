@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
-import '../../../models/leagues/league_response.dart';
-import '../../../theme/icons.dart';
+import '../../../../../models/search/search_leagues/search_league_response.dart';
+import '../../../../../theme/icons.dart';
 
-class LeaguesListTile extends StatelessWidget {
-  final LeagueResponse league;
+class SearchLeaguesListTile extends StatelessWidget {
+  final SearchLeagueResponse league;
   final Function()? leaguePressed;
 
-  const LeaguesListTile({
+  const SearchLeaguesListTile({
     required this.league,
     required this.leaguePressed,
   });
@@ -38,7 +38,7 @@ class LeaguesListTile extends StatelessWidget {
                         padding: const EdgeInsets.all(8),
                         color: context.colors.white.withOpacity(0.5),
                         child: Image.asset(
-                          BalunIcons.countryPlaceholder,
+                          BalunIcons.placeholderLeague,
                           height: 32,
                           width: 44,
                         ),

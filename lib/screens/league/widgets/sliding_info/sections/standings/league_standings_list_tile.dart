@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../models/standings/standing/team_standing.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
@@ -40,7 +41,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                   ),
                   const SizedBox(width: 12),
                   BalunImage(
-                    imageUrl: widget.standing.team?.logo ?? BalunImages.placeholderTeam,
+                    imageUrl: widget.standing.team?.logo ?? BalunIcons.placeholderTeam,
                     height: 32,
                     width: 32,
                   ),

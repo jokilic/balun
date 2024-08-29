@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../models/coaches/coach_response.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
@@ -40,7 +41,7 @@ class _TeamCoachesListTileState extends State<TeamCoachesListTile> {
                 child: Row(
                   children: [
                     BalunImage(
-                      imageUrl: widget.coach.photo ?? BalunImages.placeholderPlayer,
+                      imageUrl: widget.coach.photo ?? BalunIcons.placeholderPlayer,
                       height: 56,
                       width: 56,
                     ),

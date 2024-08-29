@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart' hide SearchController;
-import 'package:flutter/services.dart';
 
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../util/dependencies.dart';
+import '../../../widgets/balun_button.dart';
 import '../controllers/search_controller.dart';
 
 class SearchBarWidget extends StatelessWidget {
@@ -20,21 +20,18 @@ class SearchBarWidget extends StatelessWidget {
       borderSide: BorderSide.none,
     );
 
+    final textEditingController = getIt
+        .get<SearchController>(
+          instanceName: 'search',
+        )
+        .textEditingController;
+
     return TextField(
-      controller: getIt
-          .get<SearchController>(
-            instanceName: 'search',
-          )
-          .textEditingController,
+      controller: textEditingController,
       onSubmitted: onSubmitted,
       autofocus: true,
       cursorColor: context.colors.black,
       style: context.textStyles.searchTextField,
-      inputFormatters: [
-        FilteringTextInputFormatter.allow(
-          RegExp('[a-zA-Z]'),
-        ),
-      ],
       keyboardType: TextInputType.name,
       textInputAction: TextInputAction.search,
       decoration: InputDecoration(
@@ -51,12 +48,16 @@ class SearchBarWidget extends StatelessWidget {
         hintStyle: context.textStyles.searchTextField.copyWith(
           color: context.colors.black.withOpacity(0.5),
         ),
-        suffixIcon: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Image.asset(
-            BalunIcons.search,
-            height: 24,
-            width: 24,
+        suffixIcon: BalunButton(
+          onPressed: () => onSubmitted(textEditingController.text),
+          child: Container(
+            color: Colors.transparent,
+            padding: const EdgeInsets.all(10),
+            child: Image.asset(
+              BalunIcons.search,
+              height: 24,
+              width: 24,
+            ),
           ),
         ),
       ),

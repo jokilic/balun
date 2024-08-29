@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../models/standings/standing_response.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/standings.dart';
 import '../../../../../../widgets/balun_button.dart';
@@ -47,7 +48,7 @@ class _TeamStandingsListTileState extends State<TeamStandingsListTile> {
               child: Row(
                 children: [
                   BalunImage(
-                    imageUrl: widget.standing.league?.logo ?? BalunImages.placeholderLeague,
+                    imageUrl: widget.standing.league?.logo ?? BalunIcons.placeholderLeague,
                     height: 56,
                     width: 56,
                   ),

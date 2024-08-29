@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../constants.dart';
 import '../../../../models/fixtures/fixture_response.dart';
 import '../../../../routing.dart';
+import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/string.dart';
 import '../../../../widgets/balun_button.dart';
@@ -62,7 +62,7 @@ class MatchMainInfo extends StatelessWidget {
                           /// HOME LOGO
                           ///
                           MatchLogo(
-                            logo: match.teams?.home?.logo ?? BalunImages.placeholderTeam,
+                            logo: match.teams?.home?.logo ?? BalunIcons.placeholderTeam,
                           ),
 
                           const SizedBox(height: 16),
@@ -124,7 +124,7 @@ class MatchMainInfo extends StatelessWidget {
                           /// AWAY LOGO
                           ///
                           MatchLogo(
-                            logo: match.teams?.away?.logo ?? BalunImages.placeholderTeam,
+                            logo: match.teams?.away?.logo ?? BalunIcons.placeholderTeam,
                           ),
 
                           const SizedBox(height: 16),

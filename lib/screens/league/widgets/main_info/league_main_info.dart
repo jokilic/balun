@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
-import '../../../../constants.dart';
 import '../../../../models/leagues/league_response.dart';
+import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/custom_page_scroll_physics.dart';
 import '../../../../util/dependencies.dart';
@@ -48,7 +48,7 @@ class LeagueMainInfo extends WatchingWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: BalunImage(
-              imageUrl: league.league?.logo ?? BalunImages.placeholderLeague,
+              imageUrl: league.league?.logo ?? BalunIcons.placeholderLeague,
               height: 120,
               width: 120,
             ),

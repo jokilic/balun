@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
-import '../../../../constants.dart';
 import '../../../../models/coaches/coach_response.dart';
 import '../../../../routing.dart';
+import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../widgets/balun_button.dart';
 import '../../../../widgets/balun_image.dart';
@@ -41,7 +41,7 @@ class CoachMainInfo extends WatchingWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(100),
               child: BalunImage(
-                imageUrl: coach.photo ?? BalunImages.placeholderPlayer,
+                imageUrl: coach.photo ?? BalunIcons.placeholderPlayer,
                 height: 120,
                 width: 120,
               ),
@@ -88,7 +88,7 @@ class CoachMainInfo extends WatchingWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: BalunImage(
-                          imageUrl: coach.team?.logo ?? BalunImages.placeholderTeam,
+                          imageUrl: coach.team?.logo ?? BalunIcons.placeholderTeam,
                           height: 32,
                           width: 32,
                         ),

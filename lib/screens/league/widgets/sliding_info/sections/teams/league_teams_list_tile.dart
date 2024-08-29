@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../constants.dart';
 import '../../../../../../models/teams/team_response.dart';
 import '../../../../../../routing.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
@@ -31,7 +31,7 @@ class LeagueTeamsListTile extends StatelessWidget {
           child: Row(
             children: [
               BalunImage(
-                imageUrl: team.team?.logo ?? BalunImages.placeholderTeam,
+                imageUrl: team.team?.logo ?? BalunIcons.placeholderTeam,
                 height: 56,
                 width: 56,
               ),

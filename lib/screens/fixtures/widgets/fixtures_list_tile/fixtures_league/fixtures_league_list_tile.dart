@@ -4,6 +4,7 @@ import '../../../../../constants.dart';
 import '../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../models/fixtures/league/league.dart';
 import '../../../../../routing.dart';
+import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
 import '../../../../../widgets/balun_button.dart';
 import '../../../../../widgets/balun_image.dart';
@@ -65,7 +66,7 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: BalunImage(
-                      imageUrl: widget.league?.logo ?? BalunImages.placeholderLeague,
+                      imageUrl: widget.league?.logo ?? BalunIcons.placeholderLeague,
                       height: 40,
                       width: 40,
                     ),

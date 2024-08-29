@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../constants.dart';
 import '../../../../../../models/leagues/league_response.dart';
 import '../../../../../../routing.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
@@ -40,7 +41,7 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                 child: Row(
                   children: [
                     BalunImage(
-                      imageUrl: widget.league.league?.logo ?? BalunImages.placeholderLeague,
+                      imageUrl: widget.league.league?.logo ?? BalunIcons.placeholderLeague,
                       height: 56,
                       width: 56,
                     ),

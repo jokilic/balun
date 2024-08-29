@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../constants.dart';
 import '../../../../../../models/squads/player/player.dart';
 import '../../../../../../routing.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/players.dart';
 import '../../../../../../widgets/balun_button.dart';
@@ -37,7 +37,7 @@ class TeamPlayersListTile extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
-                  imageUrl: player.photo ?? BalunImages.placeholderPlayer,
+                  imageUrl: player.photo ?? BalunIcons.placeholderPlayer,
                   height: 56,
                   width: 56,
                 ),

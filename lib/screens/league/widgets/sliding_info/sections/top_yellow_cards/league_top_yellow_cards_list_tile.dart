@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../constants.dart';
 import '../../../../../../models/players/player_response.dart';
 import '../../../../../../routing.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
@@ -33,7 +33,7 @@ class LeagueTopYellowCardsListTile extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
-                  imageUrl: yellowCard?.player?.photo ?? BalunImages.placeholderPlayer,
+                  imageUrl: yellowCard?.player?.photo ?? BalunIcons.placeholderPlayer,
                   height: 56,
                   width: 56,
                 ),

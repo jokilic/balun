@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
-import '../../../../constants.dart';
 import '../../../../models/players/player_response.dart';
+import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/custom_page_scroll_physics.dart';
 import '../../../../util/dependencies.dart';
@@ -51,7 +51,7 @@ class PlayerMainInfo extends WatchingWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: BalunImage(
-              imageUrl: player.player?.photo ?? BalunImages.placeholderPlayer,
+              imageUrl: player.player?.photo ?? BalunIcons.placeholderPlayer,
               height: 120,
               width: 120,
             ),
