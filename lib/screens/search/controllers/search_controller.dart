@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../constants.dart';
 import '../../../models/search_section.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
@@ -28,27 +27,6 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
     );
 
     textEditingController = TextEditingController();
-
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
-        const pageOffset = 0 * viewportFraction;
-        const centeringOffset = (1 - viewportFraction) / 2;
-
-        pageController
-            .animateToPage(
-              0,
-              duration: BalunConstants.animationDuration,
-              curve: Curves.easeIn,
-            )
-            .then(
-              (_) => pageController.animateTo(
-                (pageOffset + centeringOffset) * pageController.position.viewportDimension,
-                duration: BalunConstants.animationDuration,
-                curve: Curves.easeIn,
-              ),
-            );
-      },
-    );
   }
 
   @override
