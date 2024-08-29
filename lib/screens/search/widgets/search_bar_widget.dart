@@ -29,7 +29,6 @@ class SearchBarWidget extends StatelessWidget {
     return TextField(
       controller: textEditingController,
       onSubmitted: onSubmitted,
-      autofocus: true,
       cursorColor: context.colors.black,
       style: context.textStyles.searchTextField,
       keyboardType: TextInputType.name,

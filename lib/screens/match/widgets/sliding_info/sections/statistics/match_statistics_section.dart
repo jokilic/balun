@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/statistic/statistic.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import 'match_statistics_list_tile.dart';
 
 class MatchStatisticsSection extends StatelessWidget {
@@ -14,8 +15,9 @@ class MatchStatisticsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => homeStatistic == null && awayStatistic == null
-      ? const Center(
-          child: Text('No statistics'),
+      ? const BalunEmpty(
+          message: 'No statistics',
+          verticalPadding: 0,
         )
       : ListView.separated(
           shrinkWrap: true,

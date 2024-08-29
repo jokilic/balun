@@ -84,6 +84,8 @@ class _FixturesScreenState extends State<FixturesScreen> {
       body: SafeArea(
         child: Column(
           children: [
+            const SizedBox(height: 4),
+
             ///
             /// DATE PICKER
             ///

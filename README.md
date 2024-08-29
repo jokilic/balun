@@ -17,5 +17,6 @@ A simple Flutter application for football scores.
 
 * Localization
 * Design updates
-* Check app and update where necessary
+* Test app and update where necessary
 * Think about implementing injuries in match, team & player
+* Write proper readme, create screenshots and put app live

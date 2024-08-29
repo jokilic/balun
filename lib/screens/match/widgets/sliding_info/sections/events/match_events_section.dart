@@ -4,6 +4,7 @@ import '../../../../../../models/fixtures/event/event.dart';
 import '../../../../../../models/fixtures/score/score.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/events.dart';
+import '../../../../../../widgets/balun_empty.dart';
 import 'match_events_list_tile.dart';
 
 class MatchEventsSection extends StatelessWidget {
@@ -55,10 +56,9 @@ class MatchEventsSection extends StatelessWidget {
                   const SizedBox(height: 24),
                 ]
               : [
-                  Container(
-                    height: 100,
-                    width: 100,
-                    color: Colors.blueGrey,
+                  const BalunEmpty(
+                    message: 'No events',
+                    verticalPadding: 0,
                   ),
                 ],
         ),
