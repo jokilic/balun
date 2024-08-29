@@ -189,6 +189,15 @@ class BalunTheme {
     seasonPickerInactive: BalunTextStyles.seasonPickerInactive.copyWith(
       color: lightAppColors.black.withOpacity(0.5),
     ),
+    searchPickerActive: BalunTextStyles.searchPickerActive.copyWith(
+      color: lightAppColors.black,
+    ),
+    searchPickerInactive: BalunTextStyles.searchPickerInactive.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
+    searchTextField: BalunTextStyles.searchTextField.copyWith(
+      color: lightAppColors.black,
+    ),
   );
 }
 

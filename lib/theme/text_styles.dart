@@ -320,6 +320,24 @@ abstract class BalunTextStyles {
     fontSize: 18,
     fontWeight: FontWeight.w400,
   );
+
+  static const searchPickerActive = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+  );
+
+  static const searchPickerInactive = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 22,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const searchTextField = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -375,6 +393,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle fixtureDatePickerInactive;
   final TextStyle seasonPickerActive;
   final TextStyle seasonPickerInactive;
+  final TextStyle searchPickerActive;
+  final TextStyle searchPickerInactive;
+  final TextStyle searchTextField;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -429,6 +450,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.fixtureDatePickerInactive,
     required this.seasonPickerActive,
     required this.seasonPickerInactive,
+    required this.searchPickerActive,
+    required this.searchPickerInactive,
+    required this.searchTextField,
   });
 
   @override
@@ -485,6 +509,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? fixtureDatePickerInactive,
     TextStyle? seasonPickerActive,
     TextStyle? seasonPickerInactive,
+    TextStyle? searchPickerActive,
+    TextStyle? searchPickerInactive,
+    TextStyle? searchTextField,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -539,6 +566,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         fixtureDatePickerInactive: fixtureDatePickerInactive ?? this.fixtureDatePickerInactive,
         seasonPickerActive: seasonPickerActive ?? this.seasonPickerActive,
         seasonPickerInactive: seasonPickerInactive ?? this.seasonPickerInactive,
+        searchPickerActive: searchPickerActive ?? this.searchPickerActive,
+        searchPickerInactive: searchPickerInactive ?? this.searchPickerInactive,
+        searchTextField: searchTextField ?? this.searchTextField,
       );
 
   @override
@@ -603,6 +633,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       fixtureDatePickerInactive: TextStyle.lerp(fixtureDatePickerInactive, other.fixtureDatePickerInactive, t)!,
       seasonPickerActive: TextStyle.lerp(seasonPickerActive, other.seasonPickerActive, t)!,
       seasonPickerInactive: TextStyle.lerp(seasonPickerInactive, other.seasonPickerInactive, t)!,
+      searchPickerActive: TextStyle.lerp(searchPickerActive, other.searchPickerActive, t)!,
+      searchPickerInactive: TextStyle.lerp(searchPickerInactive, other.searchPickerInactive, t)!,
+      searchTextField: TextStyle.lerp(searchTextField, other.searchTextField, t)!,
     );
   }
 }

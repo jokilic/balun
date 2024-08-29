@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_lambdas
-
 import 'package:flutter/foundation.dart';
 
 import '../standing/team_standing.dart';

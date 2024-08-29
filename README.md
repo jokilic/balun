@@ -15,6 +15,7 @@ A simple Flutter application for football scores.
 
 * Think about this
 * Venue from ID
+* Search venues
 
 ### General To-Dos
 

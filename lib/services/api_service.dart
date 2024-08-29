@@ -6,6 +6,10 @@ import '../models/countries/countries_response.dart';
 import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
 import '../models/players/players_response.dart';
+import '../models/search/search_coaches/search_coaches_response.dart';
+import '../models/search/search_countries/search_countries_response.dart';
+import '../models/search/search_leagues/search_leagues_response.dart';
+import '../models/search/search_teams/search_teams_response.dart';
 import '../models/sidelined/sidelined_response.dart';
 import '../models/squads/squads_response.dart';
 import '../models/standings/standings_response.dart';
@@ -1143,6 +1147,170 @@ class APIService {
         mainError: '$e',
       );
       return (trophiesResponse: null, error: error);
+    }
+  }
+
+  ///
+  /// `/search`
+  ///
+
+  Future<({SearchCountriesResponse? searchCountriesResponse, String? error})> searchCountries({
+    required String searchValue,
+  }) async {
+    try {
+      final response = await cacheDio.get(
+        '/countries',
+        queryParameters: {
+          'search': searchValue,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+        case 304:
+          try {
+            final parsedResponse = await computeSearchCountries(response.data);
+            return (searchCountriesResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> searchCountries -> parsing error -> $e';
+            logger.e(error);
+            return (searchCountriesResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> searchCountries -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (searchCountriesResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'searchCountries',
+        mainError: '$e',
+      );
+      return (searchCountriesResponse: null, error: error);
+    }
+  }
+
+  Future<({SearchLeaguesResponse? searchLeaguesResponse, String? error})> searchLeagues({
+    required String searchValue,
+  }) async {
+    try {
+      final response = await cacheDio.get(
+        '/leagues',
+        queryParameters: {
+          'search': searchValue,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+        case 304:
+          try {
+            final parsedResponse = await computeSearchLeagues(response.data);
+            return (searchLeaguesResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> searchLeagues -> parsing error -> $e';
+            logger.e(error);
+            return (searchLeaguesResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> searchLeagues -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (searchLeaguesResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'searchLeagues',
+        mainError: '$e',
+      );
+      return (searchLeaguesResponse: null, error: error);
+    }
+  }
+
+  Future<({SearchTeamsResponse? searchTeamsResponse, String? error})> searchTeams({
+    required String searchValue,
+  }) async {
+    try {
+      final response = await cacheDio.get(
+        '/teams',
+        queryParameters: {
+          'search': searchValue,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+        case 304:
+          try {
+            final parsedResponse = await computeSearchTeams(response.data);
+            return (searchTeamsResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> searchTeams -> parsing error -> $e';
+            logger.e(error);
+            return (searchTeamsResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> searchTeams -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (searchTeamsResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'searchTeams',
+        mainError: '$e',
+      );
+      return (searchTeamsResponse: null, error: error);
+    }
+  }
+
+  Future<({SearchCoachesResponse? searchCoachesResponse, String? error})> searchCoaches({
+    required String searchValue,
+  }) async {
+    try {
+      final response = await cacheDio.get(
+        '/coachs',
+        queryParameters: {
+          'search': searchValue,
+        },
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+        case 304:
+          try {
+            final parsedResponse = await computeSearchCoaches(response.data);
+            return (searchCoachesResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> searchCoaches -> parsing error -> $e';
+            logger.e(error);
+            return (searchCoachesResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> searchCoaches -> StatusCode ${response.statusCode}';
+          logger.e(error);
+          return (searchCoachesResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'searchCoaches',
+        mainError: '$e',
+      );
+      return (searchCoachesResponse: null, error: error);
     }
   }
 

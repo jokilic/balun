@@ -1,59 +1,128 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+
+import '../../../constants.dart';
+import '../../../models/search_section.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
-import '../../../util/state.dart';
+import '../../../util/dependencies.dart';
+import 'search_coaches_controller.dart';
+import 'search_countries_controller.dart';
+import 'search_leagues_controller.dart';
+import 'search_teams_controller.dart';
 
-class SearchController extends ValueNotifier<BalunState<bool>> {
+class SearchController extends ValueNotifier<SearchSection> implements Disposable {
   final LoggerService logger;
   final APIService api;
 
   SearchController({
     required this.logger,
     required this.api,
-  }) : super(Initial());
+  }) : super(SearchSection(searchSectionEnum: SearchSectionEnum.countries)) {
+    const viewportFraction = 0.4;
+
+    controller = PageController(
+      viewportFraction: viewportFraction,
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        const pageOffset = 0 * viewportFraction;
+        const centeringOffset = (1 - viewportFraction) / 2;
+
+        controller
+            .animateToPage(
+              0,
+              duration: BalunConstants.animationDuration,
+              curve: Curves.easeIn,
+            )
+            .then(
+              (_) => controller.animateTo(
+                (pageOffset + centeringOffset) * controller.position.viewportDimension,
+                duration: BalunConstants.animationDuration,
+                curve: Curves.easeIn,
+              ),
+            );
+      },
+    );
+  }
+
+  @override
+  FutureOr onDispose() {
+    controller.dispose();
+  }
+
+  ///
+  /// VARIABLES
+  ///
+
+  late final PageController controller;
 
   ///
   /// METHODS
   ///
 
-  // Future<void> getLeague({
-  //   required int leagueId,
-  // }) async {
-  //   value = Loading();
+  void updateState(SearchSection newSection) {
+    if (value != newSection) {
+      value = newSection;
+    }
+  }
 
-  //   final response = await api.getLeague(
-  //     leagueId: leagueId,
-  //   );
+  void triggerSearch(String searchValue) {
+    switch (value) {
+      ///
+      /// COUNTRIES
+      ///
+      case SearchSection(searchSectionEnum: SearchSectionEnum.countries):
+        getIt
+            .get<SearchCountriesController>(
+              instanceName: 'search',
+            )
+            .searchCountries(
+              searchValue: searchValue,
+            );
+        break;
 
-  //   /// Successful request
-  //   if (response.leaguesResponse != null && response.error == null) {
-  //     /// Errors exist, update to error state
-  //     if (response.leaguesResponse!.errors?.isNotEmpty ?? false) {
-  //       value = Error(
-  //         error: response.leaguesResponse!.errors!.toString(),
-  //       );
-  //     }
+      ///
+      /// LEAGUES
+      ///
+      case SearchSection(searchSectionEnum: SearchSectionEnum.leagues):
+        getIt
+            .get<SearchLeaguesController>(
+              instanceName: 'search',
+            )
+            .searchLeagues(
+              searchValue: searchValue,
+            );
+        break;
 
-  //     /// Response is not null, update to success state
-  //     else if (response.leaguesResponse!.response?.isNotEmpty ?? false) {
-  //       value = Success(
-  //         data: response.leaguesResponse!.response!.first,
-  //       );
-  //     }
+      ///
+      /// TEAMS
+      ///
+      case SearchSection(searchSectionEnum: SearchSectionEnum.teams):
+        getIt
+            .get<SearchTeamsController>(
+              instanceName: 'search',
+            )
+            .searchTeams(
+              searchValue: searchValue,
+            );
+        break;
 
-  //     /// Response is null, update to empty state
-  //     else {
-  //       value = Empty();
-  //     }
-  //   }
-
-  //   /// Failed request
-  //   if (response.leaguesResponse == null && response.error != null) {
-  //     /// Error is not null, update to error state
-  //     value = Error(
-  //       error: response.error,
-  //     );
-  //   }
-  // }
+      ///
+      /// COACHES
+      ///
+      case SearchSection(searchSectionEnum: SearchSectionEnum.coaches):
+        getIt
+            .get<SearchCoachesController>(
+              instanceName: 'search',
+            )
+            .searchCoaches(
+              searchValue: searchValue,
+            );
+        break;
+    }
+  }
 }

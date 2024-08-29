@@ -13,7 +13,13 @@ class BalunScreenService extends ValueNotifier<Widget> {
 
   BalunScreenService({
     required this.logger,
-  }) : super(const BalunLoader()) {
+  }) : super(
+          const Scaffold(
+            body: Center(
+              child: BalunLoader(),
+            ),
+          ),
+        ) {
     changeScreen(
       getIt.get<BalunNavigationBarService>().value,
     );
