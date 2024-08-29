@@ -4,7 +4,6 @@ import '../../../models/fixtures/fixture_response.dart';
 import '../../../util/fixtures.dart';
 import 'fixtures_app_bar.dart';
 import 'fixtures_list_tile/fixtures_country/fixtures_country_list_tile.dart';
-import 'fixtures_list_tile/fixtures_league/fixtures_league_list_tile.dart';
 
 class FixturesSuccess extends StatelessWidget {
   final List<FixtureResponse> fixtures;
@@ -15,9 +14,12 @@ class FixturesSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final popularGroupedFixtures = groupPopularFixtures(
-      getPopularFixtures(fixtures),
+    final popularSortedGroupedFixtures = sortGroupedFixtures(
+      groupFixtures(
+        getPopularFixtures(fixtures),
+      ),
     );
+
     final sortedGroupedFixtures = sortGroupedFixtures(
       groupFixtures(fixtures),
     );
@@ -29,7 +31,7 @@ class FixturesSuccess extends StatelessWidget {
         ///
         /// POPULAR FIXTURES
         ///
-        if (popularGroupedFixtures.isNotEmpty) ...[
+        if (popularSortedGroupedFixtures.isNotEmpty) ...[
           const SizedBox(height: 8),
           FixturesAppBar(
             onPressed: () {},
@@ -39,19 +41,19 @@ class FixturesSuccess extends StatelessWidget {
           ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: popularGroupedFixtures.length,
-            itemBuilder: (_, leagueIndex) {
-              final league = popularGroupedFixtures.keys.elementAtOrNull(leagueIndex);
-              final fixtures = popularGroupedFixtures[league];
+            itemCount: popularSortedGroupedFixtures.length,
+            itemBuilder: (_, countryIndex) {
+              final countryLeague = popularSortedGroupedFixtures.keys.elementAtOrNull(countryIndex);
+              final leagues = popularSortedGroupedFixtures[countryLeague];
 
-              return FixturesLeagueListTile(
-                league: league,
-                fixtures: fixtures,
+              return FixturesCountryListTile(
+                countryLeague: countryLeague,
+                leagues: leagues,
                 initiallyExpanded: true,
               );
             },
             separatorBuilder: (_, __) => const SizedBox(height: 12),
-          )
+          ),
         ],
 
         ///

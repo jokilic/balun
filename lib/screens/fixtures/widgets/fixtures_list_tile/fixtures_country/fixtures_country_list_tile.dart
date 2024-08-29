@@ -99,6 +99,7 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                       return FixturesLeagueListTile(
                         league: league,
                         fixtures: fixtures,
+                        initiallyExpanded: widget.initiallyExpanded,
                       );
                     },
                     separatorBuilder: (_, __) => const SizedBox(height: 12),
