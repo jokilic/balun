@@ -75,6 +75,10 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
   }
 
   void triggerSearch(String searchValue) {
+    if (searchValue.isEmpty) {
+      return;
+    }
+
     switch (value) {
       ///
       /// COUNTRIES

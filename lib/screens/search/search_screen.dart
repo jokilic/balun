@@ -107,11 +107,11 @@ class _SearchScreenState extends State<SearchScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
               child: SearchBarWidget(
-                onSubmitted: getIt
+                onSubmitted: (value) => getIt
                     .get<SearchController>(
                       instanceName: 'search',
                     )
-                    .triggerSearch,
+                    .triggerSearch(value.trim()),
               ),
             ),
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../theme/theme.dart';
-import '../../../../util/color.dart';
 
 class TeamSlidingInfoLoading extends StatelessWidget {
   final ScrollController scrollController;
@@ -174,14 +173,6 @@ class TeamSlidingInfoLoading extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-                const SizedBox(height: 32),
-                Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: getRandomBalunColor(context),
-                  ),
                 ),
               ],
             ),
