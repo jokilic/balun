@@ -7,10 +7,6 @@ A simple Flutter application for football scores.
 
 # Screens
 
-### `SearchScreen`
-
-* Implement this
-
 ### `VenueScreen`
 
 * Think about this
@@ -23,4 +19,3 @@ A simple Flutter application for football scores.
 * Design updates
 * Check app and update where necessary
 * Think about implementing injuries in match, team & player
-* Update dependencies

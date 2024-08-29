@@ -99,7 +99,12 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                       return FixturesLeagueListTile(
                         league: league,
                         fixtures: fixtures,
-                        initiallyExpanded: false,
+                        initiallyExpanded: fixtures?.any(
+                              (fixture) => BalunConstants.leaguesOrder.keys.contains(
+                                fixture.league?.id,
+                              ),
+                            ) ??
+                            false,
                       );
                     },
                     separatorBuilder: (_, __) => const SizedBox(height: 12),
