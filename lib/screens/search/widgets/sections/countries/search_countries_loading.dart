@@ -39,7 +39,7 @@ class SearchCountriesLoading extends StatelessWidget {
                 const SizedBox(width: 16),
                 Container(
                   height: 24,
-                  width: 200,
+                  width: 160,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withOpacity(0.25),

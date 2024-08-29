@@ -42,7 +42,7 @@ class SearchTeamsLoading extends StatelessWidget {
                   children: [
                     Container(
                       height: 24,
-                      width: 240,
+                      width: 160,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: context.colors.black.withOpacity(0.25),
