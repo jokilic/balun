@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
-import '../../../models/leagues/league_response.dart';
-import '../../../theme/icons.dart';
+import '../../../../../models/search/search_countries/search_countries_inner_response.dart';
+import '../../../../../theme/icons.dart';
 
-class LeaguesListTile extends StatelessWidget {
-  final LeagueResponse league;
-  final Function()? leaguePressed;
+class SearchCountriesListTile extends StatelessWidget {
+  final SearchCountriesInnerResponse country;
+  final Function()? countryPressed;
 
-  const LeaguesListTile({
-    required this.league,
-    required this.leaguePressed,
+  const SearchCountriesListTile({
+    required this.country,
+    required this.countryPressed,
   });
 
   @override
   Widget build(BuildContext context) => BalunButton(
-        onPressed: leaguePressed,
+        onPressed: countryPressed,
         child: Container(
           color: Colors.transparent,
           padding: const EdgeInsets.symmetric(
@@ -28,9 +28,9 @@ class LeaguesListTile extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: league.league?.logo != null
+                child: country.flag != null
                     ? BalunImage(
-                        imageUrl: league.league!.logo!,
+                        imageUrl: country.flag!,
                         height: 40,
                         width: 40,
                       )
@@ -46,22 +46,9 @@ class LeaguesListTile extends StatelessWidget {
               ),
               const SizedBox(width: 16),
               Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (league.league?.name != null)
-                      Text(
-                        league.league!.name!,
-                        style: context.textStyles.fixturesCountry,
-                      ),
-                    if (league.league?.type != null)
-                      Text(
-                        league.league!.type!,
-                        style: context.textStyles.fixturesLeague.copyWith(
-                          color: context.colors.black.withOpacity(0.5),
-                        ),
-                      ),
-                  ],
+                child: Text(
+                  country.name ?? 'Unknown',
+                  style: context.textStyles.fixturesCountry,
                 ),
               ),
             ],

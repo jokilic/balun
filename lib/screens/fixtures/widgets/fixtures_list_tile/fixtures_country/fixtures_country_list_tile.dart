@@ -56,11 +56,12 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                             width: 40,
                           )
                         : Container(
-                            color: context.colors.green.withOpacity(0.5),
+                            padding: const EdgeInsets.all(8),
+                            color: context.colors.white.withOpacity(0.5),
                             child: Image.asset(
-                              BalunIcons.splashIcon,
-                              height: 48,
-                              width: 56,
+                              BalunIcons.globeColor,
+                              height: 32,
+                              width: 44,
                             ),
                           ),
                   ),

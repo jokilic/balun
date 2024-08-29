@@ -23,24 +23,26 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
   }) : super(SearchSection(searchSectionEnum: SearchSectionEnum.countries)) {
     const viewportFraction = 0.4;
 
-    controller = PageController(
+    pageController = PageController(
       viewportFraction: viewportFraction,
     );
+
+    textEditingController = TextEditingController();
 
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         const pageOffset = 0 * viewportFraction;
         const centeringOffset = (1 - viewportFraction) / 2;
 
-        controller
+        pageController
             .animateToPage(
               0,
               duration: BalunConstants.animationDuration,
               curve: Curves.easeIn,
             )
             .then(
-              (_) => controller.animateTo(
-                (pageOffset + centeringOffset) * controller.position.viewportDimension,
+              (_) => pageController.animateTo(
+                (pageOffset + centeringOffset) * pageController.position.viewportDimension,
                 duration: BalunConstants.animationDuration,
                 curve: Curves.easeIn,
               ),
@@ -51,14 +53,16 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
 
   @override
   FutureOr onDispose() {
-    controller.dispose();
+    pageController.dispose();
+    textEditingController.dispose();
   }
 
   ///
   /// VARIABLES
   ///
 
-  late final PageController controller;
+  late final PageController pageController;
+  late final TextEditingController textEditingController;
 
   ///
   /// METHODS

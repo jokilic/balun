@@ -1,8 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide SearchController;
 import 'package:flutter/services.dart';
 
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/dependencies.dart';
+import '../controllers/search_controller.dart';
 
 class SearchBarWidget extends StatelessWidget {
   final Function(String value) onSubmitted;
@@ -19,6 +21,11 @@ class SearchBarWidget extends StatelessWidget {
     );
 
     return TextField(
+      controller: getIt
+          .get<SearchController>(
+            instanceName: 'search',
+          )
+          .textEditingController,
       onSubmitted: onSubmitted,
       autofocus: true,
       cursorColor: context.colors.black,

@@ -5,6 +5,7 @@ import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import '../../../models/countries/country_response.dart';
 import '../../../theme/icons.dart';
+import '../../../util/color.dart';
 
 class CountriesListTile extends StatelessWidget {
   final CountryResponse country;
@@ -35,11 +36,12 @@ class CountriesListTile extends StatelessWidget {
                         width: 40,
                       )
                     : Container(
-                        color: context.colors.green.withOpacity(0.5),
+                        padding: const EdgeInsets.all(8),
+                        color: context.colors.white.withOpacity(0.5),
                         child: Image.asset(
-                          BalunIcons.splashIcon,
-                          height: 48,
-                          width: 56,
+                          BalunIcons.globeColor,
+                          height: 32,
+                          width: 44,
                         ),
                       ),
               ),

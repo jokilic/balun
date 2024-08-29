@@ -129,7 +129,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   .get<SearchController>(
                     instanceName: 'search',
                   )
-                  .controller,
+                  .pageController,
             ),
 
             ///
