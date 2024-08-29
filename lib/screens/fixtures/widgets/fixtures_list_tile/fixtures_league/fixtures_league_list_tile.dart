@@ -18,7 +18,7 @@ class FixturesLeagueListTile extends StatefulWidget {
   const FixturesLeagueListTile({
     required this.league,
     required this.fixtures,
-    required this.initiallyExpanded,
+    this.initiallyExpanded = false,
   });
 
   @override

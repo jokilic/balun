@@ -17,7 +17,7 @@ class FixturesCountryListTile extends StatefulWidget {
   const FixturesCountryListTile({
     required this.countryLeague,
     required this.leagues,
-    required this.initiallyExpanded,
+    this.initiallyExpanded = false,
   });
 
   @override
@@ -99,12 +99,6 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                       return FixturesLeagueListTile(
                         league: league,
                         fixtures: fixtures,
-                        initiallyExpanded: fixtures?.any(
-                              (fixture) => BalunConstants.leaguesOrder.keys.contains(
-                                fixture.league?.id,
-                              ),
-                            ) ??
-                            false,
                       );
                     },
                     separatorBuilder: (_, __) => const SizedBox(height: 12),

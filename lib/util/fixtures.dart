@@ -2,6 +2,45 @@ import '../constants.dart';
 import '../models/fixtures/fixture_response.dart';
 import '../models/fixtures/league/league.dart';
 
+///
+/// POPULAR FIXTURES
+///
+
+List<FixtureResponse> getPopularFixtures(
+  List<FixtureResponse> fixtures,
+) =>
+    fixtures
+        .where(
+          (fixture) => BalunConstants.leaguesOrder.keys.any(
+            (leagueId) => fixture.league?.id == leagueId,
+          ),
+        )
+        .toList();
+
+Map<League, List<FixtureResponse>> groupPopularFixtures(
+  List<FixtureResponse> fixtures,
+) {
+  final groupedData = <League, List<FixtureResponse>>{};
+
+  for (final fixture in fixtures) {
+    if (fixture.league != null) {
+      final league = fixture.league!;
+
+      /// Create league group if it doesn't exist
+      groupedData.putIfAbsent(league, () => []);
+
+      /// Add the current fixture to the appropriate group
+      groupedData[league]!.add(fixture);
+    }
+  }
+
+  return groupedData;
+}
+
+///
+/// FIXTURES
+///
+
 Map<League, Map<League, List<FixtureResponse>>> groupFixtures(
   List<FixtureResponse> fixtures,
 ) {
