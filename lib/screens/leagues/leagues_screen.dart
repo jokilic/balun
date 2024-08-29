@@ -62,7 +62,7 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 4),
+            const SizedBox(height: 16),
 
             ///
             /// APP BAR

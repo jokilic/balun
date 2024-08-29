@@ -35,7 +35,7 @@ class TeamMainInfo extends WatchingWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(height: 4),
+          const SizedBox(height: 16),
 
           ///
           /// BACK & TEAM NAME
