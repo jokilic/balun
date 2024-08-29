@@ -32,7 +32,7 @@ class SearchCountriesListTile extends StatelessWidget {
                     ? BalunImage(
                         imageUrl: country.flag!,
                         height: 40,
-                        width: 40,
+                        width: 48,
                       )
                     : Container(
                         padding: const EdgeInsets.all(8),

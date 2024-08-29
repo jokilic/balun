@@ -31,8 +31,8 @@ class LeaguesListTile extends StatelessWidget {
                 child: league.league?.logo != null
                     ? BalunImage(
                         imageUrl: league.league!.logo!,
-                        height: 40,
-                        width: 40,
+                        height: 48,
+                        width: 48,
                       )
                     : Container(
                         padding: const EdgeInsets.all(8),

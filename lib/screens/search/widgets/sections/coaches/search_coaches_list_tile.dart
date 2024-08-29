@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+
+import '../../../../../../theme/theme.dart';
+import '../../../../../../widgets/balun_button.dart';
+import '../../../../../../widgets/balun_image.dart';
+import '../../../../../models/search/search_coaches/search_coach_response.dart';
+import '../../../../../theme/icons.dart';
+
+class SearchCoachesListTile extends StatelessWidget {
+  final SearchCoachResponse coach;
+  final Function()? coachPressed;
+
+  const SearchCoachesListTile({
+    required this.coach,
+    required this.coachPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) => BalunButton(
+        onPressed: coachPressed,
+        child: Container(
+          color: Colors.transparent,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 12,
+          ),
+          child: Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: BalunImage(
+                  imageUrl: coach.photo ?? BalunIcons.placeholderPlayer,
+                  height: 56,
+                  width: 56,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      coach.name ?? 'Unknown',
+                      style: context.textStyles.fixturesCountry,
+                    ),
+                    if (coach.nationality != null)
+                      Text(
+                        coach.nationality!,
+                        style: context.textStyles.leagueSeason,
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+}

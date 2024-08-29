@@ -31,8 +31,8 @@ class SearchLeaguesListTile extends StatelessWidget {
                 child: league.league?.logo != null
                     ? BalunImage(
                         imageUrl: league.league!.logo!,
-                        height: 40,
-                        width: 40,
+                        height: 48,
+                        width: 48,
                       )
                     : Container(
                         padding: const EdgeInsets.all(8),
@@ -49,17 +49,14 @@ class SearchLeaguesListTile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (league.league?.name != null)
-                      Text(
-                        league.league!.name!,
-                        style: context.textStyles.fixturesCountry,
-                      ),
+                    Text(
+                      league.league?.name ?? 'Unknown',
+                      style: context.textStyles.fixturesCountry,
+                    ),
                     if (league.league?.type != null)
                       Text(
                         league.league!.type!,
-                        style: context.textStyles.fixturesLeague.copyWith(
-                          color: context.colors.black.withOpacity(0.5),
-                        ),
+                        style: context.textStyles.leagueSeason,
                       ),
                   ],
                 ),
