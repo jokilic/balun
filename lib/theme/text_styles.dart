@@ -21,7 +21,7 @@ abstract class BalunTextStyles {
 
   static const fixturesMinute = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 26,
+    fontSize: 22,
     fontWeight: FontWeight.w300,
   );
 
@@ -33,7 +33,7 @@ abstract class BalunTextStyles {
 
   static const fixturesScore = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 72,
+    fontSize: 64,
     fontWeight: FontWeight.w300,
     height: 1,
   );
@@ -351,6 +351,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle fixturesCountry;
   final TextStyle fixturesLeague;
   final TextStyle fixturesMinute;
+
   final TextStyle fixturesName;
   final TextStyle fixturesScore;
   final TextStyle matchLeagueName;

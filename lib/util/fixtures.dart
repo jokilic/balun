@@ -141,3 +141,5 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixtures(
 
   return sortedGroupedFixtures;
 }
+
+bool shouldShowTimeBeforeMatch({required String statusShort}) => statusShort == 'TBD' || statusShort == 'NS';

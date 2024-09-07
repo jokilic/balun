@@ -22,10 +22,7 @@ A simple Flutter application for football scores.
 * Write proper readme, create screenshots and put app live
 * Use [CalendarDatePicker2](https://pub.dev/packages/calendar_date_picker2)
 * Safe area na dnu navigation bara
-* Možda malo smanjiti FixtureListTile
 * Match info - timeago je čudan
-* Možda staviti expanded list tile ako standings ima grupe ili slično
 * Popraviti scroll na PageViewovima koji nisu full screen width
 * Match tabs - prikazati relevantan tab, s obzirom na status utakmice
-* FixturesListTile - Staviti mali datum kad je utakmica (možda jedino ako još nije počela)
 * Check places where BalunEmpty is being used and update images

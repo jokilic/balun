@@ -12,13 +12,13 @@ class FixturesListTileLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        height: 72,
-        width: 72,
+        height: 64,
+        width: 64,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: context.colors.greenish.withOpacity(0.5),
         ),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(8),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(100),
           child: BalunImage(

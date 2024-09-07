@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
+import '../../../../../util/date_time.dart';
+import '../../../../../util/fixtures.dart';
 import '../../../../../util/string.dart';
 import '../../../../../widgets/balun_button.dart';
 import 'fixtures_list_tile_logo.dart';
@@ -44,10 +47,22 @@ class FixturesListTile extends StatelessWidget {
                   ///
                   /// MINUTE
                   ///
-                  FixturesListTileMinute(
-                    status: getMatchStatusMinutes(
-                      statusShort: fixture.fixture?.status?.short ?? '?',
-                      minutes: fixture.fixture?.status?.elapsed ?? 0,
+                  Flexible(
+                    child: FixturesListTileMinute(
+                      status: getMatchStatusMinutes(
+                        statusShort: fixture.fixture?.status?.short ?? '?',
+                        minutes: fixture.fixture?.status?.elapsed ?? 0,
+                      ),
+                      timeBeforeMatch: shouldShowTimeBeforeMatch(
+                                statusShort: fixture.fixture?.status?.short ?? '?',
+                              ) &&
+                              fixture.fixture?.timestamp != null
+                          ? DateFormat('HH:mm').format(
+                              parseTimestamp(
+                                fixture.fixture!.timestamp,
+                              )!,
+                            )
+                          : null,
                     ),
                   ),
 
@@ -60,7 +75,7 @@ class FixturesListTile extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
 
               ///
               /// NAMES & SCORE

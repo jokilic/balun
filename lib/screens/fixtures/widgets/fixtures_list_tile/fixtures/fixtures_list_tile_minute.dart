@@ -4,16 +4,18 @@ import '../../../../../theme/theme.dart';
 
 class FixturesListTileMinute extends StatelessWidget {
   final String status;
+  final String? timeBeforeMatch;
 
   const FixturesListTileMinute({
     required this.status,
+    required this.timeBeforeMatch,
   });
 
   @override
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.symmetric(
-          horizontal: 24,
-          vertical: 4,
+          horizontal: 20,
+          vertical: 6,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
@@ -26,11 +28,18 @@ class FixturesListTileMinute extends StatelessWidget {
           alignment: Alignment.center,
           clipBehavior: Clip.none,
           children: [
-            Text(
-              status,
-              style: context.textStyles.fixturesMinute,
-              textAlign: TextAlign.center,
-            ),
+            if (timeBeforeMatch != null)
+              Text(
+                timeBeforeMatch!,
+                style: context.textStyles.fixturesMinute,
+                textAlign: TextAlign.center,
+              )
+            else
+              Text(
+                status,
+                style: context.textStyles.fixturesMinute,
+                textAlign: TextAlign.center,
+              ),
             if (int.tryParse(status) != null)
               Positioned(
                 right: -6,
