@@ -27,6 +27,5 @@ A simple Flutter application for football scores.
 * Možda staviti expanded list tile ako standings ima grupe ili slično
 * Popraviti scroll na PageViewovima koji nisu full screen width
 * Match tabs - prikazati relevantan tab, s obzirom na status utakmice
-* Match head-to-head - posloži po datumu
 * FixturesListTile - Staviti mali datum kad je utakmica (možda jedino ako još nije počela)
 * Check places where BalunEmpty is being used and update images

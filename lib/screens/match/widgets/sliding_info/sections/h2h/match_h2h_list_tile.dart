@@ -67,10 +67,12 @@ class MatchH2HListTile extends StatelessWidget {
                         Text(
                           DateFormat('d. MMMM y.').format(matchDateTime),
                           style: context.textStyles.matchH2HTitle,
+                          textAlign: TextAlign.right,
                         ),
                         Text(
                           DateFormat('HH:mm').format(matchDateTime),
                           style: context.textStyles.matchH2HText,
+                          textAlign: TextAlign.right,
                         ),
                       ],
                     ),
