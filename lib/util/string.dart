@@ -49,20 +49,20 @@ String getEventText({
           'own goal' => 'Own goal',
           'penalty' => 'Penalty',
           'missed penalty' => 'Missed penalty',
-          _ => 'Goal',
+          _ => eventDetail,
         },
       'card' => switch (eventDetail.toLowerCase()) {
           'yellow card' => 'Yellow card',
           'red card' => 'Red card',
-          _ => 'Card',
+          _ => eventDetail,
         },
       'subst' => 'Substitution',
       'var' => switch (eventDetail.toLowerCase()) {
           'goal cancelled' => 'Goal cancelled',
           'penalty confirmed' => 'Penalty confirmed',
-          _ => 'VAR',
+          _ => eventDetail,
         },
-      _ => '---',
+      _ => eventType,
     };
 
 String getStatisticText({

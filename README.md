@@ -28,12 +28,8 @@ A simple Flutter application for football scores.
 * Match info - donje vrijednosti za svaki element neka budu manjeg fonta
 * Možda staviti expanded list tile ako standings ima grupe ili slično
 * Popraviti scroll na PageViewovima koji nisu full screen width
-* Match events - pogledati ako VAR vraća još išta
 * Match tabs - prikazati relevantan tab, s obzirom na status utakmice
-* Updateati loading state BalunImage - staviti random boje
-* Testirati loading i error state od BalunImage kroz cijelu aplikaciju
 * Match events - riječi u zagradama neka ne budu bold
 * Match lineups - managers baci jednog na desno
 * Match head-to-head - posloži po datumu
 * FixturesListTile - Staviti mali datum kad je utakmica (možda jedino ako još nije počela)
-* FixturesDatePicker - desni kalendar botun mora biti isti kao lijevi

@@ -141,15 +141,28 @@ class FixturesDatePicker extends WatchingWidget {
               margin: const EdgeInsets.all(8),
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                color: context.colors.green.withOpacity(0.5),
+                color: !dates.contains(activeDate) ? context.colors.white : context.colors.green.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                child: BalunImage(
-                  imageUrl: BalunIcons.calendar,
-                  height: 32,
-                  width: 32,
-                  color: context.colors.white,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    BalunImage(
+                      imageUrl: BalunIcons.calendar,
+                      height: 20,
+                      width: 20,
+                      color: !dates.contains(activeDate) ? context.colors.green.withOpacity(0.5) : context.colors.white,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      DateFormat('d MMM').format(activeDate).toUpperCase(),
+                      style: !dates.contains(activeDate)
+                          ? context.textStyles.fixtureDatePickerActive.copyWith(fontSize: 14)
+                          : context.textStyles.fixtureDatePickerInactive.copyWith(fontSize: 14),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
               ),
             ),
