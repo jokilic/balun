@@ -67,7 +67,7 @@ class MatchInfoSection extends StatelessWidget {
                       if (matchDateTimeAgo != null)
                         Text(
                           matchDateTimeAgo,
-                          style: context.textStyles.matchInfoSectionText,
+                          style: context.textStyles.matchInfoSectionBottomText,
                         ),
                     ],
                   ),
@@ -159,7 +159,7 @@ class MatchInfoSection extends StatelessWidget {
                           if (league?.country != null)
                             Text(
                               league!.country!,
-                              style: context.textStyles.matchInfoSectionText,
+                              style: context.textStyles.matchInfoSectionBottomText,
                             ),
                         ],
                       ),
@@ -211,7 +211,7 @@ class MatchInfoSection extends StatelessWidget {
                           if (league?.season != null)
                             Text(
                               'Season ${league!.season!}',
-                              style: context.textStyles.matchInfoSectionText,
+                              style: context.textStyles.matchInfoSectionBottomText,
                             ),
                         ],
                       ),
@@ -294,7 +294,7 @@ class MatchInfoSection extends StatelessWidget {
                           if (venue?.city != null)
                             Text(
                               venue!.city!,
-                              style: context.textStyles.matchInfoSectionText,
+                              style: context.textStyles.matchInfoSectionBottomText,
                             ),
                         ],
                       ),
