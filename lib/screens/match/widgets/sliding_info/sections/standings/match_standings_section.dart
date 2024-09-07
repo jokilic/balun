@@ -67,7 +67,7 @@ class _MatchStandingsSectionState extends State<MatchStandingsSection> {
             error: (standingsState as Error).error ?? 'Generic standings error',
           ),
         Success() => MatchStandingsContent(
-            league: (standingsState as Success).data,
+            standings: (standingsState as Success).data,
           ),
       },
     );

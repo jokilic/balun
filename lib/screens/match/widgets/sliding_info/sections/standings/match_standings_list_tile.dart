@@ -40,10 +40,13 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                     style: context.textStyles.matchStandingsSectionText,
                   ),
                   const SizedBox(width: 12),
-                  BalunImage(
-                    imageUrl: widget.standing.team?.logo ?? BalunIcons.placeholderTeam,
-                    height: 32,
-                    width: 32,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: BalunImage(
+                      imageUrl: widget.standing.team?.logo ?? BalunIcons.placeholderTeam,
+                      height: 32,
+                      width: 32,
+                    ),
                   ),
                   const SizedBox(width: 8),
                   Expanded(

@@ -32,6 +32,7 @@ class BalunImage extends StatelessWidget {
           height: height,
           width: width,
           fit: fit,
+          color: color,
         )
       : imageUrl.contains('.svg')
           ? CachedNetworkSVGImage(
