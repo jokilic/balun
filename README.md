@@ -30,8 +30,8 @@ A simple Flutter application for football scores.
 * Popraviti scroll na PageViewovima koji nisu full screen width
 * Match events - pogledati ako VAR vraća još išta
 * Match tabs - prikazati relevantan tab, s obzirom na status utakmice
-* Updateati loading state slika - staviti random boje
-* Pogledati zašto grupira utakmice iz iste lige u više istih liga
+* Updateati loading state BalunImage - staviti random boje
+* Testirati loading i error state od BalunImage kroz cijelu aplikaciju
 * Match events - riječi u zagradama neka ne budu bold
 * Match lineups - managers baci jednog na desno
 * Match head-to-head - posloži po datumu
