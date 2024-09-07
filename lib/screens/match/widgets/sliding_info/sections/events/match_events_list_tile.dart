@@ -264,14 +264,26 @@ class MatchEventsListTile extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     Flexible(
-                      child: Text(
-                        eventDetail.toLowerCase() == 'penalty'
-                            ? '${event.player?.name ?? '---'} (P)'
-                            : eventDetail.toLowerCase() == 'own goal'
-                                ? '${event.player?.name ?? '---'} (OG)'
-                                : event.player?.name ?? '---',
-                        style: context.textStyles.matchEventsSectionText.copyWith(
-                          fontWeight: FontWeight.w500,
+                      child: Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: event.player?.name ?? '---',
+                              style: context.textStyles.matchEventsSectionText.copyWith(
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            if (eventDetail.toLowerCase() == 'penalty')
+                              TextSpan(
+                                text: ' (P)',
+                                style: context.textStyles.matchEventsSectionText,
+                              ),
+                            if (eventDetail.toLowerCase() == 'own goal')
+                              TextSpan(
+                                text: ' (OG)',
+                                style: context.textStyles.matchEventsSectionText,
+                              ),
+                          ],
                         ),
                       ),
                     ),

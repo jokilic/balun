@@ -46,7 +46,7 @@ class DioService {
 
     noCacheDio = Dio(
       BaseOptions(
-        baseUrl: BalunEndpoints.baseUrl,
+        baseUrl: BalunConstants.baseUrl,
         headers: {
           'x-apisports-key': Env.apiFootballApiKey,
           'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ class DioService {
 
     cacheDio = Dio(
       BaseOptions(
-        baseUrl: BalunEndpoints.baseUrl,
+        baseUrl: BalunConstants.baseUrl,
         headers: {
           'x-apisports-key': Env.apiFootballApiKey,
           'Content-Type': 'application/json',
