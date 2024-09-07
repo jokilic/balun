@@ -4,6 +4,7 @@ import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../util/dependencies.dart';
 import '../../../widgets/balun_button.dart';
+import '../../../widgets/balun_image.dart';
 import '../controllers/search_controller.dart';
 
 class SearchBarWidget extends StatelessWidget {
@@ -52,8 +53,8 @@ class SearchBarWidget extends StatelessWidget {
           child: Container(
             color: Colors.transparent,
             padding: const EdgeInsets.all(10),
-            child: Image.asset(
-              BalunIcons.search,
+            child: const BalunImage(
+              imageUrl: BalunIcons.search,
               height: 24,
               width: 24,
             ),

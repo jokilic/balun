@@ -5,6 +5,7 @@ import '../../../../../../models/players/player/player.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
+import '../../../../../../widgets/balun_image.dart';
 
 class PlayerInfoSection extends StatelessWidget {
   final Player? player;
@@ -32,8 +33,8 @@ class PlayerInfoSection extends StatelessWidget {
           if (player?.injured ?? false) ...[
             Row(
               children: [
-                Image.asset(
-                  BalunIcons.injury,
+                const BalunImage(
+                  imageUrl: BalunIcons.injury,
                   height: 52,
                   width: 52,
                 ),

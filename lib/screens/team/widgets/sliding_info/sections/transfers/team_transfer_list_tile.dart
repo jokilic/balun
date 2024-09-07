@@ -44,8 +44,8 @@ class TeamTransferListTile extends StatelessWidget {
                   color: Colors.transparent,
                   child: Column(
                     children: [
-                      Image.asset(
-                        BalunIcons.playerOut,
+                      BalunImage(
+                        imageUrl: BalunIcons.playerOut,
                         height: 28,
                         width: 28,
                         color: context.colors.red,
@@ -130,8 +130,8 @@ class TeamTransferListTile extends StatelessWidget {
                   color: Colors.transparent,
                   child: Column(
                     children: [
-                      Image.asset(
-                        BalunIcons.playerIn,
+                      BalunImage(
+                        imageUrl: BalunIcons.playerIn,
                         height: 28,
                         width: 28,
                         color: context.colors.green,

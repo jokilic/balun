@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../theme/icons.dart';
 import '../theme/theme.dart';
+import 'balun_image.dart';
 
 class BalunEmpty extends StatelessWidget {
   final String message;
@@ -22,9 +23,9 @@ class BalunEmpty extends StatelessWidget {
             vertical: verticalPadding,
           ),
           children: [
-            Center(
-              child: Image.asset(
-                BalunIcons.goalBall,
+            const Center(
+              child: BalunImage(
+                imageUrl: BalunIcons.goalBall,
                 height: 144,
                 width: 144,
               ),

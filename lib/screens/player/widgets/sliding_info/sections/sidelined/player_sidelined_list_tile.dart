@@ -5,6 +5,7 @@ import '../../../../../../models/sidelined/sidelined_inner_response.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
+import '../../../../../../widgets/balun_image.dart';
 
 class PlayerSidelinedListTile extends StatelessWidget {
   final SidelinedInnerResponse sidelined;
@@ -45,8 +46,8 @@ class PlayerSidelinedListTile extends StatelessWidget {
           if (startLocal != null)
             Row(
               children: [
-                Image.asset(
-                  BalunIcons.playerOut,
+                BalunImage(
+                  imageUrl: BalunIcons.playerOut,
                   height: 28,
                   width: 28,
                   color: context.colors.red,
@@ -66,8 +67,8 @@ class PlayerSidelinedListTile extends StatelessWidget {
           if (endLocal != null)
             Row(
               children: [
-                Image.asset(
-                  BalunIcons.playerIn,
+                BalunImage(
+                  imageUrl: BalunIcons.playerIn,
                   height: 28,
                   width: 28,
                   color: context.colors.green,

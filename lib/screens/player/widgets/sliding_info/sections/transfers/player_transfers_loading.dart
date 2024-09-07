@@ -5,6 +5,7 @@ import '../../../../../../constants.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
+import '../../../../../../widgets/balun_image.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 
 class PlayerTransfersLoading extends StatelessWidget {
@@ -33,8 +34,8 @@ class PlayerTransfersLoading extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      Image.asset(
-                        BalunIcons.playerOut,
+                      BalunImage(
+                        imageUrl: BalunIcons.playerOut,
                         height: 28,
                         width: 28,
                         color: context.colors.red,
@@ -95,8 +96,8 @@ class PlayerTransfersLoading extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      Image.asset(
-                        BalunIcons.playerIn,
+                      BalunImage(
+                        imageUrl: BalunIcons.playerIn,
                         height: 28,
                         width: 28,
                         color: context.colors.green,

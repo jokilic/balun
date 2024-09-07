@@ -36,3 +36,4 @@ A simple Flutter application for football scores.
 * Match lineups - managers baci jednog na desno
 * Match head-to-head - posloži po datumu
 * FixturesListTile - Staviti mali datum kad je utakmica (možda jedino ako još nije počela)
+* FixturesDatePicker - desni kalendar botun mora biti isti kao lijevi

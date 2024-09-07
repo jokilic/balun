@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../widgets/balun_button.dart';
+import '../../../../widgets/balun_image.dart';
 
 class PlayerMainInfoLoading extends StatelessWidget {
   @override
@@ -24,8 +25,8 @@ class PlayerMainInfoLoading extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: context.colors.white.withOpacity(0.4),
                     ),
-                    child: Image.asset(
-                      BalunIcons.back,
+                    child: const BalunImage(
+                      imageUrl: BalunIcons.back,
                       height: 32,
                       width: 32,
                     ),

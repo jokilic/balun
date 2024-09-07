@@ -6,6 +6,7 @@ import '../services/balun_navigation_bar_service.dart';
 import '../theme/icons.dart';
 import '../theme/theme.dart';
 import '../util/dependencies.dart';
+import 'balun_image.dart';
 
 class BalunNavigationBar extends WatchingWidget {
   @override
@@ -36,8 +37,8 @@ class BalunNavigationBar extends WatchingWidget {
                   shape: BoxShape.circle,
                   color: context.colors.grey,
                 ),
-                child: Image.asset(
-                  BalunIcons.ballNavigation,
+                child: BalunImage(
+                  imageUrl: BalunIcons.ballNavigation,
                   height: 24,
                   width: 24,
                   color: context.colors.white.withOpacity(0.25),
@@ -49,8 +50,8 @@ class BalunNavigationBar extends WatchingWidget {
                   shape: BoxShape.circle,
                   color: context.colors.white,
                 ),
-                child: Image.asset(
-                  BalunIcons.ballNavigation,
+                child: BalunImage(
+                  imageUrl: BalunIcons.ballNavigation,
                   height: 24,
                   width: 24,
                   color: context.colors.black,
@@ -69,8 +70,8 @@ class BalunNavigationBar extends WatchingWidget {
                   shape: BoxShape.circle,
                   color: context.colors.grey,
                 ),
-                child: Image.asset(
-                  BalunIcons.globe,
+                child: BalunImage(
+                  imageUrl: BalunIcons.globe,
                   height: 24,
                   width: 24,
                   color: context.colors.white.withOpacity(0.25),
@@ -82,8 +83,8 @@ class BalunNavigationBar extends WatchingWidget {
                   shape: BoxShape.circle,
                   color: context.colors.white,
                 ),
-                child: Image.asset(
-                  BalunIcons.globe,
+                child: BalunImage(
+                  imageUrl: BalunIcons.globe,
                   height: 24,
                   width: 24,
                   color: context.colors.black,
@@ -102,8 +103,8 @@ class BalunNavigationBar extends WatchingWidget {
                   shape: BoxShape.circle,
                   color: context.colors.grey,
                 ),
-                child: Image.asset(
-                  BalunIcons.search,
+                child: BalunImage(
+                  imageUrl: BalunIcons.search,
                   height: 24,
                   width: 24,
                   color: context.colors.white.withOpacity(0.25),
@@ -115,8 +116,8 @@ class BalunNavigationBar extends WatchingWidget {
                   shape: BoxShape.circle,
                   color: context.colors.white,
                 ),
-                child: Image.asset(
-                  BalunIcons.search,
+                child: BalunImage(
+                  imageUrl: BalunIcons.search,
                   height: 24,
                   width: 24,
                   color: context.colors.black,

@@ -4,6 +4,7 @@ import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/color.dart';
 import '../../../../widgets/balun_button.dart';
+import '../../../../widgets/balun_image.dart';
 
 class CoachMainInfoLoading extends StatelessWidget {
   @override
@@ -25,8 +26,8 @@ class CoachMainInfoLoading extends StatelessWidget {
                       shape: BoxShape.circle,
                       color: context.colors.white.withOpacity(0.4),
                     ),
-                    child: Image.asset(
-                      BalunIcons.back,
+                    child: const BalunImage(
+                      imageUrl: BalunIcons.back,
                       height: 32,
                       width: 32,
                     ),

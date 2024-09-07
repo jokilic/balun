@@ -67,8 +67,8 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
                       opacity: expanded ? 0 : 1,
                       duration: BalunConstants.animationDuration,
                       curve: Curves.easeIn,
-                      child: Image.asset(
-                        BalunIcons.playerOut,
+                      child: BalunImage(
+                        imageUrl: BalunIcons.playerOut,
                         height: 40,
                         width: 40,
                         color: context.colors.black.withOpacity(0.5),

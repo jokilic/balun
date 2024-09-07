@@ -45,8 +45,8 @@ class MatchInfoSection extends StatelessWidget {
           if (matchDateTime != null) ...[
             Row(
               children: [
-                Image.asset(
-                  BalunIcons.matchDateTime,
+                const BalunImage(
+                  imageUrl: BalunIcons.matchDateTime,
                   height: 52,
                   width: 52,
                 ),
@@ -83,8 +83,8 @@ class MatchInfoSection extends StatelessWidget {
           if (status != null) ...[
             Row(
               children: [
-                Image.asset(
-                  BalunIcons.matchStatus,
+                const BalunImage(
+                  imageUrl: BalunIcons.matchStatus,
                   height: 52,
                   width: 52,
                 ),
@@ -135,8 +135,8 @@ class MatchInfoSection extends StatelessWidget {
                         ),
                       )
                     else
-                      Image.asset(
-                        BalunIcons.matchLeague,
+                      const BalunImage(
+                        imageUrl: BalunIcons.matchLeague,
                         height: 52,
                         width: 52,
                       ),
@@ -187,8 +187,8 @@ class MatchInfoSection extends StatelessWidget {
                 color: Colors.transparent,
                 child: Row(
                   children: [
-                    Image.asset(
-                      BalunIcons.matchRound,
+                    const BalunImage(
+                      imageUrl: BalunIcons.matchRound,
                       height: 52,
                       width: 52,
                     ),
@@ -229,8 +229,8 @@ class MatchInfoSection extends StatelessWidget {
           if (referee?.isNotEmpty ?? false) ...[
             Row(
               children: [
-                Image.asset(
-                  BalunIcons.referee,
+                const BalunImage(
+                  imageUrl: BalunIcons.referee,
                   height: 52,
                   width: 52,
                 ),
@@ -270,8 +270,8 @@ class MatchInfoSection extends StatelessWidget {
                 color: Colors.transparent,
                 child: Row(
                   children: [
-                    Image.asset(
-                      BalunIcons.matchVenue,
+                    const BalunImage(
+                      imageUrl: BalunIcons.matchVenue,
                       height: 52,
                       width: 52,
                     ),

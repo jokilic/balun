@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../theme/icons.dart';
 import '../theme/theme.dart';
+import 'balun_image.dart';
 
 class BalunError extends StatelessWidget {
   final String error;
@@ -22,9 +23,9 @@ class BalunError extends StatelessWidget {
             vertical: verticalPadding,
           ),
           children: [
-            Center(
-              child: Image.asset(
-                BalunIcons.error,
+            const Center(
+              child: BalunImage(
+                imageUrl: BalunIcons.error,
                 height: 144,
                 width: 144,
               ),

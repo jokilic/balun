@@ -7,6 +7,7 @@ import '../../../theme/theme.dart';
 import '../../../util/custom_page_scroll_physics.dart';
 import '../../../util/dependencies.dart';
 import '../../../widgets/balun_button.dart';
+import '../../../widgets/balun_image.dart';
 import '../controllers/fixtures_date_controller.dart';
 
 class FixturesDatePicker extends WatchingWidget {
@@ -60,8 +61,8 @@ class FixturesDatePicker extends WatchingWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Image.asset(
-                      BalunIcons.calendar,
+                    BalunImage(
+                      imageUrl: BalunIcons.calendar,
                       height: 20,
                       width: 20,
                       color: !dates.contains(activeDate) ? context.colors.green.withOpacity(0.5) : context.colors.white,
@@ -144,8 +145,8 @@ class FixturesDatePicker extends WatchingWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                child: Image.asset(
-                  BalunIcons.calendar,
+                child: BalunImage(
+                  imageUrl: BalunIcons.calendar,
                   height: 32,
                   width: 32,
                   color: context.colors.white,

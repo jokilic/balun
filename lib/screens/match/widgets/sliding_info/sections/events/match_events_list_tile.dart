@@ -5,6 +5,7 @@ import '../../../../../../models/fixtures/event/event.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../widgets/balun_image.dart';
 
 class MatchEventsListTile extends StatelessWidget {
   final Event event;
@@ -231,8 +232,8 @@ class MatchEventsListTile extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.asset(
-                        BalunIcons.assist,
+                      const BalunImage(
+                        imageUrl: BalunIcons.assist,
                         height: 28,
                         width: 28,
                       ),
@@ -256,8 +257,8 @@ class MatchEventsListTile extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Image.asset(
-                      BalunIcons.ball,
+                    const BalunImage(
+                      imageUrl: BalunIcons.ball,
                       height: 28,
                       width: 28,
                     ),
@@ -350,8 +351,8 @@ class MatchEventsListTile extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Image.asset(
-                      BalunIcons.playerOut,
+                    BalunImage(
+                      imageUrl: BalunIcons.playerOut,
                       height: 28,
                       width: 28,
                       color: context.colors.red,
@@ -376,8 +377,8 @@ class MatchEventsListTile extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Image.asset(
-                      BalunIcons.playerIn,
+                    BalunImage(
+                      imageUrl: BalunIcons.playerIn,
                       height: 28,
                       width: 28,
                       color: context.colors.green,
@@ -403,8 +404,8 @@ class MatchEventsListTile extends StatelessWidget {
         'var' => Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(
-                BalunIcons.varIcon,
+              const BalunImage(
+                imageUrl: BalunIcons.varIcon,
                 height: 28,
                 width: 28,
               ),
@@ -427,8 +428,8 @@ class MatchEventsListTile extends StatelessWidget {
         _ => Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(
-                BalunIcons.assist,
+              const BalunImage(
+                imageUrl: BalunIcons.assist,
                 height: 28,
                 width: 28,
               ),
@@ -450,20 +451,20 @@ class MatchEventsListTile extends StatelessWidget {
     required BuildContext context,
   }) =>
       switch (eventDetail.toLowerCase()) {
-        'yellow card' => Image.asset(
-            isSecondYellowCard ? BalunIcons.cards : BalunIcons.card,
+        'yellow card' => BalunImage(
+            imageUrl: isSecondYellowCard ? BalunIcons.cards : BalunIcons.card,
             height: 28,
             width: 28,
             color: isSecondYellowCard ? null : context.colors.yellow,
           ),
-        'red card' => Image.asset(
-            BalunIcons.card,
+        'red card' => BalunImage(
+            imageUrl: BalunIcons.card,
             height: 28,
             width: 28,
             color: context.colors.red,
           ),
-        _ => Image.asset(
-            BalunIcons.cards,
+        _ => const BalunImage(
+            imageUrl: BalunIcons.cards,
             height: 28,
             width: 28,
           ),

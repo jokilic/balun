@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../theme/icons.dart';
 import '../theme/theme.dart';
+import 'balun_image.dart';
 
 class BalunLoader extends StatefulWidget {
   final Color? color;
@@ -42,8 +43,8 @@ class _BalunLoaderState extends State<BalunLoader> with SingleTickerProviderStat
         animation: controller,
         builder: (_, child) => Transform.rotate(
           angle: controller.value * 2 * pi,
-          child: Image.asset(
-            BalunIcons.ball,
+          child: BalunImage(
+            imageUrl: BalunIcons.ball,
             height: widget.size,
             width: widget.size,
             color: widget.color ?? context.colors.white,

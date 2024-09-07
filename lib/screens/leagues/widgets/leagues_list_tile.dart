@@ -37,8 +37,8 @@ class LeaguesListTile extends StatelessWidget {
                     : Container(
                         padding: const EdgeInsets.all(8),
                         color: context.colors.white.withOpacity(0.5),
-                        child: Image.asset(
-                          BalunIcons.countryPlaceholder,
+                        child: const BalunImage(
+                          imageUrl: BalunIcons.countryPlaceholder,
                           height: 32,
                           width: 44,
                         ),

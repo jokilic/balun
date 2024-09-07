@@ -37,8 +37,8 @@ class SearchLeaguesListTile extends StatelessWidget {
                     : Container(
                         padding: const EdgeInsets.all(8),
                         color: context.colors.white.withOpacity(0.5),
-                        child: Image.asset(
-                          BalunIcons.placeholderLeague,
+                        child: const BalunImage(
+                          imageUrl: BalunIcons.placeholderLeague,
                           height: 32,
                           width: 44,
                         ),

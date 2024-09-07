@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../constants.dart';
+import '../theme/icons.dart';
 import '../theme/theme.dart';
 import '../util/color.dart';
 
@@ -48,7 +49,6 @@ class BalunImage extends StatelessWidget {
                 height: height,
                 width: width,
                 radius: radius,
-                color: color,
               ),
             )
           : CachedNetworkImage(
@@ -66,7 +66,6 @@ class BalunImage extends StatelessWidget {
                 height: height,
                 width: width,
                 radius: radius,
-                color: color,
               ),
             );
 }
@@ -111,26 +110,38 @@ class BalunImageError extends StatelessWidget {
   final double? height;
   final double? width;
   final double radius;
-  final Color? color;
+  final BoxFit fit;
 
   const BalunImageError({
     required this.height,
     required this.width,
     required this.radius,
-    required this.color,
+    this.fit = BoxFit.cover,
   });
 
   @override
   Widget build(BuildContext context) => Container(
         height: height,
         width: width,
+        padding: EdgeInsets.all(
+          height != null ? height! / 6 : 6,
+        ),
         decoration: BoxDecoration(
           border: Border.all(
             color: context.colors.red,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(radius),
-          color: color ?? getRandomBalunColor(context),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(radius),
+          child: BalunImage(
+            imageUrl: BalunIcons.ballNavigation,
+            color: context.colors.red,
+            height: height,
+            width: width,
+            fit: fit,
+          ),
         ),
       );
 }

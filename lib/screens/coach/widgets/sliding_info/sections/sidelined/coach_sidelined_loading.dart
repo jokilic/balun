@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../../../constants.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../widgets/balun_image.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 
 class CoachSidelinedLoading extends StatelessWidget {
@@ -47,8 +48,8 @@ class CoachSidelinedLoading extends StatelessWidget {
                 ///
                 Row(
                   children: [
-                    Image.asset(
-                      BalunIcons.playerOut,
+                    BalunImage(
+                      imageUrl: BalunIcons.playerOut,
                       height: 28,
                       width: 28,
                       color: context.colors.red,
@@ -70,8 +71,8 @@ class CoachSidelinedLoading extends StatelessWidget {
                 ///
                 Row(
                   children: [
-                    Image.asset(
-                      BalunIcons.playerIn,
+                    BalunImage(
+                      imageUrl: BalunIcons.playerIn,
                       height: 28,
                       width: 28,
                       color: context.colors.green,
