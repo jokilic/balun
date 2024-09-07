@@ -87,6 +87,7 @@ class MatchLineupContent extends StatelessWidget {
                     child: Text(
                       awayLineup?.coach?.name ?? '---',
                       style: context.textStyles.matchStandingsSectionTextAlternate,
+                      textAlign: TextAlign.right,
                     ),
                   ),
                 ),
