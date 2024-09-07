@@ -344,6 +344,18 @@ abstract class BalunTextStyles {
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
+
+  static const calendarDayActive = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const calendarDayInactive = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 16,
+    fontWeight: FontWeight.w300,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -351,7 +363,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle fixturesCountry;
   final TextStyle fixturesLeague;
   final TextStyle fixturesMinute;
-
   final TextStyle fixturesName;
   final TextStyle fixturesScore;
   final TextStyle matchLeagueName;
@@ -404,6 +415,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle searchPickerActive;
   final TextStyle searchPickerInactive;
   final TextStyle searchTextField;
+  final TextStyle calendarDayActive;
+  final TextStyle calendarDayInactive;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -462,6 +475,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.searchPickerActive,
     required this.searchPickerInactive,
     required this.searchTextField,
+    required this.calendarDayActive,
+    required this.calendarDayInactive,
   });
 
   @override
@@ -522,6 +537,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? searchPickerActive,
     TextStyle? searchPickerInactive,
     TextStyle? searchTextField,
+    TextStyle? calendarDayActive,
+    TextStyle? calendarDayInactive,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -580,6 +597,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         searchPickerActive: searchPickerActive ?? this.searchPickerActive,
         searchPickerInactive: searchPickerInactive ?? this.searchPickerInactive,
         searchTextField: searchTextField ?? this.searchTextField,
+        calendarDayActive: calendarDayActive ?? this.calendarDayActive,
+        calendarDayInactive: calendarDayInactive ?? this.calendarDayInactive,
       );
 
   @override
@@ -648,6 +667,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       searchPickerActive: TextStyle.lerp(searchPickerActive, other.searchPickerActive, t)!,
       searchPickerInactive: TextStyle.lerp(searchPickerInactive, other.searchPickerInactive, t)!,
       searchTextField: TextStyle.lerp(searchTextField, other.searchTextField, t)!,
+      calendarDayActive: TextStyle.lerp(calendarDayActive, other.calendarDayActive, t)!,
+      calendarDayInactive: TextStyle.lerp(calendarDayInactive, other.calendarDayInactive, t)!,
     );
   }
 }

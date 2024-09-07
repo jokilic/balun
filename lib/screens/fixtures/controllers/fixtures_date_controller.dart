@@ -1,11 +1,17 @@
 import 'dart:async';
+import 'dart:math';
 
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../constants.dart';
 import '../../../services/logger_service.dart';
+import '../../../theme/icons.dart';
+import '../../../theme/theme.dart';
 import '../../../util/dependencies.dart';
+import '../../../widgets/balun_button.dart';
+import '../../../widgets/balun_image.dart';
 import 'fixtures_controller.dart';
 
 class FixturesDateController extends ValueNotifier<DateTime> implements Disposable {
@@ -99,20 +105,60 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
   }
 
   Future<void> updateDateViaPickerAndRefetch(BuildContext context) async {
-    final oldValue = value;
-
-    value = await showDatePicker(
-          context: context,
-          firstDate: DateTime(2010),
-          lastDate: currentDate.add(
-            const Duration(days: 2 * 365),
+    final newValue = await showCalendarDatePicker2Dialog(
+      context: context,
+      config: CalendarDatePicker2WithActionButtonsConfig(
+        weekdayLabelTextStyle: context.textStyles.teamTransferTeam,
+        controlsTextStyle: context.textStyles.teamTransferTeam,
+        dayTextStyle: context.textStyles.calendarDayInactive,
+        todayTextStyle: context.textStyles.calendarDayActive,
+        selectedDayTextStyle: context.textStyles.calendarDayActive.copyWith(
+          color: context.colors.white,
+        ),
+        selectedMonthTextStyle: context.textStyles.calendarDayActive.copyWith(
+          color: context.colors.white,
+        ),
+        selectedYearTextStyle: context.textStyles.calendarDayActive.copyWith(
+          color: context.colors.white,
+        ),
+        selectedDayHighlightColor: context.colors.green,
+        daySplashColor: context.colors.green,
+        firstDayOfWeek: 1,
+        useAbbrLabelForMonthModePicker: true,
+        cancelButton: BalunButton(
+          child: Text(
+            'Cancel'.toUpperCase(),
+            style: context.textStyles.calendarDayInactive,
           ),
-          cancelText: 'Cancel'.toUpperCase(),
-          confirmText: 'Confirm'.toUpperCase(),
-        ) ??
-        value;
+        ),
+        okButton: BalunButton(
+          child: Text(
+            'Go'.toUpperCase(),
+            style: context.textStyles.teamTransferTeam,
+          ),
+        ),
+        lastMonthIcon: const BalunImage(
+          imageUrl: BalunIcons.back,
+          height: 20,
+          width: 20,
+        ),
+        nextMonthIcon: Transform.rotate(
+          angle: pi,
+          child: const BalunImage(
+            imageUrl: BalunIcons.back,
+            height: 20,
+            width: 20,
+          ),
+        ),
+      ),
+      borderRadius: BorderRadius.circular(16),
+      dialogBackgroundColor: context.colors.greenish,
+      dialogSize: const Size(325, 400),
+    );
 
-    if (oldValue != value) {
+    if (newValue != null && value != newValue.first) {
+      value = newValue.first!;
+
       await getIt
           .get<FixturesController>(
             instanceName: 'fixtures',

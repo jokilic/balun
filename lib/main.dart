@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:watch_it/watch_it.dart';
 
 import 'services/balun_screen_service.dart';
@@ -20,6 +21,9 @@ Future<void> main() async {
   /// Initialize services
   initializeServices();
 
+  /// Initialize date formatting
+  await initializeDateFormatting();
+
   /// Wait for initialization to finish
   await getIt.allReady();
 
@@ -30,6 +34,10 @@ Future<void> main() async {
 class BalunApp extends WatchingWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
+        supportedLocales: const [
+          Locale('en'),
+          Locale('hr'),
+        ],
         debugShowCheckedModeBanner: false,
         home: watchIt<BalunScreenService>().value,
         onGenerateTitle: (_) => 'Balun',

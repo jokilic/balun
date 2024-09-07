@@ -201,6 +201,12 @@ class BalunTheme {
     searchTextField: BalunTextStyles.searchTextField.copyWith(
       color: lightAppColors.black,
     ),
+    calendarDayActive: BalunTextStyles.calendarDayActive.copyWith(
+      color: lightAppColors.black,
+    ),
+    calendarDayInactive: BalunTextStyles.calendarDayInactive.copyWith(
+      color: lightAppColors.black,
+    ),
   );
 }
 
