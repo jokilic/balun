@@ -26,11 +26,22 @@ Map<League, List<FixtureResponse>> groupPopularFixtures(
     if (fixture.league != null) {
       final league = fixture.league!;
 
+      final newLeague = League(
+        id: league.id,
+        name: league.name,
+        country: league.country,
+        flag: league.flag,
+        logo: league.logo,
+      );
+
       /// Create league group if it doesn't exist
-      groupedData.putIfAbsent(league, () => []);
+      groupedData.putIfAbsent(
+        newLeague,
+        () => [],
+      );
 
       /// Add the current fixture to the appropriate group
-      groupedData[league]!.add(fixture);
+      groupedData[newLeague]!.add(fixture);
     }
   }
 
@@ -55,9 +66,11 @@ Map<League, Map<League, List<FixtureResponse>>> groupFixtures(
         (key) => key.country == league.country,
         orElse: () {
           final newCountryLeague = League(
-            id: -1,
+            id: league.id,
+            name: league.country,
             country: league.country,
             flag: league.flag,
+            logo: league.logo,
           );
 
           groupedData[newCountryLeague] = {};
@@ -66,11 +79,21 @@ Map<League, Map<League, List<FixtureResponse>>> groupFixtures(
         },
       );
 
-      /// Create league group if it doesn't exist
-      groupedData[countryLeague]!.putIfAbsent(league, () => []);
+      /// Find or create the league group
+      groupedData[countryLeague]!
+          .putIfAbsent(
+            League(
+              id: league.id,
+              name: league.name,
+              country: league.country,
+              flag: league.flag,
+              logo: league.logo,
+            ),
+            () => [],
+          )
 
-      /// Add the current fixture to the appropriate group
-      groupedData[countryLeague]![league]!.add(fixture);
+          /// Add the current fixture to the appropriate group
+          .add(fixture);
     }
   }
 
@@ -94,7 +117,7 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixtures(
       },
     );
 
-  //& Sort leagues within each country
+  /// Sort leagues within each country
   final sortedGroupedFixtures = Map.fromEntries(
     sortedCountries.map(
       (countryEntry) {
