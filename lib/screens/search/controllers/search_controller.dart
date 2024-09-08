@@ -20,16 +20,11 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
     required this.logger,
     required this.api,
   }) : super(SearchSection(searchSectionEnum: SearchSectionEnum.countries)) {
-    pageController = PageController(
-      viewportFraction: 0.4,
-    );
-
     textEditingController = TextEditingController();
   }
 
   @override
   FutureOr onDispose() {
-    pageController.dispose();
     textEditingController.dispose();
   }
 
@@ -37,7 +32,6 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
   /// VARIABLES
   ///
 
-  late final PageController pageController;
   late final TextEditingController textEditingController;
 
   ///
@@ -47,6 +41,7 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
   void updateState(SearchSection newSection) {
     if (value != newSection) {
       value = newSection;
+      textEditingController.clear();
     }
   }
 

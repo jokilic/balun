@@ -329,13 +329,13 @@ abstract class BalunTextStyles {
 
   static const searchPickerActive = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: FontWeight.w700,
   );
 
   static const searchPickerInactive = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: FontWeight.w400,
   );
 

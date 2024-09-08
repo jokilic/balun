@@ -30,8 +30,8 @@ class SearchTeamsListTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
                   imageUrl: team.team?.logo ?? BalunIcons.placeholderTeam,
-                  height: 48,
-                  width: 48,
+                  height: 40,
+                  width: 40,
                 ),
               ),
               const SizedBox(width: 16),
@@ -41,12 +41,12 @@ class SearchTeamsListTile extends StatelessWidget {
                   children: [
                     Text(
                       team.team?.name ?? 'Unknown',
-                      style: context.textStyles.fixturesCountry,
+                      style: context.textStyles.fixturesLeague,
                     ),
                     if (team.team?.country != null)
                       Text(
                         team.team!.country!,
-                        style: context.textStyles.leagueSeason,
+                        style: context.textStyles.leaguesSubtitle,
                       ),
                   ],
                 ),

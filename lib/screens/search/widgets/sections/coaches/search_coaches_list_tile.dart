@@ -30,8 +30,8 @@ class SearchCoachesListTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
                   imageUrl: coach.photo ?? BalunIcons.placeholderPlayer,
-                  height: 56,
-                  width: 56,
+                  height: 40,
+                  width: 40,
                 ),
               ),
               const SizedBox(width: 16),
@@ -41,12 +41,12 @@ class SearchCoachesListTile extends StatelessWidget {
                   children: [
                     Text(
                       coach.name ?? 'Unknown',
-                      style: context.textStyles.fixturesCountry,
+                      style: context.textStyles.fixturesLeague,
                     ),
                     if (coach.nationality != null)
                       Text(
                         coach.nationality!,
-                        style: context.textStyles.leagueSeason,
+                        style: context.textStyles.leaguesSubtitle,
                       ),
                   ],
                 ),

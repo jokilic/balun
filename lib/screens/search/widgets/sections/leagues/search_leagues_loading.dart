@@ -29,10 +29,10 @@ class SearchLeaguesLoading extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  height: 48,
-                  width: 48,
+                  height: 40,
+                  width: 40,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(100),
                     color: getRandomBalunColor(context),
                   ),
                 ),
@@ -41,7 +41,7 @@ class SearchLeaguesLoading extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      height: 24,
+                      height: 20,
                       width: 160,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
@@ -50,8 +50,8 @@ class SearchLeaguesLoading extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Container(
-                      height: 16,
-                      width: 104,
+                      height: 12,
+                      width: 80,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: context.colors.black.withOpacity(0.15),

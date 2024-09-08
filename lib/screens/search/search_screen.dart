@@ -105,7 +105,7 @@ class _SearchScreenState extends State<SearchScreen> {
             /// SEARCH BAR
             ///
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
               child: SearchBarWidget(
                 onSubmitted: (value) => getIt
                     .get<SearchController>(
@@ -125,11 +125,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     instanceName: 'search',
                   )
                   .updateState,
-              controller: getIt
-                  .get<SearchController>(
-                    instanceName: 'search',
-                  )
-                  .pageController,
             ),
 
             ///
