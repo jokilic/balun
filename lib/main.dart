@@ -31,7 +31,24 @@ Future<void> main() async {
   runApp(BalunApp());
 }
 
-class BalunApp extends WatchingWidget {
+class BalunApp extends WatchingStatefulWidget {
+  @override
+  State<BalunApp> createState() => _BalunAppState();
+}
+
+class _BalunAppState extends State<BalunApp> {
+  @override
+  void initState() {
+    /// Set the color of the navigation bar
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        systemNavigationBarColor: context.colors.black,
+      ),
+    );
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) => MaterialApp(
         supportedLocales: const [
