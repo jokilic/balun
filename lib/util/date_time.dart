@@ -8,12 +8,15 @@ DateTime? parseTimestamp(DateTime? timestamp) {
   return timestamp.toLocal();
 }
 
-String? parseDateTimeago(DateTime? dateTime) {
-  if (dateTime == null) {
+String? parseDateTimeago(DateTime? timestamp) {
+  /// Parse timestamp
+  final parsedTimestamp = parseTimestamp(timestamp);
+
+  if (parsedTimestamp == null) {
     return null;
   }
 
   /// Format `DateTime` using `timeago` package
-  final timeagoDateTime = timeago.format(dateTime);
+  final timeagoDateTime = timeago.format(parsedTimestamp);
   return timeagoDateTime;
 }

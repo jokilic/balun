@@ -14,19 +14,23 @@ class BalunConstants {
     'Croatia': 1,
     'England': 2,
     'Spain': 3,
-    'Italy': 5,
     'Germany': 4,
+    'Italy': 5,
     'France': 6,
   };
 
-  // TODO: Update this with all values - https://dashboard.api-football.com/soccer/ids
   /// Keys are league IDs from the backend
   static const leaguesOrder = {
-    210: 0,
-    33: 1,
-    11: 2,
-    140: 3,
-    212: 4,
-    5: 5,
+    1: 0, // World Cup
+    4: 1, // Euro Championship
+    5: 2, // UEFA Nations League
+    2: 3, // UEFA Champions League
+    3: 4, // UEFA Europa League
+    210: 5, // HNL
+    39: 6, // Premier League
+    140: 7, // La Liga
+    78: 8, // Bundesliga
+    135: 9, // Serie A
+    61: 10, // Ligue 1
   };
 }

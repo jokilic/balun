@@ -10,10 +10,7 @@ A simple Flutter application for football scores.
 ### General To-Dos
 
 * Localization
-* Design updates
-* Test app and update where necessary
-* Think about implementing injuries in match, team & player
 * Write proper readme, create screenshots and put app live
 * Safe area na dnu navigation bara
-* Match info - timeago je čudan
 * Check places where BalunEmpty is being used and update images
+* Check timeago code and implement time in the future
