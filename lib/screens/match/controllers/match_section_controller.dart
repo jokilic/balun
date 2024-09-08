@@ -8,11 +8,55 @@ class MatchSectionController extends ValueNotifier<MatchSection> {
 
   MatchSectionController({
     required this.logger,
-  }) : super(MatchSection(matchSectionEnum: MatchSectionEnum.events));
+  }) : super(
+          MatchSection(
+            matchSectionEnum: MatchSectionEnum.info,
+          ),
+        );
 
   ///
   /// METHODS
   ///
+
+  void updateStateDependingOnMatchStatus({
+    required String statusShort,
+    required bool lineupExists,
+  }) {
+    switch (statusShort.toUpperCase()) {
+      ///
+      /// MATCH NOT STARTED
+      ///
+      case 'TBD' || 'NS':
+        updateState(
+          MatchSection(
+            matchSectionEnum: lineupExists ? MatchSectionEnum.lineups : MatchSectionEnum.info,
+          ),
+        );
+        break;
+
+      ///
+      /// MATCH IN PROGRESS
+      ///
+      case '1H' || '2H' || 'ET':
+        updateState(
+          MatchSection(
+            matchSectionEnum: MatchSectionEnum.events,
+          ),
+        );
+        break;
+
+      ///
+      /// MATCH FINISHED
+      ///
+      case 'FT' || 'AET' || 'PEN':
+        updateState(
+          MatchSection(
+            matchSectionEnum: MatchSectionEnum.info,
+          ),
+        );
+        break;
+    }
+  }
 
   void updateState(MatchSection newSection) {
     if (value != newSection) {

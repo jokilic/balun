@@ -4,9 +4,11 @@ import '../../../../theme/theme.dart';
 
 class MatchMinute extends StatelessWidget {
   final String status;
+  final String? timeBeforeMatch;
 
   const MatchMinute({
     required this.status,
+    required this.timeBeforeMatch,
   });
 
   @override
@@ -26,11 +28,18 @@ class MatchMinute extends StatelessWidget {
           alignment: Alignment.center,
           clipBehavior: Clip.none,
           children: [
-            Text(
-              status,
-              style: context.textStyles.fixturesMinute,
-              textAlign: TextAlign.center,
-            ),
+            if (timeBeforeMatch != null)
+              Text(
+                timeBeforeMatch!,
+                style: context.textStyles.fixturesMinute,
+                textAlign: TextAlign.center,
+              )
+            else
+              Text(
+                status,
+                style: context.textStyles.fixturesMinute,
+                textAlign: TextAlign.center,
+              ),
             if (int.tryParse(status) != null)
               Positioned(
                 right: -6,

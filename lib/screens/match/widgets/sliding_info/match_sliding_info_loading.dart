@@ -50,14 +50,14 @@ class MatchSlidingInfoLoading extends WatchingWidget {
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: index == 1 ? context.colors.black : context.colors.black.withOpacity(0.075),
+                  color: index == 0 ? context.colors.black : context.colors.black.withOpacity(0.075),
                 ),
                 child: Container(
                   height: 24,
                   width: 104,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: index == 1 ? context.colors.white.withOpacity(0.8) : context.colors.black.withOpacity(0.25),
+                    color: index == 0 ? context.colors.white.withOpacity(0.8) : context.colors.black.withOpacity(0.25),
                   ),
                 ),
               ),

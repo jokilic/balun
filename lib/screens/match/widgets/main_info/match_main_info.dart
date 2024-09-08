@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../models/fixtures/fixture_response.dart';
 import '../../../../routing.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
+import '../../../../util/date_time.dart';
+import '../../../../util/fixtures.dart';
 import '../../../../util/string.dart';
 import '../../../../widgets/balun_button.dart';
 import '../match_app_bar.dart';
@@ -101,6 +104,16 @@ class MatchMainInfo extends StatelessWidget {
                           statusShort: match.fixture?.status?.short ?? '?',
                           minutes: match.fixture?.status?.elapsed ?? 0,
                         ),
+                        timeBeforeMatch: shouldShowTimeBeforeMatch(
+                                  statusShort: match.fixture?.status?.short ?? '?',
+                                ) &&
+                                match.fixture?.timestamp != null
+                            ? DateFormat('HH:mm').format(
+                                parseTimestamp(
+                                  match.fixture!.timestamp,
+                                )!,
+                              )
+                            : null,
                       ),
                     ],
                   ),
