@@ -20,10 +20,8 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
     required this.logger,
     required this.api,
   }) : super(SearchSection(searchSectionEnum: SearchSectionEnum.countries)) {
-    const viewportFraction = 0.4;
-
     pageController = PageController(
-      viewportFraction: viewportFraction,
+      viewportFraction: 0.4,
     );
 
     textEditingController = TextEditingController();

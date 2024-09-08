@@ -4,7 +4,6 @@ import 'package:watch_it/watch_it.dart';
 import '../../../../models/teams/team_response.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
-import '../../../../util/custom_page_scroll_physics.dart';
 import '../../../../util/dependencies.dart';
 import '../../../../util/team_seasons.dart';
 import '../../../../widgets/balun_button.dart';
@@ -115,9 +114,7 @@ class TeamMainInfo extends WatchingWidget {
                     instanceName: '${team.team?.id}',
                   )
                   .controller,
-              physics: const CustomPageScrollPhysics(
-                viewportFraction: 0.4,
-              ),
+              physics: const BouncingScrollPhysics(),
               children: List.generate(
                 years.length,
                 (index) {

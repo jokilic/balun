@@ -3,7 +3,9 @@ import 'package:sliding_up_panel2/sliding_up_panel2.dart';
 
 import '../../../models/leagues/league_response.dart';
 import '../../../theme/theme.dart';
+import '../../../util/dependencies.dart';
 import '../../../widgets/widget_size.dart';
+import '../controllers/league_season_controller.dart';
 import 'main_info/league_main_info.dart';
 import 'sliding_info/league_sliding_info.dart';
 
@@ -26,6 +28,16 @@ class _LeagueSuccessState extends State<LeagueSuccess> {
   void initState() {
     super.initState();
     scrollController = ScrollController();
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => getIt
+          .get<LeagueSeasonController>(
+            instanceName: '${widget.league.league?.id}',
+          )
+          .scrollToInitialSeason(
+            seasonsYears: widget.league.seasons?.map((season) => season.year ?? 0).toList(),
+          ),
+    );
   }
 
   @override

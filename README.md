@@ -22,6 +22,6 @@ A simple Flutter application for football scores.
 * Write proper readme, create screenshots and put app live
 * Safe area na dnu navigation bara
 * Match info - timeago je čudan
-* Popraviti scroll na PageViewovima koji nisu full screen width
 * Match tabs - prikazati relevantan tab, s obzirom na status utakmice
 * Check places where BalunEmpty is being used and update images
+* Show current club when opening Player and Coach

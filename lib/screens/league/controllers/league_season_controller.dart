@@ -31,32 +31,8 @@ class LeagueSeasonController extends ValueNotifier<int> implements Disposable {
     required this.leagueId,
     required this.initialSeason,
   }) : super(initialSeason) {
-    const viewportFraction = 0.4;
-
     controller = PageController(
-      initialPage: initialSeason,
-      viewportFraction: viewportFraction,
-    );
-
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
-        final pageOffset = initialSeason * viewportFraction;
-        const centeringOffset = (1 - viewportFraction) / 2;
-
-        controller
-            .animateToPage(
-              initialSeason,
-              duration: BalunConstants.animationDuration,
-              curve: Curves.easeIn,
-            )
-            .then(
-              (_) => controller.animateTo(
-                (pageOffset + centeringOffset) * controller.position.viewportDimension,
-                duration: BalunConstants.animationDuration,
-                curve: Curves.easeIn,
-              ),
-            );
-      },
+      viewportFraction: 0.4,
     );
   }
 
@@ -74,6 +50,16 @@ class LeagueSeasonController extends ValueNotifier<int> implements Disposable {
   ///
   /// METHODS
   ///
+
+  void scrollToInitialSeason({required List<int>? seasonsYears}) {
+    if (seasonsYears?.isNotEmpty ?? false) {
+      controller.animateToPage(
+        seasonsYears!.indexOf(initialSeason),
+        duration: BalunConstants.animationDuration,
+        curve: Curves.easeIn,
+      );
+    }
+  }
 
   void updateState(int? newSeason) {
     if (newSeason != null && value != newSeason) {

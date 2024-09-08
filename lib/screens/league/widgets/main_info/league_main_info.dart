@@ -4,7 +4,6 @@ import 'package:watch_it/watch_it.dart';
 import '../../../../models/leagues/league_response.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
-import '../../../../util/custom_page_scroll_physics.dart';
 import '../../../../util/dependencies.dart';
 import '../../../../widgets/balun_button.dart';
 import '../../../../widgets/balun_image.dart';
@@ -99,9 +98,7 @@ class LeagueMainInfo extends WatchingWidget {
                       instanceName: '${league.league?.id}',
                     )
                     .controller,
-                physics: const CustomPageScrollPhysics(
-                  viewportFraction: 0.4,
-                ),
+                physics: const BouncingScrollPhysics(),
                 children: List.generate(
                   league.seasons?.length ?? 0,
                   (index) {

@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../constants.dart';
 import '../../../models/player_section.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/dependencies.dart';
+import '../../../util/team_seasons.dart';
 import 'player_section_controller.dart';
 import 'player_statistics_controller.dart';
 
@@ -25,32 +25,9 @@ class PlayerSeasonController extends ValueNotifier<int> implements Disposable {
     required this.playerId,
     required this.initialSeason,
   }) : super(initialSeason) {
-    const viewportFraction = 0.4;
-
     controller = PageController(
-      initialPage: initialSeason,
-      viewportFraction: viewportFraction,
-    );
-
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) {
-        final pageOffset = initialSeason * viewportFraction;
-        const centeringOffset = (1 - viewportFraction) / 2;
-
-        controller
-            .animateToPage(
-              initialSeason,
-              duration: BalunConstants.animationDuration,
-              curve: Curves.easeIn,
-            )
-            .then(
-              (_) => controller.animateTo(
-                (pageOffset + centeringOffset) * controller.position.viewportDimension,
-                duration: BalunConstants.animationDuration,
-                curve: Curves.easeIn,
-              ),
-            );
-      },
+      initialPage: generateYearList().indexOf(initialSeason),
+      viewportFraction: 0.4,
     );
   }
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart' hide SearchController;
 
 import '../../../models/search_section.dart';
 import '../../../theme/theme.dart';
-import '../../../util/custom_page_scroll_physics.dart';
 import '../../../util/dependencies.dart';
 import '../../../widgets/balun_button.dart';
 import '../controllers/search_controller.dart';
@@ -23,9 +22,7 @@ class SearchSections extends StatelessWidget {
         height: 70,
         child: PageView(
           controller: controller,
-          physics: const CustomPageScrollPhysics(
-            viewportFraction: 0.4,
-          ),
+          physics: const BouncingScrollPhysics(),
           children: List.generate(
             SearchSectionEnum.values.length,
             (index) {
