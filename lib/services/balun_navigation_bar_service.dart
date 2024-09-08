@@ -15,7 +15,7 @@ class BalunNavigationBarService extends ValueNotifier<BalunNavigationBarEnum> {
 
   BalunNavigationBarService({
     required this.logger,
-  }) : super(BalunNavigationBarEnum.search);
+  }) : super(BalunNavigationBarEnum.fixtures);
 
   ///
   /// METHODS

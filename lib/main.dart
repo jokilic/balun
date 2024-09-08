@@ -6,6 +6,7 @@ import 'package:watch_it/watch_it.dart';
 
 import 'services/balun_screen_service.dart';
 import 'theme/theme.dart';
+import 'util/color.dart';
 import 'util/dependencies.dart';
 import 'widgets/balun_loader.dart';
 
@@ -61,8 +62,8 @@ class _BalunAppState extends State<BalunApp> {
         theme: BalunTheme.light,
         builder: (_, child) => kDebugMode
             ? Banner(
-                message: 'Debug'.toUpperCase(),
-                color: context.colors.blue,
+                message: 'Balun'.toUpperCase(),
+                color: getRandomBalunColor(context),
                 location: BannerLocation.topEnd,
                 layoutDirection: TextDirection.ltr,
                 child: child ??
