@@ -40,15 +40,18 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
           BalunButton(
             onPressed: toggleExpanded,
             child: Container(
-              color: Colors.transparent,
+              decoration: BoxDecoration(
+                color: context.colors.white.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(8),
+              ),
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,
-                vertical: 8,
+                vertical: 12,
               ),
               child: Row(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(100),
                     child: widget.countryLeague?.flag != null
                         ? BalunImage(
                             imageUrl: widget.countryLeague!.flag!,
@@ -57,11 +60,11 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                           )
                         : Container(
                             padding: const EdgeInsets.all(8),
-                            color: context.colors.white.withOpacity(0.5),
+                            color: context.colors.white,
                             child: const BalunImage(
                               imageUrl: BalunIcons.countryPlaceholder,
-                              height: 32,
-                              width: 44,
+                              height: 28,
+                              width: 28,
                             ),
                           ),
                   ),
@@ -86,10 +89,7 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
             child: expanded
                 ? ListView.separated(
                     shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 16,
-                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: widget.leagues?.length ?? 0,
                     itemBuilder: (_, leagueIndex) {

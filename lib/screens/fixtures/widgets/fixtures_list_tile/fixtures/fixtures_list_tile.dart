@@ -24,7 +24,7 @@ class FixturesListTile extends StatelessWidget {
   Widget build(BuildContext context) => BalunButton(
         onPressed: fixturePressed,
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
           decoration: BoxDecoration(
             color: context.colors.white.withOpacity(0.5),
             borderRadius: BorderRadius.circular(16),
@@ -91,7 +91,6 @@ class FixturesListTile extends StatelessWidget {
                       style: context.textStyles.fixturesName,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
                     ),
                   ),
 
@@ -99,7 +98,6 @@ class FixturesListTile extends StatelessWidget {
                   /// SCORE
                   ///
                   Expanded(
-                    flex: 2,
                     child: Text.rich(
                       TextSpan(
                         children: [
@@ -127,7 +125,7 @@ class FixturesListTile extends StatelessWidget {
                       style: context.textStyles.fixturesName,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.right,
                     ),
                   ),
                 ],

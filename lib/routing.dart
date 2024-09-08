@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'screens/coach/coach_screen.dart';
@@ -108,12 +106,3 @@ void openCoach(BuildContext context, {required int coachId}) => pushScreen(
       ),
       context: context,
     );
-
-/// Opens [VenueScreen]
-void openVenue(BuildContext context, {required int venueId}) {
-  log('Open venue -> $venueId');
-  // pushScreen(
-  //   VenueScreen(venueId: venueId),
-  //   context: context,
-  // );
-}

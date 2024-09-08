@@ -27,5 +27,6 @@ class BalunConstants {
     11: 2,
     140: 3,
     212: 4,
+    5: 5,
   };
 }

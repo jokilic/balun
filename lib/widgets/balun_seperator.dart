@@ -4,9 +4,11 @@ import '../theme/theme.dart';
 
 class BalunSeperator extends StatelessWidget {
   final double verticalSpace;
+  final Color? color;
 
   const BalunSeperator({
     this.verticalSpace = 4,
+    this.color,
   });
 
   @override
@@ -17,7 +19,7 @@ class BalunSeperator extends StatelessWidget {
         height: 1,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          color: context.colors.greenish,
+          color: color ?? context.colors.greenish,
         ),
       );
 }

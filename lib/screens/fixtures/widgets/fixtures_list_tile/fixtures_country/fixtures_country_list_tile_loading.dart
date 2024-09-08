@@ -5,18 +5,22 @@ import '../../../../../util/color.dart';
 
 class FixturesCountryListTileLoading extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => Padding(
+  Widget build(BuildContext context) => Container(
+        decoration: BoxDecoration(
+          color: context.colors.white.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(8),
+        ),
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
-          vertical: 8,
+          vertical: 12,
         ),
         child: Row(
           children: [
             Container(
               height: 40,
-              width: 56,
+              width: 40,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(100),
                 color: getRandomBalunColor(context),
               ),
             ),

@@ -33,7 +33,7 @@ abstract class BalunTextStyles {
 
   static const fixturesScore = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 64,
+    fontSize: 56,
     fontWeight: FontWeight.w300,
     height: 1,
   );

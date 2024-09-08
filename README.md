@@ -7,12 +7,6 @@ A simple Flutter application for football scores.
 
 # Screens
 
-### `VenueScreen`
-
-* Think about this
-* Venue from ID
-* Search venues
-
 ### General To-Dos
 
 * Localization

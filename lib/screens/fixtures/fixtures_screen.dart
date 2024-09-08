@@ -92,6 +92,7 @@ class _FixturesScreenState extends State<FixturesScreen> {
             FixturesDatePicker(
               currentDate: currentDate,
             ),
+            const SizedBox(height: 12),
 
             ///
             /// CONTENT

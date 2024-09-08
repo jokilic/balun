@@ -35,11 +35,12 @@ class FixturesSuccess extends StatelessWidget {
           const SizedBox(height: 8),
           FixturesAppBar(
             onPressed: () {},
-            text: 'Popular fixtures',
+            text: 'Popular matches',
           ),
           const SizedBox(height: 24),
           ListView.separated(
             shrinkWrap: true,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             physics: const NeverScrollableScrollPhysics(),
             itemCount: popularSortedGroupedFixtures.length,
             itemBuilder: (_, countryIndex) {
@@ -57,17 +58,20 @@ class FixturesSuccess extends StatelessWidget {
         ],
 
         ///
-        /// SORTED GROUPED FIXTURES
+        /// ALL MATCHES
         ///
         if (sortedGroupedFixtures.isNotEmpty) ...[
-          const SizedBox(height: 40),
+          SizedBox(
+            height: popularSortedGroupedFixtures.isNotEmpty ? 40 : 8,
+          ),
           FixturesAppBar(
             onPressed: () {},
-            text: 'Other fixtures',
+            text: 'All matches',
           ),
           const SizedBox(height: 24),
           ListView.separated(
             shrinkWrap: true,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             physics: const NeverScrollableScrollPhysics(),
             itemCount: sortedGroupedFixtures.length,
             itemBuilder: (_, countryIndex) {

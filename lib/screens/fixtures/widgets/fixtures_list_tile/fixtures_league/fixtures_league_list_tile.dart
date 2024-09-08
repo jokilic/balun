@@ -46,29 +46,28 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 8,
+                horizontal: 32,
+                vertical: 12,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(width: 56),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: BalunImage(
+                      imageUrl: widget.league?.logo ?? BalunIcons.placeholderLeague,
+                      height: 32,
+                      width: 32,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
                   Expanded(
                     child: Text(
                       widget.league?.name ?? 'Unknown',
                       style: context.textStyles.fixturesLeague,
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
+                      textAlign: TextAlign.left,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: BalunImage(
-                      imageUrl: widget.league?.logo ?? BalunIcons.placeholderLeague,
-                      height: 40,
-                      width: 40,
                     ),
                   ),
                 ],
@@ -85,7 +84,7 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
             child: expanded
                 ? ListView.separated(
                     shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: widget.fixtures?.length ?? 0,
                     itemBuilder: (_, fixtureIndex) {

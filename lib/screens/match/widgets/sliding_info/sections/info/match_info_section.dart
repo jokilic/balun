@@ -259,49 +259,38 @@ class MatchInfoSection extends StatelessWidget {
           /// STADIUM
           ///
           if (venue?.id != null) ...[
-            BalunButton(
-              onPressed: venue?.id != null
-                  ? () => openVenue(
-                        context,
-                        venueId: venue!.id!,
-                      )
-                  : null,
-              child: Container(
-                color: Colors.transparent,
-                child: Row(
-                  children: [
-                    const BalunImage(
-                      imageUrl: BalunIcons.matchVenue,
-                      height: 52,
-                      width: 52,
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Venue',
-                            style: context.textStyles.matchInfoSectionTitle,
-                          ),
-                          if (venue?.name != null) ...[
-                            Text(
-                              venue!.name!,
-                              style: context.textStyles.matchInfoSectionText,
-                            ),
-                            const SizedBox(height: 2),
-                          ],
-                          if (venue?.city != null)
-                            Text(
-                              venue!.city!,
-                              style: context.textStyles.matchInfoSectionBottomText,
-                            ),
-                        ],
-                      ),
-                    ),
-                  ],
+            Row(
+              children: [
+                const BalunImage(
+                  imageUrl: BalunIcons.matchVenue,
+                  height: 52,
+                  width: 52,
                 ),
-              ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Venue',
+                        style: context.textStyles.matchInfoSectionTitle,
+                      ),
+                      if (venue?.name != null) ...[
+                        Text(
+                          venue!.name!,
+                          style: context.textStyles.matchInfoSectionText,
+                        ),
+                        const SizedBox(height: 2),
+                      ],
+                      if (venue?.city != null)
+                        Text(
+                          venue!.city!,
+                          style: context.textStyles.matchInfoSectionBottomText,
+                        ),
+                    ],
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 24),
           ],
