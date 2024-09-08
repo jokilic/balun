@@ -24,7 +24,10 @@ class FixturesListTile extends StatelessWidget {
   Widget build(BuildContext context) => BalunButton(
         onPressed: fixturePressed,
         child: Container(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 16,
+          ),
           decoration: BoxDecoration(
             color: context.colors.white.withOpacity(0.5),
             borderRadius: BorderRadius.circular(16),

@@ -11,7 +11,7 @@ class MatchMainInfoLoading extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
-          vertical: 8,
+          vertical: 6,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

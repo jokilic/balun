@@ -14,8 +14,8 @@ class MatchMinute extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.symmetric(
-          horizontal: 24,
-          vertical: 4,
+          horizontal: 16,
+          vertical: 6,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),

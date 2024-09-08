@@ -14,7 +14,7 @@ class FixturesListTileMinute extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.symmetric(
-          horizontal: 20,
+          horizontal: 16,
           vertical: 6,
         ),
         decoration: BoxDecoration(

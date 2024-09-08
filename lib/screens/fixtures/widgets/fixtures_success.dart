@@ -50,7 +50,6 @@ class FixturesSuccess extends StatelessWidget {
               return FixturesCountryListTile(
                 countryLeague: countryLeague,
                 leagues: leagues,
-                initiallyExpanded: true,
               );
             },
             separatorBuilder: (_, __) => const SizedBox(height: 12),
