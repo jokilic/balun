@@ -16,7 +16,7 @@ class LeaguesListTileLoading extends StatelessWidget {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(100),
                 color: getRandomBalunColor(context),
               ),
             ),
@@ -34,8 +34,8 @@ class LeaguesListTileLoading extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Container(
-                  height: 16,
-                  width: 104,
+                  height: 12,
+                  width: 80,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withOpacity(0.15),

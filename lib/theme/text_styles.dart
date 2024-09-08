@@ -356,6 +356,12 @@ abstract class BalunTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w300,
   );
+
+  static const leaguesSubtitle = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -417,6 +423,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle searchTextField;
   final TextStyle calendarDayActive;
   final TextStyle calendarDayInactive;
+  final TextStyle leaguesSubtitle;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -477,6 +484,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.searchTextField,
     required this.calendarDayActive,
     required this.calendarDayInactive,
+    required this.leaguesSubtitle,
   });
 
   @override
@@ -539,6 +547,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? searchTextField,
     TextStyle? calendarDayActive,
     TextStyle? calendarDayInactive,
+    TextStyle? leaguesSubtitle,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -599,6 +608,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         searchTextField: searchTextField ?? this.searchTextField,
         calendarDayActive: calendarDayActive ?? this.calendarDayActive,
         calendarDayInactive: calendarDayInactive ?? this.calendarDayInactive,
+        leaguesSubtitle: leaguesSubtitle ?? this.leaguesSubtitle,
       );
 
   @override
@@ -669,6 +679,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       searchTextField: TextStyle.lerp(searchTextField, other.searchTextField, t)!,
       calendarDayActive: TextStyle.lerp(calendarDayActive, other.calendarDayActive, t)!,
       calendarDayInactive: TextStyle.lerp(calendarDayInactive, other.calendarDayInactive, t)!,
+      leaguesSubtitle: TextStyle.lerp(leaguesSubtitle, other.leaguesSubtitle, t)!,
     );
   }
 }

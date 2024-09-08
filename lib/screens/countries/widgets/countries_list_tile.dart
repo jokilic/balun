@@ -27,7 +27,7 @@ class CountriesListTile extends StatelessWidget {
           child: Row(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(100),
                 child: country.flag != null
                     ? BalunImage(
                         imageUrl: country.flag!,
@@ -36,11 +36,11 @@ class CountriesListTile extends StatelessWidget {
                       )
                     : Container(
                         padding: const EdgeInsets.all(8),
-                        color: context.colors.white.withOpacity(0.5),
+                        color: context.colors.white,
                         child: const BalunImage(
                           imageUrl: BalunIcons.countryPlaceholder,
-                          height: 32,
-                          width: 44,
+                          height: 28,
+                          width: 28,
                         ),
                       ),
               ),

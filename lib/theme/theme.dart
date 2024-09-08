@@ -207,6 +207,9 @@ class BalunTheme {
     calendarDayInactive: BalunTextStyles.calendarDayInactive.copyWith(
       color: lightAppColors.black,
     ),
+    leaguesSubtitle: BalunTextStyles.leaguesSubtitle.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
   );
 }
 

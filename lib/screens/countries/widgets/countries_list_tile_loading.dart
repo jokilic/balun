@@ -14,9 +14,9 @@ class CountriesListTileLoading extends StatelessWidget {
           children: [
             Container(
               height: 40,
-              width: 56,
+              width: 40,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(100),
                 color: getRandomBalunColor(context),
               ),
             ),

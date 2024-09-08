@@ -27,20 +27,20 @@ class LeaguesListTile extends StatelessWidget {
           child: Row(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(100),
                 child: league.league?.logo != null
                     ? BalunImage(
                         imageUrl: league.league!.logo!,
-                        height: 48,
-                        width: 48,
+                        height: 40,
+                        width: 40,
                       )
                     : Container(
                         padding: const EdgeInsets.all(8),
-                        color: context.colors.white.withOpacity(0.5),
+                        color: context.colors.white,
                         child: const BalunImage(
                           imageUrl: BalunIcons.countryPlaceholder,
-                          height: 32,
-                          width: 44,
+                          height: 28,
+                          width: 28,
                         ),
                       ),
               ),
@@ -52,14 +52,12 @@ class LeaguesListTile extends StatelessWidget {
                     if (league.league?.name != null)
                       Text(
                         league.league!.name!,
-                        style: context.textStyles.fixturesCountry,
+                        style: context.textStyles.fixturesLeague,
                       ),
                     if (league.league?.type != null)
                       Text(
                         league.league!.type!,
-                        style: context.textStyles.fixturesLeague.copyWith(
-                          color: context.colors.black.withOpacity(0.5),
-                        ),
+                        style: context.textStyles.leaguesSubtitle,
                       ),
                   ],
                 ),
