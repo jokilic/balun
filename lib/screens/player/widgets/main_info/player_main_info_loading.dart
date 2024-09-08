@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
+import '../../../../util/color.dart';
 import '../../../../widgets/balun_button.dart';
 import '../../../../widgets/balun_image.dart';
 
@@ -85,6 +86,29 @@ class PlayerMainInfoLoading extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 color: context.colors.black.withOpacity(0.15),
               ),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 32,
+                  width: 32,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: getRandomBalunColor(context),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Container(
+                  height: 24,
+                  width: 144,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: context.colors.black.withOpacity(0.25),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 24),
             Container(

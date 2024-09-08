@@ -237,12 +237,6 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w500,
   );
 
-  static const leagueCountryName = TextStyle(
-    fontFamily: 'Lufga',
-    fontSize: 18,
-    fontWeight: FontWeight.w500,
-  );
-
   static const leagueTeamsTitle = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 22,

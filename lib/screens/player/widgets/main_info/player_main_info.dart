@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../models/players/player_response.dart';
+import '../../../../routing.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
@@ -25,6 +26,8 @@ class PlayerMainInfo extends WatchingWidget {
     ).value;
 
     final years = generateYearList();
+
+    final team = player.statistics?.firstOrNull?.team;
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -77,6 +80,45 @@ class PlayerMainInfo extends WatchingWidget {
             style: context.textStyles.leagueCountry,
             textAlign: TextAlign.center,
           ),
+
+          ///
+          /// TEAM
+          ///
+          if (team != null)
+            BalunButton(
+              onPressed: team.id != null
+                  ? () => openTeam(
+                        context,
+                        teamId: team.id!,
+                        season: player.statistics?.firstOrNull?.league?.season ?? DateTime.now().year,
+                      )
+                  : null,
+              child: Container(
+                color: Colors.transparent,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: BalunImage(
+                        imageUrl: team.logo ?? BalunIcons.placeholderTeam,
+                        height: 32,
+                        width: 32,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        team.name ?? '---',
+                        style: context.textStyles.fixturesLeague,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
           const SizedBox(height: 16),
 
           ///
