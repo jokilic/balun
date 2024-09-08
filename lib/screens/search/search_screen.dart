@@ -28,67 +28,42 @@ class _SearchScreenState extends State<SearchScreen> {
   void initState() {
     super.initState();
 
-    if (!getIt.isRegistered<SearchController>(instanceName: 'search')) {
-      getIt
-        ..registerLazySingleton(
-          () => SearchCountriesController(
-            logger: getIt.get<LoggerService>(),
-            api: getIt.get<APIService>(),
-          ),
-          instanceName: 'search',
-        )
-        ..registerLazySingleton(
-          () => SearchLeaguesController(
-            logger: getIt.get<LoggerService>(),
-            api: getIt.get<APIService>(),
-          ),
-          instanceName: 'search',
-        )
-        ..registerLazySingleton(
-          () => SearchTeamsController(
-            logger: getIt.get<LoggerService>(),
-            api: getIt.get<APIService>(),
-          ),
-          instanceName: 'search',
-        )
-        ..registerLazySingleton(
-          () => SearchCoachesController(
-            logger: getIt.get<LoggerService>(),
-            api: getIt.get<APIService>(),
-          ),
-          instanceName: 'search',
-        )
-        ..registerLazySingleton(
-          () => SearchController(
-            logger: getIt.get<LoggerService>(),
-            api: getIt.get<APIService>(),
-          ),
-          instanceName: 'search',
-        );
-    }
+    registerIfNotInitialized<SearchCountriesController>(
+      () => SearchCountriesController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: 'search',
+    );
+    registerIfNotInitialized<SearchLeaguesController>(
+      () => SearchLeaguesController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: 'search',
+    );
+    registerIfNotInitialized<SearchTeamsController>(
+      () => SearchTeamsController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: 'search',
+    );
+    registerIfNotInitialized<SearchCoachesController>(
+      () => SearchCoachesController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: 'search',
+    );
+    registerIfNotInitialized<SearchController>(
+      () => SearchController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: 'search',
+    );
   }
-
-  // @override
-  // void dispose() {
-  //   getIt
-  //     ..unregister<SearchCountriesController>(
-  //       instanceName: 'search',
-  //     )
-  //     ..unregister<SearchLeaguesController>(
-  //       instanceName: 'search',
-  //     )
-  //     ..unregister<SearchTeamsController>(
-  //       instanceName: 'search',
-  //     )
-  //     ..unregister<SearchCoachesController>(
-  //       instanceName: 'search',
-  //     )
-  //     ..unregister<SearchController>(
-  //       instanceName: 'search',
-  //     );
-
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {

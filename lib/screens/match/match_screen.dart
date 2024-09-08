@@ -29,42 +29,36 @@ class _MatchScreenState extends State<MatchScreen> {
   void initState() {
     super.initState();
 
-    getIt
-      ..registerLazySingleton(
-        () => MatchController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.matchId}',
-      )
-      ..registerLazySingleton(
-        () => MatchSectionController(
-          logger: getIt.get<LoggerService>(),
-        ),
-        instanceName: '${widget.matchId}',
-      )
-      ..registerLazySingleton(
-        () => MatchStandingsController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.matchId}',
-      )
-      ..registerLazySingleton(
-        () => MatchHead2HeadController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.matchId}',
-      );
-
-    getIt
-        .get<MatchController>(
-          instanceName: '${widget.matchId}',
-        )
-        .getMatch(
-          matchId: widget.matchId,
-        );
+    registerIfNotInitialized<MatchSectionController>(
+      () => MatchSectionController(
+        logger: getIt.get<LoggerService>(),
+      ),
+      instanceName: '${widget.matchId}',
+    );
+    registerIfNotInitialized<MatchStandingsController>(
+      () => MatchStandingsController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.matchId}',
+    );
+    registerIfNotInitialized<MatchHead2HeadController>(
+      () => MatchHead2HeadController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.matchId}',
+    );
+    registerIfNotInitialized<MatchController>(
+      () => MatchController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.matchId}',
+      afterRegister: (controller) => controller.getMatch(
+        matchId: widget.matchId,
+      ),
+    );
   }
 
   @override

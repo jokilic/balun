@@ -27,21 +27,16 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
   void initState() {
     super.initState();
 
-    getIt.registerLazySingleton(
+    registerIfNotInitialized<LeaguesController>(
       () => LeaguesController(
         logger: getIt.get<LoggerService>(),
         api: getIt.get<APIService>(),
       ),
       instanceName: 'leagues',
+      afterRegister: (controller) => controller.getLeaguesFromCountry(
+        country: widget.country,
+      ),
     );
-
-    getIt
-        .get<LeaguesController>(
-          instanceName: 'leagues',
-        )
-        .getLeaguesFromCountry(
-          country: widget.country,
-        );
   }
 
   @override

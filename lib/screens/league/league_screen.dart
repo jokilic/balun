@@ -37,89 +37,83 @@ class _LeagueScreenState extends State<LeagueScreen> {
   void initState() {
     super.initState();
 
-    getIt
-      ..registerLazySingleton(
-        () => LeagueSectionController(
-          logger: getIt.get<LoggerService>(),
-        ),
-        instanceName: '${widget.leagueId}',
-      )
-      ..registerLazySingleton(
-        () => LeagueTeamsController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.leagueId}',
-      )
-      ..registerLazySingleton(
-        () => LeagueStandingsController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.leagueId}',
-      )
-      ..registerLazySingleton(
-        () => LeagueFixturesController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.leagueId}',
-      )
-      ..registerLazySingleton(
-        () => LeagueTopScorersController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.leagueId}',
-      )
-      ..registerLazySingleton(
-        () => LeagueTopAssistsController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.leagueId}',
-      )
-      ..registerLazySingleton(
-        () => LeagueTopYellowCardsController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.leagueId}',
-      )
-      ..registerLazySingleton(
-        () => LeagueTopRedCardsController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.leagueId}',
-      )
-      ..registerLazySingleton(
-        () => LeagueSeasonController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-          section: getIt.get<LeagueSectionController>(
-            instanceName: '${widget.leagueId}',
-          ),
-          leagueId: widget.leagueId,
-          initialSeason: widget.season,
-        ),
-        instanceName: '${widget.leagueId}',
-      )
-      ..registerLazySingleton(
-        () => LeagueController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.leagueId}',
-      );
-
-    getIt
-        .get<LeagueController>(
+    registerIfNotInitialized<LeagueSectionController>(
+      () => LeagueSectionController(
+        logger: getIt.get<LoggerService>(),
+      ),
+      instanceName: '${widget.leagueId}',
+    );
+    registerIfNotInitialized<LeagueTeamsController>(
+      () => LeagueTeamsController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.leagueId}',
+    );
+    registerIfNotInitialized<LeagueStandingsController>(
+      () => LeagueStandingsController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.leagueId}',
+    );
+    registerIfNotInitialized<LeagueFixturesController>(
+      () => LeagueFixturesController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.leagueId}',
+    );
+    registerIfNotInitialized<LeagueTopScorersController>(
+      () => LeagueTopScorersController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.leagueId}',
+    );
+    registerIfNotInitialized<LeagueTopAssistsController>(
+      () => LeagueTopAssistsController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.leagueId}',
+    );
+    registerIfNotInitialized<LeagueTopYellowCardsController>(
+      () => LeagueTopYellowCardsController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.leagueId}',
+    );
+    registerIfNotInitialized<LeagueTopRedCardsController>(
+      () => LeagueTopRedCardsController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.leagueId}',
+    );
+    registerIfNotInitialized<LeagueSeasonController>(
+      () => LeagueSeasonController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+        section: getIt.get<LeagueSectionController>(
           instanceName: '${widget.leagueId}',
-        )
-        .getLeague(
-          leagueId: widget.leagueId,
-        );
+        ),
+        leagueId: widget.leagueId,
+        initialSeason: widget.season,
+      ),
+      instanceName: '${widget.leagueId}',
+    );
+    registerIfNotInitialized<LeagueController>(
+      () => LeagueController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.leagueId}',
+      afterRegister: (controller) => controller.getLeague(
+        leagueId: widget.leagueId,
+      ),
+    );
   }
 
   @override

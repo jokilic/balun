@@ -34,69 +34,63 @@ class _PlayerScreenState extends State<PlayerScreen> {
   void initState() {
     super.initState();
 
-    getIt
-      ..registerLazySingleton(
-        () => PlayerSectionController(
-          logger: getIt.get<LoggerService>(),
-        ),
-        instanceName: '${widget.playerId}',
-      )
-      ..registerLazySingleton(
-        () => PlayerStatisticsController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.playerId}',
-      )
-      ..registerLazySingleton(
-        () => PlayerTransfersController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.playerId}',
-      )
-      ..registerLazySingleton(
-        () => PlayerSidelinedController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.playerId}',
-      )
-      ..registerLazySingleton(
-        () => PlayerTrophiesController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.playerId}',
-      )
-      ..registerLazySingleton(
-        () => PlayerSeasonController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-          section: getIt.get<PlayerSectionController>(
-            instanceName: '${widget.playerId}',
-          ),
-          playerId: widget.playerId,
-          initialSeason: widget.season,
-        ),
-        instanceName: '${widget.playerId}',
-      )
-      ..registerLazySingleton(
-        () => PlayerController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.playerId}',
-      );
-
-    getIt
-        .get<PlayerController>(
+    registerIfNotInitialized<PlayerSectionController>(
+      () => PlayerSectionController(
+        logger: getIt.get<LoggerService>(),
+      ),
+      instanceName: '${widget.playerId}',
+    );
+    registerIfNotInitialized<PlayerStatisticsController>(
+      () => PlayerStatisticsController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.playerId}',
+    );
+    registerIfNotInitialized<PlayerTransfersController>(
+      () => PlayerTransfersController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.playerId}',
+    );
+    registerIfNotInitialized<PlayerSidelinedController>(
+      () => PlayerSidelinedController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.playerId}',
+    );
+    registerIfNotInitialized<PlayerTrophiesController>(
+      () => PlayerTrophiesController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.playerId}',
+    );
+    registerIfNotInitialized<PlayerSeasonController>(
+      () => PlayerSeasonController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+        section: getIt.get<PlayerSectionController>(
           instanceName: '${widget.playerId}',
-        )
-        .getPlayer(
-          playerId: widget.playerId,
-          season: widget.season,
-        );
+        ),
+        playerId: widget.playerId,
+        initialSeason: widget.season,
+      ),
+      instanceName: '${widget.playerId}',
+    );
+    registerIfNotInitialized<PlayerController>(
+      () => PlayerController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.playerId}',
+      afterRegister: (controller) => controller.getPlayer(
+        playerId: widget.playerId,
+        season: widget.season,
+      ),
+    );
   }
 
   @override

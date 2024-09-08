@@ -35,75 +35,69 @@ class _TeamScreenState extends State<TeamScreen> {
   void initState() {
     super.initState();
 
-    getIt
-      ..registerLazySingleton(
-        () => TeamSectionController(
-          logger: getIt.get<LoggerService>(),
-        ),
-        instanceName: '${widget.teamId}',
-      )
-      ..registerLazySingleton(
-        () => TeamLeaguesController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.teamId}',
-      )
-      ..registerLazySingleton(
-        () => TeamStandingsController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.teamId}',
-      )
-      ..registerLazySingleton(
-        () => TeamCoachesController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.teamId}',
-      )
-      ..registerLazySingleton(
-        () => TeamPlayersController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.teamId}',
-      )
-      ..registerLazySingleton(
-        () => TeamTransfersController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.teamId}',
-      )
-      ..registerLazySingleton(
-        () => TeamSeasonController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-          section: getIt.get<TeamSectionController>(
-            instanceName: '${widget.teamId}',
-          ),
-          teamId: widget.teamId,
-          initialSeason: widget.season,
-        ),
-        instanceName: '${widget.teamId}',
-      )
-      ..registerLazySingleton(
-        () => TeamController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.teamId}',
-      );
-
-    getIt
-        .get<TeamController>(
+    registerIfNotInitialized<TeamSectionController>(
+      () => TeamSectionController(
+        logger: getIt.get<LoggerService>(),
+      ),
+      instanceName: '${widget.teamId}',
+    );
+    registerIfNotInitialized<TeamLeaguesController>(
+      () => TeamLeaguesController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.teamId}',
+    );
+    registerIfNotInitialized<TeamStandingsController>(
+      () => TeamStandingsController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.teamId}',
+    );
+    registerIfNotInitialized<TeamCoachesController>(
+      () => TeamCoachesController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.teamId}',
+    );
+    registerIfNotInitialized<TeamPlayersController>(
+      () => TeamPlayersController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.teamId}',
+    );
+    registerIfNotInitialized<TeamTransfersController>(
+      () => TeamTransfersController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.teamId}',
+    );
+    registerIfNotInitialized<TeamSeasonController>(
+      () => TeamSeasonController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+        section: getIt.get<TeamSectionController>(
           instanceName: '${widget.teamId}',
-        )
-        .getTeam(
-          teamId: widget.teamId,
-        );
+        ),
+        teamId: widget.teamId,
+        initialSeason: widget.season,
+      ),
+      instanceName: '${widget.teamId}',
+    );
+    registerIfNotInitialized<TeamController>(
+      () => TeamController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.teamId}',
+      afterRegister: (controller) => controller.getTeam(
+        teamId: widget.teamId,
+      ),
+    );
   }
 
   @override

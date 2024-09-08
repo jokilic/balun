@@ -29,42 +29,36 @@ class _CoachScreenState extends State<CoachScreen> {
   void initState() {
     super.initState();
 
-    getIt
-      ..registerLazySingleton(
-        () => CoachSectionController(
-          logger: getIt.get<LoggerService>(),
-        ),
-        instanceName: '${widget.coachId}',
-      )
-      ..registerLazySingleton(
-        () => CoachSidelinedController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.coachId}',
-      )
-      ..registerLazySingleton(
-        () => CoachTrophiesController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.coachId}',
-      )
-      ..registerLazySingleton(
-        () => CoachController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: '${widget.coachId}',
-      );
-
-    getIt
-        .get<CoachController>(
-          instanceName: '${widget.coachId}',
-        )
-        .getCoach(
-          coachId: widget.coachId,
-        );
+    registerIfNotInitialized<CoachSectionController>(
+      () => CoachSectionController(
+        logger: getIt.get<LoggerService>(),
+      ),
+      instanceName: '${widget.coachId}',
+    );
+    registerIfNotInitialized<CoachSidelinedController>(
+      () => CoachSidelinedController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.coachId}',
+    );
+    registerIfNotInitialized<CoachTrophiesController>(
+      () => CoachTrophiesController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.coachId}',
+    );
+    registerIfNotInitialized<CoachController>(
+      () => CoachController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.coachId}',
+      afterRegister: (controller) => controller.getCoach(
+        coachId: widget.coachId,
+      ),
+    );
   }
 
   @override

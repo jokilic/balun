@@ -23,30 +23,15 @@ class _CountriesScreenState extends State<CountriesScreen> {
   void initState() {
     super.initState();
 
-    if (!getIt.isRegistered<CountriesController>(instanceName: 'countries')) {
-      getIt.registerLazySingleton(
-        () => CountriesController(
-          logger: getIt.get<LoggerService>(),
-          api: getIt.get<APIService>(),
-        ),
-        instanceName: 'countries',
-      );
-
-      getIt
-          .get<CountriesController>(
-            instanceName: 'countries',
-          )
-          .getCountries();
-    }
+    registerIfNotInitialized<CountriesController>(
+      () => CountriesController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: 'countries',
+      afterRegister: (controller) => controller.getCountries(),
+    );
   }
-
-  // @override
-  // void dispose() {
-  //   getIt.unregister<CountriesController>(
-  //     instanceName: 'countries',
-  //   );
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {

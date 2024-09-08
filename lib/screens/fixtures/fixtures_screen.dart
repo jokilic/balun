@@ -29,49 +29,28 @@ class _FixturesScreenState extends State<FixturesScreen> {
     final now = DateTime.now();
     currentDate = DateTime(now.year, now.month, now.day);
 
-    if (!getIt.isRegistered<FixturesController>(instanceName: 'fixtures')) {
-      getIt
-        ..registerLazySingleton(
-          () => FixturesController(
-            logger: getIt.get<LoggerService>(),
-            api: getIt.get<APIService>(),
-          ),
-          instanceName: 'fixtures',
-        )
-        ..registerLazySingleton(
-          () => FixturesDateController(
-            logger: getIt.get<LoggerService>(),
-            currentDate: currentDate,
-          ),
-          instanceName: 'fixtures',
-        );
-
-      getIt
-          .get<FixturesController>(
-            instanceName: 'fixtures',
-          )
-          .getFixturesFromDate(
-            dateString: getIt
-                .get<FixturesDateController>(
-                  instanceName: 'fixtures',
-                )
-                .getDateForBackend(),
-          );
-    }
+    registerIfNotInitialized<FixturesDateController>(
+      () => FixturesDateController(
+        logger: getIt.get<LoggerService>(),
+        currentDate: currentDate,
+      ),
+      instanceName: 'fixtures',
+    );
+    registerIfNotInitialized<FixturesController>(
+      () => FixturesController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: 'fixtures',
+      afterRegister: (controller) => controller.getFixturesFromDate(
+        dateString: getIt
+            .get<FixturesDateController>(
+              instanceName: 'fixtures',
+            )
+            .getDateForBackend(),
+      ),
+    );
   }
-
-  // @override
-  // void dispose() {
-  //   getIt
-  //     ..unregister<FixturesController>(
-  //       instanceName: 'fixtures',
-  //     )
-  //     ..unregister<FixturesDateController>(
-  //       instanceName: 'fixtures',
-  //     );
-
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
