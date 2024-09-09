@@ -53,8 +53,9 @@ class _PlayerStatisticsSectionState extends State<PlayerStatisticsSection> {
         ),
       ],
       child: switch (statisticsState) {
-        Initial() => const BalunEmpty(
-            message: "Initial state, this shouldn't happen",
+        Initial() => const BalunError(
+            error: "Initial state, this shouldn't happen",
+            verticalPadding: 0,
           ),
         Loading() => PlayerStatisticsLoading(),
         Empty() => const BalunEmpty(
@@ -63,6 +64,7 @@ class _PlayerStatisticsSectionState extends State<PlayerStatisticsSection> {
           ),
         Error() => BalunError(
             error: (statisticsState as Error).error ?? 'Generic player statistics error',
+            verticalPadding: 0,
           ),
         Success() => PlayerStatisticsContent(
             statistics: (statisticsState as Success).data,

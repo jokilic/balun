@@ -53,8 +53,9 @@ class _TeamStandingsSectionState extends State<TeamStandingsSection> {
         ),
       ],
       child: switch (standingsState) {
-        Initial() => const BalunEmpty(
-            message: "Initial state, this shouldn't happen",
+        Initial() => const BalunError(
+            error: "Initial state, this shouldn't happen",
+            verticalPadding: 0,
           ),
         Loading() => TeamStandingsLoading(),
         Empty() => const BalunEmpty(
@@ -63,6 +64,7 @@ class _TeamStandingsSectionState extends State<TeamStandingsSection> {
           ),
         Error() => BalunError(
             error: (standingsState as Error).error ?? 'Generic team standings error',
+            verticalPadding: 0,
           ),
         Success() => TeamStandingsContent(
             standings: (standingsState as Success).data,

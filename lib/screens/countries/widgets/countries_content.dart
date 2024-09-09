@@ -15,8 +15,8 @@ class CountriesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (countriesState) {
-        Initial() => const BalunEmpty(
-            message: "Initial state, this shouldn't happen",
+        Initial() => const BalunError(
+            error: "Initial state, this shouldn't happen",
           ),
         Loading() => CountriesLoading(),
         Empty() => const BalunEmpty(

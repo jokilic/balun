@@ -50,8 +50,9 @@ class _TeamLeaguesSectionState extends State<TeamLeaguesSection> {
         ),
       ],
       child: switch (leaguesState) {
-        Initial() => const BalunEmpty(
-            message: "Initial state, this shouldn't happen",
+        Initial() => const BalunError(
+            error: "Initial state, this shouldn't happen",
+            verticalPadding: 0,
           ),
         Loading() => TeamLeaguesLoading(),
         Empty() => const BalunEmpty(
@@ -60,6 +61,7 @@ class _TeamLeaguesSectionState extends State<TeamLeaguesSection> {
           ),
         Error() => BalunError(
             error: (leaguesState as Error).error ?? 'Generic team leagues error',
+            verticalPadding: 0,
           ),
         Success() => TeamLeaguesContent(
             leagues: (leaguesState as Success).data,

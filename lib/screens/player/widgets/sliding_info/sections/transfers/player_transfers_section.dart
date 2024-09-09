@@ -50,8 +50,9 @@ class _PlayerTransfersSectionState extends State<PlayerTransfersSection> {
         ),
       ],
       child: switch (transfersState) {
-        Initial() => const BalunEmpty(
-            message: "Initial state, this shouldn't happen",
+        Initial() => const BalunError(
+            error: "Initial state, this shouldn't happen",
+            verticalPadding: 0,
           ),
         Loading() => PlayerTransfersLoading(),
         Empty() => const BalunEmpty(
@@ -60,6 +61,7 @@ class _PlayerTransfersSectionState extends State<PlayerTransfersSection> {
           ),
         Error() => BalunError(
             error: (transfersState as Error).error ?? 'Generic player transfers error',
+            verticalPadding: 0,
           ),
         Success() => PlayerTransfersContent(
             transfers: (transfersState as Success).data,

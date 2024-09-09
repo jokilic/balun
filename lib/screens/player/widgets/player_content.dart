@@ -15,8 +15,8 @@ class PlayerContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (playerState) {
-        Initial() => const BalunEmpty(
-            message: "Initial state, this shouldn't happen",
+        Initial() => const BalunError(
+            error: "Initial state, this shouldn't happen",
           ),
         Loading() => PlayerLoading(),
         Empty() => const BalunEmpty(

@@ -15,8 +15,8 @@ class MatchContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (matchState) {
-        Initial() => const BalunEmpty(
-            message: "Initial state, this shouldn't happen",
+        Initial() => const BalunError(
+            error: "Initial state, this shouldn't happen",
           ),
         Loading() => MatchLoading(),
         Empty() => const BalunEmpty(

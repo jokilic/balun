@@ -53,8 +53,9 @@ class _LeagueTopYellowCardsSectionState extends State<LeagueTopYellowCardsSectio
         ),
       ],
       child: switch (topYellowCardsState) {
-        Initial() => const BalunEmpty(
-            message: "Initial state, this shouldn't happen",
+        Initial() => const BalunError(
+            error: "Initial state, this shouldn't happen",
+            verticalPadding: 0,
           ),
         Loading() => LeagueTopYellowCardsLoading(),
         Empty() => const BalunEmpty(
@@ -63,6 +64,7 @@ class _LeagueTopYellowCardsSectionState extends State<LeagueTopYellowCardsSectio
           ),
         Error() => BalunError(
             error: (topYellowCardsState as Error).error ?? 'Generic top yellow cards error',
+            verticalPadding: 0,
           ),
         Success() => LeagueTopYellowCardsContent(
             yellowCards: (topYellowCardsState as Success).data,

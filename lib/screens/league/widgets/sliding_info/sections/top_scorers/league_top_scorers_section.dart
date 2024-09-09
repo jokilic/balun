@@ -53,8 +53,9 @@ class _LeagueTopScorersSectionState extends State<LeagueTopScorersSection> {
         ),
       ],
       child: switch (topScorersState) {
-        Initial() => const BalunEmpty(
-            message: "Initial state, this shouldn't happen",
+        Initial() => const BalunError(
+            error: "Initial state, this shouldn't happen",
+            verticalPadding: 0,
           ),
         Loading() => LeagueTopScorersLoading(),
         Empty() => const BalunEmpty(
@@ -63,6 +64,7 @@ class _LeagueTopScorersSectionState extends State<LeagueTopScorersSection> {
           ),
         Error() => BalunError(
             error: (topScorersState as Error).error ?? 'Generic top scorers error',
+            verticalPadding: 0,
           ),
         Success() => LeagueTopScorersContent(
             scorers: (topScorersState as Success).data,

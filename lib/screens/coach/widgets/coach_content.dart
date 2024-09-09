@@ -15,8 +15,8 @@ class CoachContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (coachState) {
-        Initial() => const BalunEmpty(
-            message: "Initial state, this shouldn't happen",
+        Initial() => const BalunError(
+            error: "Initial state, this shouldn't happen",
           ),
         Loading() => CoachLoading(),
         Empty() => const BalunEmpty(

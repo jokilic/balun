@@ -50,8 +50,9 @@ class _CoachSidelinedSectionState extends State<CoachSidelinedSection> {
         ),
       ],
       child: switch (sidelinedState) {
-        Initial() => const BalunEmpty(
-            message: "Initial state, this shouldn't happen",
+        Initial() => const BalunError(
+            error: "Initial state, this shouldn't happen",
+            verticalPadding: 0,
           ),
         Loading() => CoachSidelinedLoading(),
         Empty() => const BalunEmpty(
@@ -60,6 +61,7 @@ class _CoachSidelinedSectionState extends State<CoachSidelinedSection> {
           ),
         Error() => BalunError(
             error: (sidelinedState as Error).error ?? 'Generic coach sidelined error',
+            verticalPadding: 0,
           ),
         Success() => CoachSidelinedContent(
             sidelined: (sidelinedState as Success).data,
