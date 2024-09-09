@@ -17,6 +17,11 @@ String? parseDateTimeago(DateTime? timestamp) {
   }
 
   /// Format `DateTime` using `timeago` package
-  final timeagoDateTime = timeago.format(parsedTimestamp);
+  final timeagoDateTime = timeago.format(
+    parsedTimestamp,
+    allowFromNow: true,
+    // TODO: Proper locale once localization is done
+    // locale: context.locale.toLanguageTag(),
+  );
   return timeagoDateTime;
 }
