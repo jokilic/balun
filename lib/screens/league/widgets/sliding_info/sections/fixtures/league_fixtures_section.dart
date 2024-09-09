@@ -55,16 +55,16 @@ class _LeagueFixturesSectionState extends State<LeagueFixturesSection> {
       child: switch (fixturesState) {
         Initial() => const BalunError(
             error: "Initial state, this shouldn't happen",
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Loading() => LeagueFixturesLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no fixtures',
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Error() => BalunError(
             error: (fixturesState as Error).error ?? 'Generic fixtures error',
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Success() => LeagueFixturesContent(
             fixtures: (fixturesState as Success).data,

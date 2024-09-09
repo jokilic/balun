@@ -17,7 +17,7 @@ class MatchStatisticsSection extends StatelessWidget {
   Widget build(BuildContext context) => homeStatistic == null && awayStatistic == null
       ? const BalunEmpty(
           message: 'No statistics',
-          verticalPadding: 0,
+          isSmall: true,
         )
       : ListView.separated(
           shrinkWrap: true,

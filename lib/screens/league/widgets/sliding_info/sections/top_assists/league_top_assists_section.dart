@@ -55,16 +55,16 @@ class _LeagueTopAssistsSectionState extends State<LeagueTopAssistsSection> {
       child: switch (topAssistsState) {
         Initial() => const BalunError(
             error: "Initial state, this shouldn't happen",
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Loading() => LeagueTopAssistsLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no top assists',
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Error() => BalunError(
             error: (topAssistsState as Error).error ?? 'Generic top assists error',
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Success() => LeagueTopAssistsContent(
             assists: (topAssistsState as Success).data,

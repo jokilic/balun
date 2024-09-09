@@ -6,11 +6,11 @@ import 'balun_image.dart';
 
 class BalunEmpty extends StatelessWidget {
   final String message;
-  final double verticalPadding;
+  final bool isSmall;
 
   const BalunEmpty({
     required this.message,
-    this.verticalPadding = 104,
+    this.isSmall = false,
   });
 
   @override
@@ -20,20 +20,22 @@ class BalunEmpty extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.symmetric(
             horizontal: 40,
-            vertical: verticalPadding,
+            vertical: isSmall ? 0 : 104,
           ),
           children: [
-            const Center(
+            Center(
               child: BalunImage(
-                imageUrl: BalunIcons.goalBall,
-                height: 144,
-                width: 144,
+                imageUrl: BalunIcons.ball,
+                height: isSmall ? 120 : 144,
+                width: isSmall ? 120 : 144,
               ),
             ),
-            const SizedBox(height: 32),
+            SizedBox(height: isSmall ? 16 : 32),
             Text(
               message,
-              style: context.textStyles.error,
+              style: context.textStyles.error.copyWith(
+                fontSize: isSmall ? 20 : null,
+              ),
               textAlign: TextAlign.center,
             ),
           ],

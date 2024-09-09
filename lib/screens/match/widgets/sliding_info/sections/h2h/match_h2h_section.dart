@@ -57,16 +57,16 @@ class _MatchHead2HeadSectionState extends State<MatchHead2HeadSection> {
       child: switch (head2HeadState) {
         Initial() => const BalunError(
             error: "Initial state, this shouldn't happen",
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Loading() => MatchHead2HeadLoading(),
         Empty() => const BalunEmpty(
             message: 'There is no head-to-head',
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Error() => BalunError(
             error: (head2HeadState as Error).error ?? 'Generic head2head error',
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Success() => MatchHead2HeadContent(
             fixtures: (head2HeadState as Success).data,

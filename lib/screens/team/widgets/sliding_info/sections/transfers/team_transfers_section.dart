@@ -52,16 +52,16 @@ class _TeamTransfersSectionState extends State<TeamTransfersSection> {
       child: switch (transfersState) {
         Initial() => const BalunError(
             error: "Initial state, this shouldn't happen",
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Loading() => TeamTransfersLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no team transfers',
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Error() => BalunError(
             error: (transfersState as Error).error ?? 'Generic team transfers error',
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Success() => TeamTransfersContent(
             transfers: (transfersState as Success).data,

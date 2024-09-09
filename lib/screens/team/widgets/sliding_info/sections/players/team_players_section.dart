@@ -54,16 +54,16 @@ class _TeamPlayersSectionState extends State<TeamPlayersSection> {
       child: switch (playersState) {
         Initial() => const BalunError(
             error: "Initial state, this shouldn't happen",
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Loading() => TeamPlayersLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no team players',
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Error() => BalunError(
             error: (playersState as Error).error ?? 'Generic team players error',
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Success() => TeamPlayersContent(
             players: (playersState as Success).data,

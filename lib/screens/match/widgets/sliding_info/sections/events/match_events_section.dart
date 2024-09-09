@@ -58,7 +58,7 @@ class MatchEventsSection extends StatelessWidget {
               : [
                   const BalunEmpty(
                     message: 'No events',
-                    verticalPadding: 0,
+                    isSmall: true,
                   ),
                 ],
         ),

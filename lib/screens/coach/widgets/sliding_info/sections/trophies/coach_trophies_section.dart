@@ -52,16 +52,16 @@ class _CoachTrophiesSectionState extends State<CoachTrophiesSection> {
       child: switch (trophiesState) {
         Initial() => const BalunError(
             error: "Initial state, this shouldn't happen",
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Loading() => CoachTrophiesLoading(),
         Empty() => const BalunEmpty(
             message: 'There are no coach trophies',
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Error() => BalunError(
             error: (trophiesState as Error).error ?? 'Generic coach trophies error',
-            verticalPadding: 0,
+            isSmall: true,
           ),
         Success() => CoachTrophiesContent(
             trophies: (trophiesState as Success).data,

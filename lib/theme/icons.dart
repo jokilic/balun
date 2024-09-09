@@ -1,6 +1,4 @@
 class BalunIcons {
-  static const icon = 'assets/icon.png';
-  static const splashIcon = 'assets/splash_icon.png';
   static const referee = 'assets/icons/referee.png';
   static const matchDateTime = 'assets/icons/match_date_time.png';
   static const matchStatus = 'assets/icons/match_status.png';
@@ -16,7 +14,6 @@ class BalunIcons {
   static const assist = 'assets/icons/assist.png';
   static const error = 'assets/icons/error.png';
   static const injury = 'assets/icons/injury.png';
-  static const goalBall = 'assets/icons/goal_ball.png';
   static const countryPlaceholder = 'assets/icons/globe_color.png';
   static const placeholderPlayer = 'assets/icons/placeholder_player.png';
   static const placeholderLeague = 'assets/icons/placeholder_league.png';
