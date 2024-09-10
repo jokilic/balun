@@ -5,7 +5,9 @@ import '../services/api_service.dart';
 import '../services/balun_navigation_bar_service.dart';
 import '../services/balun_screen_service.dart';
 import '../services/dio_service.dart';
+import '../services/league_storage_service.dart';
 import '../services/logger_service.dart';
+import '../services/team_storage_service.dart';
 
 final getIt = GetIt.instance;
 
@@ -32,6 +34,26 @@ void registerIfNotInitialized<T extends Object>(
 void initializeServices() => getIt
   ..registerSingletonAsync(
     () async => LoggerService(),
+  )
+  ..registerSingletonAsync(
+    () async {
+      final leagueStorage = LeagueStorageService(
+        logger: getIt.get<LoggerService>(),
+      );
+      await leagueStorage.init();
+      return leagueStorage;
+    },
+    dependsOn: [LoggerService],
+  )
+  ..registerSingletonAsync(
+    () async {
+      final teamStorage = TeamStorageService(
+        logger: getIt.get<LoggerService>(),
+      );
+      await teamStorage.init();
+      return teamStorage;
+    },
+    dependsOn: [LoggerService],
   )
   ..registerSingletonAsync(
     () async {

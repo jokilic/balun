@@ -9,28 +9,28 @@ class BalunConstants {
   static const cacheDuration = Duration(days: 3);
 
   /// Keys are country names from the backend
-  static const countriesOrder = {
-    'World': 0,
-    'Croatia': 1,
-    'England': 2,
-    'Spain': 3,
-    'Germany': 4,
-    'Italy': 5,
-    'France': 6,
-  };
+  static const popularCountryIDs = [
+    'World',
+    'Croatia',
+    'England',
+    'Spain',
+    'Germany',
+    'Italy',
+    'France',
+  ];
 
   /// Keys are league IDs from the backend
-  static const leaguesOrder = {
-    1: 0, // World Cup
-    4: 1, // Euro Championship
-    5: 2, // UEFA Nations League
-    2: 3, // UEFA Champions League
-    3: 4, // UEFA Europa League
-    210: 5, // HNL
-    39: 6, // Premier League
-    140: 7, // La Liga
-    78: 8, // Bundesliga
-    135: 9, // Serie A
-    61: 10, // Ligue 1
-  };
+  static const popularLeagueIDs = [
+    1, // World Cup
+    4, // Euro Championship
+    5, // UEFA Nations League
+    2, // UEFA Champions League
+    3, // UEFA Europa League
+    210, // HNL
+    39, // Premier League
+    140, // La Liga
+    78, // Bundesliga
+    135, // Serie A
+    61, // Ligue 1
+  ];
 }

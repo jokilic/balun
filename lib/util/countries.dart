@@ -2,7 +2,7 @@ import '../constants.dart';
 import '../models/countries/country_response.dart';
 
 List<CountryResponse> sortCountries(List<CountryResponse> countries) {
-  const posOrder = BalunConstants.countriesOrder;
+  const countryOrder = BalunConstants.popularCountryIDs;
 
   countries.sort((a, b) {
     // Handle null names
@@ -16,8 +16,8 @@ List<CountryResponse> sortCountries(List<CountryResponse> countries) {
       return -1;
     }
 
-    final priorityA = posOrder[a.name] ?? posOrder.length;
-    final priorityB = posOrder[b.name] ?? posOrder.length;
+    final priorityA = a.name != null ? countryOrder.indexOf(a.name!) : countryOrder.length;
+    final priorityB = b.name != null ? countryOrder.indexOf(b.name!) : countryOrder.length;
 
     if (priorityA != priorityB) {
       return priorityA.compareTo(priorityB);
