@@ -23,6 +23,7 @@ class BalunImage extends StatelessWidget {
     this.fit = BoxFit.cover,
     this.color,
     this.radius = 8,
+    super.key,
   });
 
   @override

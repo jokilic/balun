@@ -1,10 +1,22 @@
+import 'package:hive_ce/hive.dart';
+
+part 'team.g.dart';
+
+@HiveType(typeId: 1)
 class Team {
+  @HiveField(0)
   final int? id;
+  @HiveField(1)
   final String? name;
+  @HiveField(2)
   final String? code;
+  @HiveField(3)
   final String? country;
+  @HiveField(4)
   final int? founded;
+  @HiveField(5)
   final bool? national;
+  @HiveField(6)
   final String? logo;
 
   Team({

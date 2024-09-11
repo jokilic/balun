@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
 import '../../../models/fixtures/league/league.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
@@ -7,22 +8,27 @@ import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
 class MatchAppBar extends StatelessWidget {
-  final Function() onPressed;
+  final Function() onBackPressed;
+  final Function() onFavoritePressed;
   final League league;
+  final bool isFavorited;
 
   const MatchAppBar({
-    required this.onPressed,
+    required this.onBackPressed,
+    required this.onFavoritePressed,
     required this.league,
+    required this.isFavorited,
   });
 
   @override
   Widget build(BuildContext context) => Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ///
           /// BACK
           ///
           BalunButton(
-            onPressed: onPressed,
+            onPressed: onBackPressed,
             child: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
@@ -59,6 +65,40 @@ class MatchAppBar extends StatelessWidget {
                     style: context.textStyles.matchLeagueRound,
                   ),
               ],
+            ),
+          ),
+
+          ///
+          /// FAVORITE
+          ///
+          const SizedBox(width: 20),
+
+          BalunButton(
+            onPressed: onFavoritePressed,
+            child: Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: context.colors.white.withOpacity(0.4),
+              ),
+              child: AnimatedSwitcher(
+                duration: BalunConstants.longAnimationDuration,
+                switchInCurve: Curves.easeIn,
+                switchOutCurve: Curves.easeIn,
+                child: isFavorited
+                    ? const BalunImage(
+                        key: ValueKey('yes'),
+                        imageUrl: BalunIcons.favoriteYes,
+                        height: 32,
+                        width: 32,
+                      )
+                    : const BalunImage(
+                        key: ValueKey('no'),
+                        imageUrl: BalunIcons.favoriteNo,
+                        height: 32,
+                        width: 32,
+                      ),
+              ),
             ),
           ),
         ],

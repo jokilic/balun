@@ -17,6 +17,7 @@ class CoachAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ///
           /// BACK

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:watch_it/watch_it.dart';
 
 import '../../../models/fixtures/fixture_response.dart';
+import '../../../models/fixtures/league/league.dart';
+import '../../../services/league_storage_service.dart';
 import '../../../util/fixtures.dart';
 import 'fixtures_app_bar.dart';
 import 'fixtures_list_tile/fixtures_country/fixtures_country_list_tile.dart';
 
-class FixturesSuccess extends StatelessWidget {
+class FixturesSuccess extends WatchingWidget {
   final List<FixtureResponse> fixtures;
 
   const FixturesSuccess({
@@ -14,14 +17,32 @@ class FixturesSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final favoritedLeagues = watchIt<LeagueStorageService>()
+        .value
+        .map(
+          (league) => League(
+            id: league.id,
+            name: league.name,
+            logo: league.logo,
+          ),
+        )
+        .toList();
+
     final popularSortedGroupedFixtures = sortGroupedFixtures(
-      groupFixtures(
-        getPopularFixtures(fixtures),
+      groupedFixtures: groupFixtures(
+        fixtures: getPopularFixtures(
+          fixtures: fixtures,
+          favoritedLeagues: favoritedLeagues,
+        ),
       ),
+      favoritedLeagues: favoritedLeagues,
     );
 
     final sortedGroupedFixtures = sortGroupedFixtures(
-      groupFixtures(fixtures),
+      groupedFixtures: groupFixtures(
+        fixtures: fixtures,
+      ),
+      favoritedLeagues: favoritedLeagues,
     );
 
     return ListView(

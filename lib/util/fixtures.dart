@@ -6,13 +6,14 @@ import '../models/fixtures/league/league.dart';
 /// POPULAR FIXTURES
 ///
 
-List<FixtureResponse> getPopularFixtures(
-  List<FixtureResponse> fixtures,
-) =>
+List<FixtureResponse> getPopularFixtures({
+  required List<FixtureResponse> fixtures,
+  required List<League> favoritedLeagues,
+}) =>
     fixtures
         .where(
-          (fixture) => BalunConstants.popularLeagueIDs.any(
-            (leagueId) => fixture.league?.id == leagueId,
+          (fixture) => favoritedLeagues.any(
+            (league) => fixture.league?.id == league.id,
           ),
         )
         .toList();
@@ -52,9 +53,9 @@ Map<League, List<FixtureResponse>> groupPopularFixtures(
 /// FIXTURES
 ///
 
-Map<League, Map<League, List<FixtureResponse>>> groupFixtures(
-  List<FixtureResponse> fixtures,
-) {
+Map<League, Map<League, List<FixtureResponse>>> groupFixtures({
+  required List<FixtureResponse> fixtures,
+}) {
   final groupedData = <League, Map<League, List<FixtureResponse>>>{};
 
   for (final fixture in fixtures) {
@@ -100,11 +101,11 @@ Map<League, Map<League, List<FixtureResponse>>> groupFixtures(
   return groupedData;
 }
 
-Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixtures(
-  Map<League, Map<League, List<FixtureResponse>>> groupedFixtures,
-) {
+Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixtures({
+  required Map<League, Map<League, List<FixtureResponse>>> groupedFixtures,
+  required List<League> favoritedLeagues,
+}) {
   const countryOrder = BalunConstants.popularCountryIDs;
-  const leagueOrder = BalunConstants.popularLeagueIDs;
 
   /// Sort countries
   final sortedCountries = groupedFixtures.entries.toList()
@@ -124,8 +125,8 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixtures(
         final sortedLeagues = countryEntry.value.entries.toList()
           ..sort(
             (a, b) {
-              final priorityA = a.key.id != null ? leagueOrder.indexOf(a.key.id!) : leagueOrder.length;
-              final priorityB = b.key.id != null ? leagueOrder.indexOf(b.key.id!) : leagueOrder.length;
+              final priorityA = a.key.id != null ? favoritedLeagues.indexWhere((league) => league.id == a.key.id) : favoritedLeagues.length;
+              final priorityB = b.key.id != null ? favoritedLeagues.indexWhere((league) => league.id == b.key.id) : favoritedLeagues.length;
 
               return priorityA != priorityB ? priorityA.compareTo(priorityB) : a.key.id!.compareTo(b.key.id!);
             },

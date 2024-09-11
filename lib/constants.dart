@@ -1,9 +1,11 @@
+import 'models/leagues/league/league.dart';
 import 'util/env.dart';
 
 class BalunConstants {
   static final baseUrl = Env.apiFootballBaseUrl;
 
   static const animationDuration = Duration(milliseconds: 125);
+  static const longAnimationDuration = Duration(milliseconds: 250);
   static const buttonScaleDuration = Duration(milliseconds: 125);
   static const shimmerDuration = Duration(milliseconds: 1500);
   static const cacheDuration = Duration(days: 3);
@@ -20,17 +22,62 @@ class BalunConstants {
   ];
 
   /// Keys are league IDs from the backend
-  static const popularLeagueIDs = [
-    1, // World Cup
-    4, // Euro Championship
-    5, // UEFA Nations League
-    2, // UEFA Champions League
-    3, // UEFA Europa League
-    210, // HNL
-    39, // Premier League
-    140, // La Liga
-    78, // Bundesliga
-    135, // Serie A
-    61, // Ligue 1
+  static final popularLeagues = [
+    League(
+      id: 1,
+      name: 'World Cup',
+      // TODO: Logos
+      logo: '',
+    ),
+    League(
+      id: 4,
+      name: 'Euro Championship',
+      logo: '',
+    ),
+    League(
+      id: 5,
+      name: 'UEFA Nations League',
+      logo: '',
+    ),
+    League(
+      id: 2,
+      name: 'UEFA Champions League',
+      logo: '',
+    ),
+    League(
+      id: 3,
+      name: 'UEFA Europa League',
+      logo: '',
+    ),
+    League(
+      id: 210,
+      name: 'HNL',
+      logo: '',
+    ),
+    League(
+      id: 39,
+      name: 'Premier League',
+      logo: '',
+    ),
+    League(
+      id: 140,
+      name: 'La Liga',
+      logo: '',
+    ),
+    League(
+      id: 78,
+      name: 'Bundesliga',
+      logo: '',
+    ),
+    League(
+      id: 135,
+      name: 'Serie A',
+      logo: '',
+    ),
+    League(
+      id: 61,
+      name: 'Ligue 1',
+      logo: '',
+    ),
   ];
 }

@@ -21,6 +21,7 @@ class LeaguesAppBar extends StatelessWidget {
           vertical: 8,
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ///
             /// BACK

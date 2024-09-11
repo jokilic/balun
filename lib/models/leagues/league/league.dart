@@ -1,7 +1,16 @@
+import 'package:hive_ce/hive.dart';
+
+part 'league.g.dart';
+
+@HiveType(typeId: 0)
 class League {
+  @HiveField(0)
   final int? id;
+  @HiveField(1)
   final String? name;
+  @HiveField(2)
   final String? type;
+  @HiveField(3)
   final String? logo;
 
   League({

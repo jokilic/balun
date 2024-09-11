@@ -16,6 +16,7 @@ class MatchMainInfoLoading extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            const SizedBox(height: 16),
             Row(
               children: [
                 BalunButton(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../models/leagues/league_response.dart';
+import '../../../../services/league_storage_service.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
@@ -23,6 +24,8 @@ class LeagueMainInfo extends WatchingWidget {
       instanceName: '${league.league?.id}',
     ).value;
 
+    final favoritedLeagues = watchIt<LeagueStorageService>().value;
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
@@ -37,8 +40,14 @@ class LeagueMainInfo extends WatchingWidget {
           /// BACK & LEAGUE
           ///
           LeagueAppBar(
-            onPressed: Navigator.of(context).pop,
+            onBackPressed: Navigator.of(context).pop,
             league: league.league!,
+            onFavoritePressed: () => getIt.get<LeagueStorageService>().toggleLeague(
+                  passedLeague: league.league,
+                ),
+            isFavorited: favoritedLeagues.any(
+              (element) => element.id == league.league?.id,
+            ),
           ),
 
           const SizedBox(height: 48),

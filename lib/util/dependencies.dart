@@ -5,6 +5,7 @@ import '../services/api_service.dart';
 import '../services/balun_navigation_bar_service.dart';
 import '../services/balun_screen_service.dart';
 import '../services/dio_service.dart';
+import '../services/hive_service.dart';
 import '../services/league_storage_service.dart';
 import '../services/logger_service.dart';
 import '../services/team_storage_service.dart';
@@ -37,23 +38,27 @@ void initializeServices() => getIt
   )
   ..registerSingletonAsync(
     () async {
-      final leagueStorage = LeagueStorageService(
+      final hive = HiveService(
         logger: getIt.get<LoggerService>(),
       );
-      await leagueStorage.init();
-      return leagueStorage;
+      await hive.init();
+      return hive;
     },
     dependsOn: [LoggerService],
   )
   ..registerSingletonAsync(
-    () async {
-      final teamStorage = TeamStorageService(
-        logger: getIt.get<LoggerService>(),
-      );
-      await teamStorage.init();
-      return teamStorage;
-    },
-    dependsOn: [LoggerService],
+    () async => LeagueStorageService(
+      logger: getIt.get<LoggerService>(),
+      hiveLeagues: getIt.get<HiveService>().leagues.values.toList(),
+    ),
+    dependsOn: [LoggerService, HiveService],
+  )
+  ..registerSingletonAsync(
+    () async => TeamStorageService(
+      logger: getIt.get<LoggerService>(),
+      hiveTeams: getIt.get<HiveService>().teams.values.toList(),
+    ),
+    dependsOn: [LoggerService, HiveService],
   )
   ..registerSingletonAsync(
     () async {
