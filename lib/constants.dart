@@ -26,7 +26,6 @@ class BalunConstants {
     League(
       id: 1,
       name: 'World Cup',
-      // TODO: Logos
       logo: '',
     ),
     League(

@@ -34,6 +34,7 @@ Results can be opened and more info is shown.
 ### General To-Dos
 
 - [ ] Localization
+    - [ ] Check all `intl.dart` `DateFormat` and include `locale`
+    - [ ] Use proper `locale` in `date_time.dart` in `timeago` logic
 - [ ] Create screenshots and put app live
-- [ ] When tapping ‘Popular matches’, show a dialog explaining and put a list of all favorited leagues and teams
-- [ ] When tapping ‘All matches’, show a dialog explaining
+- [ ] Find logo URLs and paste them in `constants.dart` in `popularLeagues` list

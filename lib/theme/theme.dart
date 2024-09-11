@@ -210,6 +210,18 @@ class BalunTheme {
     leaguesSubtitle: BalunTextStyles.leaguesSubtitle.copyWith(
       color: lightAppColors.black.withOpacity(0.5),
     ),
+    dialogButton: BalunTextStyles.dialogButton.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
+    dialogTitle: BalunTextStyles.dialogTitle.copyWith(
+      color: lightAppColors.black,
+    ),
+    dialogText: BalunTextStyles.dialogText.copyWith(
+      color: lightAppColors.black,
+    ),
+    dialogSubtitle: BalunTextStyles.dialogSubtitle.copyWith(
+      color: lightAppColors.black,
+    ),
   );
 }
 

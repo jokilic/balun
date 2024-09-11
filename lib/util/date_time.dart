@@ -20,7 +20,6 @@ String? parseDateTimeago(DateTime? timestamp) {
   final timeagoDateTime = timeago.format(
     parsedTimestamp,
     allowFromNow: true,
-    // TODO: Proper locale once localization is done
     // locale: context.locale.toLanguageTag(),
   );
   return timeagoDateTime;

@@ -5,9 +5,12 @@ import '../../../models/fixtures/fixture_response.dart';
 import '../../../models/fixtures/league/league.dart';
 import '../../../services/league_storage_service.dart';
 import '../../../services/team_storage_service.dart';
+import '../../../theme/theme.dart';
 import '../../../util/fixtures.dart';
+import 'fixtures_all_dialog.dart';
 import 'fixtures_app_bar.dart';
 import 'fixtures_list_tile/fixtures_country/fixtures_country_list_tile.dart';
+import 'fixtures_popular_dialog.dart';
 
 class FixturesSuccess extends WatchingWidget {
   final List<FixtureResponse> fixtures;
@@ -61,7 +64,13 @@ class FixturesSuccess extends WatchingWidget {
         if (popularSortedGroupedFixtures.isNotEmpty) ...[
           const SizedBox(height: 8),
           FixturesAppBar(
-            onPressed: () {},
+            onPressed: () => showDialog(
+              context: context,
+              barrierColor: context.colors.black.withOpacity(0.5),
+              builder: (context) => FixturesPopularDialog(
+                onPressed: Navigator.of(context).pop,
+              ),
+            ),
             text: 'Favorite matches',
           ),
           const SizedBox(height: 24),
@@ -94,7 +103,13 @@ class FixturesSuccess extends WatchingWidget {
             height: popularSortedGroupedFixtures.isNotEmpty ? 40 : 8,
           ),
           FixturesAppBar(
-            onPressed: () {},
+            onPressed: () => showDialog(
+              context: context,
+              barrierColor: context.colors.black.withOpacity(0.5),
+              builder: (context) => FixturesAllDialog(
+                onPressed: Navigator.of(context).pop,
+              ),
+            ),
             text: 'All matches',
           ),
           const SizedBox(height: 24),

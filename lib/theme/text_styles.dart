@@ -356,6 +356,30 @@ abstract class BalunTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w500,
   );
+
+  static const dialogButton = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+  );
+
+  static const dialogTitle = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 26,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const dialogText = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const dialogSubtitle = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -418,6 +442,10 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle calendarDayActive;
   final TextStyle calendarDayInactive;
   final TextStyle leaguesSubtitle;
+  final TextStyle dialogButton;
+  final TextStyle dialogTitle;
+  final TextStyle dialogText;
+  final TextStyle dialogSubtitle;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -479,6 +507,10 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.calendarDayActive,
     required this.calendarDayInactive,
     required this.leaguesSubtitle,
+    required this.dialogButton,
+    required this.dialogTitle,
+    required this.dialogText,
+    required this.dialogSubtitle,
   });
 
   @override
@@ -542,6 +574,10 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? calendarDayActive,
     TextStyle? calendarDayInactive,
     TextStyle? leaguesSubtitle,
+    TextStyle? dialogButton,
+    TextStyle? dialogTitle,
+    TextStyle? dialogText,
+    TextStyle? dialogSubtitle,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -603,6 +639,10 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         calendarDayActive: calendarDayActive ?? this.calendarDayActive,
         calendarDayInactive: calendarDayInactive ?? this.calendarDayInactive,
         leaguesSubtitle: leaguesSubtitle ?? this.leaguesSubtitle,
+        dialogButton: dialogButton ?? this.dialogButton,
+        dialogTitle: dialogTitle ?? this.dialogTitle,
+        dialogText: dialogText ?? this.dialogText,
+        dialogSubtitle: dialogSubtitle ?? this.dialogSubtitle,
       );
 
   @override
@@ -674,6 +714,10 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       calendarDayActive: TextStyle.lerp(calendarDayActive, other.calendarDayActive, t)!,
       calendarDayInactive: TextStyle.lerp(calendarDayInactive, other.calendarDayInactive, t)!,
       leaguesSubtitle: TextStyle.lerp(leaguesSubtitle, other.leaguesSubtitle, t)!,
+      dialogButton: TextStyle.lerp(dialogButton, other.dialogButton, t)!,
+      dialogTitle: TextStyle.lerp(dialogTitle, other.dialogTitle, t)!,
+      dialogText: TextStyle.lerp(dialogText, other.dialogText, t)!,
+      dialogSubtitle: TextStyle.lerp(dialogSubtitle, other.dialogSubtitle, t)!,
     );
   }
 }
