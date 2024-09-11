@@ -21,7 +21,6 @@ class LeaguesAppBar extends StatelessWidget {
           vertical: 8,
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ///
             /// BACK
@@ -42,7 +41,7 @@ class LeaguesAppBar extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(width: 20),
+            const SizedBox(width: 14),
 
             ///
             /// TEXT
@@ -60,6 +59,8 @@ class LeaguesAppBar extends StatelessWidget {
                   Text(
                     'Leagues',
                     style: context.textStyles.matchLeagueRound,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),

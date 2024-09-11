@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:get_it/get_it.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 
@@ -61,12 +59,10 @@ class HiveService implements Disposable {
   Future<void> writeLeagues(List<League> passedLeagues) async {
     await leagues.clear();
     await leagues.addAll(passedLeagues);
-    log('Written leagues');
   }
 
   Future<void> writeTeams(List<Team> passedTeams) async {
     await teams.clear();
     await teams.addAll(passedTeams);
-    log('Written teams');
   }
 }

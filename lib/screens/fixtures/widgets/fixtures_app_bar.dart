@@ -39,7 +39,7 @@ class FixturesAppBar extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(width: 20),
+            const SizedBox(width: 14),
 
             ///
             /// TEXT

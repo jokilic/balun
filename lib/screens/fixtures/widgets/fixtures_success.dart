@@ -4,6 +4,7 @@ import 'package:watch_it/watch_it.dart';
 import '../../../models/fixtures/fixture_response.dart';
 import '../../../models/fixtures/league/league.dart';
 import '../../../services/league_storage_service.dart';
+import '../../../services/team_storage_service.dart';
 import '../../../util/fixtures.dart';
 import 'fixtures_app_bar.dart';
 import 'fixtures_list_tile/fixtures_country/fixtures_country_list_tile.dart';
@@ -28,14 +29,18 @@ class FixturesSuccess extends WatchingWidget {
         )
         .toList();
 
+    final favoritedTeams = watchIt<TeamStorageService>().value;
+
     final popularSortedGroupedFixtures = sortGroupedFixtures(
       groupedFixtures: groupFixtures(
         fixtures: getPopularFixtures(
           fixtures: fixtures,
           favoritedLeagues: favoritedLeagues,
+          favoritedTeams: favoritedTeams,
         ),
       ),
       favoritedLeagues: favoritedLeagues,
+      favoritedTeams: favoritedTeams,
     );
 
     final sortedGroupedFixtures = sortGroupedFixtures(
@@ -43,6 +48,7 @@ class FixturesSuccess extends WatchingWidget {
         fixtures: fixtures,
       ),
       favoritedLeagues: favoritedLeagues,
+      favoritedTeams: favoritedTeams,
     );
 
     return ListView(
@@ -56,7 +62,7 @@ class FixturesSuccess extends WatchingWidget {
           const SizedBox(height: 8),
           FixturesAppBar(
             onPressed: () {},
-            text: 'Popular matches',
+            text: 'Favorite matches',
           ),
           const SizedBox(height: 24),
           ListView.separated(

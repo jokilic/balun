@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import '../models/leagues/league/league.dart';
@@ -18,9 +16,7 @@ class LeagueStorageService extends ValueNotifier<List<League>> {
   LeagueStorageService({
     required this.logger,
     required this.hiveLeagues,
-  }) : super(hiveLeagues) {
-    log('League state -> $hiveLeagues');
-  }
+  }) : super(hiveLeagues);
 
   ///
   /// METHODS
@@ -37,13 +33,11 @@ class LeagueStorageService extends ValueNotifier<List<League>> {
     /// League exists, remove it from state & storage
     if (leagueExists) {
       value = List.from(value..removeWhere((league) => league.id == passedLeague.id));
-      log('League exists, removed it');
     }
 
     /// League doesn't exist, add it to state & storage
     else {
       value = List.from(value..add(passedLeague));
-      log('League doesnt exist, added it');
     }
 
     /// Update storage

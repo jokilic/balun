@@ -22,7 +22,6 @@ class LeagueAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ///
           /// BACK
@@ -43,7 +42,7 @@ class LeagueAppBar extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(width: 20),
+          const SizedBox(width: 14),
 
           ///
           /// TEXT
@@ -63,6 +62,8 @@ class LeagueAppBar extends StatelessWidget {
                   Text(
                     league.type!,
                     style: context.textStyles.matchLeagueRound,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
               ],
             ),
@@ -71,7 +72,7 @@ class LeagueAppBar extends StatelessWidget {
           ///
           /// FAVORITE
           ///
-          const SizedBox(width: 20),
+          const SizedBox(width: 14),
 
           BalunButton(
             onPressed: onFavoritePressed,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
 import '../../../models/teams/team/team.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
@@ -7,23 +8,26 @@ import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
 class TeamAppBar extends StatelessWidget {
-  final Function() onPressed;
+  final Function() onBackPressed;
+  final Function() onFavoritePressed;
   final Team? team;
+  final bool isFavorited;
 
   const TeamAppBar({
-    required this.onPressed,
+    required this.onBackPressed,
+    required this.onFavoritePressed,
     required this.team,
+    required this.isFavorited,
   });
 
   @override
   Widget build(BuildContext context) => Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ///
           /// BACK
           ///
           BalunButton(
-            onPressed: onPressed,
+            onPressed: onBackPressed,
             child: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
@@ -38,7 +42,7 @@ class TeamAppBar extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(width: 20),
+          const SizedBox(width: 14),
 
           ///
           /// TEXT
@@ -58,8 +62,44 @@ class TeamAppBar extends StatelessWidget {
                   Text(
                     team!.country!,
                     style: context.textStyles.matchLeagueRound,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
               ],
+            ),
+          ),
+
+          ///
+          /// FAVORITE
+          ///
+          const SizedBox(width: 14),
+
+          BalunButton(
+            onPressed: onFavoritePressed,
+            child: Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: context.colors.white.withOpacity(0.4),
+              ),
+              child: AnimatedSwitcher(
+                duration: BalunConstants.longAnimationDuration,
+                switchInCurve: Curves.easeIn,
+                switchOutCurve: Curves.easeIn,
+                child: isFavorited
+                    ? const BalunImage(
+                        key: ValueKey('yes'),
+                        imageUrl: BalunIcons.favoriteYes,
+                        height: 32,
+                        width: 32,
+                      )
+                    : const BalunImage(
+                        key: ValueKey('no'),
+                        imageUrl: BalunIcons.favoriteNo,
+                        height: 32,
+                        width: 32,
+                      ),
+              ),
             ),
           ),
         ],

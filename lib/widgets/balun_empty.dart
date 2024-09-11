@@ -30,7 +30,7 @@ class BalunEmpty extends StatelessWidget {
                 width: isSmall ? 120 : 144,
               ),
             ),
-            SizedBox(height: isSmall ? 16 : 32),
+            SizedBox(height: isSmall ? 8 : 16),
             Text(
               message,
               style: context.textStyles.error.copyWith(

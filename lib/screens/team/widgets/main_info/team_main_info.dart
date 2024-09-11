@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../models/teams/team_response.dart';
+import '../../../../services/team_storage_service.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
@@ -24,6 +25,8 @@ class TeamMainInfo extends WatchingWidget {
       instanceName: '${team.team?.id}',
     ).value;
 
+    final favoritedTeams = watchIt<TeamStorageService>().value;
+
     final years = generateYearList();
 
     return Padding(
@@ -40,8 +43,14 @@ class TeamMainInfo extends WatchingWidget {
           /// BACK & TEAM NAME
           ///
           TeamAppBar(
-            onPressed: Navigator.of(context).pop,
+            onBackPressed: Navigator.of(context).pop,
             team: team.team,
+            onFavoritePressed: () => getIt.get<TeamStorageService>().toggleTeam(
+                  passedTeam: team.team,
+                ),
+            isFavorited: favoritedTeams.any(
+              (element) => element.id == team.team?.id,
+            ),
           ),
 
           const SizedBox(height: 48),

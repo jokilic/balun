@@ -1,5 +1,6 @@
 ![Header](https://raw.githubusercontent.com/jokilic/balun/main/screenshots/header-wide.png)
 
+
 # Balun ⚽️
 
 ⚽️ **Balun** is a simple football scores application made in **Flutter**. 👨‍💻
@@ -34,3 +35,7 @@ Results can be opened and more info is shown.
 
 - [ ] Localization
 - [ ] Create screenshots and put app live
+- [ ] If there's a live match in the country / league, put a little live icon to the right side
+- [ ] When tapping ‘Popular matches’, show a dialog explaining and put a list of all favorited leagues and teams
+- [ ] When tapping ‘All matches’, show a dialog explaining
+- [ ] Update spacing in all app-bars, like `TeamAppBar`

@@ -17,7 +17,6 @@ class PlayerAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ///
           /// BACK
@@ -38,7 +37,7 @@ class PlayerAppBar extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(width: 20),
+          const SizedBox(width: 14),
 
           ///
           /// TEXT
@@ -58,6 +57,8 @@ class PlayerAppBar extends StatelessWidget {
                   Text(
                     player!.nationality!,
                     style: context.textStyles.matchLeagueRound,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
               ],
             ),

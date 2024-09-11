@@ -25,7 +25,7 @@ class FixturesLoading extends StatelessWidget {
             const SizedBox(height: 8),
             FixturesAppBar(
               onPressed: () {},
-              text: 'Popular matches',
+              text: 'Favorite matches',
             ),
             const SizedBox(height: 24),
             ListView.separated(

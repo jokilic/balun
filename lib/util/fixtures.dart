@@ -1,6 +1,7 @@
 import '../constants.dart';
 import '../models/fixtures/fixture_response.dart';
 import '../models/fixtures/league/league.dart';
+import '../models/teams/team/team.dart';
 
 ///
 /// POPULAR FIXTURES
@@ -9,45 +10,19 @@ import '../models/fixtures/league/league.dart';
 List<FixtureResponse> getPopularFixtures({
   required List<FixtureResponse> fixtures,
   required List<League> favoritedLeagues,
+  required List<Team> favoritedTeams,
 }) =>
     fixtures
         .where(
-          (fixture) => favoritedLeagues.any(
-            (league) => fixture.league?.id == league.id,
-          ),
+          (fixture) =>
+              favoritedLeagues.any(
+                (league) => fixture.league?.id == league.id,
+              ) ||
+              favoritedTeams.any(
+                (team) => fixture.teams?.home?.id == team.id || fixture.teams?.away?.id == team.id,
+              ),
         )
         .toList();
-
-Map<League, List<FixtureResponse>> groupPopularFixtures(
-  List<FixtureResponse> fixtures,
-) {
-  final groupedData = <League, List<FixtureResponse>>{};
-
-  for (final fixture in fixtures) {
-    if (fixture.league != null) {
-      final league = fixture.league!;
-
-      final newLeague = League(
-        id: league.id,
-        name: league.name,
-        country: league.country,
-        flag: league.flag,
-        logo: league.logo,
-      );
-
-      /// Create league group if it doesn't exist
-      groupedData.putIfAbsent(
-        newLeague,
-        () => [],
-      );
-
-      /// Add the current fixture to the appropriate group
-      groupedData[newLeague]!.add(fixture);
-    }
-  }
-
-  return groupedData;
-}
 
 ///
 /// FIXTURES
@@ -104,6 +79,7 @@ Map<League, Map<League, List<FixtureResponse>>> groupFixtures({
 Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixtures({
   required Map<League, Map<League, List<FixtureResponse>>> groupedFixtures,
   required List<League> favoritedLeagues,
+  required List<Team> favoritedTeams,
 }) {
   const countryOrder = BalunConstants.popularCountryIDs;
 
@@ -125,16 +101,76 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixtures({
         final sortedLeagues = countryEntry.value.entries.toList()
           ..sort(
             (a, b) {
-              final priorityA = a.key.id != null ? favoritedLeagues.indexWhere((league) => league.id == a.key.id) : favoritedLeagues.length;
-              final priorityB = b.key.id != null ? favoritedLeagues.indexWhere((league) => league.id == b.key.id) : favoritedLeagues.length;
+              final priorityA = a.key.id != null
+                  ? favoritedLeagues.indexWhere(
+                      (league) => league.id == a.key.id,
+                    )
+                  : favoritedLeagues.length;
+              final priorityB = b.key.id != null
+                  ? favoritedLeagues.indexWhere(
+                      (league) => league.id == b.key.id,
+                    )
+                  : favoritedLeagues.length;
 
-              return priorityA != priorityB ? priorityA.compareTo(priorityB) : a.key.id!.compareTo(b.key.id!);
+              if (priorityA != priorityB) {
+                return priorityA.compareTo(priorityB);
+              }
+
+              /// If leagues have the same priority, sort by team priority
+              else {
+                final teamPriorityA = a.value.any(
+                  (fixture) => favoritedTeams.any(
+                    (team) => team.id == fixture.teams?.home?.id || team.id == fixture.teams?.away?.id,
+                  ),
+                );
+                final teamPriorityB = b.value.any(
+                  (fixture) => favoritedTeams.any(
+                    (team) => team.id == fixture.teams?.home?.id || team.id == fixture.teams?.away?.id,
+                  ),
+                );
+
+                if (teamPriorityA != teamPriorityB) {
+                  return teamPriorityA ? -1 : 1;
+                }
+
+                return a.key.id!.compareTo(b.key.id!);
+              }
             },
           );
 
+        /// Sort fixtures within each league by team priority
+        final sortedFixtures = Map.fromEntries(
+          sortedLeagues.map(
+            (leagueEntry) {
+              final sortedFixturesList = leagueEntry.value
+                ..sort(
+                  (a, b) {
+                    final priorityA = favoritedTeams.any(
+                      (team) => team.id == a.teams?.home?.id || team.id == a.teams?.away?.id,
+                    );
+                    final priorityB = favoritedTeams.any(
+                      (team) => team.id == b.teams?.home?.id || team.id == b.teams?.away?.id,
+                    );
+
+                    if (priorityA != priorityB) {
+                      return priorityA ? -1 : 1;
+                    }
+
+                    return 0;
+                  },
+                );
+
+              return MapEntry(
+                leagueEntry.key,
+                sortedFixturesList,
+              );
+            },
+          ),
+        );
+
         return MapEntry(
           countryEntry.key,
-          Map.fromEntries(sortedLeagues),
+          sortedFixtures,
         );
       },
     ),
