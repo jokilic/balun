@@ -77,6 +77,9 @@ class FixturesSuccess extends WatchingWidget {
               return FixturesCountryListTile(
                 countryLeague: countryLeague,
                 leagues: leagues,
+                hasLiveFixturesCountry: hasLiveFixturesCountry(
+                  leagues: leagues,
+                ),
               );
             },
             separatorBuilder: (_, __) => const SizedBox(height: 12),
@@ -107,6 +110,9 @@ class FixturesSuccess extends WatchingWidget {
               return FixturesCountryListTile(
                 countryLeague: countryLeague,
                 leagues: leagues,
+                hasLiveFixturesCountry: hasLiveFixturesCountry(
+                  leagues: leagues,
+                ),
               );
             },
             separatorBuilder: (_, __) => const SizedBox(height: 12),

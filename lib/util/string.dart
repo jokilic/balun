@@ -5,6 +5,13 @@ String getLastWord(String input) {
   return words.isNotEmpty ? words.last : '';
 }
 
+bool matchIsPlaying({
+  required String statusShort,
+}) =>
+    statusShort == '1H' || statusShort == '2H' || statusShort == 'ET';
+
+bool shouldShowTimeBeforeMatch({required String statusShort}) => statusShort == 'TBD' || statusShort == 'NS';
+
 String getMatchStatus(String statusShort) => switch (statusShort.toUpperCase()) {
       'TBD' => 'Scheduled but date and time are not known',
       'NS' => 'Not started',

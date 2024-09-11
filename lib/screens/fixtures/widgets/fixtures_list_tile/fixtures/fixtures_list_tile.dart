@@ -5,7 +5,6 @@ import '../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
 import '../../../../../util/date_time.dart';
-import '../../../../../util/fixtures.dart';
 import '../../../../../util/string.dart';
 import '../../../../../widgets/balun_button.dart';
 import 'fixtures_list_tile_logo.dart';

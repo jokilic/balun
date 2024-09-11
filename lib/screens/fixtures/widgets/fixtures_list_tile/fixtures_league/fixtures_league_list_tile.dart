@@ -14,10 +14,12 @@ class FixturesLeagueListTile extends StatefulWidget {
   final League? league;
   final List<FixtureResponse>? fixtures;
   final bool initiallyExpanded;
+  final bool hasLiveFixturesLeague;
 
   const FixturesLeagueListTile({
     required this.league,
     required this.fixtures,
+    required this.hasLiveFixturesLeague,
     this.initiallyExpanded = false,
   });
 
@@ -45,10 +47,7 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
                 color: context.colors.white.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(8),
               ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 32,
-                vertical: 12,
-              ),
+              padding: const EdgeInsets.fromLTRB(32, 12, 16, 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -70,6 +69,14 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  if (widget.hasLiveFixturesLeague) ...[
+                    const SizedBox(width: 16),
+                    const BalunImage(
+                      imageUrl: BalunIcons.live,
+                      height: 24,
+                      width: 56,
+                    ),
+                  ],
                 ],
               ),
             ),

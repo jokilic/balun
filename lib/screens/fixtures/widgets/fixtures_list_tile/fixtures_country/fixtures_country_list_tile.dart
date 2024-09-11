@@ -5,6 +5,7 @@ import '../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../models/fixtures/league/league.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
+import '../../../../../util/fixtures.dart';
 import '../../../../../widgets/balun_button.dart';
 import '../../../../../widgets/balun_image.dart';
 import '../fixtures_league/fixtures_league_list_tile.dart';
@@ -13,10 +14,12 @@ class FixturesCountryListTile extends StatefulWidget {
   final League? countryLeague;
   final Map<League, List<FixtureResponse>>? leagues;
   final bool initiallyExpanded;
+  final bool hasLiveFixturesCountry;
 
   const FixturesCountryListTile({
     required this.countryLeague,
     required this.leagues,
+    required this.hasLiveFixturesCountry,
     this.initiallyExpanded = false,
   });
 
@@ -69,12 +72,20 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                           ),
                   ),
                   const SizedBox(width: 16),
-                  Flexible(
+                  Expanded(
                     child: Text(
                       widget.countryLeague?.country ?? 'Unknown',
                       style: context.textStyles.fixturesCountry,
                     ),
                   ),
+                  if (widget.hasLiveFixturesCountry) ...[
+                    const SizedBox(width: 16),
+                    const BalunImage(
+                      imageUrl: BalunIcons.live,
+                      height: 24,
+                      width: 56,
+                    ),
+                  ],
                 ],
               ),
             ),
@@ -100,6 +111,9 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                         league: league,
                         fixtures: fixtures,
                         initiallyExpanded: widget.initiallyExpanded,
+                        hasLiveFixturesLeague: hasLiveFixturesLeague(
+                          fixtures: fixtures,
+                        ),
                       );
                     },
                     separatorBuilder: (_, __) => const SizedBox(height: 12),

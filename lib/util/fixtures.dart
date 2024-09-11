@@ -2,6 +2,7 @@ import '../constants.dart';
 import '../models/fixtures/fixture_response.dart';
 import '../models/fixtures/league/league.dart';
 import '../models/teams/team/team.dart';
+import 'string.dart';
 
 ///
 /// POPULAR FIXTURES
@@ -81,16 +82,37 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixtures({
   required List<League> favoritedLeagues,
   required List<Team> favoritedTeams,
 }) {
-  const countryOrder = BalunConstants.popularCountryIDs;
+  const countryIDs = BalunConstants.popularCountryIDs;
 
   /// Sort countries
   final sortedCountries = groupedFixtures.entries.toList()
     ..sort(
       (a, b) {
-        final priorityA = a.key.country != null ? countryOrder.indexOf(a.key.country!) : countryOrder.length;
-        final priorityB = b.key.country != null ? countryOrder.indexOf(b.key.country!) : countryOrder.length;
+        /// Check if countries are in the `countryIDs` list
+        final isAPopular = countryIDs.contains(a.key.country);
+        final isBPopular = countryIDs.contains(b.key.country);
 
-        return priorityA != priorityB ? priorityA.compareTo(priorityB) : a.key.country!.compareTo(b.key.country!);
+        if (isAPopular && isBPopular) {
+          /// Both countries are popular, sort by their order in `countryIDs`
+          return countryIDs.indexOf(a.key.country!).compareTo(
+                countryIDs.indexOf(b.key.country!),
+              );
+        }
+
+        /// Only A is popular, it should come first
+        else if (isAPopular) {
+          return -1;
+        }
+
+        /// Only B is popular, it should come first
+        else if (isBPopular) {
+          return 1;
+        }
+
+        /// Neither country is popular, sort alphabetically
+        else {
+          return a.key.country!.compareTo(b.key.country!);
+        }
       },
     );
 
@@ -113,7 +135,7 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixtures({
                   : favoritedLeagues.length;
 
               if (priorityA != priorityB) {
-                return priorityA.compareTo(priorityB);
+                return priorityB.compareTo(priorityA);
               }
 
               /// If leagues have the same priority, sort by team priority
@@ -179,4 +201,24 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixtures({
   return sortedGroupedFixtures;
 }
 
-bool shouldShowTimeBeforeMatch({required String statusShort}) => statusShort == 'TBD' || statusShort == 'NS';
+bool hasLiveFixturesCountry({
+  required Map<League, List<FixtureResponse>>? leagues,
+}) =>
+    leagues?.entries.any(
+      (league) => league.value.any(
+        (fixture) => matchIsPlaying(
+          statusShort: fixture.fixture?.status?.short ?? '?',
+        ),
+      ),
+    ) ??
+    false;
+
+bool hasLiveFixturesLeague({
+  required List<FixtureResponse>? fixtures,
+}) =>
+    fixtures?.any(
+      (fixture) => matchIsPlaying(
+        statusShort: fixture.fixture?.status?.short ?? '?',
+      ),
+    ) ??
+    false;

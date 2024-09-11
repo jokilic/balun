@@ -10,7 +10,6 @@ import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/date_time.dart';
 import '../../../../util/dependencies.dart';
-import '../../../../util/fixtures.dart';
 import '../../../../util/string.dart';
 import '../../../../widgets/balun_button.dart';
 import '../match_app_bar.dart';
