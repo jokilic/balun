@@ -44,7 +44,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
             ///
             /// APP BAR

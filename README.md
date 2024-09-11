@@ -38,4 +38,3 @@ Results can be opened and more info is shown.
 - [ ] If there's a live match in the country / league, put a little live icon to the right side
 - [ ] When tapping ‘Popular matches’, show a dialog explaining and put a list of all favorited leagues and teams
 - [ ] When tapping ‘All matches’, show a dialog explaining
-- [ ] Update spacing in all app-bars, like `TeamAppBar`

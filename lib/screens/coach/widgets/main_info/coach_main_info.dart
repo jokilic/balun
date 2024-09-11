@@ -25,7 +25,7 @@ class CoachMainInfo extends WatchingWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
             ///
             /// BACK & LEAGUE
