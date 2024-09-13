@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../models/coaches/career/career.dart';
 import '../../../../../../routing.dart';
@@ -65,7 +65,10 @@ class TeamCoachCareerListTile extends StatelessWidget {
                           style: context.textStyles.teamCoachCareerTitle,
                         ),
                         Text(
-                          DateFormat('d. MMMM y.').format(startLocal),
+                          DateFormat(
+                            'd. MMMM y.',
+                            context.locale.toLanguageTag(),
+                          ).format(startLocal),
                           style: context.textStyles.teamCoachCareerValue,
                         ),
                       ],
@@ -76,7 +79,10 @@ class TeamCoachCareerListTile extends StatelessWidget {
                           style: context.textStyles.teamCoachCareerTitle,
                         ),
                         Text(
-                          DateFormat('d. MMMM y.').format(endLocal),
+                          DateFormat(
+                            'd. MMMM y.',
+                            context.locale.toLanguageTag(),
+                          ).format(endLocal),
                           style: context.textStyles.teamCoachCareerValue,
                         ),
                       ],

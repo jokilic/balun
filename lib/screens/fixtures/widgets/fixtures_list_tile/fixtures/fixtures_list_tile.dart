@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../theme/icons.dart';
@@ -59,7 +59,10 @@ class FixturesListTile extends StatelessWidget {
                                 statusShort: fixture.fixture?.status?.short ?? '?',
                               ) &&
                               fixture.fixture?.timestamp != null
-                          ? DateFormat('HH:mm').format(
+                          ? DateFormat(
+                              'HH:mm',
+                              context.locale.toLanguageTag(),
+                            ).format(
                               parseTimestamp(
                                 fixture.fixture!.timestamp,
                               )!,

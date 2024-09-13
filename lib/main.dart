@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart' hide TextDirection;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -6,6 +8,7 @@ import 'package:watch_it/watch_it.dart';
 
 import 'services/balun_screen_service.dart';
 import 'theme/theme.dart';
+import 'util/color.dart';
 import 'util/dependencies.dart';
 import 'widgets/balun_loader.dart';
 
@@ -17,6 +20,9 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp],
   );
+
+  /// Initialize [EasyLocalization]
+  await EasyLocalization.ensureInitialized();
 
   /// Initialize services
   initializeServices();
@@ -33,7 +39,7 @@ Future<void> main() async {
   runApp(BalunApp());
 }
 
-class BalunApp extends WatchingStatefulWidget {
+class BalunApp extends StatefulWidget {
   @override
   State<BalunApp> createState() => _BalunAppState();
 }
@@ -52,37 +58,46 @@ class _BalunAppState extends State<BalunApp> {
   }
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
+  Widget build(BuildContext context) => EasyLocalization(
+        useOnlyLangCode: true,
         supportedLocales: const [
           Locale('en'),
           Locale('hr'),
         ],
+        fallbackLocale: const Locale('en'),
+        path: 'assets/translations',
+        child: BalunWidget(),
+      );
+}
+
+class BalunWidget extends WatchingWidget {
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         debugShowCheckedModeBanner: false,
         home: watchIt<BalunScreenService>().value,
-        onGenerateTitle: (_) => 'Balun',
+        onGenerateTitle: (_) => 'appName'.tr(),
         theme: BalunTheme.light,
-        builder: (_, child) =>
-
-            // kDebugMode
-            //     ? Banner(
-            //         message: 'Balun'.toUpperCase(),
-            //         color: getRandomBalunColor(context),
-            //         location: BannerLocation.topEnd,
-            //         layoutDirection: TextDirection.ltr,
-            //         child: child ??
-            //             const Scaffold(
-            //               body: Center(
-            //                 child: BalunLoader(),
-            //               ),
-            //             ),
-            //       )
-            //     :
-
-            child ??
-            const Scaffold(
-              body: Center(
-                child: BalunLoader(),
-              ),
-            ),
+        builder: (_, child) => kDebugMode
+            ? Banner(
+                message: 'appName'.tr().toUpperCase(),
+                color: getRandomBalunColor(context),
+                location: BannerLocation.topEnd,
+                layoutDirection: TextDirection.ltr,
+                child: child ??
+                    const Scaffold(
+                      body: Center(
+                        child: BalunLoader(),
+                      ),
+                    ),
+              )
+            : child ??
+                const Scaffold(
+                  body: Center(
+                    child: BalunLoader(),
+                  ),
+                ),
       );
 }

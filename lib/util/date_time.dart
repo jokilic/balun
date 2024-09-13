@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 DateTime? parseTimestamp(DateTime? timestamp) {
@@ -8,7 +10,10 @@ DateTime? parseTimestamp(DateTime? timestamp) {
   return timestamp.toLocal();
 }
 
-String? parseDateTimeago(DateTime? timestamp) {
+String? parseDateTimeago(
+  DateTime? timestamp, {
+  required BuildContext context,
+}) {
   /// Parse timestamp
   final parsedTimestamp = parseTimestamp(timestamp);
 
@@ -20,7 +25,7 @@ String? parseDateTimeago(DateTime? timestamp) {
   final timeagoDateTime = timeago.format(
     parsedTimestamp,
     allowFromNow: true,
-    // locale: context.locale.toLanguageTag(),
+    locale: context.locale.toLanguageTag(),
   );
   return timeagoDateTime;
 }

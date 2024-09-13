@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../theme/icons.dart';
@@ -66,7 +66,10 @@ class FixturesDatePicker extends WatchingWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      DateFormat('d MMM').format(activeDate).toUpperCase(),
+                      DateFormat(
+                        'd MMM',
+                        context.locale.toLanguageTag(),
+                      ).format(activeDate).toUpperCase(),
                       style: !dates.contains(activeDate)
                           ? context.textStyles.fixtureDatePickerActive.copyWith(fontSize: 14)
                           : context.textStyles.fixtureDatePickerInactive.copyWith(fontSize: 14),
@@ -105,13 +108,21 @@ class FixturesDatePicker extends WatchingWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            date == currentDate ? 'Today'.toUpperCase() : DateFormat('E').format(date).toUpperCase(),
+                            date == currentDate
+                                ? 'Today'.toUpperCase()
+                                : DateFormat(
+                                    'E',
+                                    context.locale.toLanguageTag(),
+                                  ).format(date).toUpperCase(),
                             style: activeDate == date ? context.textStyles.fixtureDatePickerActive : context.textStyles.fixtureDatePickerInactive,
                             textAlign: TextAlign.center,
                           ),
                           if (date != currentDate)
                             Text(
-                              DateFormat('d MMM').format(date).toUpperCase(),
+                              DateFormat(
+                                'd MMM',
+                                context.locale.toLanguageTag(),
+                              ).format(date).toUpperCase(),
                               style: activeDate == date
                                   ? context.textStyles.fixtureDatePickerActive.copyWith(fontSize: 14)
                                   : context.textStyles.fixtureDatePickerInactive.copyWith(fontSize: 14),
@@ -153,7 +164,10 @@ class FixturesDatePicker extends WatchingWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      DateFormat('d MMM').format(activeDate).toUpperCase(),
+                      DateFormat(
+                        'd MMM',
+                        context.locale.toLanguageTag(),
+                      ).format(activeDate).toUpperCase(),
                       style: !dates.contains(activeDate)
                           ? context.textStyles.fixtureDatePickerActive.copyWith(fontSize: 14)
                           : context.textStyles.fixtureDatePickerInactive.copyWith(fontSize: 14),

@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../models/fixtures/fixture_response.dart';
@@ -124,7 +124,10 @@ class MatchMainInfo extends WatchingWidget {
                                 statusShort: match.fixture?.status?.short ?? '?',
                               ) &&
                               match.fixture?.timestamp != null
-                          ? DateFormat('HH:mm').format(
+                          ? DateFormat(
+                              'HH:mm',
+                              context.locale.toLanguageTag(),
+                            ).format(
                               parseTimestamp(
                                 match.fixture!.timestamp,
                               )!,

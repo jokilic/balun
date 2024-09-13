@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../models/fixtures/fixture/fixture_status.dart';
 import '../../../../../../models/fixtures/fixture/fixture_venue.dart';
@@ -30,7 +30,10 @@ class MatchInfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final matchDateTime = parseTimestamp(timestamp);
-    final matchDateTimeAgo = parseDateTimeago(timestamp);
+    final matchDateTimeAgo = parseDateTimeago(
+      timestamp,
+      context: context,
+    );
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -60,7 +63,10 @@ class MatchInfoSection extends StatelessWidget {
                         style: context.textStyles.matchInfoSectionTitle,
                       ),
                       Text(
-                        DateFormat('d. MMMM y. - HH:mm').format(matchDateTime),
+                        DateFormat(
+                          'd. MMMM y. - HH:mm',
+                          context.locale.toLanguageTag(),
+                        ).format(matchDateTime),
                         style: context.textStyles.matchInfoSectionText,
                       ),
                       const SizedBox(height: 2),

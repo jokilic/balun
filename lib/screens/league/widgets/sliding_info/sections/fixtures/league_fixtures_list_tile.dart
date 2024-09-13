@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../../theme/icons.dart';
@@ -90,11 +90,17 @@ class LeagueFixturesListTile extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    DateFormat('d. MMMM y.').format(matchDateTime),
+                    DateFormat(
+                      'd. MMMM y.',
+                      context.locale.toLanguageTag(),
+                    ).format(matchDateTime),
                     style: context.textStyles.matchH2HTitle,
                   ),
                   Text(
-                    DateFormat('HH:mm').format(matchDateTime),
+                    DateFormat(
+                      'HH:mm',
+                      context.locale.toLanguageTag(),
+                    ).format(matchDateTime),
                     style: context.textStyles.matchH2HText,
                   ),
                 ],

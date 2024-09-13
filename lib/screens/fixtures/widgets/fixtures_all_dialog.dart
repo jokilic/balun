@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../theme/theme.dart';
@@ -19,7 +19,10 @@ class FixturesAllDialog extends WatchingWidget {
       instanceName: 'fixtures',
     ).value;
 
-    final activeDateFormatted = DateFormat('d. MMMM').format(activeDate);
+    final activeDateFormatted = DateFormat(
+      'd. MMMM',
+      context.locale.toLanguageTag(),
+    ).format(activeDate);
 
     return AlertDialog(
       elevation: 0,

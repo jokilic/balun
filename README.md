@@ -34,7 +34,4 @@ Results can be opened and more info is shown.
 ### General To-Dos
 
 - [ ] Localization
-    - [ ] Check all `intl.dart` `DateFormat` and include `locale`
-    - [ ] Use proper `locale` in `date_time.dart` in `timeago` logic
 - [ ] Create screenshots and put app live
-- [ ] Find logo URLs and paste them in `constants.dart` in `popularLeagues` list

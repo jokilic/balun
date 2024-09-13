@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../models/sidelined/sidelined_inner_response.dart';
 import '../../../../../../theme/icons.dart';
@@ -54,7 +54,10 @@ class CoachSidelinedListTile extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  DateFormat('d. MMMM y.').format(startLocal),
+                  DateFormat(
+                    'd. MMMM y.',
+                    context.locale.toLanguageTag(),
+                  ).format(startLocal),
                   style: context.textStyles.leagueTeamsCountry,
                   textAlign: TextAlign.center,
                 ),
@@ -75,7 +78,10 @@ class CoachSidelinedListTile extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  DateFormat('d. MMMM y.').format(endLocal),
+                  DateFormat(
+                    'd. MMMM y.',
+                    context.locale.toLanguageTag(),
+                  ).format(endLocal),
                   style: context.textStyles.leagueTeamsCountry,
                   textAlign: TextAlign.center,
                 ),

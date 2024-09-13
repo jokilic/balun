@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../models/players/player/player.dart';
 import '../../../../../../theme/icons.dart';
@@ -154,7 +154,10 @@ class PlayerInfoSection extends StatelessWidget {
                           textAlign: TextAlign.right,
                         ),
                         Text(
-                          DateFormat('d. MMMM y.').format(birthDate),
+                          DateFormat(
+                            'd. MMMM y.',
+                            context.locale.toLanguageTag(),
+                          ).format(birthDate),
                           style: context.textStyles.matchInfoSectionText,
                           textAlign: TextAlign.right,
                         ),

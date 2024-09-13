@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../../models/transfers/transfer/transfer.dart';
 import '../../../../../../routing.dart';
@@ -86,7 +86,10 @@ class TeamTransferListTile extends StatelessWidget {
                 ///
                 if (dateLocal != null) ...[
                   Text(
-                    DateFormat('d. MMMM y.').format(dateLocal),
+                    DateFormat(
+                      'd. MMMM y.',
+                      context.locale.toLanguageTag(),
+                    ).format(dateLocal),
                     style: context.textStyles.teamTransferTeam,
                     textAlign: TextAlign.center,
                   ),
