@@ -35,7 +35,7 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
               ),
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              itemCount: 8,
+              itemCount: 12,
               itemBuilder: (_, index) => Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 32,
@@ -62,7 +62,7 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
             shrinkWrap: true,
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: 8,
+            itemCount: 12,
             itemBuilder: (_, index) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: Row(

@@ -22,7 +22,7 @@ class TeamTransfersLoading extends StatelessWidget {
           shrinkWrap: true,
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: 8,
+          itemCount: 12,
           itemBuilder: (_, __) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Row(

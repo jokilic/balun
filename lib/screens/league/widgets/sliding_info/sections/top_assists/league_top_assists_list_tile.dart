@@ -17,7 +17,11 @@ class LeagueTopAssistsListTile extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => BalunButton(
+  Widget build(BuildContext context) {
+    final numberOfAssists = assist?.statistics?.fold(0, (sum, statistic) => sum + (statistic.goals?.assists ?? 0));
+
+    if ((numberOfAssists ?? 0) > 0) {
+      return BalunButton(
         onPressed: assist?.player?.id != null
             ? () => openPlayer(
                   context,
@@ -34,8 +38,8 @@ class LeagueTopAssistsListTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
                   imageUrl: assist?.player?.photo ?? BalunIcons.placeholderPlayer,
-                  height: 56,
-                  width: 56,
+                  height: 48,
+                  width: 48,
                 ),
               ),
               const SizedBox(width: 12),
@@ -47,15 +51,18 @@ class LeagueTopAssistsListTile extends StatelessWidget {
                       assist!.player!.name!,
                       style: context.textStyles.leagueTeamsTitle,
                     ),
-                  if (assist?.statistics?.isNotEmpty ?? false)
-                    Text(
-                      '${assist!.statistics!.fold(0, (sum, statistic) => sum + (statistic.goals?.assists ?? 0))} assists',
-                      style: context.textStyles.leagueTeamsCountry,
-                    ),
+                  Text(
+                    '$numberOfAssists assists',
+                    style: context.textStyles.leagueTeamsCountry,
+                  ),
                 ],
               ),
             ],
           ),
         ),
       );
+    }
+
+    return const SizedBox.shrink();
+  }
 }

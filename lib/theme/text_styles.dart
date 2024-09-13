@@ -196,7 +196,7 @@ abstract class BalunTextStyles {
 
   static const matchPlayerStatisticsRating = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.w600,
   );
 
@@ -239,7 +239,7 @@ abstract class BalunTextStyles {
 
   static const leagueTeamsTitle = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: FontWeight.w500,
   );
 
@@ -257,7 +257,7 @@ abstract class BalunTextStyles {
 
   static const leagueFixturesTitle = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: FontWeight.w600,
   );
 

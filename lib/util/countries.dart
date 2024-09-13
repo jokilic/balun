@@ -2,7 +2,7 @@ import '../constants.dart';
 import '../models/countries/country_response.dart';
 
 List<CountryResponse> sortCountries(List<CountryResponse> countries) {
-  const countryOrder = BalunConstants.popularCountryIDs;
+  const popularCountryIDs = BalunConstants.popularCountryIDs;
 
   countries.sort((a, b) {
     // Handle null names
@@ -16,12 +16,21 @@ List<CountryResponse> sortCountries(List<CountryResponse> countries) {
       return -1;
     }
 
-    final priorityA = a.name != null ? countryOrder.indexOf(a.name!) : countryOrder.length;
-    final priorityB = b.name != null ? countryOrder.indexOf(b.name!) : countryOrder.length;
+    // Check if countries are in the popularCountryIDs list
+    final isAPopular = popularCountryIDs.contains(a.name);
+    final isBPopular = popularCountryIDs.contains(b.name);
 
-    if (priorityA != priorityB) {
-      return priorityA.compareTo(priorityB);
+    if (isAPopular && isBPopular) {
+      // Both countries are popular, sort by their order in popularCountryIDs
+      return popularCountryIDs.indexOf(a.name!).compareTo(popularCountryIDs.indexOf(b.name!));
+    } else if (isAPopular) {
+      // Only A is popular, it should come first
+      return -1;
+    } else if (isBPopular) {
+      // Only B is popular, it should come first
+      return 1;
     } else {
+      // Neither country is popular, sort alphabetically
       return a.name!.compareTo(b.name!);
     }
   });

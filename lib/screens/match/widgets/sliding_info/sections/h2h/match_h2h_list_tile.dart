@@ -34,7 +34,7 @@ class MatchH2HListTile extends StatelessWidget {
             color: context.colors.black,
             width: 2,
           ),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -151,7 +151,7 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
           ),
         ),
       ),
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(8),
       dialogBackgroundColor: context.colors.greenish,
       dialogSize: const Size(325, 400),
     );

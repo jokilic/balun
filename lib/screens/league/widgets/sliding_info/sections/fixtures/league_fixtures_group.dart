@@ -43,7 +43,7 @@ class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
                     color: context.colors.black,
                     width: 2,
                   ),
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

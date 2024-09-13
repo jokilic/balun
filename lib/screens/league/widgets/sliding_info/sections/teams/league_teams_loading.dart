@@ -23,15 +23,15 @@ class LeagueTeamsLoading extends StatelessWidget {
           shrinkWrap: true,
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: 8,
+          itemCount: 12,
           itemBuilder: (_, __) => Container(
             color: Colors.transparent,
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Row(
               children: [
                 Container(
-                  height: 56,
-                  width: 56,
+                  height: 48,
+                  width: 48,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: getRandomBalunColor(context),
@@ -43,7 +43,7 @@ class LeagueTeamsLoading extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        height: 24,
+                        height: 20,
                         width: 200,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
@@ -52,7 +52,7 @@ class LeagueTeamsLoading extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Container(
-                        height: 16,
+                        height: 12,
                         width: 88,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
@@ -61,7 +61,7 @@ class LeagueTeamsLoading extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Container(
-                        height: 12,
+                        height: 8,
                         width: 144,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),

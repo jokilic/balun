@@ -20,7 +20,7 @@ class SearchLeaguesLoading extends StatelessWidget {
         ],
         child: ListView.separated(
           physics: const BouncingScrollPhysics(),
-          itemCount: 8,
+          itemCount: 12,
           itemBuilder: (_, __) => Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 16,

@@ -42,8 +42,8 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                   children: [
                     BalunImage(
                       imageUrl: widget.league.league?.logo ?? BalunIcons.placeholderLeague,
-                      height: 56,
-                      width: 56,
+                      height: 48,
+                      width: 48,
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -101,7 +101,7 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                                         color: context.colors.black,
                                         width: 2,
                                       ),
-                                      borderRadius: BorderRadius.circular(16),
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
                                     child: Text(
                                       '${season.year}',

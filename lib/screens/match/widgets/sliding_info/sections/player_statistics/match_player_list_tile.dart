@@ -57,8 +57,8 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                       borderRadius: BorderRadius.circular(100),
                       child: BalunImage(
                         imageUrl: widget.statisticData?.player?.photo ?? BalunIcons.placeholderPlayer,
-                        height: 56,
-                        width: 56,
+                        height: 48,
+                        width: 48,
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -82,8 +82,8 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     if ((yellowCards ?? 0) > 0) ...[
                       BalunImage(
                         imageUrl: yellowCards == 1 ? BalunIcons.card : BalunIcons.cards,
-                        height: 40,
-                        width: 40,
+                        height: 32,
+                        width: 32,
                         color: yellowCards == 1 ? context.colors.yellow : null,
                       ),
                       const SizedBox(width: 8),
@@ -95,8 +95,8 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     if ((redCards ?? 0) > 0 && (yellowCards ?? 0) == 0) ...[
                       BalunImage(
                         imageUrl: BalunIcons.card,
-                        height: 40,
-                        width: 40,
+                        height: 32,
+                        width: 32,
                         color: context.colors.red,
                       ),
                       const SizedBox(width: 8),
@@ -108,8 +108,8 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     if ((assists ?? 0) > 0) ...[
                       const BalunImage(
                         imageUrl: BalunIcons.assist,
-                        height: 40,
-                        width: 40,
+                        height: 32,
+                        width: 32,
                       ),
                       const SizedBox(width: 8),
                     ],
@@ -120,8 +120,8 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     if ((goals ?? 0) > 0) ...[
                       const BalunImage(
                         imageUrl: BalunIcons.ball,
-                        height: 40,
-                        width: 40,
+                        height: 32,
+                        width: 32,
                       ),
                       const SizedBox(width: 8),
                     ],
@@ -132,7 +132,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     if (rating != null) ...[
                       const SizedBox(width: 8),
                       Container(
-                        padding: const EdgeInsets.all(6),
+                        padding: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
                           color: getRatingColor(
                             rating,

@@ -17,7 +17,11 @@ class LeagueTopScorersListTile extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => BalunButton(
+  Widget build(BuildContext context) {
+    final numberOfGoals = scorer?.statistics?.fold(0, (sum, statistic) => sum + (statistic.goals?.total ?? 0));
+
+    if ((numberOfGoals ?? 0) > 0) {
+      return BalunButton(
         onPressed: scorer?.player?.id != null
             ? () => openPlayer(
                   context,
@@ -34,8 +38,8 @@ class LeagueTopScorersListTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
                   imageUrl: scorer?.player?.photo ?? BalunIcons.placeholderPlayer,
-                  height: 56,
-                  width: 56,
+                  height: 48,
+                  width: 48,
                 ),
               ),
               const SizedBox(width: 12),
@@ -47,15 +51,18 @@ class LeagueTopScorersListTile extends StatelessWidget {
                       scorer!.player!.name!,
                       style: context.textStyles.leagueTeamsTitle,
                     ),
-                  if (scorer?.statistics?.isNotEmpty ?? false)
-                    Text(
-                      '${scorer!.statistics!.fold(0, (sum, statistic) => sum + (statistic.goals?.total ?? 0))} goals',
-                      style: context.textStyles.leagueTeamsCountry,
-                    ),
+                  Text(
+                    '$numberOfGoals goals',
+                    style: context.textStyles.leagueTeamsCountry,
+                  ),
                 ],
               ),
             ],
           ),
         ),
       );
+    }
+
+    return const SizedBox.shrink();
+  }
 }

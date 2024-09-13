@@ -35,7 +35,7 @@ class CoachSlidingInfoLoading extends StatelessWidget {
               ),
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              itemCount: 8,
+              itemCount: 12,
               itemBuilder: (_, index) => Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 32,

@@ -40,10 +40,13 @@ class _TeamCoachesListTileState extends State<TeamCoachesListTile> {
                 color: Colors.transparent,
                 child: Row(
                   children: [
-                    BalunImage(
-                      imageUrl: widget.coach.photo ?? BalunIcons.placeholderPlayer,
-                      height: 56,
-                      width: 56,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: BalunImage(
+                        imageUrl: widget.coach.photo ?? BalunIcons.placeholderPlayer,
+                        height: 48,
+                        width: 48,
+                      ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -57,7 +60,7 @@ class _TeamCoachesListTileState extends State<TeamCoachesListTile> {
                             ),
                           if (widget.coach.age != null)
                             Text(
-                              'Age: ${widget.coach.age!}',
+                              '${widget.coach.age!} years old',
                               style: context.textStyles.leagueTeamsCountry,
                             ),
                         ],

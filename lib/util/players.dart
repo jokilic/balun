@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../theme/theme.dart';
 
 Color? getPositionColor(String position, {required BuildContext context}) => switch (position.toLowerCase()) {
-      'goalkeeper' => context.colors.yellow,
+      'goalkeeper' => context.colors.orange,
       'defender' => context.colors.blue,
       'midfielder' => context.colors.green,
       'attacker' => context.colors.red,

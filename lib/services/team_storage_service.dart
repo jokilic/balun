@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import '../models/teams/team/team.dart';
@@ -18,9 +16,7 @@ class TeamStorageService extends ValueNotifier<List<Team>> {
   TeamStorageService({
     required this.logger,
     required this.hiveTeams,
-  }) : super(hiveTeams) {
-    log('Team state -> $hiveTeams');
-  }
+  }) : super(hiveTeams);
 
   ///
   /// METHODS

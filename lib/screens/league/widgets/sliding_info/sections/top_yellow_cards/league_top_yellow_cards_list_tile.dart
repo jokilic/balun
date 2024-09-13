@@ -17,7 +17,11 @@ class LeagueTopYellowCardsListTile extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => BalunButton(
+  Widget build(BuildContext context) {
+    final numberOfCards = yellowCard?.statistics?.fold(0, (sum, statistic) => sum + (statistic.cards?.yellow ?? 0) + (statistic.cards?.yellowRed ?? 0));
+
+    if ((numberOfCards ?? 0) > 0) {
+      return BalunButton(
         onPressed: yellowCard?.player?.id != null
             ? () => openPlayer(
                   context,
@@ -34,8 +38,8 @@ class LeagueTopYellowCardsListTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
                   imageUrl: yellowCard?.player?.photo ?? BalunIcons.placeholderPlayer,
-                  height: 56,
-                  width: 56,
+                  height: 48,
+                  width: 48,
                 ),
               ),
               const SizedBox(width: 12),
@@ -47,15 +51,18 @@ class LeagueTopYellowCardsListTile extends StatelessWidget {
                       yellowCard!.player!.name!,
                       style: context.textStyles.leagueTeamsTitle,
                     ),
-                  if (yellowCard?.statistics?.isNotEmpty ?? false)
-                    Text(
-                      '${yellowCard!.statistics!.fold(0, (sum, statistic) => sum + (statistic.cards?.yellow ?? 0))} yellow cards',
-                      style: context.textStyles.leagueTeamsCountry,
-                    ),
+                  Text(
+                    '$numberOfCards yellow cards',
+                    style: context.textStyles.leagueTeamsCountry,
+                  ),
                 ],
               ),
             ],
           ),
         ),
       );
+    }
+
+    return const SizedBox.shrink();
+  }
 }

@@ -42,7 +42,7 @@ class MatchSlidingInfoLoading extends WatchingWidget {
               ),
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              itemCount: 8,
+              itemCount: 12,
               itemBuilder: (_, index) => Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 32,
@@ -72,7 +72,7 @@ class MatchSlidingInfoLoading extends WatchingWidget {
             ),
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: 8,
+            itemCount: 12,
             itemBuilder: (_, index) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Row(

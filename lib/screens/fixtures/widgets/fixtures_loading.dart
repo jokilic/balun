@@ -46,7 +46,7 @@ class FixturesLoading extends StatelessWidget {
               shrinkWrap: true,
               padding: const EdgeInsets.symmetric(horizontal: 8),
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 8,
+              itemCount: 12,
               itemBuilder: (_, __) => FixturesCountryListTileLoading(),
               separatorBuilder: (_, __) => const SizedBox(height: 16),
             ),

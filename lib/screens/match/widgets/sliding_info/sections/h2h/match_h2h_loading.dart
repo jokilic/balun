@@ -22,7 +22,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
           shrinkWrap: true,
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
           physics: const BouncingScrollPhysics(),
-          itemCount: 8,
+          itemCount: 12,
           itemBuilder: (_, __) => Container(
             margin: const EdgeInsets.all(4),
             padding: const EdgeInsets.all(16),
@@ -32,7 +32,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
                 color: context.colors.black,
                 width: 2,
               ),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(8),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -38,33 +38,37 @@ class TeamPlayersListTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
                   imageUrl: player.photo ?? BalunIcons.placeholderPlayer,
-                  height: 56,
-                  width: 56,
+                  height: 48,
+                  width: 48,
                 ),
               ),
               const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ///
+                    /// NAME
+                    ///
+                    if (player.name != null)
+                      Text(
+                        player.name!,
+                        style: context.textStyles.leagueTeamsTitle,
+                      ),
 
-              ///
-              /// NAME
-              ///
-              if (player.name != null)
-                Expanded(
-                  child: Text(
-                    player.name!,
-                    style: context.textStyles.leagueTeamsTitle,
-                  ),
+                    ///
+                    /// AGE
+                    ///
+                    if (player.age != null) ...[
+                      Text(
+                        '${player.age!} years old',
+                        style: context.textStyles.leagueTeamsCountry,
+                      ),
+                      const SizedBox(width: 12),
+                    ],
+                  ],
                 ),
-
-              ///
-              /// AGE
-              ///
-              if (player.age != null) ...[
-                Text(
-                  '${player.age!}y',
-                  style: context.textStyles.leagueTeamsTitle,
-                ),
-                const SizedBox(width: 12),
-              ],
+              ),
 
               ///
               /// POSITION
@@ -72,8 +76,8 @@ class TeamPlayersListTile extends StatelessWidget {
               if (player.position != null)
                 Container(
                   alignment: Alignment.center,
-                  width: 44,
-                  padding: const EdgeInsets.all(6),
+                  width: 36,
+                  padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
                     color: getPositionColor(
                       player.position!,
