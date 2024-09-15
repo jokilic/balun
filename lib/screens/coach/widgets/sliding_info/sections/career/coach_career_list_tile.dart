@@ -42,10 +42,13 @@ class CoachCareerListTile extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                BalunImage(
-                  imageUrl: career.team?.logo ?? BalunIcons.placeholderTeam,
-                  height: 32,
-                  width: 32,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: BalunImage(
+                    imageUrl: career.team?.logo ?? BalunIcons.placeholderTeam,
+                    height: 32,
+                    width: 32,
+                  ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(

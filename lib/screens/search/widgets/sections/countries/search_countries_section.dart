@@ -19,10 +19,12 @@ class SearchCountriesSection extends WatchingWidget {
     return switch (searchCountriesState) {
       Initial() => BalunEmpty(
           message: 'searchCountriesInitialState'.tr(),
+          smallMessage: 'searchSmallText'.tr(),
         ),
       Loading() => SearchCountriesLoading(),
       Empty() => BalunEmpty(
           message: 'searchCountriesEmptyState'.tr(),
+          smallMessage: 'searchSmallText'.tr(),
         ),
       Error() => BalunError(
           error: (searchCountriesState as Error).error ?? 'searchCountriesErrorState'.tr(),

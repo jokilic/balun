@@ -56,7 +56,7 @@ class _PlayerLoadingState extends State<PlayerLoading> {
             ),
             scrollController: scrollController,
             color: context.colors.white,
-            minHeight: 352,
+            minHeight: 320,
             maxHeight: MediaQuery.sizeOf(context).height - 144,
             panelBuilder: () => Animate(
               onPlay: (controller) => controller.loop(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../models/trophies/trophy_response.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/string.dart';
 
 class CoachTrophiesListTile extends StatelessWidget {
   final TrophyResponse trophy;
@@ -57,7 +58,9 @@ class CoachTrophiesListTile extends StatelessWidget {
             ///
             if (trophy.country != null) ...[
               Text(
-                trophy.country!,
+                getCountryName(
+                  country: trophy.country!,
+                ),
                 style: context.textStyles.leagueTeamsCountry,
                 textAlign: TextAlign.center,
               ),

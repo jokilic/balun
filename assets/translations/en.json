@@ -204,6 +204,7 @@
     "playerTrophiesEmptyState": "Player trophies are empty",
     "playerTrophiesErrorState": "Some weird player trophies error",
     "searchHint": "Search...",
+    "searchSmallText": "(search in english)",
     "searchCoachesInitialState": "Search for coaches",
     "searchCoachesEmptyState": "There are no coaches found",
     "searchCoachesErrorState": "Some weird search coaches error",
@@ -314,5 +315,16 @@
     "matchStatisticAccuratePasses": "Accurate passes",
     "matchStatisticPassPercentage": "Pass %",
     "matchStatisticExpectedGoals": "Expected goals",
-    "matchStatisticPreventedGoals": "Prevented goals"
+    "matchStatisticPreventedGoals": "Prevented goals",
+    "matchEventCommentArgument": "Argument",
+    "matchEventCommentFoul": "Foul",
+    "matchEventCommentHandball": "Hand ball",
+    "playerPositionGoalkeeper": "Goalkeeper",
+    "playerPositionDefender": "Defender",
+    "playerPositionMidfielder": "Midfielder",
+    "playerPositionAttacker": "Attacker",
+    "leagueTypeLeague": "League",
+    "leagueTypeCup": "Cup",
+    "teamTransferTypeFree": "Free",
+    "teamTransferTypeLoan": "Loan"
 }

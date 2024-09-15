@@ -4,6 +4,7 @@ import '../../../constants.dart';
 import '../../../models/leagues/league/league.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/string.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
@@ -60,7 +61,9 @@ class LeagueAppBar extends StatelessWidget {
                   ),
                 if (league.type != null)
                   Text(
-                    league.type!,
+                    getLeagueType(
+                      leagueType: league.type!,
+                    ),
                     style: context.textStyles.matchLeagueRound,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

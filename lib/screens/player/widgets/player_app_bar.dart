@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../models/players/player/player.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/string.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
@@ -55,7 +56,9 @@ class PlayerAppBar extends StatelessWidget {
                   ),
                 if (player?.nationality != null)
                   Text(
-                    player!.nationality!,
+                    getCountryName(
+                      country: player!.nationality!,
+                    ),
                     style: context.textStyles.matchLeagueRound,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

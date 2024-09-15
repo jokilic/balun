@@ -5,6 +5,7 @@ import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import '../../../../../models/search/search_teams/search_team_response.dart';
 import '../../../../../theme/icons.dart';
+import '../../../../../util/string.dart';
 
 class SearchTeamsListTile extends StatelessWidget {
   final SearchTeamResponse team;
@@ -45,7 +46,9 @@ class SearchTeamsListTile extends StatelessWidget {
                     ),
                     if (team.team?.country != null)
                       Text(
-                        team.team!.country!,
+                        getCountryName(
+                          country: team.team!.country!,
+                        ),
                         style: context.textStyles.leaguesSubtitle,
                       ),
                   ],

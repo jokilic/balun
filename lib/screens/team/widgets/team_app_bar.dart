@@ -4,6 +4,7 @@ import '../../../constants.dart';
 import '../../../models/teams/team/team.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/string.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
@@ -60,7 +61,9 @@ class TeamAppBar extends StatelessWidget {
                   ),
                 if (team?.country != null)
                   Text(
-                    team!.country!,
+                    getCountryName(
+                      country: team!.country!,
+                    ),
                     style: context.textStyles.matchLeagueRound,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

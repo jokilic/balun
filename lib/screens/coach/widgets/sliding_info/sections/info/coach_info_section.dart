@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../models/coaches/coach_response.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
+import '../../../../../../util/string.dart';
 
 class CoachInfoSection extends StatelessWidget {
   final CoachResponse? coach;
@@ -106,7 +107,9 @@ class CoachInfoSection extends StatelessWidget {
                           ),
                         if (coach?.birth?.country != null)
                           Text(
-                            coach!.birth!.country ?? '---',
+                            getCountryName(
+                              country: coach!.birth!.country!,
+                            ),
                             style: context.textStyles.matchInfoSectionText,
                           ),
                       ],

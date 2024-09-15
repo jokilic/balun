@@ -56,7 +56,7 @@ class _CoachLoadingState extends State<CoachLoading> {
             ),
             scrollController: scrollController,
             color: context.colors.white,
-            minHeight: 352,
+            minHeight: 400,
             maxHeight: MediaQuery.sizeOf(context).height - 144,
             panelBuilder: () => Animate(
               onPlay: (controller) => controller.loop(

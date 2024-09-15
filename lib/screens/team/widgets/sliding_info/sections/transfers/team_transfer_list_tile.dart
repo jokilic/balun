@@ -6,6 +6,7 @@ import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
+import '../../../../../../util/string.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -104,7 +105,9 @@ class TeamTransferListTile extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    transfer.type!,
+                    getTransferType(
+                      transferType: transfer.type!,
+                    ),
                     style: context.textStyles.teamCoachCareerValue,
                     textAlign: TextAlign.center,
                   ),

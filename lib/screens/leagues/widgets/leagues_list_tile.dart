@@ -5,6 +5,7 @@ import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import '../../../models/leagues/league_response.dart';
 import '../../../theme/icons.dart';
+import '../../../util/string.dart';
 
 class LeaguesListTile extends StatelessWidget {
   final LeagueResponse league;
@@ -56,7 +57,9 @@ class LeaguesListTile extends StatelessWidget {
                       ),
                     if (league.league?.type != null)
                       Text(
-                        league.league!.type!,
+                        getLeagueType(
+                          leagueType: league.league!.type!,
+                        ),
                         style: context.textStyles.leaguesSubtitle,
                       ),
                   ],

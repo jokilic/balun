@@ -5,6 +5,7 @@ import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import '../../../models/countries/country_response.dart';
 import '../../../theme/icons.dart';
+import '../../../util/string.dart';
 
 class CountriesListTile extends StatelessWidget {
   final CountryResponse country;
@@ -47,7 +48,11 @@ class CountriesListTile extends StatelessWidget {
               const SizedBox(width: 16),
               Flexible(
                 child: Text(
-                  country.name ?? '---',
+                  country.name != null
+                      ? getCountryName(
+                          country: country.name!,
+                        )
+                      : '---',
                   style: context.textStyles.fixturesCountry,
                 ),
               ),

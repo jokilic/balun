@@ -5,6 +5,7 @@ import '../../../../../../models/leagues/league_response.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/string.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -57,7 +58,9 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                             ),
                           if (widget.league.country?.name != null)
                             Text(
-                              widget.league.country!.name!,
+                              getCountryName(
+                                country: widget.league.country!.name!,
+                              ),
                               style: context.textStyles.leagueTeamsCountry,
                             ),
                         ],

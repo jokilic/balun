@@ -56,7 +56,7 @@ class _TeamLoadingState extends State<TeamLoading> {
             ),
             scrollController: scrollController,
             color: context.colors.white,
-            minHeight: 352,
+            minHeight: 336,
             maxHeight: MediaQuery.sizeOf(context).height - 144,
             panelBuilder: () => Animate(
               onPlay: (controller) => controller.loop(

@@ -5,6 +5,7 @@ import '../../../../models/coaches/coach_response.dart';
 import '../../../../routing.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
+import '../../../../util/string.dart';
 import '../../../../widgets/balun_button.dart';
 import '../../../../widgets/balun_image.dart';
 import '../coach_app_bar.dart';
@@ -64,7 +65,11 @@ class CoachMainInfo extends WatchingWidget {
             /// COUNTRY
             ///
             Text(
-              coach.nationality ?? '---',
+              coach.nationality != null
+                  ? getCountryName(
+                      country: coach.nationality!,
+                    )
+                  : '---',
               style: context.textStyles.leagueCountry,
               textAlign: TextAlign.center,
             ),

@@ -19,10 +19,12 @@ class SearchLeaguesSection extends WatchingWidget {
     return switch (searchLeaguesState) {
       Initial() => BalunEmpty(
           message: 'searchLeaguesInitialState'.tr(),
+          smallMessage: 'searchSmallText'.tr(),
         ),
       Loading() => SearchLeaguesLoading(),
       Empty() => BalunEmpty(
           message: 'searchLeaguesEmptyState'.tr(),
+          smallMessage: 'searchSmallText'.tr(),
         ),
       Error() => BalunError(
           error: (searchLeaguesState as Error).error ?? 'searchLeaguesErrorState'.tr(),

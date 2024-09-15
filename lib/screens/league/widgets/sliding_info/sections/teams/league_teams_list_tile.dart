@@ -5,6 +5,7 @@ import '../../../../../../models/teams/team_response.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/string.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -48,7 +49,9 @@ class LeagueTeamsListTile extends StatelessWidget {
                       ),
                     if (team.team?.country != null)
                       Text(
-                        team.team!.country!,
+                        getCountryName(
+                          country: team.team!.country!,
+                        ),
                         style: context.textStyles.leagueTeamsCountry,
                       ),
                     if (team.team?.founded != null)

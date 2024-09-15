@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../models/coaches/coach_response.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/string.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
@@ -55,7 +56,9 @@ class CoachAppBar extends StatelessWidget {
                   ),
                 if (coach?.nationality != null)
                   Text(
-                    coach!.nationality!,
+                    getCountryName(
+                      country: coach!.nationality!,
+                    ),
                     style: context.textStyles.matchLeagueRound,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

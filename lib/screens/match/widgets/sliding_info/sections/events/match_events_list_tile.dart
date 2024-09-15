@@ -339,7 +339,9 @@ class MatchEventsListTile extends StatelessWidget {
                       const SizedBox(width: 36),
                       Flexible(
                         child: Text(
-                          event.comments!,
+                          getEventCommentText(
+                            eventComment: event.comments!,
+                          ),
                           style: context.textStyles.matchEventsSectionText,
                         ),
                       ),

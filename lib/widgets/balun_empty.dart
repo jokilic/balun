@@ -6,10 +6,12 @@ import 'balun_image.dart';
 
 class BalunEmpty extends StatelessWidget {
   final String message;
+  final String? smallMessage;
   final bool isSmall;
 
   const BalunEmpty({
     required this.message,
+    this.smallMessage,
     this.isSmall = false,
   });
 
@@ -34,10 +36,20 @@ class BalunEmpty extends StatelessWidget {
             Text(
               message,
               style: context.textStyles.error.copyWith(
-                fontSize: isSmall ? 20 : null,
+                fontSize: isSmall ? 20 : 24,
               ),
               textAlign: TextAlign.center,
             ),
+            if (smallMessage != null) ...[
+              SizedBox(height: isSmall ? 2 : 4),
+              Text(
+                smallMessage!,
+                style: context.textStyles.error.copyWith(
+                  fontSize: isSmall ? 14 : 18,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ],
         ),
       );

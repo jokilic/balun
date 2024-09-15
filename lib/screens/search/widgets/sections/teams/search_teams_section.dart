@@ -19,10 +19,12 @@ class SearchTeamsSection extends WatchingWidget {
     return switch (searchTeamsState) {
       Initial() => BalunEmpty(
           message: 'searchTeamsInitialState'.tr(),
+          smallMessage: 'searchSmallText'.tr(),
         ),
       Loading() => SearchTeamsLoading(),
       Empty() => BalunEmpty(
           message: 'searchTeamsEmptyState'.tr(),
+          smallMessage: 'searchSmallText'.tr(),
         ),
       Error() => BalunError(
           error: (searchTeamsState as Error).error ?? 'searchTeamsErrorState'.tr(),

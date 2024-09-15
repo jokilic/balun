@@ -29,6 +29,10 @@ class MatchStatisticsSection extends StatelessWidget {
             final homeStatisticData = homeStatistic?.statistics?[index];
             final awayStatisticData = awayStatistic?.statistics?[index];
 
+            if (homeStatisticData?.value == null && awayStatisticData?.value == null) {
+              return const SizedBox.shrink();
+            }
+
             return MatchStatisticsListTile(
               homeStatisticData: homeStatisticData,
               awayStatisticData: awayStatisticData,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/string.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
@@ -52,7 +53,9 @@ class LeaguesAppBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    country,
+                    getCountryName(
+                      country: country,
+                    ),
                     style: context.textStyles.matchLeagueName,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

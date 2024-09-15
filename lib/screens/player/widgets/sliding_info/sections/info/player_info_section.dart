@@ -5,6 +5,7 @@ import '../../../../../../models/players/player/player.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
+import '../../../../../../util/string.dart';
 import '../../../../../../widgets/balun_image.dart';
 
 class PlayerInfoSection extends StatelessWidget {
@@ -131,7 +132,9 @@ class PlayerInfoSection extends StatelessWidget {
                           ),
                         if (player?.birth?.country != null)
                           Text(
-                            player!.birth!.country ?? '---',
+                            getCountryName(
+                              country: player!.birth!.country!,
+                            ),
                             style: context.textStyles.matchInfoSectionText,
                           ),
                       ],

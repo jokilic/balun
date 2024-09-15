@@ -36,10 +36,17 @@ class _TeamTransfersListTileState extends State<TeamTransfersListTile> {
               onPressed: toggleExpanded,
               child: Container(
                 color: Colors.transparent,
-                child: Text(
-                  widget.transfer.player?.name ?? '---',
-                  style: context.textStyles.leagueTeamsTitle,
-                  textAlign: TextAlign.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        widget.transfer.player?.name ?? '---',
+                        style: context.textStyles.leagueTeamsTitle,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

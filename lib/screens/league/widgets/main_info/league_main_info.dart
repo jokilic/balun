@@ -7,6 +7,7 @@ import '../../../../services/league_storage_service.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
+import '../../../../util/string.dart';
 import '../../../../widgets/balun_button.dart';
 import '../../../../widgets/balun_image.dart';
 import '../../controllers/league_season_controller.dart';
@@ -80,7 +81,11 @@ class LeagueMainInfo extends WatchingWidget {
           /// COUNTRY
           ///
           Text(
-            league.country?.name ?? '---',
+            league.country?.name != null
+                ? getCountryName(
+                    country: league.country!.name!,
+                  )
+                : '---',
             style: context.textStyles.leagueCountry,
             textAlign: TextAlign.center,
           ),

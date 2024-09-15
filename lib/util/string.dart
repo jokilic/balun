@@ -74,6 +74,16 @@ String getEventText({
       _ => eventType,
     };
 
+String getEventCommentText({
+  required String eventComment,
+}) =>
+    switch (eventComment.toLowerCase()) {
+      'argument' => 'matchEventCommentArgument'.tr(),
+      'foul' => 'matchEventCommentFoul'.tr(),
+      'handball' => 'matchEventCommentHandball'.tr(),
+      _ => eventComment,
+    };
+
 String getStatisticText({
   required StatisticData statisticData,
 }) =>
@@ -97,4 +107,47 @@ String getStatisticText({
       'expected_goals' => 'matchStatisticExpectedGoals'.tr(),
       'goals_prevented' => 'matchStatisticPreventedGoals'.tr(),
       _ => statisticData.type ?? 'matchStatusUnknown'.tr(),
+    };
+
+String getPositionText({
+  required String position,
+}) =>
+    switch (position.toLowerCase()) {
+      'goalkeeper' => 'playerPositionGoalkeeper'.tr(),
+      'defender' => 'playerPositionDefender'.tr(),
+      'midfielder' => 'playerPositionMidfielder'.tr(),
+      'attacker' => 'playerPositionAttacker'.tr(),
+      _ => position,
+    };
+
+String getLeagueType({
+  required String leagueType,
+}) =>
+    switch (leagueType.toLowerCase()) {
+      'league' => 'leagueTypeLeague'.tr(),
+      'cup' => 'leagueTypeCup'.tr(),
+      _ => leagueType,
+    };
+
+String getCountryName({
+  required String country,
+}) =>
+    switch (country.toLowerCase()) {
+      'croatia' => 'Hrv',
+      'world' => 'Svijet',
+      'europe' => 'Europa',
+      'england' => 'Ingleska',
+      'spain' => 'Španjulska',
+      'bosnia and herzegovina' => 'BiH',
+      _ => country,
+    };
+
+String getTransferType({
+  required String transferType,
+}) =>
+    switch (transferType.toLowerCase()) {
+      'free' => 'teamTransferTypeFree'.tr(),
+      'loan' => 'teamTransferTypeLoan'.tr(),
+      'n/a' => '---',
+      _ => transferType,
     };
