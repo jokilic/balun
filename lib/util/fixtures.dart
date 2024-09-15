@@ -5,10 +5,10 @@ import '../models/teams/team/team.dart';
 import 'string.dart';
 
 ///
-/// POPULAR FIXTURES
+/// FAVORITE FIXTURES
 ///
 
-List<FixtureResponse> getPopularFixtures({
+List<FixtureResponse> getFavoriteFixtures({
   required List<FixtureResponse> fixtures,
   required List<League> favoritedLeagues,
   required List<Team> favoritedTeams,
@@ -82,34 +82,34 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixtures({
   required List<League> favoritedLeagues,
   required List<Team> favoritedTeams,
 }) {
-  const countryIDs = BalunConstants.popularCountryIDs;
+  const countryIDs = BalunConstants.favoriteCountryIDs;
 
   /// Sort countries
   final sortedCountries = groupedFixtures.entries.toList()
     ..sort(
       (a, b) {
         /// Check if countries are in the `countryIDs` list
-        final isAPopular = countryIDs.contains(a.key.country);
-        final isBPopular = countryIDs.contains(b.key.country);
+        final isAFavorite = countryIDs.contains(a.key.country);
+        final isBFavorite = countryIDs.contains(b.key.country);
 
-        if (isAPopular && isBPopular) {
-          /// Both countries are popular, sort by their order in `countryIDs`
+        if (isAFavorite && isBFavorite) {
+          /// Both countries are favorite, sort by their order in `countryIDs`
           return countryIDs.indexOf(a.key.country!).compareTo(
                 countryIDs.indexOf(b.key.country!),
               );
         }
 
-        /// Only A is popular, it should come first
-        else if (isAPopular) {
+        /// Only A is favorite, it should come first
+        else if (isAFavorite) {
           return -1;
         }
 
-        /// Only B is popular, it should come first
-        else if (isBPopular) {
+        /// Only B is favorite, it should come first
+        else if (isBFavorite) {
           return 1;
         }
 
-        /// Neither country is popular, sort alphabetically
+        /// Neither country is favorite, sort alphabetically
         else {
           return a.key.country!.compareTo(b.key.country!);
         }
@@ -207,7 +207,7 @@ bool hasLiveFixturesCountry({
     leagues?.entries.any(
       (league) => league.value.any(
         (fixture) => matchIsPlaying(
-          statusShort: fixture.fixture?.status?.short ?? '?',
+          statusShort: fixture.fixture?.status?.short ?? '--',
         ),
       ),
     ) ??
@@ -218,7 +218,7 @@ bool hasLiveFixturesLeague({
 }) =>
     fixtures?.any(
       (fixture) => matchIsPlaying(
-        statusShort: fixture.fixture?.status?.short ?? '?',
+        statusShort: fixture.fixture?.status?.short ?? '--',
       ),
     ) ??
     false;

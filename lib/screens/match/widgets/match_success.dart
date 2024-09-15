@@ -35,7 +35,7 @@ class _MatchSuccessState extends State<MatchSuccess> {
             instanceName: '${widget.match.fixture?.id}',
           )
           .updateStateDependingOnMatchStatus(
-            statusShort: widget.match.fixture?.status?.short ?? '?',
+            statusShort: widget.match.fixture?.status?.short ?? '--',
             lineupExists: widget.match.lineups?.isNotEmpty ?? false,
           ),
     );

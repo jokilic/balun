@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 
 import '../constants.dart';
+import '../hive_registrar.g.dart';
 import '../models/leagues/league/league.dart';
 import '../models/teams/team/team.dart';
 import '../util/path.dart';
@@ -30,8 +31,7 @@ class HiveService implements Disposable {
 
     Hive
       ..init(directory?.path)
-      ..registerAdapter(LeagueAdapter())
-      ..registerAdapter(TeamAdapter());
+      ..registerAdapters();
 
     leagues = await Hive.openBox<League>('leagueBox');
     teams = await Hive.openBox<Team>('teamBox');

@@ -52,11 +52,11 @@ class FixturesListTile extends StatelessWidget {
                   Flexible(
                     child: FixturesListTileMinute(
                       status: getMatchStatusMinutes(
-                        statusShort: fixture.fixture?.status?.short ?? '?',
+                        statusShort: fixture.fixture?.status?.short ?? '--',
                         minutes: fixture.fixture?.status?.elapsed ?? 0,
                       ),
                       timeBeforeMatch: shouldShowTimeBeforeMatch(
-                                statusShort: fixture.fixture?.status?.short ?? '?',
+                                statusShort: fixture.fixture?.status?.short ?? '--',
                               ) &&
                               fixture.fixture?.timestamp != null
                           ? DateFormat(

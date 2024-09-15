@@ -117,11 +117,11 @@ class MatchMainInfo extends WatchingWidget {
                     ///
                     MatchMinute(
                       status: getMatchStatusMinutes(
-                        statusShort: match.fixture?.status?.short ?? '?',
+                        statusShort: match.fixture?.status?.short ?? '--',
                         minutes: match.fixture?.status?.elapsed ?? 0,
                       ),
                       timeBeforeMatch: shouldShowTimeBeforeMatch(
-                                statusShort: match.fixture?.status?.short ?? '?',
+                                statusShort: match.fixture?.status?.short ?? '--',
                               ) &&
                               match.fixture?.timestamp != null
                           ? DateFormat(

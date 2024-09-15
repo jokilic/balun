@@ -35,4 +35,3 @@ Results can be opened and more info is shown.
 
 - [ ] Localization
 - [ ] Create screenshots and put app live
-- [ ] Put '---' instead of '?'

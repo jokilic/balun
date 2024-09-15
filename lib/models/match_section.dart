@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+
 enum MatchSectionEnum {
   info,
   events,
@@ -16,13 +18,13 @@ class MatchSection {
   });
 
   String getMatchSectionName() => switch (matchSectionEnum) {
-        MatchSectionEnum.info => 'Info',
-        MatchSectionEnum.events => 'Events',
-        MatchSectionEnum.lineups => 'Lineups',
-        MatchSectionEnum.statistics => 'Statistics',
-        MatchSectionEnum.playerStatistics => 'Player statistics',
-        MatchSectionEnum.standings => 'Standings',
-        MatchSectionEnum.headToHead => 'Head-to-head',
+        MatchSectionEnum.info => 'matchSectionInfo'.tr(),
+        MatchSectionEnum.events => 'matchSectionEvents'.tr(),
+        MatchSectionEnum.lineups => 'matchSectionLineups'.tr(),
+        MatchSectionEnum.statistics => 'matchSectionStatistics'.tr(),
+        MatchSectionEnum.playerStatistics => 'matchSectionPlayerStatistics'.tr(),
+        MatchSectionEnum.standings => 'matchSectionStandings'.tr(),
+        MatchSectionEnum.headToHead => 'matchSectionHeadToHead'.tr(),
       };
 
   @override

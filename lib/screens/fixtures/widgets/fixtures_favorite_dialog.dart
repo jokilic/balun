@@ -11,10 +11,10 @@ import '../../../theme/theme.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
-class FixturesPopularDialog extends WatchingWidget {
+class FixturesFavoriteDialog extends WatchingWidget {
   final Function() onPressed;
 
-  const FixturesPopularDialog({
+  const FixturesFavoriteDialog({
     required this.onPressed,
   });
 
@@ -108,7 +108,7 @@ class FixturesPopularDialog extends WatchingWidget {
                                   const SizedBox(width: 12),
                                   Expanded(
                                     child: Text(
-                                      league.name ?? '?',
+                                      league.name ?? '---',
                                       style: context.textStyles.dialogText.copyWith(
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -162,7 +162,7 @@ class FixturesPopularDialog extends WatchingWidget {
                                   const SizedBox(width: 12),
                                   Expanded(
                                     child: Text(
-                                      team.name ?? '?',
+                                      team.name ?? '---',
                                       style: context.textStyles.dialogText.copyWith(
                                         fontWeight: FontWeight.w500,
                                       ),

@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+
 enum LeagueSectionEnum {
   teams,
   standings,
@@ -16,13 +18,13 @@ class LeagueSection {
   });
 
   String getLeagueSectionName() => switch (leagueSectionEnum) {
-        LeagueSectionEnum.teams => 'Teams',
-        LeagueSectionEnum.standings => 'Standings',
-        LeagueSectionEnum.fixtures => 'Fixtures',
-        LeagueSectionEnum.topScorers => 'Scorers',
-        LeagueSectionEnum.topAssists => 'Assists',
-        LeagueSectionEnum.topYellowCards => 'Yellow cards',
-        LeagueSectionEnum.topRedCards => 'Red cards',
+        LeagueSectionEnum.teams => 'leagueSectionTeams'.tr(),
+        LeagueSectionEnum.standings => 'leagueSectionStandings'.tr(),
+        LeagueSectionEnum.fixtures => 'leagueSectionFixtures'.tr(),
+        LeagueSectionEnum.topScorers => 'leagueSectionScorers'.tr(),
+        LeagueSectionEnum.topAssists => 'leagueSectionAssists'.tr(),
+        LeagueSectionEnum.topYellowCards => 'leagueSectionYellowCards'.tr(),
+        LeagueSectionEnum.topRedCards => 'leagueSectionRedCards'.tr(),
       };
 
   @override

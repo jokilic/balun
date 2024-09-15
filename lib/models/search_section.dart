@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+
 enum SearchSectionEnum {
   countries,
   leagues,
@@ -13,10 +15,10 @@ class SearchSection {
   });
 
   String getSearchSectionName() => switch (searchSectionEnum) {
-        SearchSectionEnum.countries => 'Countries',
-        SearchSectionEnum.leagues => 'Leagues',
-        SearchSectionEnum.teams => 'Teams',
-        SearchSectionEnum.coaches => 'Coaches',
+        SearchSectionEnum.countries => 'searchSectionCountries'.tr(),
+        SearchSectionEnum.leagues => 'searchSectionLeagues'.tr(),
+        SearchSectionEnum.teams => 'searchSectionTeams'.tr(),
+        SearchSectionEnum.coaches => 'searchSectionCoaches'.tr(),
       };
 
   @override

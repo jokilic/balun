@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+
 enum CoachSectionEnum {
   info,
   career,
@@ -13,10 +15,10 @@ class CoachSection {
   });
 
   String getCoachSectionName() => switch (coachSectionEnum) {
-        CoachSectionEnum.info => 'Info',
-        CoachSectionEnum.career => 'Career',
-        CoachSectionEnum.sidelined => 'Sidelined',
-        CoachSectionEnum.trophies => 'Trophies',
+        CoachSectionEnum.info => 'coachSectionInfo'.tr(),
+        CoachSectionEnum.career => 'coachSectionCareer'.tr(),
+        CoachSectionEnum.sidelined => 'coachSectionSidelined'.tr(),
+        CoachSectionEnum.trophies => 'coachSectionTrophies'.tr(),
       };
 
   @override

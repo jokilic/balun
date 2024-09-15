@@ -10,8 +10,8 @@ import '../../../theme/theme.dart';
 import '../../../util/fixtures.dart';
 import 'fixtures_all_dialog.dart';
 import 'fixtures_app_bar.dart';
+import 'fixtures_favorite_dialog.dart';
 import 'fixtures_list_tile/fixtures_country/fixtures_country_list_tile.dart';
-import 'fixtures_popular_dialog.dart';
 
 class FixturesSuccess extends WatchingWidget {
   final List<FixtureResponse> fixtures;
@@ -35,9 +35,9 @@ class FixturesSuccess extends WatchingWidget {
 
     final favoritedTeams = watchIt<TeamStorageService>().value;
 
-    final popularSortedGroupedFixtures = sortGroupedFixtures(
+    final favoriteSortedGroupedFixtures = sortGroupedFixtures(
       groupedFixtures: groupFixtures(
-        fixtures: getPopularFixtures(
+        fixtures: getFavoriteFixtures(
           fixtures: fixtures,
           favoritedLeagues: favoritedLeagues,
           favoritedTeams: favoritedTeams,
@@ -62,13 +62,13 @@ class FixturesSuccess extends WatchingWidget {
         ///
         /// FAVORITE FIXTURES
         ///
-        if (popularSortedGroupedFixtures.isNotEmpty) ...[
+        if (favoriteSortedGroupedFixtures.isNotEmpty) ...[
           const SizedBox(height: 8),
           FixturesAppBar(
             onPressed: () => showDialog(
               context: context,
               barrierColor: context.colors.black.withOpacity(0.5),
-              builder: (context) => FixturesPopularDialog(
+              builder: (context) => FixturesFavoriteDialog(
                 onPressed: Navigator.of(context).pop,
               ),
             ),
@@ -79,10 +79,10 @@ class FixturesSuccess extends WatchingWidget {
             shrinkWrap: true,
             padding: const EdgeInsets.symmetric(horizontal: 8),
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: popularSortedGroupedFixtures.length,
+            itemCount: favoriteSortedGroupedFixtures.length,
             itemBuilder: (_, countryIndex) {
-              final countryLeague = popularSortedGroupedFixtures.keys.elementAtOrNull(countryIndex);
-              final leagues = popularSortedGroupedFixtures[countryLeague];
+              final countryLeague = favoriteSortedGroupedFixtures.keys.elementAtOrNull(countryIndex);
+              final leagues = favoriteSortedGroupedFixtures[countryLeague];
 
               return FixturesCountryListTile(
                 countryLeague: countryLeague,
@@ -101,7 +101,7 @@ class FixturesSuccess extends WatchingWidget {
         ///
         if (sortedGroupedFixtures.isNotEmpty) ...[
           SizedBox(
-            height: popularSortedGroupedFixtures.isNotEmpty ? 40 : 8,
+            height: favoriteSortedGroupedFixtures.isNotEmpty ? 40 : 8,
           ),
           FixturesAppBar(
             onPressed: () => showDialog(

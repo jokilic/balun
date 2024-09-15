@@ -11,7 +11,7 @@ class BalunConstants {
   static const cacheDuration = Duration(days: 3);
 
   /// Keys are country names from the backend
-  static const popularCountryIDs = [
+  static const favoriteCountryIDs = [
     'World',
     'Croatia',
     'England',

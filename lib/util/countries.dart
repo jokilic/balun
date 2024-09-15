@@ -2,7 +2,7 @@ import '../constants.dart';
 import '../models/countries/country_response.dart';
 
 List<CountryResponse> sortCountries(List<CountryResponse> countries) {
-  const popularCountryIDs = BalunConstants.popularCountryIDs;
+  const popularCountryIDs = BalunConstants.favoriteCountryIDs;
 
   countries.sort((a, b) {
     // Handle null names
