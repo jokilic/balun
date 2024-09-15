@@ -74,7 +74,7 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      widget.countryLeague?.country ?? 'Unknown',
+                      widget.countryLeague?.country ?? '---',
                       style: context.textStyles.fixturesCountry,
                     ),
                   ),

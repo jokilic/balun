@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/leagues/league_response.dart';
@@ -29,7 +30,7 @@ class TeamLeaguesController extends ValueNotifier<BalunState<List<LeagueResponse
   }) async {
     if (teamId == null) {
       value = Error(
-        error: 'Passed teamId is null',
+        error: 'teamIdNull'.tr(),
       );
     }
 

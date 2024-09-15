@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/squads/player/player.dart';
@@ -61,7 +62,7 @@ class TeamPlayersListTile extends StatelessWidget {
                     ///
                     if (player.age != null) ...[
                       Text(
-                        '${player.age!} years old',
+                        '${player.age!} ${'teamCoachesYearsOld'.tr()}',
                         style: context.textStyles.leagueTeamsCountry,
                       ),
                       const SizedBox(width: 12),

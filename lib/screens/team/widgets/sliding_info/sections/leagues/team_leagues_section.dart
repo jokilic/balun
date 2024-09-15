@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
@@ -50,17 +51,17 @@ class _TeamLeaguesSectionState extends State<TeamLeaguesSection> {
         ),
       ],
       child: switch (leaguesState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
             isSmall: true,
           ),
         Loading() => TeamLeaguesLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no team leagues',
+        Empty() => BalunEmpty(
+            message: 'teamLeaguesEmptyState'.tr(),
             isSmall: true,
           ),
         Error() => BalunError(
-            error: (leaguesState as Error).error ?? 'Generic team leagues error',
+            error: (leaguesState as Error).error ?? 'teamLeaguesErrorState'.tr(),
             isSmall: true,
           ),
         Success() => TeamLeaguesContent(

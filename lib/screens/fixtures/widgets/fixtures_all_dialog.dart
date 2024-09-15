@@ -34,7 +34,7 @@ class FixturesAllDialog extends WatchingWidget {
           /// TITLE
           ///
           Text(
-            'All matches',
+            'fixturesAllTitle'.tr(),
             style: context.textStyles.dialogTitle,
           ),
           const SizedBox(height: 8),
@@ -51,7 +51,7 @@ class FixturesAllDialog extends WatchingWidget {
                   Text.rich(
                     TextSpan(children: [
                       TextSpan(
-                        text: 'Section which shows all matches played on ',
+                        text: 'fixturesAllDialogText'.tr(),
                         style: context.textStyles.dialogText,
                       ),
                       TextSpan(
@@ -76,7 +76,7 @@ class FixturesAllDialog extends WatchingWidget {
         BalunButton(
           onPressed: onPressed,
           child: Text(
-            'Okay'.toUpperCase(),
+            'fixturesDialogOkay'.tr().toUpperCase(),
             style: context.textStyles.dialogButton,
           ),
         ),

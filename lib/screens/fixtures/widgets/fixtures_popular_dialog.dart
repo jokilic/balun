@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -42,7 +43,7 @@ class FixturesPopularDialog extends WatchingWidget {
           /// TITLE
           ///
           Text(
-            'Favorite matches',
+            'fixturesFavoriteTitle'.tr(),
             style: context.textStyles.dialogTitle,
           ),
           const SizedBox(height: 8),
@@ -57,12 +58,12 @@ class FixturesPopularDialog extends WatchingWidget {
                   /// TEXT
                   ///
                   Text(
-                    'Section which shows matches within favorited leagues and played by favorited teams.',
+                    'fixturesFavoriteDialogText1'.tr(),
                     style: context.textStyles.dialogText,
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'You can favorite them by opening relevant league / team and pressing the star icon.',
+                    'fixturesFavoriteDialogText2'.tr(),
                     style: context.textStyles.dialogText,
                   ),
                   const SizedBox(height: 16),
@@ -71,13 +72,13 @@ class FixturesPopularDialog extends WatchingWidget {
                   /// LEAGUES
                   ///
                   Text(
-                    'Leagues',
+                    'fixturesFavoriteDialogLeagues'.tr(),
                     style: context.textStyles.dialogSubtitle,
                   ),
                   const SizedBox(height: 12),
                   if (favoritedLeagues.isEmpty)
                     Text(
-                      'No favorited leagues yet.',
+                      'fixturesFavoriteDialogNoLeagues'.tr(),
                       style: context.textStyles.dialogText,
                     )
                   else
@@ -125,13 +126,13 @@ class FixturesPopularDialog extends WatchingWidget {
                   /// TEAMS
                   ///
                   Text(
-                    'Teams',
+                    'fixturesFavoriteDialogTeams'.tr(),
                     style: context.textStyles.dialogSubtitle,
                   ),
                   const SizedBox(height: 12),
                   if (favoritedTeams.isEmpty)
                     Text(
-                      'No favorited teams yet.',
+                      'fixturesFavoriteDialogNoTeams'.tr(),
                       style: context.textStyles.dialogText,
                     )
                   else
@@ -183,7 +184,7 @@ class FixturesPopularDialog extends WatchingWidget {
         BalunButton(
           onPressed: onPressed,
           child: Text(
-            'Okay'.toUpperCase(),
+            'fixturesDialogOkay'.tr().toUpperCase(),
             style: context.textStyles.dialogButton,
           ),
         ),

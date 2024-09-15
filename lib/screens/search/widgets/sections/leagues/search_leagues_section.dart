@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -16,15 +17,15 @@ class SearchLeaguesSection extends WatchingWidget {
     ).value;
 
     return switch (searchLeaguesState) {
-      Initial() => const BalunEmpty(
-          message: 'Search for leagues',
+      Initial() => BalunEmpty(
+          message: 'searchLeaguesInitialState'.tr(),
         ),
       Loading() => SearchLeaguesLoading(),
-      Empty() => const BalunEmpty(
-          message: 'There are no leagues',
+      Empty() => BalunEmpty(
+          message: 'searchLeaguesEmptyState'.tr(),
         ),
       Error() => BalunError(
-          error: (searchLeaguesState as Error).error ?? 'Generic search leagues error',
+          error: (searchLeaguesState as Error).error ?? 'searchLeaguesErrorState'.tr(),
         ),
       Success() => SearchLeaguesSuccess(
           leagues: (searchLeaguesState as Success).data,

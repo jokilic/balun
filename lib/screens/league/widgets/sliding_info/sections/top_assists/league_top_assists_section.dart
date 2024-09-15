@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
@@ -53,17 +54,17 @@ class _LeagueTopAssistsSectionState extends State<LeagueTopAssistsSection> {
         ),
       ],
       child: switch (topAssistsState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
             isSmall: true,
           ),
         Loading() => LeagueTopAssistsLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no top assists',
+        Empty() => BalunEmpty(
+            message: 'leagueTopAssistsEmptyState'.tr(),
             isSmall: true,
           ),
         Error() => BalunError(
-            error: (topAssistsState as Error).error ?? 'Generic top assists error',
+            error: (topAssistsState as Error).error ?? 'leagueTopAssistsErrorState'.tr(),
             isSmall: true,
           ),
         Success() => LeagueTopAssistsContent(

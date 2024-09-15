@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/players/statistic/statistic.dart';
@@ -30,7 +31,7 @@ class PlayerStatisticsController extends ValueNotifier<BalunState<List<Statistic
   }) async {
     if (playerId == null || season == null) {
       value = Error(
-        error: 'Passed playerId or season is null',
+        error: 'playerIdOrSeasonNull'.tr(),
       );
     }
 

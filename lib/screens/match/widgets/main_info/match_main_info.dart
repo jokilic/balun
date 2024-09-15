@@ -201,7 +201,7 @@ class MatchMainInfo extends WatchingWidget {
                     if (match.events?.isNotEmpty ?? false)
                       ...match.events!
                           .where(
-                        (event) => event.team?.id == match.teams?.home?.id && event.type == 'Goal',
+                        (event) => event.team?.id == match.teams?.home?.id && event.type?.toLowerCase() == 'goal',
                       )
                           .map(
                         (event) {
@@ -224,7 +224,7 @@ class MatchMainInfo extends WatchingWidget {
                                     event.detail?.toLowerCase() == 'penalty'
                                         ? '$playerName (P)'
                                         : event.detail?.toLowerCase() == 'own goal'
-                                            ? '$playerName (OG)'
+                                            ? '$playerName (${'matchInfoOwnGoal'.tr()})'
                                             : playerName,
                                     style: context.textStyles.matchGoal,
                                     maxLines: 1,
@@ -279,7 +279,7 @@ class MatchMainInfo extends WatchingWidget {
                     if (match.events?.isNotEmpty ?? false)
                       ...match.events!
                           .where(
-                            (event) => event.team?.id == match.teams?.away?.id && event.type == 'Goal',
+                            (event) => event.team?.id == match.teams?.away?.id && event.type?.toLowerCase() == 'goal',
                           )
                           .map(
                             (event) => Padding(

@@ -47,7 +47,7 @@ class CountriesListTile extends StatelessWidget {
               const SizedBox(width: 16),
               Flexible(
                 child: Text(
-                  country.name ?? 'Unknown',
+                  country.name ?? '---',
                   style: context.textStyles.fixturesCountry,
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
@@ -53,17 +54,17 @@ class _LeagueTopYellowCardsSectionState extends State<LeagueTopYellowCardsSectio
         ),
       ],
       child: switch (topYellowCardsState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
             isSmall: true,
           ),
         Loading() => LeagueTopYellowCardsLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no top yellow cards',
+        Empty() => BalunEmpty(
+            message: 'leagueTopYellowCardsEmptyState'.tr(),
             isSmall: true,
           ),
         Error() => BalunError(
-            error: (topYellowCardsState as Error).error ?? 'Generic top yellow cards error',
+            error: (topYellowCardsState as Error).error ?? 'leagueTopYellowCardsErrorState'.tr(),
             isSmall: true,
           ),
         Success() => LeagueTopYellowCardsContent(

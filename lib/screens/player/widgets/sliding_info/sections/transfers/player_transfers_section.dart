@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
@@ -50,17 +51,17 @@ class _PlayerTransfersSectionState extends State<PlayerTransfersSection> {
         ),
       ],
       child: switch (transfersState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
             isSmall: true,
           ),
         Loading() => PlayerTransfersLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no player transfers',
+        Empty() => BalunEmpty(
+            message: 'playerTransfersEmptyState'.tr(),
             isSmall: true,
           ),
         Error() => BalunError(
-            error: (transfersState as Error).error ?? 'Generic player transfers error',
+            error: (transfersState as Error).error ?? 'playerTransfersErrorState'.tr(),
             isSmall: true,
           ),
         Success() => PlayerTransfersContent(

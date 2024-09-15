@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../constants.dart';
@@ -103,37 +104,37 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                                 /// GAMES
                                 ///
                                 Text(
-                                  'Games',
+                                  'playerStatisticsGames'.tr(),
                                   style: context.textStyles.matchPlayerStatisticsTitle,
                                 ),
                                 const SizedBox(height: 8),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Appearences',
+                                  title: 'playerStatisticsAppearences'.tr(),
                                   text: '${widget.statistic?.games?.appearences ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Lineups',
+                                  title: 'playerStatisticsLineups'.tr(),
                                   text: '${widget.statistic?.games?.lineups ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Minutes',
+                                  title: 'playerStatisticsMinutes'.tr(),
                                   text: widget.statistic?.games?.minutes != null ? "${widget.statistic?.games?.minutes}'" : '---',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Number',
+                                  title: 'playerStatisticsNumber'.tr(),
                                   text: '${widget.statistic?.games?.number ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Position',
+                                  title: 'playerStatisticsPosition'.tr(),
                                   text: widget.statistic?.games?.position ?? '---',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Rating',
+                                  title: 'playerStatisticsRating'.tr(),
                                   text: widget.statistic?.games?.rating?.toStringAsFixed(2) ?? '---',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Captain',
-                                  text: widget.statistic?.games?.captain ?? false ? 'Yes' : 'No',
+                                  title: 'playerStatisticsCaptain'.tr(),
+                                  text: widget.statistic?.games?.captain ?? false ? 'playerStatisticsYes'.tr() : 'playerStatisticsNo'.tr(),
                                 ),
                                 const SizedBox(height: 12),
 
@@ -141,16 +142,16 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                                 /// SHOTS
                                 ///
                                 Text(
-                                  'Shots',
+                                  'playerStatisticsShots'.tr(),
                                   style: context.textStyles.matchPlayerStatisticsTitle,
                                 ),
                                 const SizedBox(height: 8),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Total',
+                                  title: 'playerStatisticsTotal'.tr(),
                                   text: '${widget.statistic?.shots?.shotsTotal ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'On',
+                                  title: 'playerStatisticsOn'.tr(),
                                   text: '${widget.statistic?.shots?.shotsOn ?? '---'}',
                                 ),
                                 const SizedBox(height: 12),
@@ -159,20 +160,20 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                                 /// SHOTS
                                 ///
                                 Text(
-                                  'Substitutes',
+                                  'playerStatisticsSubstitutes'.tr(),
                                   style: context.textStyles.matchPlayerStatisticsTitle,
                                 ),
                                 const SizedBox(height: 8),
                                 PlayerStatisticsListTileValue(
-                                  title: 'In',
+                                  title: 'playerStatisticsIn'.tr(),
                                   text: '${widget.statistic?.substitutes?.playerIn ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Out',
+                                  title: 'playerStatisticsOut'.tr(),
                                   text: '${widget.statistic?.substitutes?.playerOut ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Bench',
+                                  title: 'playerStatisticsBench'.tr(),
                                   text: '${widget.statistic?.substitutes?.playerBench ?? '---'}',
                                 ),
                                 const SizedBox(height: 12),
@@ -181,24 +182,24 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                                 /// GOALS
                                 ///
                                 Text(
-                                  'Goals',
+                                  'playerStatisticsGoals'.tr(),
                                   style: context.textStyles.matchPlayerStatisticsTitle,
                                 ),
                                 const SizedBox(height: 8),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Total',
+                                  title: 'playerStatisticsTotal'.tr(),
                                   text: '${widget.statistic?.goals?.total ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Conceded',
+                                  title: 'playerStatisticsConceded'.tr(),
                                   text: '${widget.statistic?.goals?.conceded ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Assists',
+                                  title: 'playerStatisticsAssists'.tr(),
                                   text: '${widget.statistic?.goals?.assists ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Saves',
+                                  title: 'playerStatisticsSaves'.tr(),
                                   text: '${widget.statistic?.goals?.saves ?? '---'}',
                                 ),
                                 const SizedBox(height: 12),
@@ -207,20 +208,20 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                                 /// PASSES
                                 ///
                                 Text(
-                                  'Passes',
+                                  'playerStatisticsPasses'.tr(),
                                   style: context.textStyles.matchPlayerStatisticsTitle,
                                 ),
                                 const SizedBox(height: 8),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Total',
+                                  title: 'playerStatisticsTotal'.tr(),
                                   text: '${widget.statistic?.passes?.total ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Key',
+                                  title: 'playerStatisticsKey'.tr(),
                                   text: '${widget.statistic?.passes?.key ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Accuracy',
+                                  title: 'playerStatisticsAccuracy'.tr(),
                                   text: widget.statistic?.passes?.accuracy != null ? '${widget.statistic?.passes?.accuracy}%' : '---',
                                 ),
                                 const SizedBox(height: 12),
@@ -235,20 +236,20 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                                 /// TACKLES
                                 ///
                                 Text(
-                                  'Tackles',
+                                  'playerStatisticsTackles'.tr(),
                                   style: context.textStyles.matchPlayerStatisticsTitle,
                                 ),
                                 const SizedBox(height: 8),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Total',
+                                  title: 'playerStatisticsTotal'.tr(),
                                   text: '${widget.statistic?.tackles?.total ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Blocks',
+                                  title: 'playerStatisticsBlocks'.tr(),
                                   text: '${widget.statistic?.tackles?.blocks ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Interceptions',
+                                  title: 'playerStatisticsInterceptions'.tr(),
                                   text: '${widget.statistic?.tackles?.interceptions ?? '---'}',
                                 ),
                                 const SizedBox(height: 12),
@@ -257,16 +258,16 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                                 /// DUELS
                                 ///
                                 Text(
-                                  'Duels',
+                                  'playerStatisticsDuels'.tr(),
                                   style: context.textStyles.matchPlayerStatisticsTitle,
                                 ),
                                 const SizedBox(height: 8),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Total',
+                                  title: 'playerStatisticsTotal'.tr(),
                                   text: '${widget.statistic?.duels?.total ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Won',
+                                  title: 'playerStatisticsWon'.tr(),
                                   text: '${widget.statistic?.duels?.won ?? '---'}',
                                 ),
                                 const SizedBox(height: 12),
@@ -275,20 +276,20 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                                 /// DRIBBLES
                                 ///
                                 Text(
-                                  'Dribbles',
+                                  'playerStatisticsDribbles'.tr(),
                                   style: context.textStyles.matchPlayerStatisticsTitle,
                                 ),
                                 const SizedBox(height: 8),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Attempts',
+                                  title: 'playerStatisticsAttempts'.tr(),
                                   text: '${widget.statistic?.dribbles?.attempts ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Success',
+                                  title: 'playerStatisticsSuccess'.tr(),
                                   text: '${widget.statistic?.dribbles?.success ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Past',
+                                  title: 'playerStatisticsPast'.tr(),
                                   text: '${widget.statistic?.dribbles?.past ?? '---'}',
                                 ),
                                 const SizedBox(height: 12),
@@ -297,16 +298,16 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                                 /// FOULS
                                 ///
                                 Text(
-                                  'Fouls',
+                                  'playerStatisticsFouls'.tr(),
                                   style: context.textStyles.matchPlayerStatisticsTitle,
                                 ),
                                 const SizedBox(height: 8),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Drawn',
+                                  title: 'playerStatisticsDrawn'.tr(),
                                   text: '${widget.statistic?.fouls?.drawn ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Commited',
+                                  title: 'playerStatisticsCommited'.tr(),
                                   text: '${widget.statistic?.fouls?.commited ?? '---'}',
                                 ),
                                 const SizedBox(height: 12),
@@ -315,16 +316,16 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                                 /// CARDS
                                 ///
                                 Text(
-                                  'Cards',
+                                  'playerStatisticsCards'.tr(),
                                   style: context.textStyles.matchPlayerStatisticsTitle,
                                 ),
                                 const SizedBox(height: 8),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Yellow',
+                                  title: 'playerStatisticsYellow'.tr(),
                                   text: '${widget.statistic?.cards?.yellow ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Red',
+                                  title: 'playerStatisticsRed'.tr(),
                                   text: '${widget.statistic?.cards?.red ?? '---'}',
                                 ),
                                 const SizedBox(height: 12),
@@ -333,28 +334,28 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                                 /// PENALTIES
                                 ///
                                 Text(
-                                  'Penalties',
+                                  'playerStatisticsPenalties'.tr(),
                                   style: context.textStyles.matchPlayerStatisticsTitle,
                                 ),
                                 const SizedBox(height: 8),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Won',
+                                  title: 'playerStatisticsWon'.tr(),
                                   text: '${widget.statistic?.penalty?.won ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Commited',
+                                  title: 'playerStatisticsCommited'.tr(),
                                   text: '${widget.statistic?.penalty?.commited ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Scored',
+                                  title: 'playerStatisticsScored'.tr(),
                                   text: '${widget.statistic?.penalty?.scored ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Missed',
+                                  title: 'playerStatisticsMissed'.tr(),
                                   text: '${widget.statistic?.penalty?.missed ?? '---'}',
                                 ),
                                 PlayerStatisticsListTileValue(
-                                  title: 'Saved',
+                                  title: 'playerStatisticsSaved'.tr(),
                                   text: '${widget.statistic?.penalty?.saved ?? '---'}',
                                 ),
                                 const SizedBox(height: 12),

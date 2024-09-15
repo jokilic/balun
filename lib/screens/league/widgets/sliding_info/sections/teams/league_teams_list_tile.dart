@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/teams/team_response.dart';
@@ -52,7 +53,7 @@ class LeagueTeamsListTile extends StatelessWidget {
                       ),
                     if (team.team?.founded != null)
                       Text(
-                        'Founded ${team.team!.founded}',
+                        '${'leagueTeamsFounded'.tr()} ${team.team!.founded}',
                         style: context.textStyles.leagueTeamsFounded,
                       ),
                   ],

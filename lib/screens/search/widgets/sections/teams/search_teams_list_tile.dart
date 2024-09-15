@@ -40,7 +40,7 @@ class SearchTeamsListTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      team.team?.name ?? 'Unknown',
+                      team.team?.name ?? '---',
                       style: context.textStyles.fixturesLeague,
                     ),
                     if (team.team?.country != null)

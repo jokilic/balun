@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/player_statistic/player_statistic.dart';
@@ -28,8 +29,8 @@ class MatchPlayerStatisticsSection extends StatelessWidget {
             /// NO STATISTICS
             ///
             if (homePlayerStatistic == null && awayPlayerStatistic == null)
-              const BalunEmpty(
-                message: 'No player statistics',
+              BalunEmpty(
+                message: 'matchPlayerStatisticsNo'.tr(),
                 isSmall: true,
               )
             else ...[

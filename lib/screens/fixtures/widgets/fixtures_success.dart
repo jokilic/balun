@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -59,7 +60,7 @@ class FixturesSuccess extends WatchingWidget {
       physics: const BouncingScrollPhysics(),
       children: [
         ///
-        /// POPULAR FIXTURES
+        /// FAVORITE FIXTURES
         ///
         if (popularSortedGroupedFixtures.isNotEmpty) ...[
           const SizedBox(height: 8),
@@ -71,7 +72,7 @@ class FixturesSuccess extends WatchingWidget {
                 onPressed: Navigator.of(context).pop,
               ),
             ),
-            text: 'Favorite matches',
+            text: 'fixturesFavoriteTitle'.tr(),
           ),
           const SizedBox(height: 24),
           ListView.separated(
@@ -110,7 +111,7 @@ class FixturesSuccess extends WatchingWidget {
                 onPressed: Navigator.of(context).pop,
               ),
             ),
-            text: 'All matches',
+            text: 'fixturesAllTitle'.tr(),
           ),
           const SizedBox(height: 24),
           ListView.separated(

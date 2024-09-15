@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/transfers/transfer_response.dart';
@@ -29,7 +30,7 @@ class TeamTransfersController extends ValueNotifier<BalunState<List<TransferResp
   }) async {
     if (teamId == null) {
       value = Error(
-        error: 'Passed teamId is null',
+        error: 'teamIdNull'.tr(),
       );
     }
 

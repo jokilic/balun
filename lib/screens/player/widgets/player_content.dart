@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../util/state.dart';
@@ -15,15 +16,15 @@ class PlayerContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (playerState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
           ),
         Loading() => PlayerLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There is no player',
+        Empty() => BalunEmpty(
+            message: 'playerEmptyState'.tr(),
           ),
         Error() => BalunError(
-            error: (playerState as Error).error ?? 'Generic player error',
+            error: (playerState as Error).error ?? 'playerErrorState'.tr(),
           ),
         Success() => PlayerSuccess(
             player: (playerState as Success).data,

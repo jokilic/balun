@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart' hide SearchController;
 
 import '../../../theme/icons.dart';
@@ -44,7 +45,7 @@ class SearchBarWidget extends StatelessWidget {
         disabledBorder: border,
         focusedErrorBorder: border,
         contentPadding: const EdgeInsets.all(16),
-        hintText: 'Search...',
+        hintText: 'searchHint'.tr(),
         hintStyle: context.textStyles.searchTextField.copyWith(
           color: context.colors.black.withOpacity(0.5),
         ),

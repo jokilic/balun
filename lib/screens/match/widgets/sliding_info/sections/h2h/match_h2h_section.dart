@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
@@ -55,17 +56,17 @@ class _MatchHead2HeadSectionState extends State<MatchHead2HeadSection> {
         ),
       ],
       child: switch (head2HeadState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
             isSmall: true,
           ),
         Loading() => MatchHead2HeadLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There is no head-to-head',
+        Empty() => BalunEmpty(
+            message: 'matchH2HEmptyState'.tr(),
             isSmall: true,
           ),
         Error() => BalunError(
-            error: (head2HeadState as Error).error ?? 'Generic head2head error',
+            error: (head2HeadState as Error).error ?? 'matchH2HErrorState'.tr(),
             isSmall: true,
           ),
         Success() => MatchHead2HeadContent(

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../constants.dart';
@@ -60,7 +61,7 @@ class _TeamCoachesListTileState extends State<TeamCoachesListTile> {
                             ),
                           if (widget.coach.age != null)
                             Text(
-                              '${widget.coach.age!} years old',
+                              '${widget.coach.age!} ${'teamCoachesYearsOld'.tr()}',
                               style: context.textStyles.leagueTeamsCountry,
                             ),
                         ],

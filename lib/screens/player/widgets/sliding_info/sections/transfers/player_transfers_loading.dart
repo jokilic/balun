@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -75,7 +76,7 @@ class PlayerTransfersLoading extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Price',
+                        'playerTransferPrice'.tr(),
                         style: context.textStyles.teamCoachCareerTitle,
                         textAlign: TextAlign.center,
                       ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/lineup/lineup.dart';
@@ -27,8 +28,8 @@ class MatchLineupsSection extends StatelessWidget {
             /// NO LINEUPS
             ///
             if (homeLineup == null && awayLineup == null)
-              const BalunEmpty(
-                message: 'No lineups',
+              BalunEmpty(
+                message: 'matchLineupNo'.tr(),
                 isSmall: true,
               )
 

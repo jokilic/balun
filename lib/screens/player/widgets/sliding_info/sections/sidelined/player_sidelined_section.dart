@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
@@ -50,17 +51,17 @@ class _PlayerSidelinedSectionState extends State<PlayerSidelinedSection> {
         ),
       ],
       child: switch (sidelinedState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
             isSmall: true,
           ),
         Loading() => PlayerSidelinedLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There is no player sidelined',
+        Empty() => BalunEmpty(
+            message: 'playerSidelinedEmptyState'.tr(),
             isSmall: true,
           ),
         Error() => BalunError(
-            error: (sidelinedState as Error).error ?? 'Generic player sidelined error',
+            error: (sidelinedState as Error).error ?? 'playerSidelinedErrorState'.tr(),
             isSmall: true,
           ),
         Success() => PlayerSidelinedContent(

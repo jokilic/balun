@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
@@ -53,17 +54,17 @@ class _LeagueFixturesSectionState extends State<LeagueFixturesSection> {
         ),
       ],
       child: switch (fixturesState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
             isSmall: true,
           ),
         Loading() => LeagueFixturesLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no fixtures',
+        Empty() => BalunEmpty(
+            message: 'leagueFixturesEmptyState'.tr(),
             isSmall: true,
           ),
         Error() => BalunError(
-            error: (fixturesState as Error).error ?? 'Generic fixtures error',
+            error: (fixturesState as Error).error ?? 'leagueFixturesErrorState'.tr(),
             isSmall: true,
           ),
         Success() => LeagueFixturesContent(

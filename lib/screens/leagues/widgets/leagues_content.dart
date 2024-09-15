@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../util/state.dart';
@@ -15,15 +16,15 @@ class LeaguesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (leaguesState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
           ),
         Loading() => LeaguesLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no leagues',
+        Empty() => BalunEmpty(
+            message: 'leaguesEmptyState'.tr(),
           ),
         Error() => BalunError(
-            error: (leaguesState as Error).error ?? 'Generic leagues error',
+            error: (leaguesState as Error).error ?? 'leaguesErrorState'.tr(),
           ),
         Success() => LeaguesSuccess(
             leagues: (leaguesState as Success).data,

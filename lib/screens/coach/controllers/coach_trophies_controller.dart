@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/trophies/trophy_response.dart';
@@ -29,7 +30,7 @@ class CoachTrophiesController extends ValueNotifier<BalunState<List<TrophyRespon
   }) async {
     if (coachId == null) {
       value = Error(
-        error: 'Passed coachId is null',
+        error: 'coachIdNull'.tr(),
       );
     }
 

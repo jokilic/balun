@@ -59,7 +59,7 @@ class MatchInfoSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Time',
+                        'matchInfoTime'.tr(),
                         style: context.textStyles.matchInfoSectionTitle,
                       ),
                       Text(
@@ -100,7 +100,7 @@ class MatchInfoSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Status',
+                        'matchInfoStatus'.tr(),
                         style: context.textStyles.matchInfoSectionTitle,
                       ),
                       Text(
@@ -152,7 +152,7 @@ class MatchInfoSection extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'League',
+                            'matchInfoLeague'.tr(),
                             style: context.textStyles.matchInfoSectionTitle,
                           ),
                           if (league?.name != null) ...[
@@ -204,7 +204,7 @@ class MatchInfoSection extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Round',
+                            'matchInfoRound'.tr(),
                             style: context.textStyles.matchInfoSectionTitle,
                           ),
                           if (league?.round != null) ...[
@@ -216,7 +216,7 @@ class MatchInfoSection extends StatelessWidget {
                           ],
                           if (league?.season != null)
                             Text(
-                              'Season ${league!.season!}',
+                              '${'matchInfoSeason'.tr()} ${league!.season!}',
                               style: context.textStyles.matchInfoSectionBottomText,
                             ),
                         ],
@@ -246,7 +246,7 @@ class MatchInfoSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Referee',
+                        'matchInfoReferee'.tr(),
                         style: context.textStyles.matchInfoSectionTitle,
                       ),
                       Text(
@@ -278,7 +278,7 @@ class MatchInfoSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Venue',
+                        'matchInfoVenue'.tr(),
                         style: context.textStyles.matchInfoSectionTitle,
                       ),
                       if (venue?.name != null) ...[

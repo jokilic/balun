@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/players/player_response.dart';
@@ -34,8 +35,8 @@ class LeagueTopRedCardsContent extends StatelessWidget {
           ),
           separatorBuilder: (_, __) => const BalunSeperator(),
         )
-      : const BalunEmpty(
-          message: 'There are no top red cards',
+      : BalunEmpty(
+          message: 'leagueTopRedCardsNo'.tr(),
           isSmall: true,
         );
 }

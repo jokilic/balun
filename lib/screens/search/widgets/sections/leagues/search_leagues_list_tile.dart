@@ -50,7 +50,7 @@ class SearchLeaguesListTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      league.league?.name ?? 'Unknown',
+                      league.league?.name ?? '---',
                       style: context.textStyles.fixturesLeague,
                     ),
                     if (league.league?.type != null)

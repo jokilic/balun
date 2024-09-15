@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../util/state.dart';
@@ -15,15 +16,15 @@ class MatchContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (matchState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
           ),
         Loading() => MatchLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There is no match',
+        Empty() => BalunEmpty(
+            message: 'matchEmptyState'.tr(),
           ),
         Error() => BalunError(
-            error: (matchState as Error).error ?? 'Generic match error',
+            error: (matchState as Error).error ?? 'matchErrorState'.tr(),
           ),
         Success() => MatchSuccess(
             match: (matchState as Success).data,

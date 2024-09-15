@@ -41,7 +41,7 @@ class CoachInfoSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Name',
+                          'coachInfoName'.tr(),
                           style: context.textStyles.matchInfoSectionTitle,
                         ),
                         Text(
@@ -63,7 +63,7 @@ class CoachInfoSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          'Age',
+                          'coachInfoAge'.tr(),
                           style: context.textStyles.matchInfoSectionTitle,
                           textAlign: TextAlign.right,
                         ),
@@ -96,7 +96,7 @@ class CoachInfoSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Birth place',
+                          'coachInfoBirthPlace'.tr(),
                           style: context.textStyles.matchInfoSectionTitle,
                         ),
                         if (coach?.birth?.place != null)
@@ -124,7 +124,7 @@ class CoachInfoSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          'Birth date',
+                          'coachInfoBirthDate'.tr(),
                           style: context.textStyles.matchInfoSectionTitle,
                           textAlign: TextAlign.right,
                         ),
@@ -160,7 +160,7 @@ class CoachInfoSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Height',
+                          'coachInfoHeight'.tr(),
                           style: context.textStyles.matchInfoSectionTitle,
                         ),
                         Text(
@@ -182,7 +182,7 @@ class CoachInfoSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          'Weight',
+                          'coachInfoWeight'.tr(),
                           style: context.textStyles.matchInfoSectionTitle,
                           textAlign: TextAlign.right,
                         ),

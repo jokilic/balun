@@ -61,7 +61,7 @@ class CoachCareerListTile extends StatelessWidget {
                       if (startLocal != null) ...[
                         const SizedBox(height: 4),
                         Text(
-                          'Start',
+                          'coachCareerStart'.tr(),
                           style: context.textStyles.teamCoachCareerTitle,
                         ),
                         Text(
@@ -75,7 +75,7 @@ class CoachCareerListTile extends StatelessWidget {
                       if (endLocal != null) ...[
                         const SizedBox(height: 4),
                         Text(
-                          'End',
+                          'coachCareerEnd'.tr(),
                           style: context.textStyles.teamCoachCareerTitle,
                         ),
                         Text(

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -95,7 +96,7 @@ class TeamMainInfo extends WatchingWidget {
           if (team.team?.founded != null) ...[
             const SizedBox(height: 4),
             Text(
-              'Founded ${team.team?.founded}',
+              '${'leagueTeamsFounded'.tr()} ${team.team?.founded}',
               style: context.textStyles.teamFounded,
               textAlign: TextAlign.center,
             ),
@@ -106,7 +107,7 @@ class TeamMainInfo extends WatchingWidget {
           /// SEASON TITLE
           ///
           Text(
-            'Season',
+            'teamInfoSeason'.tr(),
             style: context.textStyles.leagueSeason,
             textAlign: TextAlign.center,
           ),

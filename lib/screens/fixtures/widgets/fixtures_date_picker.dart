@@ -109,7 +109,7 @@ class FixturesDatePicker extends WatchingWidget {
                         children: [
                           Text(
                             date == currentDate
-                                ? 'Today'.toUpperCase()
+                                ? 'fixturesDateToday'.tr().toUpperCase()
                                 : DateFormat(
                                     'E',
                                     context.locale.toLanguageTag(),

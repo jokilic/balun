@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -16,15 +17,15 @@ class SearchCountriesSection extends WatchingWidget {
     ).value;
 
     return switch (searchCountriesState) {
-      Initial() => const BalunEmpty(
-          message: 'Search for countries',
+      Initial() => BalunEmpty(
+          message: 'searchCountriesInitialState'.tr(),
         ),
       Loading() => SearchCountriesLoading(),
-      Empty() => const BalunEmpty(
-          message: 'There are no countries',
+      Empty() => BalunEmpty(
+          message: 'searchCountriesEmptyState'.tr(),
         ),
       Error() => BalunError(
-          error: (searchCountriesState as Error).error ?? 'Generic search countries error',
+          error: (searchCountriesState as Error).error ?? 'searchCountriesErrorState'.tr(),
         ),
       Success() => SearchCountriesSuccess(
           countries: (searchCountriesState as Success).data,

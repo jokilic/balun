@@ -62,7 +62,7 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      widget.league?.name ?? 'Unknown',
+                      widget.league?.name ?? '---',
                       style: context.textStyles.fixturesLeague,
                       textAlign: TextAlign.left,
                       maxLines: 2,

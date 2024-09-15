@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -98,7 +99,7 @@ class MatchEventsListTile extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        '2nd half',
+                        'matchEvents2ndHalf'.tr(),
                         style: context.textStyles.matchEventsSectionResult,
                       ),
                     ),
@@ -123,7 +124,7 @@ class MatchEventsListTile extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    'Match finished',
+                    'matchEventsFullTime'.tr(),
                     style: context.textStyles.matchEventsSectionResult,
                   ),
                 ),
@@ -147,7 +148,7 @@ class MatchEventsListTile extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    'Extra time',
+                    'matchEventsExtraTime'.tr(),
                     style: context.textStyles.matchEventsSectionResult,
                   ),
                 ),
@@ -171,7 +172,7 @@ class MatchEventsListTile extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    'Penalties',
+                    'matchEventsPenalties'.tr(),
                     style: context.textStyles.matchEventsSectionResult,
                   ),
                 ),
@@ -280,7 +281,7 @@ class MatchEventsListTile extends StatelessWidget {
                               ),
                             if (eventDetail.toLowerCase() == 'own goal')
                               TextSpan(
-                                text: ' (OG)',
+                                text: ' (${'matchInfoOwnGoal'.tr()})',
                                 style: context.textStyles.matchEventsSectionText,
                               ),
                           ],

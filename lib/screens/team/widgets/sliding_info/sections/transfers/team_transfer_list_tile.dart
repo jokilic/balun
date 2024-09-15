@@ -98,7 +98,7 @@ class TeamTransferListTile extends StatelessWidget {
 
                 if (transfer.type != null) ...[
                   Text(
-                    'Price',
+                    'playerTransferPrice'.tr(),
                     style: context.textStyles.teamCoachCareerTitle,
                     textAlign: TextAlign.center,
                   ),

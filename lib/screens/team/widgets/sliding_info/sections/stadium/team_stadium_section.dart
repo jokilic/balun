@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/teams/venue/venue.dart';
@@ -35,7 +36,7 @@ class TeamStadiumSection extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Name',
+                            'teamStadiumName'.tr(),
                             style: context.textStyles.matchInfoSectionTitle,
                           ),
                           Text(
@@ -57,7 +58,7 @@ class TeamStadiumSection extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            'Capacity',
+                            'teamStadiumCapacity'.tr(),
                             style: context.textStyles.matchInfoSectionTitle,
                             textAlign: TextAlign.right,
                           ),
@@ -90,7 +91,7 @@ class TeamStadiumSection extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Address',
+                            'teamStadiumAddress'.tr(),
                             style: context.textStyles.matchInfoSectionTitle,
                           ),
                           Text(
@@ -112,7 +113,7 @@ class TeamStadiumSection extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            'City',
+                            'teamStadiumCity'.tr(),
                             style: context.textStyles.matchInfoSectionTitle,
                             textAlign: TextAlign.right,
                           ),

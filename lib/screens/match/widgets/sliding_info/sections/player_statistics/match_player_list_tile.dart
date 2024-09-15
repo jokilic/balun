@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../constants.dart';
@@ -183,28 +184,28 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     /// INFO
                                     ///
                                     Text(
-                                      'Info',
+                                      'matchPlayerInfo'.tr(),
                                       style: context.textStyles.matchPlayerStatisticsTitle,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
-                                      title: 'Rating',
+                                      title: 'matchPlayerRating'.tr(),
                                       text: statistic.games?.rating?.toStringAsFixed(2) ?? '---',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Minutes',
+                                      title: 'matchPlayerMinutes'.tr(),
                                       text: statistic.games?.minutes != null ? "${statistic.games?.minutes}'" : '---',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Number',
+                                      title: 'matchPlayerNumber'.tr(),
                                       text: '${statistic.games?.number ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Position',
+                                      title: 'matchPlayerPosition'.tr(),
                                       text: statistic.games?.position ?? '---',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Offsides',
+                                      title: 'matchPlayerOffsides'.tr(),
                                       text: '${statistic.offsides ?? '---'}',
                                     ),
                                     const SizedBox(height: 12),
@@ -213,16 +214,16 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     /// SHOTS
                                     ///
                                     Text(
-                                      'Shots',
+                                      'matchPlayerShots'.tr(),
                                       style: context.textStyles.matchPlayerStatisticsTitle,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
-                                      title: 'Total',
+                                      title: 'matchPlayerTotal'.tr(),
                                       text: '${statistic.shots?.total ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'On',
+                                      title: 'matchPlayerOn'.tr(),
                                       text: '${statistic.shots?.on ?? '---'}',
                                     ),
                                     const SizedBox(height: 12),
@@ -231,24 +232,24 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     /// GOALS
                                     ///
                                     Text(
-                                      'Goals',
+                                      'matchPlayerGoals'.tr(),
                                       style: context.textStyles.matchPlayerStatisticsTitle,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
-                                      title: 'Total',
+                                      title: 'matchPlayerTotal'.tr(),
                                       text: '${statistic.goals?.total ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Conceded',
+                                      title: 'matchPlayerConceded'.tr(),
                                       text: '${statistic.goals?.conceded ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Assists',
+                                      title: 'matchPlayerAssists'.tr(),
                                       text: '${statistic.goals?.assists ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Saves',
+                                      title: 'matchPlayerSaves'.tr(),
                                       text: '${statistic.goals?.saves ?? '---'}',
                                     ),
                                     const SizedBox(height: 12),
@@ -257,20 +258,20 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     /// PASSES
                                     ///
                                     Text(
-                                      'Passes',
+                                      'matchPlayerPasses'.tr(),
                                       style: context.textStyles.matchPlayerStatisticsTitle,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
-                                      title: 'Total',
+                                      title: 'matchPlayerTotal'.tr(),
                                       text: '${statistic.passes?.total ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Key',
+                                      title: 'matchPlayerKey'.tr(),
                                       text: '${statistic.passes?.key ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Accuracy',
+                                      title: 'matchPlayerAccuracy'.tr(),
                                       text: statistic.passes?.accuracy != null ? '${statistic.passes?.accuracy}%' : '---',
                                     ),
                                     const SizedBox(height: 12),
@@ -279,20 +280,20 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     /// TACKLES
                                     ///
                                     Text(
-                                      'Tackles',
+                                      'matchPlayerTackles'.tr(),
                                       style: context.textStyles.matchPlayerStatisticsTitle,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
-                                      title: 'Total',
+                                      title: 'matchPlayerTotal'.tr(),
                                       text: '${statistic.tackles?.total ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Blocks',
+                                      title: 'matchPlayerBlocks'.tr(),
                                       text: '${statistic.tackles?.blocks ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Interceptions',
+                                      title: 'matchPlayerInterceptions'.tr(),
                                       text: '${statistic.tackles?.interceptions ?? '---'}',
                                     ),
                                     const SizedBox(height: 12),
@@ -307,16 +308,16 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     /// DUELS
                                     ///
                                     Text(
-                                      'Duels',
+                                      'matchPlayerDuels'.tr(),
                                       style: context.textStyles.matchPlayerStatisticsTitle,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
-                                      title: 'Total',
+                                      title: 'matchPlayerTotal'.tr(),
                                       text: '${statistic.duels?.total ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Won',
+                                      title: 'matchPlayerWon'.tr(),
                                       text: '${statistic.duels?.won ?? '---'}',
                                     ),
                                     const SizedBox(height: 12),
@@ -325,20 +326,20 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     /// DRIBBLES
                                     ///
                                     Text(
-                                      'Dribbles',
+                                      'matchPlayerDribbles'.tr(),
                                       style: context.textStyles.matchPlayerStatisticsTitle,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
-                                      title: 'Attempts',
+                                      title: 'matchPlayerAttempts'.tr(),
                                       text: '${statistic.dribbles?.attempts ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Success',
+                                      title: 'matchPlayerSuccess'.tr(),
                                       text: '${statistic.dribbles?.success ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Past',
+                                      title: 'matchPlayerPast'.tr(),
                                       text: '${statistic.dribbles?.past ?? '---'}',
                                     ),
                                     const SizedBox(height: 12),
@@ -347,16 +348,16 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     /// FOULS
                                     ///
                                     Text(
-                                      'Fouls',
+                                      'matchPlayerFouls'.tr(),
                                       style: context.textStyles.matchPlayerStatisticsTitle,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
-                                      title: 'Drawn',
+                                      title: 'matchPlayerDrawn'.tr(),
                                       text: '${statistic.fouls?.drawn ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Commited',
+                                      title: 'matchPlayerCommited'.tr(),
                                       text: '${statistic.fouls?.commited ?? '---'}',
                                     ),
                                     const SizedBox(height: 12),
@@ -365,16 +366,16 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     /// CARDS
                                     ///
                                     Text(
-                                      'Cards',
+                                      'matchPlayerCards'.tr(),
                                       style: context.textStyles.matchPlayerStatisticsTitle,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
-                                      title: 'Yellow',
+                                      title: 'matchPlayerYellow'.tr(),
                                       text: '${statistic.cards?.yellow ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Red',
+                                      title: 'matchPlayerRed'.tr(),
                                       text: '${statistic.cards?.red ?? '---'}',
                                     ),
                                     const SizedBox(height: 12),
@@ -383,28 +384,28 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     /// PENALTIES
                                     ///
                                     Text(
-                                      'Penalties',
+                                      'matchPlayerPenalties'.tr(),
                                       style: context.textStyles.matchPlayerStatisticsTitle,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
-                                      title: 'Won',
+                                      title: 'matchPlayerWon'.tr(),
                                       text: '${statistic.penalty?.won ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Commited',
+                                      title: 'matchPlayerCommited'.tr(),
                                       text: '${statistic.penalty?.commited ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Scored',
+                                      title: 'matchPlayerScored'.tr(),
                                       text: '${statistic.penalty?.scored ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Missed',
+                                      title: 'matchPlayerMissed'.tr(),
                                       text: '${statistic.penalty?.missed ?? '---'}',
                                     ),
                                     MatchPlayerListTileValue(
-                                      title: 'Saved',
+                                      title: 'matchPlayerSaved'.tr(),
                                       text: '${statistic.penalty?.saved ?? '---'}',
                                     ),
                                     const SizedBox(height: 12),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/players/player_response.dart';
@@ -52,7 +53,7 @@ class LeagueTopYellowCardsListTile extends StatelessWidget {
                       style: context.textStyles.leagueTeamsTitle,
                     ),
                   Text(
-                    '$numberOfCards yellow cards',
+                    '$numberOfCards ${'leagueTopYellowCardsNumber'.tr()}',
                     style: context.textStyles.leagueTeamsCountry,
                   ),
                 ],

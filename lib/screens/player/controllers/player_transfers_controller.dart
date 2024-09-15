@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/transfers/transfer/transfer.dart';
@@ -29,7 +30,7 @@ class PlayerTransfersController extends ValueNotifier<BalunState<List<Transfer>>
   }) async {
     if (playerId == null) {
       value = Error(
-        error: 'Passed playerId is null',
+        error: 'playerIdNull'.tr(),
       );
     }
 

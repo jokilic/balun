@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../util/state.dart';
@@ -15,15 +16,15 @@ class FixturesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (fixturesState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
           ),
         Loading() => FixturesLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no fixtures',
+        Empty() => BalunEmpty(
+            message: 'fixturesEmptyState'.tr(),
           ),
         Error() => BalunError(
-            error: (fixturesState as Error).error ?? 'Generic fixtures error',
+            error: (fixturesState as Error).error ?? 'fixturesErrorState'.tr(),
           ),
         Success() => FixturesSuccess(
             fixtures: (fixturesState as Success).data,

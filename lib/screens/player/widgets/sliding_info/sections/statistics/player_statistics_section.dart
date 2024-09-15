@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
@@ -53,17 +54,17 @@ class _PlayerStatisticsSectionState extends State<PlayerStatisticsSection> {
         ),
       ],
       child: switch (statisticsState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
             isSmall: true,
           ),
         Loading() => PlayerStatisticsLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no statistics',
+        Empty() => BalunEmpty(
+            message: 'playerStatisticsEmptyState'.tr(),
             isSmall: true,
           ),
         Error() => BalunError(
-            error: (statisticsState as Error).error ?? 'Generic player statistics error',
+            error: (statisticsState as Error).error ?? 'playerStatisticsErrorState'.tr(),
             isSmall: true,
           ),
         Success() => PlayerStatisticsContent(

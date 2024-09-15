@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../util/state.dart';
@@ -15,15 +16,15 @@ class CountriesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (countriesState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
           ),
         Loading() => CountriesLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no countries',
+        Empty() => BalunEmpty(
+            message: 'countriesEmptyState'.tr(),
           ),
         Error() => BalunError(
-            error: (countriesState as Error).error ?? 'Generic countries error',
+            error: (countriesState as Error).error ?? 'countriesErrorState'.tr(),
           ),
         Success() => CountriesSuccess(
             countries: (countriesState as Success).data,

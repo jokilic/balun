@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/standings/standing_response.dart';
@@ -30,7 +31,7 @@ class TeamStandingsController extends ValueNotifier<BalunState<List<StandingResp
   }) async {
     if (teamId == null || season == null) {
       value = Error(
-        error: 'Passed teamId or season is null',
+        error: 'teamIdOrSeasonNull'.tr(),
       );
     }
 

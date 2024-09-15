@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/players/player_response.dart';
@@ -30,7 +31,7 @@ class LeagueTopRedCardsController extends ValueNotifier<BalunState<List<PlayerRe
   }) async {
     if (leagueId == null || season == null) {
       value = Error(
-        error: 'Passed leagueId or season is null',
+        error: 'leagueIdOrSeasonNull'.tr(),
       );
     }
 

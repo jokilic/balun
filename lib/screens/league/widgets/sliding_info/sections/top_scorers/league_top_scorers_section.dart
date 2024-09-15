@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
@@ -53,17 +54,17 @@ class _LeagueTopScorersSectionState extends State<LeagueTopScorersSection> {
         ),
       ],
       child: switch (topScorersState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
             isSmall: true,
           ),
         Loading() => LeagueTopScorersLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no top scorers',
+        Empty() => BalunEmpty(
+            message: 'leagueTopScorersEmptyState'.tr(),
             isSmall: true,
           ),
         Error() => BalunError(
-            error: (topScorersState as Error).error ?? 'Generic top scorers error',
+            error: (topScorersState as Error).error ?? 'leagueTopScorersErrorState'.tr(),
             isSmall: true,
           ),
         Success() => LeagueTopScorersContent(

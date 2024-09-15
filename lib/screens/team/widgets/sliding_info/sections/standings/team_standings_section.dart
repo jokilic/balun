@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
@@ -53,17 +54,17 @@ class _TeamStandingsSectionState extends State<TeamStandingsSection> {
         ),
       ],
       child: switch (standingsState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
             isSmall: true,
           ),
         Loading() => TeamStandingsLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no team standings',
+        Empty() => BalunEmpty(
+            message: 'teamStandingsEmptyState'.tr(),
             isSmall: true,
           ),
         Error() => BalunError(
-            error: (standingsState as Error).error ?? 'Generic team standings error',
+            error: (standingsState as Error).error ?? 'teamStandingsErrorState'.tr(),
             isSmall: true,
           ),
         Success() => TeamStandingsContent(

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/fixtures/fixture_response.dart';
@@ -30,7 +31,7 @@ class MatchHead2HeadController extends ValueNotifier<BalunState<List<FixtureResp
   }) async {
     if (homeTeamId == null || awayTeamId == null) {
       value = Error(
-        error: 'Passed homeTeamId or awayTeamId is null',
+        error: 'homeTeamIdOrAwayTeamIdNull'.tr(),
       );
     }
 

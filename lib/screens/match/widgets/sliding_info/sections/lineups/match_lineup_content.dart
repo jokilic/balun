@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/lineup/lineup.dart';
@@ -28,7 +29,7 @@ class MatchLineupContent extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: Text(
-              'Starting 11',
+              'matchLineupStarting11'.tr(),
               style: context.textStyles.matchLineupsSectionTitle,
             ),
           ),
@@ -47,7 +48,7 @@ class MatchLineupContent extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Managers',
+              'matchLineupManagers'.tr(),
               style: context.textStyles.matchLineupsSectionTitle,
             ),
           ),
@@ -103,7 +104,7 @@ class MatchLineupContent extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: Text(
-              'Substitutions',
+              'matchLineupSubstitutions'.tr(),
               style: context.textStyles.matchLineupsSectionTitle,
             ),
           ),

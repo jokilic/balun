@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/standings/standing_response.dart';
@@ -40,7 +41,7 @@ class MatchStandingsContent extends StatelessWidget {
                   SizedBox(
                     width: 36,
                     child: Text(
-                      'PL',
+                      'leagueStandingsPlayed'.tr(),
                       style: context.textStyles.matchStandingsSectionText,
                       maxLines: 1,
                       textAlign: TextAlign.center,
@@ -50,7 +51,7 @@ class MatchStandingsContent extends StatelessWidget {
                   SizedBox(
                     width: 36,
                     child: Text(
-                      'GD',
+                      'leagueStandingsGoalDifference'.tr(),
                       style: context.textStyles.matchStandingsSectionText,
                       maxLines: 1,
                       textAlign: TextAlign.center,
@@ -60,7 +61,7 @@ class MatchStandingsContent extends StatelessWidget {
                   SizedBox(
                     width: 36,
                     child: Text(
-                      'PTS',
+                      'leagueStandingsPoints'.tr(),
                       style: context.textStyles.matchStandingsSectionText,
                       maxLines: 1,
                       textAlign: TextAlign.center,

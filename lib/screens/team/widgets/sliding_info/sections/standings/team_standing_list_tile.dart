@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../constants.dart';
@@ -106,7 +107,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Form',
+                                      'leagueStandingsForm'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
                                         color: context.colors.black.withOpacity(0.5),
                                       ),
@@ -148,7 +149,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Points',
+                                      'leagueStandingsPointsLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
                                         color: context.colors.black.withOpacity(0.5),
                                       ),
@@ -168,7 +169,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Goal difference',
+                                      'leagueStandingsGoalDifferenceLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
                                         color: context.colors.black.withOpacity(0.5),
                                       ),
@@ -188,7 +189,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Played games',
+                                      'leagueStandingsPlayedGamesLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
                                         color: context.colors.black.withOpacity(0.5),
                                       ),
@@ -208,7 +209,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Won games',
+                                      'leagueStandingsWonGamesLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
                                         color: context.colors.black.withOpacity(0.5),
                                       ),
@@ -228,7 +229,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Drew games',
+                                      'leagueStandingsDrewGamesLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
                                         color: context.colors.black.withOpacity(0.5),
                                       ),
@@ -248,7 +249,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Lost games',
+                                      'leagueStandingsLostGamesLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
                                         color: context.colors.black.withOpacity(0.5),
                                       ),
@@ -268,7 +269,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Scored goals',
+                                      'leagueStandingsScoredGoalsLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
                                         color: context.colors.black.withOpacity(0.5),
                                       ),
@@ -288,7 +289,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Conceded goals',
+                                      'leagueStandingsConcededGoalsLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
                                         color: context.colors.black.withOpacity(0.5),
                                       ),

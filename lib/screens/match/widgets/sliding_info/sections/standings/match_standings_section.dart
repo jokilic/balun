@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
@@ -55,17 +56,17 @@ class _MatchStandingsSectionState extends State<MatchStandingsSection> {
         ),
       ],
       child: switch (standingsState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
             isSmall: true,
           ),
         Loading() => MatchStandingsLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no standings',
+        Empty() => BalunEmpty(
+            message: 'matchStandingsEmptyState'.tr(),
             isSmall: true,
           ),
         Error() => BalunError(
-            error: (standingsState as Error).error ?? 'Generic standings error',
+            error: (standingsState as Error).error ?? 'matchStandingsErrorState'.tr(),
             isSmall: true,
           ),
         Success() => MatchStandingsContent(

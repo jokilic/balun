@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -25,7 +26,7 @@ class FixturesLoading extends StatelessWidget {
             const SizedBox(height: 8),
             FixturesAppBar(
               onPressed: () {},
-              text: 'Favorite matches',
+              text: 'fixturesFavoriteTitle'.tr(),
             ),
             const SizedBox(height: 24),
             ListView.separated(
@@ -39,7 +40,7 @@ class FixturesLoading extends StatelessWidget {
             const SizedBox(height: 40),
             FixturesAppBar(
               onPressed: () {},
-              text: 'All matches',
+              text: 'fixturesAllTitle'.tr(),
             ),
             const SizedBox(height: 24),
             ListView.separated(

@@ -41,7 +41,7 @@ class PlayerInfoSection extends StatelessWidget {
                 const SizedBox(width: 16),
                 Expanded(
                   child: Text(
-                    '${player?.firstName} is injured.',
+                    '${player?.firstName} ${'playerInfoInjured'.tr()}.',
                     style: context.textStyles.matchInfoSectionText,
                   ),
                 ),
@@ -66,7 +66,7 @@ class PlayerInfoSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Name',
+                          'playerInfoName'.tr(),
                           style: context.textStyles.matchInfoSectionTitle,
                         ),
                         Text(
@@ -88,7 +88,7 @@ class PlayerInfoSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          'Age',
+                          'playerInfoAge'.tr(),
                           style: context.textStyles.matchInfoSectionTitle,
                           textAlign: TextAlign.right,
                         ),
@@ -121,7 +121,7 @@ class PlayerInfoSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Birth place',
+                          'playerInfoBirthPlace'.tr(),
                           style: context.textStyles.matchInfoSectionTitle,
                         ),
                         if (player?.birth?.place != null)
@@ -149,7 +149,7 @@ class PlayerInfoSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          'Birth date',
+                          'playerInfoBirthDate'.tr(),
                           style: context.textStyles.matchInfoSectionTitle,
                           textAlign: TextAlign.right,
                         ),
@@ -185,7 +185,7 @@ class PlayerInfoSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Height',
+                          'playerInfoHeight'.tr(),
                           style: context.textStyles.matchInfoSectionTitle,
                         ),
                         Text(
@@ -207,7 +207,7 @@ class PlayerInfoSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          'Weight',
+                          'playerInfoWeight'.tr(),
                           style: context.textStyles.matchInfoSectionTitle,
                           textAlign: TextAlign.right,
                         ),

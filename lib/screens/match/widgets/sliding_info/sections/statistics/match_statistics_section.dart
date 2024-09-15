@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/statistic/statistic.dart';
@@ -15,8 +16,8 @@ class MatchStatisticsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => homeStatistic == null && awayStatistic == null
-      ? const BalunEmpty(
-          message: 'No statistics',
+      ? BalunEmpty(
+          message: 'matchStatisticsNo'.tr(),
           isSmall: true,
         )
       : ListView.separated(

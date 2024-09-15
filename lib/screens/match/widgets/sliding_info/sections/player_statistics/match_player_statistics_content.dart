@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../constants.dart';
@@ -98,7 +99,7 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
                         Align(
                           alignment: Alignment.centerRight,
                           child: Text(
-                            'Player statistics',
+                            'matchPlayerStatistics'.tr(),
                             style: context.textStyles.matchLineupsSectionTitle,
                           ),
                         ),

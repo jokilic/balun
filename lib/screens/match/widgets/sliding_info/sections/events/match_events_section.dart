@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/event/event.dart';
@@ -34,7 +35,7 @@ class MatchEventsSection extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          'Match started',
+                          'matchEventsStarted'.tr(),
                           style: context.textStyles.matchEventsSectionResult,
                         ),
                       ],
@@ -56,8 +57,8 @@ class MatchEventsSection extends StatelessWidget {
                   const SizedBox(height: 24),
                 ]
               : [
-                  const BalunEmpty(
-                    message: 'No events',
+                  BalunEmpty(
+                    message: 'matchEventsNo'.tr(),
                     isSmall: true,
                   ),
                 ],

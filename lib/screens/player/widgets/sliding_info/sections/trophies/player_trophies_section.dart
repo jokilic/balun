@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
@@ -50,17 +51,17 @@ class _PlayerTrophiesSectionState extends State<PlayerTrophiesSection> {
         ),
       ],
       child: switch (trophiesState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
             isSmall: true,
           ),
         Loading() => PlayerTrophiesLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There are no player trophies',
+        Empty() => BalunEmpty(
+            message: 'playerTrophiesEmptyState'.tr(),
             isSmall: true,
           ),
         Error() => BalunError(
-            error: (trophiesState as Error).error ?? 'Generic player trophies error',
+            error: (trophiesState as Error).error ?? 'playerTrophiesErrorState'.tr(),
             isSmall: true,
           ),
         Success() => PlayerTrophiesContent(

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/coaches/coach_response.dart';
@@ -29,7 +30,7 @@ class TeamCoachesController extends ValueNotifier<BalunState<List<CoachResponse>
   }) async {
     if (teamId == null) {
       value = Error(
-        error: 'Passed teamId is null',
+        error: 'teamIdNull'.tr(),
       );
     }
 

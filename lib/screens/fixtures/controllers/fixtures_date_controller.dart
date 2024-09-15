@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -127,13 +128,13 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
         useAbbrLabelForMonthModePicker: true,
         cancelButton: BalunButton(
           child: Text(
-            'Cancel'.toUpperCase(),
+            'fixturesCalendarCancel'.tr().toUpperCase(),
             style: context.textStyles.calendarDayInactive,
           ),
         ),
         okButton: BalunButton(
           child: Text(
-            'Go'.toUpperCase(),
+            'fixturesCalendarGo'.tr().toUpperCase(),
             style: context.textStyles.teamTransferTeam,
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/sidelined/sidelined_inner_response.dart';
@@ -29,7 +30,7 @@ class PlayerSidelinedController extends ValueNotifier<BalunState<List<SidelinedI
   }) async {
     if (playerId == null) {
       value = Error(
-        error: 'Passed playerId is null',
+        error: 'playerIdNull'.tr(),
       );
     }
 

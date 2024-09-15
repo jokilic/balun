@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../util/state.dart';
@@ -15,15 +16,15 @@ class TeamContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (teamState) {
-        Initial() => const BalunError(
-            error: "Initial state, this shouldn't happen",
+        Initial() => BalunError(
+            error: 'initialState'.tr(),
           ),
         Loading() => TeamLoading(),
-        Empty() => const BalunEmpty(
-            message: 'There is no team',
+        Empty() => BalunEmpty(
+            message: 'teamEmptyState'.tr(),
           ),
         Error() => BalunError(
-            error: (teamState as Error).error ?? 'Generic team error',
+            error: (teamState as Error).error ?? 'teamErrorState'.tr(),
           ),
         Success() => TeamSuccess(
             team: (teamState as Success).data,

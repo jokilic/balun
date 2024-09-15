@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -90,7 +91,7 @@ class LeagueMainInfo extends WatchingWidget {
           ///
           if (league.seasons?.isNotEmpty ?? false) ...[
             Text(
-              'Season',
+              'leagueInfoSeason'.tr(),
               style: context.textStyles.leagueSeason,
               textAlign: TextAlign.center,
             ),
