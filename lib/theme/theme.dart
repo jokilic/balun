@@ -222,6 +222,9 @@ class BalunTheme {
     dialogSubtitle: BalunTextStyles.dialogSubtitle.copyWith(
       color: lightAppColors.black,
     ),
+    badgeNumber: BalunTextStyles.badgeNumber.copyWith(
+      color: lightAppColors.white,
+    ),
   );
 }
 

@@ -10,6 +10,7 @@ import '../../../constants.dart';
 import '../../../services/logger_service.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/date_time.dart';
 import '../../../util/dependencies.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
@@ -81,14 +82,6 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
   /// METHODS
   ///
 
-  String getDateForBackend() {
-    final year = value.year.toString().padLeft(2, '0');
-    final month = value.month.toString().padLeft(2, '0');
-    final day = value.day.toString().padLeft(2, '0');
-
-    return '$year-$month-$day';
-  }
-
   void updateDateAndRefetch(DateTime newDate) {
     final oldValue = value;
 
@@ -100,7 +93,7 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
             instanceName: 'fixtures',
           )
           .getFixturesFromDate(
-            dateString: getDateForBackend(),
+            dateString: getDateForBackend(value),
           );
     }
   }
@@ -165,7 +158,7 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
             instanceName: 'fixtures',
           )
           .getFixturesFromDate(
-            dateString: getDateForBackend(),
+            dateString: getDateForBackend(value),
           );
     }
   }

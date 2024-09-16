@@ -380,6 +380,12 @@ abstract class BalunTextStyles {
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
+
+  static const badgeNumber = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -446,6 +452,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle dialogTitle;
   final TextStyle dialogText;
   final TextStyle dialogSubtitle;
+  final TextStyle badgeNumber;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -511,6 +518,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.dialogTitle,
     required this.dialogText,
     required this.dialogSubtitle,
+    required this.badgeNumber,
   });
 
   @override
@@ -578,6 +586,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? dialogTitle,
     TextStyle? dialogText,
     TextStyle? dialogSubtitle,
+    TextStyle? badgeNumber,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -643,6 +652,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         dialogTitle: dialogTitle ?? this.dialogTitle,
         dialogText: dialogText ?? this.dialogText,
         dialogSubtitle: dialogSubtitle ?? this.dialogSubtitle,
+        badgeNumber: badgeNumber ?? this.badgeNumber,
       );
 
   @override
@@ -718,6 +728,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       dialogTitle: TextStyle.lerp(dialogTitle, other.dialogTitle, t)!,
       dialogText: TextStyle.lerp(dialogText, other.dialogText, t)!,
       dialogSubtitle: TextStyle.lerp(dialogSubtitle, other.dialogSubtitle, t)!,
+      badgeNumber: TextStyle.lerp(badgeNumber, other.badgeNumber, t)!,
     );
   }
 }

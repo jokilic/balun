@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 import '../services/api_service.dart';
+import '../services/balun_navigation_bar_badge_service.dart';
 import '../services/balun_navigation_bar_service.dart';
 import '../services/balun_screen_service.dart';
 import '../services/dio_service.dart';
@@ -81,6 +82,12 @@ void initializeServices() => getIt
   )
   ..registerSingletonAsync(
     () async => BalunNavigationBarService(
+      logger: getIt.get<LoggerService>(),
+    ),
+    dependsOn: [LoggerService],
+  )
+  ..registerSingletonAsync(
+    () async => BalunNavigationBarBadgeService(
       logger: getIt.get<LoggerService>(),
     ),
     dependsOn: [LoggerService],

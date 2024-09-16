@@ -5,6 +5,7 @@ import 'package:watch_it/watch_it.dart';
 import '../../constants.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
+import '../../util/date_time.dart';
 import '../../util/dependencies.dart';
 import '../../widgets/balun_navigation_bar.dart';
 import 'controllers/fixtures_controller.dart';
@@ -43,11 +44,13 @@ class _FixturesScreenState extends State<FixturesScreen> {
       ),
       instanceName: 'fixtures',
       afterRegister: (controller) => controller.getFixturesFromDate(
-        dateString: getIt
-            .get<FixturesDateController>(
-              instanceName: 'fixtures',
-            )
-            .getDateForBackend(),
+        dateString: getDateForBackend(
+          getIt
+              .get<FixturesDateController>(
+                instanceName: 'fixtures',
+              )
+              .value,
+        ),
       ),
     );
   }
