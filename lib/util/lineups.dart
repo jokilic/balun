@@ -11,7 +11,7 @@ List<int>? parseFormation(Lineup? lineup) {
 List<double> calculateRowSpacings(int totalRows, bool isHome) {
   /// Assign weights to spaces between rows
   /// More weight means more space
-  final weights = [if (isHome) 3 else 6]; // Slightly increased space before first row (goalkeeper)
+  final weights = [if (isHome) 2 else 4]; // Slightly increased space before first row (goalkeeper)
 
   for (var i = 1; i < totalRows - 1; i++) {
     weights

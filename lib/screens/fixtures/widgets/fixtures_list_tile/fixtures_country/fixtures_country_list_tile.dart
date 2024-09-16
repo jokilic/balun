@@ -6,6 +6,7 @@ import '../../../../../models/fixtures/league/league.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
 import '../../../../../util/fixtures.dart';
+import '../../../../../util/string.dart';
 import '../../../../../widgets/balun_button.dart';
 import '../../../../../widgets/balun_image.dart';
 import '../fixtures_league/fixtures_league_list_tile.dart';
@@ -74,7 +75,11 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      widget.countryLeague?.country ?? '---',
+                      widget.countryLeague?.country != null
+                          ? getCountryName(
+                              country: widget.countryLeague!.country!,
+                            )
+                          : '---',
                       style: context.textStyles.fixturesCountry,
                     ),
                   ),
