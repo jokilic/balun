@@ -5,10 +5,10 @@ abstract class BalunColors {
   static const black = Color(0xFF000000);
   static const grey = Color(0xFF37393B);
   static const greenish = Color(0xFFBFCABD);
-  static const red = Color(0xFFFF5B5B);
+  static const red = Color(0xFFED3B3B);
   static const green = Color(0xFF417B5A);
   static const blue = Color(0xFF016FB9);
-  static const yellow = Color(0xFFFFD700);
+  static const yellow = Color(0xFFFCC938);
   static const orange = Color(0xFFFF9505);
 }
 

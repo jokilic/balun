@@ -6,7 +6,8 @@ class BalunIcons {
   static const matchLeague = 'assets/icons/match_league.png';
   static const matchRound = 'assets/icons/match_round.png';
   static const ball = 'assets/icons/ball.png';
-  static const card = 'assets/icons/card.png';
+  static const yellowCard = 'assets/icons/yellow_card.png';
+  static const redCard = 'assets/icons/red_card.png';
   static const cards = 'assets/icons/cards.png';
   static const playerOut = 'assets/icons/player_out.png';
   static const playerIn = 'assets/icons/player_in.png';

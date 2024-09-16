@@ -492,16 +492,14 @@ class MatchEventsListTile extends StatelessWidget {
   }) =>
       switch (eventDetail.toLowerCase()) {
         'yellow card' => BalunImage(
-            imageUrl: isSecondYellowCard ? BalunIcons.cards : BalunIcons.card,
+            imageUrl: isSecondYellowCard ? BalunIcons.cards : BalunIcons.yellowCard,
             height: 28,
             width: 28,
-            color: isSecondYellowCard ? null : context.colors.yellow,
           ),
-        'red card' => BalunImage(
-            imageUrl: BalunIcons.card,
+        'red card' => const BalunImage(
+            imageUrl: BalunIcons.redCard,
             height: 28,
             width: 28,
-            color: context.colors.red,
           ),
         _ => const BalunImage(
             imageUrl: BalunIcons.cards,

@@ -38,5 +38,4 @@ Results can be opened and more info is shown.
     - [ ] Finish country names in `string.dart` -> `getCountryName()`
 - [ ] Create screenshots and put app live
 - [ ] Otvori Dinamo - Hajduk i u Events stavi mala slova za sudačku nadoknadu, kao na Sofascoreu
-- [ ] Druge ikone za kartone
 - [ ] Match lineups - donjem golmanu se ne vidi ime
