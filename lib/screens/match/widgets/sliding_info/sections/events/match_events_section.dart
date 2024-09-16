@@ -45,7 +45,6 @@ class MatchEventsSection extends StatelessWidget {
                       .map(
                         (event) => MatchEventsListTile(
                           event: event,
-                          elapsed: elapsed,
                           isAwayTeam: event.team?.id == awayTeamId,
                           isSecondYellowCard: isSecondYellowCard(
                             eventsScoresList ?? [],

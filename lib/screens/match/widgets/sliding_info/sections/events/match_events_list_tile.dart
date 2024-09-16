@@ -10,23 +10,22 @@ import '../../../../../../widgets/balun_image.dart';
 
 class MatchEventsListTile extends StatelessWidget {
   final Event event;
-  final int? elapsed;
   final bool? isAwayTeam;
   final bool isSecondYellowCard;
 
   const MatchEventsListTile({
     required this.event,
-    required this.elapsed,
     required this.isAwayTeam,
     required this.isSecondYellowCard,
   });
 
   @override
   Widget build(BuildContext context) {
-    final eventTime = event.time?.elapsed != null ? (event.time?.elapsed ?? 0) + (event.time?.extra ?? 0) : null;
+    final elapsedTime = event.time?.elapsed;
+    final extraTime = event.time?.extra;
 
     final scoreWidget = getScoreWidget(
-      elapsed: eventTime,
+      elapsedTime: elapsedTime,
       eventType: event.type ?? '',
       eventDetail: event.detail ?? '',
       context: context,
@@ -45,9 +44,21 @@ class MatchEventsListTile extends StatelessWidget {
               ]
             : [
                 if (!(isAwayTeam ?? false)) ...[
-                  Text(
-                    eventTime != null ? "$eventTime'" : '---',
-                    style: context.textStyles.matchEventsSectionTime,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        elapsedTime != null ? "$elapsedTime'" : '--',
+                        style: context.textStyles.matchEventsSectionTime,
+                      ),
+                      if (extraTime != null)
+                        Text(
+                          '+$extraTime',
+                          style: context.textStyles.matchEventsSectionTime.copyWith(
+                            fontSize: 12,
+                          ),
+                        ),
+                    ],
                   ),
                   const SizedBox(width: 8),
                 ],
@@ -71,9 +82,21 @@ class MatchEventsListTile extends StatelessWidget {
                 ),
                 if (isAwayTeam ?? false) ...[
                   const SizedBox(width: 8),
-                  Text(
-                    eventTime != null ? "$eventTime'" : '---',
-                    style: context.textStyles.matchEventsSectionTime,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        elapsedTime != null ? "$elapsedTime'" : '--',
+                        style: context.textStyles.matchEventsSectionTime,
+                      ),
+                      if (extraTime != null)
+                        Text(
+                          '+$extraTime',
+                          style: context.textStyles.matchEventsSectionTime.copyWith(
+                            fontSize: 12,
+                          ),
+                        ),
+                    ],
                   ),
                 ],
               ],
@@ -82,7 +105,7 @@ class MatchEventsListTile extends StatelessWidget {
   }
 
   Widget? getScoreWidget({
-    required int? elapsed,
+    required int? elapsedTime,
     required String eventType,
     required String eventDetail,
     required BuildContext context,
@@ -91,7 +114,7 @@ class MatchEventsListTile extends StatelessWidget {
         ///
         /// HALF TIME
         ///
-        'halftime' => (elapsed ?? 0) > 45
+        'halftime' => (elapsedTime ?? 0) > 45
             ? Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: Row(

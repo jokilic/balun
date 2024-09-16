@@ -64,7 +64,8 @@ class _BalunAppState extends State<BalunApp> {
           Locale('en'),
           Locale('hr'),
         ],
-        fallbackLocale: const Locale('hr'),
+        fallbackLocale: const Locale('en'),
+        startLocale: const Locale('hr'),
         path: 'assets/translations',
         child: BalunWidget(),
       );

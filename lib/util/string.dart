@@ -83,6 +83,9 @@ String getEventCommentText({
       'handball' => 'matchEventCommentHandball'.tr(),
       'time wasting' => 'matchEventCommentTimeWasting'.tr(),
       'simulation' => 'matchEventCommentSimulation'.tr(),
+      'unsportsmanlike conduct' => 'matchEventCommentUnsportsmanlikeConduct'.tr(),
+      'roughing' => 'matchEventCommentRoughing'.tr(),
+      'tripping' => 'matchEventCommentTripping'.tr(),
       _ => eventComment,
     };
 

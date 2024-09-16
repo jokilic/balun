@@ -34,4 +34,3 @@ Results can be opened and more info is shown.
 ### General To-Dos
 
 - [ ] Create screenshots and put app live
-- [ ] Otvori Dinamo - Hajduk i u Events stavi mala slova za sudačku nadoknadu, kao na Sofascoreu
