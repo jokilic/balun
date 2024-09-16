@@ -318,6 +318,8 @@
     "matchStatisticPreventedGoals": "Prevented goals",
     "matchEventCommentArgument": "Argument",
     "matchEventCommentFoul": "Foul",
+    "matchEventCommentTimeWasting": "Time wasting",
+    "matchEventCommentSimulation": "Simulation",
     "matchEventCommentHandball": "Hand ball",
     "playerPositionGoalkeeper": "Goalkeeper",
     "playerPositionDefender": "Defender",

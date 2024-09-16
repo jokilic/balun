@@ -188,7 +188,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
                                       title: 'matchPlayerRating'.tr(),
-                                      text: statistic.games?.rating?.toStringAsFixed(2) ?? '--',
+                                      text: statistic.games?.rating?.toStringAsFixed(1) ?? '--',
                                     ),
                                     MatchPlayerListTileValue(
                                       title: 'matchPlayerMinutes'.tr(),

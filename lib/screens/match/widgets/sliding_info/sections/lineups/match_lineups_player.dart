@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/lineup/lineup_colors.dart';
 import '../../../../../../models/fixtures/lineup/lineup_player.dart';
+import '../../../../../../models/fixtures/player_statistic/player_statistic_data.dart';
 import '../../../../../../routing.dart';
+import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
 import '../../../../../../util/lineups.dart';
 import '../../../../../../util/string.dart';
 import '../../../../../../widgets/balun_button.dart';
+import '../../../../../../widgets/balun_image.dart';
 
 class MatchLineupsPlayer extends StatelessWidget {
   final LineupPlayer? player;
+  final PlayerStatisticData? playerStatistic;
   final double? fieldHeight;
   final double? fieldWidth;
   final List<int>? formation;
@@ -20,6 +24,7 @@ class MatchLineupsPlayer extends StatelessWidget {
 
   const MatchLineupsPlayer({
     required this.player,
+    required this.playerStatistic,
     required this.fieldHeight,
     required this.fieldWidth,
     required this.formation,
@@ -75,6 +80,19 @@ class MatchLineupsPlayer extends StatelessWidget {
           ) ??
           context.colors.black;
 
+      final goals = playerStatistic?.statistic?.fold(
+        0,
+        (sum, statistic) => sum + (statistic.goals?.total ?? 0),
+      );
+      final yellowCards = playerStatistic?.statistic?.fold(
+        0,
+        (sum, statistic) => sum + (statistic.cards?.yellow ?? 0),
+      );
+      final redCards = playerStatistic?.statistic?.fold(
+        0,
+        (sum, statistic) => sum + (statistic.cards?.red ?? 0),
+      );
+
       return Positioned(
         left: adjustedXPosition * fieldWidth! - playerSize / 2,
         top: adjustedYPosition * fieldHeight! - playerSize / 2,
@@ -90,6 +108,9 @@ class MatchLineupsPlayer extends StatelessWidget {
             alignment: Alignment.center,
             clipBehavior: Clip.none,
             children: [
+              ///
+              /// CIRCLE WITH NUMBER
+              ///
               Container(
                 alignment: Alignment.center,
                 height: playerSize,
@@ -110,6 +131,10 @@ class MatchLineupsPlayer extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
+
+              ///
+              /// NAME
+              ///
               if (player?.player?.name != null) ...[
                 Positioned(
                   bottom: -16,
@@ -120,6 +145,49 @@ class MatchLineupsPlayer extends StatelessWidget {
                   ),
                 ),
               ],
+
+              ///
+              /// GOALS
+              ///
+              if ((goals ?? 0) > 0)
+                Positioned(
+                  left: -8,
+                  top: -6,
+                  child: BalunImage(
+                    imageUrl: BalunIcons.ball,
+                    height: 20,
+                    width: 20,
+                    color: context.colors.white,
+                  ),
+                ),
+
+              ///
+              /// RED CARDS
+              ///
+              if ((redCards ?? 0) > 0 && (yellowCards ?? 9) <= 1)
+                const Positioned(
+                  right: -8,
+                  top: -2,
+                  child: BalunImage(
+                    imageUrl: BalunIcons.redCard,
+                    height: 20,
+                    width: 20,
+                  ),
+                ),
+
+              ///
+              /// YELLOW CARDS
+              ///
+              if ((yellowCards ?? 0) > 0)
+                Positioned(
+                  right: -8,
+                  top: -2,
+                  child: BalunImage(
+                    imageUrl: yellowCards == 1 ? BalunIcons.yellowCard : BalunIcons.cards,
+                    height: 20,
+                    width: 20,
+                  ),
+                ),
             ],
           ),
         ),

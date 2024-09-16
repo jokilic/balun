@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/lineup/lineup.dart';
+import '../../../../../../models/fixtures/player_statistic/player_statistic.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/field_painter.dart';
 import '../../../../../../util/lineups.dart';
@@ -10,11 +11,15 @@ import 'match_lineups_player.dart';
 class MatchLineupsStartXI extends StatelessWidget {
   final Lineup? homeLineup;
   final Lineup? awayLineup;
+  final PlayerStatistic? homePlayerStatistic;
+  final PlayerStatistic? awayPlayerStatistic;
   final int season;
 
   const MatchLineupsStartXI({
     required this.homeLineup,
     required this.awayLineup,
+    required this.homePlayerStatistic,
+    required this.awayPlayerStatistic,
     required this.season,
   });
 
@@ -56,6 +61,11 @@ class MatchLineupsStartXI extends StatelessWidget {
                           .map(
                             (player) => MatchLineupsPlayer(
                               player: player,
+                              playerStatistic: homePlayerStatistic?.statistics
+                                  ?.where(
+                                    (statisticData) => statisticData.player?.id == player.player?.id,
+                                  )
+                                  .firstOrNull,
                               fieldHeight: fieldHeight,
                               fieldWidth: fieldWidth,
                               formation: homeFormation,
@@ -74,6 +84,11 @@ class MatchLineupsStartXI extends StatelessWidget {
                           .map(
                             (player) => MatchLineupsPlayer(
                               player: player,
+                              playerStatistic: awayPlayerStatistic?.statistics
+                                  ?.where(
+                                    (statisticData) => statisticData.player?.id == player.player?.id,
+                                  )
+                                  .firstOrNull,
                               fieldHeight: fieldHeight,
                               fieldWidth: fieldWidth,
                               formation: awayFormation,

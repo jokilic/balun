@@ -318,6 +318,8 @@
     "matchStatisticPreventedGoals": "Spriječeni golovi",
     "matchEventCommentArgument": "Rasprava",
     "matchEventCommentFoul": "Prekršaj",
+    "matchEventCommentTimeWasting": "Zadržavanje igre",
+    "matchEventCommentSimulation": "Simuliranje",
     "matchEventCommentHandball": "Igranje rukom",
     "playerPositionGoalkeeper": "Vratar",
     "playerPositionDefender": "Branič",

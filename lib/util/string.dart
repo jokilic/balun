@@ -81,6 +81,8 @@ String getEventCommentText({
       'argument' => 'matchEventCommentArgument'.tr(),
       'foul' => 'matchEventCommentFoul'.tr(),
       'handball' => 'matchEventCommentHandball'.tr(),
+      'time wasting' => 'matchEventCommentTimeWasting'.tr(),
+      'simulation' => 'matchEventCommentSimulation'.tr(),
       _ => eventComment,
     };
 

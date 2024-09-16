@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/lineup/lineup.dart';
+import '../../../../../../models/fixtures/player_statistic/player_statistic.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/lineups.dart';
@@ -12,11 +13,15 @@ import 'match_lineups_start_xi.dart';
 class MatchLineupContent extends StatelessWidget {
   final Lineup? homeLineup;
   final Lineup? awayLineup;
+  final PlayerStatistic? homePlayerStatistic;
+  final PlayerStatistic? awayPlayerStatistic;
   final int season;
 
   const MatchLineupContent({
     required this.homeLineup,
     required this.awayLineup,
+    required this.homePlayerStatistic,
+    required this.awayPlayerStatistic,
     required this.season,
   });
 
@@ -37,6 +42,8 @@ class MatchLineupContent extends StatelessWidget {
           MatchLineupsStartXI(
             homeLineup: homeLineup,
             awayLineup: awayLineup,
+            homePlayerStatistic: homePlayerStatistic,
+            awayPlayerStatistic: awayPlayerStatistic,
             season: season,
           ),
           const SizedBox(height: 12),

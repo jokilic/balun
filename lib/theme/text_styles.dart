@@ -130,7 +130,7 @@ abstract class BalunTextStyles {
 
   static const matchLineupsSectionTitle = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: FontWeight.w600,
   );
 
