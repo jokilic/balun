@@ -148,7 +148,7 @@ abstract class BalunTextStyles {
 
   static const matchLineupsSectionPlayer = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: FontWeight.w600,
   );
 

@@ -8,10 +8,10 @@ List<int>? parseFormation(Lineup? lineup) {
   return null;
 }
 
-List<double> calculateRowSpacings(int totalRows) {
+List<double> calculateRowSpacings(int totalRows, bool isHome) {
   /// Assign weights to spaces between rows
   /// More weight means more space
-  final weights = [2]; // Slightly increased space before first row (goalkeeper)
+  final weights = [if (isHome) 3 else 6]; // Slightly increased space before first row (goalkeeper)
 
   for (var i = 1; i < totalRows - 1; i++) {
     weights
@@ -21,7 +21,7 @@ List<double> calculateRowSpacings(int totalRows) {
 
   weights
     ..add(2) // Space for last player row
-    ..add(6); // Increased space after last row (before center)
+    ..add(4); // Increased space after last row (before center)
 
   final totalWeight = weights.reduce((a, b) => a + b);
 
@@ -38,10 +38,10 @@ double calculateYPosition(int row, List<double> spacings, bool isHome) {
   /// Adjust position based on whether it's home or away team
   if (isHome) {
     /// Move home team players slightly towards center
-    return position * 0.9 + 0.02;
+    return position * 0.9;
   } else {
     /// Move away team players slightly towards center
-    return 1 - (position * 0.9 + 0.02);
+    return 1 - (position * 0.9);
   }
 }
 

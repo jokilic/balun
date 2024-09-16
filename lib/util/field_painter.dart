@@ -44,7 +44,7 @@ class FieldPainter extends CustomPainter {
 
     /// Draw penalty areas
     final penaltyAreaWidth = size.width * 0.6;
-    final penaltyAreaHeight = size.height * 0.2;
+    final penaltyAreaHeight = size.height * 0.175;
 
     final topPenaltyAreaPath = Path()
       ..addRRect(

@@ -36,7 +36,10 @@ class MatchLineupsPlayer extends StatelessWidget {
       final positionInRow = int.parse(gridParts[1]);
 
       /// Calculate y position with enhanced spacing
-      final rowSpacings = calculateRowSpacings(formation?.length ?? 0);
+      final rowSpacings = calculateRowSpacings(
+        formation?.length ?? 0,
+        isHome,
+      );
       final yPosition = calculateYPosition(
         row,
         rowSpacings,
@@ -109,7 +112,7 @@ class MatchLineupsPlayer extends StatelessWidget {
               ),
               if (player?.player?.name != null) ...[
                 Positioned(
-                  bottom: -24,
+                  bottom: -16,
                   child: Text(
                     getLastWord(player!.player!.name!),
                     style: context.textStyles.matchLineupsSectionPlayer,

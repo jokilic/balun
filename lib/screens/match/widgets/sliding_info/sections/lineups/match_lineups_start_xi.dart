@@ -25,7 +25,7 @@ class MatchLineupsStartXI extends StatelessWidget {
       final awayFormation = parseFormation(awayLineup);
 
       return AspectRatio(
-        aspectRatio: 68 / 105,
+        aspectRatio: 0.55,
         child: LayoutBuilder(
           builder: (context, constraints) {
             final fieldWidth = constraints.maxWidth;
