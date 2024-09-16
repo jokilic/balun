@@ -11,6 +11,7 @@ class MatchLineupsSection extends StatelessWidget {
   final Lineup? awayLineup;
   final PlayerStatistic? homePlayerStatistic;
   final PlayerStatistic? awayPlayerStatistic;
+  final int? matchElapsed;
   final int season;
 
   const MatchLineupsSection({
@@ -18,6 +19,7 @@ class MatchLineupsSection extends StatelessWidget {
     required this.awayLineup,
     required this.homePlayerStatistic,
     required this.awayPlayerStatistic,
+    required this.matchElapsed,
     required this.season,
   });
 
@@ -47,6 +49,7 @@ class MatchLineupsSection extends StatelessWidget {
                 awayLineup: awayLineup,
                 homePlayerStatistic: homePlayerStatistic,
                 awayPlayerStatistic: awayPlayerStatistic,
+                matchElapsed: matchElapsed,
                 season: season,
               ),
 

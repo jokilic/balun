@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/lineup/lineup_colors.dart';
 import '../../../../../../models/fixtures/lineup/lineup_player.dart';
+import '../../../../../../models/fixtures/player_statistic/player_statistic.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 import 'match_lineup_list_tile.dart';
 
 class MatchLineupsList extends StatelessWidget {
   final List<LineupPlayer>? homePlayers;
   final List<LineupPlayer>? awayPlayers;
+  final PlayerStatistic? homePlayerStatistic;
+  final PlayerStatistic? awayPlayerStatistic;
   final LineupColors? homePlayerColors;
   final LineupColors? awayPlayerColors;
   final int season;
@@ -15,6 +18,8 @@ class MatchLineupsList extends StatelessWidget {
   const MatchLineupsList({
     required this.homePlayers,
     required this.awayPlayers,
+    required this.homePlayerStatistic,
+    required this.awayPlayerStatistic,
     required this.homePlayerColors,
     required this.awayPlayerColors,
     required this.season,
@@ -30,6 +35,7 @@ class MatchLineupsList extends StatelessWidget {
           Expanded(
             child: MatchLineupList(
               players: homePlayers,
+              playerStatistic: homePlayerStatistic,
               colors: homePlayerColors,
               season: season,
             ),
@@ -41,6 +47,7 @@ class MatchLineupsList extends StatelessWidget {
           Expanded(
             child: MatchLineupList(
               players: awayPlayers,
+              playerStatistic: awayPlayerStatistic,
               colors: awayPlayerColors,
               season: season,
             ),
@@ -51,11 +58,13 @@ class MatchLineupsList extends StatelessWidget {
 
 class MatchLineupList extends StatelessWidget {
   final List<LineupPlayer>? players;
+  final PlayerStatistic? playerStatistic;
   final LineupColors? colors;
   final int season;
 
   const MatchLineupList({
     required this.players,
+    required this.playerStatistic,
     required this.colors,
     required this.season,
   });
@@ -70,6 +79,11 @@ class MatchLineupList extends StatelessWidget {
 
           return MatchLineupListTile(
             player: player,
+            playerStatistic: playerStatistic?.statistics
+                ?.where(
+                  (statisticData) => statisticData.player?.id == player?.id,
+                )
+                .firstOrNull,
             colors: colors,
             season: season,
           );

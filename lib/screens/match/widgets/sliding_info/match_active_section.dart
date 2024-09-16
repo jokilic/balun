@@ -81,6 +81,7 @@ class MatchActiveSection extends StatelessWidget {
                   (playerStatistic) => playerStatistic.team?.id == match.teams?.away?.id,
                 )
                 .firstOrNull,
+            matchElapsed: match.fixture?.status?.elapsed,
             season: season,
           ),
         MatchSection(

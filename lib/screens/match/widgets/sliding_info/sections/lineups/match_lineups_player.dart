@@ -15,6 +15,7 @@ import '../../../../../../widgets/balun_image.dart';
 class MatchLineupsPlayer extends StatelessWidget {
   final LineupPlayer? player;
   final PlayerStatisticData? playerStatistic;
+  final int? matchElapsed;
   final double? fieldHeight;
   final double? fieldWidth;
   final List<int>? formation;
@@ -25,6 +26,7 @@ class MatchLineupsPlayer extends StatelessWidget {
   const MatchLineupsPlayer({
     required this.player,
     required this.playerStatistic,
+    required this.matchElapsed,
     required this.fieldHeight,
     required this.fieldWidth,
     required this.formation,
@@ -91,6 +93,10 @@ class MatchLineupsPlayer extends StatelessWidget {
       final redCards = playerStatistic?.statistic?.fold(
         0,
         (sum, statistic) => sum + (statistic.cards?.red ?? 0),
+      );
+      final minutesPlayed = playerStatistic?.statistic?.fold(
+        0,
+        (sum, statistic) => sum + (statistic.games?.minutes ?? 0),
       );
 
       return Positioned(
@@ -184,6 +190,21 @@ class MatchLineupsPlayer extends StatelessWidget {
                   top: -2,
                   child: BalunImage(
                     imageUrl: yellowCards == 1 ? BalunIcons.yellowCard : BalunIcons.cards,
+                    height: 20,
+                    width: 20,
+                  ),
+                ),
+
+              ///
+              /// SUBSTITUTION
+              ///
+              if (minutesPlayed != matchElapsed)
+                Positioned(
+                  left: -8,
+                  bottom: -6,
+                  child: BalunImage(
+                    imageUrl: BalunIcons.playerOut,
+                    color: context.colors.red,
                     height: 20,
                     width: 20,
                   ),

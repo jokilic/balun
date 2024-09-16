@@ -13,6 +13,7 @@ class MatchLineupsStartXI extends StatelessWidget {
   final Lineup? awayLineup;
   final PlayerStatistic? homePlayerStatistic;
   final PlayerStatistic? awayPlayerStatistic;
+  final int? matchElapsed;
   final int season;
 
   const MatchLineupsStartXI({
@@ -20,6 +21,7 @@ class MatchLineupsStartXI extends StatelessWidget {
     required this.awayLineup,
     required this.homePlayerStatistic,
     required this.awayPlayerStatistic,
+    required this.matchElapsed,
     required this.season,
   });
 
@@ -66,6 +68,7 @@ class MatchLineupsStartXI extends StatelessWidget {
                                     (statisticData) => statisticData.player?.id == player.player?.id,
                                   )
                                   .firstOrNull,
+                              matchElapsed: matchElapsed,
                               fieldHeight: fieldHeight,
                               fieldWidth: fieldWidth,
                               formation: homeFormation,
@@ -89,6 +92,7 @@ class MatchLineupsStartXI extends StatelessWidget {
                                     (statisticData) => statisticData.player?.id == player.player?.id,
                                   )
                                   .firstOrNull,
+                              matchElapsed: matchElapsed,
                               fieldHeight: fieldHeight,
                               fieldWidth: fieldWidth,
                               formation: awayFormation,
@@ -117,6 +121,8 @@ class MatchLineupsStartXI extends StatelessWidget {
       awayPlayers: sortPlayersByPosition(
         awayLineup?.startXI,
       ),
+      homePlayerStatistic: homePlayerStatistic,
+      awayPlayerStatistic: awayPlayerStatistic,
       homePlayerColors: homeLineup?.team?.colors,
       awayPlayerColors: awayLineup?.team?.colors,
       season: season,

@@ -15,6 +15,7 @@ class MatchLineupContent extends StatelessWidget {
   final Lineup? awayLineup;
   final PlayerStatistic? homePlayerStatistic;
   final PlayerStatistic? awayPlayerStatistic;
+  final int? matchElapsed;
   final int season;
 
   const MatchLineupContent({
@@ -22,6 +23,7 @@ class MatchLineupContent extends StatelessWidget {
     required this.awayLineup,
     required this.homePlayerStatistic,
     required this.awayPlayerStatistic,
+    required this.matchElapsed,
     required this.season,
   });
 
@@ -44,6 +46,7 @@ class MatchLineupContent extends StatelessWidget {
             awayLineup: awayLineup,
             homePlayerStatistic: homePlayerStatistic,
             awayPlayerStatistic: awayPlayerStatistic,
+            matchElapsed: matchElapsed,
             season: season,
           ),
           const SizedBox(height: 12),
@@ -123,6 +126,8 @@ class MatchLineupContent extends StatelessWidget {
             awayPlayers: sortPlayersByPosition(
               awayLineup?.substitutes,
             ),
+            homePlayerStatistic: homePlayerStatistic,
+            awayPlayerStatistic: awayPlayerStatistic,
             homePlayerColors: homeLineup?.team?.colors,
             awayPlayerColors: awayLineup?.team?.colors,
             season: season,
