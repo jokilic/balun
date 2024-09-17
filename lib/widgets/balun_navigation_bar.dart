@@ -6,7 +6,6 @@ import '../services/balun_navigation_bar_badge_service.dart';
 import '../services/balun_navigation_bar_service.dart';
 import '../theme/icons.dart';
 import '../theme/theme.dart';
-import '../util/color.dart';
 import '../util/dependencies.dart';
 import 'balun_image.dart';
 
@@ -67,16 +66,18 @@ class BalunNavigationBar extends WatchingWidget {
                     duration: BalunConstants.longAnimationDuration,
                     curve: Curves.easeIn,
                     child: Container(
-                      height: 24,
-                      width: 24,
+                      height: 20,
+                      width: 20,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: getRandomBalunColor(context),
+                        color: context.colors.blue,
                       ),
                       child: Text(
-                        (badgeNumber ?? 0) > 99 ? '+99' : '${badgeNumber ?? ''}',
+                        '${badgeNumber ?? ''}',
+                        maxLines: 1,
                         style: context.textStyles.badgeNumber,
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
@@ -114,16 +115,18 @@ class BalunNavigationBar extends WatchingWidget {
                     duration: BalunConstants.longAnimationDuration,
                     curve: Curves.easeIn,
                     child: Container(
-                      height: 24,
-                      width: 24,
+                      height: 20,
+                      width: 20,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: getRandomBalunColor(context),
+                        color: context.colors.blue,
                       ),
                       child: Text(
-                        (badgeNumber ?? 0) > 99 ? '+99' : '${badgeNumber ?? ''}',
+                        '${badgeNumber ?? ''}',
+                        maxLines: 1,
                         style: context.textStyles.badgeNumber,
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
