@@ -455,10 +455,7 @@ class MatchEventsListTile extends StatelessWidget {
                     const SizedBox(width: 8),
                     Flexible(
                       child: Text(
-                        getEventText(
-                          eventType: eventType,
-                          eventDetail: eventDetail,
-                        ),
+                        'matchEventsVAR'.tr(),
                         style: context.textStyles.matchEventsSectionText.copyWith(
                           fontWeight: FontWeight.w500,
                         ),
@@ -475,7 +472,10 @@ class MatchEventsListTile extends StatelessWidget {
                     const SizedBox(width: 36),
                     Flexible(
                       child: Text(
-                        'VAR',
+                        getEventText(
+                          eventType: eventType,
+                          eventDetail: eventDetail,
+                        ),
                         style: context.textStyles.matchEventsSectionText,
                       ),
                     ),

@@ -69,6 +69,7 @@ String getEventText({
       'var' => switch (eventDetail.toLowerCase()) {
           'goal cancelled' => 'matchEventGoalCancelled'.tr(),
           'penalty confirmed' => 'matchEventPenaltyConfirmed'.tr(),
+          'goal disallowed - offside' => 'matchEventOffside'.tr(),
           _ => eventDetail,
         },
       _ => eventType,
