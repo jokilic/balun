@@ -64,36 +64,44 @@ class _FixturesScreenState extends State<FixturesScreen> {
     return Scaffold(
       bottomNavigationBar: BalunNavigationBar(),
       body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 16),
-
-            ///
-            /// DATE PICKER
-            ///
-            FixturesDatePicker(
-              currentDate: currentDate,
-            ),
-            const SizedBox(height: 12),
-
-            ///
-            /// CONTENT
-            ///
-            Expanded(
-              child: Animate(
-                key: ValueKey(fixturesState),
-                effects: const [
-                  FadeEffect(
-                    curve: Curves.easeIn,
-                    duration: BalunConstants.animationDuration,
-                  ),
-                ],
-                child: FixturesContent(
-                  fixturesState: fixturesState,
-                ),
-              ),
+        child: Animate(
+          effects: const [
+            FadeEffect(
+              curve: Curves.easeIn,
+              duration: BalunConstants.animationDuration,
             ),
           ],
+          child: Column(
+            children: [
+              const SizedBox(height: 16),
+
+              ///
+              /// DATE PICKER
+              ///
+              FixturesDatePicker(
+                currentDate: currentDate,
+              ),
+              const SizedBox(height: 12),
+
+              ///
+              /// CONTENT
+              ///
+              Expanded(
+                child: Animate(
+                  key: ValueKey(fixturesState),
+                  effects: const [
+                    FadeEffect(
+                      curve: Curves.easeIn,
+                      duration: BalunConstants.animationDuration,
+                    ),
+                  ],
+                  child: FixturesContent(
+                    fixturesState: fixturesState,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

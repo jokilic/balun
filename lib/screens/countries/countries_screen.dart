@@ -42,34 +42,42 @@ class _CountriesScreenState extends State<CountriesScreen> {
     return Scaffold(
       bottomNavigationBar: BalunNavigationBar(),
       body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 12),
-
-            ///
-            /// APP BAR
-            ///
-            CountriesAppBar(),
-            const SizedBox(height: 8),
-
-            ///
-            /// CONTENT
-            ///
-            Expanded(
-              child: Animate(
-                key: ValueKey(countriesState),
-                effects: const [
-                  FadeEffect(
-                    curve: Curves.easeIn,
-                    duration: BalunConstants.animationDuration,
-                  ),
-                ],
-                child: CountriesContent(
-                  countriesState: countriesState,
-                ),
-              ),
+        child: Animate(
+          effects: const [
+            FadeEffect(
+              curve: Curves.easeIn,
+              duration: BalunConstants.animationDuration,
             ),
           ],
+          child: Column(
+            children: [
+              const SizedBox(height: 12),
+
+              ///
+              /// APP BAR
+              ///
+              CountriesAppBar(),
+              const SizedBox(height: 8),
+
+              ///
+              /// CONTENT
+              ///
+              Expanded(
+                child: Animate(
+                  key: ValueKey(countriesState),
+                  effects: const [
+                    FadeEffect(
+                      curve: Curves.easeIn,
+                      duration: BalunConstants.animationDuration,
+                    ),
+                  ],
+                  child: CountriesContent(
+                    countriesState: countriesState,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
