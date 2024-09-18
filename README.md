@@ -34,3 +34,5 @@ Results can be opened and more info is shown.
 ### General To-Dos
 
 - [ ] Create screenshots and put app live
+- [ ] Open a match that had extra time and implement events text properly
+- [ ] Open a match that had penalties and implement events text properly

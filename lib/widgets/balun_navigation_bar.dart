@@ -59,7 +59,7 @@ class BalunNavigationBar extends WatchingWidget {
                 /// BADGE
                 ///
                 Positioned(
-                  right: -6,
+                  right: -4,
                   top: -4,
                   child: AnimatedOpacity(
                     opacity: badgeNumber != null ? 1 : 0,
@@ -108,7 +108,7 @@ class BalunNavigationBar extends WatchingWidget {
                 /// BADGE
                 ///
                 Positioned(
-                  right: -6,
+                  right: -4,
                   top: -4,
                   child: AnimatedOpacity(
                     opacity: badgeNumber != null ? 1 : 0,

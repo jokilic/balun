@@ -74,52 +74,60 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       bottomNavigationBar: BalunNavigationBar(),
       body: SafeArea(
-        child: Column(
-          children: [
-            ///
-            /// SEARCH BAR
-            ///
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-              child: SearchBarWidget(
-                onSubmitted: (value) => getIt
+        child: Animate(
+          effects: const [
+            FadeEffect(
+              curve: Curves.easeIn,
+              duration: BalunConstants.longAnimationDuration,
+            ),
+          ],
+          child: Column(
+            children: [
+              ///
+              /// SEARCH BAR
+              ///
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                child: SearchBarWidget(
+                  onSubmitted: (value) => getIt
+                      .get<SearchController>(
+                        instanceName: 'search',
+                      )
+                      .triggerSearch(value.trim()),
+                ),
+              ),
+
+              ///
+              /// SEARCH SECTIONS
+              ///
+              SearchSections(
+                activeSearchSection: searchSection,
+                titlePressed: getIt
                     .get<SearchController>(
                       instanceName: 'search',
                     )
-                    .triggerSearch(value.trim()),
+                    .updateState,
               ),
-            ),
 
-            ///
-            /// SEARCH SECTIONS
-            ///
-            SearchSections(
-              activeSearchSection: searchSection,
-              titlePressed: getIt
-                  .get<SearchController>(
-                    instanceName: 'search',
-                  )
-                  .updateState,
-            ),
-
-            ///
-            /// ACTIVE SECTION
-            ///
-            Expanded(
-              child: Animate(
-                key: ValueKey(searchSection),
-                effects: const [
-                  FadeEffect(
-                    curve: Curves.easeIn,
-                    duration: BalunConstants.animationDuration,
+              ///
+              /// ACTIVE SECTION
+              ///
+              Expanded(
+                child: Animate(
+                  key: ValueKey(searchSection),
+                  effects: const [
+                    FadeEffect(
+                      curve: Curves.easeIn,
+                      duration: BalunConstants.animationDuration,
+                    ),
+                  ],
+                  child: SearchActiveSection(
+                    searchSection: searchSection,
                   ),
-                ],
-                child: SearchActiveSection(
-                  searchSection: searchSection,
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
