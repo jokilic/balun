@@ -13,6 +13,7 @@ class BalunIcons {
   static const playerIn = 'assets/icons/player_in.png';
   static const varIcon = 'assets/icons/var.png';
   static const assist = 'assets/icons/assist.png';
+  static const missedPenalty = 'assets/icons/missed_penalty.png';
   static const error = 'assets/icons/error.png';
   static const injury = 'assets/icons/injury.png';
   static const favoriteNo = 'assets/icons/favorite_no.png';

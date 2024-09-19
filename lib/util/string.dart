@@ -92,6 +92,7 @@ String getEventCommentText({
       'delay of game' => 'matchEventCommentDelayOfGame'.tr(),
       'holding' => 'matchEventCommentHolding'.tr(),
       'off the ball foul' => 'matchEventCommentOffTheBallFoul'.tr(),
+      'elbowing' => 'matchEventCommentElbowing'.tr(),
       _ => eventComment,
     };
 

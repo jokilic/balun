@@ -66,7 +66,7 @@ class MatchEventsListTile extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 20,
-                      vertical: 16,
+                      vertical: 12,
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
@@ -244,78 +244,144 @@ class MatchEventsListTile extends StatelessWidget {
         ///
         /// GOAL
         ///
-        'goal' => Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ///
-              /// ASSIST
-              ///
-              if (event.assist?.name != null) ...[
-                Flexible(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const BalunImage(
-                        imageUrl: BalunIcons.assist,
-                        height: 28,
-                        width: 28,
-                      ),
-                      const SizedBox(width: 8),
-                      Flexible(
-                        child: Text(
-                          event.assist!.name!,
-                          style: context.textStyles.matchEventsSectionText,
+        'goal' => eventDetail.toLowerCase() == 'missed penalty'
+            ? Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ///
+                  /// PLAYER
+                  ///
+                  Flexible(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const BalunImage(
+                          imageUrl: BalunIcons.missedPenalty,
+                          height: 28,
+                          width: 28,
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 4),
-              ],
-
-              ///
-              /// SCORER
-              ///
-              Flexible(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const BalunImage(
-                      imageUrl: BalunIcons.ball,
-                      height: 28,
-                      width: 28,
-                    ),
-                    const SizedBox(width: 8),
-                    Flexible(
-                      child: Text.rich(
-                        TextSpan(
-                          children: [
+                        const SizedBox(width: 8),
+                        Flexible(
+                          child: Text.rich(
                             TextSpan(
-                              text: event.player?.name ?? '---',
-                              style: context.textStyles.matchEventsSectionText.copyWith(
-                                fontWeight: FontWeight.w500,
-                              ),
+                              children: [
+                                TextSpan(
+                                  text: event.player?.name ?? '---',
+                                  style: context.textStyles.matchEventsSectionText.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                if (eventDetail.toLowerCase() == 'penalty')
+                                  TextSpan(
+                                    text: ' (${'matchInfoPenalty'.tr()})',
+                                    style: context.textStyles.matchEventsSectionText,
+                                  ),
+                                if (eventDetail.toLowerCase() == 'own goal')
+                                  TextSpan(
+                                    text: ' (${'matchInfoOwnGoal'.tr()})',
+                                    style: context.textStyles.matchEventsSectionText,
+                                  ),
+                              ],
                             ),
-                            if (eventDetail.toLowerCase() == 'penalty')
-                              TextSpan(
-                                text: ' (P)',
-                                style: context.textStyles.matchEventsSectionText,
-                              ),
-                            if (eventDetail.toLowerCase() == 'own goal')
-                              TextSpan(
-                                text: ' (${'matchInfoOwnGoal'.tr()})',
-                                style: context.textStyles.matchEventsSectionText,
-                              ),
-                          ],
+                          ),
                         ),
+                      ],
+                    ),
+                  ),
+
+                  ///
+                  /// MISSED PENALTY
+                  ///
+                  const SizedBox(height: 4),
+                  Flexible(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(width: 36),
+                        Flexible(
+                          child: Text(
+                            'matchInfoMissedPenalty'.tr(),
+                            style: context.textStyles.matchEventsSectionText,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            : Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ///
+                  /// ASSIST
+                  ///
+                  if (event.assist?.name != null) ...[
+                    Flexible(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const BalunImage(
+                            imageUrl: BalunIcons.assist,
+                            height: 28,
+                            width: 28,
+                          ),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              event.assist!.name!,
+                              style: context.textStyles.matchEventsSectionText,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
+                    const SizedBox(height: 4),
                   ],
-                ),
+
+                  ///
+                  /// SCORER
+                  ///
+                  Flexible(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const BalunImage(
+                          imageUrl: BalunIcons.ball,
+                          height: 28,
+                          width: 28,
+                        ),
+                        const SizedBox(width: 8),
+                        Flexible(
+                          child: Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: event.player?.name ?? '---',
+                                  style: context.textStyles.matchEventsSectionText.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                if (eventDetail.toLowerCase() == 'penalty')
+                                  TextSpan(
+                                    text: ' (${'matchInfoPenalty'.tr()})',
+                                    style: context.textStyles.matchEventsSectionText,
+                                  ),
+                                if (eventDetail.toLowerCase() == 'own goal')
+                                  TextSpan(
+                                    text: ' (${'matchInfoOwnGoal'.tr()})',
+                                    style: context.textStyles.matchEventsSectionText,
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
 
         ///
         /// CARD
@@ -439,47 +505,22 @@ class MatchEventsListTile extends StatelessWidget {
         ///
         /// VAR
         ///
-        'var' => Column(
+        'var' => Row(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Flexible(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const BalunImage(
-                      imageUrl: BalunIcons.varIcon,
-                      height: 28,
-                      width: 28,
-                    ),
-                    const SizedBox(width: 8),
-                    Flexible(
-                      child: Text(
-                        'matchEventsVAR'.tr(),
-                        style: context.textStyles.matchEventsSectionText.copyWith(
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              const BalunImage(
+                imageUrl: BalunIcons.varIcon,
+                height: 28,
+                width: 28,
               ),
-              const SizedBox(height: 4),
+              const SizedBox(width: 8),
               Flexible(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(width: 36),
-                    Flexible(
-                      child: Text(
-                        getEventText(
-                          eventType: eventType,
-                          eventDetail: eventDetail,
-                        ),
-                        style: context.textStyles.matchEventsSectionText,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  getEventText(
+                    eventType: eventType,
+                    eventDetail: eventDetail,
+                  ),
+                  style: context.textStyles.matchEventsSectionText,
                 ),
               ),
             ],
