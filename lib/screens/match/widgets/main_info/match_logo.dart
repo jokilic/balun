@@ -10,12 +10,10 @@ class MatchLogo extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: BalunImage(
-          imageUrl: logo,
-          height: 80,
-          width: 80,
-        ),
+  Widget build(BuildContext context) => BalunImage(
+        imageUrl: logo,
+        height: 80,
+        width: 80,
+        fit: BoxFit.contain,
       );
 }

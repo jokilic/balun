@@ -19,11 +19,9 @@ class FixturesListTileLogo extends StatelessWidget {
           color: context.colors.greenish.withOpacity(0.5),
         ),
         padding: const EdgeInsets.all(8),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(100),
-          child: BalunImage(
-            imageUrl: logo,
-          ),
+        child: BalunImage(
+          imageUrl: logo,
+          fit: BoxFit.contain,
         ),
       );
 }

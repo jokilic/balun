@@ -198,7 +198,7 @@ class MatchLineupsPlayer extends StatelessWidget {
               ///
               /// SUBSTITUTION
               ///
-              if (minutesPlayed != matchElapsed)
+              if ((minutesPlayed ?? 0) < (matchElapsed ?? 0))
                 Positioned(
                   left: -8,
                   bottom: -6,

@@ -67,9 +67,11 @@ String getEventText({
         },
       'subst' => 'Substitution',
       'var' => switch (eventDetail.toLowerCase()) {
+          'goal confirmed' => 'matchEventGoalConfirmed'.tr(),
           'goal cancelled' => 'matchEventGoalCancelled'.tr(),
-          'penalty confirmed' => 'matchEventPenaltyConfirmed'.tr(),
           'goal disallowed - offside' => 'matchEventOffside'.tr(),
+          'penalty confirmed' => 'matchEventPenaltyConfirmed'.tr(),
+          'penalty cancelled' => 'matchEventPenaltyCancelled'.tr(),
           _ => eventDetail,
         },
       _ => eventType,
@@ -87,6 +89,9 @@ String getEventCommentText({
       'unsportsmanlike conduct' => 'matchEventCommentUnsportsmanlikeConduct'.tr(),
       'roughing' => 'matchEventCommentRoughing'.tr(),
       'tripping' => 'matchEventCommentTripping'.tr(),
+      'delay of game' => 'matchEventCommentDelayOfGame'.tr(),
+      'holding' => 'matchEventCommentHolding'.tr(),
+      'off the ball foul' => 'matchEventCommentOffTheBallFoul'.tr(),
       _ => eventComment,
     };
 
