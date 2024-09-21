@@ -62,7 +62,6 @@ class TeamMainInfo extends WatchingWidget {
           ///
           BalunImage(
             imageUrl: team.team?.logo ?? BalunIcons.placeholderTeam,
-            fit: BoxFit.contain,
             height: 120,
             width: 120,
           ),

@@ -51,13 +51,10 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: BalunImage(
-                      imageUrl: widget.league?.logo ?? BalunIcons.placeholderLeague,
-                      height: 32,
-                      width: 32,
-                    ),
+                  BalunImage(
+                    imageUrl: widget.league?.logo ?? BalunIcons.placeholderLeague,
+                    height: 32,
+                    width: 32,
                   ),
                   const SizedBox(width: 16),
                   Expanded(
@@ -75,6 +72,7 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
                       imageUrl: BalunIcons.live,
                       height: 24,
                       width: 56,
+                      fit: BoxFit.cover,
                     ),
                   ],
                 ],

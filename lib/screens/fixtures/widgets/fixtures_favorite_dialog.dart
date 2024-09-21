@@ -97,13 +97,10 @@ class FixturesFavoriteDialog extends WatchingWidget {
                               padding: const EdgeInsets.symmetric(vertical: 4),
                               child: Row(
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(100),
-                                    child: BalunImage(
-                                      imageUrl: league.logo ?? BalunIcons.placeholderLeague,
-                                      height: 32,
-                                      width: 32,
-                                    ),
+                                  BalunImage(
+                                    imageUrl: league.logo ?? BalunIcons.placeholderLeague,
+                                    height: 32,
+                                    width: 32,
                                   ),
                                   const SizedBox(width: 12),
                                   Expanded(
@@ -151,13 +148,10 @@ class FixturesFavoriteDialog extends WatchingWidget {
                               padding: const EdgeInsets.symmetric(vertical: 4),
                               child: Row(
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(100),
-                                    child: BalunImage(
-                                      imageUrl: team.logo ?? BalunIcons.placeholderLeague,
-                                      height: 32,
-                                      width: 32,
-                                    ),
+                                  BalunImage(
+                                    imageUrl: team.logo ?? BalunIcons.placeholderLeague,
+                                    height: 32,
+                                    width: 32,
                                   ),
                                   const SizedBox(width: 12),
                                   Expanded(

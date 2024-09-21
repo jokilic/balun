@@ -21,7 +21,6 @@ class FixturesListTileLogo extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: BalunImage(
           imageUrl: logo,
-          fit: BoxFit.contain,
         ),
       );
 }

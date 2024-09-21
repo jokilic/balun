@@ -14,6 +14,5 @@ class MatchLogo extends StatelessWidget {
         imageUrl: logo,
         height: 80,
         width: 80,
-        fit: BoxFit.contain,
       );
 }

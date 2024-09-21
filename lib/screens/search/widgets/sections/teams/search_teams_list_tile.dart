@@ -27,13 +27,10 @@ class SearchTeamsListTile extends StatelessWidget {
           ),
           child: Row(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: BalunImage(
-                  imageUrl: team.team?.logo ?? BalunIcons.placeholderTeam,
-                  height: 40,
-                  width: 40,
-                ),
+              BalunImage(
+                imageUrl: team.team?.logo ?? BalunIcons.placeholderTeam,
+                height: 40,
+                width: 40,
               ),
               const SizedBox(width: 16),
               Flexible(

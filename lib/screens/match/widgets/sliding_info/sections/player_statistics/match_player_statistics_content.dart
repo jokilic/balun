@@ -51,13 +51,10 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
                                 season: widget.season,
                               )
                           : null,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: BalunImage(
-                          imageUrl: widget.playerStatistic!.team!.logo!,
-                          height: 64,
-                          width: 64,
-                        ),
+                      child: BalunImage(
+                        imageUrl: widget.playerStatistic!.team!.logo!,
+                        height: 64,
+                        width: 64,
                       ),
                     ),
                     const SizedBox(width: 16),

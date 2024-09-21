@@ -53,7 +53,10 @@ class MatchPlayerStatisticsSection extends StatelessWidget {
                     vertical: 20,
                   ),
                   height: 4,
-                  color: context.colors.greenish,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: context.colors.black.withOpacity(0.25),
+                  ),
                 ),
 
               ///

@@ -57,13 +57,10 @@ class LeagueMainInfo extends WatchingWidget {
           ///
           /// LOGO
           ///
-          ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: BalunImage(
-              imageUrl: league.league?.logo ?? BalunIcons.placeholderLeague,
-              height: 120,
-              width: 120,
-            ),
+          BalunImage(
+            imageUrl: league.league?.logo ?? BalunIcons.placeholderLeague,
+            height: 120,
+            width: 120,
           ),
 
           const SizedBox(height: 16),

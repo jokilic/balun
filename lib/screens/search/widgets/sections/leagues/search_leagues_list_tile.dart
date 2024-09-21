@@ -27,24 +27,25 @@ class SearchLeaguesListTile extends StatelessWidget {
           ),
           child: Row(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: league.league?.logo != null
-                    ? BalunImage(
-                        imageUrl: league.league!.logo!,
-                        height: 40,
-                        width: 40,
-                      )
-                    : Container(
-                        padding: const EdgeInsets.all(8),
-                        color: context.colors.white,
-                        child: const BalunImage(
-                          imageUrl: BalunIcons.placeholderLeague,
-                          height: 28,
-                          width: 28,
-                        ),
-                      ),
-              ),
+              if (league.league?.logo != null)
+                BalunImage(
+                  imageUrl: league.league!.logo!,
+                  height: 40,
+                  width: 40,
+                )
+              else
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: context.colors.white,
+                  ),
+                  child: const BalunImage(
+                    imageUrl: BalunIcons.placeholderLeague,
+                    height: 28,
+                    width: 28,
+                  ),
+                ),
               const SizedBox(width: 16),
               Flexible(
                 child: Column(

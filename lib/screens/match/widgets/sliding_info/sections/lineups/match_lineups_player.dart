@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/lineup/lineup_colors.dart';
@@ -98,6 +100,9 @@ class MatchLineupsPlayer extends StatelessWidget {
         0,
         (sum, statistic) => sum + (statistic.games?.minutes ?? 0),
       );
+
+      log('Minutes -> $minutesPlayed');
+      log('Elapsed -> $matchElapsed');
 
       return Positioned(
         left: adjustedXPosition * fieldWidth! - playerSize / 2,
