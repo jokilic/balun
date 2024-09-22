@@ -334,6 +334,8 @@
     "matchEventCommentHolding": "Držanje protivnika",
     "matchEventCommentOffTheBallFoul": "Prekršaj bez lopte",
     "matchEventCommentElbowing": "Udarac laktom",
+    "matchEventCommentPersistentFouling": "Uzastopni prekršaji",
+    "matchEventCommentHandling": "Igranje rukom",
     "playerPositionGoalkeeper": "Vratar",
     "playerPositionDefender": "Branič",
     "playerPositionMidfielder": "Vezni",

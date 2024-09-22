@@ -12,12 +12,14 @@ import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
 class MatchLineupListTile extends StatelessWidget {
+  final bool matchLive;
   final LineupPlayerInside? player;
   final PlayerStatisticData? playerStatistic;
   final LineupColors? colors;
   final int season;
 
   const MatchLineupListTile({
+    required this.matchLive,
     required this.player,
     required this.playerStatistic,
     required this.colors,
@@ -93,15 +95,16 @@ class MatchLineupListTile extends StatelessWidget {
             ///
             /// SUBSTITUTION
             ///
-            if ((minutesPlayed ?? 0) > 0) ...[
-              const SizedBox(width: 4),
-              BalunImage(
-                imageUrl: BalunIcons.playerIn,
-                color: context.colors.green,
-                height: 24,
-                width: 24,
-              ),
-            ]
+            if (!matchLive)
+              if ((minutesPlayed ?? 0) > 0) ...[
+                const SizedBox(width: 4),
+                BalunImage(
+                  imageUrl: BalunIcons.playerIn,
+                  color: context.colors.green,
+                  height: 24,
+                  width: 24,
+                ),
+              ]
           ],
         ),
       ),

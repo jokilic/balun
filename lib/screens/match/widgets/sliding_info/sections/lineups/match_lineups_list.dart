@@ -7,6 +7,7 @@ import '../../../../../../widgets/balun_seperator.dart';
 import 'match_lineup_list_tile.dart';
 
 class MatchLineupsList extends StatelessWidget {
+  final bool matchLive;
   final List<LineupPlayer>? homePlayers;
   final List<LineupPlayer>? awayPlayers;
   final PlayerStatistic? homePlayerStatistic;
@@ -16,6 +17,7 @@ class MatchLineupsList extends StatelessWidget {
   final int season;
 
   const MatchLineupsList({
+    required this.matchLive,
     required this.homePlayers,
     required this.awayPlayers,
     required this.homePlayerStatistic,
@@ -34,6 +36,7 @@ class MatchLineupsList extends StatelessWidget {
           ///
           Expanded(
             child: MatchLineupList(
+              matchLive: matchLive,
               players: homePlayers,
               playerStatistic: homePlayerStatistic,
               colors: homePlayerColors,
@@ -46,6 +49,7 @@ class MatchLineupsList extends StatelessWidget {
           ///
           Expanded(
             child: MatchLineupList(
+              matchLive: matchLive,
               players: awayPlayers,
               playerStatistic: awayPlayerStatistic,
               colors: awayPlayerColors,
@@ -57,12 +61,14 @@ class MatchLineupsList extends StatelessWidget {
 }
 
 class MatchLineupList extends StatelessWidget {
+  final bool matchLive;
   final List<LineupPlayer>? players;
   final PlayerStatistic? playerStatistic;
   final LineupColors? colors;
   final int season;
 
   const MatchLineupList({
+    required this.matchLive,
     required this.players,
     required this.playerStatistic,
     required this.colors,
@@ -78,6 +84,7 @@ class MatchLineupList extends StatelessWidget {
           final player = players![index].player;
 
           return MatchLineupListTile(
+            matchLive: matchLive,
             player: player,
             playerStatistic: playerStatistic?.statistics
                 ?.where(

@@ -334,6 +334,8 @@
     "matchEventCommentHolding": "Holding the opponent",
     "matchEventCommentOffTheBallFoul": "Off the ball foul",
     "matchEventCommentElbowing": "Striking opponent with an elbow",
+    "matchEventCommentPersistentFouling": "Persistent fouling",
+    "matchEventCommentHandling": "Hand ball",
     "playerPositionGoalkeeper": "Goalkeeper",
     "playerPositionDefender": "Defender",
     "playerPositionMidfielder": "Midfielder",

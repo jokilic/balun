@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/lineup/lineup_colors.dart';
@@ -15,6 +13,7 @@ import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
 class MatchLineupsPlayer extends StatelessWidget {
+  final bool matchLive;
   final LineupPlayer? player;
   final PlayerStatisticData? playerStatistic;
   final int? matchElapsed;
@@ -26,6 +25,7 @@ class MatchLineupsPlayer extends StatelessWidget {
   final int season;
 
   const MatchLineupsPlayer({
+    required this.matchLive,
     required this.player,
     required this.playerStatistic,
     required this.matchElapsed,
@@ -100,9 +100,6 @@ class MatchLineupsPlayer extends StatelessWidget {
         0,
         (sum, statistic) => sum + (statistic.games?.minutes ?? 0),
       );
-
-      log('Minutes -> $minutesPlayed');
-      log('Elapsed -> $matchElapsed');
 
       return Positioned(
         left: adjustedXPosition * fieldWidth! - playerSize / 2,
@@ -203,17 +200,18 @@ class MatchLineupsPlayer extends StatelessWidget {
               ///
               /// SUBSTITUTION
               ///
-              if ((minutesPlayed ?? 0) < (matchElapsed ?? 0) && (yellowCards ?? 0) < 2 && (redCards ?? 0) < 1)
-                Positioned(
-                  left: -8,
-                  bottom: -6,
-                  child: BalunImage(
-                    imageUrl: BalunIcons.playerOut,
-                    color: context.colors.red,
-                    height: 20,
-                    width: 20,
+              if (!matchLive)
+                if ((minutesPlayed ?? 0) < (matchElapsed ?? 0) && (yellowCards ?? 0) < 2 && (redCards ?? 0) < 1)
+                  Positioned(
+                    left: -8,
+                    bottom: -6,
+                    child: BalunImage(
+                      imageUrl: BalunIcons.playerOut,
+                      color: context.colors.red,
+                      height: 20,
+                      width: 20,
+                    ),
                   ),
-                ),
             ],
           ),
         ),

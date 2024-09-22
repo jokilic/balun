@@ -11,6 +11,7 @@ import 'match_lineups_list.dart';
 import 'match_lineups_start_xi.dart';
 
 class MatchLineupContent extends StatelessWidget {
+  final bool matchLive;
   final Lineup? homeLineup;
   final Lineup? awayLineup;
   final PlayerStatistic? homePlayerStatistic;
@@ -19,6 +20,7 @@ class MatchLineupContent extends StatelessWidget {
   final int season;
 
   const MatchLineupContent({
+    required this.matchLive,
     required this.homeLineup,
     required this.awayLineup,
     required this.homePlayerStatistic,
@@ -42,6 +44,7 @@ class MatchLineupContent extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           MatchLineupsStartXI(
+            matchLive: matchLive,
             homeLineup: homeLineup,
             awayLineup: awayLineup,
             homePlayerStatistic: homePlayerStatistic,
@@ -120,6 +123,7 @@ class MatchLineupContent extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           MatchLineupsList(
+            matchLive: matchLive,
             homePlayers: sortPlayersByPosition(
               homeLineup?.substitutes,
             ),

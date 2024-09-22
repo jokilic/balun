@@ -9,6 +9,7 @@ import 'match_lineups_list.dart';
 import 'match_lineups_player.dart';
 
 class MatchLineupsStartXI extends StatelessWidget {
+  final bool matchLive;
   final Lineup? homeLineup;
   final Lineup? awayLineup;
   final PlayerStatistic? homePlayerStatistic;
@@ -17,6 +18,7 @@ class MatchLineupsStartXI extends StatelessWidget {
   final int season;
 
   const MatchLineupsStartXI({
+    required this.matchLive,
     required this.homeLineup,
     required this.awayLineup,
     required this.homePlayerStatistic,
@@ -62,6 +64,7 @@ class MatchLineupsStartXI extends StatelessWidget {
                       ...homeLineup!.startXI!
                           .map(
                             (player) => MatchLineupsPlayer(
+                              matchLive: matchLive,
                               player: player,
                               playerStatistic: homePlayerStatistic?.statistics
                                   ?.where(
@@ -86,6 +89,7 @@ class MatchLineupsStartXI extends StatelessWidget {
                       ...awayLineup!.startXI!
                           .map(
                             (player) => MatchLineupsPlayer(
+                              matchLive: matchLive,
                               player: player,
                               playerStatistic: awayPlayerStatistic?.statistics
                                   ?.where(
@@ -115,6 +119,7 @@ class MatchLineupsStartXI extends StatelessWidget {
     /// LIST OF PLAYERS
     ///
     return MatchLineupsList(
+      matchLive: matchLive,
       homePlayers: sortPlayersByPosition(
         homeLineup?.startXI,
       ),

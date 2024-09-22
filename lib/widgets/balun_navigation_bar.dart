@@ -6,7 +6,6 @@ import '../services/balun_navigation_bar_badge_service.dart';
 import '../services/balun_navigation_bar_service.dart';
 import '../theme/icons.dart';
 import '../theme/theme.dart';
-import '../util/color.dart';
 import '../util/dependencies.dart';
 import 'balun_image.dart';
 

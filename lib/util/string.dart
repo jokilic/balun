@@ -93,6 +93,8 @@ String getEventCommentText({
       'holding' => 'matchEventCommentHolding'.tr(),
       'off the ball foul' => 'matchEventCommentOffTheBallFoul'.tr(),
       'elbowing' => 'matchEventCommentElbowing'.tr(),
+      'persistent fouling' => 'matchEventCommentPersistentFouling'.tr(),
+      'handling' => 'matchEventCommentHandling'.tr(),
       _ => eventComment,
     };
 

@@ -7,6 +7,7 @@ import '../../../../../../widgets/balun_empty.dart';
 import 'match_lineup_content.dart';
 
 class MatchLineupsSection extends StatelessWidget {
+  final bool matchLive;
   final Lineup? homeLineup;
   final Lineup? awayLineup;
   final PlayerStatistic? homePlayerStatistic;
@@ -15,6 +16,7 @@ class MatchLineupsSection extends StatelessWidget {
   final int season;
 
   const MatchLineupsSection({
+    required this.matchLive,
     required this.homeLineup,
     required this.awayLineup,
     required this.homePlayerStatistic,
@@ -45,6 +47,7 @@ class MatchLineupsSection extends StatelessWidget {
             ///
             else
               MatchLineupContent(
+                matchLive: matchLive,
                 homeLineup: homeLineup,
                 awayLineup: awayLineup,
                 homePlayerStatistic: homePlayerStatistic,
