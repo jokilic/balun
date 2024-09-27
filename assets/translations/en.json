@@ -302,6 +302,7 @@
     "matchEventGoalConfirmed": "Goal confirmed",
     "matchEventGoalCancelled": "Goal cancelled",
     "matchEventOffside": "Goal disallowed - offside",
+    "matchEventHandball": "Goal disallowed - hand ball",
     "matchEventPenaltyConfirmed": "Penalty confirmed",
     "matchEventPenaltyCancelled": "Penalty cancelled",
     "matchStatisticShotsOnGoal": "Shots on goal",

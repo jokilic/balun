@@ -70,6 +70,7 @@ String getEventText({
           'goal confirmed' => 'matchEventGoalConfirmed'.tr(),
           'goal cancelled' => 'matchEventGoalCancelled'.tr(),
           'goal disallowed - offside' => 'matchEventOffside'.tr(),
+          'goal disallowed - handball' => 'matchEventHandball'.tr(),
           'penalty confirmed' => 'matchEventPenaltyConfirmed'.tr(),
           'penalty cancelled' => 'matchEventPenaltyCancelled'.tr(),
           _ => eventDetail,

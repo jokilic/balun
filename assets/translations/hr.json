@@ -302,6 +302,7 @@
     "matchEventGoalConfirmed": "Potvrđen gol",
     "matchEventGoalCancelled": "Poništen gol",
     "matchEventOffside": "Poništen gol - zaleđe",
+    "matchEventHandball": "Poništen gol - igranje rukom",
     "matchEventPenaltyConfirmed": "Potvrđen jedanaesterac",
     "matchEventPenaltyCancelled": "Poništen jedanaesterac",
     "matchStatisticShotsOnGoal": "Udarci u okvir",

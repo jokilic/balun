@@ -505,22 +505,47 @@ class MatchEventsListTile extends StatelessWidget {
         ///
         /// VAR
         ///
-        'var' => Row(
+        'var' => Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const BalunImage(
-                imageUrl: BalunIcons.varIcon,
-                height: 28,
-                width: 28,
-              ),
-              const SizedBox(width: 8),
               Flexible(
-                child: Text(
-                  getEventText(
-                    eventType: eventType,
-                    eventDetail: eventDetail,
-                  ),
-                  style: context.textStyles.matchEventsSectionText,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const BalunImage(
+                      imageUrl: BalunIcons.varIcon,
+                      height: 28,
+                      width: 28,
+                    ),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        'matchEventsVAR'.tr(),
+                        style: context.textStyles.matchEventsSectionText.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 4),
+              Flexible(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(width: 36),
+                    Flexible(
+                      child: Text(
+                        getEventText(
+                          eventType: eventType,
+                          eventDetail: eventDetail,
+                        ),
+                        style: context.textStyles.matchEventsSectionText,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
