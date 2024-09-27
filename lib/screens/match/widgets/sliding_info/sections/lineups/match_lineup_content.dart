@@ -7,6 +7,7 @@ import '../../../../../../routing.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/lineups.dart';
 import '../../../../../../widgets/balun_button.dart';
+import 'match_lineup_team_data.dart';
 import 'match_lineups_list.dart';
 import 'match_lineups_start_xi.dart';
 
@@ -33,16 +34,17 @@ class MatchLineupContent extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: [
           ///
-          /// STARTING 11
+          /// HOME TEAM
           ///
-          Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              'matchLineupStarting11'.tr(),
-              style: context.textStyles.matchLineupsSectionTitle,
-            ),
+          MatchLineupTeamData(
+            lineup: homeLineup,
+            playerStatistic: homePlayerStatistic,
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 24),
+
+          ///
+          /// START XI
+          ///
           MatchLineupsStartXI(
             matchLive: matchLive,
             homeLineup: homeLineup,
@@ -52,18 +54,23 @@ class MatchLineupContent extends StatelessWidget {
             matchElapsed: matchElapsed,
             season: season,
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 24),
+
+          ///
+          /// AWAY TEAM
+          ///
+          MatchLineupTeamData(
+            lineup: awayLineup,
+            playerStatistic: awayPlayerStatistic,
+          ),
 
           ///
           /// MANAGERS
           ///
-          const SizedBox(height: 4),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'matchLineupManagers'.tr(),
-              style: context.textStyles.matchLineupsSectionTitle,
-            ),
+          const SizedBox(height: 28),
+          Text(
+            'matchLineupManagers'.tr(),
+            style: context.textStyles.matchLineupsSectionTitle,
           ),
           const SizedBox(height: 4),
           Row(
@@ -114,14 +121,11 @@ class MatchLineupContent extends StatelessWidget {
           ///
           /// SUBSTITUTIONS
           ///
-          Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              'matchLineupSubstitutions'.tr(),
-              style: context.textStyles.matchLineupsSectionTitle,
-            ),
+          Text(
+            'matchLineupSubstitutions'.tr(),
+            style: context.textStyles.matchLineupsSectionTitle,
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           MatchLineupsList(
             matchLive: matchLive,
             homePlayers: sortPlayersByPosition(

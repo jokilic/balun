@@ -8,6 +8,7 @@ import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
 import '../../../../../../util/lineups.dart';
+import '../../../../../../util/player_statistics.dart';
 import '../../../../../../util/string.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
@@ -100,6 +101,7 @@ class MatchLineupsPlayer extends StatelessWidget {
         0,
         (sum, statistic) => sum + (statistic.games?.minutes ?? 0),
       );
+      final rating = playerStatistic?.statistic?.firstOrNull?.games?.rating;
 
       return Positioned(
         left: adjustedXPosition * fieldWidth! - playerSize / 2,
@@ -143,7 +145,7 @@ class MatchLineupsPlayer extends StatelessWidget {
               ///
               /// NAME
               ///
-              if (player?.player?.name != null) ...[
+              if (player?.player?.name != null)
                 Positioned(
                   bottom: -16,
                   child: Text(
@@ -152,7 +154,6 @@ class MatchLineupsPlayer extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-              ],
 
               ///
               /// GOALS
@@ -175,7 +176,7 @@ class MatchLineupsPlayer extends StatelessWidget {
               if ((redCards ?? 0) > 0 && (yellowCards ?? 9) <= 1)
                 const Positioned(
                   right: -8,
-                  top: -2,
+                  top: -4,
                   child: BalunImage(
                     imageUrl: BalunIcons.redCard,
                     height: 20,
@@ -189,7 +190,7 @@ class MatchLineupsPlayer extends StatelessWidget {
               if ((yellowCards ?? 0) > 0)
                 Positioned(
                   right: -8,
-                  top: -2,
+                  top: -4,
                   child: BalunImage(
                     imageUrl: yellowCards == 1 ? BalunIcons.yellowCard : BalunIcons.cards,
                     height: 20,
@@ -197,21 +198,49 @@ class MatchLineupsPlayer extends StatelessWidget {
                   ),
                 ),
 
-              ///
-              /// SUBSTITUTION
-              ///
-              if (!matchLive)
+              if (!matchLive) ...[
+                ///
+                /// SUBSTITUTION
+                ///
                 if ((minutesPlayed ?? 0) < (matchElapsed ?? 0) && (yellowCards ?? 0) < 2 && (redCards ?? 0) < 1)
                   Positioned(
-                    left: -8,
+                    right: -10,
                     bottom: -6,
                     child: BalunImage(
                       imageUrl: BalunIcons.playerOut,
                       color: context.colors.red,
-                      height: 20,
-                      width: 20,
+                      height: 24,
+                      width: 24,
                     ),
                   ),
+
+                ///
+                /// RATING
+                ///
+                if (rating != null)
+                  Positioned(
+                    left: -20,
+                    bottom: -6,
+                    child: Container(
+                      padding: const EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        color: getRatingColor(
+                          rating,
+                          context: context,
+                        ),
+                        border: Border.all(
+                          color: context.colors.black,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Text(
+                        rating.toStringAsFixed(1),
+                        style: context.textStyles.matchLineupRating,
+                      ),
+                    ),
+                  ),
+              ],
             ],
           ),
         ),

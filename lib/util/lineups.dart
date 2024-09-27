@@ -1,5 +1,32 @@
 import '../models/fixtures/lineup/lineup.dart';
 import '../models/fixtures/lineup/lineup_player.dart';
+import '../models/fixtures/player_statistic/player_statistic.dart';
+
+double? calculateAverageRating({
+  required PlayerStatistic? playerStatistic,
+}) {
+  if (playerStatistic == null) {
+    return null;
+  }
+
+  var totalRating = 0.0;
+  var ratingCount = 0;
+
+  if (playerStatistic.statistics?.isNotEmpty ?? false) {
+    for (final playerData in playerStatistic.statistics!) {
+      if (playerData.statistic?.isNotEmpty ?? false) {
+        for (final inner in playerData.statistic!) {
+          if (inner.games?.rating != null) {
+            totalRating += inner.games!.rating!;
+            ratingCount++;
+          }
+        }
+      }
+    }
+  }
+
+  return ratingCount > 0 ? totalRating / ratingCount : null;
+}
 
 List<int>? parseFormation(Lineup? lineup) {
   if (lineup?.formation != null) {

@@ -130,7 +130,13 @@ abstract class BalunTextStyles {
 
   static const matchLineupsSectionTitle = TextStyle(
     fontFamily: 'Lufga',
-    fontSize: 22,
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const matchLineupsSectionSubtitle = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 20,
     fontWeight: FontWeight.w600,
   );
 
@@ -386,6 +392,12 @@ abstract class BalunTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w600,
   );
+
+  static const matchLineupRating = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -411,6 +423,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchEventsSectionText;
   final TextStyle matchEventsSectionResult;
   final TextStyle matchLineupsSectionTitle;
+  final TextStyle matchLineupsSectionSubtitle;
   final TextStyle matchLineupsSectionText;
   final TextStyle matchLineupsSectionTextSmall;
   final TextStyle matchLineupsSectionPlayer;
@@ -453,6 +466,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle dialogText;
   final TextStyle dialogSubtitle;
   final TextStyle badgeNumber;
+  final TextStyle matchLineupRating;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -477,6 +491,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchEventsSectionText,
     required this.matchEventsSectionResult,
     required this.matchLineupsSectionTitle,
+    required this.matchLineupsSectionSubtitle,
     required this.matchLineupsSectionText,
     required this.matchLineupsSectionTextSmall,
     required this.matchLineupsSectionPlayer,
@@ -519,6 +534,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.dialogText,
     required this.dialogSubtitle,
     required this.badgeNumber,
+    required this.matchLineupRating,
   });
 
   @override
@@ -545,6 +561,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchEventsSectionText,
     TextStyle? matchEventsSectionResult,
     TextStyle? matchLineupsSectionTitle,
+    TextStyle? matchLineupsSectionSubtitle,
     TextStyle? matchLineupsSectionText,
     TextStyle? matchLineupsSectionTextSmall,
     TextStyle? matchLineupsSectionPlayer,
@@ -587,6 +604,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? dialogText,
     TextStyle? dialogSubtitle,
     TextStyle? badgeNumber,
+    TextStyle? matchLineupRating,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -611,6 +629,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchEventsSectionText: matchEventsSectionText ?? this.matchEventsSectionText,
         matchEventsSectionResult: matchEventsSectionResult ?? this.matchEventsSectionResult,
         matchLineupsSectionTitle: matchLineupsSectionTitle ?? this.matchLineupsSectionTitle,
+        matchLineupsSectionSubtitle: matchLineupsSectionSubtitle ?? this.matchLineupsSectionSubtitle,
         matchLineupsSectionText: matchLineupsSectionText ?? this.matchLineupsSectionText,
         matchLineupsSectionTextSmall: matchLineupsSectionTextSmall ?? this.matchLineupsSectionTextSmall,
         matchLineupsSectionPlayer: matchLineupsSectionPlayer ?? this.matchLineupsSectionPlayer,
@@ -653,6 +672,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         dialogText: dialogText ?? this.dialogText,
         dialogSubtitle: dialogSubtitle ?? this.dialogSubtitle,
         badgeNumber: badgeNumber ?? this.badgeNumber,
+        matchLineupRating: matchLineupRating ?? this.matchLineupRating,
       );
 
   @override
@@ -687,6 +707,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchEventsSectionText: TextStyle.lerp(matchEventsSectionText, other.matchEventsSectionText, t)!,
       matchEventsSectionResult: TextStyle.lerp(matchEventsSectionResult, other.matchEventsSectionResult, t)!,
       matchLineupsSectionTitle: TextStyle.lerp(matchLineupsSectionTitle, other.matchLineupsSectionTitle, t)!,
+      matchLineupsSectionSubtitle: TextStyle.lerp(matchLineupsSectionSubtitle, other.matchLineupsSectionSubtitle, t)!,
       matchLineupsSectionText: TextStyle.lerp(matchLineupsSectionText, other.matchLineupsSectionText, t)!,
       matchLineupsSectionTextSmall: TextStyle.lerp(matchLineupsSectionTextSmall, other.matchLineupsSectionTextSmall, t)!,
       matchLineupsSectionPlayer: TextStyle.lerp(matchLineupsSectionPlayer, other.matchLineupsSectionPlayer, t)!,
@@ -729,6 +750,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       dialogText: TextStyle.lerp(dialogText, other.dialogText, t)!,
       dialogSubtitle: TextStyle.lerp(dialogSubtitle, other.dialogSubtitle, t)!,
       badgeNumber: TextStyle.lerp(badgeNumber, other.badgeNumber, t)!,
+      matchLineupRating: TextStyle.lerp(matchLineupRating, other.matchLineupRating, t)!,
     );
   }
 }

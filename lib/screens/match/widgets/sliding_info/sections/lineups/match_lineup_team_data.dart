@@ -1,0 +1,145 @@
+import 'package:flutter/material.dart';
+
+import '../../../../../../models/fixtures/lineup/lineup.dart';
+import '../../../../../../models/fixtures/player_statistic/player_statistic.dart';
+import '../../../../../../theme/theme.dart';
+import '../../../../../../util/color.dart';
+import '../../../../../../util/lineups.dart';
+import '../../../../../../util/player_statistics.dart';
+
+// TODO: Localize
+class MatchLineupTeamData extends StatelessWidget {
+  final Lineup? lineup;
+  final PlayerStatistic? playerStatistic;
+
+  const MatchLineupTeamData({
+    required this.lineup,
+    required this.playerStatistic,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final averageRating = calculateAverageRating(
+      playerStatistic: playerStatistic,
+    );
+
+    final playerPrimaryColor = textToColor(
+      lineup?.team?.colors?.player?.primary,
+    );
+    final playerBorderColor = textToColor(
+      lineup?.team?.colors?.player?.border,
+    );
+    final playerNumberColor = textToColor(
+      lineup?.team?.colors?.player?.number,
+    );
+
+    return Column(
+      children: [
+        Row(
+          children: [
+            ///
+            /// COLORS
+            ///
+            if (playerPrimaryColor != null) ...[
+              Container(
+                alignment: Alignment.center,
+                height: 48,
+                width: 48,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: playerPrimaryColor,
+                  border: Border.all(
+                    color: playerBorderColor ?? playerPrimaryColor,
+                    width: 2.5,
+                  ),
+                ),
+                child: playerNumberColor != null
+                    ? Text(
+                        lineup?.team?.name?.substring(0, 1) ?? '',
+                        style: context.textStyles.matchLineupsSectionNumber.copyWith(
+                          color: playerNumberColor,
+                          fontSize: 24,
+                        ),
+                        textAlign: TextAlign.center,
+                      )
+                    : null,
+              ),
+              const SizedBox(width: 14),
+            ],
+
+            ///
+            /// NAME
+            ///
+            Expanded(
+              child: Text(
+                lineup?.team?.name ?? '---',
+                style: context.textStyles.matchLineupsSectionTitle,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ///
+            /// FORMATION
+            ///
+            if (lineup?.formation != null)
+              Column(
+                children: [
+                  Text(
+                    'Formation',
+                    style: context.textStyles.matchLineupsSectionText,
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    lineup!.formation!,
+                    style: context.textStyles.matchLineupsSectionSubtitle,
+                  ),
+                ],
+              ),
+
+            ///
+            /// RATING
+            ///
+            if (averageRating != null)
+              Column(
+                children: [
+                  Text(
+                    'Team rating',
+                    style: context.textStyles.matchLineupsSectionText,
+                  ),
+                  const SizedBox(height: 6),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: getRatingColor(
+                        averageRating,
+                        context: context,
+                      ),
+                      border: Border.all(
+                        color: context.colors.black,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      averageRating.toStringAsFixed(1),
+                      style: context.textStyles.matchLineupsSectionSubtitle.copyWith(
+                        color: context.colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+          ],
+        ),
+      ],
+    );
+  }
+}

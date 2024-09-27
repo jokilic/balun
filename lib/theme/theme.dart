@@ -99,6 +99,9 @@ class BalunTheme {
     matchLineupsSectionTitle: BalunTextStyles.matchLineupsSectionTitle.copyWith(
       color: lightAppColors.black,
     ),
+    matchLineupsSectionSubtitle: BalunTextStyles.matchLineupsSectionSubtitle.copyWith(
+      color: lightAppColors.black,
+    ),
     matchLineupsSectionText: BalunTextStyles.matchLineupsSectionText.copyWith(
       color: lightAppColors.black,
     ),
@@ -223,6 +226,9 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     badgeNumber: BalunTextStyles.badgeNumber.copyWith(
+      color: lightAppColors.white,
+    ),
+    matchLineupRating: BalunTextStyles.matchLineupRating.copyWith(
       color: lightAppColors.white,
     ),
   );
