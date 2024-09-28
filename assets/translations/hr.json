@@ -102,6 +102,8 @@
     "matchLineupManagers": "Treneri",
     "matchLineupSubstitutions": "Zamjene",
     "matchLineupNo": "Nema postava",
+    "matchLineupFormation": "Formacija",
+    "matchLineupTeamRating": "Ocjena momčadi",
     "matchPlayerInfo": "Info",
     "matchPlayerRating": "Ocjena",
     "matchPlayerMinutes": "Minute",

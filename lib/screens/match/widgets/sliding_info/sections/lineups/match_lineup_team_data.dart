@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/lineup/lineup.dart';
@@ -7,7 +8,6 @@ import '../../../../../../util/color.dart';
 import '../../../../../../util/lineups.dart';
 import '../../../../../../util/player_statistics.dart';
 
-// TODO: Localize
 class MatchLineupTeamData extends StatelessWidget {
   final Lineup? lineup;
   final PlayerStatistic? playerStatistic;
@@ -81,61 +81,64 @@ class MatchLineupTeamData extends StatelessWidget {
         const SizedBox(height: 16),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ///
             /// FORMATION
             ///
             if (lineup?.formation != null)
-              Column(
-                children: [
-                  Text(
-                    'Formation',
-                    style: context.textStyles.matchLineupsSectionText,
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    lineup!.formation!,
-                    style: context.textStyles.matchLineupsSectionSubtitle,
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      'matchLineupFormation'.tr(),
+                      style: context.textStyles.matchLineupsSectionText,
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      lineup!.formation!,
+                      style: context.textStyles.matchLineupsSectionSubtitle,
+                    ),
+                  ],
+                ),
               ),
 
             ///
             /// RATING
             ///
             if (averageRating != null)
-              Column(
-                children: [
-                  Text(
-                    'Team rating',
-                    style: context.textStyles.matchLineupsSectionText,
-                  ),
-                  const SizedBox(height: 6),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 6,
-                      vertical: 2,
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      'matchLineupTeamRating'.tr(),
+                      style: context.textStyles.matchLineupsSectionText,
                     ),
-                    decoration: BoxDecoration(
-                      color: getRatingColor(
-                        averageRating,
-                        context: context,
+                    const SizedBox(height: 6),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 2,
                       ),
-                      border: Border.all(
-                        color: context.colors.black,
-                        width: 2,
+                      decoration: BoxDecoration(
+                        color: getRatingColor(
+                          averageRating,
+                          context: context,
+                        ),
+                        border: Border.all(
+                          color: context.colors.black,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
                       ),
-                      borderRadius: BorderRadius.circular(4),
+                      child: Text(
+                        averageRating.toStringAsFixed(1),
+                        style: context.textStyles.matchLineupsSectionSubtitle.copyWith(
+                          color: context.colors.white,
+                        ),
+                      ),
                     ),
-                    child: Text(
-                      averageRating.toStringAsFixed(1),
-                      style: context.textStyles.matchLineupsSectionSubtitle.copyWith(
-                        color: context.colors.white,
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
           ],
         ),

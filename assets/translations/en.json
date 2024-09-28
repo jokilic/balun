@@ -102,6 +102,8 @@
     "matchLineupManagers": "Managers",
     "matchLineupSubstitutions": "Substitutions",
     "matchLineupNo": "No lineups",
+    "matchLineupFormation": "Formation",
+    "matchLineupTeamRating": "Team rating",
     "matchPlayerInfo": "Info",
     "matchPlayerRating": "Rating",
     "matchPlayerMinutes": "Minutes",
