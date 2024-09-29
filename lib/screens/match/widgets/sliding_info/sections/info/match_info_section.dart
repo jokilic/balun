@@ -104,7 +104,7 @@ class MatchInfoSection extends StatelessWidget {
                         style: context.textStyles.matchInfoSectionTitle,
                       ),
                       Text(
-                        getMatchStatus(status!.short ?? ''),
+                        getMatchStatusLong(status!.short ?? ''),
                         style: context.textStyles.matchInfoSectionText,
                       ),
                     ],

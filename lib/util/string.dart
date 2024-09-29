@@ -36,7 +36,7 @@ String getScoreText({
     return '${homeGoals ?? '--'} : ${awayGoals ?? '--'}';
   }
 
-  return getMatchStatusMinutes(
+  return getMatchStatusShortOrMinutes(
     statusShort: statusShort,
     minutes: minutes,
   );
@@ -49,7 +49,7 @@ bool matchIsPlaying({
 
 bool isMatchNotStarted({required String statusShort}) => statusShort == 'TBD' || statusShort == 'NS';
 
-String getMatchStatus(String statusShort) => switch (statusShort.toUpperCase()) {
+String getMatchStatusLong(String statusShort) => switch (statusShort.toUpperCase()) {
       'TBD' => 'matchStatusTBD'.tr(),
       'NS' => 'matchStatusNS'.tr(),
       '1H' => 'matchStatus1H'.tr(),
@@ -72,13 +72,15 @@ String getMatchStatus(String statusShort) => switch (statusShort.toUpperCase()) 
       _ => 'matchStatusUnknown'.tr(),
     };
 
-String getMatchStatusMinutes({
+// TODO: Return localized abbreviations
+String getMatchStatusShortOrMinutes({
   required String statusShort,
   required int minutes,
 }) =>
     switch (statusShort.toUpperCase()) {
       'TBD' || 'NS' => '---',
       '1H' || '2H' || 'ET' => '$minutes',
+      'HT' => 'HT',
       'FT' || 'AET' || 'PEN' => 'FT',
       _ => statusShort,
     };
