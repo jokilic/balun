@@ -19,7 +19,7 @@ class BalunIcons {
   static const favoriteNo = 'assets/icons/favorite_no.png';
   static const favoriteYes = 'assets/icons/favorite_yes.png';
   static const live = 'assets/icons/live.png';
-  static const countryPlaceholder = 'assets/icons/globe_color.png';
+  static const placeholderCountry = 'assets/icons/globe_color.png';
   static const placeholderPlayer = 'assets/icons/placeholder_player.png';
   static const placeholderLeague = 'assets/icons/placeholder_league.png';
   static const placeholderTeam = 'assets/icons/placeholder_team.png';

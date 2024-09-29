@@ -12,6 +12,7 @@ import 'fixtures_all_dialog.dart';
 import 'fixtures_app_bar.dart';
 import 'fixtures_favorite_dialog.dart';
 import 'fixtures_list_tile/fixtures_country/fixtures_country_list_tile.dart';
+import 'fixtures_list_tile/fixtures_league_alternate/fixtures_league_alternate_list_tile.dart';
 
 class FixturesSuccess extends WatchingWidget {
   final List<FixtureResponse> fixtures;
@@ -35,20 +36,30 @@ class FixturesSuccess extends WatchingWidget {
 
     final favoritedTeams = watchIt<TeamStorageService>().value;
 
-    final favoriteSortedGroupedFixtures = sortGroupedFixtures(
-      groupedFixtures: groupFixtures(
-        fixtures: getFavoriteFixtures(
-          fixtures: fixtures,
-          favoritedLeagues: favoritedLeagues,
-          favoritedTeams: favoritedTeams,
-        ),
+    final favoriteFixtures = getFavoriteFixtures(
+      fixtures: fixtures,
+      favoritedLeagues: favoritedLeagues,
+      favoritedTeams: favoritedTeams,
+    );
+
+    final favoriteSortedGroupedFixturesLeague = sortGroupedFixturesWithLeagues(
+      groupedFixtures: groupFixturesWithLeagues(
+        fixtures: favoriteFixtures,
       ),
       favoritedLeagues: favoritedLeagues,
       favoritedTeams: favoritedTeams,
     );
 
-    final sortedGroupedFixtures = sortGroupedFixtures(
-      groupedFixtures: groupFixtures(
+    // final favoriteSortedGroupedFixtures = sortGroupedFixturesWithCountries(
+    //   groupedFixtures: groupFixturesWithCountries(
+    //     fixtures: favoriteFixtures,
+    //   ),
+    //   favoritedLeagues: favoritedLeagues,
+    //   favoritedTeams: favoritedTeams,
+    // );
+
+    final sortedGroupedFixtures = sortGroupedFixturesWithCountries(
+      groupedFixtures: groupFixturesWithCountries(
         fixtures: fixtures,
       ),
       favoritedLeagues: favoritedLeagues,
@@ -60,9 +71,9 @@ class FixturesSuccess extends WatchingWidget {
       physics: const BouncingScrollPhysics(),
       children: [
         ///
-        /// FAVORITE FIXTURES
+        /// FAVORITE FIXTURES ALTERNATE
         ///
-        if (favoriteSortedGroupedFixtures.isNotEmpty) ...[
+        if (favoriteSortedGroupedFixturesLeague.isNotEmpty) ...[
           const SizedBox(height: 8),
           FixturesAppBar(
             onPressed: () => showDialog(
@@ -77,19 +88,20 @@ class FixturesSuccess extends WatchingWidget {
           const SizedBox(height: 24),
           ListView.separated(
             shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: favoriteSortedGroupedFixtures.length,
-            itemBuilder: (_, countryIndex) {
-              final countryLeague = favoriteSortedGroupedFixtures.keys.elementAtOrNull(countryIndex);
-              final leagues = favoriteSortedGroupedFixtures[countryLeague];
+            itemCount: favoriteSortedGroupedFixturesLeague.length,
+            itemBuilder: (_, leagueIndex) {
+              final league = favoriteSortedGroupedFixturesLeague.keys.elementAtOrNull(leagueIndex);
+              final fixtures = favoriteSortedGroupedFixturesLeague[league];
 
-              return FixturesCountryListTile(
-                countryLeague: countryLeague,
-                leagues: leagues,
-                hasLiveFixturesCountry: hasLiveFixturesCountry(
-                  leagues: leagues,
+              return FixturesLeagueAlternateListTile(
+                league: league,
+                fixtures: fixtures,
+                hasLiveFixturesLeague: hasLiveFixturesLeague(
+                  fixtures: fixtures,
                 ),
+                initiallyExpanded: true,
               );
             },
             separatorBuilder: (_, __) => const SizedBox(height: 12),
@@ -97,11 +109,50 @@ class FixturesSuccess extends WatchingWidget {
         ],
 
         ///
+        /// FAVORITE FIXTURES
+        ///
+        // if (favoriteSortedGroupedFixtures.isNotEmpty) ...[
+        //   SizedBox(
+        //     height: favoriteSortedGroupedFixturesLeague.isNotEmpty ? 40 : 8,
+        //   ),
+        //   FixturesAppBar(
+        //     onPressed: () => showDialog(
+        //       context: context,
+        //       barrierColor: context.colors.black.withOpacity(0.5),
+        //       builder: (context) => FixturesFavoriteDialog(
+        //         onPressed: Navigator.of(context).pop,
+        //       ),
+        //     ),
+        //     text: 'fixturesFavoriteTitle'.tr(),
+        //   ),
+        //   const SizedBox(height: 24),
+        //   ListView.separated(
+        //     shrinkWrap: true,
+        //     padding: const EdgeInsets.symmetric(horizontal: 8),
+        //     physics: const NeverScrollableScrollPhysics(),
+        //     itemCount: favoriteSortedGroupedFixtures.length,
+        //     itemBuilder: (_, countryIndex) {
+        //       final countryLeague = favoriteSortedGroupedFixtures.keys.elementAtOrNull(countryIndex);
+        //       final leagues = favoriteSortedGroupedFixtures[countryLeague];
+
+        //       return FixturesCountryListTile(
+        //         countryLeague: countryLeague,
+        //         leagues: leagues,
+        //         hasLiveFixturesCountry: hasLiveFixturesCountry(
+        //           leagues: leagues,
+        //         ),
+        //       );
+        //     },
+        //     separatorBuilder: (_, __) => const SizedBox(height: 12),
+        //   ),
+        // ],
+
+        ///
         /// ALL MATCHES
         ///
         if (sortedGroupedFixtures.isNotEmpty) ...[
           SizedBox(
-            height: favoriteSortedGroupedFixtures.isNotEmpty ? 40 : 8,
+            height: favoriteSortedGroupedFixturesLeague.isNotEmpty ? 40 : 8,
           ),
           FixturesAppBar(
             onPressed: () => showDialog(

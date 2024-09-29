@@ -19,6 +19,12 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w500,
   );
 
+  static const fixturesLeagueAlternate = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
+
   static const fixturesMinute = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 22,
@@ -31,10 +37,23 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w600,
   );
 
+  static const fixturesNameAlternate = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+
   static const fixturesScore = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 56,
     fontWeight: FontWeight.w300,
+    height: 1,
+  );
+
+  static const fixturesScoreAlternate = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 22,
+    fontWeight: FontWeight.w600,
     height: 1,
   );
 
@@ -404,9 +423,12 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle error;
   final TextStyle fixturesCountry;
   final TextStyle fixturesLeague;
+  final TextStyle fixturesLeagueAlternate;
   final TextStyle fixturesMinute;
   final TextStyle fixturesName;
+  final TextStyle fixturesNameAlternate;
   final TextStyle fixturesScore;
+  final TextStyle fixturesScoreAlternate;
   final TextStyle matchLeagueName;
   final TextStyle matchLeagueRound;
   final TextStyle matchGoal;
@@ -472,9 +494,12 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.error,
     required this.fixturesCountry,
     required this.fixturesLeague,
+    required this.fixturesLeagueAlternate,
     required this.fixturesMinute,
     required this.fixturesName,
+    required this.fixturesNameAlternate,
     required this.fixturesScore,
+    required this.fixturesScoreAlternate,
     required this.matchLeagueName,
     required this.matchLeagueRound,
     required this.matchGoal,
@@ -542,9 +567,12 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? error,
     TextStyle? fixturesCountry,
     TextStyle? fixturesLeague,
+    TextStyle? fixturesLeagueAlternate,
     TextStyle? fixturesMinute,
     TextStyle? fixturesName,
+    TextStyle? fixturesNameAlternate,
     TextStyle? fixturesScore,
+    TextStyle? fixturesScoreAlternate,
     TextStyle? matchLeagueName,
     TextStyle? matchLeagueRound,
     TextStyle? matchGoal,
@@ -610,9 +638,12 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         error: error ?? this.error,
         fixturesCountry: fixturesCountry ?? this.fixturesCountry,
         fixturesLeague: fixturesLeague ?? this.fixturesLeague,
+        fixturesLeagueAlternate: fixturesLeagueAlternate ?? this.fixturesLeagueAlternate,
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
         fixturesName: fixturesName ?? this.fixturesName,
+        fixturesNameAlternate: fixturesNameAlternate ?? this.fixturesNameAlternate,
         fixturesScore: fixturesScore ?? this.fixturesScore,
+        fixturesScoreAlternate: fixturesScoreAlternate ?? this.fixturesScoreAlternate,
         matchLeagueName: matchLeagueName ?? this.matchLeagueName,
         matchLeagueRound: matchLeagueRound ?? this.matchLeagueRound,
         matchGoal: matchGoal ?? this.matchGoal,
@@ -688,9 +719,12 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       error: TextStyle.lerp(error, other.error, t)!,
       fixturesCountry: TextStyle.lerp(fixturesCountry, other.fixturesCountry, t)!,
       fixturesLeague: TextStyle.lerp(fixturesLeague, other.fixturesLeague, t)!,
+      fixturesLeagueAlternate: TextStyle.lerp(fixturesLeagueAlternate, other.fixturesLeagueAlternate, t)!,
       fixturesMinute: TextStyle.lerp(fixturesMinute, other.fixturesMinute, t)!,
       fixturesName: TextStyle.lerp(fixturesName, other.fixturesName, t)!,
+      fixturesNameAlternate: TextStyle.lerp(fixturesNameAlternate, other.fixturesNameAlternate, t)!,
       fixturesScore: TextStyle.lerp(fixturesScore, other.fixturesScore, t)!,
+      fixturesScoreAlternate: TextStyle.lerp(fixturesScoreAlternate, other.fixturesScoreAlternate, t)!,
       matchLeagueName: TextStyle.lerp(matchLeagueName, other.matchLeagueName, t)!,
       matchLeagueRound: TextStyle.lerp(matchLeagueRound, other.matchLeagueRound, t)!,
       matchGoal: TextStyle.lerp(matchGoal, other.matchGoal, t)!,

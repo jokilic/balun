@@ -120,7 +120,7 @@ class MatchMainInfo extends WatchingWidget {
                         statusShort: match.fixture?.status?.short ?? '--',
                         minutes: match.fixture?.status?.elapsed ?? 0,
                       ),
-                      timeBeforeMatch: shouldShowTimeBeforeMatch(
+                      timeBeforeMatch: isMatchNotStarted(
                                 statusShort: match.fixture?.status?.short ?? '--',
                               ) &&
                               match.fixture?.timestamp != null

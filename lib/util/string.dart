@@ -1,10 +1,45 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 
 import '../models/fixtures/statistic/statistic_data.dart';
+import 'date_time.dart';
 
 String getLastWord(String input) {
   final words = input.split(' ');
   return words.isNotEmpty ? words.last : '';
+}
+
+String getScoreText({
+  required String statusShort,
+  required int minutes,
+  required DateTime? timestamp,
+  required int? homeGoals,
+  required int? awayGoals,
+  required BuildContext context,
+}) {
+  final matchNotStarted = isMatchNotStarted(
+    statusShort: statusShort,
+  );
+
+  if (matchNotStarted && timestamp != null) {
+    return DateFormat(
+      'HH:mm',
+      context.locale.toLanguageTag(),
+    ).format(parseTimestamp(timestamp)!);
+  }
+
+  final matchPlaying = matchIsPlaying(
+    statusShort: statusShort,
+  );
+
+  if (matchPlaying) {
+    return '${homeGoals ?? '--'} : ${awayGoals ?? '--'}';
+  }
+
+  return getMatchStatusMinutes(
+    statusShort: statusShort,
+    minutes: minutes,
+  );
 }
 
 bool matchIsPlaying({
@@ -12,7 +47,7 @@ bool matchIsPlaying({
 }) =>
     statusShort == '1H' || statusShort == '2H' || statusShort == 'ET';
 
-bool shouldShowTimeBeforeMatch({required String statusShort}) => statusShort == 'TBD' || statusShort == 'NS';
+bool isMatchNotStarted({required String statusShort}) => statusShort == 'TBD' || statusShort == 'NS';
 
 String getMatchStatus(String statusShort) => switch (statusShort.toUpperCase()) {
       'TBD' => 'matchStatusTBD'.tr(),

@@ -40,7 +40,7 @@ class CountriesListTile extends StatelessWidget {
                         padding: const EdgeInsets.all(8),
                         color: context.colors.white,
                         child: const BalunImage(
-                          imageUrl: BalunIcons.countryPlaceholder,
+                          imageUrl: BalunIcons.placeholderCountry,
                           height: 28,
                           width: 28,
                           fit: BoxFit.cover,
