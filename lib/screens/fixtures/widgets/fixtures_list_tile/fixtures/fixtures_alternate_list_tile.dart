@@ -21,7 +21,10 @@ class FixturesAlternateListTile extends StatelessWidget {
   Widget build(BuildContext context) => BalunButton(
         onPressed: fixturePressed,
         child: Container(
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8,
+            vertical: 12,
+          ),
           decoration: BoxDecoration(
             color: context.colors.white.withOpacity(0.5),
             borderRadius: BorderRadius.circular(8),
@@ -33,6 +36,7 @@ class FixturesAlternateListTile extends StatelessWidget {
               /// HOME
               ///
               Expanded(
+                flex: 2,
                 child: Text(
                   fixture.teams?.home?.name ?? '---',
                   style: context.textStyles.fixturesNameAlternate,
@@ -56,7 +60,7 @@ class FixturesAlternateListTile extends StatelessWidget {
               /// SCORE
               ///
               const SizedBox(width: 12),
-              Flexible(
+              Expanded(
                 child: Text(
                   scoreText,
                   maxLines: 1,
@@ -81,6 +85,7 @@ class FixturesAlternateListTile extends StatelessWidget {
               const SizedBox(width: 6),
 
               Expanded(
+                flex: 2,
                 child: Text(
                   fixture.teams?.away?.name ?? '---',
                   style: context.textStyles.fixturesNameAlternate,

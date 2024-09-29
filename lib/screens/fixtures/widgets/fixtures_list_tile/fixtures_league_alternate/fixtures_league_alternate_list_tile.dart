@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -82,15 +80,7 @@ class _FixturesLeagueAlternateListTileState extends State<FixturesLeagueAlternat
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        Transform.rotate(
-                          angle: pi * 1.5,
-                          child: const BalunImage(
-                            imageUrl: BalunIcons.back,
-                            height: 16,
-                            width: 16,
-                          ),
-                        ),
+                        const SizedBox(width: 40),
                       ],
                     ),
                   ),
