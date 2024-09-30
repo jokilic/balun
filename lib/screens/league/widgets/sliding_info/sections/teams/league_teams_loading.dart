@@ -33,7 +33,7 @@ class LeagueTeamsLoading extends StatelessWidget {
                   height: 48,
                   width: 48,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(100),
                     color: getRandomBalunColor(context),
                   ),
                 ),
