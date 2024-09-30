@@ -41,10 +41,9 @@ class MatchH2HListTile extends StatelessWidget {
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 if (fixture.league != null)
-                  Flexible(
+                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -60,7 +59,7 @@ class MatchH2HListTile extends StatelessWidget {
                     ),
                   ),
                 if (matchDateTime != null)
-                  Flexible(
+                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
@@ -92,12 +91,14 @@ class MatchH2HListTile extends StatelessWidget {
                 ///
                 /// HOME
                 ///
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: BalunImage(
-                    imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
-                    height: 56,
-                    width: 56,
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: BalunImage(
+                      imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
+                      height: 56,
+                      width: 56,
+                    ),
                   ),
                 ),
 
@@ -126,12 +127,14 @@ class MatchH2HListTile extends StatelessWidget {
                 ///
                 /// AWAY
                 ///
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: BalunImage(
-                    imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
-                    height: 56,
-                    width: 56,
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: BalunImage(
+                      imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
+                      height: 56,
+                      width: 56,
+                    ),
                   ),
                 ),
               ],

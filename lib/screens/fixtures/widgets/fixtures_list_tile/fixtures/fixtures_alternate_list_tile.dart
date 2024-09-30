@@ -48,13 +48,10 @@ class FixturesAlternateListTile extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 6),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: BalunImage(
-                        imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
-                        height: 28,
-                        width: 28,
-                      ),
+                    BalunImage(
+                      imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
+                      height: 28,
+                      width: 28,
                     ),
                   ],
                 ),
@@ -79,13 +76,10 @@ class FixturesAlternateListTile extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: BalunImage(
-                        imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
-                        height: 28,
-                        width: 28,
-                      ),
+                    BalunImage(
+                      imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
+                      height: 28,
+                      width: 28,
                     ),
                     const SizedBox(width: 6),
                     Flexible(

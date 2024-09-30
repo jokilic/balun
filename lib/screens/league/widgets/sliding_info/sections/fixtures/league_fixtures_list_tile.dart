@@ -26,7 +26,7 @@ class LeagueFixturesListTile extends StatelessWidget {
     return BalunButton(
       onPressed: fixturePressed,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 4),
+        margin: const EdgeInsets.all(4),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: context.colors.black.withOpacity(0.075),
@@ -38,21 +38,60 @@ class LeagueFixturesListTile extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const SizedBox(height: 8),
+            Column(
+              children: [
+                Text(
+                  matchDateTime != null
+                      ? DateFormat(
+                          'd. MMMM y.',
+                          context.locale.toLanguageTag(),
+                        ).format(matchDateTime)
+                      : '---',
+                  style: context.textStyles.matchH2HTitle,
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  matchDateTime != null
+                      ? DateFormat(
+                          'HH:mm',
+                          context.locale.toLanguageTag(),
+                        ).format(matchDateTime)
+                      : '---',
+                  style: context.textStyles.matchH2HText,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ///
                 /// HOME
                 ///
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: BalunImage(
-                    imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
-                    height: 56,
-                    width: 56,
+                Expanded(
+                  child: Column(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: BalunImage(
+                          imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
+                          height: 56,
+                          width: 56,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        fixture.teams?.home?.name ?? '---',
+                        style: context.textStyles.matchH2HTitle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
+
+                const SizedBox(width: 24),
 
                 ///
                 /// SCORE
@@ -72,40 +111,35 @@ class LeagueFixturesListTile extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
 
+                const SizedBox(width: 24),
+
                 ///
                 /// AWAY
                 ///
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: BalunImage(
-                    imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
-                    height: 56,
-                    width: 56,
+                Expanded(
+                  child: Column(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: BalunImage(
+                          imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
+                          height: 56,
+                          width: 56,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        fixture.teams?.away?.name ?? '---',
+                        style: context.textStyles.matchH2HTitle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-            if (matchDateTime != null) ...[
-              const SizedBox(height: 12),
-              Column(
-                children: [
-                  Text(
-                    DateFormat(
-                      'd. MMMM y.',
-                      context.locale.toLanguageTag(),
-                    ).format(matchDateTime),
-                    style: context.textStyles.matchH2HTitle,
-                  ),
-                  Text(
-                    DateFormat(
-                      'HH:mm',
-                      context.locale.toLanguageTag(),
-                    ).format(matchDateTime),
-                    style: context.textStyles.matchH2HText,
-                  ),
-                ],
-              ),
-            ],
           ],
         ),
       ),

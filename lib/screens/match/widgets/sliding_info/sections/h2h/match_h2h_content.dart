@@ -34,7 +34,7 @@ class MatchHead2HeadContent extends StatelessWidget {
           ),
         );
       },
-      separatorBuilder: (_, __) => const SizedBox(height: 8),
+      separatorBuilder: (_, __) => const SizedBox(height: 12),
     );
   }
 }

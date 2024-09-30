@@ -76,7 +76,7 @@ class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
                           ),
                         );
                       },
-                      separatorBuilder: (_, __) => const SizedBox(height: 24),
+                      separatorBuilder: (_, __) => const SizedBox(height: 16),
                     )
                   : const SizedBox.shrink(),
             ),
