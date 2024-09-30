@@ -38,4 +38,3 @@ Results can be opened and more info is shown.
 - [ ] Open a match that had penalties and implement events text properly
 - [ ] Team names in Match -> Head2Head
 - [ ] Team names in League -> Fixtures
-- [ ] Lineups are upside down - players which should be on left wing are right and vice versa

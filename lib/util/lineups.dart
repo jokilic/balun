@@ -82,8 +82,11 @@ double calculateXPosition(int positionInRow, int playersInRow) {
   /// Calculate the starting point for the first player
   const startPoint = (1 - usableWidthFraction) / 2;
 
+  /// Reverse the position calculation
+  final reversedPosition = playersInRow - positionInRow + 1;
+
   /// Calculate the x position
-  return startPoint + (positionInRow * spacing);
+  return startPoint + (reversedPosition * spacing);
 }
 
 List<LineupPlayer>? sortPlayersByPosition(List<LineupPlayer>? players) {
