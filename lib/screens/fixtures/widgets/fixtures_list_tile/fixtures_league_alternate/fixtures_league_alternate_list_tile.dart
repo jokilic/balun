@@ -62,19 +62,16 @@ class _FixturesLeagueAlternateListTileState extends State<FixturesLeagueAlternat
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: BalunImage(
-                            imageUrl: widget.league?.logo ?? BalunIcons.placeholderLeague,
-                            height: 28,
-                            width: 28,
-                          ),
+                        BalunImage(
+                          imageUrl: widget.league?.logo ?? BalunIcons.placeholderLeague,
+                          height: 28,
+                          width: 28,
                         ),
                         const SizedBox(width: 12),
                         Flexible(
                           child: Text(
                             widget.league?.name ?? '---',
-                            style: context.textStyles.fixturesLeagueAlternate,
+                            style: context.textStyles.fixturesLeague,
                             textAlign: TextAlign.left,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -87,7 +84,7 @@ class _FixturesLeagueAlternateListTileState extends State<FixturesLeagueAlternat
                   Container(
                     height: 28,
                     width: 28,
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(7),
                     child: Animate(
                       onPlay: (controller) => controller.loop(
                         reverse: true,
@@ -103,6 +100,9 @@ class _FixturesLeagueAlternateListTileState extends State<FixturesLeagueAlternat
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: widget.hasLiveFixturesLeague ? context.colors.red : Colors.transparent,
+                          border: Border.all(
+                            color: widget.hasLiveFixturesLeague ? context.colors.black : Colors.transparent,
+                          ),
                         ),
                       ),
                     ),

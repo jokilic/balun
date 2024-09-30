@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../models/fixtures/fixture_response.dart';
@@ -87,11 +88,31 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                   ),
                   if (widget.hasLiveFixturesCountry) ...[
                     const SizedBox(width: 16),
-                    const BalunImage(
-                      imageUrl: BalunIcons.live,
-                      height: 24,
-                      width: 56,
-                      fit: BoxFit.cover,
+                    Container(
+                      height: 28,
+                      width: 28,
+                      padding: const EdgeInsets.all(7),
+                      child: Animate(
+                        onPlay: (controller) => controller.loop(
+                          reverse: true,
+                          min: 0.6,
+                        ),
+                        effects: const [
+                          FadeEffect(
+                            curve: Curves.easeIn,
+                            duration: BalunConstants.shimmerDuration,
+                          ),
+                        ],
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: context.colors.red,
+                            border: Border.all(
+                              color: context.colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ],

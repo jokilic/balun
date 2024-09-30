@@ -88,7 +88,7 @@ class FixturesSuccess extends WatchingWidget {
           const SizedBox(height: 24),
           ListView.separated(
             shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             physics: const NeverScrollableScrollPhysics(),
             itemCount: favoriteSortedGroupedFixturesLeague.length,
             itemBuilder: (_, leagueIndex) {

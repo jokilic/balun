@@ -42,9 +42,6 @@ class BalunTheme {
     fixturesLeague: BalunTextStyles.fixturesLeague.copyWith(
       color: lightAppColors.black,
     ),
-    fixturesLeagueAlternate: BalunTextStyles.fixturesLeagueAlternate.copyWith(
-      color: lightAppColors.black,
-    ),
     fixturesMinute: BalunTextStyles.fixturesMinute.copyWith(
       color: lightAppColors.black.withOpacity(0.5),
     ),

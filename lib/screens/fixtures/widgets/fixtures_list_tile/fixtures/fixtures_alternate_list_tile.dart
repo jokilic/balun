@@ -30,29 +30,33 @@ class FixturesAlternateListTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ///
               /// HOME
               ///
               Expanded(
-                flex: 2,
-                child: Text(
-                  fixture.teams?.home?.name ?? '---',
-                  style: context.textStyles.fixturesNameAlternate,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.right,
-                ),
-              ),
-              const SizedBox(width: 6),
-
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: BalunImage(
-                  imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
-                  height: 28,
-                  width: 28,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        fixture.teams?.home?.name ?? '---',
+                        style: context.textStyles.fixturesNameAlternate,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: BalunImage(
+                        imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
+                        height: 28,
+                        width: 28,
+                      ),
+                    ),
+                  ],
                 ),
               ),
 
@@ -60,38 +64,40 @@ class FixturesAlternateListTile extends StatelessWidget {
               /// SCORE
               ///
               const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  scoreText,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: context.textStyles.fixturesScoreAlternate,
-                  textAlign: TextAlign.center,
-                ),
+              Text(
+                scoreText,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: context.textStyles.fixturesScoreAlternate,
+                textAlign: TextAlign.center,
               ),
               const SizedBox(width: 12),
 
               ///
               /// AWAY
               ///
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: BalunImage(
-                  imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
-                  height: 28,
-                  width: 28,
-                ),
-              ),
-              const SizedBox(width: 6),
-
               Expanded(
-                flex: 2,
-                child: Text(
-                  fixture.teams?.away?.name ?? '---',
-                  style: context.textStyles.fixturesNameAlternate,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left,
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: BalunImage(
+                        imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
+                        height: 28,
+                        width: 28,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    Flexible(
+                      child: Text(
+                        fixture.teams?.away?.name ?? '---',
+                        style: context.textStyles.fixturesNameAlternate,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

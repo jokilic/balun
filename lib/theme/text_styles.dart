@@ -16,12 +16,6 @@ abstract class BalunTextStyles {
   static const fixturesLeague = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 18,
-    fontWeight: FontWeight.w500,
-  );
-
-  static const fixturesLeagueAlternate = TextStyle(
-    fontFamily: 'Lufga',
-    fontSize: 18,
     fontWeight: FontWeight.w600,
   );
 
@@ -40,7 +34,7 @@ abstract class BalunTextStyles {
   static const fixturesNameAlternate = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 16,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w500,
   );
 
   static const fixturesScore = TextStyle(
@@ -423,7 +417,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle error;
   final TextStyle fixturesCountry;
   final TextStyle fixturesLeague;
-  final TextStyle fixturesLeagueAlternate;
   final TextStyle fixturesMinute;
   final TextStyle fixturesName;
   final TextStyle fixturesNameAlternate;
@@ -494,7 +487,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.error,
     required this.fixturesCountry,
     required this.fixturesLeague,
-    required this.fixturesLeagueAlternate,
     required this.fixturesMinute,
     required this.fixturesName,
     required this.fixturesNameAlternate,
@@ -567,7 +559,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? error,
     TextStyle? fixturesCountry,
     TextStyle? fixturesLeague,
-    TextStyle? fixturesLeagueAlternate,
     TextStyle? fixturesMinute,
     TextStyle? fixturesName,
     TextStyle? fixturesNameAlternate,
@@ -638,7 +629,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         error: error ?? this.error,
         fixturesCountry: fixturesCountry ?? this.fixturesCountry,
         fixturesLeague: fixturesLeague ?? this.fixturesLeague,
-        fixturesLeagueAlternate: fixturesLeagueAlternate ?? this.fixturesLeagueAlternate,
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
         fixturesName: fixturesName ?? this.fixturesName,
         fixturesNameAlternate: fixturesNameAlternate ?? this.fixturesNameAlternate,
@@ -719,7 +709,6 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       error: TextStyle.lerp(error, other.error, t)!,
       fixturesCountry: TextStyle.lerp(fixturesCountry, other.fixturesCountry, t)!,
       fixturesLeague: TextStyle.lerp(fixturesLeague, other.fixturesLeague, t)!,
-      fixturesLeagueAlternate: TextStyle.lerp(fixturesLeagueAlternate, other.fixturesLeagueAlternate, t)!,
       fixturesMinute: TextStyle.lerp(fixturesMinute, other.fixturesMinute, t)!,
       fixturesName: TextStyle.lerp(fixturesName, other.fixturesName, t)!,
       fixturesNameAlternate: TextStyle.lerp(fixturesNameAlternate, other.fixturesNameAlternate, t)!,
