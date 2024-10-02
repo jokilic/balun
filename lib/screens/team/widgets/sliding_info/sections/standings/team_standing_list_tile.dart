@@ -309,7 +309,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                   const SizedBox(height: 16),
                                   Text(
                                     standing.description!,
-                                    style: context.textStyles.matchStandingsSectionTextAlternate,
+                                    style: context.textStyles.matchStandingsSectionTextCompact,
                                   ),
                                 ],
                                 const SizedBox(height: 8),

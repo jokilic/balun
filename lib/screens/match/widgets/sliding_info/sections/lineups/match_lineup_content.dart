@@ -89,7 +89,7 @@ class MatchLineupContent extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
                       homeLineup?.coach?.name ?? '---',
-                      style: context.textStyles.matchStandingsSectionTextAlternate,
+                      style: context.textStyles.matchStandingsSectionTextCompact,
                     ),
                   ),
                 ),
@@ -107,7 +107,7 @@ class MatchLineupContent extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
                       awayLineup?.coach?.name ?? '---',
-                      style: context.textStyles.matchStandingsSectionTextAlternate,
+                      style: context.textStyles.matchStandingsSectionTextCompact,
                       textAlign: TextAlign.right,
                     ),
                   ),

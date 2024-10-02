@@ -12,7 +12,7 @@ import 'fixtures_all_dialog.dart';
 import 'fixtures_app_bar.dart';
 import 'fixtures_favorite_dialog.dart';
 import 'fixtures_list_tile/fixtures_country/fixtures_country_list_tile.dart';
-import 'fixtures_list_tile/fixtures_league_alternate/fixtures_league_alternate_list_tile.dart';
+import 'fixtures_list_tile/fixtures_league_compact/fixtures_league_compact_list_tile.dart';
 
 class FixturesSuccess extends WatchingWidget {
   final List<FixtureResponse> fixtures;
@@ -71,7 +71,7 @@ class FixturesSuccess extends WatchingWidget {
       physics: const BouncingScrollPhysics(),
       children: [
         ///
-        /// FAVORITE FIXTURES ALTERNATE
+        /// FAVORITE FIXTURES COMPACT
         ///
         if (favoriteSortedGroupedFixturesLeague.isNotEmpty) ...[
           const SizedBox(height: 8),
@@ -95,7 +95,7 @@ class FixturesSuccess extends WatchingWidget {
               final league = favoriteSortedGroupedFixturesLeague.keys.elementAtOrNull(leagueIndex);
               final fixtures = favoriteSortedGroupedFixturesLeague[league];
 
-              return FixturesLeagueAlternateListTile(
+              return FixturesLeagueCompactListTile(
                 league: league,
                 fixtures: fixtures,
                 hasLiveFixturesLeague: hasLiveFixturesLeague(

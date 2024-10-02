@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../../../constants.dart';
 import '../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
 import '../../../../../widgets/balun_button.dart';
 import '../../../../../widgets/balun_image.dart';
 
-class FixturesAlternateListTile extends StatelessWidget {
+class FixturesCompactListTile extends StatelessWidget {
   final FixtureResponse fixture;
   final String scoreText;
+  final bool fixturePlaying;
   final Function()? fixturePressed;
 
-  const FixturesAlternateListTile({
+  const FixturesCompactListTile({
     required this.fixture,
     required this.scoreText,
+    required this.fixturePlaying,
     required this.fixturePressed,
   });
 
@@ -41,7 +45,7 @@ class FixturesAlternateListTile extends StatelessWidget {
                     Flexible(
                       child: Text(
                         fixture.teams?.home?.name ?? '---',
-                        style: context.textStyles.fixturesNameAlternate,
+                        style: context.textStyles.fixturesNameCompact,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.right,
@@ -61,13 +65,34 @@ class FixturesAlternateListTile extends StatelessWidget {
               /// SCORE
               ///
               const SizedBox(width: 12),
-              Text(
-                scoreText,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: context.textStyles.fixturesScoreAlternate,
-                textAlign: TextAlign.center,
-              ),
+              if (fixturePlaying)
+                Animate(
+                  onPlay: (controller) => controller.loop(
+                    reverse: true,
+                    min: 0.6,
+                  ),
+                  effects: const [
+                    FadeEffect(
+                      curve: Curves.easeIn,
+                      duration: BalunConstants.shimmerDuration,
+                    ),
+                  ],
+                  child: Text(
+                    scoreText,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.textStyles.fixturesScoreCompact,
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              else
+                Text(
+                  scoreText,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: context.textStyles.fixturesScoreCompact,
+                  textAlign: TextAlign.center,
+                ),
               const SizedBox(width: 12),
 
               ///
@@ -85,7 +110,7 @@ class FixturesAlternateListTile extends StatelessWidget {
                     Flexible(
                       child: Text(
                         fixture.teams?.away?.name ?? '---',
-                        style: context.textStyles.fixturesNameAlternate,
+                        style: context.textStyles.fixturesNameCompact,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,

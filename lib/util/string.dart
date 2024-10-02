@@ -9,7 +9,7 @@ String getLastWord(String input) {
   return words.isNotEmpty ? words.last : '';
 }
 
-String getScoreText({
+String getCompactFixtureText({
   required String statusShort,
   required int minutes,
   required DateTime? timestamp,
@@ -28,24 +28,18 @@ String getScoreText({
     ).format(parseTimestamp(timestamp)!);
   }
 
-  final matchPlaying = matchIsPlaying(
-    statusShort: statusShort,
-  );
-
-  if (matchPlaying) {
-    return '${homeGoals ?? '--'} : ${awayGoals ?? '--'}';
-  }
-
-  return getMatchStatusShortOrMinutes(
-    statusShort: statusShort,
-    minutes: minutes,
-  );
+  return '${homeGoals ?? '--'} : ${awayGoals ?? '--'}';
 }
 
 bool matchIsPlaying({
   required String statusShort,
 }) =>
     statusShort == '1H' || statusShort == '2H' || statusShort == 'ET';
+
+bool matchCompactIsPlaying({
+  required String statusShort,
+}) =>
+    statusShort == '1H' || statusShort == 'HT' || statusShort == '2H' || statusShort == 'ET';
 
 bool isMatchNotStarted({required String statusShort}) => statusShort == 'TBD' || statusShort == 'NS';
 

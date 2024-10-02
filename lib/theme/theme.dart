@@ -48,13 +48,13 @@ class BalunTheme {
     fixturesName: BalunTextStyles.fixturesName.copyWith(
       color: lightAppColors.black,
     ),
-    fixturesNameAlternate: BalunTextStyles.fixturesNameAlternate.copyWith(
+    fixturesNameCompact: BalunTextStyles.fixturesNameCompact.copyWith(
       color: lightAppColors.black,
     ),
     fixturesScore: BalunTextStyles.fixturesScore.copyWith(
       color: lightAppColors.black,
     ),
-    fixturesScoreAlternate: BalunTextStyles.fixturesScoreAlternate.copyWith(
+    fixturesScoreCompact: BalunTextStyles.fixturesScoreCompact.copyWith(
       color: lightAppColors.black,
     ),
     matchLeagueName: BalunTextStyles.matchLeagueName.copyWith(
@@ -87,7 +87,7 @@ class BalunTheme {
     matchStandingsSectionText: BalunTextStyles.matchStandingsSectionText.copyWith(
       color: lightAppColors.black,
     ),
-    matchStandingsSectionTextAlternate: BalunTextStyles.matchStandingsSectionTextAlternate.copyWith(
+    matchStandingsSectionTextCompact: BalunTextStyles.matchStandingsSectionTextCompact.copyWith(
       color: lightAppColors.black,
     ),
     matchStandingsSectionForm: BalunTextStyles.matchStandingsSectionForm.copyWith(

@@ -10,15 +10,15 @@ import '../../../../../theme/theme.dart';
 import '../../../../../util/string.dart';
 import '../../../../../widgets/balun_button.dart';
 import '../../../../../widgets/balun_image.dart';
-import '../fixtures/fixtures_alternate_list_tile.dart';
+import '../fixtures/fixtures_compact_list_tile.dart';
 
-class FixturesLeagueAlternateListTile extends StatefulWidget {
+class FixturesLeagueCompactListTile extends StatefulWidget {
   final League? league;
   final List<FixtureResponse>? fixtures;
   final bool initiallyExpanded;
   final bool hasLiveFixturesLeague;
 
-  const FixturesLeagueAlternateListTile({
+  const FixturesLeagueCompactListTile({
     required this.league,
     required this.fixtures,
     required this.hasLiveFixturesLeague,
@@ -26,10 +26,10 @@ class FixturesLeagueAlternateListTile extends StatefulWidget {
   });
 
   @override
-  State<FixturesLeagueAlternateListTile> createState() => _FixturesLeagueAlternateListTileState();
+  State<FixturesLeagueCompactListTile> createState() => _FixturesLeagueCompactListTileState();
 }
 
-class _FixturesLeagueAlternateListTileState extends State<FixturesLeagueAlternateListTile> {
+class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactListTile> {
   late var expanded = widget.initiallyExpanded;
 
   void toggleExpanded() => setState(
@@ -53,10 +53,9 @@ class _FixturesLeagueAlternateListTileState extends State<FixturesLeagueAlternat
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
+                  const SizedBox(
                     height: 28,
                     width: 28,
-                    color: Colors.transparent,
                   ),
                   Expanded(
                     child: Row(
@@ -72,12 +71,11 @@ class _FixturesLeagueAlternateListTileState extends State<FixturesLeagueAlternat
                           child: Text(
                             widget.league?.name ?? '---',
                             style: context.textStyles.fixturesLeague,
-                            textAlign: TextAlign.left,
-                            maxLines: 2,
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        const SizedBox(width: 40),
                       ],
                     ),
                   ),
@@ -127,15 +125,18 @@ class _FixturesLeagueAlternateListTileState extends State<FixturesLeagueAlternat
                     itemBuilder: (_, fixtureIndex) {
                       final fixture = widget.fixtures![fixtureIndex];
 
-                      return FixturesAlternateListTile(
+                      return FixturesCompactListTile(
                         fixture: fixture,
-                        scoreText: getScoreText(
+                        scoreText: getCompactFixtureText(
                           statusShort: fixture.fixture?.status?.short ?? '--',
                           minutes: fixture.fixture?.status?.elapsed ?? 0,
                           timestamp: fixture.fixture?.timestamp,
                           homeGoals: fixture.goals?.home,
                           awayGoals: fixture.goals?.away,
                           context: context,
+                        ),
+                        fixturePlaying: matchCompactIsPlaying(
+                          statusShort: fixture.fixture?.status?.short ?? '--',
                         ),
                         fixturePressed: fixture.fixture?.id != null
                             ? () => openMatch(

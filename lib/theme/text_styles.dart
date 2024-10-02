@@ -31,7 +31,7 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w600,
   );
 
-  static const fixturesNameAlternate = TextStyle(
+  static const fixturesNameCompact = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 16,
     fontWeight: FontWeight.w500,
@@ -44,7 +44,7 @@ abstract class BalunTextStyles {
     height: 1,
   );
 
-  static const fixturesScoreAlternate = TextStyle(
+  static const fixturesScoreCompact = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 22,
     fontWeight: FontWeight.w600,
@@ -111,7 +111,7 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w500,
   );
 
-  static const matchStandingsSectionTextAlternate = TextStyle(
+  static const matchStandingsSectionTextCompact = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 20,
     fontWeight: FontWeight.w500,
@@ -419,9 +419,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle fixturesLeague;
   final TextStyle fixturesMinute;
   final TextStyle fixturesName;
-  final TextStyle fixturesNameAlternate;
+  final TextStyle fixturesNameCompact;
   final TextStyle fixturesScore;
-  final TextStyle fixturesScoreAlternate;
+  final TextStyle fixturesScoreCompact;
   final TextStyle matchLeagueName;
   final TextStyle matchLeagueRound;
   final TextStyle matchGoal;
@@ -432,7 +432,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchStandingsSectionTitle;
   final TextStyle matchStandingsSectionSubtitle;
   final TextStyle matchStandingsSectionText;
-  final TextStyle matchStandingsSectionTextAlternate;
+  final TextStyle matchStandingsSectionTextCompact;
   final TextStyle matchStandingsSectionForm;
   final TextStyle matchEventsSectionTime;
   final TextStyle matchEventsSectionText;
@@ -489,9 +489,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.fixturesLeague,
     required this.fixturesMinute,
     required this.fixturesName,
-    required this.fixturesNameAlternate,
+    required this.fixturesNameCompact,
     required this.fixturesScore,
-    required this.fixturesScoreAlternate,
+    required this.fixturesScoreCompact,
     required this.matchLeagueName,
     required this.matchLeagueRound,
     required this.matchGoal,
@@ -502,7 +502,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchStandingsSectionTitle,
     required this.matchStandingsSectionSubtitle,
     required this.matchStandingsSectionText,
-    required this.matchStandingsSectionTextAlternate,
+    required this.matchStandingsSectionTextCompact,
     required this.matchStandingsSectionForm,
     required this.matchEventsSectionTime,
     required this.matchEventsSectionText,
@@ -561,9 +561,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? fixturesLeague,
     TextStyle? fixturesMinute,
     TextStyle? fixturesName,
-    TextStyle? fixturesNameAlternate,
+    TextStyle? fixturesNameCompact,
     TextStyle? fixturesScore,
-    TextStyle? fixturesScoreAlternate,
+    TextStyle? fixturesScoreCompact,
     TextStyle? matchLeagueName,
     TextStyle? matchLeagueRound,
     TextStyle? matchGoal,
@@ -574,7 +574,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchStandingsSectionTitle,
     TextStyle? matchStandingsSectionSubtitle,
     TextStyle? matchStandingsSectionText,
-    TextStyle? matchStandingsSectionTextAlternate,
+    TextStyle? matchStandingsSectionTextCompact,
     TextStyle? matchStandingsSectionForm,
     TextStyle? matchEventsSectionTime,
     TextStyle? matchEventsSectionText,
@@ -631,9 +631,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         fixturesLeague: fixturesLeague ?? this.fixturesLeague,
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
         fixturesName: fixturesName ?? this.fixturesName,
-        fixturesNameAlternate: fixturesNameAlternate ?? this.fixturesNameAlternate,
+        fixturesNameCompact: fixturesNameCompact ?? this.fixturesNameCompact,
         fixturesScore: fixturesScore ?? this.fixturesScore,
-        fixturesScoreAlternate: fixturesScoreAlternate ?? this.fixturesScoreAlternate,
+        fixturesScoreCompact: fixturesScoreCompact ?? this.fixturesScoreCompact,
         matchLeagueName: matchLeagueName ?? this.matchLeagueName,
         matchLeagueRound: matchLeagueRound ?? this.matchLeagueRound,
         matchGoal: matchGoal ?? this.matchGoal,
@@ -644,7 +644,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchStandingsSectionTitle: matchStandingsSectionTitle ?? this.matchStandingsSectionTitle,
         matchStandingsSectionSubtitle: matchStandingsSectionSubtitle ?? this.matchStandingsSectionSubtitle,
         matchStandingsSectionText: matchStandingsSectionText ?? this.matchStandingsSectionText,
-        matchStandingsSectionTextAlternate: matchStandingsSectionTextAlternate ?? this.matchStandingsSectionTextAlternate,
+        matchStandingsSectionTextCompact: matchStandingsSectionTextCompact ?? this.matchStandingsSectionTextCompact,
         matchStandingsSectionForm: matchStandingsSectionForm ?? this.matchStandingsSectionForm,
         matchEventsSectionTime: matchEventsSectionTime ?? this.matchEventsSectionTime,
         matchEventsSectionText: matchEventsSectionText ?? this.matchEventsSectionText,
@@ -711,9 +711,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       fixturesLeague: TextStyle.lerp(fixturesLeague, other.fixturesLeague, t)!,
       fixturesMinute: TextStyle.lerp(fixturesMinute, other.fixturesMinute, t)!,
       fixturesName: TextStyle.lerp(fixturesName, other.fixturesName, t)!,
-      fixturesNameAlternate: TextStyle.lerp(fixturesNameAlternate, other.fixturesNameAlternate, t)!,
+      fixturesNameCompact: TextStyle.lerp(fixturesNameCompact, other.fixturesNameCompact, t)!,
       fixturesScore: TextStyle.lerp(fixturesScore, other.fixturesScore, t)!,
-      fixturesScoreAlternate: TextStyle.lerp(fixturesScoreAlternate, other.fixturesScoreAlternate, t)!,
+      fixturesScoreCompact: TextStyle.lerp(fixturesScoreCompact, other.fixturesScoreCompact, t)!,
       matchLeagueName: TextStyle.lerp(matchLeagueName, other.matchLeagueName, t)!,
       matchLeagueRound: TextStyle.lerp(matchLeagueRound, other.matchLeagueRound, t)!,
       matchGoal: TextStyle.lerp(matchGoal, other.matchGoal, t)!,
@@ -724,7 +724,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchStandingsSectionTitle: TextStyle.lerp(matchStandingsSectionTitle, other.matchStandingsSectionTitle, t)!,
       matchStandingsSectionSubtitle: TextStyle.lerp(matchStandingsSectionSubtitle, other.matchStandingsSectionSubtitle, t)!,
       matchStandingsSectionText: TextStyle.lerp(matchStandingsSectionText, other.matchStandingsSectionText, t)!,
-      matchStandingsSectionTextAlternate: TextStyle.lerp(matchStandingsSectionTextAlternate, other.matchStandingsSectionTextAlternate, t)!,
+      matchStandingsSectionTextCompact: TextStyle.lerp(matchStandingsSectionTextCompact, other.matchStandingsSectionTextCompact, t)!,
       matchStandingsSectionForm: TextStyle.lerp(matchStandingsSectionForm, other.matchStandingsSectionForm, t)!,
       matchEventsSectionTime: TextStyle.lerp(matchEventsSectionTime, other.matchEventsSectionTime, t)!,
       matchEventsSectionText: TextStyle.lerp(matchEventsSectionText, other.matchEventsSectionText, t)!,
