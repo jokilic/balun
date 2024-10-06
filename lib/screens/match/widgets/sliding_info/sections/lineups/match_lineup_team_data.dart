@@ -9,10 +9,12 @@ import '../../../../../../util/lineups.dart';
 import '../../../../../../util/player_statistics.dart';
 
 class MatchLineupTeamData extends StatelessWidget {
+  final bool matchLive;
   final Lineup? lineup;
   final PlayerStatistic? playerStatistic;
 
   const MatchLineupTeamData({
+    required this.matchLive,
     required this.lineup,
     required this.playerStatistic,
   });
@@ -105,41 +107,42 @@ class MatchLineupTeamData extends StatelessWidget {
             ///
             /// RATING
             ///
-            if (averageRating != null)
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      'matchLineupTeamRating'.tr(),
-                      style: context.textStyles.matchLineupsSectionText,
+            Expanded(
+              child: Column(
+                children: [
+                  Text(
+                    'matchLineupTeamRating'.tr(),
+                    style: context.textStyles.matchLineupsSectionText,
+                  ),
+                  const SizedBox(height: 6),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 2,
                     ),
-                    const SizedBox(height: 6),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 6,
-                        vertical: 2,
+                    decoration: BoxDecoration(
+                      color: !matchLive && averageRating != null
+                          ? getRatingColor(
+                              averageRating,
+                              context: context,
+                            )
+                          : context.colors.black.withOpacity(0.5),
+                      border: Border.all(
+                        color: context.colors.black,
+                        width: 2,
                       ),
-                      decoration: BoxDecoration(
-                        color: getRatingColor(
-                          averageRating,
-                          context: context,
-                        ),
-                        border: Border.all(
-                          color: context.colors.black,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        averageRating.toStringAsFixed(1),
-                        style: context.textStyles.matchLineupsSectionSubtitle.copyWith(
-                          color: context.colors.white,
-                        ),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      !matchLive && averageRating != null ? averageRating.toStringAsFixed(1) : '---',
+                      style: context.textStyles.matchLineupsSectionSubtitle.copyWith(
+                        color: context.colors.white,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+            ),
           ],
         ),
       ],

@@ -37,6 +37,7 @@ class MatchLineupContent extends StatelessWidget {
           /// HOME TEAM
           ///
           MatchLineupTeamData(
+            matchLive: matchLive,
             lineup: homeLineup,
             playerStatistic: homePlayerStatistic,
           ),
@@ -60,6 +61,7 @@ class MatchLineupContent extends StatelessWidget {
           /// AWAY TEAM
           ///
           MatchLineupTeamData(
+            matchLive: matchLive,
             lineup: awayLineup,
             playerStatistic: awayPlayerStatistic,
           ),
