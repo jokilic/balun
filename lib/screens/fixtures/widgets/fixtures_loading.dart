@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../constants.dart';
 import 'fixtures_app_bar.dart';
 import 'fixtures_list_tile/fixtures_country/fixtures_country_list_tile_loading.dart';
+import 'fixtures_list_tile/fixtures_league_compact/fixtures_league_compact_list_tile_loading.dart';
 
 class FixturesLoading extends StatelessWidget {
   @override
@@ -34,7 +35,7 @@ class FixturesLoading extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               physics: const NeverScrollableScrollPhysics(),
               itemCount: 2,
-              itemBuilder: (_, __) => FixturesCountryListTileLoading(),
+              itemBuilder: (_, __) => FixturesLeagueCompactListTileLoading(),
               separatorBuilder: (_, __) => const SizedBox(height: 16),
             ),
             const SizedBox(height: 40),
