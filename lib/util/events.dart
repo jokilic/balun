@@ -5,6 +5,7 @@ import '../models/fixtures/score/score.dart';
 List<Event>? getEventsList({
   required List<Event>? events,
   required Score? score,
+  required bool matchFinishedRegularly,
 }) {
   if ((events?.isEmpty ?? false) && score == null) {
     return null;
@@ -22,7 +23,7 @@ List<Event>? getEventsList({
     );
   }
 
-  if (score?.fulltime?.home != null && score?.fulltime?.away != null) {
+  if (score?.fulltime?.home != null && score?.fulltime?.away != null && !matchFinishedRegularly) {
     eventsAndMatchTime.add(
       Event(
         type: 'fulltime',

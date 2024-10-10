@@ -9,7 +9,7 @@ import '../../../../../../widgets/balun_empty.dart';
 import 'match_events_list_tile.dart';
 
 class MatchEventsSection extends StatelessWidget {
-  final List<Event>? eventsScoresList;
+  final List<Event>? eventsMatchTimeList;
   final Score? score;
   final int? elapsed;
   final int? awayTeamId;
@@ -17,7 +17,7 @@ class MatchEventsSection extends StatelessWidget {
   final bool matchFinishedRegularly;
 
   const MatchEventsSection({
-    required this.eventsScoresList,
+    required this.eventsMatchTimeList,
     required this.score,
     required this.elapsed,
     required this.awayTeamId,
@@ -32,7 +32,7 @@ class MatchEventsSection extends StatelessWidget {
           vertical: 8,
         ),
         child: Column(
-          children: (eventsScoresList?.isNotEmpty ?? false)
+          children: (eventsMatchTimeList?.isNotEmpty ?? false)
               ? [
                   ///
                   /// MATCH STARTED
@@ -52,13 +52,13 @@ class MatchEventsSection extends StatelessWidget {
                   ///
                   /// EVENTS
                   ///
-                  ...eventsScoresList!
+                  ...eventsMatchTimeList!
                       .map(
                         (event) => MatchEventsListTile(
                           event: event,
                           isAwayTeam: event.team?.id == awayTeamId,
                           isSecondYellowCard: isSecondYellowCard(
-                            eventsScoresList ?? [],
+                            eventsMatchTimeList ?? [],
                             event,
                           ),
                           matchFinishedRegularly: matchFinishedRegularly,
