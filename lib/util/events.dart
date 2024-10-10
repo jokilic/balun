@@ -10,10 +10,10 @@ List<Event>? getEventsList({
     return null;
   }
 
-  final eventsScores = List<Event>.from(events ?? []).toList();
+  final eventsAndMatchTime = List<Event>.from(events ?? []).toList();
 
   if (score?.halftime?.home != null && score?.halftime?.away != null) {
-    eventsScores.add(
+    eventsAndMatchTime.add(
       Event(
         type: 'halftime',
         detail: '${score?.halftime?.home}:${score?.halftime?.away}',
@@ -23,36 +23,36 @@ List<Event>? getEventsList({
   }
 
   if (score?.fulltime?.home != null && score?.fulltime?.away != null) {
-    eventsScores.add(
+    eventsAndMatchTime.add(
       Event(
         type: 'fulltime',
         detail: '${score?.fulltime?.home}:${score?.fulltime?.away}',
-        time: EventTime(elapsed: 1001),
+        time: EventTime(elapsed: 90),
       ),
     );
   }
 
   if (score?.extratime?.home != null && score?.extratime?.away != null) {
-    eventsScores.add(
+    eventsAndMatchTime.add(
       Event(
         type: 'extratime',
         detail: '${score?.extratime?.home}:${score?.extratime?.away}',
-        time: EventTime(elapsed: 1002),
+        time: EventTime(elapsed: 120),
       ),
     );
   }
 
   if (score?.penalty?.home != null && score?.extratime?.away != null) {
-    eventsScores.add(
+    eventsAndMatchTime.add(
       Event(
-        type: 'penalty',
+        type: 'penaltytime',
         detail: '${score?.penalty?.home}:${score?.penalty?.away}',
-        time: EventTime(elapsed: 1003),
+        time: EventTime(elapsed: 150),
       ),
     );
   }
 
-  eventsScores.sort(
+  eventsAndMatchTime.sort(
     (a, b) {
       final aTime = (a.time?.elapsed ?? 0) + (a.time?.extra ?? 0);
       final bTime = (b.time?.elapsed ?? 0) + (b.time?.extra ?? 0);
@@ -61,7 +61,30 @@ List<Event>? getEventsList({
     },
   );
 
-  return eventsScores;
+  return eventsAndMatchTime;
+}
+
+String? getFinalScore({required Score? score}) {
+  if (score == null) {
+    return null;
+  }
+
+  /// Penalties
+  if (score.penalty?.home != null && score.penalty?.away != null) {
+    return '${score.penalty?.home}:${score.penalty?.away}';
+  }
+
+  /// Extra time
+  if (score.extratime?.home != null && score.extratime?.away != null) {
+    return '${score.extratime?.home}:${score.extratime?.away}';
+  }
+
+  /// Full time
+  if (score.fulltime?.home != null && score.fulltime?.away != null) {
+    return '${score.fulltime?.home}:${score.fulltime?.away}';
+  }
+
+  return null;
 }
 
 List<Event> calculatedCardsEvents(List<Event>? events) {

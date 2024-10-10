@@ -34,5 +34,5 @@ Results can be opened and more info is shown.
 ### General To-Dos
 
 - [ ] Create screenshots and put app live
-- [ ] Open a match that had extra time and implement events text properly
-- [ ] Open a match that had penalties and implement events text properly
+- [ ] All loading texts should have randomized widths between two numbers
+- [ ] New update to backend, check what can be implemented - https://www.api-football.com/documentation-v3#section/Changelog

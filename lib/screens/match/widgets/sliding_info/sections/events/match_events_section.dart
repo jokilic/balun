@@ -13,12 +13,16 @@ class MatchEventsSection extends StatelessWidget {
   final Score? score;
   final int? elapsed;
   final int? awayTeamId;
+  final bool matchFinished;
+  final bool matchFinishedRegularly;
 
   const MatchEventsSection({
     required this.eventsScoresList,
     required this.score,
     required this.elapsed,
     required this.awayTeamId,
+    required this.matchFinished,
+    required this.matchFinishedRegularly,
   });
 
   @override
@@ -30,6 +34,9 @@ class MatchEventsSection extends StatelessWidget {
         child: Column(
           children: (eventsScoresList?.isNotEmpty ?? false)
               ? [
+                  ///
+                  /// MATCH STARTED
+                  ///
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
@@ -41,6 +48,10 @@ class MatchEventsSection extends StatelessWidget {
                       ],
                     ),
                   ),
+
+                  ///
+                  /// EVENTS
+                  ///
                   ...eventsScoresList!
                       .map(
                         (event) => MatchEventsListTile(
@@ -50,9 +61,38 @@ class MatchEventsSection extends StatelessWidget {
                             eventsScoresList ?? [],
                             event,
                           ),
+                          matchFinishedRegularly: matchFinishedRegularly,
                         ),
                       )
                       .toList(),
+
+                  ///
+                  /// MATCH FINISHED
+                  ///
+                  if (matchFinished)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              'matchEventsFullTime'.tr(),
+                              style: context.textStyles.matchEventsSectionResult,
+                            ),
+                          ),
+                          Flexible(
+                            child: Text(
+                              getFinalScore(
+                                    score: score,
+                                  ) ??
+                                  '-:-',
+                              style: context.textStyles.matchEventsSectionResult,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   const SizedBox(height: 24),
                 ]
               : [

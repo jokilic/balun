@@ -12,11 +12,13 @@ class MatchEventsListTile extends StatelessWidget {
   final Event event;
   final bool? isAwayTeam;
   final bool isSecondYellowCard;
+  final bool matchFinishedRegularly;
 
   const MatchEventsListTile({
     required this.event,
     required this.isAwayTeam,
     required this.isSecondYellowCard,
+    required this.matchFinishedRegularly,
   });
 
   @override
@@ -24,10 +26,10 @@ class MatchEventsListTile extends StatelessWidget {
     final elapsedTime = event.time?.elapsed;
     final extraTime = event.time?.extra;
 
-    final scoreWidget = getScoreWidget(
-      elapsedTime: elapsedTime,
+    final matchTimeWidget = getMatchTimeWidget(
       eventType: event.type ?? '',
       eventDetail: event.detail ?? '',
+      matchFinishedRegularly: matchFinishedRegularly,
       context: context,
     );
 
@@ -37,9 +39,9 @@ class MatchEventsListTile extends StatelessWidget {
         mainAxisAlignment: isAwayTeam ?? false ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: (event.type?.contains('time') ?? false)
             ? [
-                if (scoreWidget != null)
+                if (matchTimeWidget != null)
                   Flexible(
-                    child: scoreWidget,
+                    child: matchTimeWidget,
                   ),
               ]
             : [
@@ -104,38 +106,34 @@ class MatchEventsListTile extends StatelessWidget {
     );
   }
 
-  Widget? getScoreWidget({
-    required int? elapsedTime,
+  Widget? getMatchTimeWidget({
     required String eventType,
     required String eventDetail,
+    required bool matchFinishedRegularly,
     required BuildContext context,
   }) =>
       switch (eventType.toLowerCase()) {
         ///
         /// HALF TIME
         ///
-        'halftime' => (elapsedTime ?? 0) > 45
-            ? Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: Text(
-                        'matchEvents2ndHalf'.tr(),
-                        style: context.textStyles.matchEventsSectionResult,
-                      ),
-                    ),
-                    Flexible(
-                      child: Text(
-                        eventDetail,
-                        style: context.textStyles.matchEventsSectionResult,
-                      ),
-                    ),
-                  ],
+        'halftime' => Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    'matchEvents1stHalf'.tr(),
+                    style: context.textStyles.matchEventsSectionResult,
+                  ),
                 ),
-              )
-            : null,
+                Text(
+                  eventDetail,
+                  style: context.textStyles.matchEventsSectionResult,
+                ),
+              ],
+            ),
+          ),
 
         ///
         /// FULL TIME
@@ -145,17 +143,15 @@ class MatchEventsListTile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(
+                Expanded(
                   child: Text(
-                    'matchEventsFullTime'.tr(),
+                    matchFinishedRegularly ? 'matchEventsFullTime'.tr() : 'matchEventsFullTimeRegularTime'.tr(),
                     style: context.textStyles.matchEventsSectionResult,
                   ),
                 ),
-                Flexible(
-                  child: Text(
-                    eventDetail,
-                    style: context.textStyles.matchEventsSectionResult,
-                  ),
+                Text(
+                  eventDetail,
+                  style: context.textStyles.matchEventsSectionResult,
                 ),
               ],
             ),
@@ -169,17 +165,15 @@ class MatchEventsListTile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(
+                Expanded(
                   child: Text(
                     'matchEventsExtraTime'.tr(),
                     style: context.textStyles.matchEventsSectionResult,
                   ),
                 ),
-                Flexible(
-                  child: Text(
-                    eventDetail,
-                    style: context.textStyles.matchEventsSectionResult,
-                  ),
+                Text(
+                  eventDetail,
+                  style: context.textStyles.matchEventsSectionResult,
                 ),
               ],
             ),
@@ -188,22 +182,20 @@ class MatchEventsListTile extends StatelessWidget {
         ///
         /// PENALTIES
         ///
-        'penalty' => Padding(
+        'penaltytime' => Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(
+                Expanded(
                   child: Text(
                     'matchEventsPenalties'.tr(),
                     style: context.textStyles.matchEventsSectionResult,
                   ),
                 ),
-                Flexible(
-                  child: Text(
-                    eventDetail,
-                    style: context.textStyles.matchEventsSectionResult,
-                  ),
+                Text(
+                  eventDetail,
+                  style: context.textStyles.matchEventsSectionResult,
                 ),
               ],
             ),
@@ -217,17 +209,15 @@ class MatchEventsListTile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Flexible(
+                Expanded(
                   child: Text(
                     eventType,
                     style: context.textStyles.matchEventsSectionResult,
                   ),
                 ),
-                Flexible(
-                  child: Text(
-                    eventDetail,
-                    style: context.textStyles.matchEventsSectionResult,
-                  ),
+                Text(
+                  eventDetail,
+                  style: context.textStyles.matchEventsSectionResult,
                 ),
               ],
             ),
