@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 enum PlayerSectionEnum {
   info,
   statistics,
+  teams,
   transfers,
   sidelined,
   trophies,
@@ -18,6 +19,7 @@ class PlayerSection {
   String getPlayerSectionName() => switch (playerSectionEnum) {
         PlayerSectionEnum.info => 'playerSectionInfo'.tr(),
         PlayerSectionEnum.statistics => 'playerSectionStatistics'.tr(),
+        PlayerSectionEnum.teams => 'playerSectionTeams'.tr(),
         PlayerSectionEnum.transfers => 'playerSectionTransfers'.tr(),
         PlayerSectionEnum.sidelined => 'playerSectionSidelined'.tr(),
         PlayerSectionEnum.trophies => 'playerSectionTrophies'.tr(),

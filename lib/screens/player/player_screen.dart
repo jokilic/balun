@@ -11,6 +11,7 @@ import 'controllers/player_season_controller.dart';
 import 'controllers/player_section_controller.dart';
 import 'controllers/player_sidelined_controller.dart';
 import 'controllers/player_statistics_controller.dart';
+import 'controllers/player_teams_controller.dart';
 import 'controllers/player_transfers_controller.dart';
 import 'controllers/player_trophies_controller.dart';
 import 'widgets/player_content.dart';
@@ -42,6 +43,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
     );
     registerIfNotInitialized<PlayerStatisticsController>(
       () => PlayerStatisticsController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: '${widget.playerId}',
+    );
+    registerIfNotInitialized<PlayerTeamsController>(
+      () => PlayerTeamsController(
         logger: getIt.get<LoggerService>(),
         api: getIt.get<APIService>(),
       ),
@@ -100,6 +108,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
         instanceName: '${widget.playerId}',
       )
       ..unregister<PlayerStatisticsController>(
+        instanceName: '${widget.playerId}',
+      )
+      ..unregister<PlayerTeamsController>(
         instanceName: '${widget.playerId}',
       )
       ..unregister<PlayerTransfersController>(

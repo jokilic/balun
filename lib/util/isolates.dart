@@ -4,6 +4,7 @@ import '../models/coaches/coaches_response.dart';
 import '../models/countries/countries_response.dart';
 import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
+import '../models/player_teams/player_teams_response.dart';
 import '../models/players/players_response.dart';
 import '../models/search/search_coaches/search_coaches_response.dart';
 import '../models/search/search_countries/search_countries_response.dart';
@@ -31,6 +32,9 @@ LeaguesResponse parseLeagues(data) => LeaguesResponse.fromMap(data);
 
 Future<PlayersResponse> computePlayers(data) async => compute(parsePlayers, data);
 PlayersResponse parsePlayers(data) => PlayersResponse.fromMap(data);
+
+Future<PlayerTeamsResponse> computePlayerTeams(data) async => compute(parsePlayerTeams, data);
+PlayerTeamsResponse parsePlayerTeams(data) => PlayerTeamsResponse.fromMap(data);
 
 Future<CoachesResponse> computeCoaches(data) async => compute(parseCoaches, data);
 CoachesResponse parseCoaches(data) => CoachesResponse.fromMap(data);
