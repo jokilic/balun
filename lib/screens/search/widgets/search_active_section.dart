@@ -4,6 +4,7 @@ import '../../../models/search_section.dart';
 import 'sections/coaches/search_coaches_section.dart';
 import 'sections/countries/search_countries_section.dart';
 import 'sections/leagues/search_leagues_section.dart';
+import 'sections/players/search_players_section.dart';
 import 'sections/teams/search_teams_section.dart';
 
 class SearchActiveSection extends StatelessWidget {
@@ -27,6 +28,10 @@ class SearchActiveSection extends StatelessWidget {
           searchSectionEnum: SearchSectionEnum.teams,
         ) =>
           SearchTeamsSection(),
+        SearchSection(
+          searchSectionEnum: SearchSectionEnum.players,
+        ) =>
+          SearchPlayersSection(),
         SearchSection(
           searchSectionEnum: SearchSectionEnum.coaches,
         ) =>

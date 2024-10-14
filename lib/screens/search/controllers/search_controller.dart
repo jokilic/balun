@@ -10,6 +10,7 @@ import '../../../util/dependencies.dart';
 import 'search_coaches_controller.dart';
 import 'search_countries_controller.dart';
 import 'search_leagues_controller.dart';
+import 'search_players_controller.dart';
 import 'search_teams_controller.dart';
 
 class SearchController extends ValueNotifier<SearchSection> implements Disposable {
@@ -86,6 +87,19 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
               instanceName: 'search',
             )
             .searchTeams(
+              searchValue: searchValue,
+            );
+        break;
+
+      ///
+      /// PLAYERS
+      ///
+      case SearchSection(searchSectionEnum: SearchSectionEnum.players):
+        getIt
+            .get<SearchPlayersController>(
+              instanceName: 'search',
+            )
+            .searchPlayers(
               searchValue: searchValue,
             );
         break;

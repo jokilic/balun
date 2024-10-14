@@ -4,6 +4,7 @@ enum SearchSectionEnum {
   countries,
   leagues,
   teams,
+  players,
   coaches,
 }
 
@@ -18,6 +19,7 @@ class SearchSection {
         SearchSectionEnum.countries => 'searchSectionCountries'.tr(),
         SearchSectionEnum.leagues => 'searchSectionLeagues'.tr(),
         SearchSectionEnum.teams => 'searchSectionTeams'.tr(),
+        SearchSectionEnum.players => 'searchSectionPlayers'.tr(),
         SearchSectionEnum.coaches => 'searchSectionCoaches'.tr(),
       };
 

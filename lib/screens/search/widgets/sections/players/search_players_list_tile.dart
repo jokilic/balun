@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
-import '../../../../../models/search/search_coaches/search_coach_response.dart';
+import '../../../../../models/search/search_players/search_player_response.dart';
 import '../../../../../theme/icons.dart';
 
-class SearchCoachesListTile extends StatelessWidget {
-  final SearchCoachResponse coach;
-  final Function()? coachPressed;
+class SearchPlayersListTile extends StatelessWidget {
+  final SearchPlayerResponse player;
+  final Function()? playerPressed;
 
-  const SearchCoachesListTile({
-    required this.coach,
-    required this.coachPressed,
+  const SearchPlayersListTile({
+    required this.player,
+    required this.playerPressed,
   });
 
   @override
   Widget build(BuildContext context) => BalunButton(
-        onPressed: coachPressed,
+        onPressed: playerPressed,
         child: Container(
           color: Colors.transparent,
           padding: const EdgeInsets.symmetric(
@@ -29,7 +29,7 @@ class SearchCoachesListTile extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: BalunImage(
-                  imageUrl: coach.photo ?? BalunIcons.placeholderPlayer,
+                  imageUrl: player.player?.photo ?? BalunIcons.placeholderPlayer,
                   height: 40,
                   width: 40,
                 ),
@@ -40,12 +40,12 @@ class SearchCoachesListTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      coach.name ?? '---',
+                      player.player?.name ?? '---',
                       style: context.textStyles.fixturesLeague,
                     ),
-                    if (coach.nationality != null)
+                    if (player.player?.nationality != null)
                       Text(
-                        coach.nationality!,
+                        player.player!.nationality!,
                         style: context.textStyles.leaguesSubtitle,
                       ),
                   ],

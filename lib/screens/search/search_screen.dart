@@ -11,6 +11,7 @@ import 'controllers/search_coaches_controller.dart';
 import 'controllers/search_controller.dart';
 import 'controllers/search_countries_controller.dart';
 import 'controllers/search_leagues_controller.dart';
+import 'controllers/search_players_controller.dart';
 import 'controllers/search_teams_controller.dart';
 import 'widgets/search_active_section.dart';
 import 'widgets/search_bar_widget.dart';
@@ -44,6 +45,13 @@ class _SearchScreenState extends State<SearchScreen> {
     );
     registerIfNotInitialized<SearchTeamsController>(
       () => SearchTeamsController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
+      ),
+      instanceName: 'search',
+    );
+    registerIfNotInitialized<SearchPlayersController>(
+      () => SearchPlayersController(
         logger: getIt.get<LoggerService>(),
         api: getIt.get<APIService>(),
       ),
