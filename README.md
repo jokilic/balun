@@ -35,4 +35,3 @@ Results can be opened and more info is shown.
 
 - [ ] Create screenshots and put app live
 - [ ] All loading texts should have randomized widths between two numbers
-- [ ] New update to backend, check what can be implemented - https://www.api-football.com/documentation-v3#section/Changelog
