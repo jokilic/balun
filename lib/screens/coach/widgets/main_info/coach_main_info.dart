@@ -41,13 +41,10 @@ class CoachMainInfo extends WatchingWidget {
             ///
             /// LOGO
             ///
-            ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: BalunImage(
-                imageUrl: coach.photo ?? BalunIcons.placeholderPlayer,
-                height: 120,
-                width: 120,
-              ),
+            BalunImage(
+              imageUrl: coach.photo ?? BalunIcons.placeholderPlayer,
+              height: 120,
+              width: 120,
             ),
 
             const SizedBox(height: 16),
@@ -92,13 +89,10 @@ class CoachMainInfo extends WatchingWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: BalunImage(
-                          imageUrl: coach.team?.logo ?? BalunIcons.placeholderTeam,
-                          height: 32,
-                          width: 32,
-                        ),
+                      BalunImage(
+                        imageUrl: coach.team?.logo ?? BalunIcons.placeholderTeam,
+                        height: 32,
+                        width: 32,
                       ),
                       const SizedBox(width: 8),
                       Flexible(

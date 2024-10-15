@@ -71,13 +71,10 @@ class LeagueFixturesListTile extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: BalunImage(
-                          imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
-                          height: 56,
-                          width: 56,
-                        ),
+                      BalunImage(
+                        imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
+                        height: 56,
+                        width: 56,
                       ),
                       const SizedBox(height: 12),
                       Text(
@@ -119,13 +116,10 @@ class LeagueFixturesListTile extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: BalunImage(
-                          imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
-                          height: 56,
-                          width: 56,
-                        ),
+                      BalunImage(
+                        imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
+                        height: 56,
+                        width: 56,
                       ),
                       const SizedBox(height: 12),
                       Text(

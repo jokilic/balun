@@ -104,13 +104,10 @@ class PlayerMainInfo extends WatchingWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: BalunImage(
-                        imageUrl: team.logo ?? BalunIcons.placeholderTeam,
-                        height: 32,
-                        width: 32,
-                      ),
+                    BalunImage(
+                      imageUrl: team.logo ?? BalunIcons.placeholderTeam,
+                      height: 32,
+                      width: 32,
                     ),
                     const SizedBox(width: 8),
                     Flexible(

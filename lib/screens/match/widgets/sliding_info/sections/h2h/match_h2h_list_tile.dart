@@ -92,13 +92,10 @@ class MatchH2HListTile extends StatelessWidget {
                 /// HOME
                 ///
                 Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: BalunImage(
-                      imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
-                      height: 56,
-                      width: 56,
-                    ),
+                  child: BalunImage(
+                    imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
+                    height: 56,
+                    width: 56,
                   ),
                 ),
 
@@ -128,13 +125,10 @@ class MatchH2HListTile extends StatelessWidget {
                 /// AWAY
                 ///
                 Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: BalunImage(
-                      imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
-                      height: 56,
-                      width: 56,
-                    ),
+                  child: BalunImage(
+                    imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
+                    height: 56,
+                    width: 56,
                   ),
                 ),
               ],

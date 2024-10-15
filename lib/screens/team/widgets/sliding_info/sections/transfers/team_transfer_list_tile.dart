@@ -52,13 +52,10 @@ class TeamTransferListTile extends StatelessWidget {
                         color: context.colors.red,
                       ),
                       const SizedBox(height: 8),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: BalunImage(
-                          imageUrl: transfer.teams?.teamOut?.logo ?? BalunIcons.placeholderTeam,
-                          height: 48,
-                          width: 48,
-                        ),
+                      BalunImage(
+                        imageUrl: transfer.teams?.teamOut?.logo ?? BalunIcons.placeholderTeam,
+                        height: 48,
+                        width: 48,
                       ),
                       const SizedBox(height: 8),
                       Text(
