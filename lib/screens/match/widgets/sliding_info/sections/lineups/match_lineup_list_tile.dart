@@ -16,7 +16,7 @@ class MatchLineupListTile extends StatelessWidget {
   final LineupPlayerInside? player;
   final PlayerStatisticData? playerStatistic;
   final LineupColors? colors;
-  final int season;
+  final String season;
 
   const MatchLineupListTile({
     required this.matchLive,

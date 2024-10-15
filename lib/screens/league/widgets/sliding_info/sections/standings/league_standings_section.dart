@@ -14,7 +14,7 @@ import 'league_standings_loading.dart';
 
 class LeagueStandingsSection extends WatchingStatefulWidget {
   final int? leagueId;
-  final int? season;
+  final String? season;
 
   const LeagueStandingsSection({
     required this.leagueId,

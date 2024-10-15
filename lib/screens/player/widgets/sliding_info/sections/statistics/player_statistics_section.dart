@@ -14,7 +14,7 @@ import 'player_statistics_loading.dart';
 
 class PlayerStatisticsSection extends WatchingStatefulWidget {
   final int? playerId;
-  final int? season;
+  final String? season;
 
   const PlayerStatisticsSection({
     required this.playerId,
@@ -69,7 +69,7 @@ class _PlayerStatisticsSectionState extends State<PlayerStatisticsSection> {
           ),
         Success() => PlayerStatisticsContent(
             statistics: (statisticsState as Success).data,
-            season: widget.season ?? DateTime.now().year,
+            season: widget.season ?? DateTime.now().year.toString(),
           ),
       },
     );

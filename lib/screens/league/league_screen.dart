@@ -20,7 +20,7 @@ import 'widgets/league_content.dart';
 
 class LeagueScreen extends WatchingStatefulWidget {
   final int leagueId;
-  final int season;
+  final String season;
 
   const LeagueScreen({
     required this.leagueId,

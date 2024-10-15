@@ -76,7 +76,7 @@ class _MatchSuccessState extends State<MatchSuccess> {
             panelBuilder: () => MatchSlidingInfo(
               match: widget.match,
               scrollController: scrollController,
-              season: widget.match.league?.season ?? DateTime.now().year,
+              season: widget.match.league?.season ?? DateTime.now().year.toString(),
             ),
           ),
         ],

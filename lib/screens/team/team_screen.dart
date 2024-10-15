@@ -18,7 +18,7 @@ import 'widgets/team_content.dart';
 
 class TeamScreen extends WatchingStatefulWidget {
   final int teamId;
-  final int season;
+  final String season;
 
   const TeamScreen({
     required this.teamId,

@@ -1,3 +1,5 @@
+// ignore_for_file: equal_keys_in_map
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +9,56 @@ import 'date_time.dart';
 String getLastWord(String input) {
   final words = input.split(' ');
   return words.isNotEmpty ? words.last : '';
+}
+
+String replaceSpecialSymbolsWithStandardLetters(String input) {
+  final transliterationMap = {
+    // /Croatian
+    'č': 'c', 'ć': 'c', 'đ': 'd', 'š': 's', 'ž': 'z',
+    'Č': 'C', 'Ć': 'C', 'Đ': 'D', 'Š': 'S', 'Ž': 'Z',
+
+    // /German
+    'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'ß': 'ss',
+    'Ä': 'Ae', 'Ö': 'Oe', 'Ü': 'Ue',
+
+    // /French
+    'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e',
+    'à': 'a', 'â': 'a', 'ç': 'c',
+    'î': 'i', 'ï': 'i',
+    'ô': 'o', 'ö': 'o',
+    'ù': 'u', 'û': 'u', 'ü': 'u',
+    'ÿ': 'y',
+    'É': 'E', 'È': 'E', 'Ê': 'E', 'Ë': 'E',
+    'À': 'A', 'Â': 'A', 'Ç': 'C',
+    'Î': 'I', 'Ï': 'I',
+    'Ô': 'O', 'Ö': 'O',
+    'Ù': 'U', 'Û': 'U', 'Ü': 'U',
+    'Ÿ': 'Y',
+
+    // /Spanish
+    'ñ': 'n', 'Ñ': 'N',
+
+    // /Portuguese
+    'ã': 'a', 'õ': 'o',
+    'Ã': 'A', 'Õ': 'O',
+
+    // /Polish
+    'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n', 'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z',
+    'Ą': 'A', 'Ć': 'C', 'Ę': 'E', 'Ł': 'L', 'Ń': 'N', 'Ó': 'O', 'Ś': 'S', 'Ź': 'Z', 'Ż': 'Z',
+
+    // /Romanian
+    'ă': 'a', 'â': 'a', 'î': 'i', 'ș': 's', 'ț': 't',
+    'Ă': 'A', 'Â': 'A', 'Î': 'I', 'Ș': 'S', 'Ț': 'T',
+
+    // /Other common characters
+    'æ': 'ae', 'œ': 'oe',
+    'Æ': 'AE', 'Œ': 'OE'
+  };
+
+  return input.replaceAllMapped(
+    RegExp(r'[^\u0000-\u007F]'),
+    (match) => transliterationMap[match.group(0)] ?? match.group(0) ?? '',
+  );
 }
 
 String getCompactFixtureText({

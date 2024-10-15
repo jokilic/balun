@@ -18,7 +18,7 @@ import 'widgets/player_content.dart';
 
 class PlayerScreen extends WatchingStatefulWidget {
   final int playerId;
-  final int season;
+  final String season;
 
   const PlayerScreen({
     required this.playerId,

@@ -1,7 +1,7 @@
 import '../models/fixtures/fixture_response.dart';
 
 int compareLeagueFixturesRounds(String a, String b) {
-  /// Extract numbers from Strings if they exist
+  /// Extract numbers from `Strings` if they exist
   final regexNumber = RegExp(r'\d+');
 
   final aMatch = regexNumber.firstMatch(a);

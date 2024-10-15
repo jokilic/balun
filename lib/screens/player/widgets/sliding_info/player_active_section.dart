@@ -12,7 +12,7 @@ import 'sections/trophies/player_trophies_section.dart';
 class PlayerActiveSection extends StatelessWidget {
   final PlayerResponse player;
   final PlayerSection playerSection;
-  final int activeSeason;
+  final String activeSeason;
 
   const PlayerActiveSection({
     required this.player,

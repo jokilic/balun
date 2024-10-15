@@ -84,7 +84,7 @@ class _PlayerTeamsListTileState extends State<PlayerTeamsListTile> {
                                       ? () => openTeam(
                                             context,
                                             teamId: widget.team!.team!.id!,
-                                            season: season,
+                                            season: season.toString(),
                                           )
                                       : null,
                                   child: Container(

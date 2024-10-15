@@ -14,7 +14,7 @@ import 'league_top_yellow_cards_loading.dart';
 
 class LeagueTopYellowCardsSection extends WatchingStatefulWidget {
   final int? leagueId;
-  final int? season;
+  final String? season;
 
   const LeagueTopYellowCardsSection({
     required this.leagueId,
@@ -69,7 +69,7 @@ class _LeagueTopYellowCardsSectionState extends State<LeagueTopYellowCardsSectio
           ),
         Success() => LeagueTopYellowCardsContent(
             yellowCards: (topYellowCardsState as Success).data,
-            season: widget.season ?? DateTime.now().year,
+            season: widget.season ?? DateTime.now().year.toString(),
           ),
       },
     );

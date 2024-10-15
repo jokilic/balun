@@ -14,7 +14,7 @@ import 'league_fixtures_loading.dart';
 
 class LeagueFixturesSection extends WatchingStatefulWidget {
   final int? leagueId;
-  final int? season;
+  final String? season;
 
   const LeagueFixturesSection({
     required this.leagueId,

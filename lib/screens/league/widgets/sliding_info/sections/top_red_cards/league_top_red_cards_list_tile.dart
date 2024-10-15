@@ -10,7 +10,7 @@ import '../../../../../../widgets/balun_image.dart';
 
 class LeagueTopRedCardsListTile extends StatelessWidget {
   final PlayerResponse? redCard;
-  final int season;
+  final String season;
 
   const LeagueTopRedCardsListTile({
     required this.redCard,

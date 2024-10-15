@@ -19,7 +19,7 @@ class LeagueTopScorersController extends ValueNotifier<BalunState<List<PlayerRes
   /// VARIABLES
   ///
 
-  int? fetchedSeason;
+  String? fetchedSeason;
 
   ///
   /// METHODS
@@ -27,7 +27,7 @@ class LeagueTopScorersController extends ValueNotifier<BalunState<List<PlayerRes
 
   Future<void> getTopScorers({
     required int? leagueId,
-    required int? season,
+    required String? season,
   }) async {
     if (leagueId == null || season == null) {
       value = Error(

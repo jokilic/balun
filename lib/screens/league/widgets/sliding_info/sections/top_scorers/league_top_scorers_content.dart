@@ -8,7 +8,7 @@ import 'league_top_scorers_list_tile.dart';
 
 class LeagueTopScorersContent extends StatelessWidget {
   final List<PlayerResponse>? scorers;
-  final int season;
+  final String season;
 
   const LeagueTopScorersContent({
     required this.scorers,

@@ -13,7 +13,7 @@ import 'sections/top_yellow_cards/league_top_yellow_cards_section.dart';
 class LeagueActiveSection extends StatelessWidget {
   final LeagueResponse league;
   final LeagueSection leagueSection;
-  final int activeSeason;
+  final String activeSeason;
 
   const LeagueActiveSection({
     required this.league,

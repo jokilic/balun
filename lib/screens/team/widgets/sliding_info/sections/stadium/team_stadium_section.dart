@@ -139,6 +139,7 @@ class TeamStadiumSection extends StatelessWidget {
                   imageUrl: stadium!.image!,
                   height: 200,
                   width: double.infinity,
+                  fit: BoxFit.cover,
                 ),
               ),
             ],

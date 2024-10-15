@@ -8,7 +8,7 @@ import 'league_top_red_cards_list_tile.dart';
 
 class LeagueTopRedCardsContent extends StatelessWidget {
   final List<PlayerResponse>? redCards;
-  final int season;
+  final String season;
 
   const LeagueTopRedCardsContent({
     required this.redCards,

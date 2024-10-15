@@ -12,7 +12,7 @@ import 'sections/transfers/team_transfers_section.dart';
 class TeamActiveSection extends StatelessWidget {
   final TeamResponse team;
   final TeamSection teamSection;
-  final int activeSeason;
+  final String activeSeason;
 
   const TeamActiveSection({
     required this.team,

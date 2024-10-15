@@ -121,11 +121,11 @@ class LeagueMainInfo extends WatchingWidget {
                           .get<LeagueSeasonController>(
                             instanceName: '${league.league?.id}',
                           )
-                          .updateState(season.year),
+                          .updateState(season.year.toString()),
                       child: Center(
                         child: Text(
                           '${season.year ?? '--'}',
-                          style: seasonState == season.year ? context.textStyles.seasonPickerActive : context.textStyles.seasonPickerInactive,
+                          style: seasonState == season.year.toString() ? context.textStyles.seasonPickerActive : context.textStyles.seasonPickerInactive,
                           textAlign: TextAlign.center,
                         ),
                       ),

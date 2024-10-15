@@ -91,7 +91,7 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                                       ? () => openLeague(
                                             context,
                                             leagueId: widget.league.league!.id!,
-                                            season: season.year ?? DateTime.now().year,
+                                            season: (season.year ?? DateTime.now().year).toString(),
                                           )
                                       : null,
                                   child: Container(

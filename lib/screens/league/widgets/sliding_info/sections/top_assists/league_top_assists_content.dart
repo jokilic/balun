@@ -8,7 +8,7 @@ import 'league_top_assists_list_tile.dart';
 
 class LeagueTopAssistsContent extends StatelessWidget {
   final List<PlayerResponse>? assists;
-  final int season;
+  final String season;
 
   const LeagueTopAssistsContent({
     required this.assists,

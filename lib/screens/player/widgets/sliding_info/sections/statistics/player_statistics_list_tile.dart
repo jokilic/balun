@@ -12,7 +12,7 @@ import 'player_statistics_list_tile_value.dart';
 
 class PlayerStatisticsListTile extends StatefulWidget {
   final Statistic? statistic;
-  final int season;
+  final String season;
 
   const PlayerStatisticsListTile({
     required this.statistic,

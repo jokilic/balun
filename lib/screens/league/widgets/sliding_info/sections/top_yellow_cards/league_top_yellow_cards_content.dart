@@ -8,7 +8,7 @@ import 'league_top_yellow_cards_list_tile.dart';
 
 class LeagueTopYellowCardsContent extends StatelessWidget {
   final List<PlayerResponse>? yellowCards;
-  final int season;
+  final String season;
 
   const LeagueTopYellowCardsContent({
     required this.yellowCards,

@@ -27,7 +27,7 @@ class MatchStandingsController extends ValueNotifier<BalunState<List<StandingRes
 
   Future<void> getStandings({
     required int? leagueId,
-    required int? season,
+    required String? season,
   }) async {
     if (leagueId == null || season == null) {
       value = Error(

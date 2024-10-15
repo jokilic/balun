@@ -14,7 +14,7 @@ class MatchLineupsList extends StatelessWidget {
   final PlayerStatistic? awayPlayerStatistic;
   final LineupColors? homePlayerColors;
   final LineupColors? awayPlayerColors;
-  final int season;
+  final String season;
 
   const MatchLineupsList({
     required this.matchLive,
@@ -65,7 +65,7 @@ class MatchLineupList extends StatelessWidget {
   final List<LineupPlayer>? players;
   final PlayerStatistic? playerStatistic;
   final LineupColors? colors;
-  final int season;
+  final String season;
 
   const MatchLineupList({
     required this.matchLive,

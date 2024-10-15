@@ -11,12 +11,12 @@ import '../../../util/team_seasons.dart';
 import 'player_section_controller.dart';
 import 'player_statistics_controller.dart';
 
-class PlayerSeasonController extends ValueNotifier<int> implements Disposable {
+class PlayerSeasonController extends ValueNotifier<String> implements Disposable {
   final LoggerService logger;
   final APIService api;
   final PlayerSectionController section;
   final int playerId;
-  final int initialSeason;
+  final String initialSeason;
 
   PlayerSeasonController({
     required this.logger,
@@ -25,8 +25,10 @@ class PlayerSeasonController extends ValueNotifier<int> implements Disposable {
     required this.playerId,
     required this.initialSeason,
   }) : super(initialSeason) {
+    final seasonInt = int.tryParse(initialSeason);
+
     controller = PageController(
-      initialPage: generateYearList().indexOf(initialSeason),
+      initialPage: seasonInt != null ? generateYearList().indexOf(seasonInt) : 0,
       viewportFraction: 0.4,
     );
   }
@@ -46,7 +48,7 @@ class PlayerSeasonController extends ValueNotifier<int> implements Disposable {
   /// METHODS
   ///
 
-  void updateState(int? newSeason) {
+  void updateState(String? newSeason) {
     if (newSeason != null && value != newSeason) {
       /// Set state to new value
       value = newSeason;

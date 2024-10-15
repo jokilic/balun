@@ -57,7 +57,7 @@ void openMatch(BuildContext context, {required int matchId}) => pushScreen(
 void openTeam(
   BuildContext context, {
   required int teamId,
-  required int season,
+  required String season,
 }) =>
     pushScreen(
       TeamScreen(
@@ -72,7 +72,7 @@ void openTeam(
 void openLeague(
   BuildContext context, {
   required int leagueId,
-  required int season,
+  required String season,
 }) =>
     pushScreen(
       LeagueScreen(
@@ -87,7 +87,7 @@ void openLeague(
 void openPlayer(
   BuildContext context, {
   required int playerId,
-  required int season,
+  required String season,
 }) =>
     pushScreen(
       PlayerScreen(

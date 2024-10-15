@@ -14,7 +14,7 @@ class TrophyResponse {
   factory TrophyResponse.fromMap(Map<String, dynamic> map) => TrophyResponse(
         league: map['league'] != null ? map['league'] as String : null,
         country: map['country'] != null ? map['country'] as String : null,
-        season: map['season'] != null ? map['season'] as String : null,
+        season: map['season']?.toString(),
         place: map['place'] != null ? map['place'] as String : null,
       );
 

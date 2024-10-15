@@ -24,7 +24,7 @@ class SearchPlayersSuccess extends StatelessWidget {
                 ? () => openPlayer(
                       context,
                       playerId: player.player!.id!,
-                      season: DateTime.now().year,
+                      season: DateTime.now().year.toString(),
                     )
                 : null,
           );

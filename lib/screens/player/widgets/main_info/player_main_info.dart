@@ -96,7 +96,7 @@ class PlayerMainInfo extends WatchingWidget {
                   ? () => openTeam(
                         context,
                         teamId: team.id!,
-                        season: player.statistics?.firstOrNull?.league?.season ?? DateTime.now().year,
+                        season: player.statistics?.firstOrNull?.league?.season ?? DateTime.now().year.toString(),
                       )
                   : null,
               child: Container(
@@ -156,11 +156,11 @@ class PlayerMainInfo extends WatchingWidget {
                         .get<PlayerSeasonController>(
                           instanceName: '${player.player?.id}',
                         )
-                        .updateState(year),
+                        .updateState(year.toString()),
                     child: Center(
                       child: Text(
                         '$year',
-                        style: seasonState == year ? context.textStyles.seasonPickerActive : context.textStyles.seasonPickerInactive,
+                        style: seasonState == year.toString() ? context.textStyles.seasonPickerActive : context.textStyles.seasonPickerInactive,
                         textAlign: TextAlign.center,
                       ),
                     ),

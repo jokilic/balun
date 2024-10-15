@@ -17,12 +17,12 @@ import 'league_top_red_cards_controller.dart';
 import 'league_top_scorers_controller.dart';
 import 'league_top_yellow_cards_controller.dart';
 
-class LeagueSeasonController extends ValueNotifier<int> implements Disposable {
+class LeagueSeasonController extends ValueNotifier<String> implements Disposable {
   final LoggerService logger;
   final APIService api;
   final LeagueSectionController section;
   final int leagueId;
-  final int initialSeason;
+  final String initialSeason;
 
   LeagueSeasonController({
     required this.logger,
@@ -51,7 +51,7 @@ class LeagueSeasonController extends ValueNotifier<int> implements Disposable {
   /// METHODS
   ///
 
-  void scrollToInitialSeason({required List<int>? seasonsYears}) {
+  void scrollToInitialSeason({required List<String>? seasonsYears}) {
     if (seasonsYears?.isNotEmpty ?? false) {
       controller.animateToPage(
         seasonsYears!.indexOf(initialSeason),
@@ -61,7 +61,7 @@ class LeagueSeasonController extends ValueNotifier<int> implements Disposable {
     }
   }
 
-  void updateState(int? newSeason) {
+  void updateState(String? newSeason) {
     if (newSeason != null && value != newSeason) {
       /// Set state to new value
       value = newSeason;

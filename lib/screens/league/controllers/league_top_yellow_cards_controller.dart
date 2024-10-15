@@ -19,7 +19,7 @@ class LeagueTopYellowCardsController extends ValueNotifier<BalunState<List<Playe
   /// VARIABLES
   ///
 
-  int? fetchedSeason;
+  String? fetchedSeason;
 
   ///
   /// METHODS
@@ -27,7 +27,7 @@ class LeagueTopYellowCardsController extends ValueNotifier<BalunState<List<Playe
 
   Future<void> getTopYellowCards({
     required int? leagueId,
-    required int? season,
+    required String? season,
   }) async {
     if (leagueId == null || season == null) {
       value = Error(

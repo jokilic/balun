@@ -35,7 +35,7 @@ class _LeagueSuccessState extends State<LeagueSuccess> {
             instanceName: '${widget.league.league?.id}',
           )
           .scrollToInitialSeason(
-            seasonsYears: widget.league.seasons?.map((season) => season.year ?? 0).toList(),
+            seasonsYears: widget.league.seasons?.map((season) => season.year.toString()).toList(),
           ),
     );
   }

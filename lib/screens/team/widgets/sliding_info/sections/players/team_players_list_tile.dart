@@ -11,7 +11,7 @@ import '../../../../../../widgets/balun_image.dart';
 
 class TeamPlayersListTile extends StatelessWidget {
   final Player player;
-  final int season;
+  final String season;
 
   const TeamPlayersListTile({
     required this.player,

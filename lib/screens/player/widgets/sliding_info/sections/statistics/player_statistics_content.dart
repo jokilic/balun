@@ -6,7 +6,7 @@ import 'player_statistics_list_tile.dart';
 
 class PlayerStatisticsContent extends StatelessWidget {
   final List<Statistic>? statistics;
-  final int season;
+  final String season;
 
   const PlayerStatisticsContent({
     required this.statistics,

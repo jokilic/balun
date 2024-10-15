@@ -19,7 +19,7 @@ class TeamStandingsController extends ValueNotifier<BalunState<List<StandingResp
   /// VARIABLES
   ///
 
-  int? fetchedSeason;
+  String? fetchedSeason;
 
   ///
   /// METHODS
@@ -27,7 +27,7 @@ class TeamStandingsController extends ValueNotifier<BalunState<List<StandingResp
 
   Future<void> getStandingsFromTeam({
     required int? teamId,
-    required int? season,
+    required String? season,
   }) async {
     if (teamId == null || season == null) {
       value = Error(

@@ -11,7 +11,7 @@ import '../../../../../../widgets/balun_image.dart';
 
 class LeagueTeamsListTile extends StatelessWidget {
   final TeamResponse team;
-  final int season;
+  final String season;
 
   const LeagueTeamsListTile({
     required this.team,

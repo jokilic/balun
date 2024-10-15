@@ -14,7 +14,7 @@ import 'league_top_scorers_loading.dart';
 
 class LeagueTopScorersSection extends WatchingStatefulWidget {
   final int? leagueId;
-  final int? season;
+  final String? season;
 
   const LeagueTopScorersSection({
     required this.leagueId,
@@ -69,7 +69,7 @@ class _LeagueTopScorersSectionState extends State<LeagueTopScorersSection> {
           ),
         Success() => LeagueTopScorersContent(
             scorers: (topScorersState as Success).data,
-            season: widget.season ?? DateTime.now().year,
+            season: widget.season ?? DateTime.now().year.toString(),
           ),
       },
     );

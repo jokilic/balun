@@ -14,7 +14,7 @@ import 'team_players_loading.dart';
 
 class TeamPlayersSection extends WatchingStatefulWidget {
   final int? teamId;
-  final int season;
+  final String season;
 
   const TeamPlayersSection({
     required this.teamId,

@@ -72,7 +72,7 @@ class MatchMainInfo extends WatchingWidget {
                       ? () => openTeam(
                             context,
                             teamId: match.teams!.home!.id!,
-                            season: match.league?.season ?? DateTime.now().year,
+                            season: match.league?.season ?? DateTime.now().year.toString(),
                           )
                       : null,
                   child: Container(
@@ -147,7 +147,7 @@ class MatchMainInfo extends WatchingWidget {
                       ? () => openTeam(
                             context,
                             teamId: match.teams!.away!.id!,
-                            season: match.league?.season ?? DateTime.now().year,
+                            season: match.league?.season ?? DateTime.now().year.toString(),
                           )
                       : null,
                   child: Container(

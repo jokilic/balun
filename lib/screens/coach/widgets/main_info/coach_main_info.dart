@@ -81,7 +81,7 @@ class CoachMainInfo extends WatchingWidget {
                     ? () => openTeam(
                           context,
                           teamId: coach.team!.id!,
-                          season: DateTime.now().year,
+                          season: DateTime.now().year.toString(),
                         )
                     : null,
                 child: Container(

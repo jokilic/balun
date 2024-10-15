@@ -11,12 +11,12 @@ import '../../../util/team_seasons.dart';
 import 'team_section_controller.dart';
 import 'team_standings_controller.dart';
 
-class TeamSeasonController extends ValueNotifier<int> implements Disposable {
+class TeamSeasonController extends ValueNotifier<String> implements Disposable {
   final LoggerService logger;
   final APIService api;
   final TeamSectionController section;
   final int teamId;
-  final int initialSeason;
+  final String initialSeason;
 
   TeamSeasonController({
     required this.logger,
@@ -25,8 +25,10 @@ class TeamSeasonController extends ValueNotifier<int> implements Disposable {
     required this.teamId,
     required this.initialSeason,
   }) : super(initialSeason) {
+    final seasonInt = int.tryParse(initialSeason);
+
     controller = PageController(
-      initialPage: generateYearList().indexOf(initialSeason),
+      initialPage: seasonInt != null ? generateYearList().indexOf(seasonInt) : 0,
       viewportFraction: 0.4,
     );
   }
@@ -46,7 +48,7 @@ class TeamSeasonController extends ValueNotifier<int> implements Disposable {
   /// METHODS
   ///
 
-  void updateState(int? newSeason) {
+  void updateState(String? newSeason) {
     if (newSeason != null && value != newSeason) {
       /// Set state to new value
       value = newSeason;

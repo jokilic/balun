@@ -14,7 +14,7 @@ import 'league_teams_loading.dart';
 
 class LeagueTeamsSection extends WatchingStatefulWidget {
   final int? leagueId;
-  final int? season;
+  final String? season;
 
   const LeagueTeamsSection({
     required this.leagueId,
@@ -69,7 +69,7 @@ class _LeagueTeamsSectionState extends State<LeagueTeamsSection> {
           ),
         Success() => LeagueTeamsContent(
             teams: (teamsState as Success).data,
-            season: widget.season ?? DateTime.now().year,
+            season: widget.season ?? DateTime.now().year.toString(),
           ),
       },
     );

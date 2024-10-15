@@ -89,7 +89,7 @@ class FixturesFavoriteDialog extends WatchingWidget {
                                 ? () => openLeague(
                                       context,
                                       leagueId: league.id!,
-                                      season: DateTime.now().year,
+                                      season: DateTime.now().year.toString(),
                                     )
                                 : null,
                             child: Container(
@@ -140,7 +140,7 @@ class FixturesFavoriteDialog extends WatchingWidget {
                                 ? () => openTeam(
                                       context,
                                       teamId: team.id!,
-                                      season: DateTime.now().year,
+                                      season: DateTime.now().year.toString(),
                                     )
                                 : null,
                             child: Container(

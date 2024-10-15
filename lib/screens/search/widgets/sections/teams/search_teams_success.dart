@@ -24,7 +24,7 @@ class SearchTeamsSuccess extends StatelessWidget {
                 ? () => openTeam(
                       context,
                       teamId: team.team!.id!,
-                      season: DateTime.now().year,
+                      season: DateTime.now().year.toString(),
                     )
                 : null,
           );

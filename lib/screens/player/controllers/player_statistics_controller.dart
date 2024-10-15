@@ -19,7 +19,7 @@ class PlayerStatisticsController extends ValueNotifier<BalunState<List<Statistic
   /// VARIABLES
   ///
 
-  int? fetchedSeason;
+  String? fetchedSeason;
 
   ///
   /// METHODS
@@ -27,7 +27,7 @@ class PlayerStatisticsController extends ValueNotifier<BalunState<List<Statistic
 
   Future<void> getPlayerStatistics({
     required int? playerId,
-    required int? season,
+    required String? season,
   }) async {
     if (playerId == null || season == null) {
       value = Error(

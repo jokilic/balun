@@ -18,7 +18,7 @@ class MatchLineupContent extends StatelessWidget {
   final PlayerStatistic? homePlayerStatistic;
   final PlayerStatistic? awayPlayerStatistic;
   final int? matchElapsed;
-  final int season;
+  final String season;
 
   const MatchLineupContent({
     required this.matchLive,

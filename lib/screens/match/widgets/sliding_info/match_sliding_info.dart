@@ -13,7 +13,7 @@ import 'match_section_titles.dart';
 class MatchSlidingInfo extends WatchingWidget {
   final FixtureResponse match;
   final ScrollController scrollController;
-  final int season;
+  final String season;
 
   const MatchSlidingInfo({
     required this.match,

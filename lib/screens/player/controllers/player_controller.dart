@@ -20,7 +20,7 @@ class PlayerController extends ValueNotifier<BalunState<PlayerResponse>> {
 
   Future<void> getPlayer({
     required int playerId,
-    required int season,
+    required String season,
   }) async {
     value = Loading();
 

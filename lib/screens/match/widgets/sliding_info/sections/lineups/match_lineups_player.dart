@@ -23,7 +23,7 @@ class MatchLineupsPlayer extends StatelessWidget {
   final List<int>? formation;
   final LineupColors? playerColors;
   final bool isHome;
-  final int season;
+  final String season;
 
   const MatchLineupsPlayer({
     required this.matchLive,

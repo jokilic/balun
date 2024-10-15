@@ -10,7 +10,7 @@ import '../../../../../../widgets/balun_image.dart';
 
 class LeagueTopAssistsListTile extends StatelessWidget {
   final PlayerResponse? assist;
-  final int season;
+  final String season;
 
   const LeagueTopAssistsListTile({
     required this.assist,

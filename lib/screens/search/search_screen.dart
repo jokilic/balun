@@ -6,6 +6,7 @@ import '../../constants.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
+import '../../util/string.dart';
 import '../../widgets/balun_navigation_bar.dart';
 import 'controllers/search_coaches_controller.dart';
 import 'controllers/search_controller.dart';
@@ -101,7 +102,11 @@ class _SearchScreenState extends State<SearchScreen> {
                       .get<SearchController>(
                         instanceName: 'search',
                       )
-                      .triggerSearch(value.trim()),
+                      .triggerSearch(
+                        replaceSpecialSymbolsWithStandardLetters(
+                          value.trim(),
+                        ),
+                      ),
                 ),
               ),
 

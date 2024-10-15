@@ -14,7 +14,7 @@ import 'league_top_assists_loading.dart';
 
 class LeagueTopAssistsSection extends WatchingStatefulWidget {
   final int? leagueId;
-  final int? season;
+  final String? season;
 
   const LeagueTopAssistsSection({
     required this.leagueId,
@@ -69,7 +69,7 @@ class _LeagueTopAssistsSectionState extends State<LeagueTopAssistsSection> {
           ),
         Success() => LeagueTopAssistsContent(
             assists: (topAssistsState as Success).data,
-            season: widget.season ?? DateTime.now().year,
+            season: widget.season ?? DateTime.now().year.toString(),
           ),
       },
     );

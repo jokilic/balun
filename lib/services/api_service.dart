@@ -119,7 +119,7 @@ class APIService {
 
   Future<({FixturesResponse? fixturesResponse, String? error})> getFixturesFromLeagueAndSeason({
     required int leagueId,
-    required int season,
+    required String season,
   }) async {
     try {
       final response = await cacheDio.get(
@@ -290,7 +290,7 @@ class APIService {
 
   Future<({TeamsResponse? teamsResponse, String? error})> getTeamsFromLeagueAndSeason({
     required int leagueId,
-    required int season,
+    required String season,
   }) async {
     try {
       final response = await cacheDio.get(
@@ -336,7 +336,7 @@ class APIService {
 
   Future<({StandingsResponse? standingsResponse, String? error})> getStandingsFromLeague({
     required int leagueId,
-    required int season,
+    required String season,
   }) async {
     try {
       final response = await cacheDio.get(
@@ -378,7 +378,7 @@ class APIService {
 
   Future<({StandingsResponse? standingsResponse, String? error})> getStandingsFromTeam({
     required int teamId,
-    required int season,
+    required String season,
   }) async {
     try {
       final response = await cacheDio.get(
@@ -548,7 +548,7 @@ class APIService {
 
   Future<({PlayersResponse? playersResponse, String? error})> getPlayer({
     required int playerId,
-    required int season,
+    required String season,
   }) async {
     try {
       final response = await cacheDio.get(
@@ -682,7 +682,7 @@ class APIService {
 
   Future<({PlayersResponse? playersResponse, String? error})> getTopScorers({
     required int leagueId,
-    required int season,
+    required String season,
   }) async {
     try {
       final response = await cacheDio.get(
@@ -728,7 +728,7 @@ class APIService {
 
   Future<({PlayersResponse? playersResponse, String? error})> getTopAssists({
     required int leagueId,
-    required int season,
+    required String season,
   }) async {
     try {
       final response = await cacheDio.get(
@@ -774,7 +774,7 @@ class APIService {
 
   Future<({PlayersResponse? playersResponse, String? error})> getTopYellowCards({
     required int leagueId,
-    required int season,
+    required String season,
   }) async {
     try {
       final response = await cacheDio.get(
@@ -820,7 +820,7 @@ class APIService {
 
   Future<({PlayersResponse? playersResponse, String? error})> getTopRedCards({
     required int leagueId,
-    required int season,
+    required String season,
   }) async {
     try {
       final response = await cacheDio.get(

@@ -12,7 +12,7 @@ import 'match_player_statistic.dart';
 
 class MatchPlayerStatisticsContent extends StatefulWidget {
   final PlayerStatistic? playerStatistic;
-  final int season;
+  final String season;
 
   const MatchPlayerStatisticsContent({
     required this.playerStatistic,

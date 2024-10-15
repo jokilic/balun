@@ -24,7 +24,7 @@ class LeaguesSuccess extends StatelessWidget {
                 ? () => openLeague(
                       context,
                       leagueId: league.league!.id!,
-                      season: DateTime.now().year,
+                      season: DateTime.now().year.toString(),
                     )
                 : null,
           );

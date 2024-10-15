@@ -16,7 +16,7 @@ import 'sections/statistics/match_statistics_section.dart';
 class MatchActiveSection extends StatelessWidget {
   final FixtureResponse match;
   final MatchSection matchSection;
-  final int season;
+  final String season;
 
   const MatchActiveSection({
     required this.match,
@@ -134,7 +134,7 @@ class MatchActiveSection extends StatelessWidget {
                   (playerStatistic) => playerStatistic.team?.id == match.teams?.away?.id,
                 )
                 .firstOrNull,
-            season: match.league?.season ?? DateTime.now().year,
+            season: match.league?.season ?? DateTime.now().year.toString(),
           ),
       };
 }

@@ -6,7 +6,7 @@ import 'team_players_list_tile.dart';
 
 class TeamPlayersContent extends StatelessWidget {
   final List<Player>? players;
-  final int season;
+  final String season;
 
   const TeamPlayersContent({
     required this.players,

@@ -4,7 +4,7 @@ class League {
   final String? country;
   final String? logo;
   final String? flag;
-  final int? season;
+  final String? season;
   final String? round;
 
   League({
@@ -23,7 +23,7 @@ class League {
         country: map['country'] != null ? map['country'] as String : null,
         logo: map['logo'] != null ? map['logo'] as String : null,
         flag: map['flag'] != null ? map['flag'] as String : null,
-        season: map['season'] != null ? map['season'] as int : null,
+        season: map['season']?.toString(),
         round: map['round'] != null ? map['round'] as String : null,
       );
 
