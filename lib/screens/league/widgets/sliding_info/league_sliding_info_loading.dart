@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../theme/theme.dart';
+import '../../../../util/random.dart';
 
 class LeagueSlidingInfoLoading extends StatelessWidget {
   final ScrollController scrollController;
@@ -47,7 +48,7 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
                 ),
                 child: Container(
                   height: 24,
-                  width: 104,
+                  width: getRandomNumberFromBase(104),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: index == 0 ? context.colors.white.withOpacity(0.8) : context.colors.black.withOpacity(0.25),
@@ -82,7 +83,7 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
                       children: [
                         Container(
                           height: 24,
-                          width: 184,
+                          width: getRandomNumberFromBase(184),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: context.colors.black.withOpacity(0.25),
@@ -91,7 +92,7 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
                         const SizedBox(height: 8),
                         Container(
                           height: 16,
-                          width: 80,
+                          width: getRandomNumberFromBase(80),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: context.colors.black.withOpacity(0.15),
@@ -100,7 +101,7 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
                         const SizedBox(height: 8),
                         Container(
                           height: 14,
-                          width: 104,
+                          width: getRandomNumberFromBase(104),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: context.colors.black.withOpacity(0.25),

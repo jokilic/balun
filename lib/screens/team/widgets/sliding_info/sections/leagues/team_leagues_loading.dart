@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../../../constants.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
+import '../../../../../../util/random.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 
 class TeamLeaguesLoading extends StatelessWidget {
@@ -43,7 +44,7 @@ class TeamLeaguesLoading extends StatelessWidget {
                     children: [
                       Container(
                         height: 20,
-                        width: 200,
+                        width: getRandomNumberFromBase(200),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: context.colors.black.withOpacity(0.25),
@@ -52,7 +53,7 @@ class TeamLeaguesLoading extends StatelessWidget {
                       const SizedBox(height: 8),
                       Container(
                         height: 12,
-                        width: 104,
+                        width: getRandomNumberFromBase(104),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: context.colors.black.withOpacity(0.15),

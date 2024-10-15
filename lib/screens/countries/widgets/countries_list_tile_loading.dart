@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../theme/theme.dart';
 import '../../../util/color.dart';
+import '../../../util/random.dart';
 
 class CountriesListTileLoading extends StatelessWidget {
   @override
@@ -23,7 +24,7 @@ class CountriesListTileLoading extends StatelessWidget {
             const SizedBox(width: 16),
             Container(
               height: 24,
-              width: 200,
+              width: getRandomNumberFromBase(200),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: context.colors.black.withOpacity(0.25),

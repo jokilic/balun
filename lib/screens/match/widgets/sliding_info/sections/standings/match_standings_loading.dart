@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../../../constants.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
+import '../../../../../../util/random.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 
 class MatchStandingsLoading extends StatelessWidget {
@@ -28,7 +29,7 @@ class MatchStandingsLoading extends StatelessWidget {
             children: [
               Container(
                 height: 32,
-                width: 104,
+                width: getRandomNumberFromBase(104),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: context.colors.black.withOpacity(0.25),
@@ -37,7 +38,7 @@ class MatchStandingsLoading extends StatelessWidget {
               const SizedBox(height: 8),
               Container(
                 height: 24,
-                width: 80,
+                width: getRandomNumberFromBase(80),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: context.colors.black.withOpacity(0.15),

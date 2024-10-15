@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../theme/theme.dart';
+import '../../../../util/random.dart';
 
 class PlayerSlidingInfoLoading extends StatelessWidget {
   final ScrollController scrollController;
@@ -47,7 +48,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                 ),
                 child: Container(
                   height: 24,
-                  width: 104,
+                  width: getRandomNumberFromBase(104),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: index == 0 ? context.colors.white.withOpacity(0.8) : context.colors.black.withOpacity(0.25),
@@ -74,7 +75,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                         children: [
                           Container(
                             height: 16,
-                            width: 64,
+                            width: getRandomNumberFromBase(64),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.15),
@@ -83,7 +84,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                           const SizedBox(height: 8),
                           Container(
                             height: 24,
-                            width: 104,
+                            width: getRandomNumberFromBase(104),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.25),
@@ -99,7 +100,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                         children: [
                           Container(
                             height: 16,
-                            width: 64,
+                            width: getRandomNumberFromBase(64),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.15),
@@ -108,7 +109,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                           const SizedBox(height: 8),
                           Container(
                             height: 24,
-                            width: 104,
+                            width: getRandomNumberFromBase(104),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.25),
@@ -129,7 +130,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                         children: [
                           Container(
                             height: 16,
-                            width: 64,
+                            width: getRandomNumberFromBase(64),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.15),
@@ -138,7 +139,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                           const SizedBox(height: 8),
                           Container(
                             height: 24,
-                            width: 104,
+                            width: getRandomNumberFromBase(104),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.25),
@@ -154,7 +155,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                         children: [
                           Container(
                             height: 16,
-                            width: 64,
+                            width: getRandomNumberFromBase(64),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.15),
@@ -163,7 +164,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                           const SizedBox(height: 8),
                           Container(
                             height: 24,
-                            width: 104,
+                            width: getRandomNumberFromBase(104),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.25),
@@ -184,7 +185,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                         children: [
                           Container(
                             height: 16,
-                            width: 64,
+                            width: getRandomNumberFromBase(64),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.15),
@@ -193,7 +194,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                           const SizedBox(height: 8),
                           Container(
                             height: 24,
-                            width: 104,
+                            width: getRandomNumberFromBase(104),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.25),
@@ -209,7 +210,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                         children: [
                           Container(
                             height: 16,
-                            width: 64,
+                            width: getRandomNumberFromBase(64),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.15),
@@ -218,7 +219,7 @@ class PlayerSlidingInfoLoading extends StatelessWidget {
                           const SizedBox(height: 8),
                           Container(
                             height: 24,
-                            width: 104,
+                            width: getRandomNumberFromBase(104),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.25),

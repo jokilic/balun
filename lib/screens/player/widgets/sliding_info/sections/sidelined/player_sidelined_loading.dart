@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../../../constants.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/random.dart';
 import '../../../../../../widgets/balun_image.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 
@@ -35,7 +36,7 @@ class PlayerSidelinedLoading extends StatelessWidget {
                 ///
                 Container(
                   height: 24,
-                  width: 200,
+                  width: getRandomNumberFromBase(200),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withOpacity(0.5),
@@ -57,7 +58,7 @@ class PlayerSidelinedLoading extends StatelessWidget {
                     const SizedBox(width: 8),
                     Container(
                       height: 16,
-                      width: 200,
+                      width: getRandomNumberFromBase(200),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: context.colors.black.withOpacity(0.15),
@@ -80,7 +81,7 @@ class PlayerSidelinedLoading extends StatelessWidget {
                     const SizedBox(width: 8),
                     Container(
                       height: 16,
-                      width: 200,
+                      width: getRandomNumberFromBase(200),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: context.colors.black.withOpacity(0.15),

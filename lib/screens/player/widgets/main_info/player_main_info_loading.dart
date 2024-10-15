@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/color.dart';
+import '../../../../util/random.dart';
 import '../../../../widgets/balun_button.dart';
 import '../../../../widgets/balun_image.dart';
 
@@ -41,7 +42,7 @@ class PlayerMainInfoLoading extends StatelessWidget {
                     children: [
                       Container(
                         height: 24,
-                        width: 120,
+                        width: getRandomNumberFromBase(120),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: context.colors.black.withOpacity(0.25),
@@ -50,7 +51,7 @@ class PlayerMainInfoLoading extends StatelessWidget {
                       const SizedBox(height: 8),
                       Container(
                         height: 16,
-                        width: 80,
+                        width: getRandomNumberFromBase(80),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: context.colors.black.withOpacity(0.15),
@@ -73,7 +74,7 @@ class PlayerMainInfoLoading extends StatelessWidget {
             const SizedBox(height: 16),
             Container(
               height: 40,
-              width: 120,
+              width: getRandomNumberFromBase(120),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: context.colors.black.withOpacity(0.25),
@@ -82,7 +83,7 @@ class PlayerMainInfoLoading extends StatelessWidget {
             const SizedBox(height: 8),
             Container(
               height: 24,
-              width: 96,
+              width: getRandomNumberFromBase(96),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: context.colors.black.withOpacity(0.15),
@@ -103,7 +104,7 @@ class PlayerMainInfoLoading extends StatelessWidget {
                 const SizedBox(width: 8),
                 Container(
                   height: 24,
-                  width: 144,
+                  width: getRandomNumberFromBase(144),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withOpacity(0.25),
@@ -114,7 +115,7 @@ class PlayerMainInfoLoading extends StatelessWidget {
             const SizedBox(height: 24),
             Container(
               height: 24,
-              width: 200,
+              width: getRandomNumberFromBase(200),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 color: context.colors.black.withOpacity(0.25),

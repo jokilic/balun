@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/random.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 
 class PlayerTrophiesLoading extends StatelessWidget {
@@ -30,7 +31,7 @@ class PlayerTrophiesLoading extends StatelessWidget {
               children: [
                 Container(
                   height: 24,
-                  width: 144,
+                  width: getRandomNumberFromBase(144),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withOpacity(0.5),
@@ -39,7 +40,7 @@ class PlayerTrophiesLoading extends StatelessWidget {
                 const SizedBox(height: 8),
                 Container(
                   height: 12,
-                  width: 104,
+                  width: getRandomNumberFromBase(104),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withOpacity(0.25),
@@ -48,7 +49,7 @@ class PlayerTrophiesLoading extends StatelessWidget {
                 const SizedBox(height: 8),
                 Container(
                   height: 12,
-                  width: 80,
+                  width: getRandomNumberFromBase(80),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withOpacity(0.25),
@@ -57,7 +58,7 @@ class PlayerTrophiesLoading extends StatelessWidget {
                 const SizedBox(height: 8),
                 Container(
                   height: 16,
-                  width: 96,
+                  width: getRandomNumberFromBase(96),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withOpacity(0.5),

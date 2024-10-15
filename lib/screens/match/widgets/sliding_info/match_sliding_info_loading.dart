@@ -3,6 +3,7 @@ import 'package:watch_it/watch_it.dart';
 
 import '../../../../theme/theme.dart';
 import '../../../../util/color.dart';
+import '../../../../util/random.dart';
 
 class MatchSlidingInfoLoading extends WatchingWidget {
   final ScrollController scrollController;
@@ -54,7 +55,7 @@ class MatchSlidingInfoLoading extends WatchingWidget {
                 ),
                 child: Container(
                   height: 24,
-                  width: 104,
+                  width: getRandomNumberFromBase(104),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: index == 0 ? context.colors.white.withOpacity(0.8) : context.colors.black.withOpacity(0.25),
@@ -113,7 +114,7 @@ class MatchSlidingInfoLoading extends WatchingWidget {
                         Flexible(
                           child: Container(
                             height: 24,
-                            width: 144,
+                            width: getRandomNumberFromBase(144),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: context.colors.black.withOpacity(0.25),

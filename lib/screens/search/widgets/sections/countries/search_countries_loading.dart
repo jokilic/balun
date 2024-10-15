@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../../constants.dart';
 import '../../../../../theme/theme.dart';
 import '../../../../../util/color.dart';
+import '../../../../../util/random.dart';
 
 class SearchCountriesLoading extends StatelessWidget {
   @override
@@ -39,7 +40,7 @@ class SearchCountriesLoading extends StatelessWidget {
                 const SizedBox(width: 16),
                 Container(
                   height: 20,
-                  width: 160,
+                  width: getRandomNumberFromBase(160),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withOpacity(0.25),

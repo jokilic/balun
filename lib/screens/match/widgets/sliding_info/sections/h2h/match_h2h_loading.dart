@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../../../constants.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
+import '../../../../../../util/random.dart';
 
 class MatchHead2HeadLoading extends StatelessWidget {
   @override
@@ -46,7 +47,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
                       children: [
                         Container(
                           height: 16,
-                          width: 104,
+                          width: getRandomNumberFromBase(104),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: context.colors.black.withOpacity(0.25),
@@ -55,7 +56,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
                         const SizedBox(height: 8),
                         Container(
                           height: 12,
-                          width: 80,
+                          width: getRandomNumberFromBase(80),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: context.colors.black.withOpacity(0.15),
@@ -68,7 +69,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
                       children: [
                         Container(
                           height: 16,
-                          width: 104,
+                          width: getRandomNumberFromBase(104),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: context.colors.black.withOpacity(0.25),
@@ -77,7 +78,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
                         const SizedBox(height: 8),
                         Container(
                           height: 12,
-                          width: 80,
+                          width: getRandomNumberFromBase(80),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: context.colors.black.withOpacity(0.15),

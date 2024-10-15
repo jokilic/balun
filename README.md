@@ -34,4 +34,3 @@ Results can be opened and more info is shown.
 ### General To-Dos
 
 - [ ] Create screenshots and put app live
-- [ ] All loading texts should have randomized widths between two numbers

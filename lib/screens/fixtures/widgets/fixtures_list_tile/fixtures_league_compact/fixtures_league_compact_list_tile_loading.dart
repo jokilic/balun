@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../theme/theme.dart';
 import '../../../../../util/color.dart';
+import '../../../../../util/random.dart';
 
 class FixturesLeagueCompactListTileLoading extends StatelessWidget {
   @override
@@ -33,7 +34,7 @@ class FixturesLeagueCompactListTileLoading extends StatelessWidget {
                   const SizedBox(width: 12),
                   Container(
                     height: 16,
-                    width: 144,
+                    width: getRandomNumberFromBase(144),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: context.colors.black.withOpacity(0.25),
