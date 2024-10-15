@@ -34,7 +34,7 @@ dev_dependencies:
   envied_generator: 0.5.4+1
   flutter_launcher_icons: 0.14.1
   flutter_native_splash: 2.4.1
-  hive_ce_generator: 1.6.0
+  hive_ce_generator: 1.7.0
 
 flutter:
   uses-material-design: true
