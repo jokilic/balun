@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/random.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 
 class TeamTransfersLoading extends StatelessWidget {
@@ -30,7 +31,7 @@ class TeamTransfersLoading extends StatelessWidget {
               children: [
                 Container(
                   height: 24,
-                  width: 224,
+                  width: getRandomNumberFromBase(224),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withOpacity(0.25),
