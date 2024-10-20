@@ -5,6 +5,7 @@ import '../../../../../../models/fixtures/event/event.dart';
 import '../../../../../../models/fixtures/score/score.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/events.dart';
+import '../../../../../../util/string.dart';
 import '../../../../../../widgets/balun_empty.dart';
 import 'match_events_list_tile.dart';
 
@@ -13,16 +14,14 @@ class MatchEventsSection extends StatelessWidget {
   final Score? score;
   final int? elapsed;
   final int? awayTeamId;
-  final bool matchFinished;
-  final bool matchFinishedRegularly;
+  final String statusShort;
 
   const MatchEventsSection({
     required this.eventsMatchTimeList,
     required this.score,
     required this.elapsed,
     required this.awayTeamId,
-    required this.matchFinished,
-    required this.matchFinishedRegularly,
+    required this.statusShort,
   });
 
   @override
@@ -61,38 +60,13 @@ class MatchEventsSection extends StatelessWidget {
                             eventsMatchTimeList ?? [],
                             event,
                           ),
-                          matchFinishedRegularly: matchFinishedRegularly,
+                          matchFinishedRegularly: isSecondHalfFinished(
+                            statusShort: statusShort,
+                          ),
                         ),
                       )
                       .toList(),
 
-                  ///
-                  /// MATCH FINISHED
-                  ///
-                  if (matchFinished)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              'matchEventsFullTime'.tr(),
-                              style: context.textStyles.matchEventsSectionResult,
-                            ),
-                          ),
-                          Flexible(
-                            child: Text(
-                              getFinalScore(
-                                    score: score,
-                                  ) ??
-                                  '-:-',
-                              style: context.textStyles.matchEventsSectionResult,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                   const SizedBox(height: 24),
                 ]
               : [

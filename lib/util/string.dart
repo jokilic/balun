@@ -95,9 +95,13 @@ bool matchCompactIsPlaying({
 
 bool isMatchNotStarted({required String statusShort}) => statusShort == 'TBD' || statusShort == 'NS';
 
-bool isMatchFinished({required String statusShort}) => statusShort == 'FT' || statusShort == 'AET' || statusShort == 'PEN' || statusShort == 'AWD' || statusShort == 'WO';
+bool isFirstHalfFinished({required String statusShort}) => statusShort == 'HT' || isSecondHalfFinished(statusShort: statusShort);
 
-bool isMatchFinishedRegularly({required String statusShort}) => statusShort == 'FT';
+bool isSecondHalfFinished({required String statusShort}) => statusShort == 'FT';
+
+bool isExtraTimeFinished({required String statusShort}) => statusShort == 'AET' || statusShort == 'PEN';
+
+bool isPenaltiesTimeFinished({required String statusShort}) => statusShort == 'PEN';
 
 String getMatchStatusLong(String statusShort) => switch (statusShort.toUpperCase()) {
       'TBD' => 'matchStatusTBD'.tr(),

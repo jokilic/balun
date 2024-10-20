@@ -52,20 +52,13 @@ class MatchActiveSection extends StatelessWidget {
               getEventsList(
                 events: match.events,
                 score: match.score,
-                matchFinishedRegularly: isMatchFinishedRegularly(
-                  statusShort: match.fixture?.status?.short ?? '--',
-                ),
+                matchStatus: match.fixture?.status?.short ?? '--',
               ),
             ),
             score: match.score,
             elapsed: match.fixture?.status?.elapsed,
             awayTeamId: match.teams?.away?.id,
-            matchFinished: isMatchFinished(
-              statusShort: match.fixture?.status?.short ?? '--',
-            ),
-            matchFinishedRegularly: isMatchFinishedRegularly(
-              statusShort: match.fixture?.status?.short ?? '--',
-            ),
+            statusShort: match.fixture?.status?.short ?? '--',
           ),
         MatchSection(
           matchSectionEnum: MatchSectionEnum.lineups,
