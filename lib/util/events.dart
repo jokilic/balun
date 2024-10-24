@@ -1,12 +1,10 @@
 import '../models/fixtures/event/event.dart';
 import '../models/fixtures/event/event_time.dart';
 import '../models/fixtures/score/score.dart';
-import 'string.dart';
 
 List<Event>? getEventsList({
   required List<Event>? events,
   required Score? score,
-  required String matchStatus,
 }) {
   if ((events?.isEmpty ?? false) && score == null) {
     return null;
@@ -14,7 +12,7 @@ List<Event>? getEventsList({
 
   final eventsAndMatchTime = List<Event>.from(events ?? []).toList();
 
-  if (score?.halftime?.home != null && score?.halftime?.away != null && isFirstHalfFinished(statusShort: matchStatus)) {
+  if (score?.halftime?.home != null && score?.halftime?.away != null) {
     eventsAndMatchTime.add(
       Event(
         type: 'halftime',
@@ -24,7 +22,7 @@ List<Event>? getEventsList({
     );
   }
 
-  if (score?.fulltime?.home != null && score?.fulltime?.away != null && isSecondHalfFinished(statusShort: matchStatus)) {
+  if (score?.fulltime?.home != null && score?.fulltime?.away != null) {
     eventsAndMatchTime.add(
       Event(
         type: 'fulltime',
@@ -34,7 +32,7 @@ List<Event>? getEventsList({
     );
   }
 
-  if (score?.extratime?.home != null && score?.extratime?.away != null && isExtraTimeFinished(statusShort: matchStatus)) {
+  if (score?.extratime?.home != null && score?.extratime?.away != null) {
     eventsAndMatchTime.add(
       Event(
         type: 'extratime',
@@ -44,7 +42,7 @@ List<Event>? getEventsList({
     );
   }
 
-  if (score?.penalty?.home != null && score?.extratime?.away != null && isPenaltiesTimeFinished(statusShort: matchStatus)) {
+  if (score?.penalty?.home != null && score?.extratime?.away != null) {
     eventsAndMatchTime.add(
       Event(
         type: 'penaltytime',

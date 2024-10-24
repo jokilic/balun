@@ -52,7 +52,6 @@ class MatchActiveSection extends StatelessWidget {
               getEventsList(
                 events: match.events,
                 score: match.score,
-                matchStatus: match.fixture?.status?.short ?? '--',
               ),
             ),
             score: match.score,
