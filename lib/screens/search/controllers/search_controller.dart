@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -51,8 +50,6 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
     if (searchValue.isEmpty) {
       return;
     }
-
-    log('Value -> $searchValue');
 
     switch (value) {
       ///

@@ -19,6 +19,7 @@ class HiveService implements Disposable {
   /// VARIABLES
   ///
 
+  late final Box<bool> firstStart;
   late final Box<League> leagues;
   late final Box<Team> teams;
 
@@ -33,11 +34,15 @@ class HiveService implements Disposable {
       ..init(directory?.path)
       ..registerAdapters();
 
+    firstStart = await Hive.openBox<bool>('firstStart');
     leagues = await Hive.openBox<League>('leagueBox');
     teams = await Hive.openBox<Team>('teamBox');
 
-    if (leagues.isEmpty) {
+    final isFirstStart = firstStart.values.isEmpty;
+
+    if (leagues.isEmpty && isFirstStart) {
       await writeLeagues(BalunConstants.popularLeagues);
+      await writeFirstStart();
     }
   }
 
@@ -47,6 +52,7 @@ class HiveService implements Disposable {
 
   @override
   Future<void> onDispose() async {
+    await firstStart.close();
     await leagues.close();
     await teams.close();
     await Hive.close();
@@ -55,6 +61,11 @@ class HiveService implements Disposable {
   ///
   /// METHODS
   ///
+
+  Future<void> writeFirstStart() async {
+    await firstStart.clear();
+    await firstStart.add(false);
+  }
 
   Future<void> writeLeagues(List<League> passedLeagues) async {
     await leagues.clear();
