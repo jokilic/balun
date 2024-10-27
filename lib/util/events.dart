@@ -1,5 +1,4 @@
 import '../models/fixtures/event/event.dart';
-import '../models/fixtures/score/score.dart';
 
 List<Event> calculatedCardsEvents(List<Event>? events) {
   final playerYellowCards = <String, List<Event>>{};
