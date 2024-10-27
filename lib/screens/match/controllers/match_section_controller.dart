@@ -37,7 +37,7 @@ class MatchSectionController extends ValueNotifier<MatchSection> {
       ///
       /// MATCH IN PROGRESS
       ///
-      case '1H' || '2H' || 'ET':
+      case '1H' || 'HT' || '2H' || 'ET':
         updateState(
           MatchSection(
             matchSectionEnum: MatchSectionEnum.events,

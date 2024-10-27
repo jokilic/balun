@@ -12,13 +12,11 @@ class MatchEventsListTile extends StatelessWidget {
   final Event event;
   final bool? isAwayTeam;
   final bool isSecondYellowCard;
-  final bool matchFinishedRegularly;
 
   const MatchEventsListTile({
     required this.event,
     required this.isAwayTeam,
     required this.isSecondYellowCard,
-    required this.matchFinishedRegularly,
   });
 
   @override
@@ -26,203 +24,71 @@ class MatchEventsListTile extends StatelessWidget {
     final elapsedTime = event.time?.elapsed;
     final extraTime = event.time?.extra;
 
-    final matchTimeWidget = getMatchTimeWidget(
-      eventType: event.type ?? '',
-      eventDetail: event.detail ?? '',
-      matchFinishedRegularly: matchFinishedRegularly,
-      context: context,
-    );
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         mainAxisAlignment: isAwayTeam ?? false ? MainAxisAlignment.end : MainAxisAlignment.start,
-        children: (event.type?.contains('time') ?? false)
-            ? [
-                if (matchTimeWidget != null)
-                  Flexible(
-                    child: matchTimeWidget,
-                  ),
-              ]
-            : [
-                if (!(isAwayTeam ?? false)) ...[
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        elapsedTime != null ? "$elapsedTime'" : '--',
-                        style: context.textStyles.matchEventsSectionTime,
-                      ),
-                      if (extraTime != null)
-                        Text(
-                          '+$extraTime',
-                          style: context.textStyles.matchEventsSectionTime.copyWith(
-                            fontSize: 12,
-                          ),
-                        ),
-                    ],
-                  ),
-                  const SizedBox(width: 8),
-                ],
-                Flexible(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 12,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: context.colors.black.withOpacity(0.075),
-                    ),
-                    child: getEventWidget(
-                      eventType: event.type ?? '',
-                      eventDetail: event.detail ?? '',
-                      isSecondYellowCard: isSecondYellowCard,
-                      context: context,
-                    ),
-                  ),
+        children: [
+          if (!(isAwayTeam ?? false)) ...[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  elapsedTime != null ? "$elapsedTime'" : '--',
+                  style: context.textStyles.matchEventsSectionTime,
                 ),
-                if (isAwayTeam ?? false) ...[
-                  const SizedBox(width: 8),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        elapsedTime != null ? "$elapsedTime'" : '--',
-                        style: context.textStyles.matchEventsSectionTime,
-                      ),
-                      if (extraTime != null)
-                        Text(
-                          '+$extraTime',
-                          style: context.textStyles.matchEventsSectionTime.copyWith(
-                            fontSize: 12,
-                          ),
-                        ),
-                    ],
+                if (extraTime != null)
+                  Text(
+                    '+$extraTime',
+                    style: context.textStyles.matchEventsSectionTime.copyWith(
+                      fontSize: 12,
+                    ),
                   ),
-                ],
               ],
+            ),
+            const SizedBox(width: 8),
+          ],
+          Flexible(
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 12,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: context.colors.black.withOpacity(0.075),
+              ),
+              child: getEventWidget(
+                eventType: event.type ?? '',
+                eventDetail: event.detail ?? '',
+                isSecondYellowCard: isSecondYellowCard,
+                context: context,
+              ),
+            ),
+          ),
+          if (isAwayTeam ?? false) ...[
+            const SizedBox(width: 8),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  elapsedTime != null ? "$elapsedTime'" : '--',
+                  style: context.textStyles.matchEventsSectionTime,
+                ),
+                if (extraTime != null)
+                  Text(
+                    '+$extraTime',
+                    style: context.textStyles.matchEventsSectionTime.copyWith(
+                      fontSize: 12,
+                    ),
+                  ),
+              ],
+            ),
+          ],
+        ],
       ),
     );
   }
-
-  Widget? getMatchTimeWidget({
-    required String eventType,
-    required String eventDetail,
-    required bool matchFinishedRegularly,
-    required BuildContext context,
-  }) =>
-      switch (eventType.toLowerCase()) {
-        ///
-        /// HALF TIME
-        ///
-        'halftime' => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    'matchEvents1stHalf'.tr(),
-                    style: context.textStyles.matchEventsSectionResult,
-                  ),
-                ),
-                Text(
-                  eventDetail,
-                  style: context.textStyles.matchEventsSectionResult,
-                ),
-              ],
-            ),
-          ),
-
-        ///
-        /// FULL TIME
-        ///
-        'fulltime' => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    matchFinishedRegularly ? 'matchEventsFullTime'.tr() : 'matchEventsFullTimeRegularTime'.tr(),
-                    style: context.textStyles.matchEventsSectionResult,
-                  ),
-                ),
-                Text(
-                  eventDetail,
-                  style: context.textStyles.matchEventsSectionResult,
-                ),
-              ],
-            ),
-          ),
-
-        ///
-        /// EXTRA TIME
-        ///
-        'extratime' => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    'matchEventsExtraTime'.tr(),
-                    style: context.textStyles.matchEventsSectionResult,
-                  ),
-                ),
-                Text(
-                  eventDetail,
-                  style: context.textStyles.matchEventsSectionResult,
-                ),
-              ],
-            ),
-          ),
-
-        ///
-        /// PENALTIES
-        ///
-        'penaltytime' => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    'matchEventsPenalties'.tr(),
-                    style: context.textStyles.matchEventsSectionResult,
-                  ),
-                ),
-                Text(
-                  eventDetail,
-                  style: context.textStyles.matchEventsSectionResult,
-                ),
-              ],
-            ),
-          ),
-
-        ///
-        /// UNKNOWN
-        ///
-        _ => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    eventType,
-                    style: context.textStyles.matchEventsSectionResult,
-                  ),
-                ),
-                Text(
-                  eventDetail,
-                  style: context.textStyles.matchEventsSectionResult,
-                ),
-              ],
-            ),
-          ),
-      };
 
   Widget getEventWidget({
     required String eventType,
