@@ -38,9 +38,7 @@ class HiveService implements Disposable {
     leagues = await Hive.openBox<League>('leagueBox');
     teams = await Hive.openBox<Team>('teamBox');
 
-    final isFirstStart = firstStart.values.isEmpty;
-
-    if (leagues.isEmpty && isFirstStart) {
+    if (firstStart.values.isEmpty) {
       await writeLeagues(BalunConstants.popularLeagues);
       await writeFirstStart();
     }
@@ -64,7 +62,7 @@ class HiveService implements Disposable {
 
   Future<void> writeFirstStart() async {
     await firstStart.clear();
-    await firstStart.add(false);
+    await firstStart.put(0, false);
   }
 
   Future<void> writeLeagues(List<League> passedLeagues) async {

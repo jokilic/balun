@@ -249,6 +249,8 @@ class MatchEventsSection extends StatelessWidget {
                       ],
                     ),
                   ),
+
+                const SizedBox(height: 24),
               ]
             : [
                 BalunEmpty(
