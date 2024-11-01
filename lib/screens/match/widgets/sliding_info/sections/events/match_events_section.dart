@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +28,9 @@ class MatchEventsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('Elapsed -> $elapsed');
+    log('Status -> $statusShort');
+
     /// First half events
     final firstHalfEvents = events?.where(
       (event) => (event.time?.elapsed ?? 999) <= 45,
@@ -62,7 +67,7 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// MATCH STARTED
                 ///
-                if (matchCompactIsPlaying(statusShort: statusShort))
+                if (elapsed != null)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
@@ -97,7 +102,7 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// SECOND HALF
                 ///
-                if (score?.halftime?.home != null && score?.halftime?.away != null)
+                if ((elapsed ?? 0) >= 45 && statusShort != '1H')
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
@@ -136,7 +141,7 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// REGULAR TIME ENDED
                 ///
-                if (score?.fulltime?.home != null && score?.fulltime?.away != null)
+                if ((elapsed ?? 0) >= 90 && statusShort != '1H' && statusShort != 'HT' && statusShort != '2H')
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
@@ -191,7 +196,7 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// EXTRA TIME ENDED
                 ///
-                if (score?.extratime?.home != null && score?.extratime?.away != null)
+                if ((elapsed ?? 0) >= 120 && statusShort != '1H' && statusShort != 'HT' && statusShort != '2H' && statusShort != 'ET' && statusShort != 'BT')
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
@@ -230,7 +235,7 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// PENALTIES ENDED
                 ///
-                if (score?.penalty?.home != null && score?.penalty?.away != null)
+                if ((elapsed ?? 0) >= 120 && statusShort != '1H' && statusShort != 'HT' && statusShort != '2H' && statusShort != 'ET' && statusShort != 'BT' && statusShort != 'P')
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
