@@ -7,7 +7,6 @@ import '../../../../../../models/fixtures/event/event.dart';
 import '../../../../../../models/fixtures/score/score.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/events.dart';
-import '../../../../../../util/string.dart';
 import '../../../../../../widgets/balun_empty.dart';
 import 'match_events_list_tile.dart';
 

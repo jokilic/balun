@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:watch_it/watch_it.dart';
 
@@ -35,11 +35,24 @@ Future<void> main() async {
   /// Wait for initialization to finish
   await getIt.allReady();
 
+  /// Get app version
+  final packageInfo = await PackageInfo.fromPlatform();
+
   /// Run [Balun]
-  runApp(BalunApp());
+  runApp(
+    BalunApp(
+      appVersion: packageInfo.version,
+    ),
+  );
 }
 
 class BalunApp extends StatefulWidget {
+  final String appVersion;
+
+  const BalunApp({
+    required this.appVersion,
+  });
+
   @override
   State<BalunApp> createState() => _BalunAppState();
 }
@@ -67,11 +80,19 @@ class _BalunAppState extends State<BalunApp> {
         fallbackLocale: const Locale('en'),
         startLocale: const Locale('hr'),
         path: 'assets/translations',
-        child: BalunWidget(),
+        child: BalunWidget(
+          appVersion: widget.appVersion,
+        ),
       );
 }
 
 class BalunWidget extends WatchingWidget {
+  final String appVersion;
+
+  const BalunWidget({
+    required this.appVersion,
+  });
+
   @override
   Widget build(BuildContext context) => MaterialApp(
         localizationsDelegates: context.localizationDelegates,
@@ -81,24 +102,17 @@ class BalunWidget extends WatchingWidget {
         home: watchIt<BalunScreenService>().value,
         onGenerateTitle: (_) => 'appName'.tr(),
         theme: BalunTheme.light,
-        builder: (_, child) => kDebugMode
-            ? Banner(
-                message: 'appName'.tr().toUpperCase(),
-                color: getRandomBalunColor(context),
-                location: BannerLocation.topEnd,
-                layoutDirection: TextDirection.ltr,
-                child: child ??
-                    const Scaffold(
-                      body: Center(
-                        child: BalunLoader(),
-                      ),
-                    ),
-              )
-            : child ??
-                const Scaffold(
-                  body: Center(
-                    child: BalunLoader(),
-                  ),
+        builder: (_, child) => Banner(
+          message: appVersion.toUpperCase(),
+          color: getRandomBalunColor(context),
+          location: BannerLocation.topEnd,
+          layoutDirection: TextDirection.ltr,
+          child: child ??
+              const Scaffold(
+                body: Center(
+                  child: BalunLoader(),
                 ),
+              ),
+        ),
       );
 }
