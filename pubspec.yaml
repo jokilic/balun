@@ -18,13 +18,13 @@ dependencies:
   dio_cache_interceptor_hive_store: 3.2.2
   easy_localization: 3.0.7
   flutter_animate: 4.5.0
-  get_it: 8.0.1
-  hive_ce: 2.6.0
+  get_it: 8.0.2
+  hive_ce: 2.7.0+1
   hive_ce_flutter: 2.1.0
   internet_connection_checker_plus: 2.5.2
   intl: 0.19.0
   logger: 2.4.0
-  path_provider: 2.1.4
+  path_provider: 2.1.5
   package_info_plus: 8.1.0
   sliding_up_panel2: 3.3.0+1
   timeago: 3.7.0
