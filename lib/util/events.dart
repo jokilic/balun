@@ -36,6 +36,10 @@ bool isSecondYellowCard(List<Event> events, Event currentEvent) {
     return false;
   }
 
+  if (currentEvent.player?.id == null) {
+    return false;
+  }
+
   final playerKey = '${currentEvent.team?.id}-${currentEvent.player?.id}';
 
   final yellowCardCount = events
