@@ -12,6 +12,11 @@ class BalunTheme {
     final defaultTheme = ThemeData.light();
 
     return defaultTheme.copyWith(
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: lightAppColors.green,
+        selectionColor: lightAppColors.green,
+        selectionHandleColor: lightAppColors.green,
+      ),
       scaffoldBackgroundColor: lightAppColors.greenish,
       extensions: [
         lightAppColors,
