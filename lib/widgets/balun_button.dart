@@ -5,10 +5,12 @@ import '../constants.dart';
 class BalunButton extends StatefulWidget {
   final Widget child;
   final Function()? onPressed;
+  final Function()? onLongPressed;
 
   const BalunButton({
     required this.child,
     this.onPressed,
+    this.onLongPressed,
   });
 
   @override
@@ -59,6 +61,7 @@ class _BalunButtonState extends State<BalunButton> with SingleTickerProviderStat
         onTapDown: widget.onPressed != null ? onTapDown : null,
         onTapUp: widget.onPressed != null ? onTapUp : null,
         onTapCancel: widget.onPressed != null ? onTapCancel : null,
+        onLongPress: widget.onLongPressed,
         child: AnimatedBuilder(
           animation: animation,
           builder: (_, child) => Transform.scale(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/sounds.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
@@ -20,6 +21,7 @@ class CountriesAppBar extends StatelessWidget {
             ///
             BalunButton(
               onPressed: () {},
+              onLongPressed: playWelcomeToBalun,
               child: Container(
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
