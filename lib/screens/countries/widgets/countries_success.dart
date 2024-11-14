@@ -17,6 +17,7 @@ class CountriesSuccess extends StatelessWidget {
     final sortedCountries = sortCountries(countries);
 
     return ListView.separated(
+      padding: const EdgeInsets.only(bottom: 24),
       physics: const BouncingScrollPhysics(),
       itemCount: sortedCountries.length,
       itemBuilder: (_, index) {

@@ -13,6 +13,7 @@ class SearchCoachesSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView.separated(
+        padding: const EdgeInsets.only(bottom: 24),
         physics: const BouncingScrollPhysics(),
         itemCount: coaches.length,
         itemBuilder: (_, index) {

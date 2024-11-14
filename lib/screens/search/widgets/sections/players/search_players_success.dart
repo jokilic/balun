@@ -13,6 +13,7 @@ class SearchPlayersSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView.separated(
+        padding: const EdgeInsets.only(bottom: 24),
         physics: const BouncingScrollPhysics(),
         itemCount: players.length,
         itemBuilder: (_, index) {

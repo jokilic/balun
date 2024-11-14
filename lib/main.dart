@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart' hide TextDirection;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -102,17 +103,24 @@ class BalunWidget extends WatchingWidget {
         home: watchIt<BalunScreenService>().value,
         onGenerateTitle: (_) => 'appName'.tr(),
         theme: BalunTheme.light,
-        builder: (_, child) => Banner(
-          message: appVersion.toUpperCase(),
-          color: getRandomBalunColor(context),
-          location: BannerLocation.topEnd,
-          layoutDirection: TextDirection.ltr,
-          child: child ??
-              const Scaffold(
-                body: Center(
-                  child: BalunLoader(),
+        builder: (_, child) => kDebugMode
+            ? Banner(
+                message: 'appName'.tr().toUpperCase(),
+                color: getRandomBalunColor(context),
+                location: BannerLocation.topEnd,
+                layoutDirection: TextDirection.ltr,
+                child: child ??
+                    const Scaffold(
+                      body: Center(
+                        child: BalunLoader(),
+                      ),
+                    ),
+              )
+            : child ??
+                const Scaffold(
+                  body: Center(
+                    child: BalunLoader(),
+                  ),
                 ),
-              ),
-        ),
       );
 }
