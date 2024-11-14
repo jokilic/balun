@@ -361,13 +361,13 @@ abstract class BalunTextStyles {
   static const calendarDayActive = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 18,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w600,
   );
 
   static const calendarDayInactive = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 16,
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w500,
   );
 
   static const leaguesSubtitle = TextStyle(
