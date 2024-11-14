@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -27,9 +25,6 @@ class MatchEventsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log('Elapsed -> $elapsed');
-    log('Status -> $statusShort');
-
     /// First half events
     final firstHalfEvents = events?.where(
       (event) => (event.time?.elapsed ?? 999) <= 45,
