@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import '../../../models/players/statistic/statistic.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
+import '../../../util/dependencies.dart';
 import '../../../util/state.dart';
+import 'player_current_team_controller.dart';
 
 class PlayerStatisticsController extends ValueNotifier<BalunState<List<Statistic>>> {
   final LoggerService logger;
@@ -53,6 +55,13 @@ class PlayerStatisticsController extends ValueNotifier<BalunState<List<Statistic
         value = Error(
           error: response.playersResponse!.errors!.toString(),
         );
+
+        /// Update current team to null, since error happened while fetching
+        getIt
+            .get<PlayerCurrentTeamController>(
+              instanceName: '$playerId',
+            )
+            .updateState(null);
       }
 
       /// Response is not null, update to success state
@@ -61,12 +70,26 @@ class PlayerStatisticsController extends ValueNotifier<BalunState<List<Statistic
         value = Success(
           data: response.playersResponse!.response!.first.statistics!,
         );
+
+        /// Update current team, since it's UI is updated dynamically
+        getIt
+            .get<PlayerCurrentTeamController>(
+              instanceName: '$playerId',
+            )
+            .updateState(response.playersResponse!.response!.first.statistics?.firstOrNull?.team);
       }
 
       /// Response is null, update to empty state
       else {
         fetchedSeason = season;
         value = Empty();
+
+        /// Update current team to null, since error happened while fetching
+        getIt
+            .get<PlayerCurrentTeamController>(
+              instanceName: '$playerId',
+            )
+            .updateState(null);
       }
     }
 
@@ -76,6 +99,13 @@ class PlayerStatisticsController extends ValueNotifier<BalunState<List<Statistic
       value = Error(
         error: response.error,
       );
+
+      /// Update current team to null, since error happened while fetching
+      getIt
+          .get<PlayerCurrentTeamController>(
+            instanceName: '$playerId',
+          )
+          .updateState(null);
     }
   }
 }

@@ -11,6 +11,7 @@ import '../../../../util/string.dart';
 import '../../../../util/team_seasons.dart';
 import '../../../../widgets/balun_button.dart';
 import '../../../../widgets/balun_image.dart';
+import '../../controllers/player_current_team_controller.dart';
 import '../../controllers/player_season_controller.dart';
 import '../player_app_bar.dart';
 
@@ -26,10 +27,11 @@ class PlayerMainInfo extends WatchingWidget {
     final seasonState = watchIt<PlayerSeasonController>(
       instanceName: '${player.player?.id}',
     ).value;
+    final currentTeam = watchIt<PlayerCurrentTeamController>(
+      instanceName: '${player.player?.id}',
+    ).value;
 
     final years = generateYearList();
-
-    final team = player.statistics?.firstOrNull?.team;
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -90,12 +92,12 @@ class PlayerMainInfo extends WatchingWidget {
           ///
           /// TEAM
           ///
-          if (team != null)
+          if (currentTeam != null)
             BalunButton(
-              onPressed: team.id != null
+              onPressed: currentTeam.id != null
                   ? () => openTeam(
                         context,
-                        teamId: team.id!,
+                        teamId: currentTeam.id!,
                         season: player.statistics?.firstOrNull?.league?.season ?? DateTime.now().year.toString(),
                       )
                   : null,
@@ -105,14 +107,14 @@ class PlayerMainInfo extends WatchingWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     BalunImage(
-                      imageUrl: team.logo ?? BalunIcons.placeholderTeam,
+                      imageUrl: currentTeam.logo ?? BalunIcons.placeholderTeam,
                       height: 32,
                       width: 32,
                     ),
                     const SizedBox(width: 8),
                     Flexible(
                       child: Text(
-                        team.name ?? '---',
+                        currentTeam.name ?? '---',
                         style: context.textStyles.fixturesLeague,
                         textAlign: TextAlign.center,
                       ),

@@ -8,6 +8,7 @@ import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/dependencies.dart';
 import '../../../util/team_seasons.dart';
+import 'player_controller.dart';
 import 'player_section_controller.dart';
 import 'player_statistics_controller.dart';
 
@@ -68,6 +69,16 @@ class PlayerSeasonController extends ValueNotifier<String> implements Disposable
                 season: newSeason,
               );
           break;
+
+        default:
+          getIt
+              .get<PlayerController>(
+                instanceName: '$playerId',
+              )
+              .getPlayerCurrentTeam(
+                playerId: playerId,
+                season: newSeason,
+              );
       }
     }
   }

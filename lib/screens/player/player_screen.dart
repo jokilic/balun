@@ -7,6 +7,7 @@ import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
 import 'controllers/player_controller.dart';
+import 'controllers/player_current_team_controller.dart';
 import 'controllers/player_season_controller.dart';
 import 'controllers/player_section_controller.dart';
 import 'controllers/player_sidelined_controller.dart';
@@ -76,6 +77,12 @@ class _PlayerScreenState extends State<PlayerScreen> {
       ),
       instanceName: '${widget.playerId}',
     );
+    registerIfNotInitialized<PlayerCurrentTeamController>(
+      () => PlayerCurrentTeamController(
+        logger: getIt.get<LoggerService>(),
+      ),
+      instanceName: '${widget.playerId}',
+    );
     registerIfNotInitialized<PlayerSeasonController>(
       () => PlayerSeasonController(
         logger: getIt.get<LoggerService>(),
@@ -120,6 +127,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
         instanceName: '${widget.playerId}',
       )
       ..unregister<PlayerTrophiesController>(
+        instanceName: '${widget.playerId}',
+      )
+      ..unregister<PlayerCurrentTeamController>(
         instanceName: '${widget.playerId}',
       )
       ..unregister<PlayerSeasonController>(
