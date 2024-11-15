@@ -1,59 +1,50 @@
+import 'package:collection/collection.dart';
+
 import '../models/fixtures/fixture_response.dart';
 
-int compareLeagueFixturesRounds(String a, String b) {
-  /// Extract numbers from `Strings` if they exist
-  final regexNumber = RegExp(r'\d+');
-
-  final aMatch = regexNumber.firstMatch(a);
-  final bMatch = regexNumber.firstMatch(b);
-
-  /// Both strings contain numbers, compare them numerically
-  if (aMatch != null && bMatch != null) {
-    return int.parse(aMatch.group(0)!).compareTo(
-      int.parse(bMatch.group(0)!),
-    );
-  }
-
-  /// Only `a` contains a number, it should come first
-  else if (aMatch != null) {
-    return -1;
-  }
-
-  /// Only `b` contains a number, it should come first
-  else if (bMatch != null) {
-    return 1;
-  }
-
-  /// Neither String contains a number, compare alphabetically
-  else {
-    return a.compareTo(b);
-  }
-}
-
-Map<String, List<FixtureResponse>> getGroupedLeagueFixtures(List<FixtureResponse> fixtures) {
-  final groupedFixtures = groupLeagueFixtures(fixtures);
-
-  final sortedGroupedFixtures = Map.fromEntries(
-    groupedFixtures.entries.toList()
-      ..sort(
-        (a, b) => compareLeagueFixturesRounds(a.key, b.key),
-      ),
+Map<String, List<FixtureResponse>> groupLeagueFixtures(List<FixtureResponse> fixtures) {
+  final grouped = groupBy(
+    fixtures,
+    (fixture) => fixture.league?.round ?? '',
   );
 
-  return sortedGroupedFixtures;
+  final sortedEntries = grouped.entries.toList()
+    ..sort((a, b) {
+      final aFirst = getFirstTimestamp(a.value);
+      final bFirst = getFirstTimestamp(b.value);
+
+      return aFirst.compareTo(bFirst);
+    });
+
+  return Map.fromEntries(
+    sortedEntries.map(
+      (entry) => MapEntry(
+        entry.key,
+        List<FixtureResponse>.from(entry.value)
+          ..sort(
+            (a, b) {
+              final timeA = a.fixture?.timestamp ?? DateTime(0);
+              final timeB = b.fixture?.timestamp ?? DateTime(0);
+              return timeA.compareTo(timeB);
+            },
+          ),
+      ),
+    ),
+  );
 }
 
-Map<String, List<FixtureResponse>> groupLeagueFixtures(List<FixtureResponse> fixtures) => fixtures.fold<Map<String, List<FixtureResponse>>>(
-      {},
-      (map, fixture) {
-        final round = fixture.league?.round;
+DateTime getFirstTimestamp(List<FixtureResponse> matches) {
+  if (matches.isEmpty) {
+    return DateTime(0);
+  }
 
-        if (!map.containsKey(round)) {
-          map[round!] = [];
-        }
+  var firstTimestamp = matches.first.fixture?.timestamp ?? DateTime(0);
 
-        map[round]!.add(fixture);
-
-        return map;
-      },
-    );
+  for (final match in matches) {
+    final timestamp = match.fixture?.timestamp ?? DateTime(0);
+    if (timestamp.isBefore(firstTimestamp)) {
+      firstTimestamp = timestamp;
+    }
+  }
+  return firstTimestamp;
+}
