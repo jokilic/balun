@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../constants.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
+import '../../services/periodic_api_service.dart';
 import '../../util/dependencies.dart';
+import '../../util/state.dart';
 import 'controllers/match_controller.dart';
 import 'controllers/match_h2h_controller.dart';
 import 'controllers/match_section_controller.dart';
@@ -28,6 +31,8 @@ class _MatchScreenState extends State<MatchScreen> {
   @override
   void initState() {
     super.initState();
+
+    getIt.get<PeriodicAPIService>().matchId = widget.matchId;
 
     registerIfNotInitialized<MatchSectionController>(
       () => MatchSectionController(
@@ -63,6 +68,8 @@ class _MatchScreenState extends State<MatchScreen> {
 
   @override
   void dispose() {
+    getIt.get<PeriodicAPIService>().matchId = null;
+
     getIt
       ..unregister<MatchController>(
         instanceName: '${widget.matchId}',
@@ -86,19 +93,23 @@ class _MatchScreenState extends State<MatchScreen> {
       instanceName: '${widget.matchId}',
     ).value;
 
-    return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Animate(
-          key: ValueKey(matchState),
-          effects: const [
-            FadeEffect(
-              curve: Curves.easeIn,
-              duration: BalunConstants.animationDuration,
+    return VisibilityDetector(
+      key: widget.key ?? ValueKey(widget.matchId),
+      onVisibilityChanged: (info) => getIt.get<PeriodicAPIService>().shouldFetchMatch = info.visibleFraction > 0,
+      child: Scaffold(
+        body: SafeArea(
+          bottom: false,
+          child: Animate(
+            key: matchState is Success ? null : ValueKey(matchState),
+            effects: const [
+              FadeEffect(
+                curve: Curves.easeIn,
+                duration: BalunConstants.animationDuration,
+              ),
+            ],
+            child: MatchContent(
+              matchState: matchState,
             ),
-          ],
-          child: MatchContent(
-            matchState: matchState,
           ),
         ),
       ),

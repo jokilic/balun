@@ -18,9 +18,7 @@ class MatchController extends ValueNotifier<BalunState<FixtureResponse>> {
   /// METHODS
   ///
 
-  Future<void> getMatch({
-    required int matchId,
-  }) async {
+  Future<void> getMatch({required int matchId}) async {
     value = Loading();
 
     final response = await api.getMatch(
@@ -38,8 +36,10 @@ class MatchController extends ValueNotifier<BalunState<FixtureResponse>> {
 
       /// Response is not null, update to success state
       else if (response.fixturesResponse!.response?.isNotEmpty ?? false) {
+        final data = response.fixturesResponse!.response!.first;
+
         value = Success(
-          data: response.fixturesResponse!.response!.first,
+          data: data,
         );
       }
 
@@ -55,6 +55,30 @@ class MatchController extends ValueNotifier<BalunState<FixtureResponse>> {
       value = Error(
         error: response.error,
       );
+    }
+  }
+
+  /// Triggered periodically
+  /// Doesn't update `state`
+  /// Fetches new `data` and updates if everything was successful
+  Future<void> getPeriodicMatch({required int matchId}) async {
+    /// Do the logic if we're already in [Success] `state`
+    if (value is Success) {
+      final response = await api.getMatch(
+        matchId: matchId,
+      );
+
+      /// Successful request
+      if (response.fixturesResponse != null && response.error == null) {
+        /// Response is not null, update to success state
+        if (response.fixturesResponse!.response?.isNotEmpty ?? false) {
+          final data = response.fixturesResponse!.response!.first;
+
+          value = Success(
+            data: data,
+          );
+        }
+      }
     }
   }
 }
