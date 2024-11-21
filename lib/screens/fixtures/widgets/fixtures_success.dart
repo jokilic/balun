@@ -50,14 +50,6 @@ class FixturesSuccess extends WatchingWidget {
       favoritedTeams: favoritedTeams,
     );
 
-    // final favoriteSortedGroupedFixtures = sortGroupedFixturesWithCountries(
-    //   groupedFixtures: groupFixturesWithCountries(
-    //     fixtures: favoriteFixtures,
-    //   ),
-    //   favoritedLeagues: favoritedLeagues,
-    //   favoritedTeams: favoritedTeams,
-    // );
-
     final sortedGroupedFixtures = sortGroupedFixturesWithCountries(
       groupedFixtures: groupFixturesWithCountries(
         fixtures: fixtures,
@@ -107,45 +99,6 @@ class FixturesSuccess extends WatchingWidget {
             separatorBuilder: (_, __) => const SizedBox(height: 12),
           ),
         ],
-
-        ///
-        /// FAVORITE FIXTURES
-        ///
-        // if (favoriteSortedGroupedFixtures.isNotEmpty) ...[
-        //   SizedBox(
-        //     height: favoriteSortedGroupedFixturesLeague.isNotEmpty ? 40 : 8,
-        //   ),
-        //   FixturesAppBar(
-        //     onPressed: () => showDialog(
-        //       context: context,
-        //       barrierColor: context.colors.black.withOpacity(0.5),
-        //       builder: (context) => FixturesFavoriteDialog(
-        //         onPressed: Navigator.of(context).pop,
-        //       ),
-        //     ),
-        //     text: 'fixturesFavoriteTitle'.tr(),
-        //   ),
-        //   const SizedBox(height: 24),
-        //   ListView.separated(
-        //     shrinkWrap: true,
-        //     padding: const EdgeInsets.symmetric(horizontal: 8),
-        //     physics: const NeverScrollableScrollPhysics(),
-        //     itemCount: favoriteSortedGroupedFixtures.length,
-        //     itemBuilder: (_, countryIndex) {
-        //       final countryLeague = favoriteSortedGroupedFixtures.keys.elementAtOrNull(countryIndex);
-        //       final leagues = favoriteSortedGroupedFixtures[countryLeague];
-
-        //       return FixturesCountryListTile(
-        //         countryLeague: countryLeague,
-        //         leagues: leagues,
-        //         hasLiveFixturesCountry: hasLiveFixturesCountry(
-        //           leagues: leagues,
-        //         ),
-        //       );
-        //     },
-        //     separatorBuilder: (_, __) => const SizedBox(height: 12),
-        //   ),
-        // ],
 
         ///
         /// ALL MATCHES

@@ -8,7 +8,7 @@ class BalunConstants {
   static const longAnimationDuration = Duration(milliseconds: 250);
   static const buttonScaleDuration = Duration(milliseconds: 125);
   static const shimmerDuration = Duration(milliseconds: 1500);
-  static const cacheDuration = Duration(days: 3);
+  static const periodicAPICallDuration = Duration(minutes: 1);
 
   /// Keys are country names from the backend
   static const favoriteCountryIDs = [

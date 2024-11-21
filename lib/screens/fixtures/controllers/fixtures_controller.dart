@@ -69,4 +69,33 @@ class FixturesController extends ValueNotifier<BalunState<List<FixtureResponse>>
       );
     }
   }
+
+  /// Triggered periodically
+  /// Doesn't update `state`
+  /// Fetches new `data` and updates if everything was successful
+  Future<void> getPeriodicFixturesFromDate({required String dateString}) async {
+    /// Do the logic if we're already in [Success] `state`
+    if (value is Success) {
+      final response = await api.getFixturesFromDate(
+        dateString: dateString,
+      );
+
+      /// Successful request
+      if (response.fixturesResponse != null && response.error == null) {
+        /// Response is not null, update to success state
+        if (response.fixturesResponse!.response?.isNotEmpty ?? false) {
+          final data = response.fixturesResponse!.response!;
+
+          value = Success(
+            data: data,
+          );
+
+          /// Update badge in [BalunNavigationBar]
+          getIt.get<BalunNavigationBarBadgeService>().updateBadge(
+                fixtures: data,
+              );
+        }
+      }
+    }
+  }
 }

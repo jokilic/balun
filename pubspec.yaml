@@ -29,6 +29,7 @@ dependencies:
   package_info_plus: 8.1.1
   sliding_up_panel2: 3.3.0+1
   timeago: 3.7.0
+  visibility_detector: 0.4.0+2
   watch_it: 1.5.1
 
 dev_dependencies:

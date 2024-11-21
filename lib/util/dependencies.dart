@@ -9,6 +9,7 @@ import '../services/dio_service.dart';
 import '../services/hive_service.dart';
 import '../services/league_storage_service.dart';
 import '../services/logger_service.dart';
+import '../services/periodic_api_service.dart';
 import '../services/team_storage_service.dart';
 
 final getIt = GetIt.instance;
@@ -74,6 +75,12 @@ void initializeServices() => getIt
       internetConnection: InternetConnection(),
     ),
     dependsOn: [LoggerService, DioService],
+  )
+  ..registerSingletonAsync(
+    () async => PeriodicAPIService(
+      logger: getIt.get<LoggerService>(),
+    )..init(),
+    dependsOn: [LoggerService],
   )
   ..registerSingletonAsync(
     () async => BalunNavigationBarService(

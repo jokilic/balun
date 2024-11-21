@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../constants.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
+import '../../services/periodic_api_service.dart';
 import '../../util/date_time.dart';
 import '../../util/dependencies.dart';
+import '../../util/state.dart';
 import '../../widgets/balun_navigation_bar.dart';
 import 'controllers/fixtures_controller.dart';
 import 'controllers/fixtures_date_controller.dart';
@@ -61,46 +64,50 @@ class _FixturesScreenState extends State<FixturesScreen> {
       instanceName: 'fixtures',
     ).value;
 
-    return Scaffold(
-      bottomNavigationBar: BalunNavigationBar(),
-      body: SafeArea(
-        child: Animate(
-          effects: const [
-            FadeEffect(
-              curve: Curves.easeIn,
-              duration: BalunConstants.longAnimationDuration,
-            ),
-          ],
-          child: Column(
-            children: [
-              const SizedBox(height: 16),
-
-              ///
-              /// DATE PICKER
-              ///
-              FixturesDatePicker(
-                currentDate: currentDate,
-              ),
-              const SizedBox(height: 12),
-
-              ///
-              /// CONTENT
-              ///
-              Expanded(
-                child: Animate(
-                  key: ValueKey(fixturesState),
-                  effects: const [
-                    FadeEffect(
-                      curve: Curves.easeIn,
-                      duration: BalunConstants.animationDuration,
-                    ),
-                  ],
-                  child: FixturesContent(
-                    fixturesState: fixturesState,
-                  ),
-                ),
+    return VisibilityDetector(
+      key: widget.key ?? const ValueKey('fixtures'),
+      onVisibilityChanged: (info) => getIt.get<PeriodicAPIService>().shouldFetchFixtures = info.visibleFraction > 0,
+      child: Scaffold(
+        bottomNavigationBar: BalunNavigationBar(),
+        body: SafeArea(
+          child: Animate(
+            effects: const [
+              FadeEffect(
+                curve: Curves.easeIn,
+                duration: BalunConstants.longAnimationDuration,
               ),
             ],
+            child: Column(
+              children: [
+                const SizedBox(height: 16),
+
+                ///
+                /// DATE PICKER
+                ///
+                FixturesDatePicker(
+                  currentDate: currentDate,
+                ),
+                const SizedBox(height: 12),
+
+                ///
+                /// CONTENT
+                ///
+                Expanded(
+                  child: Animate(
+                    key: fixturesState is Success ? null : ValueKey(fixturesState),
+                    effects: const [
+                      FadeEffect(
+                        curve: Curves.easeIn,
+                        duration: BalunConstants.animationDuration,
+                      ),
+                    ],
+                    child: FixturesContent(
+                      fixturesState: fixturesState,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
