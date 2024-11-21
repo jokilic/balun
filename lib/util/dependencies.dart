@@ -62,20 +62,15 @@ void initializeServices() => getIt
     dependsOn: [LoggerService, HiveService],
   )
   ..registerSingletonAsync(
-    () async {
-      final dio = DioService(
-        logger: getIt.get<LoggerService>(),
-      );
-      await dio.init();
-      return dio;
-    },
+    () async => DioService(
+      logger: getIt.get<LoggerService>(),
+    ),
     dependsOn: [LoggerService],
   )
   ..registerSingletonAsync(
     () async => APIService(
       logger: getIt.get<LoggerService>(),
-      noCacheDio: getIt.get<DioService>().noCacheDio,
-      cacheDio: getIt.get<DioService>().cacheDio,
+      dio: getIt.get<DioService>().dio,
       internetConnection: InternetConnection(),
     ),
     dependsOn: [LoggerService, DioService],

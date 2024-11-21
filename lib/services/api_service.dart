@@ -23,14 +23,12 @@ import 'logger_service.dart';
 
 class APIService {
   final LoggerService logger;
-  final Dio noCacheDio;
-  final Dio cacheDio;
+  final Dio dio;
   final InternetConnection internetConnection;
 
   APIService({
     required this.logger,
-    required this.noCacheDio,
-    required this.cacheDio,
+    required this.dio,
     required this.internetConnection,
   });
 
@@ -40,7 +38,7 @@ class APIService {
 
   Future<({CountriesResponse? countriesResponse, String? error})> getCountries() async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/countries',
       );
 
@@ -81,7 +79,7 @@ class APIService {
     required String dateString,
   }) async {
     try {
-      final response = await noCacheDio.get(
+      final response = await dio.get(
         '/fixtures',
         queryParameters: {
           'date': dateString,
@@ -122,7 +120,7 @@ class APIService {
     required String season,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/fixtures',
         queryParameters: {
           'league': leagueId,
@@ -163,7 +161,7 @@ class APIService {
     required int matchId,
   }) async {
     try {
-      final response = await noCacheDio.get(
+      final response = await dio.get(
         '/fixtures',
         queryParameters: {
           'id': matchId,
@@ -208,7 +206,7 @@ class APIService {
     required int awayTeamId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/fixtures/headtohead',
         queryParameters: {
           'h2h': '$homeTeamId-$awayTeamId',
@@ -252,7 +250,7 @@ class APIService {
     required int teamId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/teams',
         queryParameters: {
           'id': teamId,
@@ -293,7 +291,7 @@ class APIService {
     required String season,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/teams',
         queryParameters: {
           'league': leagueId,
@@ -339,7 +337,7 @@ class APIService {
     required String season,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/standings',
         queryParameters: {
           'league': leagueId,
@@ -381,7 +379,7 @@ class APIService {
     required String season,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/standings',
         queryParameters: {
           'team': teamId,
@@ -426,7 +424,7 @@ class APIService {
     required int leagueId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/leagues',
         queryParameters: {
           'id': leagueId,
@@ -466,7 +464,7 @@ class APIService {
     required int teamId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/leagues',
         queryParameters: {
           'team': teamId,
@@ -506,7 +504,7 @@ class APIService {
     required String country,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/leagues',
         queryParameters: {
           'country': country,
@@ -551,7 +549,7 @@ class APIService {
     required String season,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/players',
         queryParameters: {
           'id': playerId,
@@ -596,7 +594,7 @@ class APIService {
     required int playerId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/players/teams',
         queryParameters: {
           'player': playerId,
@@ -640,7 +638,7 @@ class APIService {
     required int teamId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/players/squads',
         queryParameters: {
           'team': teamId,
@@ -685,7 +683,7 @@ class APIService {
     required String season,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/players/topscorers',
         queryParameters: {
           'league': leagueId,
@@ -731,7 +729,7 @@ class APIService {
     required String season,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/players/topassists',
         queryParameters: {
           'league': leagueId,
@@ -777,7 +775,7 @@ class APIService {
     required String season,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/players/topyellowcards',
         queryParameters: {
           'league': leagueId,
@@ -823,7 +821,7 @@ class APIService {
     required String season,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/players/topredcards',
         queryParameters: {
           'league': leagueId,
@@ -868,7 +866,7 @@ class APIService {
     required int coachId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/coachs',
         queryParameters: {
           'id': coachId,
@@ -908,7 +906,7 @@ class APIService {
     required int teamId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/coachs',
         queryParameters: {
           'team': teamId,
@@ -952,7 +950,7 @@ class APIService {
     required int teamId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/transfers',
         queryParameters: {
           'team': teamId,
@@ -992,7 +990,7 @@ class APIService {
     required int playerId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/transfers',
         queryParameters: {
           'player': playerId,
@@ -1036,7 +1034,7 @@ class APIService {
     required int playerId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/sidelined',
         queryParameters: {
           'player': playerId,
@@ -1076,7 +1074,7 @@ class APIService {
     required int coachId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/sidelined',
         queryParameters: {
           'coach': coachId,
@@ -1120,7 +1118,7 @@ class APIService {
     required int playerId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/trophies',
         queryParameters: {
           'player': playerId,
@@ -1160,7 +1158,7 @@ class APIService {
     required int coachId,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/trophies',
         queryParameters: {
           'coach': coachId,
@@ -1204,7 +1202,7 @@ class APIService {
     required String searchValue,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/countries',
         queryParameters: {
           'search': searchValue,
@@ -1244,7 +1242,7 @@ class APIService {
     required String searchValue,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/leagues',
         queryParameters: {
           'search': searchValue,
@@ -1284,7 +1282,7 @@ class APIService {
     required String searchValue,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/teams',
         queryParameters: {
           'search': searchValue,
@@ -1324,7 +1322,7 @@ class APIService {
     required String searchValue,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/players/profiles',
         queryParameters: {
           'search': searchValue,
@@ -1364,7 +1362,7 @@ class APIService {
     required String searchValue,
   }) async {
     try {
-      final response = await cacheDio.get(
+      final response = await dio.get(
         '/coachs',
         queryParameters: {
           'search': searchValue,
