@@ -4,6 +4,9 @@ import 'util/env.dart';
 class BalunConstants {
   static final baseUrl = Env.apiFootballBaseUrl;
 
+  static final remoteSettingsBaseUrl = Env.remoteSettingsBaseUrl;
+  static final remoteSettingsJsonUrl = Env.remoteSettingsJsonUrl;
+
   static const animationDuration = Duration(milliseconds: 125);
   static const longAnimationDuration = Duration(milliseconds: 250);
   static const buttonScaleDuration = Duration(milliseconds: 125);

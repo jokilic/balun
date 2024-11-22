@@ -6,6 +6,7 @@ import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
 import '../models/player_teams/player_teams_response.dart';
 import '../models/players/players_response.dart';
+import '../models/remote_settings/remote_settings_response.dart';
 import '../models/search/search_coaches/search_coaches_response.dart';
 import '../models/search/search_countries/search_countries_response.dart';
 import '../models/search/search_leagues/search_leagues_response.dart';
@@ -68,3 +69,6 @@ SearchPlayersResponse parseSearchPlayers(data) => SearchPlayersResponse.fromMap(
 
 Future<SearchCoachesResponse> computeSearchCoaches(data) async => compute(parseSearchCoaches, data);
 SearchCoachesResponse parseSearchCoaches(data) => SearchCoachesResponse.fromMap(data);
+
+Future<RemoteSettingsResponse> computeRemoteSettings(data) async => compute(parseRemoteSettings, data);
+RemoteSettingsResponse parseRemoteSettings(data) => RemoteSettingsResponse.fromMap(data);

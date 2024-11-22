@@ -37,7 +37,17 @@ class DioService {
   )..interceptors.add(
       DioLoggerInterceptor(
         logger: logger,
-        isCached: false,
+      ),
+    );
+
+  late final remoteSettingsDio = Dio(
+    BaseOptions(
+      baseUrl: BalunConstants.remoteSettingsBaseUrl,
+      validateStatus: (_) => true,
+    ),
+  )..interceptors.add(
+      DioLoggerInterceptor(
+        logger: logger,
       ),
     );
 }

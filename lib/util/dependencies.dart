@@ -10,6 +10,7 @@ import '../services/hive_service.dart';
 import '../services/league_storage_service.dart';
 import '../services/logger_service.dart';
 import '../services/periodic_api_service.dart';
+import '../services/remote_settings_service.dart';
 import '../services/team_storage_service.dart';
 
 final getIt = GetIt.instance;
@@ -67,6 +68,17 @@ void initializeServices() => getIt
       logger: getIt.get<LoggerService>(),
     ),
     dependsOn: [LoggerService],
+  )
+  ..registerSingletonAsync(
+    () async {
+      final remoteSettings = RemoteSettingsService(
+        logger: getIt.get<LoggerService>(),
+        dio: getIt.get<DioService>().remoteSettingsDio,
+      );
+      await remoteSettings.init();
+      return remoteSettings;
+    },
+    dependsOn: [LoggerService, DioService],
   )
   ..registerSingletonAsync(
     () async => APIService(
