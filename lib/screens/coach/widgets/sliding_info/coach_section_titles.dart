@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
-import '../../../../models/coach_section.dart';
+import '../../../../models/sections/coach_section.dart';
 import '../../../../theme/theme.dart';
 import '../../../../widgets/balun_button.dart';
 

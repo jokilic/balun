@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' hide SearchController;
 
-import '../../../models/search_section.dart';
+import '../../../models/sections/search_section.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/balun_button.dart';
 

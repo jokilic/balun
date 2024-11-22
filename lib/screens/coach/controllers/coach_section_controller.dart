@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/coach_section.dart';
+import '../../../models/sections/coach_section.dart';
 import '../../../services/logger_service.dart';
 
 class CoachSectionController extends ValueNotifier<CoachSection> {

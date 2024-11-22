@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../models/player_section.dart';
 import '../../../../models/players/player_response.dart';
+import '../../../../models/sections/player_section.dart';
 import 'sections/info/player_info_section.dart';
 import 'sections/sidelined/player_sidelined_section.dart';
 import 'sections/statistics/player_statistics_section.dart';

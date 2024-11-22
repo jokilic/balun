@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/player_section.dart';
+import '../../../models/sections/player_section.dart';
 import '../../../services/logger_service.dart';
 
 class PlayerSectionController extends ValueNotifier<PlayerSection> {

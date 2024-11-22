@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../models/league_section.dart';
 import '../../../../models/leagues/league_response.dart';
+import '../../../../models/sections/league_section.dart';
 import 'sections/fixtures/league_fixtures_section.dart';
 import 'sections/standings/league_standings_section.dart';
 import 'sections/teams/league_teams_section.dart';

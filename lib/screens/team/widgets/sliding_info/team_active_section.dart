@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../models/team_section.dart';
+import '../../../../models/sections/team_section.dart';
 import '../../../../models/teams/team_response.dart';
 import 'sections/coaches/team_coaches_section.dart';
 import 'sections/leagues/team_leagues_section.dart';

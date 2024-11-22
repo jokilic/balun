@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/match_section.dart';
+import '../../../models/sections/match_section.dart';
 import '../../../services/logger_service.dart';
 
 class MatchSectionController extends ValueNotifier<MatchSection> {

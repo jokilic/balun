@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/search_section.dart';
+import '../../../models/sections/search_section.dart';
 import 'sections/coaches/search_coaches_section.dart';
 import 'sections/countries/search_countries_section.dart';
 import 'sections/leagues/search_leagues_section.dart';

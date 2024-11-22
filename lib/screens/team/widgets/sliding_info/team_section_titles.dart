@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
-import '../../../../models/team_section.dart';
+import '../../../../models/sections/team_section.dart';
 import '../../../../theme/theme.dart';
 import '../../../../widgets/balun_button.dart';
 

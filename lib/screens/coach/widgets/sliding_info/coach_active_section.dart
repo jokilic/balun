@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../models/coach_section.dart';
 import '../../../../models/coaches/coach_response.dart';
+import '../../../../models/sections/coach_section.dart';
 import 'sections/career/coach_career_section.dart';
 import 'sections/info/coach_info_section.dart';
 import 'sections/sidelined/coach_sidelined_section.dart';

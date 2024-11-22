@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../../../models/fixtures/fixture_response.dart';
-import '../../../../models/match_section.dart';
+import '../../../../models/sections/match_section.dart';
 import '../../../../util/events.dart';
 import '../../../../util/string.dart';
 import 'sections/events/match_events_section.dart';

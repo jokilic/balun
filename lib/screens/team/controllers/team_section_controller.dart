@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/team_section.dart';
+import '../../../models/sections/team_section.dart';
 import '../../../services/logger_service.dart';
 
 class TeamSectionController extends ValueNotifier<TeamSection> {
