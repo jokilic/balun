@@ -45,11 +45,6 @@ class PeriodicAPIService implements Disposable {
   ///
 
   void init() {
-    // TODO: Remove this when finished with work
-    if (kDebugMode) {
-      return;
-    }
-
     fixturesTimer = Timer.periodic(
       BalunConstants.periodicAPICallDuration,
       (_) {
