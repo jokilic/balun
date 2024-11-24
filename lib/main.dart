@@ -25,7 +25,10 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
 
   /// Initialize services
-  initializeServices();
+  initializeServices(
+    enableContentMix: !kDebugMode && defaultTargetPlatform == TargetPlatform.iOS,
+    enablePeriodicFetching: !kDebugMode,
+  );
 
   /// Initialize date formatting and `timeago` messages
   await initializeDateFormatting();

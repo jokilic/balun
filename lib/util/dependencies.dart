@@ -35,80 +35,92 @@ void registerIfNotInitialized<T extends Object>(
   }
 }
 
-void initializeServices() => getIt
-  ..registerSingletonAsync(
-    () async => LoggerService(),
-  )
-  ..registerSingletonAsync(
-    () async {
-      final hive = HiveService(
-        logger: getIt.get<LoggerService>(),
+void initializeServices({
+  required bool enableContentMix,
+  required bool enablePeriodicFetching,
+}) =>
+    getIt
+      ..registerSingletonAsync(
+        () async => LoggerService(),
+      )
+      ..registerSingletonAsync(
+        () async {
+          final hive = HiveService(
+            logger: getIt.get<LoggerService>(),
+          );
+          await hive.init();
+          return hive;
+        },
+        dependsOn: [LoggerService],
+      )
+      ..registerSingletonAsync(
+        () async => LeagueStorageService(
+          logger: getIt.get<LoggerService>(),
+          hiveLeagues: getIt.get<HiveService>().leagues.values.toList(),
+        ),
+        dependsOn: [LoggerService, HiveService],
+      )
+      ..registerSingletonAsync(
+        () async => TeamStorageService(
+          logger: getIt.get<LoggerService>(),
+          hiveTeams: getIt.get<HiveService>().teams.values.toList(),
+        ),
+        dependsOn: [LoggerService, HiveService],
+      )
+      ..registerSingletonAsync(
+        () async => DioService(
+          logger: getIt.get<LoggerService>(),
+        ),
+        dependsOn: [LoggerService],
+      )
+      ..registerSingletonAsync(
+        () async {
+          final remoteSettings = RemoteSettingsService(
+            logger: getIt.get<LoggerService>(),
+            dio: getIt.get<DioService>().remoteSettingsDio,
+          );
+          if (enableContentMix) {
+            await remoteSettings.init();
+          }
+          return remoteSettings;
+        },
+        dependsOn: [LoggerService, DioService],
+      )
+      ..registerSingletonAsync(
+        () async => APIService(
+          logger: getIt.get<LoggerService>(),
+          dio: getIt.get<DioService>().dio,
+          internetConnection: InternetConnection(),
+        ),
+        dependsOn: [LoggerService, DioService],
+      )
+      ..registerSingletonAsync(
+        () async {
+          final periodicAPI = PeriodicAPIService(
+            logger: getIt.get<LoggerService>(),
+          );
+          if (enablePeriodicFetching) {
+            periodicAPI.init();
+          }
+          return periodicAPI;
+        },
+        dependsOn: [LoggerService],
+      )
+      ..registerSingletonAsync(
+        () async => BalunNavigationBarService(
+          logger: getIt.get<LoggerService>(),
+        ),
+        dependsOn: [LoggerService],
+      )
+      ..registerSingletonAsync(
+        () async => BalunNavigationBarBadgeService(
+          logger: getIt.get<LoggerService>(),
+        ),
+        dependsOn: [LoggerService],
+      )
+      ..registerSingletonAsync(
+        () async => BalunScreenService(
+          logger: getIt.get<LoggerService>(),
+        ),
+        dependsOn: [LoggerService, BalunNavigationBarService],
       );
-      await hive.init();
-      return hive;
-    },
-    dependsOn: [LoggerService],
-  )
-  ..registerSingletonAsync(
-    () async => LeagueStorageService(
-      logger: getIt.get<LoggerService>(),
-      hiveLeagues: getIt.get<HiveService>().leagues.values.toList(),
-    ),
-    dependsOn: [LoggerService, HiveService],
-  )
-  ..registerSingletonAsync(
-    () async => TeamStorageService(
-      logger: getIt.get<LoggerService>(),
-      hiveTeams: getIt.get<HiveService>().teams.values.toList(),
-    ),
-    dependsOn: [LoggerService, HiveService],
-  )
-  ..registerSingletonAsync(
-    () async => DioService(
-      logger: getIt.get<LoggerService>(),
-    ),
-    dependsOn: [LoggerService],
-  )
-  ..registerSingletonAsync(
-    () async {
-      final remoteSettings = RemoteSettingsService(
-        logger: getIt.get<LoggerService>(),
-        dio: getIt.get<DioService>().remoteSettingsDio,
-      );
-      await remoteSettings.init();
-      return remoteSettings;
-    },
-    dependsOn: [LoggerService, DioService],
-  )
-  ..registerSingletonAsync(
-    () async => APIService(
-      logger: getIt.get<LoggerService>(),
-      dio: getIt.get<DioService>().dio,
-      internetConnection: InternetConnection(),
-    ),
-    dependsOn: [LoggerService, DioService],
-  )
-  ..registerSingletonAsync(
-    () async => PeriodicAPIService(
-      logger: getIt.get<LoggerService>(),
-    )..init(),
-    dependsOn: [LoggerService],
-  )
-  ..registerSingletonAsync(
-    () async => BalunNavigationBarService(
-      logger: getIt.get<LoggerService>(),
-    ),
-    dependsOn: [LoggerService],
-  )
-  ..registerSingletonAsync(
-    () async => BalunNavigationBarBadgeService(
-      logger: getIt.get<LoggerService>(),
-    ),
-    dependsOn: [LoggerService],
-  )
-  ..registerSingletonAsync(
-    () async => BalunScreenService(
-      logger: getIt.get<LoggerService>(),
-    ),
-    dependsOn: [LoggerService, BalunNavigationBarService],
-  );
