@@ -45,6 +45,7 @@ class MatchActiveSection extends StatelessWidget {
             elapsed: match.fixture?.status?.elapsed,
             awayTeamId: match.teams?.away?.id,
             statusShort: match.fixture?.status?.short ?? '--',
+            season: match.league?.season,
           ),
         MatchSection(
           matchSectionEnum: MatchSectionEnum.lineups,

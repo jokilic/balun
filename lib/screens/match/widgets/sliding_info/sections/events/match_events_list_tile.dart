@@ -1,23 +1,26 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../../../../../models/fixtures/event/event.dart';
+import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/string.dart';
 import '../../../../../../util/word_mix.dart';
+import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
 class MatchEventsListTile extends StatelessWidget {
   final Event event;
   final bool? isAwayTeam;
   final bool isSecondYellowCard;
+  final String? season;
 
   const MatchEventsListTile({
     required this.event,
     required this.isAwayTeam,
     required this.isSecondYellowCard,
+    required this.season,
   });
 
   @override
@@ -110,40 +113,52 @@ class MatchEventsListTile extends StatelessWidget {
                   /// PLAYER
                   ///
                   Flexible(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const BalunImage(
-                          imageUrl: BalunIcons.missedPenalty,
-                          height: 28,
-                          width: 28,
-                        ),
-                        const SizedBox(width: 8),
-                        Flexible(
-                          child: Text.rich(
-                            TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: mixOrOriginalWords(event.player?.name) ?? '---',
-                                  style: context.textStyles.matchEventsSectionText.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                if (eventDetail.toLowerCase() == 'penalty')
-                                  TextSpan(
-                                    text: ' (${'matchInfoPenalty'.tr()})',
-                                    style: context.textStyles.matchEventsSectionText,
-                                  ),
-                                if (eventDetail.toLowerCase() == 'own goal')
-                                  TextSpan(
-                                    text: ' (${'matchInfoOwnGoal'.tr()})',
-                                    style: context.textStyles.matchEventsSectionText,
-                                  ),
-                              ],
+                    child: BalunButton(
+                      onPressed: event.player?.id != null
+                          ? () => openPlayer(
+                                context,
+                                playerId: event.player!.id!,
+                                season: season ?? DateTime.now().year.toString(),
+                              )
+                          : null,
+                      child: Container(
+                        color: Colors.transparent,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const BalunImage(
+                              imageUrl: BalunIcons.missedPenalty,
+                              height: 28,
+                              width: 28,
                             ),
-                          ),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: mixOrOriginalWords(event.player?.name) ?? '---',
+                                      style: context.textStyles.matchEventsSectionText.copyWith(
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    if (eventDetail.toLowerCase() == 'penalty')
+                                      TextSpan(
+                                        text: ' (${'matchInfoPenalty'.tr()})',
+                                        style: context.textStyles.matchEventsSectionText,
+                                      ),
+                                    if (eventDetail.toLowerCase() == 'own goal')
+                                      TextSpan(
+                                        text: ' (${'matchInfoOwnGoal'.tr()})',
+                                        style: context.textStyles.matchEventsSectionText,
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
 
@@ -176,22 +191,34 @@ class MatchEventsListTile extends StatelessWidget {
                   ///
                   if (event.assist?.name != null) ...[
                     Flexible(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const BalunImage(
-                            imageUrl: BalunIcons.assist,
-                            height: 28,
-                            width: 28,
+                      child: BalunButton(
+                        onPressed: event.assist?.id != null
+                            ? () => openPlayer(
+                                  context,
+                                  playerId: event.assist!.id!,
+                                  season: season ?? DateTime.now().year.toString(),
+                                )
+                            : null,
+                        child: Container(
+                          color: Colors.transparent,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const BalunImage(
+                                imageUrl: BalunIcons.assist,
+                                height: 28,
+                                width: 28,
+                              ),
+                              const SizedBox(width: 8),
+                              Flexible(
+                                child: Text(
+                                  mixOrOriginalWords(event.assist!.name) ?? '---',
+                                  style: context.textStyles.matchEventsSectionText,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 8),
-                          Flexible(
-                            child: Text(
-                              mixOrOriginalWords(event.assist!.name) ?? '---',
-                              style: context.textStyles.matchEventsSectionText,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -201,40 +228,52 @@ class MatchEventsListTile extends StatelessWidget {
                   /// SCORER
                   ///
                   Flexible(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const BalunImage(
-                          imageUrl: BalunIcons.ball,
-                          height: 28,
-                          width: 28,
-                        ),
-                        const SizedBox(width: 8),
-                        Flexible(
-                          child: Text.rich(
-                            TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: mixOrOriginalWords(event.player?.name) ?? '---',
-                                  style: context.textStyles.matchEventsSectionText.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                if (eventDetail.toLowerCase() == 'penalty')
-                                  TextSpan(
-                                    text: ' (${'matchInfoPenalty'.tr()})',
-                                    style: context.textStyles.matchEventsSectionText,
-                                  ),
-                                if (eventDetail.toLowerCase() == 'own goal')
-                                  TextSpan(
-                                    text: ' (${'matchInfoOwnGoal'.tr()})',
-                                    style: context.textStyles.matchEventsSectionText,
-                                  ),
-                              ],
+                    child: BalunButton(
+                      onPressed: event.player?.id != null
+                          ? () => openPlayer(
+                                context,
+                                playerId: event.player!.id!,
+                                season: season ?? DateTime.now().year.toString(),
+                              )
+                          : null,
+                      child: Container(
+                        color: Colors.transparent,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const BalunImage(
+                              imageUrl: BalunIcons.ball,
+                              height: 28,
+                              width: 28,
                             ),
-                          ),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: mixOrOriginalWords(event.player?.name) ?? '---',
+                                      style: context.textStyles.matchEventsSectionText.copyWith(
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    if (eventDetail.toLowerCase() == 'penalty')
+                                      TextSpan(
+                                        text: ' (${'matchInfoPenalty'.tr()})',
+                                        style: context.textStyles.matchEventsSectionText,
+                                      ),
+                                    if (eventDetail.toLowerCase() == 'own goal')
+                                      TextSpan(
+                                        text: ' (${'matchInfoOwnGoal'.tr()})',
+                                        style: context.textStyles.matchEventsSectionText,
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ],
@@ -251,25 +290,37 @@ class MatchEventsListTile extends StatelessWidget {
               /// PLAYER
               ///
               Flexible(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    getCardWidget(
-                      eventDetail,
-                      playerId: event.player?.id,
-                      isSecondYellowCard: isSecondYellowCard,
-                      context: context,
-                    ),
-                    const SizedBox(width: 8),
-                    Flexible(
-                      child: Text(
-                        mixOrOriginalWords(event.player?.name) ?? '---',
-                        style: context.textStyles.matchEventsSectionText.copyWith(
-                          fontWeight: FontWeight.w500,
+                child: BalunButton(
+                  onPressed: event.player?.id != null
+                      ? () => openPlayer(
+                            context,
+                            playerId: event.player!.id!,
+                            season: season ?? DateTime.now().year.toString(),
+                          )
+                      : null,
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        getCardWidget(
+                          eventDetail,
+                          playerId: event.player?.id,
+                          isSecondYellowCard: isSecondYellowCard,
+                          context: context,
                         ),
-                      ),
+                        const SizedBox(width: 8),
+                        Flexible(
+                          child: Text(
+                            mixOrOriginalWords(event.player?.name) ?? '---',
+                            style: context.textStyles.matchEventsSectionText.copyWith(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
 
@@ -309,23 +360,35 @@ class MatchEventsListTile extends StatelessWidget {
               /// PLAYER OUT
               ///
               Flexible(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    BalunImage(
-                      imageUrl: BalunIcons.playerOut,
-                      height: 28,
-                      width: 28,
-                      color: context.colors.red,
+                child: BalunButton(
+                  onPressed: event.assist?.id != null
+                      ? () => openPlayer(
+                            context,
+                            playerId: event.assist!.id!,
+                            season: season ?? DateTime.now().year.toString(),
+                          )
+                      : null,
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        BalunImage(
+                          imageUrl: BalunIcons.playerOut,
+                          height: 28,
+                          width: 28,
+                          color: context.colors.red,
+                        ),
+                        const SizedBox(width: 8),
+                        Flexible(
+                          child: Text(
+                            mixOrOriginalWords(event.assist?.name) ?? '---',
+                            style: context.textStyles.matchEventsSectionText,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 8),
-                    Flexible(
-                      child: Text(
-                        mixOrOriginalWords(event.assist?.name) ?? '---',
-                        style: context.textStyles.matchEventsSectionText,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
 
@@ -335,25 +398,37 @@ class MatchEventsListTile extends StatelessWidget {
               /// PLAYER IN
               ///
               Flexible(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    BalunImage(
-                      imageUrl: BalunIcons.playerIn,
-                      height: 28,
-                      width: 28,
-                      color: context.colors.green,
-                    ),
-                    const SizedBox(width: 8),
-                    Flexible(
-                      child: Text(
-                        mixOrOriginalWords(event.player?.name) ?? '---',
-                        style: context.textStyles.matchEventsSectionText.copyWith(
-                          fontWeight: FontWeight.w500,
+                child: BalunButton(
+                  onPressed: event.player?.id != null
+                      ? () => openPlayer(
+                            context,
+                            playerId: event.player!.id!,
+                            season: season ?? DateTime.now().year.toString(),
+                          )
+                      : null,
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        BalunImage(
+                          imageUrl: BalunIcons.playerIn,
+                          height: 28,
+                          width: 28,
+                          color: context.colors.green,
                         ),
-                      ),
+                        const SizedBox(width: 8),
+                        Flexible(
+                          child: Text(
+                            mixOrOriginalWords(event.player?.name) ?? '---',
+                            style: context.textStyles.matchEventsSectionText.copyWith(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ],

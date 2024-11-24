@@ -14,6 +14,7 @@ class MatchEventsSection extends StatelessWidget {
   final int? elapsed;
   final int? awayTeamId;
   final String statusShort;
+  final String? season;
 
   const MatchEventsSection({
     required this.events,
@@ -21,6 +22,7 @@ class MatchEventsSection extends StatelessWidget {
     required this.elapsed,
     required this.awayTeamId,
     required this.statusShort,
+    required this.season,
   });
 
   @override
@@ -89,6 +91,7 @@ class MatchEventsSection extends StatelessWidget {
                           events ?? [],
                           event,
                         ),
+                        season: season,
                       ),
                     )
                     .toList(),
@@ -128,6 +131,7 @@ class MatchEventsSection extends StatelessWidget {
                           events ?? [],
                           event,
                         ),
+                        season: season,
                       ),
                     )
                     .toList(),
@@ -167,6 +171,7 @@ class MatchEventsSection extends StatelessWidget {
                           events ?? [],
                           event,
                         ),
+                        season: season,
                       ),
                     )
                     .toList(),
@@ -183,6 +188,7 @@ class MatchEventsSection extends StatelessWidget {
                           events ?? [],
                           event,
                         ),
+                        season: season,
                       ),
                     )
                     .toList(),
@@ -222,6 +228,7 @@ class MatchEventsSection extends StatelessWidget {
                           events ?? [],
                           event,
                         ),
+                        season: season,
                       ),
                     )
                     .toList(),
