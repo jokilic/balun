@@ -21,6 +21,7 @@ class MatchSectionController extends ValueNotifier<MatchSection> {
   void updateStateDependingOnMatchStatus({
     required String statusShort,
     required bool lineupExists,
+    required bool eventsExist,
   }) {
     switch (statusShort.toUpperCase()) {
       ///
@@ -51,7 +52,7 @@ class MatchSectionController extends ValueNotifier<MatchSection> {
       case 'FT' || 'AET' || 'PEN':
         updateState(
           MatchSection(
-            matchSectionEnum: MatchSectionEnum.info,
+            matchSectionEnum: eventsExist ? MatchSectionEnum.events : MatchSectionEnum.info,
           ),
         );
         break;
