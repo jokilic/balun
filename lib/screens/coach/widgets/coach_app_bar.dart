@@ -4,6 +4,7 @@ import '../../../models/coaches/coach_response.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../util/string.dart';
+import '../../../util/word_mix.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
@@ -49,16 +50,19 @@ class CoachAppBar extends StatelessWidget {
               children: [
                 if (coach?.name != null)
                   Text(
-                    coach!.name!,
+                    mixOrOriginalWords(coach!.name) ?? '---',
                     style: context.textStyles.matchLeagueName,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                 if (coach?.nationality != null)
                   Text(
-                    getCountryName(
-                      country: coach!.nationality!,
-                    ),
+                    mixOrOriginalWords(
+                          getCountryName(
+                            country: coach!.nationality!,
+                          ),
+                        ) ??
+                        '---',
                     style: context.textStyles.matchLeagueRound,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

@@ -6,6 +6,7 @@ import '../../../../../../models/fixtures/event/event.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_image.dart';
 
 class MatchEventsListTile extends StatelessWidget {
@@ -123,7 +124,7 @@ class MatchEventsListTile extends StatelessWidget {
                             TextSpan(
                               children: [
                                 TextSpan(
-                                  text: event.player?.name ?? '---',
+                                  text: mixOrOriginalWords(event.player?.name) ?? '---',
                                   style: context.textStyles.matchEventsSectionText.copyWith(
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -186,7 +187,7 @@ class MatchEventsListTile extends StatelessWidget {
                           const SizedBox(width: 8),
                           Flexible(
                             child: Text(
-                              event.assist!.name!,
+                              mixOrOriginalWords(event.assist!.name) ?? '---',
                               style: context.textStyles.matchEventsSectionText,
                             ),
                           ),
@@ -214,7 +215,7 @@ class MatchEventsListTile extends StatelessWidget {
                             TextSpan(
                               children: [
                                 TextSpan(
-                                  text: event.player?.name ?? '---',
+                                  text: mixOrOriginalWords(event.player?.name) ?? '---',
                                   style: context.textStyles.matchEventsSectionText.copyWith(
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -262,7 +263,7 @@ class MatchEventsListTile extends StatelessWidget {
                     const SizedBox(width: 8),
                     Flexible(
                       child: Text(
-                        event.player?.name ?? '---',
+                        mixOrOriginalWords(event.player?.name) ?? '---',
                         style: context.textStyles.matchEventsSectionText.copyWith(
                           fontWeight: FontWeight.w500,
                         ),
@@ -320,7 +321,7 @@ class MatchEventsListTile extends StatelessWidget {
                     const SizedBox(width: 8),
                     Flexible(
                       child: Text(
-                        event.assist?.name ?? '---',
+                        mixOrOriginalWords(event.assist?.name) ?? '---',
                         style: context.textStyles.matchEventsSectionText,
                       ),
                     ),
@@ -346,7 +347,7 @@ class MatchEventsListTile extends StatelessWidget {
                     const SizedBox(width: 8),
                     Flexible(
                       child: Text(
-                        event.player?.name ?? '---',
+                        mixOrOriginalWords(event.player?.name) ?? '---',
                         style: context.textStyles.matchEventsSectionText.copyWith(
                           fontWeight: FontWeight.w500,
                         ),

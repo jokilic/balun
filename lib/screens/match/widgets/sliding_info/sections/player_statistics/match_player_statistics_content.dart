@@ -6,6 +6,7 @@ import '../../../../../../models/fixtures/player_statistic/player_statistic.dart
 import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import 'match_player_statistic.dart';
@@ -60,7 +61,7 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
                     const SizedBox(width: 16),
                     Expanded(
                       child: Text(
-                        widget.playerStatistic!.team!.name ?? '---',
+                        mixOrOriginalWords(widget.playerStatistic!.team!.name ?? '---') ?? '---',
                         style: context.textStyles.matchLineupsSectionTitle,
                       ),
                     ),

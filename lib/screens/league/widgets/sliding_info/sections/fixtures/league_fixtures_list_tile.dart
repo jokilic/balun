@@ -5,6 +5,7 @@ import '../../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -78,7 +79,7 @@ class LeagueFixturesListTile extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        fixture.teams?.home?.name ?? '---',
+                        mixOrOriginalWords(fixture.teams?.home?.name ?? '---') ?? '---',
                         style: context.textStyles.matchH2HTitle,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -123,7 +124,7 @@ class LeagueFixturesListTile extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        fixture.teams?.away?.name ?? '---',
+                        mixOrOriginalWords(fixture.teams?.away?.name ?? '---') ?? '---',
                         style: context.textStyles.matchH2HTitle,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

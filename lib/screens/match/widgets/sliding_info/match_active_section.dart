@@ -37,14 +37,6 @@ class MatchActiveSection extends StatelessWidget {
             league: match.league,
           ),
         MatchSection(
-          matchSectionEnum: MatchSectionEnum.standings,
-        ) =>
-          MatchStandingsSection(
-            matchId: match.fixture?.id,
-            leagueId: match.league?.id,
-            season: match.league?.season,
-          ),
-        MatchSection(
           matchSectionEnum: MatchSectionEnum.events,
         ) =>
           MatchEventsSection(
@@ -85,14 +77,6 @@ class MatchActiveSection extends StatelessWidget {
             season: season,
           ),
         MatchSection(
-          matchSectionEnum: MatchSectionEnum.headToHead,
-        ) =>
-          MatchHead2HeadSection(
-            matchId: match.fixture?.id,
-            homeTeamId: match.teams?.home?.id,
-            awayTeamId: match.teams?.away?.id,
-          ),
-        MatchSection(
           matchSectionEnum: MatchSectionEnum.statistics,
         ) =>
           MatchStatisticsSection(
@@ -122,6 +106,22 @@ class MatchActiveSection extends StatelessWidget {
                 )
                 .firstOrNull,
             season: match.league?.season ?? DateTime.now().year.toString(),
+          ),
+        MatchSection(
+          matchSectionEnum: MatchSectionEnum.standings,
+        ) =>
+          MatchStandingsSection(
+            matchId: match.fixture?.id,
+            leagueId: match.league?.id,
+            season: match.league?.season,
+          ),
+        MatchSection(
+          matchSectionEnum: MatchSectionEnum.headToHead,
+        ) =>
+          MatchHead2HeadSection(
+            matchId: match.fixture?.id,
+            homeTeamId: match.teams?.home?.id,
+            awayTeamId: match.teams?.away?.id,
           ),
       };
 }

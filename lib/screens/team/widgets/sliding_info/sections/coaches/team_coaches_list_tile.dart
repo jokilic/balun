@@ -5,6 +5,7 @@ import '../../../../../../constants.dart';
 import '../../../../../../models/coaches/coach_response.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import 'team_coach_career_list_tile.dart';
@@ -56,7 +57,7 @@ class _TeamCoachesListTileState extends State<TeamCoachesListTile> {
                         children: [
                           if (widget.coach.name != null)
                             Text(
-                              widget.coach.name!,
+                              mixOrOriginalWords(widget.coach.name) ?? '---',
                               style: context.textStyles.leagueTeamsTitle,
                             ),
                           if (widget.coach.age != null)

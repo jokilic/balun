@@ -5,6 +5,7 @@ import '../../../../../../models/coaches/coach_response.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/word_mix.dart';
 
 class CoachInfoSection extends StatelessWidget {
   final CoachResponse? coach;
@@ -46,7 +47,7 @@ class CoachInfoSection extends StatelessWidget {
                           style: context.textStyles.matchInfoSectionTitle,
                         ),
                         Text(
-                          coach!.name!,
+                          mixOrOriginalWords(coach!.name) ?? '---',
                           style: context.textStyles.matchInfoSectionText,
                         ),
                       ],
@@ -102,14 +103,17 @@ class CoachInfoSection extends StatelessWidget {
                         ),
                         if (coach?.birth?.place != null)
                           Text(
-                            coach!.birth!.place!,
+                            mixOrOriginalWords(coach!.birth!.place) ?? '---',
                             style: context.textStyles.matchInfoSectionText,
                           ),
                         if (coach?.birth?.country != null)
                           Text(
-                            getCountryName(
-                              country: coach!.birth!.country!,
-                            ),
+                            mixOrOriginalWords(
+                                  getCountryName(
+                                    country: coach!.birth!.country!,
+                                  ),
+                                ) ??
+                                '---',
                             style: context.textStyles.matchInfoSectionText,
                           ),
                       ],

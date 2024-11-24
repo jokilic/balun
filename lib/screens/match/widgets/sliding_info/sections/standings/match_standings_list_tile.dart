@@ -5,6 +5,7 @@ import '../../../../../../constants.dart';
 import '../../../../../../models/standings/standing/team_standing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -49,7 +50,7 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      widget.standing.team?.name ?? '--',
+                      mixOrOriginalWords(widget.standing.team?.name ?? '--') ?? '--',
                       style: context.textStyles.matchStandingsSectionText,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

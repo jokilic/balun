@@ -1,13 +1,18 @@
 import 'dart:math';
 
-String? mixWords(String? input) {
+import '../services/remote_settings_service.dart';
+import 'dependencies.dart';
+
+String? mixOrOriginalWords(String? input) {
   if (input == null) {
     return null;
   }
 
-  /// Split input into `words` and mix each one
-  return input.split(' ').map((word) => mixWord(word, random: Random())).join(' ');
+  return getIt.get<RemoteSettingsService>().value.mixNames ? mixWords(input) : input;
 }
+
+/// Takes an `input` and returns each `word` with mixed letters
+String? mixWords(String? input) => input?.split(' ').map((word) => mixWord(word, random: Random())).join(' ');
 
 /// Handle cases based on `word` length
 String mixWord(

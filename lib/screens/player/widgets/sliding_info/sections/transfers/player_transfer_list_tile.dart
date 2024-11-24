@@ -6,6 +6,7 @@ import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -58,7 +59,7 @@ class PlayerTransferListTile extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        transfer.teams?.teamOut?.name ?? '---',
+                        mixOrOriginalWords(transfer.teams?.teamOut?.name) ?? '---',
                         style: context.textStyles.teamTransferTeam,
                         textAlign: TextAlign.center,
                         maxLines: 1,
@@ -144,7 +145,7 @@ class PlayerTransferListTile extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        transfer.teams?.teamIn?.name ?? '---',
+                        mixOrOriginalWords(transfer.teams?.teamIn?.name) ?? '---',
                         style: context.textStyles.teamTransferTeam,
                         textAlign: TextAlign.center,
                         maxLines: 1,

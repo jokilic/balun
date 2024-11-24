@@ -10,6 +10,7 @@ import '../../../../../../util/color.dart';
 import '../../../../../../util/lineups.dart';
 import '../../../../../../util/player_statistics.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -149,7 +150,7 @@ class MatchLineupsPlayer extends StatelessWidget {
                 Positioned(
                   bottom: -16,
                   child: Text(
-                    getLastWord(player!.player!.name!),
+                    mixOrOriginalWords(getLastWord(player!.player!.name!)) ?? '---',
                     style: context.textStyles.matchLineupsSectionPlayer,
                     textAlign: TextAlign.center,
                   ),

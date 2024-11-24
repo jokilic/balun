@@ -6,6 +6,7 @@ import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -44,13 +45,13 @@ class LeagueTeamsListTile extends StatelessWidget {
                   children: [
                     if (team.team?.name != null)
                       Text(
-                        team.team!.name!,
+                        mixOrOriginalWords(team.team!.name) ?? '---',
                         style: context.textStyles.leagueTeamsTitle,
                       ),
                     if (team.team?.country != null)
                       Text(
                         getCountryName(
-                          country: team.team!.country!,
+                          country: mixOrOriginalWords(team.team!.country) ?? '---',
                         ),
                         style: context.textStyles.leagueTeamsCountry,
                       ),

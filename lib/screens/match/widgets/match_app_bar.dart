@@ -4,6 +4,7 @@ import '../../../constants.dart';
 import '../../../models/fixtures/league/league.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/word_mix.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
@@ -53,7 +54,7 @@ class MatchAppBar extends StatelessWidget {
               children: [
                 if (league.name != null)
                   Text(
-                    league.name!,
+                    mixOrOriginalWords(league.name) ?? '---',
                     style: context.textStyles.matchLeagueName,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,

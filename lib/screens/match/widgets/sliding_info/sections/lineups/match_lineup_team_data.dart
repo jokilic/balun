@@ -7,6 +7,7 @@ import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
 import '../../../../../../util/lineups.dart';
 import '../../../../../../util/player_statistics.dart';
+import '../../../../../../util/word_mix.dart';
 
 class MatchLineupTeamData extends StatelessWidget {
   final bool matchLive;
@@ -74,7 +75,7 @@ class MatchLineupTeamData extends StatelessWidget {
             ///
             Expanded(
               child: Text(
-                lineup?.team?.name ?? '---',
+                mixOrOriginalWords(lineup?.team?.name) ?? '---',
                 style: context.textStyles.matchLineupsSectionTitle,
               ),
             ),

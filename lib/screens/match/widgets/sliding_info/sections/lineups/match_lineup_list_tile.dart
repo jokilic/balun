@@ -8,6 +8,7 @@ import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -85,7 +86,7 @@ class MatchLineupListTile extends StatelessWidget {
             ///
             Flexible(
               child: Text(
-                getLastWord(player?.name ?? '---'),
+                mixOrOriginalWords(getLastWord(player?.name ?? '---')) ?? '---',
                 style: context.textStyles.matchStandingsSectionText,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,

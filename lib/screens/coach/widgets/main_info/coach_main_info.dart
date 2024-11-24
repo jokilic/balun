@@ -6,6 +6,7 @@ import '../../../../routing.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/string.dart';
+import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
 import '../../../../widgets/balun_image.dart';
 import '../coach_app_bar.dart';
@@ -53,7 +54,7 @@ class CoachMainInfo extends WatchingWidget {
             /// NAME
             ///
             Text(
-              '${coach.firstName ?? '--'} ${coach.lastName ?? '--'}',
+              '${mixOrOriginalWords(coach.firstName) ?? '--'} ${mixOrOriginalWords(coach.lastName) ?? '--'}',
               style: context.textStyles.leagueName,
               textAlign: TextAlign.center,
             ),
@@ -63,9 +64,12 @@ class CoachMainInfo extends WatchingWidget {
             ///
             Text(
               coach.nationality != null
-                  ? getCountryName(
-                      country: coach.nationality!,
-                    )
+                  ? mixOrOriginalWords(
+                        getCountryName(
+                          country: coach.nationality!,
+                        ),
+                      ) ??
+                      '---'
                   : '---',
               style: context.textStyles.leagueCountry,
               textAlign: TextAlign.center,
@@ -97,7 +101,7 @@ class CoachMainInfo extends WatchingWidget {
                       const SizedBox(width: 8),
                       Flexible(
                         child: Text(
-                          coach.team?.name ?? '---',
+                          mixOrOriginalWords(coach.team?.name) ?? '---',
                           style: context.textStyles.leagueCountry,
                           textAlign: TextAlign.center,
                         ),

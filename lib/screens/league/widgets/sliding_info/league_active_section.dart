@@ -65,7 +65,10 @@ class LeagueActiveSection extends StatelessWidget {
             leagueId: league.league?.id,
             season: activeSeason,
           ),
-        LeagueSection(leagueSectionEnum: LeagueSectionEnum.topRedCards) => LeagueTopRedCardsSection(
+        LeagueSection(
+          leagueSectionEnum: LeagueSectionEnum.topRedCards,
+        ) =>
+          LeagueTopRedCardsSection(
             leagueId: league.league?.id,
             season: activeSeason,
           ),

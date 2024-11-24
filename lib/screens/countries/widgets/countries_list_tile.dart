@@ -6,6 +6,7 @@ import '../../../../../../widgets/balun_image.dart';
 import '../../../models/countries/country_response.dart';
 import '../../../theme/icons.dart';
 import '../../../util/string.dart';
+import '../../../util/word_mix.dart';
 
 class CountriesListTile extends StatelessWidget {
   final CountryResponse country;
@@ -51,9 +52,12 @@ class CountriesListTile extends StatelessWidget {
               Flexible(
                 child: Text(
                   country.name != null
-                      ? getCountryName(
-                          country: country.name!,
-                        )
+                      ? mixOrOriginalWords(
+                            getCountryName(
+                              country: country.name!,
+                            ),
+                          ) ??
+                          '---'
                       : '---',
                   style: context.textStyles.fixturesCountry,
                 ),

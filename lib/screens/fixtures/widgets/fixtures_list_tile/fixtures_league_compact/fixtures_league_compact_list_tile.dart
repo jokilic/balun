@@ -8,6 +8,7 @@ import '../../../../../routing.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
 import '../../../../../util/string.dart';
+import '../../../../../util/word_mix.dart';
 import '../../../../../widgets/balun_button.dart';
 import '../../../../../widgets/balun_image.dart';
 import '../fixtures/fixtures_compact_list_tile.dart';
@@ -69,7 +70,7 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
                         const SizedBox(width: 12),
                         Flexible(
                           child: Text(
-                            widget.league?.name ?? '---',
+                            mixOrOriginalWords(widget.league?.name) ?? '---',
                             style: context.textStyles.fixturesLeague,
                             textAlign: TextAlign.center,
                             maxLines: 1,

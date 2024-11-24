@@ -6,6 +6,7 @@ import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -53,7 +54,7 @@ class CoachCareerListTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        career.team?.name ?? '--',
+                        mixOrOriginalWords(career.team?.name) ?? '--',
                         style: context.textStyles.teamCoachCareerTeam,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

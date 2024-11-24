@@ -5,6 +5,7 @@ import '../../../../../../models/players/player_response.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -49,7 +50,7 @@ class LeagueTopYellowCardsListTile extends StatelessWidget {
                 children: [
                   if (yellowCard?.player?.name != null)
                     Text(
-                      yellowCard!.player!.name!,
+                      mixOrOriginalWords(yellowCard!.player!.name) ?? '---',
                       style: context.textStyles.leagueTeamsTitle,
                     ),
                   Text(

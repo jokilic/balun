@@ -5,6 +5,7 @@ import '../../../../../constants.dart';
 import '../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
+import '../../../../../util/word_mix.dart';
 import '../../../../../widgets/balun_button.dart';
 import '../../../../../widgets/balun_image.dart';
 
@@ -44,7 +45,7 @@ class FixturesCompactListTile extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        fixture.teams?.home?.name ?? '---',
+                        mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
                         style: context.textStyles.fixturesNameCompact,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -109,7 +110,7 @@ class FixturesCompactListTile extends StatelessWidget {
                     const SizedBox(width: 6),
                     Flexible(
                       child: Text(
-                        fixture.teams?.away?.name ?? '---',
+                        mixOrOriginalWords(fixture.teams?.away?.name) ?? '---',
                         style: context.textStyles.fixturesNameCompact,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

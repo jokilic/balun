@@ -4,6 +4,7 @@ import '../../../models/players/player/player.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../util/string.dart';
+import '../../../util/word_mix.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
@@ -49,16 +50,19 @@ class PlayerAppBar extends StatelessWidget {
               children: [
                 if (player?.name != null)
                   Text(
-                    player!.name!,
+                    mixOrOriginalWords(player!.name) ?? '---',
                     style: context.textStyles.matchLeagueName,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                 if (player?.nationality != null)
                   Text(
-                    getCountryName(
-                      country: player!.nationality!,
-                    ),
+                    mixOrOriginalWords(
+                          getCountryName(
+                            country: player!.nationality!,
+                          ),
+                        ) ??
+                        '---',
                     style: context.textStyles.matchLeagueRound,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

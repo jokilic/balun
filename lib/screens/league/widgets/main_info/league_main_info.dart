@@ -8,6 +8,7 @@ import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
 import '../../../../util/string.dart';
+import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
 import '../../../../widgets/balun_image.dart';
 import '../../controllers/league_season_controller.dart';
@@ -69,7 +70,7 @@ class LeagueMainInfo extends WatchingWidget {
           /// NAME
           ///
           Text(
-            league.league?.name ?? '---',
+            mixOrOriginalWords(league.league?.name ?? '---') ?? '---',
             style: context.textStyles.leagueName,
             textAlign: TextAlign.center,
           ),
@@ -79,9 +80,12 @@ class LeagueMainInfo extends WatchingWidget {
           ///
           Text(
             league.country?.name != null
-                ? getCountryName(
-                    country: league.country!.name!,
-                  )
+                ? mixOrOriginalWords(
+                      getCountryName(
+                        country: league.country!.name!,
+                      ),
+                    ) ??
+                    '---'
                 : '---',
             style: context.textStyles.leagueCountry,
             textAlign: TextAlign.center,

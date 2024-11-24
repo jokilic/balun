@@ -6,6 +6,7 @@ import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_image.dart';
 
 class PlayerInfoSection extends StatelessWidget {
@@ -42,7 +43,7 @@ class PlayerInfoSection extends StatelessWidget {
                 const SizedBox(width: 16),
                 Expanded(
                   child: Text(
-                    '${player?.firstName} ${'playerInfoInjured'.tr()}.',
+                    '${mixOrOriginalWords(player?.firstName)} ${'playerInfoInjured'.tr()}.',
                     style: context.textStyles.matchInfoSectionText,
                   ),
                 ),
@@ -71,7 +72,7 @@ class PlayerInfoSection extends StatelessWidget {
                           style: context.textStyles.matchInfoSectionTitle,
                         ),
                         Text(
-                          player!.name!,
+                          mixOrOriginalWords(player!.name) ?? '---',
                           style: context.textStyles.matchInfoSectionText,
                         ),
                       ],
@@ -127,14 +128,17 @@ class PlayerInfoSection extends StatelessWidget {
                         ),
                         if (player?.birth?.place != null)
                           Text(
-                            player!.birth!.place!,
+                            mixOrOriginalWords(player!.birth!.place) ?? '---',
                             style: context.textStyles.matchInfoSectionText,
                           ),
                         if (player?.birth?.country != null)
                           Text(
-                            getCountryName(
-                              country: player!.birth!.country!,
-                            ),
+                            mixOrOriginalWords(
+                                  getCountryName(
+                                    country: player!.birth!.country!,
+                                  ),
+                                ) ??
+                                '---',
                             style: context.textStyles.matchInfoSectionText,
                           ),
                       ],

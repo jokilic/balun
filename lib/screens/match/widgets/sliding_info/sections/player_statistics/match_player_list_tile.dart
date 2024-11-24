@@ -6,6 +6,7 @@ import '../../../../../../models/fixtures/player_statistic/player_statistic_data
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/player_statistics.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import 'match_player_list_tile_value.dart';
@@ -69,7 +70,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     ///
                     Expanded(
                       child: Text(
-                        widget.statisticData?.player?.name ?? '--',
+                        mixOrOriginalWords(widget.statisticData?.player?.name ?? '--') ?? '--',
                         style: context.textStyles.matchPlayerStatisticsName.copyWith(
                           color: (substitute ?? false) && rating == null ? context.colors.black.withOpacity(0.4) : null,
                         ),

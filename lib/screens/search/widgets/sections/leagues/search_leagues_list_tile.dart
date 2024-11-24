@@ -6,6 +6,7 @@ import '../../../../../../widgets/balun_image.dart';
 import '../../../../../models/search/search_leagues/search_league_response.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../util/string.dart';
+import '../../../../../util/word_mix.dart';
 
 class SearchLeaguesListTile extends StatelessWidget {
   final SearchLeagueResponse league;
@@ -52,7 +53,7 @@ class SearchLeaguesListTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      league.league?.name ?? '---',
+                      mixOrOriginalWords(league.league?.name) ?? '---',
                       style: context.textStyles.fixturesLeague,
                     ),
                     if (league.league?.type != null)

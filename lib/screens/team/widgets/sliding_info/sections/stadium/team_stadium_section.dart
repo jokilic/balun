@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../models/teams/venue/venue.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_image.dart';
 
 class TeamStadiumSection extends StatelessWidget {
@@ -40,7 +41,7 @@ class TeamStadiumSection extends StatelessWidget {
                             style: context.textStyles.matchInfoSectionTitle,
                           ),
                           Text(
-                            stadium!.name!,
+                            mixOrOriginalWords(stadium!.name) ?? '---',
                             style: context.textStyles.matchInfoSectionText,
                           ),
                         ],
@@ -95,7 +96,7 @@ class TeamStadiumSection extends StatelessWidget {
                             style: context.textStyles.matchInfoSectionTitle,
                           ),
                           Text(
-                            stadium!.address!,
+                            mixOrOriginalWords(stadium!.address) ?? '---',
                             style: context.textStyles.matchInfoSectionText,
                           ),
                         ],
@@ -118,7 +119,7 @@ class TeamStadiumSection extends StatelessWidget {
                             textAlign: TextAlign.right,
                           ),
                           Text(
-                            stadium!.city!,
+                            mixOrOriginalWords(stadium!.city) ?? '---',
                             style: context.textStyles.matchInfoSectionText,
                             textAlign: TextAlign.right,
                           ),

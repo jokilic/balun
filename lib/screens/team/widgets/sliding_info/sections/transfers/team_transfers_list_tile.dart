@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../constants.dart';
 import '../../../../../../models/transfers/transfer_response.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import 'team_transfer_list_tile.dart';
 
@@ -41,7 +42,7 @@ class _TeamTransfersListTileState extends State<TeamTransfersListTile> {
                   children: [
                     Expanded(
                       child: Text(
-                        widget.transfer.player?.name ?? '---',
+                        mixOrOriginalWords(widget.transfer.player?.name) ?? '---',
                         style: context.textStyles.leagueTeamsTitle,
                         textAlign: TextAlign.center,
                       ),

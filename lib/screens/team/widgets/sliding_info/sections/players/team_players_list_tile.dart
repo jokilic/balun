@@ -6,6 +6,7 @@ import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/players.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -53,7 +54,7 @@ class TeamPlayersListTile extends StatelessWidget {
                     ///
                     if (player.name != null)
                       Text(
-                        player.name!,
+                        mixOrOriginalWords(player.name) ?? '---',
                         style: context.textStyles.leagueTeamsTitle,
                       ),
 

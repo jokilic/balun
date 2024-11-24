@@ -6,6 +6,7 @@ import '../../../../../../models/fixtures/player_statistic/player_statistic.dart
 import '../../../../../../routing.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/lineups.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import 'match_lineup_team_data.dart';
 import 'match_lineups_list.dart';
@@ -90,7 +91,7 @@ class MatchLineupContent extends StatelessWidget {
                     color: Colors.transparent,
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
-                      homeLineup?.coach?.name ?? '---',
+                      mixOrOriginalWords(homeLineup?.coach?.name ?? '---') ?? '---',
                       style: context.textStyles.matchStandingsSectionTextCompact,
                     ),
                   ),
@@ -108,7 +109,7 @@ class MatchLineupContent extends StatelessWidget {
                     color: Colors.transparent,
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
-                      awayLineup?.coach?.name ?? '---',
+                      mixOrOriginalWords(awayLineup?.coach?.name ?? '---') ?? '---',
                       style: context.textStyles.matchStandingsSectionTextCompact,
                       textAlign: TextAlign.right,
                     ),

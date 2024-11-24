@@ -6,6 +6,7 @@ import '../../../../../../widgets/balun_image.dart';
 import '../../../models/leagues/league_response.dart';
 import '../../../theme/icons.dart';
 import '../../../util/string.dart';
+import '../../../util/word_mix.dart';
 
 class LeaguesListTile extends StatelessWidget {
   final LeagueResponse league;
@@ -53,7 +54,7 @@ class LeaguesListTile extends StatelessWidget {
                   children: [
                     if (league.league?.name != null)
                       Text(
-                        league.league!.name!,
+                        mixOrOriginalWords(league.league!.name) ?? '---',
                         style: context.textStyles.fixturesLeague,
                       ),
                     if (league.league?.type != null)

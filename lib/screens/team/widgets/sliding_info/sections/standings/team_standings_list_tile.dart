@@ -5,6 +5,7 @@ import '../../../../../../models/standings/standing_response.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import '../../../../../../widgets/balun_seperator.dart';
@@ -54,7 +55,7 @@ class _TeamStandingsListTileState extends State<TeamStandingsListTile> {
                         children: [
                           if (widget.standing.league?.name != null)
                             Text(
-                              widget.standing.league!.name!,
+                              mixOrOriginalWords(widget.standing.league!.name) ?? '---',
                               style: context.textStyles.leagueTeamsTitle,
                             ),
                           if (widget.standing.league?.country != null)

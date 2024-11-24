@@ -6,6 +6,7 @@ import '../../../../../../models/players/statistic/statistic.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import 'player_statistics_list_tile_value.dart';
@@ -64,11 +65,11 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              widget.statistic?.team?.name ?? '--',
+                              mixOrOriginalWords(widget.statistic?.team?.name) ?? '--',
                               style: context.textStyles.matchPlayerStatisticsName,
                             ),
                             Text(
-                              widget.statistic?.league?.name ?? '--',
+                              mixOrOriginalWords(widget.statistic?.league?.name) ?? '--',
                               style: context.textStyles.matchPlayerStatisticsText,
                             ),
                           ],

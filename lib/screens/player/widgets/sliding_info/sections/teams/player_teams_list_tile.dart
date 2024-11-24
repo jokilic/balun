@@ -5,6 +5,7 @@ import '../../../../../../models/player_teams/player_team_response.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -55,7 +56,7 @@ class _PlayerTeamsListTileState extends State<PlayerTeamsListTile> {
                     ///
                     Expanded(
                       child: Text(
-                        widget.team?.team?.name ?? '--',
+                        mixOrOriginalWords(widget.team?.team?.name) ?? '--',
                         style: context.textStyles.matchPlayerStatisticsName,
                       ),
                     ),

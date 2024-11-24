@@ -6,6 +6,7 @@ import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
 import '../../../../../util/date_time.dart';
 import '../../../../../util/string.dart';
+import '../../../../../util/word_mix.dart';
 import '../../../../../widgets/balun_button.dart';
 import 'fixtures_list_tile_logo.dart';
 import 'fixtures_list_tile_minute.dart';
@@ -92,7 +93,7 @@ class FixturesListTile extends StatelessWidget {
                   ///
                   Expanded(
                     child: Text(
-                      fixture.teams?.home?.name ?? '---',
+                      mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
                       style: context.textStyles.fixturesName,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -126,7 +127,7 @@ class FixturesListTile extends StatelessWidget {
                   ///
                   Expanded(
                     child: Text(
-                      fixture.teams?.away?.name ?? '---',
+                      mixOrOriginalWords(fixture.teams?.away?.name) ?? '---',
                       style: context.textStyles.fixturesName,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,

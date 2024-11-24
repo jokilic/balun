@@ -5,6 +5,7 @@ import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import '../../../../../models/search/search_coaches/search_coach_response.dart';
 import '../../../../../theme/icons.dart';
+import '../../../../../util/word_mix.dart';
 
 class SearchCoachesListTile extends StatelessWidget {
   final SearchCoachResponse coach;
@@ -40,12 +41,12 @@ class SearchCoachesListTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      coach.name ?? '---',
+                      mixOrOriginalWords(coach.name) ?? '---',
                       style: context.textStyles.fixturesLeague,
                     ),
                     if (coach.nationality != null)
                       Text(
-                        coach.nationality!,
+                        mixOrOriginalWords(coach.nationality) ?? '---',
                         style: context.textStyles.leaguesSubtitle,
                       ),
                   ],

@@ -6,6 +6,7 @@ import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -53,14 +54,17 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                         children: [
                           if (widget.league.league?.name != null)
                             Text(
-                              widget.league.league!.name!,
+                              mixOrOriginalWords(widget.league.league!.name) ?? '---',
                               style: context.textStyles.leagueTeamsTitle,
                             ),
                           if (widget.league.country?.name != null)
                             Text(
-                              getCountryName(
-                                country: widget.league.country!.name!,
-                              ),
+                              mixOrOriginalWords(
+                                    getCountryName(
+                                      country: widget.league.country!.name!,
+                                    ),
+                                  ) ??
+                                  '---',
                               style: context.textStyles.leagueTeamsCountry,
                             ),
                         ],

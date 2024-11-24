@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../models/standings/standing_response.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 import 'league_standings_list_tile.dart';
 
@@ -29,7 +30,7 @@ class LeagueStandingsContent extends StatelessWidget {
             children: [
               if (standing.first.group != null)
                 Text(
-                  standing.first.group!,
+                  mixOrOriginalWords(standing.first.group) ?? '---',
                   style: context.textStyles.matchStandingsSectionSubtitle,
                   maxLines: 1,
                   textAlign: TextAlign.center,

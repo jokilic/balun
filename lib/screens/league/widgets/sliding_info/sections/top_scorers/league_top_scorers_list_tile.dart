@@ -5,6 +5,7 @@ import '../../../../../../models/players/player_response.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -49,7 +50,7 @@ class LeagueTopScorersListTile extends StatelessWidget {
                 children: [
                   if (scorer?.player?.name != null)
                     Text(
-                      scorer!.player!.name!,
+                      mixOrOriginalWords(scorer!.player!.name) ?? '---',
                       style: context.textStyles.leagueTeamsTitle,
                     ),
                   Text(

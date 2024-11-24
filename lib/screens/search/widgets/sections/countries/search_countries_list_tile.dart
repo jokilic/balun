@@ -5,6 +5,7 @@ import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 import '../../../../../models/search/search_countries/search_countries_inner_response.dart';
 import '../../../../../theme/icons.dart';
+import '../../../../../util/word_mix.dart';
 
 class SearchCountriesListTile extends StatelessWidget {
   final SearchCountriesInnerResponse country;
@@ -49,7 +50,7 @@ class SearchCountriesListTile extends StatelessWidget {
               const SizedBox(width: 16),
               Flexible(
                 child: Text(
-                  country.name ?? '---',
+                  mixOrOriginalWords(country.name ?? '---') ?? '---',
                   style: context.textStyles.fixturesCountry,
                 ),
               ),

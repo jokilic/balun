@@ -9,6 +9,7 @@ import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image.dart';
 
@@ -154,14 +155,14 @@ class MatchInfoSection extends StatelessWidget {
                           ),
                           if (league?.name != null) ...[
                             Text(
-                              league!.name!,
+                              mixOrOriginalWords(league!.name) ?? '---',
                               style: context.textStyles.matchInfoSectionText,
                             ),
                             const SizedBox(height: 2),
                           ],
                           if (league?.country != null)
                             Text(
-                              league!.country!,
+                              mixOrOriginalWords(league!.country) ?? '---',
                               style: context.textStyles.matchInfoSectionBottomText,
                             ),
                         ],
@@ -247,7 +248,7 @@ class MatchInfoSection extends StatelessWidget {
                         style: context.textStyles.matchInfoSectionTitle,
                       ),
                       Text(
-                        referee!,
+                        mixOrOriginalWords(referee) ?? '---',
                         style: context.textStyles.matchInfoSectionText,
                       ),
                     ],
@@ -280,14 +281,14 @@ class MatchInfoSection extends StatelessWidget {
                       ),
                       if (venue?.name != null) ...[
                         Text(
-                          venue!.name!,
+                          mixOrOriginalWords(venue!.name) ?? '---',
                           style: context.textStyles.matchInfoSectionText,
                         ),
                         const SizedBox(height: 2),
                       ],
                       if (venue?.city != null)
                         Text(
-                          venue!.city!,
+                          mixOrOriginalWords(venue!.city) ?? '---',
                           style: context.textStyles.matchInfoSectionBottomText,
                         ),
                     ],

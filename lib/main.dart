@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:watch_it/watch_it.dart';
 
@@ -36,24 +35,13 @@ Future<void> main() async {
   /// Wait for initialization to finish
   await getIt.allReady();
 
-  /// Get app version
-  final packageInfo = await PackageInfo.fromPlatform();
-
   /// Run [Balun]
   runApp(
-    BalunApp(
-      appVersion: packageInfo.version,
-    ),
+    BalunApp(),
   );
 }
 
 class BalunApp extends StatefulWidget {
-  final String appVersion;
-
-  const BalunApp({
-    required this.appVersion,
-  });
-
   @override
   State<BalunApp> createState() => _BalunAppState();
 }
@@ -80,19 +68,11 @@ class _BalunAppState extends State<BalunApp> {
         ],
         fallbackLocale: const Locale('hr'),
         path: 'assets/translations',
-        child: BalunWidget(
-          appVersion: widget.appVersion,
-        ),
+        child: BalunWidget(),
       );
 }
 
 class BalunWidget extends WatchingWidget {
-  final String appVersion;
-
-  const BalunWidget({
-    required this.appVersion,
-  });
-
   @override
   Widget build(BuildContext context) => MaterialApp(
         localizationsDelegates: context.localizationDelegates,

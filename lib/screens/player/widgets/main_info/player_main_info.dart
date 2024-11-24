@@ -9,6 +9,7 @@ import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
 import '../../../../util/string.dart';
 import '../../../../util/team_seasons.dart';
+import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
 import '../../../../widgets/balun_image.dart';
 import '../../controllers/player_current_team_controller.dart';
@@ -71,7 +72,7 @@ class PlayerMainInfo extends WatchingWidget {
           /// NAME
           ///
           Text(
-            '${player.player?.firstName ?? '--'} ${player.player?.lastName ?? '--'}',
+            '${mixOrOriginalWords(player.player?.firstName) ?? '--'} ${mixOrOriginalWords(player.player?.lastName) ?? '--'}',
             style: context.textStyles.leagueName,
             textAlign: TextAlign.center,
           ),
@@ -81,9 +82,12 @@ class PlayerMainInfo extends WatchingWidget {
           ///
           Text(
             player.player?.nationality != null
-                ? getCountryName(
-                    country: player.player!.nationality!,
-                  )
+                ? mixOrOriginalWords(
+                      getCountryName(
+                        country: player.player!.nationality!,
+                      ),
+                    ) ??
+                    '---'
                 : '---',
             style: context.textStyles.leagueCountry,
             textAlign: TextAlign.center,
@@ -114,7 +118,7 @@ class PlayerMainInfo extends WatchingWidget {
                     const SizedBox(width: 8),
                     Flexible(
                       child: Text(
-                        currentTeam.name ?? '---',
+                        mixOrOriginalWords(currentTeam.name) ?? '---',
                         style: context.textStyles.fixturesLeague,
                         textAlign: TextAlign.center,
                       ),

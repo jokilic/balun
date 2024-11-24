@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
 import '../constants.dart';
@@ -44,6 +45,11 @@ class PeriodicAPIService implements Disposable {
   ///
 
   void init() {
+    // TODO: Remove this when finished with work
+    if (kDebugMode) {
+      return;
+    }
+
     fixturesTimer = Timer.periodic(
       BalunConstants.periodicAPICallDuration,
       (_) {

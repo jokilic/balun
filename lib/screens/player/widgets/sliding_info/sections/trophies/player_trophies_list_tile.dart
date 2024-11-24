@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../models/trophies/trophy_response.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/word_mix.dart';
 
 class PlayerTrophiesListTile extends StatelessWidget {
   final TrophyResponse trophy;
@@ -46,7 +47,7 @@ class PlayerTrophiesListTile extends StatelessWidget {
             ///
             if (trophy.league != null) ...[
               Text(
-                trophy.league!,
+                mixOrOriginalWords(trophy.league) ?? '---',
                 style: context.textStyles.teamTransferTeam,
                 textAlign: TextAlign.center,
               ),
@@ -58,9 +59,12 @@ class PlayerTrophiesListTile extends StatelessWidget {
             ///
             if (trophy.country != null) ...[
               Text(
-                getCountryName(
-                  country: trophy.country!,
-                ),
+                mixOrOriginalWords(
+                      getCountryName(
+                        country: trophy.country!,
+                      ),
+                    ) ??
+                    '---',
                 style: context.textStyles.leagueTeamsCountry,
                 textAlign: TextAlign.center,
               ),

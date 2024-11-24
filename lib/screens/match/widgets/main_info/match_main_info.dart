@@ -11,6 +11,7 @@ import '../../../../theme/theme.dart';
 import '../../../../util/date_time.dart';
 import '../../../../util/dependencies.dart';
 import '../../../../util/string.dart';
+import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
 import '../match_app_bar.dart';
 import 'match_logo.dart';
@@ -92,7 +93,7 @@ class MatchMainInfo extends WatchingWidget {
                         /// HOME NAME
                         ///
                         Text(
-                          match.teams?.home?.name ?? '---',
+                          mixOrOriginalWords(match.teams?.home?.name) ?? '---',
                           style: context.textStyles.fixturesName,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -167,7 +168,7 @@ class MatchMainInfo extends WatchingWidget {
                         /// AWAY NAME
                         ///
                         Text(
-                          match.teams?.away?.name ?? '---',
+                          mixOrOriginalWords(match.teams?.away?.name) ?? '---',
                           style: context.textStyles.fixturesName,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -205,7 +206,7 @@ class MatchMainInfo extends WatchingWidget {
                       )
                           .map(
                         (event) {
-                          final playerName = getLastWord(event.player?.name ?? '---');
+                          final playerName = mixOrOriginalWords(getLastWord(event.player?.name ?? '---')) ?? '---';
 
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 2),
@@ -288,7 +289,7 @@ class MatchMainInfo extends WatchingWidget {
                                 children: [
                                   Flexible(
                                     child: Text(
-                                      getLastWord(event.player?.name ?? '---'),
+                                      mixOrOriginalWords(getLastWord(event.player?.name ?? '---')) ?? '---',
                                       style: context.textStyles.matchGoal,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
