@@ -2,10 +2,13 @@ import 'models/leagues/league/league.dart';
 import 'util/env.dart';
 
 class BalunConstants {
-  static final baseUrl = Env.apiFootballBaseUrl;
+  static final apiFootballBaseUrl = Env.apiFootballBaseUrl;
 
   static final remoteSettingsBaseUrl = Env.remoteSettingsBaseUrl;
   static final remoteSettingsJsonUrl = Env.remoteSettingsJsonUrl;
+
+  static final apiYouTubeDataBaseUrl = Env.apiYouTubeDataBaseUrl;
+  static final apiYouTubeDataApiKey = Env.apiYouTubeDataApiKey;
 
   static const animationDuration = Duration(milliseconds: 125);
   static const longAnimationDuration = Duration(milliseconds: 250);

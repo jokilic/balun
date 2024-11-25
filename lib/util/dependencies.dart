@@ -86,10 +86,13 @@ void initializeServices({
         },
         dependsOn: [LoggerService, DioService],
       )
+
+      /// TODO: Register YouTube Search Service here
+
       ..registerSingletonAsync(
         () async => APIService(
           logger: getIt.get<LoggerService>(),
-          dio: getIt.get<DioService>().dio,
+          dio: getIt.get<DioService>().footballDio,
           internetConnection: InternetConnection(),
         ),
         dependsOn: [LoggerService, DioService],

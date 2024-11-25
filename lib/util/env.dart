@@ -15,4 +15,10 @@ abstract class Env {
 
   @EnviedField(varName: 'REMOTE_SETTINGS_JSON_URL', obfuscate: true)
   static final String remoteSettingsJsonUrl = _Env.remoteSettingsJsonUrl;
+
+  @EnviedField(varName: 'API_YOUTUBE_DATA_BASE_URL', obfuscate: true)
+  static final String apiYouTubeDataBaseUrl = _Env.apiYouTubeDataBaseUrl;
+
+  @EnviedField(varName: 'API_YOUTUBE_DATA_API_KEY', obfuscate: true)
+  static final String apiYouTubeDataApiKey = _Env.apiYouTubeDataApiKey;
 }

@@ -25,9 +25,9 @@ class DioService {
   /// VARIABLES
   ///
 
-  late final dio = Dio(
+  late final footballDio = Dio(
     BaseOptions(
-      baseUrl: BalunConstants.baseUrl,
+      baseUrl: BalunConstants.apiFootballBaseUrl,
       headers: {
         'x-apisports-key': Env.apiFootballApiKey,
         'Content-Type': 'application/json',
@@ -44,6 +44,20 @@ class DioService {
     BaseOptions(
       baseUrl: BalunConstants.remoteSettingsBaseUrl,
       validateStatus: (_) => true,
+    ),
+  )..interceptors.add(
+      DioLoggerInterceptor(
+        logger: logger,
+      ),
+    );
+
+  late final youTubeSearchDio = Dio(
+    BaseOptions(
+      baseUrl: BalunConstants.apiYouTubeDataBaseUrl,
+      validateStatus: (_) => true,
+      queryParameters: {
+        // TODO: Add here
+      },
     ),
   )..interceptors.add(
       DioLoggerInterceptor(
