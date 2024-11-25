@@ -1,4 +1,4 @@
 {
-    "mixLogos": true,
-    "mixNames": true
+    "mixLogos": false,
+    "mixNames": false
 }
