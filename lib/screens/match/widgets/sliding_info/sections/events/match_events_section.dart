@@ -58,8 +58,14 @@ class MatchEventsSection extends StatelessWidget {
         vertical: 8,
       ),
       child: Column(
-        children: (events?.isNotEmpty ?? false)
+        children: ((events?.isEmpty ?? true) && elapsed == null)
             ? [
+                BalunEmpty(
+                  message: 'matchEventsNo'.tr(),
+                  isSmall: true,
+                ),
+              ]
+            : [
                 ///
                 /// MATCH STARTED
                 ///
@@ -257,12 +263,6 @@ class MatchEventsSection extends StatelessWidget {
                   ),
 
                 const SizedBox(height: 24),
-              ]
-            : [
-                BalunEmpty(
-                  message: 'matchEventsNo'.tr(),
-                  isSmall: true,
-                ),
               ],
       ),
     );
