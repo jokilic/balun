@@ -30,19 +30,6 @@ class MatchHighlightsController extends ValueNotifier<BalunState<({List<YouTubeI
   /// METHODS
   ///
 
-  void playVideo({required YouTubeItem youTubeItem}) {
-    if (value is Success) {
-      youTubeController!.load(youTubeItem.id.videoId);
-
-      value = Success(
-        data: (
-          youTubeItems: youTubeItems,
-          activeYouTubeItem: youTubeItem,
-        ),
-      );
-    }
-  }
-
   Future<void> getHighlights({
     required String? homeTeamName,
     required String? awayTeamName,
@@ -100,6 +87,19 @@ class MatchHighlightsController extends ValueNotifier<BalunState<({List<YouTubeI
       /// Error is not null, update to error state
       value = Error(
         error: response.error,
+      );
+    }
+  }
+
+  void playVideo({required YouTubeItem youTubeItem}) {
+    if (value is Success) {
+      youTubeController!.load(youTubeItem.id.videoId);
+
+      value = Success(
+        data: (
+          youTubeItems: youTubeItems,
+          activeYouTubeItem: youTubeItem,
+        ),
       );
     }
   }

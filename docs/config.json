@@ -1,4 +1,5 @@
 {
-    "mixLogos": false,
-    "mixNames": false
+    "mixLogos": true,
+    "mixNames": true,
+    "hideHighlights": true
 }

@@ -34,4 +34,3 @@ Results can be opened and more info is shown.
 - [ ] Show Highlights only if match ended
 - [ ] Tweak line above scrolling sheet
 - [ ] Update MatchHighlightLoading
-- [ ] Hide Highlights via `config.json`

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
 import '../../../../models/sections/match_section.dart';
+import '../../../../services/remote_settings_service.dart';
 import '../../../../theme/theme.dart';
+import '../../../../util/dependencies.dart';
 import '../../../../widgets/balun_button.dart';
 
 class MatchSectionTitles extends StatelessWidget {
@@ -31,6 +33,14 @@ class MatchSectionTitles extends StatelessWidget {
               matchSectionEnum: MatchSectionEnum.values[index],
             );
 
+            if (getIt.get<RemoteSettingsService>().value.hideHighlights &&
+                section ==
+                    MatchSection(
+                      matchSectionEnum: MatchSectionEnum.highlights,
+                    )) {
+              return const SizedBox.shrink();
+            }
+
             return BalunButton(
               onPressed: () => titlePressed(section),
               child: AnimatedContainer(
@@ -53,7 +63,21 @@ class MatchSectionTitles extends StatelessWidget {
               ),
             );
           },
-          separatorBuilder: (_, __) => const SizedBox(width: 12),
+          separatorBuilder: (_, index) {
+            final section = MatchSection(
+              matchSectionEnum: MatchSectionEnum.values[index],
+            );
+
+            if (getIt.get<RemoteSettingsService>().value.hideHighlights &&
+                section ==
+                    MatchSection(
+                      matchSectionEnum: MatchSectionEnum.highlights,
+                    )) {
+              return const SizedBox.shrink();
+            }
+
+            return const SizedBox(width: 12);
+          },
         ),
       );
 }

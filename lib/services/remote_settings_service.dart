@@ -7,7 +7,7 @@ import '../models/remote_settings/remote_settings_response.dart';
 import '../util/isolates.dart';
 import 'logger_service.dart';
 
-class RemoteSettingsService extends ValueNotifier<({bool mixLogos, bool mixNames})> {
+class RemoteSettingsService extends ValueNotifier<({bool mixLogos, bool mixNames, bool hideHighlights})> {
   final LoggerService logger;
   final Dio dio;
   final InternetConnection internetConnection;
@@ -16,7 +16,7 @@ class RemoteSettingsService extends ValueNotifier<({bool mixLogos, bool mixNames
     required this.logger,
     required this.dio,
     required this.internetConnection,
-  }) : super((mixLogos: false, mixNames: false));
+  }) : super((mixLogos: false, mixNames: false, hideHighlights: false));
 
   ///
   /// INIT
@@ -27,9 +27,17 @@ class RemoteSettingsService extends ValueNotifier<({bool mixLogos, bool mixNames
 
     if (remoteSettings.remoteSettingsResponse != null && remoteSettings.error == null) {
       final settings = remoteSettings.remoteSettingsResponse!;
-      value = (mixLogos: settings.mixLogos, mixNames: settings.mixNames);
+      value = (
+        mixLogos: settings.mixLogos,
+        mixNames: settings.mixNames,
+        hideHighlights: settings.hideHighlights,
+      );
     } else {
-      value = (mixLogos: false, mixNames: false);
+      value = (
+        mixLogos: false,
+        mixNames: false,
+        hideHighlights: false,
+      );
     }
   }
 
