@@ -161,8 +161,9 @@ class MatchHighlightsContent extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: youTubeData.activeYouTubeItem == youTubeItem ? context.colors.greenish : Colors.transparent,
+                      color: youTubeData.activeYouTubeItem == youTubeItem ? context.colors.green : Colors.transparent,
                     ),
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 12,
@@ -184,14 +185,18 @@ class MatchHighlightsContent extends StatelessWidget {
                             children: [
                               Text(
                                 youTubeItem.snippet.title,
-                                style: context.textStyles.matchHighlightsVideoTitle,
+                                style: context.textStyles.matchHighlightsVideoTitle.copyWith(
+                                  color: youTubeData.activeYouTubeItem == youTubeItem ? context.colors.white : null,
+                                ),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(height: 4),
                               Text(
                                 youTubeItem.snippet.channelTitle,
-                                style: context.textStyles.matchHighlightsVideoDescription,
+                                style: context.textStyles.matchHighlightsVideoDescription.copyWith(
+                                  color: youTubeData.activeYouTubeItem == youTubeItem ? context.colors.white : null,
+                                ),
                               ),
                             ],
                           ),
