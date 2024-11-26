@@ -301,7 +301,7 @@ bool hasLiveFixturesCountry({
 }) =>
     leagues?.entries.any(
       (league) => league.value.any(
-        (fixture) => matchIsPlaying(
+        (fixture) => isMatchPlaying(
           statusShort: fixture.fixture?.status?.short ?? '--',
         ),
       ),
@@ -312,7 +312,7 @@ bool hasLiveFixturesLeague({
   required List<FixtureResponse>? fixtures,
 }) =>
     fixtures?.any(
-      (fixture) => matchIsPlaying(
+      (fixture) => isMatchPlaying(
         statusShort: fixture.fixture?.status?.short ?? '--',
       ),
     ) ??

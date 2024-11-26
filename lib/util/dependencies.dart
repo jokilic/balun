@@ -37,7 +37,7 @@ void registerIfNotInitialized<T extends Object>(
 }
 
 void initializeServices({
-  required bool enableContentMix,
+  required bool enableRemoteSettings,
   required bool enablePeriodicFetching,
 }) {
   final internetConnection = InternetConnection();
@@ -83,7 +83,7 @@ void initializeServices({
           dio: getIt.get<DioService>().remoteSettingsDio,
           internetConnection: internetConnection,
         );
-        if (enableContentMix) {
+        if (enableRemoteSettings) {
           await remoteSettings.init();
         }
         return remoteSettings;

@@ -136,7 +136,7 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
                           awayGoals: fixture.goals?.away,
                           context: context,
                         ),
-                        fixturePlaying: matchIsPlaying(
+                        fixturePlaying: isMatchPlaying(
                           statusShort: fixture.fixture?.status?.short ?? '--',
                         ),
                         fixturePressed: fixture.fixture?.id != null

@@ -61,7 +61,7 @@ class MatchActiveSection extends StatelessWidget {
           matchSectionEnum: MatchSectionEnum.lineups,
         ) =>
           MatchLineupsSection(
-            matchLive: matchIsPlaying(
+            matchLive: isMatchPlaying(
               statusShort: match.fixture?.status?.short ?? '--',
             ),
             homeLineup: match.lineups

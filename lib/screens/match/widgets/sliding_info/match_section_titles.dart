@@ -10,10 +10,12 @@ import '../../../../widgets/balun_button.dart';
 class MatchSectionTitles extends StatelessWidget {
   final MatchSection activeMatchSection;
   final Function(MatchSection pressedSection) titlePressed;
+  final bool matchFinished;
 
   const MatchSectionTitles({
     required this.activeMatchSection,
     required this.titlePressed,
+    required this.matchFinished,
   });
 
   @override
@@ -33,7 +35,8 @@ class MatchSectionTitles extends StatelessWidget {
               matchSectionEnum: MatchSectionEnum.values[index],
             );
 
-            if (getIt.get<RemoteSettingsService>().value.hideHighlights &&
+            /// Hide [Highlights] section if remote value `hideHighlights` is enabled or match is not finished
+            if ((getIt.get<RemoteSettingsService>().value.hideHighlights || !matchFinished) &&
                 section ==
                     MatchSection(
                       matchSectionEnum: MatchSectionEnum.highlights,
@@ -68,7 +71,8 @@ class MatchSectionTitles extends StatelessWidget {
               matchSectionEnum: MatchSectionEnum.values[index],
             );
 
-            if (getIt.get<RemoteSettingsService>().value.hideHighlights &&
+            /// Hide [Highlights] spacing if remote value `hideHighlights` is enabled or match is not finished
+            if ((getIt.get<RemoteSettingsService>().value.hideHighlights || !matchFinished) &&
                 section ==
                     MatchSection(
                       matchSectionEnum: MatchSectionEnum.highlights,

@@ -83,12 +83,14 @@ String getCompactFixtureText({
   return '${homeGoals ?? '--'} : ${awayGoals ?? '--'}';
 }
 
-bool matchIsPlaying({
+bool isMatchPlaying({
   required String statusShort,
 }) =>
     statusShort == '1H' || statusShort == 'HT' || statusShort == '2H' || statusShort == 'ET' || statusShort == 'BT' || statusShort == 'P';
 
 bool isMatchNotStarted({required String statusShort}) => statusShort == 'TBD' || statusShort == 'NS';
+
+bool isMatchFinished({required String statusShort}) => statusShort == 'FT' || statusShort == 'AET' || statusShort == 'PEN';
 
 String getMatchStatusLong(String statusShort) => switch (statusShort.toUpperCase()) {
       'TBD' => 'matchStatusTBD'.tr(),

@@ -6,6 +6,7 @@ import '../../../../constants.dart';
 import '../../../../models/fixtures/fixture_response.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
+import '../../../../util/string.dart';
 import '../../controllers/match_section_controller.dart';
 import 'match_active_section.dart';
 import 'match_section_titles.dart';
@@ -58,6 +59,9 @@ class MatchSlidingInfo extends WatchingWidget {
                 instanceName: '${match.fixture?.id}',
               )
               .updateState,
+          matchFinished: isMatchFinished(
+            statusShort: match.fixture?.status?.short ?? '--',
+          ),
         ),
 
         const SizedBox(height: 24),

@@ -31,6 +31,5 @@ Here you can find any football related data.\
 Search for countries, leagues, teams or coaches.\
 Results can be opened and more info is shown.
 
-- [ ] Show Highlights only if match ended
 - [ ] Tweak line above scrolling sheet
 - [ ] Update MatchHighlightLoading

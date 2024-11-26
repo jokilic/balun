@@ -57,7 +57,7 @@ class MatchHighlightsContent extends StatelessWidget {
                             ),
                             const SizedBox(width: 12),
                             Text(
-                              'Open in YouTube',
+                              'matchHighlightsOpenInYouTube'.tr(),
                               style: TextStyle(
                                 fontFamily: 'Lufga',
                                 fontSize: 16,
