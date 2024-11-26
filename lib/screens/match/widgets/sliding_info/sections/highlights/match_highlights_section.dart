@@ -35,6 +35,7 @@ class _MatchHighlightsSectionState extends State<MatchHighlightsSection> {
   @override
   void initState() {
     super.initState();
+
     getIt
         .get<MatchHighlightsController>(
           instanceName: '${widget.matchId}',
@@ -54,7 +55,7 @@ class _MatchHighlightsSectionState extends State<MatchHighlightsSection> {
     ).value;
 
     return Animate(
-      key: ValueKey(highlightsState),
+      key: highlightsState is Success ? null : ValueKey(highlightsState),
       effects: const [
         FadeEffect(
           curve: Curves.easeIn,
@@ -76,7 +77,8 @@ class _MatchHighlightsSectionState extends State<MatchHighlightsSection> {
             isSmall: true,
           ),
         Success() => MatchHighlightsContent(
-            data: (highlightsState as Success).data,
+            youTubeData: (highlightsState as Success).data,
+            matchId: widget.matchId,
           ),
       },
     );

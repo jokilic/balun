@@ -9,7 +9,7 @@ import '../../../services/logger_service.dart';
 import '../../../services/youtube_search_service.dart';
 import '../../../util/state.dart';
 
-class MatchHighlightsController extends ValueNotifier<BalunState<({YoutubePlayerController youtubeController, YouTubeItem youTubeItem})>> {
+class MatchHighlightsController extends ValueNotifier<BalunState<({List<YouTubeItem> youTubeItems, YouTubeItem activeYouTubeItem})>> {
   final LoggerService logger;
   final YouTubeSearchService youTubeSearch;
 
@@ -23,10 +23,25 @@ class MatchHighlightsController extends ValueNotifier<BalunState<({YoutubePlayer
   ///
 
   var fetched = false;
+  YoutubePlayerController? youTubeController;
+  var youTubeItems = <YouTubeItem>[];
 
   ///
   /// METHODS
   ///
+
+  void playVideo({required YouTubeItem youTubeItem}) {
+    if (value is Success) {
+      youTubeController!.load(youTubeItem.id.videoId);
+
+      value = Success(
+        data: (
+          youTubeItems: youTubeItems,
+          activeYouTubeItem: youTubeItem,
+        ),
+      );
+    }
+  }
 
   Future<void> getHighlights({
     required String? homeTeamName,
@@ -60,16 +75,16 @@ class MatchHighlightsController extends ValueNotifier<BalunState<({YoutubePlayer
       if (response.youTubeSearch!.items.isNotEmpty) {
         fetched = true;
 
-        final youTubeItem = response.youTubeSearch!.items.first;
+        youTubeItems = response.youTubeSearch!.items;
 
-        final youTubeController = YoutubePlayerController(
-          initialVideoId: youTubeItem.id.videoId,
+        youTubeController = YoutubePlayerController(
+          initialVideoId: youTubeItems.first.id.videoId,
         );
 
         value = Success(
           data: (
-            youtubeController: youTubeController,
-            youTubeItem: youTubeItem,
+            youTubeItems: youTubeItems,
+            activeYouTubeItem: youTubeItems.first,
           ),
         );
       }

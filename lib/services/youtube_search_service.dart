@@ -31,7 +31,7 @@ class YouTubeSearchService {
           'part': 'snippet',
           'q': searchQuery,
           'type': 'video',
-          'maxResults': 1,
+          'maxResults': 5,
           'key': BalunConstants.apiYouTubeDataApiKey,
         },
       );

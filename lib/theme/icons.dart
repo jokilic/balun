@@ -27,4 +27,5 @@ class BalunIcons {
   static const ballNavigation = 'assets/icons/ball_navigation.png';
   static const globe = 'assets/icons/globe.png';
   static const search = 'assets/icons/search.png';
+  static const youTube = 'assets/icons/youtube.png';
 }

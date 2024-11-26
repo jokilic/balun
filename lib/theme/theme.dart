@@ -116,6 +116,9 @@ class BalunTheme {
     matchHighlightsVideoDescription: BalunTextStyles.matchHighlightsVideoDescription.copyWith(
       color: lightAppColors.black,
     ),
+    matchHighlightsSimilarVideos: BalunTextStyles.matchHighlightsSimilarVideos.copyWith(
+      color: lightAppColors.black,
+    ),
     matchLineupsSectionTitle: BalunTextStyles.matchLineupsSectionTitle.copyWith(
       color: lightAppColors.black,
     ),

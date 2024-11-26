@@ -159,6 +159,12 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w400,
   );
 
+  static const matchHighlightsSimilarVideos = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+  );
+
   static const matchLineupsSectionTitle = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 24,
@@ -458,6 +464,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchHighlightsVideoTitle;
   final TextStyle matchHighlightsVideoChannel;
   final TextStyle matchHighlightsVideoDescription;
+  final TextStyle matchHighlightsSimilarVideos;
   final TextStyle matchLineupsSectionTitle;
   final TextStyle matchLineupsSectionSubtitle;
   final TextStyle matchLineupsSectionText;
@@ -531,6 +538,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchHighlightsVideoTitle,
     required this.matchHighlightsVideoChannel,
     required this.matchHighlightsVideoDescription,
+    required this.matchHighlightsSimilarVideos,
     required this.matchLineupsSectionTitle,
     required this.matchLineupsSectionSubtitle,
     required this.matchLineupsSectionText,
@@ -606,6 +614,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchHighlightsVideoTitle,
     TextStyle? matchHighlightsVideoChannel,
     TextStyle? matchHighlightsVideoDescription,
+    TextStyle? matchHighlightsSimilarVideos,
     TextStyle? matchLineupsSectionTitle,
     TextStyle? matchLineupsSectionSubtitle,
     TextStyle? matchLineupsSectionText,
@@ -679,6 +688,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchHighlightsVideoTitle: matchHighlightsVideoTitle ?? this.matchHighlightsVideoTitle,
         matchHighlightsVideoChannel: matchHighlightsVideoChannel ?? this.matchHighlightsVideoChannel,
         matchHighlightsVideoDescription: matchHighlightsVideoDescription ?? this.matchHighlightsVideoDescription,
+        matchHighlightsSimilarVideos: matchHighlightsSimilarVideos ?? this.matchHighlightsSimilarVideos,
         matchLineupsSectionTitle: matchLineupsSectionTitle ?? this.matchLineupsSectionTitle,
         matchLineupsSectionSubtitle: matchLineupsSectionSubtitle ?? this.matchLineupsSectionSubtitle,
         matchLineupsSectionText: matchLineupsSectionText ?? this.matchLineupsSectionText,
@@ -762,6 +772,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchHighlightsVideoTitle: TextStyle.lerp(matchHighlightsVideoTitle, other.matchHighlightsVideoTitle, t)!,
       matchHighlightsVideoChannel: TextStyle.lerp(matchHighlightsVideoChannel, other.matchHighlightsVideoChannel, t)!,
       matchHighlightsVideoDescription: TextStyle.lerp(matchHighlightsVideoDescription, other.matchHighlightsVideoDescription, t)!,
+      matchHighlightsSimilarVideos: TextStyle.lerp(matchHighlightsSimilarVideos, other.matchHighlightsSimilarVideos, t)!,
       matchLineupsSectionTitle: TextStyle.lerp(matchLineupsSectionTitle, other.matchLineupsSectionTitle, t)!,
       matchLineupsSectionSubtitle: TextStyle.lerp(matchLineupsSectionSubtitle, other.matchLineupsSectionSubtitle, t)!,
       matchLineupsSectionText: TextStyle.lerp(matchLineupsSectionText, other.matchLineupsSectionText, t)!,
