@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 enum MatchSectionEnum {
   info,
   events,
+  highlights,
   lineups,
   statistics,
   playerStatistics,
@@ -20,6 +21,7 @@ class MatchSection {
   String getMatchSectionName() => switch (matchSectionEnum) {
         MatchSectionEnum.info => 'matchSectionInfo'.tr(),
         MatchSectionEnum.events => 'matchSectionEvents'.tr(),
+        MatchSectionEnum.highlights => 'matchSectionHighlights'.tr(),
         MatchSectionEnum.lineups => 'matchSectionLineups'.tr(),
         MatchSectionEnum.statistics => 'matchSectionStatistics'.tr(),
         MatchSectionEnum.playerStatistics => 'matchSectionPlayerStatistics'.tr(),

@@ -7,10 +7,12 @@ import '../../constants.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
 import '../../services/periodic_api_service.dart';
+import '../../services/youtube_search_service.dart';
 import '../../util/dependencies.dart';
 import '../../util/state.dart';
 import 'controllers/match_controller.dart';
 import 'controllers/match_h2h_controller.dart';
+import 'controllers/match_highlights_controller.dart';
 import 'controllers/match_section_controller.dart';
 import 'controllers/match_standings_controller.dart';
 import 'widgets/match_content.dart';
@@ -37,6 +39,13 @@ class _MatchScreenState extends State<MatchScreen> {
     registerIfNotInitialized<MatchSectionController>(
       () => MatchSectionController(
         logger: getIt.get<LoggerService>(),
+      ),
+      instanceName: '${widget.matchId}',
+    );
+    registerIfNotInitialized<MatchHighlightsController>(
+      () => MatchHighlightsController(
+        logger: getIt.get<LoggerService>(),
+        youTubeSearch: getIt.get<YouTubeSearchService>(),
       ),
       instanceName: '${widget.matchId}',
     );
@@ -75,6 +84,9 @@ class _MatchScreenState extends State<MatchScreen> {
         instanceName: '${widget.matchId}',
       )
       ..unregister<MatchSectionController>(
+        instanceName: '${widget.matchId}',
+      )
+      ..unregister<MatchHighlightsController>(
         instanceName: '${widget.matchId}',
       )
       ..unregister<MatchStandingsController>(

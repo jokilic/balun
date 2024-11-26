@@ -55,9 +55,6 @@ class DioService {
     BaseOptions(
       baseUrl: BalunConstants.apiYouTubeDataBaseUrl,
       validateStatus: (_) => true,
-      queryParameters: {
-        // TODO: Add here
-      },
     ),
   )..interceptors.add(
       DioLoggerInterceptor(

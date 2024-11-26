@@ -18,6 +18,7 @@ import '../models/standings/standings_response.dart';
 import '../models/teams/teams_response.dart';
 import '../models/transfers/transfers_response.dart';
 import '../models/trophies/trophies_response.dart';
+import '../models/youtube_search/youtube_search_response.dart';
 
 Future<FixturesResponse> computeFixtures(data) async => compute(parseFixtures, data);
 FixturesResponse parseFixtures(data) => FixturesResponse.fromMap(data);
@@ -72,3 +73,6 @@ SearchCoachesResponse parseSearchCoaches(data) => SearchCoachesResponse.fromMap(
 
 Future<RemoteSettingsResponse> computeRemoteSettings(data) async => compute(parseRemoteSettings, data);
 RemoteSettingsResponse parseRemoteSettings(data) => RemoteSettingsResponse.fromMap(data);
+
+Future<YouTubeSearchResponse> computeYouTubeSearch(data) async => compute(parseYouTubeSearch, data);
+YouTubeSearchResponse parseYouTubeSearch(data) => YouTubeSearchResponse.fromMap(data);

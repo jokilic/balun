@@ -30,6 +30,7 @@ dependencies:
   timeago: 3.7.0
   visibility_detector: 0.4.0+2
   watch_it: 1.5.1
+  youtube_player_flutter: 9.1.1
 
 dev_dependencies:
   build_runner: 2.4.13

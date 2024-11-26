@@ -141,6 +141,24 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w500,
   );
 
+  static const matchHighlightsVideoTitle = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const matchHighlightsVideoChannel = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
+  static const matchHighlightsVideoDescription = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+
   static const matchLineupsSectionTitle = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 24,
@@ -437,6 +455,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchEventsSectionTime;
   final TextStyle matchEventsSectionText;
   final TextStyle matchEventsSectionResult;
+  final TextStyle matchHighlightsVideoTitle;
+  final TextStyle matchHighlightsVideoChannel;
+  final TextStyle matchHighlightsVideoDescription;
   final TextStyle matchLineupsSectionTitle;
   final TextStyle matchLineupsSectionSubtitle;
   final TextStyle matchLineupsSectionText;
@@ -507,6 +528,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchEventsSectionTime,
     required this.matchEventsSectionText,
     required this.matchEventsSectionResult,
+    required this.matchHighlightsVideoTitle,
+    required this.matchHighlightsVideoChannel,
+    required this.matchHighlightsVideoDescription,
     required this.matchLineupsSectionTitle,
     required this.matchLineupsSectionSubtitle,
     required this.matchLineupsSectionText,
@@ -579,6 +603,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchEventsSectionTime,
     TextStyle? matchEventsSectionText,
     TextStyle? matchEventsSectionResult,
+    TextStyle? matchHighlightsVideoTitle,
+    TextStyle? matchHighlightsVideoChannel,
+    TextStyle? matchHighlightsVideoDescription,
     TextStyle? matchLineupsSectionTitle,
     TextStyle? matchLineupsSectionSubtitle,
     TextStyle? matchLineupsSectionText,
@@ -649,6 +676,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchEventsSectionTime: matchEventsSectionTime ?? this.matchEventsSectionTime,
         matchEventsSectionText: matchEventsSectionText ?? this.matchEventsSectionText,
         matchEventsSectionResult: matchEventsSectionResult ?? this.matchEventsSectionResult,
+        matchHighlightsVideoTitle: matchHighlightsVideoTitle ?? this.matchHighlightsVideoTitle,
+        matchHighlightsVideoChannel: matchHighlightsVideoChannel ?? this.matchHighlightsVideoChannel,
+        matchHighlightsVideoDescription: matchHighlightsVideoDescription ?? this.matchHighlightsVideoDescription,
         matchLineupsSectionTitle: matchLineupsSectionTitle ?? this.matchLineupsSectionTitle,
         matchLineupsSectionSubtitle: matchLineupsSectionSubtitle ?? this.matchLineupsSectionSubtitle,
         matchLineupsSectionText: matchLineupsSectionText ?? this.matchLineupsSectionText,
@@ -729,6 +759,9 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchEventsSectionTime: TextStyle.lerp(matchEventsSectionTime, other.matchEventsSectionTime, t)!,
       matchEventsSectionText: TextStyle.lerp(matchEventsSectionText, other.matchEventsSectionText, t)!,
       matchEventsSectionResult: TextStyle.lerp(matchEventsSectionResult, other.matchEventsSectionResult, t)!,
+      matchHighlightsVideoTitle: TextStyle.lerp(matchHighlightsVideoTitle, other.matchHighlightsVideoTitle, t)!,
+      matchHighlightsVideoChannel: TextStyle.lerp(matchHighlightsVideoChannel, other.matchHighlightsVideoChannel, t)!,
+      matchHighlightsVideoDescription: TextStyle.lerp(matchHighlightsVideoDescription, other.matchHighlightsVideoDescription, t)!,
       matchLineupsSectionTitle: TextStyle.lerp(matchLineupsSectionTitle, other.matchLineupsSectionTitle, t)!,
       matchLineupsSectionSubtitle: TextStyle.lerp(matchLineupsSectionSubtitle, other.matchLineupsSectionSubtitle, t)!,
       matchLineupsSectionText: TextStyle.lerp(matchLineupsSectionText, other.matchLineupsSectionText, t)!,

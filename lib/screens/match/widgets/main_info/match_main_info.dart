@@ -112,10 +112,6 @@ class MatchMainInfo extends WatchingWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
-
-                    ///
-                    /// MINUTE
-                    ///
                     MatchMinute(
                       status: getMatchStatusShortOrMinutes(
                         statusShort: match.fixture?.status?.short ?? '--',
@@ -208,31 +204,41 @@ class MatchMainInfo extends WatchingWidget {
                         (event) {
                           final playerName = mixOrOriginalWords(getLastWord(event.player?.name ?? '---')) ?? '---';
 
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 2),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${event.time?.elapsed}'",
-                                  style: context.textStyles.matchGoal.copyWith(
-                                    color: context.colors.black.withOpacity(0.4),
+                          return BalunButton(
+                            onPressed: event.player?.id != null
+                                ? () => openPlayer(
+                                      context,
+                                      playerId: event.player!.id!,
+                                      season: match.league?.season ?? DateTime.now().year.toString(),
+                                    )
+                                : null,
+                            child: Container(
+                              color: Colors.transparent,
+                              padding: const EdgeInsets.symmetric(vertical: 2),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${event.time?.elapsed}'",
+                                    style: context.textStyles.matchGoal.copyWith(
+                                      color: context.colors.black.withOpacity(0.4),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(width: 8),
-                                Flexible(
-                                  child: Text(
-                                    event.detail?.toLowerCase() == 'penalty'
-                                        ? '$playerName (${'matchInfoPenalty'.tr()})'
-                                        : event.detail?.toLowerCase() == 'own goal'
-                                            ? '$playerName (${'matchInfoOwnGoal'.tr()})'
-                                            : playerName,
-                                    style: context.textStyles.matchGoal,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
+                                  const SizedBox(width: 8),
+                                  Flexible(
+                                    child: Text(
+                                      event.detail?.toLowerCase() == 'penalty'
+                                          ? '$playerName (${'matchInfoPenalty'.tr()})'
+                                          : event.detail?.toLowerCase() == 'own goal'
+                                              ? '$playerName (${'matchInfoOwnGoal'.tr()})'
+                                              : playerName,
+                                      style: context.textStyles.matchGoal,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           );
                         },
@@ -280,16 +286,32 @@ class MatchMainInfo extends WatchingWidget {
                     if (match.events?.isNotEmpty ?? false)
                       ...match.events!
                           .where(
-                            (event) => event.team?.id == match.teams?.away?.id && event.type?.toLowerCase() == 'goal' && event.detail?.toLowerCase() != 'missed penalty',
-                          )
+                        (event) => event.team?.id == match.teams?.away?.id && event.type?.toLowerCase() == 'goal' && event.detail?.toLowerCase() != 'missed penalty',
+                      )
                           .map(
-                            (event) => Padding(
+                        (event) {
+                          final playerName = mixOrOriginalWords(getLastWord(event.player?.name ?? '---')) ?? '---';
+
+                          return BalunButton(
+                            onPressed: event.player?.id != null
+                                ? () => openPlayer(
+                                      context,
+                                      playerId: event.player!.id!,
+                                      season: match.league?.season ?? DateTime.now().year.toString(),
+                                    )
+                                : null,
+                            child: Container(
+                              color: Colors.transparent,
                               padding: const EdgeInsets.symmetric(vertical: 2),
                               child: Row(
                                 children: [
                                   Flexible(
                                     child: Text(
-                                      mixOrOriginalWords(getLastWord(event.player?.name ?? '---')) ?? '---',
+                                      event.detail?.toLowerCase() == 'penalty'
+                                          ? '$playerName (${'matchInfoPenalty'.tr()})'
+                                          : event.detail?.toLowerCase() == 'own goal'
+                                              ? '$playerName (${'matchInfoOwnGoal'.tr()})'
+                                              : playerName,
                                       style: context.textStyles.matchGoal,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
@@ -305,8 +327,9 @@ class MatchMainInfo extends WatchingWidget {
                                 ],
                               ),
                             ),
-                          )
-                          .toList(),
+                          );
+                        },
+                      ).toList(),
                   ],
                 ),
               ),

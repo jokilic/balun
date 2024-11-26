@@ -12,6 +12,7 @@ import '../services/logger_service.dart';
 import '../services/periodic_api_service.dart';
 import '../services/remote_settings_service.dart';
 import '../services/team_storage_service.dart';
+import '../services/youtube_search_service.dart';
 
 final getIt = GetIt.instance;
 
@@ -38,92 +39,101 @@ void registerIfNotInitialized<T extends Object>(
 void initializeServices({
   required bool enableContentMix,
   required bool enablePeriodicFetching,
-}) =>
-    getIt
-      ..registerSingletonAsync(
-        () async => LoggerService(),
-      )
-      ..registerSingletonAsync(
-        () async {
-          final hive = HiveService(
-            logger: getIt.get<LoggerService>(),
-          );
-          await hive.init();
-          return hive;
-        },
-        dependsOn: [LoggerService],
-      )
-      ..registerSingletonAsync(
-        () async => LeagueStorageService(
-          logger: getIt.get<LoggerService>(),
-          hiveLeagues: getIt.get<HiveService>().leagues.values.toList(),
-        ),
-        dependsOn: [LoggerService, HiveService],
-      )
-      ..registerSingletonAsync(
-        () async => TeamStorageService(
-          logger: getIt.get<LoggerService>(),
-          hiveTeams: getIt.get<HiveService>().teams.values.toList(),
-        ),
-        dependsOn: [LoggerService, HiveService],
-      )
-      ..registerSingletonAsync(
-        () async => DioService(
-          logger: getIt.get<LoggerService>(),
-        ),
-        dependsOn: [LoggerService],
-      )
-      ..registerSingletonAsync(
-        () async {
-          final remoteSettings = RemoteSettingsService(
-            logger: getIt.get<LoggerService>(),
-            dio: getIt.get<DioService>().remoteSettingsDio,
-          );
-          if (enableContentMix) {
-            await remoteSettings.init();
-          }
-          return remoteSettings;
-        },
-        dependsOn: [LoggerService, DioService],
-      )
+}) {
+  final internetConnection = InternetConnection();
 
-      /// TODO: Register YouTube Search Service here
-
-      ..registerSingletonAsync(
-        () async => APIService(
+  getIt
+    ..registerSingletonAsync(
+      () async => LoggerService(),
+    )
+    ..registerSingletonAsync(
+      () async {
+        final hive = HiveService(
           logger: getIt.get<LoggerService>(),
-          dio: getIt.get<DioService>().footballDio,
-          internetConnection: InternetConnection(),
-        ),
-        dependsOn: [LoggerService, DioService],
-      )
-      ..registerSingletonAsync(
-        () async {
-          final periodicAPI = PeriodicAPIService(
-            logger: getIt.get<LoggerService>(),
-          );
-          if (enablePeriodicFetching) {
-            periodicAPI.init();
-          }
-          return periodicAPI;
-        },
-        dependsOn: [LoggerService],
-      )
-      ..registerSingletonAsync(
-        () async => BalunNavigationBarService(
+        );
+        await hive.init();
+        return hive;
+      },
+      dependsOn: [LoggerService],
+    )
+    ..registerSingletonAsync(
+      () async => LeagueStorageService(
+        logger: getIt.get<LoggerService>(),
+        hiveLeagues: getIt.get<HiveService>().leagues.values.toList(),
+      ),
+      dependsOn: [LoggerService, HiveService],
+    )
+    ..registerSingletonAsync(
+      () async => TeamStorageService(
+        logger: getIt.get<LoggerService>(),
+        hiveTeams: getIt.get<HiveService>().teams.values.toList(),
+      ),
+      dependsOn: [LoggerService, HiveService],
+    )
+    ..registerSingletonAsync(
+      () async => DioService(
+        logger: getIt.get<LoggerService>(),
+      ),
+      dependsOn: [LoggerService],
+    )
+    ..registerSingletonAsync(
+      () async {
+        final remoteSettings = RemoteSettingsService(
           logger: getIt.get<LoggerService>(),
-        ),
-        dependsOn: [LoggerService],
-      )
-      ..registerSingletonAsync(
-        () async => BalunNavigationBarBadgeService(
+          dio: getIt.get<DioService>().remoteSettingsDio,
+          internetConnection: internetConnection,
+        );
+        if (enableContentMix) {
+          await remoteSettings.init();
+        }
+        return remoteSettings;
+      },
+      dependsOn: [LoggerService, DioService],
+    )
+    ..registerSingletonAsync(
+      () async => YouTubeSearchService(
+        logger: getIt.get<LoggerService>(),
+        dio: getIt.get<DioService>().youTubeSearchDio,
+        internetConnection: internetConnection,
+      ),
+      dependsOn: [LoggerService, DioService],
+    )
+    ..registerSingletonAsync(
+      () async => APIService(
+        logger: getIt.get<LoggerService>(),
+        dio: getIt.get<DioService>().footballDio,
+        internetConnection: internetConnection,
+      ),
+      dependsOn: [LoggerService, DioService],
+    )
+    ..registerSingletonAsync(
+      () async {
+        final periodicAPI = PeriodicAPIService(
           logger: getIt.get<LoggerService>(),
-        ),
-        dependsOn: [LoggerService],
-      )
-      ..registerSingletonAsync(
-        () async => BalunScreenService(
-          logger: getIt.get<LoggerService>(),
-        ),
-        dependsOn: [LoggerService, BalunNavigationBarService],
-      );
+        );
+        if (enablePeriodicFetching) {
+          periodicAPI.init();
+        }
+        return periodicAPI;
+      },
+      dependsOn: [LoggerService],
+    )
+    ..registerSingletonAsync(
+      () async => BalunNavigationBarService(
+        logger: getIt.get<LoggerService>(),
+      ),
+      dependsOn: [LoggerService],
+    )
+    ..registerSingletonAsync(
+      () async => BalunNavigationBarBadgeService(
+        logger: getIt.get<LoggerService>(),
+      ),
+      dependsOn: [LoggerService],
+    )
+    ..registerSingletonAsync(
+      () async => BalunScreenService(
+        logger: getIt.get<LoggerService>(),
+      ),
+      dependsOn: [LoggerService, BalunNavigationBarService],
+    );
+}
