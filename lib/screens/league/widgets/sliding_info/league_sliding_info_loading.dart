@@ -15,15 +15,15 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
         controller: scrollController,
         physics: const BouncingScrollPhysics(),
         children: [
-          Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 176,
-              vertical: 8,
-            ),
-            height: 4,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              color: context.colors.black.withOpacity(0.5),
+          Center(
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 8),
+              height: 4,
+              width: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: context.colors.black.withOpacity(0.5),
+              ),
             ),
           ),
           const SizedBox(height: 8),
