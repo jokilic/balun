@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:watch_it/watch_it.dart';
 
@@ -10,6 +11,7 @@ import 'services/balun_screen_service.dart';
 import 'theme/theme.dart';
 import 'util/color.dart';
 import 'util/dependencies.dart';
+import 'util/env.dart';
 import 'widgets/balun_loader.dart';
 
 Future<void> main() async {
@@ -39,9 +41,14 @@ Future<void> main() async {
   /// Wait for initialization to finish
   await getIt.allReady();
 
-  /// Run [Balun]
-  runApp(
-    BalunApp(),
+  /// Initialize [Sentry] & run [Balun]
+  await SentryFlutter.init(
+    (options) => options
+      ..dsn = kDebugMode ? '' : Env.sentryDsn
+      ..debug = kDebugMode,
+    appRunner: () => runApp(
+      BalunApp(),
+    ),
   );
 }
 

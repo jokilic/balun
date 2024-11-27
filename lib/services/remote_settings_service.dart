@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../constants.dart';
 import '../models/remote_settings/remote_settings_response.dart';
@@ -62,6 +65,7 @@ class RemoteSettingsService extends ValueNotifier<({bool mixLogos, bool mixNames
           } catch (e) {
             final error = 'API -> getRemoteSettings -> parsing error -> $e';
             logger.e(error);
+            unawaited(Sentry.captureException(error));
             return (remoteSettingsResponse: null, error: error);
           }
 
@@ -69,6 +73,7 @@ class RemoteSettingsService extends ValueNotifier<({bool mixLogos, bool mixNames
         default:
           final error = 'API -> getRemoteSettings -> StatusCode ${response.statusCode}';
           logger.e(error);
+          unawaited(Sentry.captureException(error));
           return (remoteSettingsResponse: null, error: error);
       }
     } catch (e) {
@@ -76,6 +81,7 @@ class RemoteSettingsService extends ValueNotifier<({bool mixLogos, bool mixNames
         methodName: 'getRemoteSettings',
         mainError: '$e',
       );
+      unawaited(Sentry.captureException(error));
       return (remoteSettingsResponse: null, error: error);
     }
   }

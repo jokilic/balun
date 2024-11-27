@@ -21,4 +21,7 @@ abstract class Env {
 
   @EnviedField(varName: 'API_YOUTUBE_DATA_API_KEY', obfuscate: true)
   static final String apiYouTubeDataApiKey = _Env.apiYouTubeDataApiKey;
+
+  @EnviedField(varName: 'SENTRY_DSN', obfuscate: true)
+  static final String sentryDsn = _Env.sentryDsn;
 }

@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../constants.dart';
 import '../models/youtube_search/youtube_search_response.dart';
@@ -47,6 +50,7 @@ class YouTubeSearchService {
           } catch (e) {
             final error = 'API -> getYouTubeVideoSearch -> parsing error -> $e';
             logger.e(error);
+            unawaited(Sentry.captureException(error));
             return (youTubeSearch: null, error: error);
           }
 
@@ -54,6 +58,7 @@ class YouTubeSearchService {
         default:
           final error = 'API -> getYouTubeVideoSearch -> StatusCode ${response.statusCode}';
           logger.e(error);
+          unawaited(Sentry.captureException(error));
           return (youTubeSearch: null, error: error);
       }
     } catch (e) {
@@ -61,6 +66,7 @@ class YouTubeSearchService {
         methodName: 'getYouTubeVideoSearch',
         mainError: '$e',
       );
+      unawaited(Sentry.captureException(error));
       return (youTubeSearch: null, error: error);
     }
   }
