@@ -1,7 +1,7 @@
 name: balun
 description: "Simple Flutter application for football scores."
 publish_to: 'none'
-version: 1.0.7+7
+version: 1.1.0+10
 
 environment:
   sdk: 3.5.4
@@ -17,9 +17,9 @@ dependencies:
   dio: 5.7.0
   easy_localization: 3.0.7
   envied: 1.0.0
-  flutter_animate: 4.5.1
+  flutter_animate: 4.5.2
   get_it: 8.0.2
-  hive_ce: 2.8.0+1
+  hive_ce: 2.8.0+2
   hive_ce_flutter: 2.1.0
   internet_connection_checker_plus: 2.5.2
   intl: 0.20.0
@@ -38,7 +38,7 @@ dev_dependencies:
   envied_generator: 1.0.0
   flutter_launcher_icons: 0.14.1
   flutter_native_splash: 2.4.3
-  hive_ce_generator: 1.8.0
+  hive_ce_generator: 1.8.1
 
 dependency_overrides:
   collection: 1.19.1
