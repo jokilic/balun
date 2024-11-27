@@ -5,7 +5,6 @@ import '../../../../../../constants.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/color.dart';
 import '../../../../../../util/random.dart';
-import '../../../../../../widgets/balun_seperator.dart';
 
 class MatchHighlightsLoading extends StatelessWidget {
   @override
@@ -21,130 +20,181 @@ class MatchHighlightsLoading extends StatelessWidget {
           ),
         ],
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 32,
-                width: getRandomNumberFromBase(104),
-                decoration: BoxDecoration(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  color: context.colors.black.withOpacity(0.25),
+                  child: Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: getRandomBalunColor(context),
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                height: 24,
-                width: getRandomNumberFromBase(80),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: context.colors.black.withOpacity(0.15),
-                ),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    height: 24,
-                    width: 24,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: context.colors.black.withOpacity(0.15),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                    height: 24,
-                    width: 24,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: context.colors.black.withOpacity(0.15),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                    height: 24,
-                    width: 24,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: context.colors.black.withOpacity(0.15),
-                    ),
-                  ),
-                ],
               ),
               const SizedBox(height: 16),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 12,
-                itemBuilder: (_, __) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  height: 32,
+                  width: getRandomNumberFromBase(240),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: context.colors.black.withOpacity(0.25),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  height: 32,
+                  width: getRandomNumberFromBase(224),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: context.colors.black.withOpacity(0.25),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    height: 16,
+                    width: getRandomNumberFromBase(56),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: context.colors.black.withOpacity(0.15),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  height: 20,
+                  width: getRandomNumberFromBase(240),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: context.colors.black.withOpacity(0.15),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  height: 20,
+                  width: getRandomNumberFromBase(240),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: context.colors.black.withOpacity(0.15),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  height: 20,
+                  width: getRandomNumberFromBase(240),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: context.colors.black.withOpacity(0.15),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 40),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  height: 40,
+                  width: getRandomNumberFromBase(144),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: context.colors.black.withOpacity(0.25),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              ///
+              /// VIDEOS
+              ///
+              ...List.generate(
+                5,
+                (index) => Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: index == 0 ? context.colors.green : Colors.transparent,
+                  ),
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                   child: Row(
                     children: [
-                      Container(
-                        height: 24,
-                        width: 16,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: context.colors.black.withOpacity(0.25),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Container(
-                        height: 32,
-                        width: 32,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: getRandomBalunColor(context),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
                         child: Container(
-                          height: 24,
+                          height: 80,
+                          width: 120,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: context.colors.black.withOpacity(0.15),
+                            borderRadius: BorderRadius.circular(4),
+                            color: getRandomBalunColor(context),
                           ),
                         ),
                       ),
-                      const SizedBox(width: 32),
-                      Container(
-                        height: 24,
-                        width: 24,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: context.colors.black.withOpacity(0.25),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Container(
-                        height: 24,
-                        width: 24,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: context.colors.black.withOpacity(0.25),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Container(
-                        height: 24,
-                        width: 24,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: context.colors.black.withOpacity(0.25),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 24,
+                              width: getRandomNumberFromBase(184),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: context.colors.black.withOpacity(0.25),
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Container(
+                              height: 24,
+                              width: getRandomNumberFromBase(160),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: context.colors.black.withOpacity(0.25),
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Container(
+                              height: 16,
+                              width: getRandomNumberFromBase(56),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: context.colors.black.withOpacity(0.15),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
-                separatorBuilder: (_, __) => const BalunSeperator(),
               ),
-              const SizedBox(height: 24),
             ],
           ),
         ),

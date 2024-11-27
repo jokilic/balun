@@ -30,5 +30,3 @@ That way you can choose whichever competition you want to learn more about.
 Here you can find any football related data.\
 Search for countries, leagues, teams or coaches.\
 Results can be opened and more info is shown.
-
-- [ ] Update MatchHighlightLoading

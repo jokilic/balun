@@ -22,10 +22,7 @@ class MatchHighlightsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(
-          // horizontal: 16,
-          vertical: 8,
-        ),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,9 +31,7 @@ class MatchHighlightsContent extends StatelessWidget {
             ///
             if (getIt.get<MatchHighlightsController>(instanceName: '$matchId').youTubeController != null)
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: YoutubePlayer(
@@ -92,9 +87,7 @@ class MatchHighlightsContent extends StatelessWidget {
             /// ACTIVE VIDEO INFO
             ///
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 youTubeData.activeYouTubeItem.snippet.title,
                 style: context.textStyles.matchHighlightsVideoTitle,
@@ -102,9 +95,7 @@ class MatchHighlightsContent extends StatelessWidget {
             ),
             const SizedBox(height: 2),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Text(
@@ -119,21 +110,16 @@ class MatchHighlightsContent extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,
               ),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  youTubeData.activeYouTubeItem.snippet.description,
-                  style: context.textStyles.matchHighlightsVideoDescription,
-                ),
+              child: Text(
+                youTubeData.activeYouTubeItem.snippet.description,
+                style: context.textStyles.matchHighlightsVideoDescription,
               ),
             ),
 
             const SizedBox(height: 40),
 
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 'matchHighlightsSimilarVideos'.tr(),
                 style: context.textStyles.matchHighlightsSimilarVideos,
@@ -176,6 +162,7 @@ class MatchHighlightsContent extends StatelessWidget {
                             imageUrl: youTubeItem.snippet.thumbnails.defaultThumbnail.url,
                             width: 120,
                             fit: BoxFit.cover,
+                            radius: 100,
                           ),
                         ),
                         const SizedBox(width: 16),
