@@ -28,8 +28,7 @@ Future<void> main() async {
 
   /// Initialize services
   initializeServices(
-    // enableContentMix: !kDebugMode && defaultTargetPlatform == TargetPlatform.iOS,
-    enableRemoteSettings: defaultTargetPlatform == TargetPlatform.iOS,
+    enableRemoteSettings: !kDebugMode && defaultTargetPlatform == TargetPlatform.iOS,
     enablePeriodicFetching: !kDebugMode,
   );
 
