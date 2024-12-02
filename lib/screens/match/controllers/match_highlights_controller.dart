@@ -50,10 +50,9 @@ class MatchHighlightsController extends ValueNotifier<BalunState<({List<YouTubeI
 
     final date = '${matchDate!.day} ${matchDate.month} ${matchDate.year}';
 
-    final searchQuery = '$homeTeamName $awayTeamName $date $leagueName';
-
     final response = await youTubeSearch.getYouTubeVideoSearch(
-      searchQuery: searchQuery,
+      searchQuery: '$homeTeamName $awayTeamName $date $leagueName',
+      publishedAfter: matchDate.toUtc().toIso8601String(),
     );
 
     /// Successful request
