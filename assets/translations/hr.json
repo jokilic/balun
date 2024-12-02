@@ -355,6 +355,8 @@
     "matchEventCommentElbowing": "Udarac laktom",
     "matchEventCommentPersistentFouling": "Uzastopni prekršaji",
     "matchEventCommentHandling": "Igranje rukom",
+    "matchEventCommentMissesNextMatch": "Propušta sljedeću utakmicu",
+    "matchEventCommentSeriousFoul": "Teški prekršaj",
     "playerPositionGoalkeeper": "Vratar",
     "playerPositionDefender": "Branič",
     "playerPositionMidfielder": "Vezni",

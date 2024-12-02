@@ -177,6 +177,8 @@ String getEventCommentText({
       'elbowing' => 'matchEventCommentElbowing'.tr(),
       'persistent fouling' => 'matchEventCommentPersistentFouling'.tr(),
       'handling' => 'matchEventCommentHandling'.tr(),
+      'misses next match' => 'matchEventCommentMissesNextMatch'.tr(),
+      'serious foul' => 'matchEventCommentSeriousFoul'.tr(),
       _ => eventComment,
     };
 

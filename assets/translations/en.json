@@ -355,6 +355,8 @@
     "matchEventCommentElbowing": "Striking opponent with an elbow",
     "matchEventCommentPersistentFouling": "Persistent fouling",
     "matchEventCommentHandling": "Hand ball",
+    "matchEventCommentMissesNextMatch": "Misses next match",
+    "matchEventCommentSeriousFoul": "Serious foul",
     "playerPositionGoalkeeper": "Goalkeeper",
     "playerPositionDefender": "Defender",
     "playerPositionMidfielder": "Midfielder",
