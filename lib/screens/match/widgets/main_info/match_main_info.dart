@@ -116,6 +116,7 @@ class MatchMainInfo extends WatchingWidget {
                       status: getMatchStatusShortOrMinutes(
                         statusShort: match.fixture?.status?.short ?? '--',
                         minutes: match.fixture?.status?.elapsed ?? 0,
+                        extra: match.fixture?.status?.extra,
                       ),
                       timeBeforeMatch: isMatchNotStarted(
                                 statusShort: match.fixture?.status?.short ?? '--',
@@ -219,7 +220,7 @@ class MatchMainInfo extends WatchingWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "${event.time?.elapsed}'",
+                                    event.time?.extra != null ? "${(event.time?.elapsed ?? 0) + (event.time?.extra ?? 0)}'" : "${event.time?.elapsed}'",
                                     style: context.textStyles.matchGoal.copyWith(
                                       color: context.colors.black.withOpacity(0.4),
                                     ),
@@ -319,7 +320,7 @@ class MatchMainInfo extends WatchingWidget {
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
-                                    "${event.time?.elapsed}'",
+                                    event.time?.extra != null ? "${(event.time?.elapsed ?? 0) + (event.time?.extra ?? 0)}'" : "${event.time?.elapsed}'",
                                     style: context.textStyles.matchGoal.copyWith(
                                       color: context.colors.black.withOpacity(0.4),
                                     ),

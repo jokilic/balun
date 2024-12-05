@@ -131,6 +131,7 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
                         scoreText: getCompactFixtureText(
                           statusShort: fixture.fixture?.status?.short ?? '--',
                           minutes: fixture.fixture?.status?.elapsed ?? 0,
+                          extra: fixture.fixture?.status?.extra,
                           timestamp: fixture.fixture?.timestamp,
                           homeGoals: fixture.goals?.home,
                           awayGoals: fixture.goals?.away,

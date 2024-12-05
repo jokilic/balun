@@ -55,6 +55,7 @@ class FixturesListTile extends StatelessWidget {
                       status: getMatchStatusShortOrMinutes(
                         statusShort: fixture.fixture?.status?.short ?? '--',
                         minutes: fixture.fixture?.status?.elapsed ?? 0,
+                        extra: fixture.fixture?.status?.extra,
                       ),
                       timeBeforeMatch: isMatchNotStarted(
                                 statusShort: fixture.fixture?.status?.short ?? '--',

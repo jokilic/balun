@@ -64,6 +64,7 @@ String replaceSpecialSymbolsWithStandardLetters(String input) {
 String getCompactFixtureText({
   required String statusShort,
   required int minutes,
+  required int? extra,
   required DateTime? timestamp,
   required int? homeGoals,
   required int? awayGoals,
@@ -119,10 +120,11 @@ String getMatchStatusLong(String statusShort) => switch (statusShort.toUpperCase
 String getMatchStatusShortOrMinutes({
   required String statusShort,
   required int minutes,
+  required int? extra,
 }) =>
     switch (statusShort.toUpperCase()) {
       'TBD' || 'NS' => '---',
-      '1H' || '2H' || 'ET' => '$minutes',
+      '1H' || '2H' || 'ET' => extra != null ? '${minutes + extra}' : '$minutes',
       'HT' => 'HT',
       'AET' => 'ET',
       _ => statusShort,
