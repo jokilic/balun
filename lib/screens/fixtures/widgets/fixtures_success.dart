@@ -4,6 +4,7 @@ import 'package:watch_it/watch_it.dart';
 
 import '../../../models/fixtures/fixture_response.dart';
 import '../../../models/fixtures/league/league.dart';
+import '../../../routing.dart';
 import '../../../services/league_storage_service.dart';
 import '../../../services/team_storage_service.dart';
 import '../../../theme/theme.dart';
@@ -88,6 +89,13 @@ class FixturesSuccess extends WatchingWidget {
               final fixtures = favoriteSortedGroupedFixturesLeague[league];
 
               return FixturesLeagueCompactListTile(
+                onPressed: league?.id != null
+                    ? () => openLeague(
+                          context,
+                          leagueId: league!.id!,
+                          season: league.season ?? DateTime.now().year.toString(),
+                        )
+                    : null,
                 league: league,
                 fixtures: fixtures,
                 hasLiveFixturesLeague: hasLiveFixturesLeague(

@@ -58,9 +58,9 @@ class _BalunButtonState extends State<BalunButton> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTapDown: widget.onPressed != null ? onTapDown : null,
-        onTapUp: widget.onPressed != null ? onTapUp : null,
-        onTapCancel: widget.onPressed != null ? onTapCancel : null,
+        onTapDown: widget.onPressed != null || widget.onLongPressed != null ? onTapDown : null,
+        onTapUp: widget.onPressed != null || widget.onLongPressed != null ? onTapUp : null,
+        onTapCancel: widget.onPressed != null || widget.onLongPressed != null ? onTapCancel : null,
         onLongPress: widget.onLongPressed,
         child: AnimatedBuilder(
           animation: animation,
