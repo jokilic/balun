@@ -36,7 +36,7 @@ class MatchMinute extends StatelessWidget {
               )
             else
               Text(
-                status,
+                status.toUpperCase(),
                 style: context.textStyles.fixturesMinute,
                 textAlign: TextAlign.center,
               ),

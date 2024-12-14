@@ -13,6 +13,7 @@ class FixturesListTileMinute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8),
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 6,
@@ -36,7 +37,7 @@ class FixturesListTileMinute extends StatelessWidget {
               )
             else
               Text(
-                status,
+                status.toUpperCase(),
                 style: context.textStyles.fixturesMinute,
                 textAlign: TextAlign.center,
               ),

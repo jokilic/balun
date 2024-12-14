@@ -116,17 +116,20 @@ String getMatchStatusLong(String statusShort) => switch (statusShort.toUpperCase
       _ => 'matchStatusUnknown'.tr(),
     };
 
-// TODO: Return localized abbreviations
 String getMatchStatusShortOrMinutes({
   required String statusShort,
   required int minutes,
   required int? extra,
 }) =>
     switch (statusShort.toUpperCase()) {
-      'TBD' || 'NS' => '---',
-      '1H' || '2H' || 'ET' => extra != null ? '${minutes + extra}' : '$minutes',
-      'HT' => 'HT',
-      'AET' => 'ET',
+      'TBD' || 'NS' => 'matchStatusShortNotStarted'.tr(),
+      '1H' || '2H' || 'ET' || 'LIVE' => extra != null ? '${minutes + extra}' : '$minutes',
+      'HT' => 'matchStatusShortHalfTime'.tr(),
+      'FT' || 'AET' || 'PEN' => 'matchStatusShortFullTime'.tr(),
+      'BT' => 'matchStatusShortBreak'.tr(),
+      'P' => 'matchStatusShortPenalties'.tr(),
+      'PST' || 'CANC' || 'ABD' || 'AWD' || 'WO' => 'matchStatusShortQuestion'.tr(),
+      'SUSP' || 'INT' => 'matchStatusShortExclamation'.tr(),
       _ => statusShort,
     };
 
