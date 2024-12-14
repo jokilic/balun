@@ -41,7 +41,7 @@
     "leagueFixturesEmptyState": "Liga-Spielplan ist leer",
     "leagueFixturesErrorState": "Unerwarteter Liga-Spielplan-Fehler",
     "leagueStandingsPlayed": "SP",
-    "leagueStandingsGoalDifference": "TD",
+    "leagueStandingsWins": "GW",
     "leagueStandingsPoints": "PKT",
     "leagueStandingsForm": "Form",
     "leagueStandingsPointsLong": "Punkte",

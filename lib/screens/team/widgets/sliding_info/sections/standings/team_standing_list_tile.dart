@@ -78,7 +78,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                       SizedBox(
                         width: 36,
                         child: Text(
-                          '${standing.goalsDiff ?? '--'}',
+                          '${standing.all?.win ?? '--'}',
                           style: context.textStyles.matchStandingsSectionText,
                           maxLines: 1,
                           textAlign: TextAlign.center,

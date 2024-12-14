@@ -52,7 +52,7 @@ class LeagueStandingsContent extends StatelessWidget {
                   SizedBox(
                     width: 36,
                     child: Text(
-                      'leagueStandingsGoalDifference'.tr(),
+                      'leagueStandingsWins'.tr(),
                       style: context.textStyles.matchStandingsSectionText,
                       maxLines: 1,
                       textAlign: TextAlign.center,
