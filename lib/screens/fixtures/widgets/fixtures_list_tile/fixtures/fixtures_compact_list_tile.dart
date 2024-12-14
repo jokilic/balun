@@ -70,7 +70,7 @@ class FixturesCompactListTile extends StatelessWidget {
                 Animate(
                   onPlay: (controller) => controller.loop(
                     reverse: true,
-                    min: 0.6,
+                    min: 0.3,
                   ),
                   effects: const [
                     FadeEffect(
