@@ -241,8 +241,9 @@ class MatchEventsListTile extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const BalunImage(
+                            BalunImage(
                               imageUrl: BalunIcons.ball,
+                              color: eventDetail.toLowerCase() == 'own goal' ? context.colors.red : null,
                               height: 28,
                               width: 28,
                             ),
