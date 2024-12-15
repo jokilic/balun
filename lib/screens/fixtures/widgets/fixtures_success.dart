@@ -8,6 +8,7 @@ import '../../../routing.dart';
 import '../../../services/league_storage_service.dart';
 import '../../../services/team_storage_service.dart';
 import '../../../theme/theme.dart';
+import '../../../util/dependencies.dart';
 import '../../../util/fixtures.dart';
 import 'fixtures_all_dialog.dart';
 import 'fixtures_app_bar.dart';
@@ -74,6 +75,8 @@ class FixturesSuccess extends WatchingWidget {
               barrierColor: context.colors.black.withOpacity(0.5),
               builder: (context) => FixturesFavoriteDialog(
                 onPressed: Navigator.of(context).pop,
+                onReorderLeagues: getIt.get<LeagueStorageService>().reorderLeagues,
+                onReorderTeams: getIt.get<TeamStorageService>().reorderTeams,
               ),
             ),
             text: 'fixturesFavoriteTitle'.tr(),

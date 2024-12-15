@@ -13,9 +13,13 @@ import '../../../widgets/balun_image.dart';
 
 class FixturesFavoriteDialog extends WatchingWidget {
   final Function() onPressed;
+  final Function(int oldIndex, int newIndex) onReorderLeagues;
+  final Function(int oldIndex, int newIndex) onReorderTeams;
 
   const FixturesFavoriteDialog({
     required this.onPressed,
+    required this.onReorderLeagues,
+    required this.onReorderTeams,
   });
 
   @override
@@ -42,9 +46,12 @@ class FixturesFavoriteDialog extends WatchingWidget {
           ///
           /// TITLE
           ///
-          Text(
-            'fixturesFavoriteTitle'.tr(),
-            style: context.textStyles.dialogTitle,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text(
+              'fixturesFavoriteTitle'.tr(),
+              style: context.textStyles.dialogTitle,
+            ),
           ),
           const SizedBox(height: 8),
           Flexible(
@@ -57,34 +64,69 @@ class FixturesFavoriteDialog extends WatchingWidget {
                   ///
                   /// TEXT
                   ///
-                  Text(
-                    'fixturesFavoriteDialogText1'.tr(),
-                    style: context.textStyles.dialogText,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(
+                      'fixturesFavoriteDialogText1'.tr(),
+                      style: context.textStyles.dialogText,
+                    ),
                   ),
                   const SizedBox(height: 12),
-                  Text(
-                    'fixturesFavoriteDialogText2'.tr(),
-                    style: context.textStyles.dialogText,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(
+                      'fixturesFavoriteDialogText2'.tr(),
+                      style: context.textStyles.dialogText,
+                    ),
                   ),
                   const SizedBox(height: 16),
 
                   ///
                   /// LEAGUES
                   ///
-                  Text(
-                    'fixturesFavoriteDialogLeagues'.tr(),
-                    style: context.textStyles.dialogSubtitle,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(
+                      'fixturesFavoriteDialogLeagues'.tr(),
+                      style: context.textStyles.dialogSubtitle,
+                    ),
                   ),
                   const SizedBox(height: 12),
                   if (favoritedLeagues.isEmpty)
-                    Text(
-                      'fixturesFavoriteDialogNoLeagues'.tr(),
-                      style: context.textStyles.dialogText,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        'fixturesFavoriteDialogNoLeagues'.tr(),
+                        style: context.textStyles.dialogText,
+                      ),
                     )
                   else
-                    ...favoritedLeagues
-                        .map(
-                          (league) => BalunButton(
+                    SizedBox(
+                      height: (42 * favoritedLeagues.length).toDouble(),
+                      width: double.maxFinite,
+                      child: ReorderableListView.builder(
+                        proxyDecorator: (child, _, __) => ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Material(
+                            color: context.colors.white.withOpacity(0.4),
+                            child: child,
+                          ),
+                        ),
+                        onReorder: (oldIndex, newIndex) {
+                          if (newIndex > oldIndex) {
+                            newIndex--;
+                          }
+
+                          onReorderLeagues(oldIndex, newIndex);
+                        },
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: favoritedLeagues.length,
+                        itemBuilder: (_, index) {
+                          final league = favoritedLeagues[index];
+
+                          return BalunButton(
+                            key: ValueKey(league),
                             onPressed: league.id != null
                                 ? () => openLeague(
                                       context,
@@ -94,7 +136,10 @@ class FixturesFavoriteDialog extends WatchingWidget {
                                 : null,
                             child: Container(
                               color: Colors.transparent,
-                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
                               child: Row(
                                 children: [
                                   BalunImage(
@@ -106,6 +151,8 @@ class FixturesFavoriteDialog extends WatchingWidget {
                                   Expanded(
                                     child: Text(
                                       league.name ?? '---',
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
                                       style: context.textStyles.dialogText.copyWith(
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -114,28 +161,59 @@ class FixturesFavoriteDialog extends WatchingWidget {
                                 ],
                               ),
                             ),
-                          ),
-                        )
-                        .toList(),
+                          );
+                        },
+                      ),
+                    ),
+
                   const SizedBox(height: 16),
 
                   ///
                   /// TEAMS
                   ///
-                  Text(
-                    'fixturesFavoriteDialogTeams'.tr(),
-                    style: context.textStyles.dialogSubtitle,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(
+                      'fixturesFavoriteDialogTeams'.tr(),
+                      style: context.textStyles.dialogSubtitle,
+                    ),
                   ),
                   const SizedBox(height: 12),
                   if (favoritedTeams.isEmpty)
-                    Text(
-                      'fixturesFavoriteDialogNoTeams'.tr(),
-                      style: context.textStyles.dialogText,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        'fixturesFavoriteDialogNoTeams'.tr(),
+                        style: context.textStyles.dialogText,
+                      ),
                     )
                   else
-                    ...favoritedTeams
-                        .map(
-                          (team) => BalunButton(
+                    SizedBox(
+                      height: (42 * favoritedTeams.length).toDouble(),
+                      width: double.maxFinite,
+                      child: ReorderableListView.builder(
+                        proxyDecorator: (child, _, __) => ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Material(
+                            color: context.colors.white.withOpacity(0.4),
+                            child: child,
+                          ),
+                        ),
+                        onReorder: (oldIndex, newIndex) {
+                          if (newIndex > oldIndex) {
+                            newIndex--;
+                          }
+
+                          onReorderTeams(oldIndex, newIndex);
+                        },
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: favoritedTeams.length,
+                        itemBuilder: (_, index) {
+                          final team = favoritedTeams[index];
+
+                          return BalunButton(
+                            key: ValueKey(team),
                             onPressed: team.id != null
                                 ? () => openTeam(
                                       context,
@@ -145,7 +223,10 @@ class FixturesFavoriteDialog extends WatchingWidget {
                                 : null,
                             child: Container(
                               color: Colors.transparent,
-                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
                               child: Row(
                                 children: [
                                   BalunImage(
@@ -157,6 +238,8 @@ class FixturesFavoriteDialog extends WatchingWidget {
                                   Expanded(
                                     child: Text(
                                       team.name ?? '---',
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
                                       style: context.textStyles.dialogText.copyWith(
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -165,9 +248,10 @@ class FixturesFavoriteDialog extends WatchingWidget {
                                 ],
                               ),
                             ),
-                          ),
-                        )
-                        .toList(),
+                          );
+                        },
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -183,7 +267,7 @@ class FixturesFavoriteDialog extends WatchingWidget {
           ),
         ),
       ],
-      contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 8),
+      contentPadding: const EdgeInsets.fromLTRB(16, 20, 16, 8),
       actionsPadding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
       backgroundColor: context.colors.greenish,
       shape: RoundedRectangleBorder(

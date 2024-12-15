@@ -239,26 +239,17 @@ Map<League, List<FixtureResponse>> sortGroupedFixturesWithLeagues({
         final priorityA = a.key.id != null ? favoritedLeagues.indexWhere((league) => league.id == a.key.id) : favoritedLeagues.length;
         final priorityB = b.key.id != null ? favoritedLeagues.indexWhere((league) => league.id == b.key.id) : favoritedLeagues.length;
 
-        if (priorityA != priorityB) {
+        /// If both leagues are in favoritedLeagues, sort by their indices
+        if (priorityA != -1 && priorityB != -1) {
           return priorityA.compareTo(priorityB);
         }
 
-        /// If leagues have the same priority, sort by team priority
-        final teamPriorityA = a.value.any(
-          (fixture) => favoritedTeams.any(
-            (team) => team.id == fixture.teams?.home?.id || team.id == fixture.teams?.away?.id,
-          ),
-        );
-        final teamPriorityB = b.value.any(
-          (fixture) => favoritedTeams.any(
-            (team) => team.id == fixture.teams?.home?.id || team.id == fixture.teams?.away?.id,
-          ),
-        );
-
-        if (teamPriorityA != teamPriorityB) {
-          return teamPriorityA ? -1 : 1;
+        /// If only one league is in favoritedLeagues, prioritize it
+        if (priorityA != -1 || priorityB != -1) {
+          return priorityA == -1 ? 1 : -1;
         }
 
+        /// If neither league is favorited, sort by ID
         return a.key.id!.compareTo(b.key.id!);
       },
     );
@@ -270,15 +261,30 @@ Map<League, List<FixtureResponse>> sortGroupedFixturesWithLeagues({
         final sortedFixturesList = leagueEntry.value
           ..sort(
             (a, b) {
-              final priorityA = favoritedTeams.any(
-                (team) => team.id == a.teams?.home?.id || team.id == a.teams?.away?.id,
-              );
-              final priorityB = favoritedTeams.any(
-                (team) => team.id == b.teams?.home?.id || team.id == b.teams?.away?.id,
-              );
+              /// Get indices for teams in fixture A
+              final homeTeamIndexA = favoritedTeams.indexWhere((team) => team.id == a.teams?.home?.id);
+              final awayTeamIndexA = favoritedTeams.indexWhere((team) => team.id == a.teams?.away?.id);
+              final bestIndexA = [homeTeamIndexA, awayTeamIndexA].where((index) => index != -1).fold(
+                    favoritedTeams.length,
+                    (prev, curr) => curr < prev ? curr : prev,
+                  );
 
-              if (priorityA != priorityB) {
-                return priorityA ? -1 : 1;
+              /// Get indices for teams in fixture B
+              final homeTeamIndexB = favoritedTeams.indexWhere((team) => team.id == b.teams?.home?.id);
+              final awayTeamIndexB = favoritedTeams.indexWhere((team) => team.id == b.teams?.away?.id);
+              final bestIndexB = [homeTeamIndexB, awayTeamIndexB].where((index) => index != -1).fold(
+                    favoritedTeams.length,
+                    (prev, curr) => curr < prev ? curr : prev,
+                  );
+
+              /// If both fixtures have favorited teams, sort by best index
+              if (bestIndexA != favoritedTeams.length && bestIndexB != favoritedTeams.length) {
+                return bestIndexA.compareTo(bestIndexB);
+              }
+
+              /// If only one fixture has a favorited team, prioritize it
+              if (bestIndexA != favoritedTeams.length || bestIndexB != favoritedTeams.length) {
+                return bestIndexA == favoritedTeams.length ? 1 : -1;
               }
 
               return 0;

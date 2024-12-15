@@ -43,4 +43,14 @@ class TeamStorageService extends ValueNotifier<List<Team>> {
     /// Update storage
     await getIt.get<HiveService>().writeTeams(value);
   }
+
+  /// Triggered when reordering teams in [FixturesFavoriteDialog]
+  Future<void> reorderTeams(int oldIndex, int newIndex) async {
+    /// Modify `value`
+    final item = value.removeAt(oldIndex);
+    value = List.from(value..insert(newIndex, item));
+
+    /// Update storage
+    await getIt.get<HiveService>().writeTeams(value);
+  }
 }

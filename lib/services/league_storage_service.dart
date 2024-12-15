@@ -43,4 +43,14 @@ class LeagueStorageService extends ValueNotifier<List<League>> {
     /// Update storage
     await getIt.get<HiveService>().writeLeagues(value);
   }
+
+  /// Triggered when reordering leagues in [FixturesFavoriteDialog]
+  Future<void> reorderLeagues(int oldIndex, int newIndex) async {
+    /// Modify `value`
+    final item = value.removeAt(oldIndex);
+    value = List.from(value..insert(newIndex, item));
+
+    /// Update storage
+    await getIt.get<HiveService>().writeLeagues(value);
+  }
 }

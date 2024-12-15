@@ -11,6 +11,7 @@ class BalunButton extends StatefulWidget {
     required this.child,
     this.onPressed,
     this.onLongPressed,
+    super.key,
   });
 
   @override
