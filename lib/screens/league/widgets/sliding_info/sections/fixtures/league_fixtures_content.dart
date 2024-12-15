@@ -20,7 +20,7 @@ class LeagueFixturesContent extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
-      physics: const BouncingScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: groupedFixtures.entries.length,
       itemBuilder: (_, index) {
         final entry = groupedFixtures.entries.toList()[index];

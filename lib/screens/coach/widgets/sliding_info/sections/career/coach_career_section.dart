@@ -17,15 +17,11 @@ class CoachCareerSection extends StatelessWidget {
           horizontal: 16,
           vertical: 8,
         ),
-        physics: const BouncingScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: careers?.length ?? 0,
-        itemBuilder: (_, index) {
-          final career = careers![index];
-
-          return CoachCareerListTile(
-            career: career,
-          );
-        },
+        itemBuilder: (_, index) => CoachCareerListTile(
+          career: careers![index],
+        ),
         separatorBuilder: (_, __) => const SizedBox(height: 8),
       );
 }

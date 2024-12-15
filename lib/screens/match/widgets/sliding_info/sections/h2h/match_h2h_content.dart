@@ -21,7 +21,7 @@ class MatchHead2HeadContent extends StatelessWidget {
     return ListView.separated(
       shrinkWrap: true,
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
-      physics: const BouncingScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: sortedFixtures?.length ?? 0,
       itemBuilder: (_, index) {
         final fixture = sortedFixtures![index];

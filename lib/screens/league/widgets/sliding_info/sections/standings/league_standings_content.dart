@@ -17,7 +17,7 @@ class LeagueStandingsContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ListView.separated(
         shrinkWrap: true,
-        physics: const BouncingScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 8,
