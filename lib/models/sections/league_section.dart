@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 
 enum LeagueSectionEnum {
-  teams,
   standings,
   fixtures,
+  teams,
   topScorers,
   topAssists,
   topYellowCards,

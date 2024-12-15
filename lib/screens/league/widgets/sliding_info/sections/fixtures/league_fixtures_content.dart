@@ -13,20 +13,23 @@ class LeagueFixturesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final groupedFixtures = groupLeagueFixtures(fixtures ?? []);
+    final groupedFixtures = groupLeagueFixtures(
+      fixtures ?? [],
+    );
 
-    return ListView(
+    return ListView.builder(
       shrinkWrap: true,
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
       physics: const BouncingScrollPhysics(),
-      children: groupedFixtures.entries
-          .map(
-            (entry) => LeagueFixturesGroup(
-              round: entry.key,
-              fixtures: entry.value,
-            ),
-          )
-          .toList(),
+      itemCount: groupedFixtures.entries.length,
+      itemBuilder: (_, index) {
+        final entry = groupedFixtures.entries.toList()[index];
+
+        return LeagueFixturesGroup(
+          round: entry.key,
+          fixtures: entry.value,
+        );
+      },
     );
   }
 }

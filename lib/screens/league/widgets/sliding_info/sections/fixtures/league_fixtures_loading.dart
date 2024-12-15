@@ -26,17 +26,17 @@ class LeagueFixturesLoading extends StatelessWidget {
             (index) => Container(
               margin: const EdgeInsets.symmetric(
                 horizontal: 4,
-                vertical: 12,
+                vertical: 8,
               ),
               padding: const EdgeInsets.symmetric(
                 horizontal: 40,
                 vertical: 16,
               ),
-              height: 64,
+              height: 48,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: context.colors.black,
-                  width: 2,
+                  width: 1.5,
                 ),
                 borderRadius: BorderRadius.circular(8),
                 color: context.colors.black.withOpacity(0.075),

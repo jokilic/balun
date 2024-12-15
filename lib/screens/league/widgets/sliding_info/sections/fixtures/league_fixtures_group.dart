@@ -29,19 +29,22 @@ class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         child: Column(
           children: [
             BalunButton(
               onPressed: toggleExpanded,
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 4),
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 12,
+                ),
                 decoration: BoxDecoration(
                   color: context.colors.black.withOpacity(0.075),
                   border: Border.all(
                     color: context.colors.black,
-                    width: 2,
+                    width: 1.5,
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -62,7 +65,7 @@ class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
               child: expanded
                   ? ListView.separated(
                       shrinkWrap: true,
-                      padding: const EdgeInsets.symmetric(vertical: 24),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                       physics: const BouncingScrollPhysics(),
                       itemCount: widget.fixtures.length,
                       itemBuilder: (_, index) {
@@ -76,7 +79,7 @@ class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
                           ),
                         );
                       },
-                      separatorBuilder: (_, __) => const SizedBox(height: 16),
+                      separatorBuilder: (_, __) => const SizedBox(height: 12),
                     )
                   : const SizedBox.shrink(),
             ),
