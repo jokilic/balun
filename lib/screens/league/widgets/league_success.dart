@@ -27,6 +27,7 @@ class _LeagueSuccessState extends State<LeagueSuccess> {
   @override
   void initState() {
     super.initState();
+
     scrollController = ScrollController();
 
     WidgetsBinding.instance.addPostFrameCallback(

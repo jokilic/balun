@@ -4,16 +4,19 @@ import '../../../../../../constants.dart';
 import '../../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/string.dart';
 import '../../../../../../widgets/balun_button.dart';
 import 'league_fixtures_list_tile.dart';
 
 class LeagueFixturesGroup extends StatefulWidget {
   final String round;
   final List<FixtureResponse> fixtures;
+  final bool initiallyExpanded;
 
   const LeagueFixturesGroup({
     required this.round,
     required this.fixtures,
+    this.initiallyExpanded = false,
   });
 
   @override
@@ -21,7 +24,7 @@ class LeagueFixturesGroup extends StatefulWidget {
 }
 
 class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
-  var expanded = false;
+  late var expanded = widget.initiallyExpanded;
 
   void toggleExpanded() => setState(
         () => expanded = !expanded,
@@ -41,10 +44,8 @@ class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
                   vertical: 12,
                 ),
                 decoration: BoxDecoration(
-                  color: context.colors.black.withOpacity(0.075),
                   border: Border.all(
                     color: context.colors.black,
-                    width: 1.5,
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -73,6 +74,9 @@ class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
 
                         return LeagueFixturesListTile(
                           fixture: fixture,
+                          fixturePlaying: isMatchPlaying(
+                            statusShort: fixture.fixture?.status?.short ?? '--',
+                          ),
                           fixturePressed: () => openMatch(
                             context,
                             matchId: fixture.fixture!.id!,

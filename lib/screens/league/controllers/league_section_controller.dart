@@ -8,7 +8,7 @@ class LeagueSectionController extends ValueNotifier<LeagueSection> {
 
   LeagueSectionController({
     required this.logger,
-  }) : super(LeagueSection(leagueSectionEnum: LeagueSectionEnum.standings));
+  }) : super(LeagueSection(leagueSectionEnum: LeagueSectionEnum.fixtures));
 
   ///
   /// METHODS

@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../../../../constants.dart';
 import '../../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
@@ -12,10 +14,12 @@ import '../../../../../../widgets/balun_image.dart';
 class LeagueFixturesListTile extends StatelessWidget {
   final FixtureResponse fixture;
   final Function() fixturePressed;
+  final bool fixturePlaying;
 
   const LeagueFixturesListTile({
     required this.fixture,
     required this.fixturePressed,
+    required this.fixturePlaying,
   });
 
   @override
@@ -33,12 +37,10 @@ class LeagueFixturesListTile extends StatelessWidget {
           vertical: 12,
         ),
         decoration: BoxDecoration(
-          color: context.colors.white.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: context.colors.black,
-            width: 1.5,
           ),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           children: [
@@ -66,7 +68,7 @@ class LeagueFixturesListTile extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
             Row(
               children: [
                 ///
@@ -79,13 +81,13 @@ class LeagueFixturesListTile extends StatelessWidget {
                       Flexible(
                         child: Text(
                           mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
-                          style: context.textStyles.fixturesName,
+                          style: context.textStyles.fixturesNameCompact,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.right,
                         ),
                       ),
-                      const SizedBox(width: 6),
+                      const SizedBox(width: 8),
                       BalunImage(
                         imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
                         height: 40,
@@ -99,13 +101,34 @@ class LeagueFixturesListTile extends StatelessWidget {
                 /// SCORE
                 ///
                 const SizedBox(width: 12),
-                Text(
-                  '${fixture.goals?.home ?? '-'}:${fixture.goals?.away ?? '-'}',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: context.textStyles.fixturesScoreCompact,
-                  textAlign: TextAlign.center,
-                ),
+                if (fixturePlaying)
+                  Animate(
+                    onPlay: (controller) => controller.loop(
+                      reverse: true,
+                      min: 0.3,
+                    ),
+                    effects: const [
+                      FadeEffect(
+                        curve: Curves.easeIn,
+                        duration: BalunConstants.shimmerDuration,
+                      ),
+                    ],
+                    child: Text(
+                      '${fixture.goals?.home ?? '-'}:${fixture.goals?.away ?? '-'}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: context.textStyles.fixturesScoreCompact,
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                else
+                  Text(
+                    '${fixture.goals?.home ?? '-'}:${fixture.goals?.away ?? '-'}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.textStyles.fixturesScoreCompact,
+                    textAlign: TextAlign.center,
+                  ),
                 const SizedBox(width: 12),
 
                 ///
@@ -119,11 +142,11 @@ class LeagueFixturesListTile extends StatelessWidget {
                         height: 40,
                         width: 40,
                       ),
-                      const SizedBox(width: 6),
+                      const SizedBox(width: 8),
                       Flexible(
                         child: Text(
                           mixOrOriginalWords(fixture.teams?.away?.name) ?? '---',
-                          style: context.textStyles.fixturesName,
+                          style: context.textStyles.fixturesNameCompact,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,

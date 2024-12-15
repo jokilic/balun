@@ -87,7 +87,7 @@ String getCompactFixtureText({
 bool isMatchPlaying({
   required String statusShort,
 }) =>
-    statusShort == '1H' || statusShort == 'HT' || statusShort == '2H' || statusShort == 'ET' || statusShort == 'BT' || statusShort == 'P';
+    statusShort == '1H' || statusShort == 'HT' || statusShort == '2H' || statusShort == 'ET' || statusShort == 'BT' || statusShort == 'P' || statusShort == 'LIVE';
 
 bool isMatchNotStarted({required String statusShort}) => statusShort == 'TBD' || statusShort == 'NS';
 
