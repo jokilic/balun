@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/fixture_response.dart';
@@ -26,7 +27,7 @@ class LeagueFixturesContent extends StatelessWidget {
       children: [
         if (groupedFixtures.futureGroups.isNotEmpty) ...[
           Text(
-            'Upcoming fixtures',
+            'leagueFixturesUpcoming'.tr(),
             style: context.textStyles.matchStandingsSectionSubtitle,
           ),
           ListView.builder(
@@ -46,7 +47,7 @@ class LeagueFixturesContent extends StatelessWidget {
           ),
         ],
         Text(
-          groupedFixtures.futureGroups.isNotEmpty ? 'Played fixtures' : 'All fixtures',
+          groupedFixtures.futureGroups.isNotEmpty ? 'leagueFixturesPlayed'.tr() : 'leagueFixturesAll'.tr(),
           style: context.textStyles.matchStandingsSectionSubtitle,
         ),
         ListView.builder(
