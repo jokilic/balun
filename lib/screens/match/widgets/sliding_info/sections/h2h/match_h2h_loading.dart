@@ -28,10 +28,8 @@ class MatchHead2HeadLoading extends StatelessWidget {
             margin: const EdgeInsets.all(4),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: context.colors.black.withOpacity(0.075),
               border: Border.all(
                 color: context.colors.black,
-                width: 2,
               ),
               borderRadius: BorderRadius.circular(8),
             ),

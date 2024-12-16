@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../util/h2h.dart';
+import '../../../../../../util/string.dart';
 import 'match_h2h_list_tile.dart';
 
 class MatchHead2HeadContent extends StatelessWidget {
@@ -28,6 +29,9 @@ class MatchHead2HeadContent extends StatelessWidget {
 
         return MatchH2HListTile(
           fixture: fixture,
+          fixturePlaying: isMatchPlaying(
+            statusShort: fixture.fixture?.status?.short ?? '--',
+          ),
           fixturePressed: () => openMatch(
             context,
             matchId: fixture.fixture!.id!,
