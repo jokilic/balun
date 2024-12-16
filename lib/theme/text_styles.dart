@@ -7,6 +7,13 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w500,
   );
 
+  static const snackbar = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Lufga',
+    height: 1.6,
+  );
+
   static const fixturesCountry = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 20,
@@ -439,6 +446,7 @@ abstract class BalunTextStyles {
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
   final TextStyle error;
+  final TextStyle snackbar;
   final TextStyle fixturesCountry;
   final TextStyle fixturesLeague;
   final TextStyle fixturesMinute;
@@ -513,6 +521,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
 
   const BalunTextThemesExtension({
     required this.error,
+    required this.snackbar,
     required this.fixturesCountry,
     required this.fixturesLeague,
     required this.fixturesMinute,
@@ -589,6 +598,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   @override
   ThemeExtension<BalunTextThemesExtension> copyWith({
     TextStyle? error,
+    TextStyle? snackbar,
     TextStyle? fixturesCountry,
     TextStyle? fixturesLeague,
     TextStyle? fixturesMinute,
@@ -663,6 +673,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
+        snackbar: snackbar ?? this.snackbar,
         fixturesCountry: fixturesCountry ?? this.fixturesCountry,
         fixturesLeague: fixturesLeague ?? this.fixturesLeague,
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
@@ -747,6 +758,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
 
     return BalunTextThemesExtension(
       error: TextStyle.lerp(error, other.error, t)!,
+      snackbar: TextStyle.lerp(snackbar, other.snackbar, t)!,
       fixturesCountry: TextStyle.lerp(fixturesCountry, other.fixturesCountry, t)!,
       fixturesLeague: TextStyle.lerp(fixturesLeague, other.fixturesLeague, t)!,
       fixturesMinute: TextStyle.lerp(fixturesMinute, other.fixturesMinute, t)!,

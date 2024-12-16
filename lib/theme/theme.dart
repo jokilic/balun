@@ -41,6 +41,9 @@ class BalunTheme {
     error: BalunTextStyles.error.copyWith(
       color: lightAppColors.black,
     ),
+    snackbar: BalunTextStyles.snackbar.copyWith(
+      color: lightAppColors.black,
+    ),
     fixturesCountry: BalunTextStyles.fixturesCountry.copyWith(
       color: lightAppColors.black,
     ),

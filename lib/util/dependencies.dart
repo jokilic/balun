@@ -9,6 +9,7 @@ import '../services/dio_service.dart';
 import '../services/hive_service.dart';
 import '../services/league_storage_service.dart';
 import '../services/logger_service.dart';
+import '../services/package_info_service.dart';
 import '../services/periodic_api_service.dart';
 import '../services/remote_settings_service.dart';
 import '../services/team_storage_service.dart';
@@ -45,6 +46,16 @@ void initializeServices({
   getIt
     ..registerSingletonAsync(
       () async => LoggerService(),
+    )
+    ..registerSingletonAsync(
+      () async {
+        final packageInfo = PackageInfoService(
+          logger: getIt.get<LoggerService>(),
+        );
+        await packageInfo.init();
+        return packageInfo;
+      },
+      dependsOn: [LoggerService],
     )
     ..registerSingletonAsync(
       () async {
