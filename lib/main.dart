@@ -60,14 +60,14 @@ class BalunApp extends StatefulWidget {
 class _BalunAppState extends State<BalunApp> {
   @override
   void initState() {
+    super.initState();
+
     /// Set the color of the navigation bar
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         systemNavigationBarColor: context.colors.black,
       ),
     );
-
-    super.initState();
   }
 
   @override
