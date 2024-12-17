@@ -59,22 +59,6 @@ class LeagueMainInfoLoading extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(width: 20),
-                BalunButton(
-                  onPressed: () {},
-                  child: Container(
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: context.colors.white.withOpacity(0.4),
-                    ),
-                    child: const BalunImage(
-                      imageUrl: BalunIcons.favoriteNo,
-                      height: 32,
-                      width: 32,
-                    ),
-                  ),
-                ),
               ],
             ),
             const SizedBox(height: 48),

@@ -44,14 +44,14 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: index == 0 ? context.colors.black : context.colors.black.withOpacity(0.075),
+                  color: index == 1 ? context.colors.black : context.colors.black.withOpacity(0.075),
                 ),
                 child: Container(
                   height: 24,
                   width: getRandomNumberFromBase(104),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: index == 0 ? context.colors.white.withOpacity(0.8) : context.colors.black.withOpacity(0.25),
+                    color: index == 1 ? context.colors.white.withOpacity(0.8) : context.colors.black.withOpacity(0.25),
                   ),
                 ),
               ),
@@ -59,60 +59,51 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          ListView.builder(
+          ListView(
             shrinkWrap: true,
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: 12,
-            itemBuilder: (_, index) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Row(
-                children: [
-                  Container(
-                    height: 56,
-                    width: 56,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: context.colors.black.withOpacity(0.25),
-                    ),
+            physics: const BouncingScrollPhysics(),
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  height: 32,
+                  width: getRandomNumberFromBase(144),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: context.colors.black.withOpacity(0.15),
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 24,
-                          width: getRandomNumberFromBase(184),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: context.colors.black.withOpacity(0.25),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Container(
-                          height: 16,
-                          width: getRandomNumberFromBase(80),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: context.colors.black.withOpacity(0.15),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Container(
-                          height: 14,
-                          width: getRandomNumberFromBase(104),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: context.colors.black.withOpacity(0.25),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
+              const SizedBox(height: 16),
+              ...List.generate(
+                8,
+                (index) => Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 4,
+                    vertical: 8,
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 40,
+                    vertical: 16,
+                  ),
+                  height: 48,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: context.colors.black,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Container(
+                    height: 24,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: context.colors.black.withOpacity(0.15),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       );
