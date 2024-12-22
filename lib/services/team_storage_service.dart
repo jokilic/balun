@@ -37,7 +37,32 @@ class TeamStorageService extends ValueNotifier<List<Team>> {
 
     /// Team doesn't exist, add it to state & storage
     else {
-      value = List.from(value..add(passedTeam));
+      final newList = List<Team>.from(value);
+
+      /// Find the `id` of the closest `team`
+      var closestIndex = -1;
+      var smallestDiff = -1;
+
+      for (var i = 0; i < newList.length; i++) {
+        final diff = ((newList[i].id ?? 0) - (passedTeam.id ?? 0)).abs();
+
+        if (smallestDiff == -1 || diff < smallestDiff) {
+          smallestDiff = diff;
+          closestIndex = i;
+        }
+      }
+
+      /// Insert after the closest `team`
+      if (closestIndex != -1) {
+        newList.insert(closestIndex + 1, passedTeam);
+      }
+
+      /// List is empty, just add to the end
+      else {
+        newList.add(passedTeam);
+      }
+
+      value = newList;
     }
 
     /// Update storage

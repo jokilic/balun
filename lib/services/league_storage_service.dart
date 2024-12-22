@@ -28,16 +28,48 @@ class LeagueStorageService extends ValueNotifier<List<League>> {
     }
 
     /// Check if league exists in storage
-    final leagueExists = value.any((league) => league.id == passedLeague.id);
+    final leagueExists = value.any(
+      (league) => league.id == passedLeague.id,
+    );
 
     /// League exists, remove it from state & storage
     if (leagueExists) {
-      value = List.from(value..removeWhere((league) => league.id == passedLeague.id));
+      value = List.from(
+        value
+          ..removeWhere(
+            (league) => league.id == passedLeague.id,
+          ),
+      );
     }
 
     /// League doesn't exist, add it to state & storage
     else {
-      value = List.from(value..add(passedLeague));
+      final newList = List<League>.from(value);
+
+      /// Find the `id` of the closest `league`
+      var closestIndex = -1;
+      var smallestDiff = -1;
+
+      for (var i = 0; i < newList.length; i++) {
+        final diff = ((newList[i].id ?? 0) - (passedLeague.id ?? 0)).abs();
+
+        if (smallestDiff == -1 || diff < smallestDiff) {
+          smallestDiff = diff;
+          closestIndex = i;
+        }
+      }
+
+      /// Insert after the closest `league`
+      if (closestIndex != -1) {
+        newList.insert(closestIndex + 1, passedLeague);
+      }
+
+      /// List is empty, just add to the end
+      else {
+        newList.add(passedLeague);
+      }
+
+      value = newList;
     }
 
     /// Update storage
