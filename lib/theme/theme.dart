@@ -53,6 +53,9 @@ class BalunTheme {
     fixturesMinute: BalunTextStyles.fixturesMinute.copyWith(
       color: lightAppColors.black.withOpacity(0.5),
     ),
+    fixturesMinuteExtra: BalunTextStyles.fixturesMinuteExtra.copyWith(
+      color: lightAppColors.black.withOpacity(0.5),
+    ),
     fixturesName: BalunTextStyles.fixturesName.copyWith(
       color: lightAppColors.black,
     ),

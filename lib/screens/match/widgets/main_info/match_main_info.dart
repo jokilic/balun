@@ -113,10 +113,13 @@ class MatchMainInfo extends WatchingWidget {
                   children: [
                     const SizedBox(height: 20),
                     MatchMinute(
-                      status: getMatchStatusShortOrMinutes(
+                      minutes: getMatchMinutesOrNull(
                         statusShort: match.fixture?.status?.short ?? '--',
                         minutes: match.fixture?.status?.elapsed ?? 0,
                         extra: match.fixture?.status?.extra,
+                      ),
+                      textStatus: getMatchStatusShortOrNull(
+                        statusShort: match.fixture?.status?.short ?? '--',
                       ),
                       timeBeforeMatch: isMatchNotStarted(
                                 statusShort: match.fixture?.status?.short ?? '--',

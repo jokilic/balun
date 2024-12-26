@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import '../../../../theme/theme.dart';
 
 class MatchMinute extends StatelessWidget {
-  final String status;
+  final ({int minutes, int? extra})? minutes;
+  final String? textStatus;
   final String? timeBeforeMatch;
 
   const MatchMinute({
-    required this.status,
+    required this.minutes,
+    required this.textStatus,
     required this.timeBeforeMatch,
   });
 
@@ -28,19 +30,35 @@ class MatchMinute extends StatelessWidget {
           alignment: Alignment.center,
           clipBehavior: Clip.none,
           children: [
+            ///
+            /// TIME
+            ///
             if (timeBeforeMatch != null)
               Text(
                 timeBeforeMatch!,
                 style: context.textStyles.fixturesMinute,
                 textAlign: TextAlign.center,
               )
-            else
+
+            ///
+            /// STATUS
+            ///
+            else if (textStatus != null)
               Text(
-                status.toUpperCase(),
+                textStatus!.toUpperCase(),
+                style: context.textStyles.fixturesMinute,
+                textAlign: TextAlign.center,
+              )
+
+            ///
+            /// MINUTES (IF THERE'S NO EXTRA)
+            ///
+            else if (minutes != null && minutes?.extra == null) ...[
+              Text(
+                minutes!.minutes.toString(),
                 style: context.textStyles.fixturesMinute,
                 textAlign: TextAlign.center,
               ),
-            if (int.tryParse(status) != null)
               Positioned(
                 right: -6,
                 child: Text(
@@ -48,6 +66,33 @@ class MatchMinute extends StatelessWidget {
                   style: context.textStyles.fixturesMinute,
                   textAlign: TextAlign.center,
                 ),
+              ),
+            ]
+
+            ///
+            /// MINUTES (WITH EXTRA)
+            ///
+            else if (minutes != null && minutes?.extra != null)
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    minutes!.minutes.toString(),
+                    style: context.textStyles.fixturesMinute,
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    "'",
+                    style: context.textStyles.fixturesMinute,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(width: 2),
+                  Text(
+                    '+${minutes!.extra}',
+                    style: context.textStyles.fixturesMinuteExtra,
+                  ),
+                ],
               ),
           ],
         ),

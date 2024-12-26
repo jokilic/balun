@@ -116,14 +116,12 @@ String getMatchStatusLong(String statusShort) => switch (statusShort.toUpperCase
       _ => 'matchStatusUnknown'.tr(),
     };
 
-String getMatchStatusShortOrMinutes({
+String? getMatchStatusShortOrNull({
   required String statusShort,
-  required int minutes,
-  required int? extra,
 }) =>
     switch (statusShort.toUpperCase()) {
       'TBD' || 'NS' => 'matchStatusShortNotStarted'.tr(),
-      '1H' || '2H' || 'ET' || 'LIVE' => extra != null ? '${minutes + extra}' : '$minutes',
+      '1H' || '2H' || 'ET' || 'LIVE' => null,
       'HT' => 'matchStatusShortHalfTime'.tr(),
       'FT' || 'AET' || 'PEN' => 'matchStatusShortFullTime'.tr(),
       'BT' => 'matchStatusShortBreak'.tr(),
@@ -131,6 +129,16 @@ String getMatchStatusShortOrMinutes({
       'PST' || 'CANC' || 'ABD' || 'AWD' || 'WO' => 'matchStatusShortQuestion'.tr(),
       'SUSP' || 'INT' => 'matchStatusShortExclamation'.tr(),
       _ => statusShort,
+    };
+
+({int minutes, int? extra})? getMatchMinutesOrNull({
+  required String statusShort,
+  required int minutes,
+  required int? extra,
+}) =>
+    switch (statusShort.toUpperCase()) {
+      '1H' || '2H' || 'ET' || 'LIVE' => (minutes: minutes, extra: extra),
+      _ => null,
     };
 
 String getEventText({

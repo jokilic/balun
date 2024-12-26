@@ -32,6 +32,12 @@ abstract class BalunTextStyles {
     fontWeight: FontWeight.w300,
   );
 
+  static const fixturesMinuteExtra = TextStyle(
+    fontFamily: 'Lufga',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+
   static const fixturesName = TextStyle(
     fontFamily: 'Lufga',
     fontSize: 18,
@@ -450,6 +456,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle fixturesCountry;
   final TextStyle fixturesLeague;
   final TextStyle fixturesMinute;
+  final TextStyle fixturesMinuteExtra;
   final TextStyle fixturesName;
   final TextStyle fixturesNameCompact;
   final TextStyle fixturesScore;
@@ -525,6 +532,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.fixturesCountry,
     required this.fixturesLeague,
     required this.fixturesMinute,
+    required this.fixturesMinuteExtra,
     required this.fixturesName,
     required this.fixturesNameCompact,
     required this.fixturesScore,
@@ -602,6 +610,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? fixturesCountry,
     TextStyle? fixturesLeague,
     TextStyle? fixturesMinute,
+    TextStyle? fixturesMinuteExtra,
     TextStyle? fixturesName,
     TextStyle? fixturesNameCompact,
     TextStyle? fixturesScore,
@@ -677,6 +686,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         fixturesCountry: fixturesCountry ?? this.fixturesCountry,
         fixturesLeague: fixturesLeague ?? this.fixturesLeague,
         fixturesMinute: fixturesMinute ?? this.fixturesMinute,
+        fixturesMinuteExtra: fixturesMinuteExtra ?? this.fixturesMinuteExtra,
         fixturesName: fixturesName ?? this.fixturesName,
         fixturesNameCompact: fixturesNameCompact ?? this.fixturesNameCompact,
         fixturesScore: fixturesScore ?? this.fixturesScore,
@@ -762,6 +772,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       fixturesCountry: TextStyle.lerp(fixturesCountry, other.fixturesCountry, t)!,
       fixturesLeague: TextStyle.lerp(fixturesLeague, other.fixturesLeague, t)!,
       fixturesMinute: TextStyle.lerp(fixturesMinute, other.fixturesMinute, t)!,
+      fixturesMinuteExtra: TextStyle.lerp(fixturesMinuteExtra, other.fixturesMinuteExtra, t)!,
       fixturesName: TextStyle.lerp(fixturesName, other.fixturesName, t)!,
       fixturesNameCompact: TextStyle.lerp(fixturesNameCompact, other.fixturesNameCompact, t)!,
       fixturesScore: TextStyle.lerp(fixturesScore, other.fixturesScore, t)!,
