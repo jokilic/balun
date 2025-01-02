@@ -11,7 +11,7 @@ import '../../../theme/theme.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
-class FixturesFavoriteDialog extends WatchingWidget {
+class FixturesFavoriteDialog extends WatchingStatefulWidget {
   final Function() onPressed;
   final Function(int oldIndex, int newIndex) onReorderLeagues;
   final Function(int oldIndex, int newIndex) onReorderTeams;
@@ -21,6 +21,62 @@ class FixturesFavoriteDialog extends WatchingWidget {
     required this.onReorderLeagues,
     required this.onReorderTeams,
   });
+
+  @override
+  State<FixturesFavoriteDialog> createState() => _FixturesFavoriteDialogState();
+}
+
+class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
+  late final ScrollController scrollController;
+  var isDragging = false;
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  void onPointerMove(PointerMoveEvent event) {
+    if (!scrollController.hasClients) {
+      return;
+    }
+
+    const scrollSpeed = 10;
+
+    final dy = event.position.dy;
+
+    /// User dragged up
+    if (dy < 200) {
+      final currentOffset = scrollController.offset;
+      final newOffset = (currentOffset - scrollSpeed).clamp(
+        0.0,
+        scrollController.position.maxScrollExtent,
+      );
+
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => scrollController.jumpTo(newOffset),
+      );
+    }
+
+    /// User dragged down
+    if (dy > 700) {
+      final currentOffset = scrollController.offset;
+      final newOffset = (currentOffset + scrollSpeed).clamp(
+        0.0,
+        scrollController.position.maxScrollExtent,
+      );
+
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => scrollController.jumpTo(newOffset),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,204 +111,212 @@ class FixturesFavoriteDialog extends WatchingWidget {
           ),
           const SizedBox(height: 8),
           Flexible(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ///
-                  /// TEXT
-                  ///
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Text(
-                      'fixturesFavoriteDialogText1'.tr(),
-                      style: context.textStyles.dialogText,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Text(
-                      'fixturesFavoriteDialogText2'.tr(),
-                      style: context.textStyles.dialogText,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  ///
-                  /// LEAGUES
-                  ///
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Text(
-                      'fixturesFavoriteDialogLeagues'.tr(),
-                      style: context.textStyles.dialogSubtitle,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  if (favoritedLeagues.isEmpty)
+            child: Listener(
+              onPointerMove: onPointerMove,
+              child: SingleChildScrollView(
+                controller: scrollController,
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ///
+                    /// TEXT
+                    ///
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: Text(
-                        'fixturesFavoriteDialogNoLeagues'.tr(),
+                        'fixturesFavoriteDialogText1'.tr(),
                         style: context.textStyles.dialogText,
                       ),
-                    )
-                  else
-                    SizedBox(
-                      height: (42 * favoritedLeagues.length).toDouble(),
-                      width: double.maxFinite,
-                      child: ReorderableListView.builder(
-                        proxyDecorator: (child, _, __) => ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Material(
-                            color: context.colors.white.withOpacity(0.4),
-                            child: child,
-                          ),
-                        ),
-                        onReorder: (oldIndex, newIndex) {
-                          if (newIndex > oldIndex) {
-                            newIndex--;
-                          }
-
-                          onReorderLeagues(oldIndex, newIndex);
-                        },
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: favoritedLeagues.length,
-                        itemBuilder: (_, index) {
-                          final league = favoritedLeagues[index];
-
-                          return BalunButton(
-                            key: ValueKey(league),
-                            onPressed: league.id != null
-                                ? () => openLeague(
-                                      context,
-                                      leagueId: league.id!,
-                                      season: DateTime.now().year.toString(),
-                                    )
-                                : null,
-                            child: Container(
-                              color: Colors.transparent,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 4,
-                              ),
-                              child: Row(
-                                children: [
-                                  BalunImage(
-                                    imageUrl: league.logo ?? BalunIcons.placeholderLeague,
-                                    height: 32,
-                                    width: 32,
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Expanded(
-                                    child: Text(
-                                      league.name ?? '---',
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: context.textStyles.dialogText.copyWith(
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
                     ),
-
-                  const SizedBox(height: 16),
-
-                  ///
-                  /// TEAMS
-                  ///
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Text(
-                      'fixturesFavoriteDialogTeams'.tr(),
-                      style: context.textStyles.dialogSubtitle,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  if (favoritedTeams.isEmpty)
+                    const SizedBox(height: 12),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: Text(
-                        'fixturesFavoriteDialogNoTeams'.tr(),
+                        'fixturesFavoriteDialogText2'.tr(),
                         style: context.textStyles.dialogText,
                       ),
-                    )
-                  else
-                    SizedBox(
-                      height: (42 * favoritedTeams.length).toDouble(),
-                      width: double.maxFinite,
-                      child: ReorderableListView.builder(
-                        proxyDecorator: (child, _, __) => ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Material(
-                            color: context.colors.white.withOpacity(0.4),
-                            child: child,
-                          ),
-                        ),
-                        onReorder: (oldIndex, newIndex) {
-                          if (newIndex > oldIndex) {
-                            newIndex--;
-                          }
+                    ),
+                    const SizedBox(height: 16),
 
-                          onReorderTeams(oldIndex, newIndex);
-                        },
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: favoritedTeams.length,
-                        itemBuilder: (_, index) {
-                          final team = favoritedTeams[index];
-
-                          return BalunButton(
-                            key: ValueKey(team),
-                            onPressed: team.id != null
-                                ? () => openTeam(
-                                      context,
-                                      teamId: team.id!,
-                                      season: DateTime.now().year.toString(),
-                                    )
-                                : null,
-                            child: Container(
-                              color: Colors.transparent,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 4,
-                              ),
-                              child: Row(
-                                children: [
-                                  BalunImage(
-                                    imageUrl: team.logo ?? BalunIcons.placeholderLeague,
-                                    height: 32,
-                                    width: 32,
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Expanded(
-                                    child: Text(
-                                      team.name ?? '---',
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: context.textStyles.dialogText.copyWith(
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
+                    ///
+                    /// LEAGUES
+                    ///
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        'fixturesFavoriteDialogLeagues'.tr(),
+                        style: context.textStyles.dialogSubtitle,
                       ),
                     ),
-                ],
+                    const SizedBox(height: 12),
+                    if (favoritedLeagues.isEmpty)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(
+                          'fixturesFavoriteDialogNoLeagues'.tr(),
+                          style: context.textStyles.dialogText,
+                        ),
+                      )
+                    else
+                      SizedBox(
+                        height: (42 * favoritedLeagues.length).toDouble(),
+                        width: double.maxFinite,
+                        child: ReorderableListView.builder(
+                          proxyDecorator: (child, _, __) => ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Material(
+                              color: context.colors.white.withOpacity(0.4),
+                              child: child,
+                            ),
+                          ),
+                          onReorderStart: (_) => isDragging = true,
+                          onReorderEnd: (_) => isDragging = false,
+                          onReorder: (oldIndex, newIndex) {
+                            if (newIndex > oldIndex) {
+                              newIndex--;
+                            }
+
+                            widget.onReorderLeagues(oldIndex, newIndex);
+                          },
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: favoritedLeagues.length,
+                          itemBuilder: (_, index) {
+                            final league = favoritedLeagues[index];
+
+                            return BalunButton(
+                              key: ValueKey(league),
+                              onPressed: league.id != null
+                                  ? () => openLeague(
+                                        context,
+                                        leagueId: league.id!,
+                                        season: DateTime.now().year.toString(),
+                                      )
+                                  : null,
+                              child: Container(
+                                color: Colors.transparent,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                child: Row(
+                                  children: [
+                                    BalunImage(
+                                      imageUrl: league.logo ?? BalunIcons.placeholderLeague,
+                                      height: 32,
+                                      width: 32,
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                      child: Text(
+                                        league.name ?? '---',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: context.textStyles.dialogText.copyWith(
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+
+                    const SizedBox(height: 16),
+
+                    ///
+                    /// TEAMS
+                    ///
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        'fixturesFavoriteDialogTeams'.tr(),
+                        style: context.textStyles.dialogSubtitle,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    if (favoritedTeams.isEmpty)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Text(
+                          'fixturesFavoriteDialogNoTeams'.tr(),
+                          style: context.textStyles.dialogText,
+                        ),
+                      )
+                    else
+                      SizedBox(
+                        height: (42 * favoritedTeams.length).toDouble(),
+                        width: double.maxFinite,
+                        child: ReorderableListView.builder(
+                          proxyDecorator: (child, _, __) => ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Material(
+                              color: context.colors.white.withOpacity(0.4),
+                              child: child,
+                            ),
+                          ),
+                          onReorderStart: (_) => isDragging = true,
+                          onReorderEnd: (_) => isDragging = false,
+                          onReorder: (oldIndex, newIndex) {
+                            if (newIndex > oldIndex) {
+                              newIndex--;
+                            }
+
+                            widget.onReorderTeams(oldIndex, newIndex);
+                          },
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: favoritedTeams.length,
+                          itemBuilder: (_, index) {
+                            final team = favoritedTeams[index];
+
+                            return BalunButton(
+                              key: ValueKey(team),
+                              onPressed: team.id != null
+                                  ? () => openTeam(
+                                        context,
+                                        teamId: team.id!,
+                                        season: DateTime.now().year.toString(),
+                                      )
+                                  : null,
+                              child: Container(
+                                color: Colors.transparent,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                child: Row(
+                                  children: [
+                                    BalunImage(
+                                      imageUrl: team.logo ?? BalunIcons.placeholderLeague,
+                                      height: 32,
+                                      width: 32,
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                      child: Text(
+                                        team.name ?? '---',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: context.textStyles.dialogText.copyWith(
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -260,7 +324,7 @@ class FixturesFavoriteDialog extends WatchingWidget {
       ),
       actions: [
         BalunButton(
-          onPressed: onPressed,
+          onPressed: widget.onPressed,
           child: Text(
             'fixturesDialogOkay'.tr().toUpperCase(),
             style: context.textStyles.dialogButton,

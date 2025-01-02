@@ -22,11 +22,11 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - Sentry/HybridSDK (8.40.1)
-  - sentry_flutter (8.10.1):
+  - Sentry/HybridSDK (8.42.0)
+  - sentry_flutter (8.12.0):
     - Flutter
     - FlutterMacOS
-    - Sentry/HybridSDK (= 8.40.1)
+    - Sentry/HybridSDK (= 8.42.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -86,17 +86,17 @@ SPEC CHECKSUMS:
   connectivity_plus: 18382e7311ba19efcaee94442b23b32507b20695
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_inappwebview_ios: 6f63631e2c62a7c350263b13fa5427aedefe81d4
-  flutter_native_splash: e8a1e01082d97a8099d973f919f57904c925008a
+  flutter_native_splash: f71420956eb811e6d310720fee915f1d42852e7a
   just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
   OrderedSet: e539b66b644ff081c73a262d24ad552a69be3a94
   package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  Sentry: e9215d7b17f7902692b4f8700e061e4f853e3521
-  sentry_flutter: 927eed60d66951d1b0f1db37fe94ff5cb7c80231
+  Sentry: 38ed8bf38eab5812787274bf591e528074c19e02
+  sentry_flutter: 7d1f1df30f3768c411603ed449519bbb90a7d87b
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.11.3
