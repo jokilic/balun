@@ -42,7 +42,7 @@ class PlayerSectionTitles extends StatelessWidget {
                 curve: Curves.easeIn,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: activePlayerSection == section ? context.colors.black : context.colors.black.withOpacity(0.075),
+                  color: activePlayerSection == section ? context.colors.black : context.colors.black.withValues(alpha: 0.075),
                 ),
                 child: Text(
                   section.getPlayerSectionName(),

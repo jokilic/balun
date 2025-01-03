@@ -30,7 +30,7 @@ class LeaguesListTileLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(240),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: context.colors.black.withOpacity(0.25),
+                    color: context.colors.black.withValues(alpha: 0.25),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -39,7 +39,7 @@ class LeaguesListTileLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(80),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: context.colors.black.withOpacity(0.15),
+                    color: context.colors.black.withValues(alpha: 0.15),
                   ),
                 ),
               ],

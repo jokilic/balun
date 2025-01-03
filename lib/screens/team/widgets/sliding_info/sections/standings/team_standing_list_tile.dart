@@ -110,7 +110,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                     Text(
                                       'leagueStandingsForm'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
-                                        color: context.colors.black.withOpacity(0.5),
+                                        color: context.colors.black.withValues(alpha: 0.5),
                                       ),
                                       maxLines: 1,
                                       textAlign: TextAlign.center,
@@ -124,7 +124,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                             final color = switch (letter.toUpperCase()) {
                                               'W' => context.colors.green,
                                               'L' => context.colors.red,
-                                              'D' => context.colors.black.withOpacity(0.4),
+                                              'D' => context.colors.black.withValues(alpha: 0.4),
                                               _ => context.colors.blue,
                                             };
 
@@ -152,7 +152,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                     Text(
                                       'leagueStandingsPointsLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
-                                        color: context.colors.black.withOpacity(0.5),
+                                        color: context.colors.black.withValues(alpha: 0.5),
                                       ),
                                       maxLines: 1,
                                       textAlign: TextAlign.center,
@@ -172,7 +172,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                     Text(
                                       'leagueStandingsGoalDifferenceLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
-                                        color: context.colors.black.withOpacity(0.5),
+                                        color: context.colors.black.withValues(alpha: 0.5),
                                       ),
                                       maxLines: 1,
                                       textAlign: TextAlign.center,
@@ -192,7 +192,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                     Text(
                                       'leagueStandingsPlayedGamesLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
-                                        color: context.colors.black.withOpacity(0.5),
+                                        color: context.colors.black.withValues(alpha: 0.5),
                                       ),
                                       maxLines: 1,
                                       textAlign: TextAlign.center,
@@ -212,7 +212,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                     Text(
                                       'leagueStandingsWonGamesLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
-                                        color: context.colors.black.withOpacity(0.5),
+                                        color: context.colors.black.withValues(alpha: 0.5),
                                       ),
                                       maxLines: 1,
                                       textAlign: TextAlign.center,
@@ -232,7 +232,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                     Text(
                                       'leagueStandingsDrewGamesLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
-                                        color: context.colors.black.withOpacity(0.5),
+                                        color: context.colors.black.withValues(alpha: 0.5),
                                       ),
                                       maxLines: 1,
                                       textAlign: TextAlign.center,
@@ -252,7 +252,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                     Text(
                                       'leagueStandingsLostGamesLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
-                                        color: context.colors.black.withOpacity(0.5),
+                                        color: context.colors.black.withValues(alpha: 0.5),
                                       ),
                                       maxLines: 1,
                                       textAlign: TextAlign.center,
@@ -272,7 +272,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                     Text(
                                       'leagueStandingsScoredGoalsLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
-                                        color: context.colors.black.withOpacity(0.5),
+                                        color: context.colors.black.withValues(alpha: 0.5),
                                       ),
                                       maxLines: 1,
                                       textAlign: TextAlign.center,
@@ -292,7 +292,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                     Text(
                                       'leagueStandingsConcededGoalsLong'.tr(),
                                       style: context.textStyles.matchStandingsSectionText.copyWith(
-                                        color: context.colors.black.withOpacity(0.5),
+                                        color: context.colors.black.withValues(alpha: 0.5),
                                       ),
                                       maxLines: 1,
                                       textAlign: TextAlign.center,

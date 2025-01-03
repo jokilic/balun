@@ -47,7 +47,7 @@ class TeamStandingsLoading extends StatelessWidget {
                         width: getRandomNumberFromBase(160),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.25),
+                          color: context.colors.black.withValues(alpha: 0.25),
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -56,7 +56,7 @@ class TeamStandingsLoading extends StatelessWidget {
                         width: getRandomNumberFromBase(88),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.15),
+                          color: context.colors.black.withValues(alpha: 0.15),
                         ),
                       ),
                     ],

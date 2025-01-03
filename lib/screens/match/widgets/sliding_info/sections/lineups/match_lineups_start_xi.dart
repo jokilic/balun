@@ -53,7 +53,7 @@ class MatchLineupsStartXI extends StatelessWidget {
               ),
               child: CustomPaint(
                 painter: FieldPainter(
-                  linesColor: context.colors.white.withOpacity(0.4),
+                  linesColor: context.colors.white.withValues(alpha: 0.4),
                 ),
                 child: Stack(
                   children: [

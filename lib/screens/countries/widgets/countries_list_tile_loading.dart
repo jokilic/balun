@@ -27,7 +27,7 @@ class CountriesListTileLoading extends StatelessWidget {
               width: getRandomNumberFromBase(200),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: context.colors.black.withOpacity(0.25),
+                color: context.colors.black.withValues(alpha: 0.25),
               ),
             ),
           ],

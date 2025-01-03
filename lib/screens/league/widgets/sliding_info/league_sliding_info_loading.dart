@@ -22,7 +22,7 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
               width: 40,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: context.colors.black.withOpacity(0.5),
+                color: context.colors.black.withValues(alpha: 0.5),
               ),
             ),
           ),
@@ -44,14 +44,14 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: index == 1 ? context.colors.black : context.colors.black.withOpacity(0.075),
+                  color: index == 1 ? context.colors.black : context.colors.black.withValues(alpha: 0.075),
                 ),
                 child: Container(
                   height: 24,
                   width: getRandomNumberFromBase(104),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: index == 1 ? context.colors.white.withOpacity(0.8) : context.colors.black.withOpacity(0.25),
+                    color: index == 1 ? context.colors.white.withValues(alpha: 0.8) : context.colors.black.withValues(alpha: 0.25),
                   ),
                 ),
               ),
@@ -71,7 +71,7 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(144),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: context.colors.black.withOpacity(0.15),
+                    color: context.colors.black.withValues(alpha: 0.15),
                   ),
                 ),
               ),
@@ -98,7 +98,7 @@ class LeagueSlidingInfoLoading extends StatelessWidget {
                     height: 24,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: context.colors.black.withOpacity(0.15),
+                      color: context.colors.black.withValues(alpha: 0.15),
                     ),
                   ),
                 ),

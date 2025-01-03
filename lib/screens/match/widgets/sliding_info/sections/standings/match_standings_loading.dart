@@ -32,7 +32,7 @@ class MatchStandingsLoading extends StatelessWidget {
                 width: getRandomNumberFromBase(104),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: context.colors.black.withOpacity(0.25),
+                  color: context.colors.black.withValues(alpha: 0.25),
                 ),
               ),
               const SizedBox(height: 8),
@@ -41,7 +41,7 @@ class MatchStandingsLoading extends StatelessWidget {
                 width: getRandomNumberFromBase(80),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: context.colors.black.withOpacity(0.15),
+                  color: context.colors.black.withValues(alpha: 0.15),
                 ),
               ),
               const SizedBox(height: 8),
@@ -53,7 +53,7 @@ class MatchStandingsLoading extends StatelessWidget {
                     width: 24,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
-                      color: context.colors.black.withOpacity(0.15),
+                      color: context.colors.black.withValues(alpha: 0.15),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -62,7 +62,7 @@ class MatchStandingsLoading extends StatelessWidget {
                     width: 24,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
-                      color: context.colors.black.withOpacity(0.15),
+                      color: context.colors.black.withValues(alpha: 0.15),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -71,7 +71,7 @@ class MatchStandingsLoading extends StatelessWidget {
                     width: 24,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
-                      color: context.colors.black.withOpacity(0.15),
+                      color: context.colors.black.withValues(alpha: 0.15),
                     ),
                   ),
                 ],
@@ -90,7 +90,7 @@ class MatchStandingsLoading extends StatelessWidget {
                         width: 16,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
-                          color: context.colors.black.withOpacity(0.25),
+                          color: context.colors.black.withValues(alpha: 0.25),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -108,7 +108,7 @@ class MatchStandingsLoading extends StatelessWidget {
                           height: 24,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: context.colors.black.withOpacity(0.15),
+                            color: context.colors.black.withValues(alpha: 0.15),
                           ),
                         ),
                       ),
@@ -118,7 +118,7 @@ class MatchStandingsLoading extends StatelessWidget {
                         width: 24,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
-                          color: context.colors.black.withOpacity(0.25),
+                          color: context.colors.black.withValues(alpha: 0.25),
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -127,7 +127,7 @@ class MatchStandingsLoading extends StatelessWidget {
                         width: 24,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
-                          color: context.colors.black.withOpacity(0.25),
+                          color: context.colors.black.withValues(alpha: 0.25),
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -136,7 +136,7 @@ class MatchStandingsLoading extends StatelessWidget {
                         width: 24,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
-                          color: context.colors.black.withOpacity(0.25),
+                          color: context.colors.black.withValues(alpha: 0.25),
                         ),
                       ),
                     ],

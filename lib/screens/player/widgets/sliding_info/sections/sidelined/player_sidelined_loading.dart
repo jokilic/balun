@@ -39,7 +39,7 @@ class PlayerSidelinedLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(200),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: context.colors.black.withOpacity(0.5),
+                    color: context.colors.black.withValues(alpha: 0.5),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -61,7 +61,7 @@ class PlayerSidelinedLoading extends StatelessWidget {
                       width: getRandomNumberFromBase(200),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: context.colors.black.withOpacity(0.15),
+                        color: context.colors.black.withValues(alpha: 0.15),
                       ),
                     ),
                   ],
@@ -84,7 +84,7 @@ class PlayerSidelinedLoading extends StatelessWidget {
                       width: getRandomNumberFromBase(200),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: context.colors.black.withOpacity(0.15),
+                        color: context.colors.black.withValues(alpha: 0.15),
                       ),
                     ),
                   ],

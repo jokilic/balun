@@ -72,7 +72,7 @@ class FixturesSuccess extends WatchingWidget {
           FixturesAppBar(
             onPressed: () => showDialog(
               context: context,
-              barrierColor: context.colors.black.withOpacity(0.5),
+              barrierColor: context.colors.black.withValues(alpha: 0.5),
               builder: (context) => FixturesFavoriteDialog(
                 onPressed: Navigator.of(context).pop,
                 onReorderLeagues: getIt.get<LeagueStorageService>().reorderLeagues,
@@ -121,7 +121,7 @@ class FixturesSuccess extends WatchingWidget {
           FixturesAppBar(
             onPressed: () => showDialog(
               context: context,
-              barrierColor: context.colors.black.withOpacity(0.5),
+              barrierColor: context.colors.black.withValues(alpha: 0.5),
               builder: (context) => FixturesAllDialog(
                 onPressed: Navigator.of(context).pop,
               ),

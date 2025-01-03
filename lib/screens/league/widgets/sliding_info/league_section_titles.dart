@@ -42,7 +42,7 @@ class LeagueSectionTitles extends StatelessWidget {
                 curve: Curves.easeIn,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: activeLeagueSection == section ? context.colors.black : context.colors.black.withOpacity(0.075),
+                  color: activeLeagueSection == section ? context.colors.black : context.colors.black.withValues(alpha: 0.075),
                 ),
                 child: Text(
                   section.getLeagueSectionName(),

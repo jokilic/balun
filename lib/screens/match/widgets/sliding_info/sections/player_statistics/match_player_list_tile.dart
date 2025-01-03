@@ -72,7 +72,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                       child: Text(
                         mixOrOriginalWords(widget.statisticData?.player?.name ?? '--') ?? '--',
                         style: context.textStyles.matchPlayerStatisticsName.copyWith(
-                          color: (substitute ?? false) && rating == null ? context.colors.black.withOpacity(0.4) : null,
+                          color: (substitute ?? false) && rating == null ? context.colors.black.withValues(alpha: 0.4) : null,
                         ),
                       ),
                     ),

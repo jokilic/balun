@@ -16,7 +16,7 @@ class FixturesListTileLogo extends StatelessWidget {
         width: 64,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: context.colors.greenish.withOpacity(0.5),
+          color: context.colors.greenish.withValues(alpha: 0.5),
         ),
         padding: const EdgeInsets.all(8),
         child: BalunImage(

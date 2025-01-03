@@ -44,7 +44,7 @@ class TeamSlidingInfo extends WatchingWidget {
             width: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
-              color: context.colors.black.withOpacity(0.5),
+              color: context.colors.black.withValues(alpha: 0.5),
             ),
           ),
         ),

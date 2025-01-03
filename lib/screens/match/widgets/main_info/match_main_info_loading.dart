@@ -26,7 +26,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                     padding: const EdgeInsets.all(14),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: context.colors.white.withOpacity(0.4),
+                      color: context.colors.white.withValues(alpha: 0.4),
                     ),
                     child: const BalunImage(
                       imageUrl: BalunIcons.back,
@@ -45,7 +45,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                         width: getRandomNumberFromBase(120),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.25),
+                          color: context.colors.black.withValues(alpha: 0.25),
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -54,7 +54,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                         width: getRandomNumberFromBase(80),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.15),
+                          color: context.colors.black.withValues(alpha: 0.15),
                         ),
                       ),
                     ],
@@ -83,7 +83,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                         width: getRandomNumberFromBase(80),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.25),
+                          color: context.colors.black.withValues(alpha: 0.25),
                         ),
                       ),
                     ],
@@ -101,7 +101,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           border: Border.all(
-                            color: context.colors.black.withOpacity(0.2),
+                            color: context.colors.black.withValues(alpha: 0.2),
                             width: 1.5,
                           ),
                         ),
@@ -110,7 +110,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                           width: 56,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: context.colors.black.withOpacity(0.15),
+                            color: context.colors.black.withValues(alpha: 0.15),
                           ),
                         ),
                       ),
@@ -139,7 +139,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                         width: getRandomNumberFromBase(80),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.25),
+                          color: context.colors.black.withValues(alpha: 0.25),
                         ),
                       ),
                     ],
@@ -172,7 +172,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                                 width: 16,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
-                                  color: context.colors.black.withOpacity(0.15),
+                                  color: context.colors.black.withValues(alpha: 0.15),
                                 ),
                               ),
                               const SizedBox(width: 8),
@@ -182,7 +182,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                                   width: getRandomNumberFromBase(80),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
-                                    color: context.colors.black.withOpacity(0.25),
+                                    color: context.colors.black.withValues(alpha: 0.25),
                                   ),
                                 ),
                               ),
@@ -207,14 +207,14 @@ class MatchMainInfoLoading extends StatelessWidget {
                         width: 48,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.5),
+                          color: context.colors.black.withValues(alpha: 0.5),
                         ),
                       ),
                       const SizedBox(width: 4),
                       Text(
                         ':',
                         style: context.textStyles.fixturesScore.copyWith(
-                          color: context.colors.black.withOpacity(0.2),
+                          color: context.colors.black.withValues(alpha: 0.2),
                         ),
                       ),
                       const SizedBox(width: 4),
@@ -223,7 +223,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                         width: 48,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.5),
+                          color: context.colors.black.withValues(alpha: 0.5),
                         ),
                       ),
                     ],
@@ -252,7 +252,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                                   width: getRandomNumberFromBase(80),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
-                                    color: context.colors.black.withOpacity(0.25),
+                                    color: context.colors.black.withValues(alpha: 0.25),
                                   ),
                                 ),
                               ),
@@ -262,7 +262,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                                 width: 16,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
-                                  color: context.colors.black.withOpacity(0.15),
+                                  color: context.colors.black.withValues(alpha: 0.15),
                                 ),
                               ),
                             ],

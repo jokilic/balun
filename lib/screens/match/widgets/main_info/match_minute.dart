@@ -22,7 +22,7 @@ class MatchMinute extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
           border: Border.all(
-            color: context.colors.black.withOpacity(0.2),
+            color: context.colors.black.withValues(alpha: 0.2),
             width: 1.5,
           ),
         ),

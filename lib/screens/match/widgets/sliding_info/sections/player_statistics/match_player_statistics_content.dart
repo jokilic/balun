@@ -73,7 +73,7 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
                         imageUrl: BalunIcons.playerOut,
                         height: 40,
                         width: 40,
-                        color: context.colors.black.withOpacity(0.5),
+                        color: context.colors.black.withValues(alpha: 0.5),
                       ),
                     ),
                   ],

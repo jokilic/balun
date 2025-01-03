@@ -48,7 +48,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
                           width: getRandomNumberFromBase(104),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: context.colors.black.withOpacity(0.25),
+                            color: context.colors.black.withValues(alpha: 0.25),
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -57,7 +57,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
                           width: getRandomNumberFromBase(80),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: context.colors.black.withOpacity(0.15),
+                            color: context.colors.black.withValues(alpha: 0.15),
                           ),
                         ),
                       ],
@@ -70,7 +70,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
                           width: getRandomNumberFromBase(104),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: context.colors.black.withOpacity(0.25),
+                            color: context.colors.black.withValues(alpha: 0.25),
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -79,7 +79,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
                           width: getRandomNumberFromBase(80),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: context.colors.black.withOpacity(0.15),
+                            color: context.colors.black.withValues(alpha: 0.15),
                           ),
                         ),
                       ],
@@ -104,7 +104,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
                       width: 32,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: context.colors.black.withOpacity(0.25),
+                        color: context.colors.black.withValues(alpha: 0.25),
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -118,7 +118,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
                       width: 32,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: context.colors.black.withOpacity(0.25),
+                        color: context.colors.black.withValues(alpha: 0.25),
                       ),
                     ),
                     const SizedBox(width: 16),

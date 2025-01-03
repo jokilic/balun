@@ -51,10 +51,10 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     fixturesMinute: BalunTextStyles.fixturesMinute.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     fixturesMinuteExtra: BalunTextStyles.fixturesMinuteExtra.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     fixturesName: BalunTextStyles.fixturesName.copyWith(
       color: lightAppColors.black,
@@ -72,7 +72,7 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     matchLeagueRound: BalunTextStyles.matchLeagueRound.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     matchGoal: BalunTextStyles.matchGoal.copyWith(
       color: lightAppColors.black,
@@ -81,7 +81,7 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     matchInfoSectionTitle: BalunTextStyles.matchInfoSectionTitle.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     matchInfoSectionText: BalunTextStyles.matchInfoSectionText.copyWith(
       color: lightAppColors.black,
@@ -105,7 +105,7 @@ class BalunTheme {
       color: lightAppColors.white,
     ),
     matchEventsSectionTime: BalunTextStyles.matchEventsSectionTime.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     matchEventsSectionText: BalunTextStyles.matchEventsSectionText.copyWith(
       color: lightAppColors.black,
@@ -135,7 +135,7 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     matchLineupsSectionTextSmall: BalunTextStyles.matchLineupsSectionTextSmall.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     matchLineupsSectionPlayer: BalunTextStyles.matchLineupsSectionPlayer.copyWith(
       color: lightAppColors.white,
@@ -144,7 +144,7 @@ class BalunTheme {
       color: lightAppColors.white,
     ),
     matchStatisticsSectionText: BalunTextStyles.matchStatisticsSectionText.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     matchStatisticsSectionNumber: BalunTextStyles.matchStatisticsSectionNumber.copyWith(
       color: lightAppColors.black,
@@ -153,7 +153,7 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     matchPlayerStatisticsTitle: BalunTextStyles.matchPlayerStatisticsTitle.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     matchPlayerStatisticsText: BalunTextStyles.matchPlayerStatisticsText.copyWith(
       color: lightAppColors.black,
@@ -171,7 +171,7 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     matchH2HText: BalunTextStyles.matchH2HText.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     leagueName: BalunTextStyles.leagueName.copyWith(
       color: lightAppColors.black,
@@ -180,13 +180,13 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     leagueSeason: BalunTextStyles.leagueSeason.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     leagueTeamsTitle: BalunTextStyles.leagueTeamsTitle.copyWith(
       color: lightAppColors.black,
     ),
     leagueTeamsCountry: BalunTextStyles.leagueTeamsCountry.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     leagueTeamsFounded: BalunTextStyles.leagueTeamsFounded.copyWith(
       color: lightAppColors.black,
@@ -198,13 +198,13 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     teamFounded: BalunTextStyles.teamFounded.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     teamCoachCareerTeam: BalunTextStyles.teamCoachCareerTeam.copyWith(
       color: lightAppColors.black,
     ),
     teamCoachCareerTitle: BalunTextStyles.teamCoachCareerTitle.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     teamCoachCareerValue: BalunTextStyles.teamCoachCareerValue.copyWith(
       color: lightAppColors.black,
@@ -213,7 +213,7 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     fixtureDatePickerActive: BalunTextStyles.fixtureDatePickerActive.copyWith(
-      color: lightAppColors.green.withOpacity(0.5),
+      color: lightAppColors.green.withValues(alpha: 0.5),
     ),
     fixtureDatePickerInactive: BalunTextStyles.fixtureDatePickerInactive.copyWith(
       color: lightAppColors.white,
@@ -222,13 +222,13 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     seasonPickerInactive: BalunTextStyles.seasonPickerInactive.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     searchPickerActive: BalunTextStyles.searchPickerActive.copyWith(
       color: lightAppColors.black,
     ),
     searchPickerInactive: BalunTextStyles.searchPickerInactive.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     searchTextField: BalunTextStyles.searchTextField.copyWith(
       color: lightAppColors.black,
@@ -240,10 +240,10 @@ class BalunTheme {
       color: lightAppColors.black,
     ),
     leaguesSubtitle: BalunTextStyles.leaguesSubtitle.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     dialogButton: BalunTextStyles.dialogButton.copyWith(
-      color: lightAppColors.black.withOpacity(0.5),
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     dialogTitle: BalunTextStyles.dialogTitle.copyWith(
       color: lightAppColors.black,

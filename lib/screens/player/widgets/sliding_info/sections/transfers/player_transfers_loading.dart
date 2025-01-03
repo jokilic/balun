@@ -57,7 +57,7 @@ class PlayerTransfersLoading extends StatelessWidget {
                         width: getRandomNumberFromBase(80),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.5),
+                          color: context.colors.black.withValues(alpha: 0.5),
                         ),
                       ),
                     ],
@@ -72,7 +72,7 @@ class PlayerTransfersLoading extends StatelessWidget {
                         width: getRandomNumberFromBase(104),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.5),
+                          color: context.colors.black.withValues(alpha: 0.5),
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -87,7 +87,7 @@ class PlayerTransfersLoading extends StatelessWidget {
                         width: getRandomNumberFromBase(80),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.15),
+                          color: context.colors.black.withValues(alpha: 0.15),
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -119,7 +119,7 @@ class PlayerTransfersLoading extends StatelessWidget {
                         width: getRandomNumberFromBase(80),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.5),
+                          color: context.colors.black.withValues(alpha: 0.5),
                         ),
                       ),
                     ],

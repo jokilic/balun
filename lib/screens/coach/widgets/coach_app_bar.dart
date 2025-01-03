@@ -29,7 +29,7 @@ class CoachAppBar extends StatelessWidget {
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colors.white.withOpacity(0.4),
+                color: context.colors.white.withValues(alpha: 0.4),
               ),
               child: const BalunImage(
                 imageUrl: BalunIcons.back,

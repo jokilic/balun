@@ -45,7 +45,7 @@ class MatchHighlightsLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(240),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: context.colors.black.withOpacity(0.25),
+                    color: context.colors.black.withValues(alpha: 0.25),
                   ),
                 ),
               ),
@@ -57,7 +57,7 @@ class MatchHighlightsLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(224),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: context.colors.black.withOpacity(0.25),
+                    color: context.colors.black.withValues(alpha: 0.25),
                   ),
                 ),
               ),
@@ -71,7 +71,7 @@ class MatchHighlightsLoading extends StatelessWidget {
                     width: getRandomNumberFromBase(56),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
-                      color: context.colors.black.withOpacity(0.15),
+                      color: context.colors.black.withValues(alpha: 0.15),
                     ),
                   ),
                 ),
@@ -84,7 +84,7 @@ class MatchHighlightsLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(240),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: context.colors.black.withOpacity(0.15),
+                    color: context.colors.black.withValues(alpha: 0.15),
                   ),
                 ),
               ),
@@ -96,7 +96,7 @@ class MatchHighlightsLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(240),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: context.colors.black.withOpacity(0.15),
+                    color: context.colors.black.withValues(alpha: 0.15),
                   ),
                 ),
               ),
@@ -108,7 +108,7 @@ class MatchHighlightsLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(240),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: context.colors.black.withOpacity(0.15),
+                    color: context.colors.black.withValues(alpha: 0.15),
                   ),
                 ),
               ),
@@ -122,7 +122,7 @@ class MatchHighlightsLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(144),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    color: context.colors.black.withOpacity(0.25),
+                    color: context.colors.black.withValues(alpha: 0.25),
                   ),
                 ),
               ),
@@ -167,7 +167,7 @@ class MatchHighlightsLoading extends StatelessWidget {
                               width: getRandomNumberFromBase(184),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4),
-                                color: context.colors.black.withOpacity(0.25),
+                                color: context.colors.black.withValues(alpha: 0.25),
                               ),
                             ),
                             const SizedBox(height: 8),
@@ -176,7 +176,7 @@ class MatchHighlightsLoading extends StatelessWidget {
                               width: getRandomNumberFromBase(160),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4),
-                                color: context.colors.black.withOpacity(0.25),
+                                color: context.colors.black.withValues(alpha: 0.25),
                               ),
                             ),
                             const SizedBox(height: 8),
@@ -185,7 +185,7 @@ class MatchHighlightsLoading extends StatelessWidget {
                               width: getRandomNumberFromBase(56),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4),
-                                color: context.colors.black.withOpacity(0.15),
+                                color: context.colors.black.withValues(alpha: 0.15),
                               ),
                             ),
                           ],

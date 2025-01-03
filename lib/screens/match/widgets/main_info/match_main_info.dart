@@ -225,7 +225,7 @@ class MatchMainInfo extends WatchingWidget {
                                   Text(
                                     event.time?.extra != null ? "${(event.time?.elapsed ?? 0) + (event.time?.extra ?? 0)}'" : "${event.time?.elapsed}'",
                                     style: context.textStyles.matchGoal.copyWith(
-                                      color: context.colors.black.withOpacity(0.4),
+                                      color: context.colors.black.withValues(alpha: 0.4),
                                     ),
                                   ),
                                   const SizedBox(width: 8),
@@ -265,7 +265,7 @@ class MatchMainInfo extends WatchingWidget {
                           TextSpan(
                             text: ':',
                             style: context.textStyles.fixturesScore.copyWith(
-                              color: context.colors.black.withOpacity(0.2),
+                              color: context.colors.black.withValues(alpha: 0.2),
                             ),
                           ),
                           TextSpan(text: '${match.goals?.away ?? '-'}'),
@@ -325,7 +325,7 @@ class MatchMainInfo extends WatchingWidget {
                                   Text(
                                     event.time?.extra != null ? "${(event.time?.elapsed ?? 0) + (event.time?.extra ?? 0)}'" : "${event.time?.elapsed}'",
                                     style: context.textStyles.matchGoal.copyWith(
-                                      color: context.colors.black.withOpacity(0.4),
+                                      color: context.colors.black.withValues(alpha: 0.4),
                                     ),
                                   ),
                                 ],

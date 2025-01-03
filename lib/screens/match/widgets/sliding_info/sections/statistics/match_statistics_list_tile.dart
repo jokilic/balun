@@ -71,7 +71,7 @@ class MatchStatisticsListTile extends StatelessWidget {
                 angle: pi,
                 child: LinearProgressIndicator(
                   value: homeProgress.isNaN ? 0 : homeProgress,
-                  backgroundColor: context.colors.black.withOpacity(0.15),
+                  backgroundColor: context.colors.black.withValues(alpha: 0.15),
                   color: homeProgressColor,
                   borderRadius: BorderRadius.circular(100),
                   minHeight: 8,
@@ -82,7 +82,7 @@ class MatchStatisticsListTile extends StatelessWidget {
             Expanded(
               child: LinearProgressIndicator(
                 value: awayProgress.isNaN ? 0 : awayProgress,
-                backgroundColor: context.colors.black.withOpacity(0.15),
+                backgroundColor: context.colors.black.withValues(alpha: 0.15),
                 color: awayProgressColor,
                 borderRadius: BorderRadius.circular(100),
                 minHeight: 8,

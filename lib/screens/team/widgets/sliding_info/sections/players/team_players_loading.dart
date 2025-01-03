@@ -47,7 +47,7 @@ class TeamPlayersLoading extends StatelessWidget {
                         width: getRandomNumberFromBase(184),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.5),
+                          color: context.colors.black.withValues(alpha: 0.5),
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -56,7 +56,7 @@ class TeamPlayersLoading extends StatelessWidget {
                         width: getRandomNumberFromBase(88),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: context.colors.black.withOpacity(0.15),
+                          color: context.colors.black.withValues(alpha: 0.15),
                         ),
                       ),
                     ],
@@ -67,7 +67,7 @@ class TeamPlayersLoading extends StatelessWidget {
                   width: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: context.colors.black.withOpacity(0.25),
+                    color: context.colors.black.withValues(alpha: 0.25),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -77,7 +77,7 @@ class TeamPlayersLoading extends StatelessWidget {
                   width: 44,
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
-                    color: context.colors.black.withOpacity(0.15),
+                    color: context.colors.black.withValues(alpha: 0.15),
                     border: Border.all(
                       color: context.colors.black,
                       width: 2,

@@ -60,7 +60,7 @@ class MatchEventsListTile extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: context.colors.black.withOpacity(0.075),
+                color: context.colors.black.withValues(alpha: 0.075),
               ),
               child: getEventWidget(
                 eventType: event.type ?? '',

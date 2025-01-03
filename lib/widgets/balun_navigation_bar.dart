@@ -51,7 +51,7 @@ class BalunNavigationBar extends WatchingWidget {
                     imageUrl: BalunIcons.ballNavigation,
                     height: 24,
                     width: 24,
-                    color: context.colors.white.withOpacity(0.25),
+                    color: context.colors.white.withValues(alpha: 0.25),
                   ),
                 ),
 
@@ -150,7 +150,7 @@ class BalunNavigationBar extends WatchingWidget {
                 imageUrl: BalunIcons.globe,
                 height: 24,
                 width: 24,
-                color: context.colors.white.withOpacity(0.25),
+                color: context.colors.white.withValues(alpha: 0.25),
               ),
             ),
             selectedIcon: Container(
@@ -183,7 +183,7 @@ class BalunNavigationBar extends WatchingWidget {
                 imageUrl: BalunIcons.search,
                 height: 24,
                 width: 24,
-                color: context.colors.white.withOpacity(0.25),
+                color: context.colors.white.withValues(alpha: 0.25),
               ),
             ),
             selectedIcon: Container(

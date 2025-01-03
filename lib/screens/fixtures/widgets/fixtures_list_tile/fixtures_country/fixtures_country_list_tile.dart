@@ -46,7 +46,7 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
             onPressed: toggleExpanded,
             child: Container(
               decoration: BoxDecoration(
-                color: context.colors.white.withOpacity(0.5),
+                color: context.colors.white.withValues(alpha: 0.5),
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: const EdgeInsets.symmetric(

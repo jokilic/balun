@@ -127,7 +127,7 @@ class MatchLineupTeamData extends StatelessWidget {
                               averageRating,
                               context: context,
                             )
-                          : context.colors.black.withOpacity(0.5),
+                          : context.colors.black.withValues(alpha: 0.5),
                       border: Border.all(
                         color: context.colors.black,
                         width: 2,

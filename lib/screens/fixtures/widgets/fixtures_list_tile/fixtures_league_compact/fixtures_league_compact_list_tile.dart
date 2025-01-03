@@ -51,7 +51,7 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
             child: Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: context.colors.white.withOpacity(0.5),
+                color: context.colors.white.withValues(alpha: 0.5),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Row(

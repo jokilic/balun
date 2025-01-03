@@ -42,14 +42,15 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
     super.dispose();
   }
 
-  void onPointerMove(PointerMoveEvent event) {
+  void onPointerMove({
+    required double dy,
+    required double screenHeight,
+  }) {
     if (!scrollController.hasClients) {
       return;
     }
 
     const scrollSpeed = 10;
-
-    final dy = event.position.dy;
 
     /// User dragged up
     if (dy < 200) {
@@ -65,7 +66,7 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
     }
 
     /// User dragged down
-    if (dy > 700) {
+    if (dy > (screenHeight - 200)) {
       final currentOffset = scrollController.offset;
       final newOffset = (currentOffset + scrollSpeed).clamp(
         0.0,
@@ -112,7 +113,10 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
           const SizedBox(height: 8),
           Flexible(
             child: Listener(
-              onPointerMove: onPointerMove,
+              onPointerMove: (event) => onPointerMove(
+                dy: event.position.dy,
+                screenHeight: MediaQuery.sizeOf(context).height,
+              ),
               child: SingleChildScrollView(
                 controller: scrollController,
                 physics: const BouncingScrollPhysics(),
@@ -167,7 +171,7 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
                           proxyDecorator: (child, _, __) => ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Material(
-                              color: context.colors.white.withOpacity(0.4),
+                              color: context.colors.white.withValues(alpha: 0.4),
                               child: child,
                             ),
                           ),
@@ -256,7 +260,7 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
                           proxyDecorator: (child, _, __) => ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Material(
-                              color: context.colors.white.withOpacity(0.4),
+                              color: context.colors.white.withValues(alpha: 0.4),
                               child: child,
                             ),
                           ),

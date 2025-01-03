@@ -42,7 +42,7 @@ class CoachSectionTitles extends StatelessWidget {
                 curve: Curves.easeIn,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: activeCoachSection == section ? context.colors.black : context.colors.black.withOpacity(0.075),
+                  color: activeCoachSection == section ? context.colors.black : context.colors.black.withValues(alpha: 0.075),
                 ),
                 child: Text(
                   section.getCoachSectionName(),

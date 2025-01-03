@@ -34,7 +34,7 @@ class PlayerTrophiesLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(144),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: context.colors.black.withOpacity(0.5),
+                    color: context.colors.black.withValues(alpha: 0.5),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -43,7 +43,7 @@ class PlayerTrophiesLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(104),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: context.colors.black.withOpacity(0.25),
+                    color: context.colors.black.withValues(alpha: 0.25),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -52,7 +52,7 @@ class PlayerTrophiesLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(80),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: context.colors.black.withOpacity(0.25),
+                    color: context.colors.black.withValues(alpha: 0.25),
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -61,7 +61,7 @@ class PlayerTrophiesLoading extends StatelessWidget {
                   width: getRandomNumberFromBase(96),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: context.colors.black.withOpacity(0.5),
+                    color: context.colors.black.withValues(alpha: 0.5),
                   ),
                 ),
                 const SizedBox(height: 8),
