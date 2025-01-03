@@ -196,7 +196,7 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
                                   ? () => openLeague(
                                         context,
                                         leagueId: league.id!,
-                                        season: DateTime.now().year.toString(),
+                                        season: league.season ?? DateTime.now().year.toString(),
                                       )
                                   : null,
                               child: Container(

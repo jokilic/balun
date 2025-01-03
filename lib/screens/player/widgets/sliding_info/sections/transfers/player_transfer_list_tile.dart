@@ -124,7 +124,7 @@ class PlayerTransferListTile extends StatelessWidget {
                     ? () => openTeam(
                           context,
                           teamId: transfer.teams!.teamIn!.id!,
-                          season: DateTime.now().year.toString(),
+                          season: (dateLocal?.year ?? DateTime.now().year).toString(),
                         )
                     : null,
                 child: Container(

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
@@ -95,8 +96,8 @@ class FixturesSuccess extends WatchingWidget {
                 onPressed: league?.id != null
                     ? () => openLeague(
                           context,
-                          leagueId: league!.id!,
-                          season: league.season ?? DateTime.now().year.toString(),
+                          leagueId: league?.id ?? 0,
+                          season: league?.season ?? fixtures?.firstWhereOrNull((fixture) => fixture.league?.season != null)?.league?.season ?? DateTime.now().year.toString(),
                         )
                     : null,
                 league: league,
