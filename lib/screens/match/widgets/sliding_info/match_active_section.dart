@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../models/fixtures/fixture_response.dart';
 import '../../../../models/sections/match_section.dart';
+import '../../../../util/date_time.dart';
 import '../../../../util/events.dart';
 import '../../../../util/string.dart';
 import 'sections/events/match_events_section.dart';
@@ -116,7 +117,7 @@ class MatchActiveSection extends StatelessWidget {
                   (playerStatistic) => playerStatistic.team?.id == match.teams?.away?.id,
                 )
                 .firstOrNull,
-            season: match.league?.season ?? DateTime.now().year.toString(),
+            season: match.league?.season ?? getCurrentSeasonYear().toString(),
           ),
         MatchSection(
           matchSectionEnum: MatchSectionEnum.standings,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../models/leagues/league_response.dart';
 import '../../../routing.dart';
+import '../../../util/date_time.dart';
 import 'leagues_list_tile.dart';
 
 class LeaguesSuccess extends StatelessWidget {
@@ -25,7 +26,7 @@ class LeaguesSuccess extends StatelessWidget {
                 ? () => openLeague(
                       context,
                       leagueId: league.league!.id!,
-                      season: (league.seasons?.lastOrNull?.year ?? DateTime.now().year).toString(),
+                      season: (league.seasons?.lastOrNull?.year ?? getCurrentSeasonYear()).toString(),
                     )
                 : null,
           );

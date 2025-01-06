@@ -31,7 +31,7 @@ class TeamCoachCareerListTile extends StatelessWidget {
           ? () => openTeam(
                 context,
                 teamId: career.team!.id!,
-                season: (endLocal?.year ?? startLocal?.year ?? DateTime.now().year).toString(),
+                season: (endLocal?.year ?? startLocal?.year ?? getCurrentSeasonYear()).toString(),
               )
           : null,
       child: Container(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../models/search/search_players/search_player_response.dart';
 import '../../../../../routing.dart';
+import '../../../../../util/date_time.dart';
 import 'search_players_list_tile.dart';
 
 class SearchPlayersSuccess extends StatelessWidget {
@@ -25,7 +26,7 @@ class SearchPlayersSuccess extends StatelessWidget {
                 ? () => openPlayer(
                       context,
                       playerId: player.player!.id!,
-                      season: DateTime.now().year.toString(),
+                      season: getCurrentSeasonYear().toString(),
                     )
                 : null,
           );

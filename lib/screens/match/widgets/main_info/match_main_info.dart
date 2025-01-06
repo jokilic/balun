@@ -73,7 +73,7 @@ class MatchMainInfo extends WatchingWidget {
                       ? () => openTeam(
                             context,
                             teamId: match.teams!.home!.id!,
-                            season: match.league?.season ?? DateTime.now().year.toString(),
+                            season: match.league?.season ?? getCurrentSeasonYear().toString(),
                           )
                       : null,
                   child: Container(
@@ -148,7 +148,7 @@ class MatchMainInfo extends WatchingWidget {
                       ? () => openTeam(
                             context,
                             teamId: match.teams!.away!.id!,
-                            season: match.league?.season ?? DateTime.now().year.toString(),
+                            season: match.league?.season ?? getCurrentSeasonYear().toString(),
                           )
                       : null,
                   child: Container(
@@ -213,7 +213,7 @@ class MatchMainInfo extends WatchingWidget {
                                 ? () => openPlayer(
                                       context,
                                       playerId: event.player!.id!,
-                                      season: match.league?.season ?? DateTime.now().year.toString(),
+                                      season: match.league?.season ?? getCurrentSeasonYear().toString(),
                                     )
                                 : null,
                             child: Container(
@@ -301,7 +301,7 @@ class MatchMainInfo extends WatchingWidget {
                                 ? () => openPlayer(
                                       context,
                                       playerId: event.player!.id!,
-                                      season: match.league?.season ?? DateTime.now().year.toString(),
+                                      season: match.league?.season ?? getCurrentSeasonYear().toString(),
                                     )
                                 : null,
                             child: Container(

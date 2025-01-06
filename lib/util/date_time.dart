@@ -10,6 +10,23 @@ String getDateForBackend(DateTime dateTime) {
   return '$year-$month-$day';
 }
 
+int getCurrentSeasonYear() {
+  final now = DateTime.now();
+
+  final currentYear = now.year;
+  final currentMonth = now.month;
+
+  /// Most football seasons start around `August - September`
+  /// If we're in the early months of the year, we should return the previous year
+  const seasonStartMonth = 8; // August
+
+  if (currentMonth < seasonStartMonth) {
+    return currentYear - 1;
+  }
+
+  return currentYear;
+}
+
 DateTime? parseTimestamp(DateTime? timestamp) {
   if (timestamp == null) {
     return null;

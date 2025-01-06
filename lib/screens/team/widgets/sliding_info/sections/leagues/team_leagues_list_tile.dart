@@ -5,6 +5,7 @@ import '../../../../../../models/leagues/league_response.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/date_time.dart';
 import '../../../../../../util/string.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
@@ -95,7 +96,7 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                                       ? () => openLeague(
                                             context,
                                             leagueId: widget.league.league!.id!,
-                                            season: (season.year ?? DateTime.now().year).toString(),
+                                            season: (season.year ?? getCurrentSeasonYear()).toString(),
                                           )
                                       : null,
                                   child: Container(

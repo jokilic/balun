@@ -38,7 +38,7 @@ class PlayerTransferListTile extends StatelessWidget {
                     ? () => openTeam(
                           context,
                           teamId: transfer.teams!.teamOut!.id!,
-                          season: (dateLocal?.year ?? DateTime.now().year).toString(),
+                          season: (dateLocal?.year ?? getCurrentSeasonYear()).toString(),
                         )
                     : null,
                 child: Container(
@@ -124,7 +124,7 @@ class PlayerTransferListTile extends StatelessWidget {
                     ? () => openTeam(
                           context,
                           teamId: transfer.teams!.teamIn!.id!,
-                          season: (dateLocal?.year ?? DateTime.now().year).toString(),
+                          season: (dateLocal?.year ?? getCurrentSeasonYear()).toString(),
                         )
                     : null,
                 child: Container(

@@ -5,6 +5,7 @@ import '../../../../../../models/fixtures/event/event.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
+import '../../../../../../util/date_time.dart';
 import '../../../../../../util/string.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
@@ -118,7 +119,7 @@ class MatchEventsListTile extends StatelessWidget {
                           ? () => openPlayer(
                                 context,
                                 playerId: event.player!.id!,
-                                season: season ?? DateTime.now().year.toString(),
+                                season: season ?? getCurrentSeasonYear().toString(),
                               )
                           : null,
                       child: Container(
@@ -196,7 +197,7 @@ class MatchEventsListTile extends StatelessWidget {
                             ? () => openPlayer(
                                   context,
                                   playerId: event.assist!.id!,
-                                  season: season ?? DateTime.now().year.toString(),
+                                  season: season ?? getCurrentSeasonYear().toString(),
                                 )
                             : null,
                         child: Container(
@@ -233,7 +234,7 @@ class MatchEventsListTile extends StatelessWidget {
                           ? () => openPlayer(
                                 context,
                                 playerId: event.player!.id!,
-                                season: season ?? DateTime.now().year.toString(),
+                                season: season ?? getCurrentSeasonYear().toString(),
                               )
                           : null,
                       child: Container(
@@ -296,7 +297,7 @@ class MatchEventsListTile extends StatelessWidget {
                       ? () => openPlayer(
                             context,
                             playerId: event.player!.id!,
-                            season: season ?? DateTime.now().year.toString(),
+                            season: season ?? getCurrentSeasonYear().toString(),
                           )
                       : null,
                   child: Container(
@@ -366,7 +367,7 @@ class MatchEventsListTile extends StatelessWidget {
                       ? () => openPlayer(
                             context,
                             playerId: event.assist!.id!,
-                            season: season ?? DateTime.now().year.toString(),
+                            season: season ?? getCurrentSeasonYear().toString(),
                           )
                       : null,
                   child: Container(
@@ -404,7 +405,7 @@ class MatchEventsListTile extends StatelessWidget {
                       ? () => openPlayer(
                             context,
                             playerId: event.player!.id!,
-                            season: season ?? DateTime.now().year.toString(),
+                            season: season ?? getCurrentSeasonYear().toString(),
                           )
                       : null,
                   child: Container(

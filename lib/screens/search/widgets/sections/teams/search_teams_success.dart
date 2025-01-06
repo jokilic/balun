@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../models/search/search_teams/search_team_response.dart';
 import '../../../../../routing.dart';
+import '../../../../../util/date_time.dart';
 import 'search_teams_list_tile.dart';
 
 class SearchTeamsSuccess extends StatelessWidget {
@@ -25,7 +26,7 @@ class SearchTeamsSuccess extends StatelessWidget {
                 ? () => openTeam(
                       context,
                       teamId: team.team!.id!,
-                      season: DateTime.now().year.toString(),
+                      season: getCurrentSeasonYear().toString(),
                     )
                 : null,
           );

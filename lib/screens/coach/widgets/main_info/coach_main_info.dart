@@ -5,6 +5,7 @@ import '../../../../models/coaches/coach_response.dart';
 import '../../../../routing.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
+import '../../../../util/date_time.dart';
 import '../../../../util/string.dart';
 import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
@@ -85,7 +86,7 @@ class CoachMainInfo extends WatchingWidget {
                     ? () => openTeam(
                           context,
                           teamId: coach.team!.id!,
-                          season: DateTime.now().year.toString(),
+                          season: getCurrentSeasonYear().toString(),
                         )
                     : null,
                 child: Container(

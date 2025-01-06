@@ -8,6 +8,7 @@ import '../../../services/league_storage_service.dart';
 import '../../../services/team_storage_service.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/date_time.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
@@ -199,7 +200,7 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
                                   ? () => openLeague(
                                         context,
                                         leagueId: league.id!,
-                                        season: league.season ?? DateTime.now().year.toString(),
+                                        season: league.season ?? getCurrentSeasonYear().toString(),
                                       )
                                   : null,
                               child: Container(
@@ -287,7 +288,7 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
                                   ? () => openTeam(
                                         context,
                                         teamId: team.id!,
-                                        season: DateTime.now().year.toString(),
+                                        season: getCurrentSeasonYear().toString(),
                                       )
                                   : null,
                               child: Container(

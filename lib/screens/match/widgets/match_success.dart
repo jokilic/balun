@@ -3,6 +3,7 @@ import 'package:sliding_up_panel2/sliding_up_panel2.dart';
 
 import '../../../models/fixtures/fixture_response.dart';
 import '../../../theme/theme.dart';
+import '../../../util/date_time.dart';
 import '../../../util/dependencies.dart';
 import '../../../widgets/widget_size.dart';
 import '../controllers/match_section_controller.dart';
@@ -77,7 +78,7 @@ class _MatchSuccessState extends State<MatchSuccess> {
             panelBuilder: () => MatchSlidingInfo(
               match: widget.match,
               scrollController: scrollController,
-              season: widget.match.league?.season ?? DateTime.now().year.toString(),
+              season: widget.match.league?.season ?? getCurrentSeasonYear().toString(),
             ),
           ),
         ],

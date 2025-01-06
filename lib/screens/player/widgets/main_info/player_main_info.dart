@@ -6,6 +6,7 @@ import '../../../../models/players/player_response.dart';
 import '../../../../routing.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
+import '../../../../util/date_time.dart';
 import '../../../../util/dependencies.dart';
 import '../../../../util/string.dart';
 import '../../../../util/team_seasons.dart';
@@ -102,7 +103,7 @@ class PlayerMainInfo extends WatchingWidget {
                   ? () => openTeam(
                         context,
                         teamId: currentTeam.id!,
-                        season: player.statistics?.firstOrNull?.league?.season ?? DateTime.now().year.toString(),
+                        season: player.statistics?.firstOrNull?.league?.season ?? getCurrentSeasonYear().toString(),
                       )
                   : null,
               child: Container(

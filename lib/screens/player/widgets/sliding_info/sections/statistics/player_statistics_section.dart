@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../../../constants.dart';
+import '../../../../../../util/date_time.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/state.dart';
 import '../../../../../../widgets/balun_empty.dart';
@@ -69,7 +70,7 @@ class _PlayerStatisticsSectionState extends State<PlayerStatisticsSection> {
           ),
         Success() => PlayerStatisticsContent(
             statistics: (statisticsState as Success).data,
-            season: widget.season ?? DateTime.now().year.toString(),
+            season: widget.season ?? getCurrentSeasonYear().toString(),
           ),
       },
     );

@@ -9,6 +9,7 @@ import '../../../routing.dart';
 import '../../../services/league_storage_service.dart';
 import '../../../services/team_storage_service.dart';
 import '../../../theme/theme.dart';
+import '../../../util/date_time.dart';
 import '../../../util/dependencies.dart';
 import '../../../util/fixtures.dart';
 import 'fixtures_all_dialog.dart';
@@ -97,7 +98,7 @@ class FixturesSuccess extends WatchingWidget {
                     ? () => openLeague(
                           context,
                           leagueId: league?.id ?? 0,
-                          season: league?.season ?? fixtures?.firstWhereOrNull((fixture) => fixture.league?.season != null)?.league?.season ?? DateTime.now().year.toString(),
+                          season: league?.season ?? fixtures?.firstWhereOrNull((fixture) => fixture.league?.season != null)?.league?.season ?? getCurrentSeasonYear().toString(),
                         )
                     : null,
                 league: league,
