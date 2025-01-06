@@ -169,10 +169,9 @@ packages:
   calendar_date_picker2:
     dependency: "direct main"
     description:
-      name: calendar_date_picker2
-      sha256: b5169b1e6aea0890ff4acaa037c81b697e985b149da64ae53e96afcfebb2e18e
-      url: "https://pub.dev"
-    source: hosted
+      path: "../calendar_date_picker2"
+      relative: true
+    source: path
     version: "1.1.8"
   characters:
     dependency: transitive
