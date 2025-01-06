@@ -4,6 +4,8 @@ import 'util/env.dart';
 class BalunConstants {
   static final apiFootballBaseUrl = Env.apiFootballBaseUrl;
 
+  static final cloudflareWorkersBaseUrl = Env.cloudflareWorkersBaseUrl;
+
   static final remoteSettingsBaseUrl = Env.remoteSettingsBaseUrl;
   static final remoteSettingsJsonUrl = Env.remoteSettingsJsonUrl;
 

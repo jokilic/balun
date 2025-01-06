@@ -10,6 +10,9 @@ abstract class Env {
   @EnviedField(varName: 'API_FOOTBALL_BASE_URL', obfuscate: true)
   static final String apiFootballBaseUrl = _Env.apiFootballBaseUrl;
 
+  @EnviedField(varName: 'CLOUDFLARE_WORKERS_BASE_URL', obfuscate: true)
+  static final String cloudflareWorkersBaseUrl = _Env.cloudflareWorkersBaseUrl;
+
   @EnviedField(varName: 'REMOTE_SETTINGS_BASE_URL', obfuscate: true)
   static final String remoteSettingsBaseUrl = _Env.remoteSettingsBaseUrl;
 

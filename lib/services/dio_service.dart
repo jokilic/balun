@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import '../constants.dart';
 import '../util/env.dart';
@@ -27,7 +28,7 @@ class DioService {
 
   late final footballDio = Dio(
     BaseOptions(
-      baseUrl: BalunConstants.apiFootballBaseUrl,
+      baseUrl: kIsWeb ? BalunConstants.cloudflareWorkersBaseUrl : BalunConstants.apiFootballBaseUrl,
       headers: {
         'x-apisports-key': Env.apiFootballApiKey,
         'Content-Type': 'application/json',
