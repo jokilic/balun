@@ -18,6 +18,7 @@ dependencies:
   easy_localization: 3.0.7
   envied: 1.0.0
   flutter_animate: 4.5.2
+  flutter_svg: 2.0.16
   get_it: 8.0.3
   hive_ce: 2.8.0+3
   hive_ce_flutter: 2.2.0
@@ -33,7 +34,6 @@ dependencies:
   url_launcher: 6.3.1
   visibility_detector: 0.4.0+2
   watch_it: 1.6.1
-  websafe_svg: 3.0.1+8
   youtube_player_flutter: 9.1.1
 
   calendar_date_picker2:

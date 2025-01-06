@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:websafe_svg/websafe_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'balun_image.dart';
 
@@ -20,7 +20,7 @@ class BalunImageSVG extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => WebsafeSvg.network(
+  Widget build(BuildContext context) => SvgPicture.network(
         imageUrl,
         height: height,
         width: width,
