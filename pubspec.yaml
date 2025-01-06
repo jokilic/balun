@@ -33,6 +33,7 @@ dependencies:
   url_launcher: 6.3.1
   visibility_detector: 0.4.0+2
   watch_it: 1.6.1
+  websafe_svg: 3.0.1+8
   youtube_player_flutter: 9.1.1
 
   calendar_date_picker2:

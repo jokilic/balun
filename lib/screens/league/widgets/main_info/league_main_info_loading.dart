@@ -4,7 +4,7 @@ import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/random.dart';
 import '../../../../widgets/balun_button.dart';
-import '../../../../widgets/balun_image.dart';
+import '../../../../widgets/balun_image/balun_image.dart';
 
 class LeagueMainInfoLoading extends StatelessWidget {
   @override

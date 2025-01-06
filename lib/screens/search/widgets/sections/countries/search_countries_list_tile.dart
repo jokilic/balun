@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image.dart';
 import '../../../../../models/search/search_countries/search_countries_inner_response.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../util/word_mix.dart';
+import '../../../../../widgets/balun_image/balun_image.dart';
 
 class SearchCountriesListTile extends StatelessWidget {
   final SearchCountriesInnerResponse country;

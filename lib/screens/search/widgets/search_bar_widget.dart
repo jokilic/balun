@@ -5,7 +5,7 @@ import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../util/dependencies.dart';
 import '../../../widgets/balun_button.dart';
-import '../../../widgets/balun_image.dart';
+import '../../../widgets/balun_image/balun_image.dart';
 import '../controllers/search_controller.dart';
 
 class SearchBarWidget extends StatelessWidget {

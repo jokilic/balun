@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../widgets/balun_image.dart';
+import '../../../../widgets/balun_image/balun_image.dart';
 
 class MatchLogo extends StatelessWidget {
   final String logo;

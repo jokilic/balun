@@ -9,7 +9,7 @@ import '../../../../../theme/theme.dart';
 import '../../../../../util/fixtures.dart';
 import '../../../../../util/string.dart';
 import '../../../../../widgets/balun_button.dart';
-import '../../../../../widgets/balun_image.dart';
+import '../../../../../widgets/balun_image/balun_image.dart';
 import '../fixtures_league/fixtures_league_list_tile.dart';
 
 class FixturesCountryListTile extends StatefulWidget {

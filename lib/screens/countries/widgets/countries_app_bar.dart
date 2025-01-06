@@ -8,7 +8,7 @@ import '../../../util/dependencies.dart';
 import '../../../util/snackbars.dart';
 import '../../../util/sounds.dart';
 import '../../../widgets/balun_button.dart';
-import '../../../widgets/balun_image.dart';
+import '../../../widgets/balun_image/balun_image.dart';
 
 class CountriesAppBar extends StatelessWidget {
   @override

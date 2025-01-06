@@ -12,7 +12,7 @@ import '../../../../../../util/player_statistics.dart';
 import '../../../../../../util/string.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image.dart';
+import '../../../../../../widgets/balun_image/balun_image.dart';
 
 class MatchLineupsPlayer extends StatelessWidget {
   final bool matchLive;

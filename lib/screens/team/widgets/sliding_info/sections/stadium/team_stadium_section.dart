@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../models/teams/venue/venue.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/word_mix.dart';
-import '../../../../../../widgets/balun_image.dart';
+import '../../../../../../widgets/balun_image/balun_image.dart';
 
 class TeamStadiumSection extends StatelessWidget {
   final Venue? stadium;

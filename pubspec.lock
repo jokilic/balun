@@ -1297,6 +1297,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  websafe_svg:
+    dependency: "direct main"
+    description:
+      name: websafe_svg
+      sha256: af2088f1c2b41e2caa9e7d22f61ea3cc57be4243e5901eb47f6a2072ba34b0ac
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1+8"
   win32:
     dependency: transitive
     description:

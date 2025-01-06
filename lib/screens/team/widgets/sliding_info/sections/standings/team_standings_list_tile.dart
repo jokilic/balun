@@ -7,7 +7,7 @@ import '../../../../../../theme/theme.dart';
 import '../../../../../../util/string.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image.dart';
+import '../../../../../../widgets/balun_image/balun_image.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 import 'team_standing_list_tile.dart';
 

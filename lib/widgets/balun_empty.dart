@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../theme/icons.dart';
 import '../theme/theme.dart';
-import 'balun_image.dart';
+import 'balun_image/balun_image.dart';
 
 class BalunEmpty extends StatelessWidget {
   final String message;

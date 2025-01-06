@@ -8,7 +8,7 @@ import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image.dart';
+import '../../../../../../widgets/balun_image/balun_image.dart';
 
 class MatchH2HListTile extends StatelessWidget {
   final FixtureResponse fixture;

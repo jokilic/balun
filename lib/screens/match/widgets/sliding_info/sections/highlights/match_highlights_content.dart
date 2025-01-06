@@ -8,7 +8,7 @@ import '../../../../../../theme/theme.dart';
 import '../../../../../../util/dependencies.dart';
 import '../../../../../../util/youtube.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image.dart';
+import '../../../../../../widgets/balun_image/balun_image.dart';
 import '../../../../controllers/match_highlights_controller.dart';
 
 class MatchHighlightsContent extends StatelessWidget {
@@ -162,7 +162,6 @@ class MatchHighlightsContent extends StatelessWidget {
                             imageUrl: youTubeItem.snippet.thumbnails.defaultThumbnail.url,
                             width: 120,
                             fit: BoxFit.cover,
-                            radius: 100,
                           ),
                         ),
                         const SizedBox(width: 16),

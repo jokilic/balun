@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../constants.dart';
-import '../services/remote_settings_service.dart';
-import '../theme/icons.dart';
-import '../theme/theme.dart';
-import '../util/color.dart';
-import '../util/dependencies.dart';
+import '../../constants.dart';
+import '../../services/remote_settings_service.dart';
+import '../../theme/icons.dart';
+import '../../theme/theme.dart';
+import '../../util/color.dart';
+import '../../util/dependencies.dart';
+import 'balun_image_stub.dart';
 
 class BalunImage extends StatelessWidget {
   final String imageUrl;
@@ -16,7 +16,6 @@ class BalunImage extends StatelessWidget {
   final double? width;
   final BoxFit fit;
   final Color? color;
-  final double radius;
 
   const BalunImage({
     required this.imageUrl,
@@ -24,7 +23,6 @@ class BalunImage extends StatelessWidget {
     this.width,
     this.fit = BoxFit.contain,
     this.color,
-    this.radius = 8,
     super.key,
   });
 
@@ -47,19 +45,14 @@ class BalunImage extends StatelessWidget {
     /// VECTOR
     ///
     if (imageUrl.contains('.svg')) {
-      return CachedNetworkSVGImage(
-        imageUrl,
+      return SizedBox(
         height: height,
         width: width,
-        fit: fit,
-        placeholder: BalunImagePlaceholder(
+        child: BalunImageSVG(
+          imageUrl: imageUrl,
           height: height,
           width: width,
-          color: color,
-        ),
-        errorWidget: BalunImageError(
-          height: height,
-          width: width,
+          fit: fit,
         ),
       );
     }

@@ -8,7 +8,7 @@ import '../../../../../../theme/theme.dart';
 import '../../../../../../util/players.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image.dart';
+import '../../../../../../widgets/balun_image/balun_image.dart';
 
 class TeamPlayersListTile extends StatelessWidget {
   final Player player;

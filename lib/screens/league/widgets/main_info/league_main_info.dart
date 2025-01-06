@@ -10,7 +10,7 @@ import '../../../../util/dependencies.dart';
 import '../../../../util/string.dart';
 import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
-import '../../../../widgets/balun_image.dart';
+import '../../../../widgets/balun_image/balun_image.dart';
 import '../../controllers/league_season_controller.dart';
 import '../league_app_bar.dart';
 

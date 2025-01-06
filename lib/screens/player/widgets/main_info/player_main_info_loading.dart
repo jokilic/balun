@@ -5,7 +5,7 @@ import '../../../../theme/theme.dart';
 import '../../../../util/color.dart';
 import '../../../../util/random.dart';
 import '../../../../widgets/balun_button.dart';
-import '../../../../widgets/balun_image.dart';
+import '../../../../widgets/balun_image/balun_image.dart';
 
 class PlayerMainInfoLoading extends StatelessWidget {
   @override

@@ -5,7 +5,7 @@ import '../../../../../../constants.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/random.dart';
-import '../../../../../../widgets/balun_image.dart';
+import '../../../../../../widgets/balun_image/balun_image.dart';
 import '../../../../../../widgets/balun_seperator.dart';
 
 class CoachSidelinedLoading extends StatelessWidget {
