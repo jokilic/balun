@@ -9,6 +9,7 @@ import '../../../services/team_storage_service.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../util/date_time.dart';
+import '../../../util/word_mix.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image/balun_image.dart';
 
@@ -219,7 +220,7 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
                                     const SizedBox(width: 12),
                                     Expanded(
                                       child: Text(
-                                        league.name ?? '---',
+                                        mixOrOriginalWords(league.name) ?? '---',
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: context.textStyles.dialogText.copyWith(
@@ -307,7 +308,7 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
                                     const SizedBox(width: 12),
                                     Expanded(
                                       child: Text(
-                                        team.name ?? '---',
+                                        mixOrOriginalWords(team.name) ?? '---',
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: context.textStyles.dialogText.copyWith(

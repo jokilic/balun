@@ -5,6 +5,7 @@ import '../../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../../routing.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import 'league_fixtures_list_tile.dart';
 
@@ -53,7 +54,7 @@ class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      widget.round,
+                      mixOrOriginalWords(widget.round) ?? '---',
                       style: context.textStyles.leagueFixturesTitle,
                     ),
                   ],

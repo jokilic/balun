@@ -301,7 +301,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                             if (widget.standing.description != null) ...[
                               const SizedBox(height: 16),
                               Text(
-                                widget.standing.description!,
+                                mixOrOriginalWords(widget.standing.description) ?? '---',
                                 style: context.textStyles.matchStandingsSectionTextCompact,
                               ),
                             ],

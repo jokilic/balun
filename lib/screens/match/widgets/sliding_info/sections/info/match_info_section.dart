@@ -207,7 +207,7 @@ class MatchInfoSection extends StatelessWidget {
                           ),
                           if (league?.round != null) ...[
                             Text(
-                              league!.round!,
+                              mixOrOriginalWords(league!.round) ?? '---',
                               style: context.textStyles.matchInfoSectionText,
                             ),
                             const SizedBox(height: 2),

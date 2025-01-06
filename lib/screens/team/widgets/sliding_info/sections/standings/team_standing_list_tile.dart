@@ -309,7 +309,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                 if (standing.description != null) ...[
                                   const SizedBox(height: 16),
                                   Text(
-                                    standing.description!,
+                                    mixOrOriginalWords(standing.description) ?? '---',
                                     style: context.textStyles.matchStandingsSectionTextCompact,
                                   ),
                                 ],

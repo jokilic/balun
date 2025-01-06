@@ -7,6 +7,7 @@ import '../../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
+import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
 import '../../../../../../widgets/balun_image/balun_image.dart';
 
@@ -50,11 +51,11 @@ class MatchH2HListTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          fixture.league!.round ?? '---',
+                          mixOrOriginalWords(fixture.league!.round) ?? '---',
                           style: context.textStyles.matchH2HTitle,
                         ),
                         Text(
-                          fixture.league!.name ?? '---',
+                          mixOrOriginalWords(fixture.league!.name) ?? '---',
                           style: context.textStyles.matchH2HText,
                         ),
                       ],
@@ -93,12 +94,10 @@ class MatchH2HListTile extends StatelessWidget {
                 ///
                 /// HOME
                 ///
-                Expanded(
-                  child: BalunImage(
-                    imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
-                    height: 56,
-                    width: 56,
-                  ),
+                BalunImage(
+                  imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
+                  height: 56,
+                  width: 56,
                 ),
 
                 const SizedBox(width: 24),
@@ -154,12 +153,10 @@ class MatchH2HListTile extends StatelessWidget {
                 ///
                 /// AWAY
                 ///
-                Expanded(
-                  child: BalunImage(
-                    imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
-                    height: 56,
-                    width: 56,
-                  ),
+                BalunImage(
+                  imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
+                  height: 56,
+                  width: 56,
                 ),
               ],
             ),

@@ -60,9 +60,12 @@ class _TeamStandingsListTileState extends State<TeamStandingsListTile> {
                             ),
                           if (widget.standing.league?.country != null)
                             Text(
-                              getCountryName(
-                                country: widget.standing.league!.country!,
-                              ),
+                              mixOrOriginalWords(
+                                    getCountryName(
+                                      country: widget.standing.league!.country!,
+                                    ),
+                                  ) ??
+                                  '---',
                               style: context.textStyles.leagueTeamsCountry,
                             ),
                         ],

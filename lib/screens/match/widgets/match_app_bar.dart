@@ -61,7 +61,7 @@ class MatchAppBar extends StatelessWidget {
                   ),
                 if (league.round != null)
                   Text(
-                    league.round!,
+                    mixOrOriginalWords(league.round) ?? '---',
                     style: context.textStyles.matchLeagueRound,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
