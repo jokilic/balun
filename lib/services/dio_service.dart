@@ -28,7 +28,7 @@ class DioService {
 
   late final footballDio = Dio(
     BaseOptions(
-      baseUrl: kIsWeb ? BalunConstants.cloudflareWorkersBaseUrl : BalunConstants.apiFootballBaseUrl,
+      baseUrl: kIsWeb ? BalunConstants.balunWebProxy : BalunConstants.apiFootballBaseUrl,
       headers: {
         'x-apisports-key': Env.apiFootballApiKey,
         'Content-Type': 'application/json',
