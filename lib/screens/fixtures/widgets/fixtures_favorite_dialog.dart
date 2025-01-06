@@ -46,6 +46,10 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
     required double dy,
     required double screenHeight,
   }) {
+    if (!isDragging) {
+      return;
+    }
+
     if (!scrollController.hasClients) {
       return;
     }
@@ -165,7 +169,7 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
                       )
                     else
                       SizedBox(
-                        height: (42 * favoritedLeagues.length).toDouble(),
+                        height: (40 * favoritedLeagues.length).toDouble(),
                         width: double.maxFinite,
                         child: ReorderableListView.builder(
                           proxyDecorator: (child, _, __) => ClipRRect(
@@ -184,7 +188,6 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
 
                             widget.onReorderLeagues(oldIndex, newIndex);
                           },
-                          padding: const EdgeInsets.symmetric(vertical: 8),
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: favoritedLeagues.length,
                           itemBuilder: (_, index) {
@@ -254,7 +257,7 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
                       )
                     else
                       SizedBox(
-                        height: (42 * favoritedTeams.length).toDouble(),
+                        height: (40 * favoritedTeams.length).toDouble(),
                         width: double.maxFinite,
                         child: ReorderableListView.builder(
                           proxyDecorator: (child, _, __) => ClipRRect(
@@ -273,7 +276,6 @@ class _FixturesFavoriteDialogState extends State<FixturesFavoriteDialog> {
 
                             widget.onReorderTeams(oldIndex, newIndex);
                           },
-                          padding: const EdgeInsets.symmetric(vertical: 8),
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: favoritedTeams.length,
                           itemBuilder: (_, index) {
