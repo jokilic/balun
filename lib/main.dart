@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -18,7 +19,8 @@ import 'widgets/balun_loader.dart';
 
 Future<void> main() async {
   /// Initialize Flutter related tasks
-  WidgetsFlutterBinding.ensureInitialized();
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   /// Make sure the orientation is only `portrait`
   await SystemChrome.setPreferredOrientations(

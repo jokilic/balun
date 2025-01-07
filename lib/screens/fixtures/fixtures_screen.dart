@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -46,15 +47,20 @@ class _FixturesScreenState extends State<FixturesScreen> {
         api: getIt.get<APIService>(),
       ),
       instanceName: 'fixtures',
-      afterRegister: (controller) => controller.getFixturesFromDate(
-        dateString: getDateForBackend(
-          getIt
-              .get<FixturesDateController>(
-                instanceName: 'fixtures',
-              )
-              .value,
-        ),
-      ),
+      afterRegister: (controller) async {
+        await controller.getFixturesFromDate(
+          dateString: getDateForBackend(
+            getIt
+                .get<FixturesDateController>(
+                  instanceName: 'fixtures',
+                )
+                .value,
+          ),
+        );
+
+        /// Remove splash screen
+        FlutterNativeSplash.remove();
+      },
     );
   }
 
