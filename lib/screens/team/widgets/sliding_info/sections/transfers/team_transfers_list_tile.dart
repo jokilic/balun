@@ -57,7 +57,7 @@ class _TeamTransfersListTileState extends State<TeamTransfersListTile> {
             ///
             if (widget.transfer.transfers?.isNotEmpty ?? false)
               AnimatedSize(
-                duration: BalunConstants.animationDuration,
+                duration: BalunConstants.expandDuration,
                 curve: Curves.easeIn,
                 child: expanded
                     ? ListView.separated(

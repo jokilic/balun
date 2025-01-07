@@ -89,7 +89,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                 ],
               ),
               AnimatedSize(
-                duration: BalunConstants.animationDuration,
+                duration: BalunConstants.expandDuration,
                 curve: Curves.easeIn,
                 child: expanded
                     ? Padding(

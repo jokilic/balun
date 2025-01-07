@@ -88,7 +88,7 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
           ///
           if (widget.playerStatistic?.statistics?.isNotEmpty ?? false) ...[
             AnimatedSize(
-              duration: BalunConstants.animationDuration,
+              duration: BalunConstants.expandDuration,
               curve: Curves.easeIn,
               child: expanded
                   ? Column(

@@ -84,7 +84,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
             /// STATISTICS
             ///
             AnimatedSize(
-              duration: BalunConstants.animationDuration,
+              duration: BalunConstants.expandDuration,
               curve: Curves.easeIn,
               child: expanded
                   ? Padding(

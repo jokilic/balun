@@ -160,7 +160,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
           ///
           if (widget.statisticData?.statistic?.isNotEmpty ?? false) ...[
             AnimatedSize(
-              duration: BalunConstants.animationDuration,
+              duration: BalunConstants.expandDuration,
               curve: Curves.easeIn,
               child: Builder(
                 builder: (context) {

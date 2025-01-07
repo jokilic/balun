@@ -97,7 +97,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                     ],
                   ),
                   AnimatedSize(
-                    duration: BalunConstants.animationDuration,
+                    duration: BalunConstants.expandDuration,
                     curve: Curves.easeIn,
                     child: expanded
                         ? Padding(

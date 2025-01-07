@@ -78,7 +78,7 @@ class _TeamCoachesListTileState extends State<TeamCoachesListTile> {
             ///
             if (widget.coach.career?.isNotEmpty ?? false)
               AnimatedSize(
-                duration: BalunConstants.animationDuration,
+                duration: BalunConstants.expandDuration,
                 curve: Curves.easeIn,
                 child: expanded
                     ? Padding(

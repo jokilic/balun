@@ -81,7 +81,7 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
             ///
             if (widget.league.seasons?.isNotEmpty ?? false)
               AnimatedSize(
-                duration: BalunConstants.animationDuration,
+                duration: BalunConstants.expandDuration,
                 curve: Curves.easeIn,
                 child: expanded
                     ? Padding(

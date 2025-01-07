@@ -40,12 +40,11 @@ class MatchSectionTitles extends StatelessWidget {
             /// a) Match is not finished
             /// b) Remote value `hideHighlights` is enabled
             /// c) Running on `web`
-            if (!matchFinished ||
-                (getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb) &&
-                    section ==
-                        MatchSection(
-                          matchSectionEnum: MatchSectionEnum.highlights,
-                        )) {
+            if ((!matchFinished || getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb) &&
+                section ==
+                    MatchSection(
+                      matchSectionEnum: MatchSectionEnum.highlights,
+                    )) {
               return const SizedBox.shrink();
             }
 
@@ -80,12 +79,11 @@ class MatchSectionTitles extends StatelessWidget {
             /// a) Match is not finished
             /// b) Remote value `hideHighlights` is enabled
             /// c) Running on `web`
-            if (!matchFinished ||
-                (getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb) &&
-                    section ==
-                        MatchSection(
-                          matchSectionEnum: MatchSectionEnum.highlights,
-                        )) {
+            if ((!matchFinished || getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb) &&
+                section ==
+                    MatchSection(
+                      matchSectionEnum: MatchSectionEnum.highlights,
+                    )) {
               return const SizedBox.shrink();
             }
 

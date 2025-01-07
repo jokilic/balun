@@ -89,7 +89,7 @@ class _MatchStandingsListTileState extends State<MatchStandingsListTile> {
                 ],
               ),
               AnimatedSize(
-                duration: BalunConstants.animationDuration,
+                duration: BalunConstants.expandDuration,
                 curve: Curves.easeIn,
                 child: expanded
                     ? Padding(

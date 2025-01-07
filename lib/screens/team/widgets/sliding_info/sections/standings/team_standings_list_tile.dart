@@ -80,7 +80,7 @@ class _TeamStandingsListTileState extends State<TeamStandingsListTile> {
             /// STANDINGS
             ///
             AnimatedSize(
-              duration: BalunConstants.animationDuration,
+              duration: BalunConstants.expandDuration,
               curve: Curves.easeIn,
               child: expanded
                   ? ListView.separated(

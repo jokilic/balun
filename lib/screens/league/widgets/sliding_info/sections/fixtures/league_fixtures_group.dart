@@ -62,7 +62,7 @@ class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
               ),
             ),
             AnimatedSize(
-              duration: BalunConstants.animationDuration,
+              duration: BalunConstants.expandDuration,
               curve: Curves.easeIn,
               child: expanded
                   ? ListView.separated(

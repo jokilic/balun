@@ -128,7 +128,7 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
           /// LEAGUES
           ///
           AnimatedSize(
-            duration: BalunConstants.animationDuration,
+            duration: BalunConstants.expandDuration,
             curve: Curves.easeIn,
             child: expanded
                 ? ListView.separated(
