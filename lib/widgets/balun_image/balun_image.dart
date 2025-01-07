@@ -39,6 +39,7 @@ class BalunImage extends StatelessWidget {
         fit: fit,
         color: color,
         loadStateChanged: (state) => Animate(
+          key: ValueKey(state.extendedImageLoadState),
           effects: const [
             FadeEffect(
               curve: Curves.easeIn,
@@ -115,6 +116,7 @@ class BalunImage extends StatelessWidget {
         width: width,
         fit: fit,
         loadStateChanged: (state) => Animate(
+          key: ValueKey(state.extendedImageLoadState),
           effects: const [
             FadeEffect(
               curve: Curves.easeIn,
