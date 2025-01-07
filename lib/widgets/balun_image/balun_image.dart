@@ -73,6 +73,16 @@ class BalunImage extends StatelessWidget {
     /// NETWORK IMAGE
     ///
     else {
+      return Image.network(
+        imageUrl,
+        height: height,
+        width: width,
+        fit: fit,
+        errorBuilder: (_, error, ___) => Text(
+          error.toString(),
+        ),
+      );
+
       return CachedNetworkImage(
         imageUrl: imageUrl,
         height: height,
