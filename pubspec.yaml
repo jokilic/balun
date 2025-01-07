@@ -10,13 +10,13 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cached_network_image: 3.4.1
   cached_network_svg_image: 1.2.0
   # calendar_date_picker2: 1.1.8
   collection: 1.19.1
   dio: 5.7.0
   easy_localization: 3.0.7
   envied: 1.0.0
+  extended_image: 9.1.0
   flutter_animate: 4.5.2
   flutter_svg: 2.0.16
   get_it: 8.0.3

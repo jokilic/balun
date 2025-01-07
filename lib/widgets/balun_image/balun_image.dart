@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -8,7 +8,7 @@ import '../../theme/icons.dart';
 import '../../theme/theme.dart';
 import '../../util/color.dart';
 import '../../util/dependencies.dart';
-import 'balun_image_stub.dart';
+import 'balun_image_svg_stub.dart';
 
 class BalunImage extends StatelessWidget {
   final String imageUrl;
@@ -32,12 +32,32 @@ class BalunImage extends StatelessWidget {
     /// LOCAL IMAGE
     ///
     if (imageUrl.contains('assets/')) {
-      return Image.asset(
+      return ExtendedImage.asset(
         imageUrl,
         height: height,
         width: width,
         fit: fit,
         color: color,
+        loadStateChanged: (state) => Animate(
+          effects: const [
+            FadeEffect(
+              curve: Curves.easeIn,
+              duration: BalunConstants.longAnimationDuration,
+            ),
+          ],
+          child: switch (state.extendedImageLoadState) {
+            LoadState.completed => state.completedWidget,
+            LoadState.loading => BalunImagePlaceholder(
+                height: height,
+                width: width,
+                color: color,
+              ),
+            LoadState.failed => BalunImageError(
+                height: height,
+                width: width,
+              ),
+          },
+        ),
       );
     }
 
@@ -45,14 +65,22 @@ class BalunImage extends StatelessWidget {
     /// VECTOR
     ///
     if (imageUrl.contains('.svg')) {
-      return SizedBox(
-        height: height,
-        width: width,
-        child: BalunImageSVG(
-          imageUrl: imageUrl,
+      return Animate(
+        effects: const [
+          FadeEffect(
+            curve: Curves.easeIn,
+            duration: BalunConstants.longAnimationDuration,
+          ),
+        ],
+        child: SizedBox(
           height: height,
           width: width,
-          fit: fit,
+          child: BalunImageSVG(
+            imageUrl: imageUrl,
+            height: height,
+            width: width,
+            fit: fit,
+          ),
         ),
       );
     }
@@ -61,11 +89,19 @@ class BalunImage extends StatelessWidget {
     /// MIX LOGOS
     ///
     if (getIt.get<RemoteSettingsService>().value.mixLogos) {
-      return BalunImagePlaceholder(
-        height: height,
-        width: width,
-        color: color,
-        animate: false,
+      return Animate(
+        effects: const [
+          FadeEffect(
+            curve: Curves.easeIn,
+            duration: BalunConstants.longAnimationDuration,
+          ),
+        ],
+        child: BalunImagePlaceholder(
+          height: height,
+          width: width,
+          color: color,
+          animate: false,
+        ),
       );
     }
 
@@ -73,29 +109,30 @@ class BalunImage extends StatelessWidget {
     /// NETWORK IMAGE
     ///
     else {
-      return Image.network(
+      return ExtendedImage.network(
         imageUrl,
         height: height,
         width: width,
         fit: fit,
-        errorBuilder: (_, error, ___) => Text(
-          error.toString(),
-        ),
-      );
-
-      return CachedNetworkImage(
-        imageUrl: imageUrl,
-        height: height,
-        width: width,
-        fit: fit,
-        placeholder: (_, __) => BalunImagePlaceholder(
-          height: height,
-          width: width,
-          color: color,
-        ),
-        errorWidget: (_, __, ___) => BalunImageError(
-          height: height,
-          width: width,
+        loadStateChanged: (state) => Animate(
+          effects: const [
+            FadeEffect(
+              curve: Curves.easeIn,
+              duration: BalunConstants.longAnimationDuration,
+            ),
+          ],
+          child: switch (state.extendedImageLoadState) {
+            LoadState.completed => state.completedWidget,
+            LoadState.loading => BalunImagePlaceholder(
+                height: height,
+                width: width,
+                color: color,
+              ),
+            LoadState.failed => BalunImageError(
+                height: height,
+                width: width,
+              ),
+          },
         ),
       );
     }
