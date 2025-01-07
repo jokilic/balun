@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
@@ -39,12 +38,11 @@ class MatchSectionTitles extends StatelessWidget {
             /// Hide [Highlights] section if:
             /// a) Match is not finished
             /// b) Remote value `hideHighlights` is enabled
-            /// c) Running on `web`
-            if ((!matchFinished || getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb) &&
-                section ==
+            if (section ==
                     MatchSection(
                       matchSectionEnum: MatchSectionEnum.highlights,
-                    )) {
+                    ) &&
+                (!matchFinished || getIt.get<RemoteSettingsService>().value.hideHighlights)) {
               return const SizedBox.shrink();
             }
 
@@ -78,12 +76,12 @@ class MatchSectionTitles extends StatelessWidget {
             /// Hide [Highlights] spacing if:
             /// a) Match is not finished
             /// b) Remote value `hideHighlights` is enabled
-            /// c) Running on `web`
-            if ((!matchFinished || getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb) &&
-                section ==
+
+            if (section ==
                     MatchSection(
                       matchSectionEnum: MatchSectionEnum.highlights,
-                    )) {
+                    ) &&
+                (!matchFinished || getIt.get<RemoteSettingsService>().value.hideHighlights)) {
               return const SizedBox.shrink();
             }
 

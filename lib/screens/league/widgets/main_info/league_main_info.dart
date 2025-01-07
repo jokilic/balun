@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -7,6 +8,7 @@ import '../../../../services/league_storage_service.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
+import '../../../../util/mouse_scroll.dart';
 import '../../../../util/string.dart';
 import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
@@ -26,6 +28,12 @@ class LeagueMainInfo extends WatchingWidget {
     final seasonState = watchIt<LeagueSeasonController>(
       instanceName: '${league.league?.id}',
     ).value;
+
+    final pageController = getIt
+        .get<LeagueSeasonController>(
+          instanceName: '${league.league?.id}',
+        )
+        .controller;
 
     final favoritedLeagues = watchIt<LeagueStorageService>().value;
 
@@ -108,33 +116,39 @@ class LeagueMainInfo extends WatchingWidget {
             SizedBox(
               height: 48,
               width: 200,
-              child: PageView(
-                controller: getIt
-                    .get<LeagueSeasonController>(
-                      instanceName: '${league.league?.id}',
-                    )
-                    .controller,
-                physics: const BouncingScrollPhysics(),
-                children: List.generate(
-                  league.seasons?.length ?? 0,
-                  (index) {
-                    final season = league.seasons![index];
-
-                    return BalunButton(
-                      onPressed: () => getIt
-                          .get<LeagueSeasonController>(
-                            instanceName: '${league.league?.id}',
-                          )
-                          .updateState(season.year.toString()),
-                      child: Center(
-                        child: Text(
-                          '${season.year ?? '--'}',
-                          style: seasonState == season.year.toString() ? context.textStyles.seasonPickerActive : context.textStyles.seasonPickerInactive,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
+              child: Listener(
+                onPointerSignal: (event) {
+                  if (event is PointerScrollEvent) {
+                    handlePageViewMouseScroll(
+                      event: event,
+                      pageController: pageController,
                     );
-                  },
+                  }
+                },
+                child: PageView(
+                  controller: pageController,
+                  physics: const BouncingScrollPhysics(),
+                  children: List.generate(
+                    league.seasons?.length ?? 0,
+                    (index) {
+                      final season = league.seasons![index];
+
+                      return BalunButton(
+                        onPressed: () => getIt
+                            .get<LeagueSeasonController>(
+                              instanceName: '${league.league?.id}',
+                            )
+                            .updateState(season.year.toString()),
+                        child: Center(
+                          child: Text(
+                            '${season.year ?? '--'}',
+                            style: seasonState == season.year.toString() ? context.textStyles.seasonPickerActive : context.textStyles.seasonPickerInactive,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),

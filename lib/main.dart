@@ -113,7 +113,6 @@ class BalunWidget extends WatchingWidget {
           /// Generate `backround`, if app is on `web`
           final appAndBackgroundWidget = kIsWeb
               ? Stack(
-                  alignment: Alignment.center,
                   children: [
                     ///
                     /// BACKGROUND

@@ -16,7 +16,7 @@ class BalunConstants {
 
   static const expandDuration = Duration(milliseconds: 75);
   static const animationDuration = Duration(milliseconds: 125);
-  static const longAnimationDuration = Duration(milliseconds: 300);
+  static const longAnimationDuration = Duration(milliseconds: 250);
   static const shimmerDuration = Duration(milliseconds: 1500);
   static const periodicAPICallDuration = Duration(minutes: 1);
 
