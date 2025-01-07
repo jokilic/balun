@@ -7,11 +7,13 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:watch_it/watch_it.dart';
 
+import 'constants.dart';
 import 'services/balun_screen_service.dart';
 import 'theme/theme.dart';
 import 'util/color.dart';
 import 'util/dependencies.dart';
 import 'util/env.dart';
+import 'widgets/balun_background.dart';
 import 'widgets/balun_loader.dart';
 
 Future<void> main() async {
@@ -94,24 +96,56 @@ class BalunWidget extends WatchingWidget {
         home: watchIt<BalunScreenService>().value,
         onGenerateTitle: (_) => 'appName'.tr(),
         theme: BalunTheme.light,
-        builder: (_, child) => kDebugMode
-            ? Banner(
-                message: 'appName'.tr().toUpperCase(),
-                color: getRandomBalunColor(context),
-                location: BannerLocation.topEnd,
-                layoutDirection: TextDirection.ltr,
-                child: child ??
-                    const Scaffold(
-                      body: Center(
-                        child: BalunLoader(),
+        builder: (_, child) {
+          /// Store `size`, for generating `backgrounds`
+          final size = MediaQuery.sizeOf(context);
+
+          /// Generate `appWidget`, with [Balun] content
+          final appWidget = child ??
+              const Scaffold(
+                body: Center(
+                  child: BalunLoader(),
+                ),
+              );
+
+          /// Generate `backround`, if app is on `web`
+          final appAndBackgroundWidget = kIsWeb
+              ? Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    ///
+                    /// BACKGROUND
+                    ///
+                    BalunBackground(
+                      screenSize: Size(size.width, size.height),
+                      iconColor: context.colors.black,
+                    ),
+
+                    ///
+                    /// APP CONTENT
+                    ///
+                    Center(
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxWidth: BalunConstants.widthConstraint.toDouble(),
+                        ),
+                        child: appWidget,
                       ),
                     ),
-              )
-            : child ??
-                const Scaffold(
-                  body: Center(
-                    child: BalunLoader(),
-                  ),
-                ),
+                  ],
+                )
+              : appWidget;
+
+          /// Return `appAndBackgroundWidget`, also [Banner] is app is `debug`
+          return kDebugMode
+              ? Banner(
+                  message: 'appName'.tr().toUpperCase(),
+                  color: getRandomBalunColor(context),
+                  location: BannerLocation.topEnd,
+                  layoutDirection: TextDirection.ltr,
+                  child: appAndBackgroundWidget,
+                )
+              : appAndBackgroundWidget;
+        },
       );
 }

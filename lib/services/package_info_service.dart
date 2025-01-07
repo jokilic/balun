@@ -21,6 +21,6 @@ class PackageInfoService {
 
   Future<void> init() async {
     final packageInfo = await PackageInfo.fromPlatform();
-    appNameAndVersion = '${packageInfo.appName} v${packageInfo.version}';
+    appNameAndVersion = '${packageInfo.appName[0].toUpperCase()}${packageInfo.appName.substring(1)} v${packageInfo.version}';
   }
 }
