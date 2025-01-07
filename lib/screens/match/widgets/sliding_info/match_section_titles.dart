@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';
@@ -35,12 +36,16 @@ class MatchSectionTitles extends StatelessWidget {
               matchSectionEnum: MatchSectionEnum.values[index],
             );
 
-            /// Hide [Highlights] section if remote value `hideHighlights` is enabled or match is not finished
-            if ((getIt.get<RemoteSettingsService>().value.hideHighlights || !matchFinished) &&
-                section ==
-                    MatchSection(
-                      matchSectionEnum: MatchSectionEnum.highlights,
-                    )) {
+            /// Hide [Highlights] section if:
+            /// a) Match is not finished
+            /// b) Remote value `hideHighlights` is enabled
+            /// c) Running on `web`
+            if (!matchFinished ||
+                (getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb) &&
+                    section ==
+                        MatchSection(
+                          matchSectionEnum: MatchSectionEnum.highlights,
+                        )) {
               return const SizedBox.shrink();
             }
 
@@ -71,12 +76,16 @@ class MatchSectionTitles extends StatelessWidget {
               matchSectionEnum: MatchSectionEnum.values[index],
             );
 
-            /// Hide [Highlights] spacing if remote value `hideHighlights` is enabled or match is not finished
-            if ((getIt.get<RemoteSettingsService>().value.hideHighlights || !matchFinished) &&
-                section ==
-                    MatchSection(
-                      matchSectionEnum: MatchSectionEnum.highlights,
-                    )) {
+            /// Hide [Highlights] spacing if:
+            /// a) Match is not finished
+            /// b) Remote value `hideHighlights` is enabled
+            /// c) Running on `web`
+            if (!matchFinished ||
+                (getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb) &&
+                    section ==
+                        MatchSection(
+                          matchSectionEnum: MatchSectionEnum.highlights,
+                        )) {
               return const SizedBox.shrink();
             }
 
