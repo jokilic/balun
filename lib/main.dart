@@ -77,6 +77,7 @@ class _BalunAppState extends State<BalunApp> {
         useOnlyLangCode: true,
         supportedLocales: const [
           Locale('en'),
+          Locale('de'),
           Locale('hr'),
         ],
         // startLocale: const Locale('hr'),

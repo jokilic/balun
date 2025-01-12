@@ -81,7 +81,14 @@ String getCompactFixtureText({
     ).format(parseTimestamp(timestamp)!);
   }
 
-  return '${homeGoals ?? '--'} : ${awayGoals ?? '--'}';
+  if (homeGoals != null && awayGoals != null) {
+    return '$homeGoals : $awayGoals';
+  }
+
+  return getMatchStatusShortOrNull(
+        statusShort: statusShort,
+      )?.toUpperCase() ??
+      '---';
 }
 
 bool isMatchPlaying({
@@ -120,15 +127,20 @@ String? getMatchStatusShortOrNull({
   required String statusShort,
 }) =>
     switch (statusShort.toUpperCase()) {
-      'TBD' || 'NS' => 'matchStatusShortNotStarted'.tr(),
+      'TBD' || 'NS' => 'matchStatusShortNS'.tr(),
       '1H' || '2H' || 'ET' || 'LIVE' => null,
-      'HT' => 'matchStatusShortHalfTime'.tr(),
-      'FT' || 'AET' || 'PEN' => 'matchStatusShortFullTime'.tr(),
-      'BT' => 'matchStatusShortBreak'.tr(),
-      'P' => 'matchStatusShortPenalties'.tr(),
-      'PST' || 'CANC' || 'ABD' || 'AWD' || 'WO' => 'matchStatusShortQuestion'.tr(),
-      'SUSP' || 'INT' => 'matchStatusShortExclamation'.tr(),
-      _ => statusShort,
+      'HT' => 'matchStatusShortHT'.tr(),
+      'FT' || 'AET' || 'PEN' => 'matchStatusShortFT'.tr(),
+      'BT' => 'matchStatusShortBT'.tr(),
+      'P' => 'matchStatusShortP'.tr(),
+      'PST' => 'matchStatusShortPST'.tr(),
+      'CANC' => 'matchStatusShortCANC'.tr(),
+      'ABD' => 'matchStatusShortABD'.tr(),
+      'AWD' => 'matchStatusShortAWD'.tr(),
+      'WO' => 'matchStatusShortWO'.tr(),
+      'SUSP' => 'matchStatusShortSUSP'.tr(),
+      'INT' => 'matchStatusShortINT'.tr(),
+      _ => 'matchStatusShortUnknown'.tr(),
     };
 
 ({int minutes, int? extra})? getMatchMinutesOrNull({
