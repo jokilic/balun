@@ -145,9 +145,11 @@ packages:
   calendar_date_picker2:
     dependency: "direct main"
     description:
-      path: "../calendar_date_picker2"
-      relative: true
-    source: path
+      path: "."
+      ref: "feature/on-value-changed-dialog"
+      resolved-ref: "538da01daf733bf5c9dc98882e8d3d1c2babc5f9"
+      url: "https://github.com/jokilic/calendar_date_picker2.git"
+    source: git
     version: "1.1.8"
   characters:
     dependency: transitive

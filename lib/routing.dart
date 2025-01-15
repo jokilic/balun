@@ -45,7 +45,11 @@ void openLeagues(BuildContext context, {required String country}) => pushScreen(
     );
 
 /// Opens [MatchScreen]
-void openMatch(BuildContext context, {required int matchId}) => pushScreen(
+void openMatch(
+  BuildContext context, {
+  required int matchId,
+}) =>
+    pushScreen(
       MatchScreen(
         matchId: matchId,
         key: ValueKey(matchId),
