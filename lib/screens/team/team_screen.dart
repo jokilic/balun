@@ -5,10 +5,12 @@ import 'package:watch_it/watch_it.dart';
 import '../../constants.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
+import '../../services/news_service.dart';
 import '../../util/dependencies.dart';
 import 'controllers/team_coaches_controller.dart';
 import 'controllers/team_controller.dart';
 import 'controllers/team_leagues_controller.dart';
+import 'controllers/team_news_controller.dart';
 import 'controllers/team_players_controller.dart';
 import 'controllers/team_season_controller.dart';
 import 'controllers/team_section_controller.dart';
@@ -38,6 +40,13 @@ class _TeamScreenState extends State<TeamScreen> {
     registerIfNotInitialized<TeamSectionController>(
       () => TeamSectionController(
         logger: getIt.get<LoggerService>(),
+      ),
+      instanceName: '${widget.teamId}',
+    );
+    registerIfNotInitialized<TeamNewsController>(
+      () => TeamNewsController(
+        logger: getIt.get<LoggerService>(),
+        news: getIt.get<NewsService>(),
       ),
       instanceName: '${widget.teamId}',
     );
@@ -107,6 +116,9 @@ class _TeamScreenState extends State<TeamScreen> {
         instanceName: '${widget.teamId}',
       )
       ..unregister<TeamLeaguesController>(
+        instanceName: '${widget.teamId}',
+      )
+      ..unregister<TeamNewsController>(
         instanceName: '${widget.teamId}',
       )
       ..unregister<TeamStandingsController>(

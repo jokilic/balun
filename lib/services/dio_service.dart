@@ -62,4 +62,19 @@ class DioService {
         logger: logger,
       ),
     );
+
+  late final newsDio = Dio(
+    BaseOptions(
+      baseUrl: BalunConstants.newsSearchBaseUrl,
+      headers: {
+        'x-access-key': Env.newsSearchApiKey,
+        'Content-Type': 'application/json',
+      },
+      validateStatus: (_) => true,
+    ),
+  )..interceptors.add(
+      DioLoggerInterceptor(
+        logger: logger,
+      ),
+    );
 }

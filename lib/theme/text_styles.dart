@@ -448,6 +448,20 @@ abstract class BalunTextStyles {
     fontSize: 12,
     fontWeight: FontWeight.w600,
   );
+
+  static const newsDateTime = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'Lufga',
+    height: 1.4,
+  );
+
+  static const newsTwoLetterSource = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Lufga',
+    height: 1.6,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -525,6 +539,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle dialogSubtitle;
   final TextStyle badgeNumber;
   final TextStyle matchLineupRating;
+  final TextStyle newsDateTime;
+  final TextStyle newsTwoLetterSource;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -601,6 +617,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.dialogSubtitle,
     required this.badgeNumber,
     required this.matchLineupRating,
+    required this.newsDateTime,
+    required this.newsTwoLetterSource,
   });
 
   @override
@@ -679,6 +697,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? dialogSubtitle,
     TextStyle? badgeNumber,
     TextStyle? matchLineupRating,
+    TextStyle? newsDateTime,
+    TextStyle? newsTwoLetterSource,
   }) =>
       BalunTextThemesExtension(
         error: error ?? this.error,
@@ -755,6 +775,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         dialogSubtitle: dialogSubtitle ?? this.dialogSubtitle,
         badgeNumber: badgeNumber ?? this.badgeNumber,
         matchLineupRating: matchLineupRating ?? this.matchLineupRating,
+        newsDateTime: newsDateTime ?? this.newsDateTime,
+        newsTwoLetterSource: newsTwoLetterSource ?? this.newsTwoLetterSource,
       );
 
   @override
@@ -841,6 +863,8 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       dialogSubtitle: TextStyle.lerp(dialogSubtitle, other.dialogSubtitle, t)!,
       badgeNumber: TextStyle.lerp(badgeNumber, other.badgeNumber, t)!,
       matchLineupRating: TextStyle.lerp(matchLineupRating, other.matchLineupRating, t)!,
+      newsDateTime: TextStyle.lerp(newsDateTime, other.newsDateTime, t)!,
+      newsTwoLetterSource: TextStyle.lerp(newsTwoLetterSource, other.newsTwoLetterSource, t)!,
     );
   }
 }

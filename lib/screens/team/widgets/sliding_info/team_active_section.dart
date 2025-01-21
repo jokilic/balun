@@ -4,6 +4,7 @@ import '../../../../models/sections/team_section.dart';
 import '../../../../models/teams/team_response.dart';
 import 'sections/coaches/team_coaches_section.dart';
 import 'sections/leagues/team_leagues_section.dart';
+import 'sections/news/team_news_section.dart';
 import 'sections/players/team_players_section.dart';
 import 'sections/stadium/team_stadium_section.dart';
 import 'sections/standings/team_standings_section.dart';
@@ -27,6 +28,13 @@ class TeamActiveSection extends StatelessWidget {
         ) =>
           TeamStadiumSection(
             stadium: team.venue,
+          ),
+        TeamSection(
+          teamSectionEnum: TeamSectionEnum.news,
+        ) =>
+          TeamNewsSection(
+            teamId: team.team?.id,
+            teamName: team.team?.name,
           ),
         TeamSection(
           teamSectionEnum: TeamSectionEnum.leagues,

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 enum TeamSectionEnum {
   stadium,
+  news,
   leagues,
   standings,
   coaches,
@@ -18,6 +19,7 @@ class TeamSection {
 
   String getTeamSectionName() => switch (teamSectionEnum) {
         TeamSectionEnum.stadium => 'teamSectionStadium'.tr(),
+        TeamSectionEnum.news => 'teamSectionNews'.tr(),
         TeamSectionEnum.leagues => 'teamSectionLeagues'.tr(),
         TeamSectionEnum.standings => 'teamSectionStandings'.tr(),
         TeamSectionEnum.coaches => 'teamSectionCoaches'.tr(),

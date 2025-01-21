@@ -20,6 +20,7 @@ dependencies:
   flutter_animate: 4.5.2
   flutter_native_splash: 2.4.4
   flutter_svg: 2.0.16
+  flutter_web_browser: 0.17.1
   get_it: 8.0.3
   hive_ce: 2.8.0+3
   hive_ce_flutter: 2.2.0

@@ -9,6 +9,7 @@ import '../services/dio_service.dart';
 import '../services/hive_service.dart';
 import '../services/league_storage_service.dart';
 import '../services/logger_service.dart';
+import '../services/news_service.dart';
 import '../services/package_info_service.dart';
 import '../services/periodic_api_service.dart';
 import '../services/remote_settings_service.dart';
@@ -105,6 +106,14 @@ void initializeServices({
       () async => YouTubeSearchService(
         logger: getIt.get<LoggerService>(),
         dio: getIt.get<DioService>().youTubeSearchDio,
+        internetConnection: internetConnection,
+      ),
+      dependsOn: [LoggerService, DioService],
+    )
+    ..registerSingletonAsync(
+      () async => NewsService(
+        logger: getIt.get<LoggerService>(),
+        dio: getIt.get<DioService>().newsDio,
         internetConnection: internetConnection,
       ),
       dependsOn: [LoggerService, DioService],

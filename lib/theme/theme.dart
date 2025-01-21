@@ -260,6 +260,12 @@ class BalunTheme {
     matchLineupRating: BalunTextStyles.matchLineupRating.copyWith(
       color: lightAppColors.white,
     ),
+    newsDateTime: BalunTextStyles.newsDateTime.copyWith(
+      color: lightAppColors.black,
+    ),
+    newsTwoLetterSource: BalunTextStyles.newsTwoLetterSource.copyWith(
+      color: lightAppColors.black,
+    ),
   );
 }
 

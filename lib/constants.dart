@@ -14,6 +14,9 @@ class BalunConstants {
   static final apiYouTubeDataBaseUrl = Env.apiYouTubeDataBaseUrl;
   static final apiYouTubeDataApiKey = Env.apiYouTubeDataApiKey;
 
+  static final newsSearchBaseUrl = Env.newsSearchBaseUrl;
+  static final newsSearchApiKey = Env.newsSearchApiKey;
+
   static const expandDuration = Duration(milliseconds: 75);
   static const animationDuration = Duration(milliseconds: 125);
   static const longAnimationDuration = Duration(milliseconds: 250);

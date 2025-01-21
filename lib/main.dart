@@ -37,7 +37,6 @@ Future<void> main() async {
   /// Initialize date formatting and `timeago` messages
   await initializeDateFormatting();
   timeago.setLocaleMessages('en', timeago.EnMessages());
-  timeago.setLocaleMessages('de', timeago.DeMessages());
   timeago.setLocaleMessages('hr', timeago.HrMessages());
 
   /// Wait for initialization to finish
@@ -77,7 +76,6 @@ class _BalunAppState extends State<BalunApp> {
         useOnlyLangCode: true,
         supportedLocales: const [
           Locale('en'),
-          Locale('de'),
           Locale('hr'),
         ],
         // startLocale: const Locale('hr'),

@@ -162,6 +162,7 @@ class MatchHighlightsContent extends StatelessWidget {
                             imageUrl: youTubeItem.snippet.thumbnails.defaultThumbnail.url,
                             width: 120,
                             fit: BoxFit.cover,
+                            radius: 8,
                           ),
                         ),
                         const SizedBox(width: 16),

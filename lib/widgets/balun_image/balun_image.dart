@@ -16,6 +16,7 @@ class BalunImage extends StatelessWidget {
   final double? width;
   final BoxFit fit;
   final Color? color;
+  final double radius;
 
   const BalunImage({
     required this.imageUrl,
@@ -23,6 +24,7 @@ class BalunImage extends StatelessWidget {
     this.width,
     this.fit = BoxFit.contain,
     this.color,
+    this.radius = 100,
     super.key,
   });
 
@@ -52,10 +54,12 @@ class BalunImage extends StatelessWidget {
                 height: height,
                 width: width,
                 color: color,
+                radius: radius,
               ),
             LoadState.failed => BalunImageError(
                 height: height,
                 width: width,
+                radius: radius,
               ),
           },
         ),
@@ -102,6 +106,7 @@ class BalunImage extends StatelessWidget {
           width: width,
           color: color,
           animate: false,
+          radius: radius,
         ),
       );
     }
@@ -129,10 +134,12 @@ class BalunImage extends StatelessWidget {
                 height: height,
                 width: width,
                 color: color,
+                radius: radius,
               ),
             LoadState.failed => BalunImageError(
                 height: height,
                 width: width,
+                radius: radius,
               ),
           },
         ),
@@ -147,6 +154,7 @@ class BalunImagePlaceholder extends StatelessWidget {
   final Color? color;
   final BoxFit fit;
   final bool animate;
+  final double radius;
 
   const BalunImagePlaceholder({
     required this.height,
@@ -154,6 +162,7 @@ class BalunImagePlaceholder extends StatelessWidget {
     required this.color,
     this.fit = BoxFit.cover,
     this.animate = true,
+    this.radius = 100,
     super.key,
   });
 
@@ -178,19 +187,20 @@ class BalunImagePlaceholder extends StatelessWidget {
           height: height,
           width: width,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
+            borderRadius: BorderRadius.circular(radius),
             color: color ?? getRandomBalunColor(context),
           ),
           child: animate
               ? null
               : ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(radius),
                   child: BalunImage(
                     imageUrl: BalunIcons.ballNavigation,
                     color: context.colors.black,
                     height: height,
                     width: width,
                     fit: fit,
+                    radius: radius,
                   ),
                 ),
         ),
@@ -201,11 +211,13 @@ class BalunImageError extends StatelessWidget {
   final double? height;
   final double? width;
   final BoxFit fit;
+  final double radius;
 
   const BalunImageError({
     required this.height,
     required this.width,
     this.fit = BoxFit.cover,
+    this.radius = 100,
     super.key,
   });
 
@@ -221,17 +233,7 @@ class BalunImageError extends StatelessWidget {
             color: context.colors.red,
             width: 2,
           ),
-          borderRadius: BorderRadius.circular(100),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(100),
-          child: BalunImage(
-            imageUrl: BalunIcons.ballNavigation,
-            color: context.colors.red,
-            height: height,
-            width: width,
-            fit: fit,
-          ),
+          borderRadius: BorderRadius.circular(radius),
         ),
       );
 }

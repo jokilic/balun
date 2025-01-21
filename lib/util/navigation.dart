@@ -1,6 +1,53 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../constants.dart';
+import '../theme/theme.dart';
+
+void openUrlExternalBrowser(
+  BuildContext context, {
+  required String? url,
+}) {
+  if (url != null) {
+    /// Use `url_launcher` if on web and not Android / iOS
+    if (kIsWeb || (defaultTargetPlatform != TargetPlatform.android && defaultTargetPlatform != TargetPlatform.iOS)) {
+      final uri = Uri.tryParse(url);
+
+      if (uri != null) {
+        launchUrl(
+          uri,
+          mode: LaunchMode.externalApplication,
+        );
+      }
+
+      return;
+    }
+
+    /// Use external browser
+    FlutterWebBrowser.openWebPage(
+      url: url,
+      customTabsOptions: CustomTabsOptions(
+        defaultColorSchemeParams: CustomTabsColorSchemeParams(
+          toolbarColor: context.colors.green,
+          navigationBarColor: context.colors.green,
+          secondaryToolbarColor: context.colors.green,
+          navigationBarDividerColor: context.colors.green,
+        ),
+        showTitle: true,
+        urlBarHidingEnabled: true,
+      ),
+      safariVCOptions: SafariViewControllerOptions(
+        barCollapsingEnabled: true,
+        preferredBarTintColor: context.colors.green,
+        preferredControlTintColor: context.colors.black,
+        dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
+        modalPresentationCapturesStatusBarAppearance: true,
+      ),
+    );
+  }
+}
 
 Future<T?> pushScreen<T>(
   Widget screen, {

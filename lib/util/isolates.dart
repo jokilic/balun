@@ -4,6 +4,7 @@ import '../models/coaches/coaches_response.dart';
 import '../models/countries/countries_response.dart';
 import '../models/fixtures/fixtures_response.dart';
 import '../models/leagues/leagues_response.dart';
+import '../models/news/news_response.dart';
 import '../models/player_teams/player_teams_response.dart';
 import '../models/players/players_response.dart';
 import '../models/remote_settings/remote_settings_response.dart';
@@ -76,3 +77,6 @@ RemoteSettingsResponse parseRemoteSettings(data) => RemoteSettingsResponse.fromM
 
 Future<YouTubeSearchResponse> computeYouTubeSearch(data) async => compute(parseYouTubeSearch, data);
 YouTubeSearchResponse parseYouTubeSearch(data) => YouTubeSearchResponse.fromMap(data);
+
+Future<NewsResponse> computeNews(data) async => compute(parseNews, data);
+NewsResponse parseNews(data) => NewsResponse.fromMap(data);
