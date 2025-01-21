@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/news/news_result.dart';
-import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
@@ -30,17 +29,19 @@ class TeamNewsListTile extends StatelessWidget {
               ///
               /// PHOTO
               ///
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: BalunImage(
-                  imageUrl: newsResult.imageUrl ?? BalunIcons.placeholderTeam,
-                  height: 120,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  radius: 8,
+              if (newsResult.imageUrl != null) ...[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: BalunImage(
+                    imageUrl: newsResult.imageUrl!,
+                    height: 120,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    radius: 8,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
+                const SizedBox(height: 16),
+              ],
 
               Row(
                 children: [

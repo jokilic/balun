@@ -4,6 +4,7 @@ class NewsResult {
   final String? description;
   final DateTime? pubDate;
   final String? imageUrl;
+  final String? sourceName;
   final String? sourceUrl;
   final String? sourceIcon;
 
@@ -13,6 +14,7 @@ class NewsResult {
     this.description,
     this.pubDate,
     this.imageUrl,
+    this.sourceName,
     this.sourceUrl,
     this.sourceIcon,
   });
@@ -23,12 +25,14 @@ class NewsResult {
         description: map['description'] != null ? map['description'] as String : null,
         pubDate: map['pubDate'] != null ? DateTime.parse(map['pubDate'] as String) : null,
         imageUrl: map['image_url'] != null ? map['image_url'] as String : null,
+        sourceName: map['source_name'] != null ? map['source_name'] as String : null,
         sourceUrl: map['source_url'] != null ? map['source_url'] as String : null,
         sourceIcon: map['source_icon'] != null ? map['source_icon'] as String : null,
       );
 
   @override
-  String toString() => 'NewsResult(title: $title, link: $link, description: $description, pubDate: $pubDate, imageUrl: $imageUrl, sourceUrl: $sourceUrl, sourceIcon: $sourceIcon)';
+  String toString() =>
+      'NewsResult(title: $title, link: $link, description: $description, pubDate: $pubDate, imageUrl: $imageUrl, sourceName: $sourceName, sourceUrl: $sourceUrl, sourceIcon: $sourceIcon)';
 
   @override
   bool operator ==(covariant NewsResult other) {

@@ -28,11 +28,13 @@ class NewsService {
   }) async {
     try {
       final response = await dio.get(
-        '/news',
+        '/latest',
         queryParameters: {
-          'q': '"$searchQuery"',
+          'q': searchQuery,
           'language': 'hr, en',
-          'category': 'sports',
+          'excludefield':
+              'keywords, creator, video_url, content, pubDateTZ, source_id, source_priority, language, country, category, ai_tag, sentiment, sentiment_stats, ai_region, ai_org',
+          'removeduplicate': '1',
         },
       );
 
