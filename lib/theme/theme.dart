@@ -176,6 +176,9 @@ class BalunTheme {
     leagueName: BalunTextStyles.leagueName.copyWith(
       color: lightAppColors.black,
     ),
+    leagueNameBold: BalunTextStyles.leagueNameBold.copyWith(
+      color: lightAppColors.black,
+    ),
     leagueCountry: BalunTextStyles.leagueCountry.copyWith(
       color: lightAppColors.black,
     ),

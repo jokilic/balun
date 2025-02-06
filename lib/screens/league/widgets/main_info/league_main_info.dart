@@ -79,7 +79,7 @@ class LeagueMainInfo extends WatchingWidget {
           ///
           Text(
             mixOrOriginalWords(league.league?.name ?? '---') ?? '---',
-            style: context.textStyles.leagueName,
+            style: context.textStyles.leagueNameBold,
             textAlign: TextAlign.center,
           ),
 

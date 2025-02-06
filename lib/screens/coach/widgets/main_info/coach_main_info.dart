@@ -55,8 +55,13 @@ class CoachMainInfo extends WatchingWidget {
             /// NAME
             ///
             Text(
-              '${mixOrOriginalWords(coach.firstName) ?? '--'} ${mixOrOriginalWords(coach.lastName) ?? '--'}',
+              mixOrOriginalWords(coach.firstName) ?? '--',
               style: context.textStyles.leagueName,
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              mixOrOriginalWords(coach.lastName) ?? '--',
+              style: context.textStyles.leagueNameBold,
               textAlign: TextAlign.center,
             ),
 
@@ -81,33 +86,36 @@ class CoachMainInfo extends WatchingWidget {
             /// TEAM
             ///
             if (coach.team != null)
-              BalunButton(
-                onPressed: coach.team?.id != null
-                    ? () => openTeam(
-                          context,
-                          teamId: coach.team!.id!,
-                          season: getCurrentSeasonYear().toString(),
-                        )
-                    : null,
-                child: Container(
-                  color: Colors.transparent,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      BalunImage(
-                        imageUrl: coach.team?.logo ?? BalunIcons.placeholderTeam,
-                        height: 32,
-                        width: 32,
-                      ),
-                      const SizedBox(width: 8),
-                      Flexible(
-                        child: Text(
-                          mixOrOriginalWords(coach.team?.name) ?? '---',
-                          style: context.textStyles.leagueCountry,
-                          textAlign: TextAlign.center,
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: BalunButton(
+                  onPressed: coach.team?.id != null
+                      ? () => openTeam(
+                            context,
+                            teamId: coach.team!.id!,
+                            season: getCurrentSeasonYear().toString(),
+                          )
+                      : null,
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        BalunImage(
+                          imageUrl: coach.team?.logo ?? BalunIcons.placeholderTeam,
+                          height: 32,
+                          width: 32,
                         ),
-                      ),
-                    ],
+                        const SizedBox(width: 8),
+                        Flexible(
+                          child: Text(
+                            mixOrOriginalWords(coach.team?.name) ?? '---',
+                            style: context.textStyles.leagueCountry,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

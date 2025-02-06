@@ -81,8 +81,13 @@ class PlayerMainInfo extends WatchingWidget {
           /// NAME
           ///
           Text(
-            '${mixOrOriginalWords(player.player?.firstName) ?? '--'} ${mixOrOriginalWords(player.player?.lastName) ?? '--'}',
+            mixOrOriginalWords(player.player?.firstName) ?? '--',
             style: context.textStyles.leagueName,
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            mixOrOriginalWords(player.player?.lastName) ?? '--',
+            style: context.textStyles.leagueNameBold,
             textAlign: TextAlign.center,
           ),
 
@@ -106,33 +111,36 @@ class PlayerMainInfo extends WatchingWidget {
           /// TEAM
           ///
           if (currentTeam != null)
-            BalunButton(
-              onPressed: currentTeam.id != null
-                  ? () => openTeam(
-                        context,
-                        teamId: currentTeam.id!,
-                        season: player.statistics?.firstOrNull?.league?.season ?? getCurrentSeasonYear().toString(),
-                      )
-                  : null,
-              child: Container(
-                color: Colors.transparent,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    BalunImage(
-                      imageUrl: currentTeam.logo ?? BalunIcons.placeholderTeam,
-                      height: 32,
-                      width: 32,
-                    ),
-                    const SizedBox(width: 8),
-                    Flexible(
-                      child: Text(
-                        mixOrOriginalWords(currentTeam.name) ?? '---',
-                        style: context.textStyles.fixturesLeague,
-                        textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: BalunButton(
+                onPressed: currentTeam.id != null
+                    ? () => openTeam(
+                          context,
+                          teamId: currentTeam.id!,
+                          season: player.statistics?.firstOrNull?.league?.season ?? getCurrentSeasonYear().toString(),
+                        )
+                    : null,
+                child: Container(
+                  color: Colors.transparent,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      BalunImage(
+                        imageUrl: currentTeam.logo ?? BalunIcons.placeholderTeam,
+                        height: 32,
+                        width: 32,
                       ),
-                    ),
-                  ],
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          mixOrOriginalWords(currentTeam.name) ?? '---',
+                          style: context.textStyles.fixturesLeague,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

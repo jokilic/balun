@@ -277,8 +277,16 @@ abstract class BalunTextStyles {
 
   static const leagueName = TextStyle(
     fontFamily: 'Lufga',
+    fontSize: 24,
+    fontWeight: FontWeight.w400,
+    height: 1.2,
+  );
+
+  static const leagueNameBold = TextStyle(
+    fontFamily: 'Lufga',
     fontSize: 28,
     fontWeight: FontWeight.w600,
+    height: 1.4,
   );
 
   static const leagueCountry = TextStyle(
@@ -511,6 +519,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle matchH2HTitle;
   final TextStyle matchH2HText;
   final TextStyle leagueName;
+  final TextStyle leagueNameBold;
   final TextStyle leagueCountry;
   final TextStyle leagueSeason;
   final TextStyle leagueTeamsTitle;
@@ -589,6 +598,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.matchH2HTitle,
     required this.matchH2HText,
     required this.leagueName,
+    required this.leagueNameBold,
     required this.leagueCountry,
     required this.leagueSeason,
     required this.leagueTeamsTitle,
@@ -669,6 +679,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? matchH2HTitle,
     TextStyle? matchH2HText,
     TextStyle? leagueName,
+    TextStyle? leagueNameBold,
     TextStyle? leagueCountry,
     TextStyle? leagueSeason,
     TextStyle? leagueTeamsTitle,
@@ -747,6 +758,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
         matchH2HTitle: matchH2HTitle ?? this.matchH2HTitle,
         matchH2HText: matchH2HText ?? this.matchH2HText,
         leagueName: leagueName ?? this.leagueName,
+        leagueNameBold: leagueNameBold ?? this.leagueNameBold,
         leagueCountry: leagueCountry ?? this.leagueCountry,
         leagueSeason: leagueSeason ?? this.leagueSeason,
         leagueTeamsTitle: leagueTeamsTitle ?? this.leagueTeamsTitle,
@@ -835,6 +847,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       matchH2HTitle: TextStyle.lerp(matchH2HTitle, other.matchH2HTitle, t)!,
       matchH2HText: TextStyle.lerp(matchH2HText, other.matchH2HText, t)!,
       leagueName: TextStyle.lerp(leagueName, other.leagueName, t)!,
+      leagueNameBold: TextStyle.lerp(leagueNameBold, other.leagueNameBold, t)!,
       leagueCountry: TextStyle.lerp(leagueCountry, other.leagueCountry, t)!,
       leagueSeason: TextStyle.lerp(leagueSeason, other.leagueSeason, t)!,
       leagueTeamsTitle: TextStyle.lerp(leagueTeamsTitle, other.leagueTeamsTitle, t)!,

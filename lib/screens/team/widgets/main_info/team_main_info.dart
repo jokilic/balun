@@ -82,7 +82,7 @@ class TeamMainInfo extends WatchingWidget {
           ///
           Text(
             mixOrOriginalWords(team.team?.name ?? '---') ?? '---',
-            style: context.textStyles.leagueName,
+            style: context.textStyles.leagueNameBold,
             textAlign: TextAlign.center,
           ),
 
