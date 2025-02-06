@@ -9,9 +9,11 @@ import 'fixtures_success.dart';
 
 class FixturesContent extends StatelessWidget {
   final BalunState fixturesState;
+  final Future<void> Function() onRefresh;
 
   const FixturesContent({
     required this.fixturesState,
+    required this.onRefresh,
   });
 
   @override
@@ -28,6 +30,7 @@ class FixturesContent extends StatelessWidget {
           ),
         Success() => FixturesSuccess(
             fixtures: (fixturesState as Success).data,
+            onRefresh: onRefresh,
           ),
       };
 }

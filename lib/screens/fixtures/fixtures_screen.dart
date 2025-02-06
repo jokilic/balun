@@ -109,6 +109,20 @@ class _FixturesScreenState extends State<FixturesScreen> {
                     ],
                     child: FixturesContent(
                       fixturesState: fixturesState,
+                      onRefresh: () => getIt
+                          .get<FixturesController>(
+                            instanceName: 'fixtures',
+                          )
+                          .getFixturesFromDate(
+                            dateString: getDateForBackend(
+                              getIt
+                                  .get<FixturesDateController>(
+                                    instanceName: 'fixtures',
+                                  )
+                                  .value,
+                            ),
+                            withLoadingState: false,
+                          ),
                     ),
                   ),
                 ),

@@ -18,8 +18,13 @@ class MatchController extends ValueNotifier<BalunState<FixtureResponse>> {
   /// METHODS
   ///
 
-  Future<void> getMatch({required int matchId}) async {
-    value = Loading();
+  Future<void> getMatch({
+    required int matchId,
+    bool withLoadingState = true,
+  }) async {
+    if (withLoadingState) {
+      value = Loading();
+    }
 
     final response = await api.getMatch(
       matchId: matchId,

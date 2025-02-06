@@ -20,13 +20,18 @@ class FixturesController extends ValueNotifier<BalunState<List<FixtureResponse>>
   /// METHODS
   ///
 
-  Future<void> getFixturesFromDate({required String dateString}) async {
+  Future<void> getFixturesFromDate({
+    required String dateString,
+    bool withLoadingState = true,
+  }) async {
     /// Disable badge in [BalunNavigationBar]
     getIt.get<BalunNavigationBarBadgeService>().updateBadge(
       fixtures: [],
     );
 
-    value = Loading();
+    if (withLoadingState) {
+      value = Loading();
+    }
 
     final response = await api.getFixturesFromDate(
       dateString: dateString,

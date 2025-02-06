@@ -20,9 +20,11 @@ import 'fixtures_list_tile/fixtures_league_compact/fixtures_league_compact_list_
 
 class FixturesSuccess extends WatchingWidget {
   final List<FixtureResponse> fixtures;
+  final Future<void> Function() onRefresh;
 
   const FixturesSuccess({
     required this.fixtures,
+    required this.onRefresh,
   });
 
   @override
@@ -62,96 +64,102 @@ class FixturesSuccess extends WatchingWidget {
       favoritedTeams: favoritedTeams,
     );
 
-    return ListView(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      physics: const BouncingScrollPhysics(),
-      children: [
-        ///
-        /// FAVORITE FIXTURES COMPACT
-        ///
-        if (favoriteSortedGroupedFixturesLeague.isNotEmpty) ...[
-          const SizedBox(height: 8),
-          FixturesAppBar(
-            onPressed: () => showDialog(
-              context: context,
-              barrierColor: context.colors.black.withValues(alpha: 0.5),
-              builder: (context) => FixturesFavoriteDialog(
-                onPressed: Navigator.of(context).pop,
-                onReorderLeagues: getIt.get<LeagueStorageService>().reorderLeagues,
-                onReorderTeams: getIt.get<TeamStorageService>().reorderTeams,
+    return RefreshIndicator(
+      backgroundColor: context.colors.white,
+      color: context.colors.green,
+      strokeWidth: 3.5,
+      onRefresh: onRefresh,
+      child: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        physics: const BouncingScrollPhysics(),
+        children: [
+          ///
+          /// FAVORITE FIXTURES COMPACT
+          ///
+          if (favoriteSortedGroupedFixturesLeague.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            FixturesAppBar(
+              onPressed: () => showDialog(
+                context: context,
+                barrierColor: context.colors.black.withValues(alpha: 0.5),
+                builder: (context) => FixturesFavoriteDialog(
+                  onPressed: Navigator.of(context).pop,
+                  onReorderLeagues: getIt.get<LeagueStorageService>().reorderLeagues,
+                  onReorderTeams: getIt.get<TeamStorageService>().reorderTeams,
+                ),
               ),
+              text: 'fixturesFavoriteTitle'.tr(),
             ),
-            text: 'fixturesFavoriteTitle'.tr(),
-          ),
-          const SizedBox(height: 24),
-          ListView.separated(
-            shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: favoriteSortedGroupedFixturesLeague.length,
-            itemBuilder: (_, leagueIndex) {
-              final league = favoriteSortedGroupedFixturesLeague.keys.elementAtOrNull(leagueIndex);
-              final fixtures = favoriteSortedGroupedFixturesLeague[league];
+            const SizedBox(height: 24),
+            ListView.separated(
+              shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: favoriteSortedGroupedFixturesLeague.length,
+              itemBuilder: (_, leagueIndex) {
+                final league = favoriteSortedGroupedFixturesLeague.keys.elementAtOrNull(leagueIndex);
+                final fixtures = favoriteSortedGroupedFixturesLeague[league];
 
-              return FixturesLeagueCompactListTile(
-                onPressed: league?.id != null
-                    ? () => openLeague(
-                          context,
-                          leagueId: league?.id ?? 0,
-                          season: league?.season ?? fixtures?.firstWhereOrNull((fixture) => fixture.league?.season != null)?.league?.season ?? getCurrentSeasonYear().toString(),
-                        )
-                    : null,
-                league: league,
-                fixtures: fixtures,
-                hasLiveFixturesLeague: hasLiveFixturesLeague(
+                return FixturesLeagueCompactListTile(
+                  onPressed: league?.id != null
+                      ? () => openLeague(
+                            context,
+                            leagueId: league?.id ?? 0,
+                            season: league?.season ?? fixtures?.firstWhereOrNull((fixture) => fixture.league?.season != null)?.league?.season ?? getCurrentSeasonYear().toString(),
+                          )
+                      : null,
+                  league: league,
                   fixtures: fixtures,
-                ),
-                initiallyExpanded: true,
-              );
-            },
-            separatorBuilder: (_, __) => const SizedBox(height: 12),
-          ),
-        ],
-
-        ///
-        /// ALL MATCHES
-        ///
-        if (sortedGroupedFixtures.isNotEmpty) ...[
-          SizedBox(
-            height: favoriteSortedGroupedFixturesLeague.isNotEmpty ? 40 : 8,
-          ),
-          FixturesAppBar(
-            onPressed: () => showDialog(
-              context: context,
-              barrierColor: context.colors.black.withValues(alpha: 0.5),
-              builder: (context) => FixturesAllDialog(
-                onPressed: Navigator.of(context).pop,
-              ),
+                  hasLiveFixturesLeague: hasLiveFixturesLeague(
+                    fixtures: fixtures,
+                  ),
+                  initiallyExpanded: true,
+                );
+              },
+              separatorBuilder: (_, __) => const SizedBox(height: 12),
             ),
-            text: 'fixturesAllTitle'.tr(),
-          ),
-          const SizedBox(height: 24),
-          ListView.separated(
-            shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: sortedGroupedFixtures.length,
-            itemBuilder: (_, countryIndex) {
-              final countryLeague = sortedGroupedFixtures.keys.elementAtOrNull(countryIndex);
-              final leagues = sortedGroupedFixtures[countryLeague];
+          ],
 
-              return FixturesCountryListTile(
-                countryLeague: countryLeague,
-                leagues: leagues,
-                hasLiveFixturesCountry: hasLiveFixturesCountry(
-                  leagues: leagues,
+          ///
+          /// ALL MATCHES
+          ///
+          if (sortedGroupedFixtures.isNotEmpty) ...[
+            SizedBox(
+              height: favoriteSortedGroupedFixturesLeague.isNotEmpty ? 40 : 8,
+            ),
+            FixturesAppBar(
+              onPressed: () => showDialog(
+                context: context,
+                barrierColor: context.colors.black.withValues(alpha: 0.5),
+                builder: (context) => FixturesAllDialog(
+                  onPressed: Navigator.of(context).pop,
                 ),
-              );
-            },
-            separatorBuilder: (_, __) => const SizedBox(height: 12),
-          ),
+              ),
+              text: 'fixturesAllTitle'.tr(),
+            ),
+            const SizedBox(height: 24),
+            ListView.separated(
+              shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: sortedGroupedFixtures.length,
+              itemBuilder: (_, countryIndex) {
+                final countryLeague = sortedGroupedFixtures.keys.elementAtOrNull(countryIndex);
+                final leagues = sortedGroupedFixtures[countryLeague];
+
+                return FixturesCountryListTile(
+                  countryLeague: countryLeague,
+                  leagues: leagues,
+                  hasLiveFixturesCountry: hasLiveFixturesCountry(
+                    leagues: leagues,
+                  ),
+                );
+              },
+              separatorBuilder: (_, __) => const SizedBox(height: 12),
+            ),
+          ],
         ],
-      ],
+      ),
     );
   }
 }

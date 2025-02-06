@@ -121,6 +121,14 @@ class _MatchScreenState extends State<MatchScreen> {
             ],
             child: MatchContent(
               matchState: matchState,
+              onRefresh: () => getIt
+                  .get<MatchController>(
+                    instanceName: '${widget.matchId}',
+                  )
+                  .getMatch(
+                    matchId: widget.matchId,
+                    withLoadingState: false,
+                  ),
             ),
           ),
         ),
