@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 enum LeagueSectionEnum {
   standings,
   fixtures,
+  news,
   teams,
   topScorers,
   topAssists,
@@ -18,9 +19,10 @@ class LeagueSection {
   });
 
   String getLeagueSectionName() => switch (leagueSectionEnum) {
-        LeagueSectionEnum.teams => 'leagueSectionTeams'.tr(),
         LeagueSectionEnum.standings => 'leagueSectionStandings'.tr(),
         LeagueSectionEnum.fixtures => 'leagueSectionFixtures'.tr(),
+        LeagueSectionEnum.news => 'teamSectionNews'.tr(),
+        LeagueSectionEnum.teams => 'leagueSectionTeams'.tr(),
         LeagueSectionEnum.topScorers => 'leagueSectionScorers'.tr(),
         LeagueSectionEnum.topAssists => 'leagueSectionAssists'.tr(),
         LeagueSectionEnum.topYellowCards => 'leagueSectionYellowCards'.tr(),

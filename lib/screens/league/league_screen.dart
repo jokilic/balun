@@ -5,9 +5,11 @@ import 'package:watch_it/watch_it.dart';
 import '../../constants.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
+import '../../services/news_service.dart';
 import '../../util/dependencies.dart';
 import 'controllers/league_controller.dart';
 import 'controllers/league_fixtures_controller.dart';
+import 'controllers/league_news_controller.dart';
 import 'controllers/league_season_controller.dart';
 import 'controllers/league_section_controller.dart';
 import 'controllers/league_standings_controller.dart';
@@ -40,6 +42,13 @@ class _LeagueScreenState extends State<LeagueScreen> {
     registerIfNotInitialized<LeagueSectionController>(
       () => LeagueSectionController(
         logger: getIt.get<LoggerService>(),
+      ),
+      instanceName: '${widget.leagueId}',
+    );
+    registerIfNotInitialized<LeagueNewsController>(
+      () => LeagueNewsController(
+        logger: getIt.get<LoggerService>(),
+        news: getIt.get<NewsService>(),
       ),
       instanceName: '${widget.leagueId}',
     );
@@ -120,6 +129,9 @@ class _LeagueScreenState extends State<LeagueScreen> {
   void dispose() {
     getIt
       ..unregister<LeagueSectionController>(
+        instanceName: '${widget.leagueId}',
+      )
+      ..unregister<LeagueNewsController>(
         instanceName: '${widget.leagueId}',
       )
       ..unregister<LeagueTeamsController>(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../models/leagues/league_response.dart';
 import '../../../../models/sections/league_section.dart';
 import 'sections/fixtures/league_fixtures_section.dart';
+import 'sections/news/league_news_section.dart';
 import 'sections/standings/league_standings_section.dart';
 import 'sections/teams/league_teams_section.dart';
 import 'sections/top_assists/league_top_assists_section.dart';
@@ -24,13 +25,6 @@ class LeagueActiveSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) => switch (leagueSection) {
         LeagueSection(
-          leagueSectionEnum: LeagueSectionEnum.teams,
-        ) =>
-          LeagueTeamsSection(
-            leagueId: league.league?.id,
-            season: activeSeason,
-          ),
-        LeagueSection(
           leagueSectionEnum: LeagueSectionEnum.standings,
         ) =>
           LeagueStandingsSection(
@@ -41,6 +35,21 @@ class LeagueActiveSection extends StatelessWidget {
           leagueSectionEnum: LeagueSectionEnum.fixtures,
         ) =>
           LeagueFixturesSection(
+            leagueId: league.league?.id,
+            season: activeSeason,
+          ),
+        LeagueSection(
+          leagueSectionEnum: LeagueSectionEnum.news,
+        ) =>
+          LeagueNewsSection(
+            leagueId: league.league?.id,
+            leagueName: league.league?.name,
+            leagueCountry: league.country?.name,
+          ),
+        LeagueSection(
+          leagueSectionEnum: LeagueSectionEnum.teams,
+        ) =>
+          LeagueTeamsSection(
             leagueId: league.league?.id,
             season: activeSeason,
           ),
