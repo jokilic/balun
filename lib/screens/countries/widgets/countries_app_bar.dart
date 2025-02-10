@@ -5,6 +5,7 @@ import '../../../services/package_info_service.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../util/dependencies.dart';
+import '../../../util/language.dart';
 import '../../../util/snackbars.dart';
 import '../../../util/sounds.dart';
 import '../../../widgets/balun_button.dart';
@@ -32,6 +33,8 @@ class CountriesAppBar extends StatelessWidget {
                 );
 
                 playWelcomeToBalun();
+
+                toggleLanguage(context);
               },
               child: Container(
                 padding: const EdgeInsets.all(14),
