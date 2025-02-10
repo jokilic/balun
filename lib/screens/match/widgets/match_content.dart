@@ -9,11 +9,9 @@ import 'match_success.dart';
 
 class MatchContent extends StatelessWidget {
   final BalunState matchState;
-  final Future<void> Function() onRefresh;
 
   const MatchContent({
     required this.matchState,
-    required this.onRefresh,
   });
 
   @override
@@ -30,7 +28,6 @@ class MatchContent extends StatelessWidget {
           ),
         Success() => MatchSuccess(
             match: (matchState as Success).data,
-            onRefresh: onRefresh,
           ),
       };
 }

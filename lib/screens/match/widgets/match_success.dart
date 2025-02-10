@@ -7,17 +7,16 @@ import '../../../theme/theme.dart';
 import '../../../util/date_time.dart';
 import '../../../util/dependencies.dart';
 import '../../../widgets/widget_size.dart';
+import '../controllers/match_controller.dart';
 import '../controllers/match_section_controller.dart';
 import 'main_info/match_main_info.dart';
 import 'sliding_info/match_sliding_info.dart';
 
 class MatchSuccess extends StatefulWidget {
   final FixtureResponse match;
-  final Future<void> Function() onRefresh;
 
   const MatchSuccess({
     required this.match,
-    required this.onRefresh,
   });
 
   @override
@@ -70,7 +69,14 @@ class _MatchSuccessState extends State<MatchSuccess> {
       backgroundColor: context.colors.white,
       color: context.colors.green,
       strokeWidth: 3.5,
-      onRefresh: widget.onRefresh,
+      onRefresh: () => getIt
+          .get<MatchController>(
+            instanceName: '${widget.match.fixture?.id}',
+          )
+          .onRefresh(
+            matchId: widget.match.fixture?.id,
+            statusShort: widget.match.fixture?.status?.short,
+          ),
       child: SingleChildScrollView(
         controller: upwardScrollController,
         physics: const BouncingScrollPhysics(),

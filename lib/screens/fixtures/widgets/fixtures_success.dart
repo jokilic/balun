@@ -12,6 +12,8 @@ import '../../../theme/theme.dart';
 import '../../../util/date_time.dart';
 import '../../../util/dependencies.dart';
 import '../../../util/fixtures.dart';
+import '../controllers/fixtures_controller.dart';
+import '../controllers/fixtures_date_controller.dart';
 import 'fixtures_all_dialog.dart';
 import 'fixtures_app_bar.dart';
 import 'fixtures_favorite_dialog.dart';
@@ -20,11 +22,9 @@ import 'fixtures_list_tile/fixtures_league_compact/fixtures_league_compact_list_
 
 class FixturesSuccess extends WatchingWidget {
   final List<FixtureResponse> fixtures;
-  final Future<void> Function() onRefresh;
 
   const FixturesSuccess({
     required this.fixtures,
-    required this.onRefresh,
   });
 
   @override
@@ -68,7 +68,22 @@ class FixturesSuccess extends WatchingWidget {
       backgroundColor: context.colors.white,
       color: context.colors.green,
       strokeWidth: 3.5,
-      onRefresh: onRefresh,
+      onRefresh: () => getIt
+          .get<FixturesController>(
+            instanceName: 'fixtures',
+          )
+          .onRefresh(
+            dateString: getDateForBackend(
+              getIt
+                  .get<FixturesDateController>(
+                    instanceName: 'fixtures',
+                  )
+                  .value,
+            ),
+            currentDateString: getDateForBackend(
+              DateTime.now(),
+            ),
+          ),
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 16),
         physics: const BouncingScrollPhysics(),

@@ -91,8 +91,8 @@ class TeamNewsLoading extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Container(
-                  height: 20,
-                  width: getRandomNumberFromBase(184),
+                  height: 16,
+                  width: getRandomNumberFromBase(320),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withValues(alpha: 0.25),
@@ -100,8 +100,8 @@ class TeamNewsLoading extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Container(
-                  height: 20,
-                  width: getRandomNumberFromBase(184),
+                  height: 16,
+                  width: getRandomNumberFromBase(320),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withValues(alpha: 0.25),
@@ -109,8 +109,8 @@ class TeamNewsLoading extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Container(
-                  height: 20,
-                  width: getRandomNumberFromBase(184),
+                  height: 16,
+                  width: getRandomNumberFromBase(320),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: context.colors.black.withValues(alpha: 0.25),

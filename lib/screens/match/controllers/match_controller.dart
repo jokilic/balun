@@ -4,6 +4,7 @@ import '../../../models/fixtures/fixture_response.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/state.dart';
+import '../../../util/string.dart';
 
 class MatchController extends ValueNotifier<BalunState<FixtureResponse>> {
   final LoggerService logger;
@@ -17,6 +18,24 @@ class MatchController extends ValueNotifier<BalunState<FixtureResponse>> {
   ///
   /// METHODS
   ///
+
+  /// Triggered when the user does a `pull-to-refresh`
+  Future<void> onRefresh({
+    required int? matchId,
+    required String? statusShort,
+  }) async {
+    if (matchId == null || statusShort == null) {
+      return;
+    }
+
+    /// Refresh only if the match is active
+    if (isMatchPlaying(statusShort: statusShort)) {
+      await getMatch(
+        matchId: matchId,
+        withLoadingState: false,
+      );
+    }
+  }
 
   Future<void> getMatch({
     required int matchId,

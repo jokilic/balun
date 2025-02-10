@@ -20,6 +20,20 @@ class FixturesController extends ValueNotifier<BalunState<List<FixtureResponse>>
   /// METHODS
   ///
 
+  /// Triggered when the user does a `pull-to-refresh`
+  Future<void> onRefresh({
+    required String dateString,
+    required String currentDateString,
+  }) async {
+    /// Refresh only if the user is in current day
+    if (dateString == currentDateString) {
+      await getFixturesFromDate(
+        dateString: dateString,
+        withLoadingState: false,
+      );
+    }
+  }
+
   Future<void> getFixturesFromDate({
     required String dateString,
     bool withLoadingState = true,
