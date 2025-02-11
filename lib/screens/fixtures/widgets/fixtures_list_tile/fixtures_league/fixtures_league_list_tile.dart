@@ -7,6 +7,7 @@ import '../../../../../models/fixtures/league/league.dart';
 import '../../../../../routing.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
+import '../../../../../util/string.dart';
 import '../../../../../util/word_mix.dart';
 import '../../../../../widgets/balun_button.dart';
 import '../../../../../widgets/balun_image/balun_image.dart';
@@ -119,6 +120,9 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
 
                       return FixturesListTile(
                         fixture: fixture,
+                        fixturePlaying: isMatchPlaying(
+                          statusShort: fixture.fixture?.status?.short ?? '--',
+                        ),
                         fixturePressed: fixture.fixture?.id != null
                             ? () => openMatch(
                                   context,

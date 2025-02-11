@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../../../constants.dart';
 import '../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
@@ -13,10 +15,12 @@ import 'fixtures_list_tile_minute.dart';
 
 class FixturesListTile extends StatelessWidget {
   final FixtureResponse fixture;
+  final bool fixturePlaying;
   final Function()? fixturePressed;
 
   const FixturesListTile({
     required this.fixture,
+    required this.fixturePlaying,
     required this.fixturePressed,
   });
 
@@ -108,22 +112,51 @@ class FixturesListTile extends StatelessWidget {
                   /// SCORE
                   ///
                   Expanded(
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(text: '${fixture.goals?.home ?? '-'}'),
-                          TextSpan(
-                            text: ':',
-                            style: context.textStyles.fixturesScore.copyWith(
-                              color: context.colors.greenish,
+                    child: fixturePlaying
+                        ? Animate(
+                            onPlay: (controller) => controller.loop(
+                              reverse: true,
+                              min: 0.3,
                             ),
+                            effects: const [
+                              FadeEffect(
+                                curve: Curves.easeIn,
+                                duration: BalunConstants.shimmerDuration,
+                              ),
+                            ],
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(text: '${fixture.goals?.home ?? '-'}'),
+                                  TextSpan(
+                                    text: ':',
+                                    style: context.textStyles.fixturesScore.copyWith(
+                                      color: context.colors.greenish,
+                                    ),
+                                  ),
+                                  TextSpan(text: '${fixture.goals?.away ?? '-'}'),
+                                ],
+                              ),
+                              style: context.textStyles.fixturesScore,
+                              textAlign: TextAlign.center,
+                            ),
+                          )
+                        : Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(text: '${fixture.goals?.home ?? '-'}'),
+                                TextSpan(
+                                  text: ':',
+                                  style: context.textStyles.fixturesScore.copyWith(
+                                    color: context.colors.greenish,
+                                  ),
+                                ),
+                                TextSpan(text: '${fixture.goals?.away ?? '-'}'),
+                              ],
+                            ),
+                            style: context.textStyles.fixturesScore,
+                            textAlign: TextAlign.center,
                           ),
-                          TextSpan(text: '${fixture.goals?.away ?? '-'}'),
-                        ],
-                      ),
-                      style: context.textStyles.fixturesScore,
-                      textAlign: TextAlign.center,
-                    ),
                   ),
 
                   ///

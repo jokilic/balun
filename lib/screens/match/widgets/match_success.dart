@@ -5,6 +5,7 @@ import '../../../models/fixtures/fixture_response.dart';
 import '../../../theme/theme.dart';
 import '../../../util/date_time.dart';
 import '../../../util/dependencies.dart';
+import '../../../util/string.dart';
 import '../../../widgets/widget_size.dart';
 import '../controllers/match_section_controller.dart';
 import 'main_info/match_main_info.dart';
@@ -65,6 +66,9 @@ class _MatchSuccessState extends State<MatchSuccess> {
           ),
           child: MatchMainInfo(
             match: widget.match,
+            matchPlaying: isMatchPlaying(
+              statusShort: widget.match.fixture?.status?.short ?? '--',
+            ),
           ),
         ),
 

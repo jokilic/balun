@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
+import '../../../../constants.dart';
 import '../../../../models/fixtures/fixture_response.dart';
 import '../../../../models/leagues/league/league.dart';
 import '../../../../routing.dart';
@@ -19,9 +21,11 @@ import 'match_minute.dart';
 
 class MatchMainInfo extends WatchingWidget {
   final FixtureResponse match;
+  final bool matchPlaying;
 
   const MatchMainInfo({
     required this.match,
+    required this.matchPlaying,
   });
 
   @override
@@ -256,26 +260,51 @@ class MatchMainInfo extends WatchingWidget {
               ///
               Expanded(
                 flex: 3,
-                child: Column(
-                  children: [
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(text: '${match.goals?.home ?? '-'}'),
-                          TextSpan(
-                            text: ':',
-                            style: context.textStyles.fixturesScore.copyWith(
-                              color: context.colors.black.withValues(alpha: 0.2),
-                            ),
+                child: matchPlaying
+                    ? Animate(
+                        onPlay: (controller) => controller.loop(
+                          reverse: true,
+                          min: 0.3,
+                        ),
+                        effects: const [
+                          FadeEffect(
+                            curve: Curves.easeIn,
+                            duration: BalunConstants.shimmerDuration,
                           ),
-                          TextSpan(text: '${match.goals?.away ?? '-'}'),
                         ],
+                        child: Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(text: '${match.goals?.home ?? '-'}'),
+                              TextSpan(
+                                text: ':',
+                                style: context.textStyles.fixturesScore.copyWith(
+                                  color: context.colors.black.withValues(alpha: 0.2),
+                                ),
+                              ),
+                              TextSpan(text: '${match.goals?.away ?? '-'}'),
+                            ],
+                          ),
+                          style: context.textStyles.fixturesScore,
+                          textAlign: TextAlign.center,
+                        ),
+                      )
+                    : Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(text: '${match.goals?.home ?? '-'}'),
+                            TextSpan(
+                              text: ':',
+                              style: context.textStyles.fixturesScore.copyWith(
+                                color: context.colors.black.withValues(alpha: 0.2),
+                              ),
+                            ),
+                            TextSpan(text: '${match.goals?.away ?? '-'}'),
+                          ],
+                        ),
+                        style: context.textStyles.fixturesScore,
+                        textAlign: TextAlign.center,
                       ),
-                      style: context.textStyles.fixturesScore,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
               ),
 
               ///
