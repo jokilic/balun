@@ -12,6 +12,7 @@ import '../../../theme/theme.dart';
 import '../../../util/date_time.dart';
 import '../../../util/dependencies.dart';
 import '../../../util/fixtures.dart';
+import '../../../widgets/ball_refresh_indicator.dart';
 import '../controllers/fixtures_controller.dart';
 import '../controllers/fixtures_date_controller.dart';
 import 'fixtures_all_dialog.dart';
@@ -64,9 +65,19 @@ class FixturesSuccess extends WatchingWidget {
       favoritedTeams: favoritedTeams,
     );
 
-    return RefreshIndicator(
+    return BallRefreshIndicator(
+      ballColors: [
+        context.colors.red,
+        context.colors.green,
+        context.colors.blue,
+        context.colors.yellow,
+        context.colors.orange,
+        context.colors.black,
+      ],
       backgroundColor: context.colors.white,
-      color: context.colors.green,
+      arrowColor: context.colors.black,
+      ballBorderColor: context.colors.black,
+      ballRadius: 32,
       strokeWidth: 3.5,
       onRefresh: () => getIt
           .get<FixturesController>(
