@@ -67,11 +67,6 @@ class FixturesSuccess extends WatchingWidget {
 
     return BallRefreshIndicator(
       ballColors: [
-        context.colors.red,
-        context.colors.green,
-        context.colors.blue,
-        context.colors.yellow,
-        context.colors.orange,
         context.colors.black,
       ],
       backgroundColor: context.colors.white,
