@@ -105,7 +105,7 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// SECOND HALF
                 ///
-                if ((elapsed ?? 0) >= 45 && statusShort != '1H')
+                if ((score?.halftime?.home != null && score?.halftime?.away != null) && (elapsed ?? 0) >= 45 && statusShort != '1H')
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
@@ -145,7 +145,7 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// REGULAR TIME ENDED
                 ///
-                if ((elapsed ?? 0) >= 90 && statusShort != '1H' && statusShort != 'HT' && statusShort != '2H')
+                if ((score?.fulltime?.home != null && score?.fulltime?.away != null) && (elapsed ?? 0) >= 90 && statusShort != '1H' && statusShort != 'HT' && statusShort != '2H')
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
@@ -202,7 +202,13 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// EXTRA TIME ENDED
                 ///
-                if ((elapsed ?? 0) >= 120 && statusShort != '1H' && statusShort != 'HT' && statusShort != '2H' && statusShort != 'ET' && statusShort != 'BT')
+                if ((score?.extratime?.home != null && score?.extratime?.away != null) &&
+                    (elapsed ?? 0) >= 120 &&
+                    statusShort != '1H' &&
+                    statusShort != 'HT' &&
+                    statusShort != '2H' &&
+                    statusShort != 'ET' &&
+                    statusShort != 'BT')
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
@@ -242,7 +248,14 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// PENALTIES ENDED
                 ///
-                if ((elapsed ?? 0) >= 120 && statusShort != '1H' && statusShort != 'HT' && statusShort != '2H' && statusShort != 'ET' && statusShort != 'BT' && statusShort != 'P')
+                if ((score?.penalty?.home != null && score?.penalty?.away != null) &&
+                    (elapsed ?? 0) >= 120 &&
+                    statusShort != '1H' &&
+                    statusShort != 'HT' &&
+                    statusShort != '2H' &&
+                    statusShort != 'ET' &&
+                    statusShort != 'BT' &&
+                    statusShort != 'P')
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
