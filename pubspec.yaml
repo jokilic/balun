@@ -3,6 +3,25 @@ description: "Simple Flutter application for football scores."
 publish_to: 'none'
 version: 1.4.1+141
 
+#
+# DEPLOYING APP
+# 1. `pubspec.yaml` -> Bump version number
+# 2. `release_notes.txt` -> Update changelog for all languages
+# 3. `default.txt` -> Update changelog for all languages
+# 4. `android/Fastfile` -> Update `name` & `tag_name` in GitHub lane
+#
+
+#
+# Android
+# `cd android/ && fastlane play_store_release`
+#
+# GitHub Releases
+# `cd android/ && fastlane github_release`
+#
+# iOS
+# `cd ios/ && fastlane app_store_release`
+#
+
 environment:
   sdk: 3.8.0-91.0.dev
 

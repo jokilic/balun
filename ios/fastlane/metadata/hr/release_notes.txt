@@ -1,0 +1,4 @@
+* Remove pull-to-refresh from Match
+* Flash score if match active in FixturesListTile & MatchMainInfo
+* Fancy refresh indicator
+* Small fixes in Match -> Events

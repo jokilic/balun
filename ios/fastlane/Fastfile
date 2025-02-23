@@ -1,0 +1,40 @@
+# Check for `Fastlane` updates
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build & deploy a new release to the App Store"
+  lane :app_store_release do
+    # Build Flutter app
+    sh("puro flutter clean")
+    sh("puro flutter pub get")
+    sh("puro flutter build ipa")
+
+    # Generate api_key
+    api_key = app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_filepath: "/Users/josipkilic/Documents/AuthKey_HJ7UCRZWJW.p8",
+      )
+
+    # Upload to App Store
+    deliver(
+      api_key: api_key,
+      ipa: "../build/ios/ipa/balun.ipa",
+      force: true,
+      skip_metadata: true,
+      skip_screenshots: true,
+      submit_for_review: true,
+      automatic_release: true,
+      precheck_include_in_app_purchases: false,
+      )
+
+    # Show notification
+    notification(
+      content_image: "..assets/icon.png",
+      title: "Balun",
+      message: "New release deployed to the App Store"
+      )
+  end
+end
