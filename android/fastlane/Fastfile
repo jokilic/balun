@@ -48,12 +48,15 @@ platform :android do
     # Rename built APK to `balun.apk`
     sh("mv ../../build/app/outputs/flutter-apk/app-release.apk ../../build/app/outputs/flutter-apk/balun.apk")
 
+    # Get version from `pubspec.yaml`
+    pubspec_version = File.open("../../pubspec.yaml", "r").read.match(/version: .*?(\d+\.\d+\.\d+)\+(\d+)/)[1]
+
     # Upload to GitHub Releases
     set_github_release(
       repository_name: "jokilic/balun",
       api_token: ENV["GITHUB_TOKEN"],
-      name: "Balun v4.1.7",
-      tag_name: "v4.1.7",
+      name: "Balun v#{pubspec_version}",
+      tag_name: "v#{pubspec_version}",
       description: (File.read("metadata/android/hr/changelogs/default.txt") rescue "No changelog provided"),
       commitish: "master",
       upload_assets: ["../build/app/outputs/flutter-apk/balun.apk"],
