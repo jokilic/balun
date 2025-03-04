@@ -14,6 +14,7 @@ import 'util/color.dart';
 import 'util/dependencies.dart';
 import 'util/env.dart';
 import 'widgets/balun_loader.dart';
+import 'widgets/balun_navigation_bar.dart';
 
 Future<void> main() async {
   /// Initialize Flutter related tasks
@@ -91,7 +92,10 @@ class BalunWidget extends WatchingWidget {
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         debugShowCheckedModeBanner: false,
-        home: watchIt<BalunScreenService>().value,
+        home: Scaffold(
+          bottomNavigationBar: BalunNavigationBar(),
+          body: watchIt<BalunScreenService>().value,
+        ),
         onGenerateTitle: (_) => 'appName'.tr(),
         theme: BalunTheme.light,
         builder: (_, child) {

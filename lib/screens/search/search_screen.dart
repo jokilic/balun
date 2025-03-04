@@ -7,7 +7,6 @@ import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
 import '../../util/string.dart';
-import '../../widgets/balun_navigation_bar.dart';
 import 'controllers/search_coaches_controller.dart';
 import 'controllers/search_controller.dart';
 import 'controllers/search_countries_controller.dart';
@@ -80,67 +79,64 @@ class _SearchScreenState extends State<SearchScreen> {
       instanceName: 'search',
     ).value;
 
-    return Scaffold(
-      bottomNavigationBar: BalunNavigationBar(),
-      body: SafeArea(
-        child: Animate(
-          effects: const [
-            FadeEffect(
-              curve: Curves.easeIn,
-              duration: BalunConstants.longAnimationDuration,
-            ),
-          ],
-          child: Column(
-            children: [
-              ///
-              /// SEARCH BAR
-              ///
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                child: SearchBarWidget(
-                  onSubmitted: (value) => getIt
-                      .get<SearchController>(
-                        instanceName: 'search',
-                      )
-                      .triggerSearch(
-                        replaceSpecialSymbolsWithStandardLetters(
-                          value.trim(),
-                        ),
-                      ),
-                ),
-              ),
-
-              ///
-              /// SEARCH SECTIONS
-              ///
-              SearchSections(
-                activeSearchSection: searchSection,
-                titlePressed: getIt
+    return SafeArea(
+      child: Animate(
+        effects: const [
+          FadeEffect(
+            curve: Curves.easeIn,
+            duration: BalunConstants.longAnimationDuration,
+          ),
+        ],
+        child: Column(
+          children: [
+            ///
+            /// SEARCH BAR
+            ///
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+              child: SearchBarWidget(
+                onSubmitted: (value) => getIt
                     .get<SearchController>(
                       instanceName: 'search',
                     )
-                    .updateState,
-              ),
-
-              ///
-              /// ACTIVE SECTION
-              ///
-              Expanded(
-                child: Animate(
-                  key: ValueKey(searchSection),
-                  effects: const [
-                    FadeEffect(
-                      curve: Curves.easeIn,
-                      duration: BalunConstants.animationDuration,
+                    .triggerSearch(
+                      replaceSpecialSymbolsWithStandardLetters(
+                        value.trim(),
+                      ),
                     ),
-                  ],
-                  child: SearchActiveSection(
-                    searchSection: searchSection,
+              ),
+            ),
+
+            ///
+            /// SEARCH SECTIONS
+            ///
+            SearchSections(
+              activeSearchSection: searchSection,
+              titlePressed: getIt
+                  .get<SearchController>(
+                    instanceName: 'search',
+                  )
+                  .updateState,
+            ),
+
+            ///
+            /// ACTIVE SECTION
+            ///
+            Expanded(
+              child: Animate(
+                key: ValueKey(searchSection),
+                effects: const [
+                  FadeEffect(
+                    curve: Curves.easeIn,
+                    duration: BalunConstants.animationDuration,
                   ),
+                ],
+                child: SearchActiveSection(
+                  searchSection: searchSection,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

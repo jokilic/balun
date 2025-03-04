@@ -6,7 +6,6 @@ import '../../constants.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
-import '../../widgets/balun_navigation_bar.dart';
 import 'countries_controller.dart';
 import 'widgets/countries_app_bar.dart';
 import 'widgets/countries_content.dart';
@@ -39,45 +38,42 @@ class _CountriesScreenState extends State<CountriesScreen> {
       instanceName: 'countries',
     ).value;
 
-    return Scaffold(
-      bottomNavigationBar: BalunNavigationBar(),
-      body: SafeArea(
-        child: Animate(
-          effects: const [
-            FadeEffect(
-              curve: Curves.easeIn,
-              duration: BalunConstants.longAnimationDuration,
-            ),
-          ],
-          child: Column(
-            children: [
-              const SizedBox(height: 12),
+    return SafeArea(
+      child: Animate(
+        effects: const [
+          FadeEffect(
+            curve: Curves.easeIn,
+            duration: BalunConstants.longAnimationDuration,
+          ),
+        ],
+        child: Column(
+          children: [
+            const SizedBox(height: 12),
 
-              ///
-              /// APP BAR
-              ///
-              CountriesAppBar(),
-              const SizedBox(height: 8),
+            ///
+            /// APP BAR
+            ///
+            CountriesAppBar(),
+            const SizedBox(height: 8),
 
-              ///
-              /// CONTENT
-              ///
-              Expanded(
-                child: Animate(
-                  key: ValueKey(countriesState),
-                  effects: const [
-                    FadeEffect(
-                      curve: Curves.easeIn,
-                      duration: BalunConstants.animationDuration,
-                    ),
-                  ],
-                  child: CountriesContent(
-                    countriesState: countriesState,
+            ///
+            /// CONTENT
+            ///
+            Expanded(
+              child: Animate(
+                key: ValueKey(countriesState),
+                effects: const [
+                  FadeEffect(
+                    curve: Curves.easeIn,
+                    duration: BalunConstants.animationDuration,
                   ),
+                ],
+                child: CountriesContent(
+                  countriesState: countriesState,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
