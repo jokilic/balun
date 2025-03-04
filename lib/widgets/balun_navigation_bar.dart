@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../constants.dart';
+import '../routing.dart';
 import '../services/balun_navigation_bar_badge_service.dart';
 import '../services/balun_navigation_bar_service.dart';
 import '../theme/icons.dart';
 import '../theme/theme.dart';
 import '../util/dependencies.dart';
+import 'balun_button.dart';
 import 'balun_image/balun_image.dart';
 
 class BalunNavigationBar extends WatchingWidget {
@@ -172,34 +174,37 @@ class BalunNavigationBar extends WatchingWidget {
           ///
           /// SEARCH
           ///
-          NavigationDestination(
-            icon: Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: context.colors.grey,
+          BalunButton(
+            onLongPressed: () => openSettings(context),
+            child: NavigationDestination(
+              icon: Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: context.colors.grey,
+                ),
+                child: BalunImage(
+                  imageUrl: BalunIcons.search,
+                  height: 24,
+                  width: 24,
+                  color: context.colors.white.withValues(alpha: 0.25),
+                ),
               ),
-              child: BalunImage(
-                imageUrl: BalunIcons.search,
-                height: 24,
-                width: 24,
-                color: context.colors.white.withValues(alpha: 0.25),
+              selectedIcon: Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: context.colors.white,
+                ),
+                child: BalunImage(
+                  imageUrl: BalunIcons.search,
+                  height: 24,
+                  width: 24,
+                  color: context.colors.black,
+                ),
               ),
+              label: '',
             ),
-            selectedIcon: Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: context.colors.white,
-              ),
-              child: BalunImage(
-                imageUrl: BalunIcons.search,
-                height: 24,
-                width: 24,
-                color: context.colors.black,
-              ),
-            ),
-            label: '',
           ),
         ],
       ),

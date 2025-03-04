@@ -8,6 +8,7 @@ import 'screens/leagues/leagues_screen.dart';
 import 'screens/match/match_screen.dart';
 import 'screens/player/player_screen.dart';
 import 'screens/search/search_screen.dart';
+import 'screens/settings/settings_screen.dart';
 import 'screens/team/team_screen.dart';
 import 'util/navigation.dart';
 
@@ -31,6 +32,14 @@ void openCountries(BuildContext context) => pushScreen(
 void openSearch(BuildContext context) => pushScreen(
       const SearchScreen(
         key: ValueKey('search'),
+      ),
+      context: context,
+    );
+
+/// Opens [SettingsScreen]
+void openSettings(BuildContext context) => pushScreen(
+      const SettingsScreen(
+        key: ValueKey('settings'),
       ),
       context: context,
     );
