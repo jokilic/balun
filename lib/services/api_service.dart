@@ -63,7 +63,7 @@ class APIService {
         default:
           final error = 'API -> getCountries -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (countriesResponse: null, error: error);
       }
     } catch (e) {
@@ -71,7 +71,7 @@ class APIService {
         methodName: 'getCountries',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (countriesResponse: null, error: error);
     }
   }
@@ -102,7 +102,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getFixtures -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (fixturesResponse: null, error: error);
           }
 
@@ -110,7 +110,7 @@ class APIService {
         default:
           final error = 'API -> getFixtures -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (fixturesResponse: null, error: error);
       }
     } catch (e) {
@@ -118,7 +118,7 @@ class APIService {
         methodName: 'getFixtures',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (fixturesResponse: null, error: error);
     }
   }
@@ -147,7 +147,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getFixturesFromLeagueAndSeason -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (fixturesResponse: null, error: error);
           }
 
@@ -155,7 +155,7 @@ class APIService {
         default:
           final error = 'API -> getFixturesFromLeagueAndSeason -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (fixturesResponse: null, error: error);
       }
     } catch (e) {
@@ -163,7 +163,7 @@ class APIService {
         methodName: 'getFixturesFromLeagueAndSeason',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (fixturesResponse: null, error: error);
     }
   }
@@ -190,7 +190,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getMatch -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (fixturesResponse: null, error: error);
           }
 
@@ -198,7 +198,7 @@ class APIService {
         default:
           final error = 'API -> getMatch -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (fixturesResponse: null, error: error);
       }
     } catch (e) {
@@ -206,7 +206,7 @@ class APIService {
         methodName: 'getMatch',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (fixturesResponse: null, error: error);
     }
   }
@@ -238,7 +238,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getHead2Head -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (head2HeadResponse: null, error: error);
           }
 
@@ -246,7 +246,7 @@ class APIService {
         default:
           final error = 'API -> getHead2Head -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (head2HeadResponse: null, error: error);
       }
     } catch (e) {
@@ -254,7 +254,7 @@ class APIService {
         methodName: 'getHead2Head',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (head2HeadResponse: null, error: error);
     }
   }
@@ -285,7 +285,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getTeam -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (teamsResponse: null, error: error);
           }
 
@@ -293,7 +293,7 @@ class APIService {
         default:
           final error = 'API -> getTeam -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (teamsResponse: null, error: error);
       }
     } catch (e) {
@@ -301,7 +301,7 @@ class APIService {
         methodName: 'getTeam',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (teamsResponse: null, error: error);
     }
   }
@@ -330,7 +330,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getTeamsFromLeagueAndSeason -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (teamsResponse: null, error: error);
           }
 
@@ -338,7 +338,7 @@ class APIService {
         default:
           final error = 'API -> getTeamsFromLeagueAndSeason -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (teamsResponse: null, error: error);
       }
     } catch (e) {
@@ -346,7 +346,7 @@ class APIService {
         methodName: 'getTeamsFromLeagueAndSeason',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (teamsResponse: null, error: error);
     }
   }
@@ -379,7 +379,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getStandingsFromLeague -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (standingsResponse: null, error: error);
           }
 
@@ -387,7 +387,7 @@ class APIService {
         default:
           final error = 'API -> getStandingsFromLeague -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (standingsResponse: null, error: error);
       }
     } catch (e) {
@@ -395,7 +395,7 @@ class APIService {
         methodName: 'getStandingsFromLeague',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (standingsResponse: null, error: error);
     }
   }
@@ -424,7 +424,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getStandingsFromTeam -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (standingsResponse: null, error: error);
           }
 
@@ -432,7 +432,7 @@ class APIService {
         default:
           final error = 'API -> getStandingsFromTeam -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (standingsResponse: null, error: error);
       }
     } catch (e) {
@@ -440,7 +440,7 @@ class APIService {
         methodName: 'getStandingsFromTeam',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (standingsResponse: null, error: error);
     }
   }
@@ -471,7 +471,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getLeague -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (leaguesResponse: null, error: error);
           }
 
@@ -479,7 +479,7 @@ class APIService {
         default:
           final error = 'API -> getLeague -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (leaguesResponse: null, error: error);
       }
     } catch (e) {
@@ -487,7 +487,7 @@ class APIService {
         methodName: 'getLeague',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (leaguesResponse: null, error: error);
     }
   }
@@ -514,7 +514,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getLeaguesFromTeam -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (leaguesResponse: null, error: error);
           }
 
@@ -522,7 +522,7 @@ class APIService {
         default:
           final error = 'API -> getLeaguesFromTeam -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (leaguesResponse: null, error: error);
       }
     } catch (e) {
@@ -530,7 +530,7 @@ class APIService {
         methodName: 'getLeaguesFromTeam',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (leaguesResponse: null, error: error);
     }
   }
@@ -557,7 +557,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getLeaguesFromCountry -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (leaguesResponse: null, error: error);
           }
 
@@ -565,7 +565,7 @@ class APIService {
         default:
           final error = 'API -> getLeaguesFromCountry -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (leaguesResponse: null, error: error);
       }
     } catch (e) {
@@ -573,7 +573,7 @@ class APIService {
         methodName: 'getLeaguesFromCountry',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (leaguesResponse: null, error: error);
     }
   }
@@ -606,7 +606,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getPlayer -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (playersResponse: null, error: error);
           }
 
@@ -614,7 +614,7 @@ class APIService {
         default:
           final error = 'API -> getPlayer -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (playersResponse: null, error: error);
       }
     } catch (e) {
@@ -622,7 +622,7 @@ class APIService {
         methodName: 'getPlayer',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (playersResponse: null, error: error);
     }
   }
@@ -653,7 +653,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getPlayerTeams -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (playerTeamsResponse: null, error: error);
           }
 
@@ -661,7 +661,7 @@ class APIService {
         default:
           final error = 'API -> getPlayerTeams -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (playerTeamsResponse: null, error: error);
       }
     } catch (e) {
@@ -669,7 +669,7 @@ class APIService {
         methodName: 'getPlayerTeams',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (playerTeamsResponse: null, error: error);
     }
   }
@@ -700,7 +700,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getPlayersFromTeam -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (squadsResponse: null, error: error);
           }
 
@@ -708,7 +708,7 @@ class APIService {
         default:
           final error = 'API -> getPlayersFromTeam -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (squadsResponse: null, error: error);
       }
     } catch (e) {
@@ -716,7 +716,7 @@ class APIService {
         methodName: 'getPlayersFromTeam',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (squadsResponse: null, error: error);
     }
   }
@@ -749,7 +749,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getTopScorers -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (playersResponse: null, error: error);
           }
 
@@ -757,7 +757,7 @@ class APIService {
         default:
           final error = 'API -> getTopScorers -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (playersResponse: null, error: error);
       }
     } catch (e) {
@@ -765,7 +765,7 @@ class APIService {
         methodName: 'getTopScorers',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (playersResponse: null, error: error);
     }
   }
@@ -798,7 +798,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getTopAssists -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (playersResponse: null, error: error);
           }
 
@@ -806,7 +806,7 @@ class APIService {
         default:
           final error = 'API -> getTopAssists -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (playersResponse: null, error: error);
       }
     } catch (e) {
@@ -814,7 +814,7 @@ class APIService {
         methodName: 'getTopAssists',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (playersResponse: null, error: error);
     }
   }
@@ -847,7 +847,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getTopYellowCards -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (playersResponse: null, error: error);
           }
 
@@ -855,7 +855,7 @@ class APIService {
         default:
           final error = 'API -> getTopYellowCards -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (playersResponse: null, error: error);
       }
     } catch (e) {
@@ -863,7 +863,7 @@ class APIService {
         methodName: 'getTopYellowCards',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (playersResponse: null, error: error);
     }
   }
@@ -896,7 +896,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getTopRedCards -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (playersResponse: null, error: error);
           }
 
@@ -904,7 +904,7 @@ class APIService {
         default:
           final error = 'API -> getTopRedCards -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (playersResponse: null, error: error);
       }
     } catch (e) {
@@ -912,7 +912,7 @@ class APIService {
         methodName: 'getTopRedCards',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (playersResponse: null, error: error);
     }
   }
@@ -943,7 +943,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getCoach -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (coachesResponse: null, error: error);
           }
 
@@ -951,7 +951,7 @@ class APIService {
         default:
           final error = 'API -> getCoach -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (coachesResponse: null, error: error);
       }
     } catch (e) {
@@ -959,7 +959,7 @@ class APIService {
         methodName: 'getCoach',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (coachesResponse: null, error: error);
     }
   }
@@ -986,7 +986,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getCoachesFromTeam -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (coachesResponse: null, error: error);
           }
 
@@ -994,7 +994,7 @@ class APIService {
         default:
           final error = 'API -> getCoachesFromTeam -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (coachesResponse: null, error: error);
       }
     } catch (e) {
@@ -1002,7 +1002,7 @@ class APIService {
         methodName: 'getCoachesFromTeam',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (coachesResponse: null, error: error);
     }
   }
@@ -1033,7 +1033,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getTransfersFromTeam -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (transfersResponse: null, error: error);
           }
 
@@ -1041,7 +1041,7 @@ class APIService {
         default:
           final error = 'API -> getTransfersFromTeam -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (transfersResponse: null, error: error);
       }
     } catch (e) {
@@ -1049,7 +1049,7 @@ class APIService {
         methodName: 'getTransfersFromTeam',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (transfersResponse: null, error: error);
     }
   }
@@ -1076,7 +1076,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getTransfersFromPlayer -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (transfersResponse: null, error: error);
           }
 
@@ -1084,7 +1084,7 @@ class APIService {
         default:
           final error = 'API -> getTransfersFromPlayer -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (transfersResponse: null, error: error);
       }
     } catch (e) {
@@ -1092,7 +1092,7 @@ class APIService {
         methodName: 'getTransfersFromPlayer',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (transfersResponse: null, error: error);
     }
   }
@@ -1123,7 +1123,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getSidelinedFromPlayer -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (sidelinedResponse: null, error: error);
           }
 
@@ -1131,7 +1131,7 @@ class APIService {
         default:
           final error = 'API -> getSidelinedFromPlayer -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (sidelinedResponse: null, error: error);
       }
     } catch (e) {
@@ -1139,7 +1139,7 @@ class APIService {
         methodName: 'getSidelinedFromPlayer',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (sidelinedResponse: null, error: error);
     }
   }
@@ -1166,7 +1166,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getSidelinedFromCoach -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (sidelinedResponse: null, error: error);
           }
 
@@ -1174,7 +1174,7 @@ class APIService {
         default:
           final error = 'API -> getSidelinedFromCoach -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (sidelinedResponse: null, error: error);
       }
     } catch (e) {
@@ -1182,7 +1182,7 @@ class APIService {
         methodName: 'getSidelinedFromCoach',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (sidelinedResponse: null, error: error);
     }
   }
@@ -1213,7 +1213,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getTrophiesFromPlayer -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (trophiesResponse: null, error: error);
           }
 
@@ -1221,7 +1221,7 @@ class APIService {
         default:
           final error = 'API -> getTrophiesFromPlayer -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (trophiesResponse: null, error: error);
       }
     } catch (e) {
@@ -1229,7 +1229,7 @@ class APIService {
         methodName: 'getTrophiesFromPlayer',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (trophiesResponse: null, error: error);
     }
   }
@@ -1256,7 +1256,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> getTrophiesFromCoach -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (trophiesResponse: null, error: error);
           }
 
@@ -1264,7 +1264,7 @@ class APIService {
         default:
           final error = 'API -> getTrophiesFromCoach -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (trophiesResponse: null, error: error);
       }
     } catch (e) {
@@ -1272,7 +1272,7 @@ class APIService {
         methodName: 'getTrophiesFromCoach',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (trophiesResponse: null, error: error);
     }
   }
@@ -1303,7 +1303,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> searchCountries -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (searchCountriesResponse: null, error: error);
           }
 
@@ -1311,7 +1311,7 @@ class APIService {
         default:
           final error = 'API -> searchCountries -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (searchCountriesResponse: null, error: error);
       }
     } catch (e) {
@@ -1319,7 +1319,7 @@ class APIService {
         methodName: 'searchCountries',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (searchCountriesResponse: null, error: error);
     }
   }
@@ -1346,7 +1346,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> searchLeagues -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (searchLeaguesResponse: null, error: error);
           }
 
@@ -1354,7 +1354,7 @@ class APIService {
         default:
           final error = 'API -> searchLeagues -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (searchLeaguesResponse: null, error: error);
       }
     } catch (e) {
@@ -1362,7 +1362,7 @@ class APIService {
         methodName: 'searchLeagues',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (searchLeaguesResponse: null, error: error);
     }
   }
@@ -1389,7 +1389,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> searchTeams -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (searchTeamsResponse: null, error: error);
           }
 
@@ -1397,7 +1397,7 @@ class APIService {
         default:
           final error = 'API -> searchTeams -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (searchTeamsResponse: null, error: error);
       }
     } catch (e) {
@@ -1405,7 +1405,7 @@ class APIService {
         methodName: 'searchTeams',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (searchTeamsResponse: null, error: error);
     }
   }
@@ -1432,7 +1432,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> searchPlayers -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (searchPlayersResponse: null, error: error);
           }
 
@@ -1440,7 +1440,7 @@ class APIService {
         default:
           final error = 'API -> searchPlayers -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (searchPlayersResponse: null, error: error);
       }
     } catch (e) {
@@ -1448,7 +1448,7 @@ class APIService {
         methodName: 'searchPlayers',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (searchPlayersResponse: null, error: error);
     }
   }
@@ -1475,7 +1475,7 @@ class APIService {
           } catch (e) {
             final error = 'API -> searchCoaches -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (searchCoachesResponse: null, error: error);
           }
 
@@ -1483,7 +1483,7 @@ class APIService {
         default:
           final error = 'API -> searchCoaches -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (searchCoachesResponse: null, error: error);
       }
     } catch (e) {
@@ -1491,7 +1491,7 @@ class APIService {
         methodName: 'searchCoaches',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (searchCoachesResponse: null, error: error);
     }
   }

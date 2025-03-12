@@ -49,7 +49,7 @@ class NewsService {
           } catch (e) {
             final error = 'API -> getNewsSearch -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (newsResponse: null, error: error);
           }
 
@@ -57,7 +57,7 @@ class NewsService {
         default:
           final error = 'API -> getNewsSearch -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (newsResponse: null, error: error);
       }
     } catch (e) {
@@ -65,7 +65,7 @@ class NewsService {
         methodName: 'getNewsSearch',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (newsResponse: null, error: error);
     }
   }

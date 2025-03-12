@@ -65,7 +65,7 @@ class RemoteSettingsService extends ValueNotifier<({bool mixLogos, bool mixNames
           } catch (e) {
             final error = 'API -> getRemoteSettings -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (remoteSettingsResponse: null, error: error);
           }
 
@@ -73,7 +73,7 @@ class RemoteSettingsService extends ValueNotifier<({bool mixLogos, bool mixNames
         default:
           final error = 'API -> getRemoteSettings -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (remoteSettingsResponse: null, error: error);
       }
     } catch (e) {
@@ -81,7 +81,7 @@ class RemoteSettingsService extends ValueNotifier<({bool mixLogos, bool mixNames
         methodName: 'getRemoteSettings',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (remoteSettingsResponse: null, error: error);
     }
   }

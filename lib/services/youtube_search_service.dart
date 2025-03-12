@@ -53,7 +53,7 @@ class YouTubeSearchService {
           } catch (e) {
             final error = 'API -> getYouTubeVideoSearch -> parsing error -> $e';
             logger.e(error);
-            unawaited(Sentry.captureException(error));
+
             return (youTubeSearch: null, error: error);
           }
 
@@ -61,7 +61,7 @@ class YouTubeSearchService {
         default:
           final error = 'API -> getYouTubeVideoSearch -> StatusCode ${response.statusCode}';
           logger.e(error);
-          unawaited(Sentry.captureException(error));
+
           return (youTubeSearch: null, error: error);
       }
     } catch (e) {
@@ -69,7 +69,7 @@ class YouTubeSearchService {
         methodName: 'getYouTubeVideoSearch',
         mainError: '$e',
       );
-      unawaited(Sentry.captureException(error));
+
       return (youTubeSearch: null, error: error);
     }
   }
