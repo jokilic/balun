@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../constants.dart';
 import '../models/youtube_search/youtube_search_response.dart';

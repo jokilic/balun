@@ -89,7 +89,7 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                         child: Wrap(
                           spacing: 12,
                           runSpacing: 12,
-                          children: widget.league.seasons!
+                          children: widget.league.seasons!.reversed
                               .map(
                                 (season) => BalunButton(
                                   onPressed: widget.league.league?.id != null

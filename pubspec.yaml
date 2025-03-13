@@ -22,7 +22,7 @@ version: 1.4.1+141
 #
 
 environment:
-  sdk: 3.8.0-91.0.dev
+  sdk: 3.6.2
 
 dependencies:
   flutter:

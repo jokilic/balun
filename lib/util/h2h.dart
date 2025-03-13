@@ -6,6 +6,6 @@ List<FixtureResponse>? getHead2HeadList({required List<FixtureResponse> fixtures
       final aDate = a.fixture?.timestamp ?? DateTime.fromMillisecondsSinceEpoch(0);
       final bDate = b.fixture?.timestamp ?? DateTime.fromMillisecondsSinceEpoch(0);
 
-      return aDate.compareTo(bDate);
+      return bDate.compareTo(aDate);
     },
   );

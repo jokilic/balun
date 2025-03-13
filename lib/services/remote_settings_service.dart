@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../constants.dart';
 import '../models/remote_settings/remote_settings_response.dart';
