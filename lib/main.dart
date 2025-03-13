@@ -67,7 +67,11 @@ class _BalunAppState extends State<BalunApp> {
     /// Set the color of the navigation bar
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
         systemNavigationBarColor: context.colors.black,
+        statusBarBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.light,
+        systemNavigationBarIconBrightness: Brightness.light,
       ),
     );
   }
