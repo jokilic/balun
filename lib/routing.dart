@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'screens/coach/coach_screen.dart';
 import 'screens/countries/countries_screen.dart';
+import 'screens/favorites/favorites_screen.dart';
 import 'screens/fixtures/fixtures_screen.dart';
 import 'screens/league/league_screen.dart';
 import 'screens/leagues/leagues_screen.dart';
@@ -40,6 +41,14 @@ void openSearch(BuildContext context) => pushScreen(
 void openSettings(BuildContext context) => pushScreen(
       const SettingsScreen(
         key: ValueKey('settings'),
+      ),
+      context: context,
+    );
+
+/// Opens [FavoritesScreen]
+void openFavorites(BuildContext context) => pushScreen(
+      const FavoritesScreen(
+        key: ValueKey('favorites'),
       ),
       context: context,
     );

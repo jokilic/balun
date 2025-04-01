@@ -1,43 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:watch_it/watch_it.dart';
 
 import '../../constants.dart';
-import '../../services/logger_service.dart';
+import '../../services/league_storage_service.dart';
+import '../../services/team_storage_service.dart';
 import '../../util/dependencies.dart';
-import 'settings_controller.dart';
-import 'widgets/settings_app_bar.dart';
-import 'widgets/settings_content.dart';
+import 'widgets/favorites_app_bar.dart';
+import 'widgets/favorites_content.dart';
 
-class SettingsScreen extends WatchingStatefulWidget {
-  const SettingsScreen({
+class FavoritesScreen extends StatelessWidget {
+  const FavoritesScreen({
     required super.key,
   });
-
-  @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  @override
-  void initState() {
-    super.initState();
-
-    registerIfNotInitialized<SettingsController>(
-      () => SettingsController(
-        logger: getIt.get<LoggerService>(),
-      ),
-      instanceName: 'settings',
-    );
-  }
-
-  @override
-  void dispose() {
-    getIt.unregister<SettingsController>(
-      instanceName: 'settings',
-    );
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -49,7 +23,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ///
               /// APP BAR
               ///
-              SettingsAppBar(
+              FavoritesAppBar(
                 onPressed: Navigator.of(context).pop,
               ),
               const SizedBox(height: 8),
@@ -65,7 +39,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       duration: BalunConstants.animationDuration,
                     ),
                   ],
-                  child: SettingsContent(),
+                  child: FavoritesContent(
+                    onPressed: Navigator.of(context).pop,
+                    onReorderLeagues: getIt.get<LeagueStorageService>().reorderLeagues,
+                    onReorderTeams: getIt.get<TeamStorageService>().reorderTeams,
+                  ),
                 ),
               ),
             ],

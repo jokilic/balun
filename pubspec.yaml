@@ -34,26 +34,26 @@ dependencies:
   dio: 5.8.0+1
   easy_localization: 3.0.7+1
   envied: 1.1.1
-  extended_image: 9.1.0
+  extended_image: 9.1.0 # Major update available
   flutter_animate: 4.5.2
-  flutter_native_splash: 2.4.4
+  flutter_native_splash: 2.4.5
   flutter_svg: 2.0.17
-  # flutter_web_browser: 0.17.2
+  flutter_web_browser: 0.17.3
   get_it: 8.0.3
   hive_ce: 2.10.1
   hive_ce_flutter: 2.2.0
-  internet_connection_checker_plus: 2.7.0
+  internet_connection_checker_plus: 2.7.1
   intl: 0.20.2
   just_audio: 0.9.46
   logger: 2.5.0
-  package_info_plus: 8.2.1
+  package_info_plus: 8.3.0
   path_provider: 2.1.5
-  sentry_flutter: 8.13.0
+  sentry_flutter: 8.14.1
   sliding_up_panel2: 3.3.0+1
   timeago: 3.7.0
   url_launcher: 6.3.1
   visibility_detector: 0.4.0+2
-  watch_it: 1.6.2
+  watch_it: 1.6.5
   youtube_player_flutter: 9.1.1
 
   calendar_date_picker2:
@@ -62,7 +62,7 @@ dependencies:
       ref: feature/on-value-changed-dialog
 
 dev_dependencies:
-  build_runner: 2.4.14
+  build_runner: 2.4.15
   envied_generator: 1.1.1
   flutter_launcher_icons: 0.14.3
   hive_ce_generator: 1.8.2
@@ -70,6 +70,8 @@ dev_dependencies:
 dependency_overrides:
   collection: 1.19.1
   intl: 0.20.2
+  meta: 1.16.0
+  path: 1.9.1
 
 flutter:
   uses-material-design: true

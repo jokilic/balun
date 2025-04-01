@@ -5,10 +5,10 @@ import '../../../theme/theme.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image/balun_image.dart';
 
-class SettingsAppBar extends StatelessWidget {
+class FavoritesAppBar extends StatelessWidget {
   final Function() onPressed;
 
-  const SettingsAppBar({
+  const FavoritesAppBar({
     required this.onPressed,
   });
 
@@ -50,14 +50,14 @@ class SettingsAppBar extends StatelessWidget {
                 children: [
                   Text(
                     // TODO: Localize
-                    'Settings',
+                    'Favorites',
                     style: context.textStyles.matchLeagueName,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
                     // TODO: Localize
-                    'Change some app parameters',
+                    'Update your favorite teams & leagues',
                     style: context.textStyles.matchLeagueRound,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

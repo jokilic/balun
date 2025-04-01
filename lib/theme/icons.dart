@@ -30,4 +30,8 @@ class BalunIcons {
   static const globe = 'assets/icons/globe.png';
   static const search = 'assets/icons/search.png';
   static const youTube = 'assets/icons/youtube.png';
+  static const notifications = 'assets/icons/notifications.png';
+  static const theme = 'assets/icons/theme.png';
+  static const language = 'assets/icons/language.png';
+  static const about = 'assets/icons/about.png';
 }
