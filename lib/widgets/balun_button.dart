@@ -1,3 +1,4 @@
+import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -58,18 +59,20 @@ class _BalunButtonState extends State<BalunButton> with SingleTickerProviderStat
   }
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
-        onTapDown: widget.onPressed != null || widget.onLongPressed != null ? onTapDown : null,
-        onTapUp: widget.onPressed != null || widget.onLongPressed != null ? onTapUp : null,
-        onTapCancel: widget.onPressed != null || widget.onLongPressed != null ? onTapCancel : null,
-        onLongPress: widget.onLongPressed,
-        child: AnimatedBuilder(
-          animation: animation,
-          builder: (_, child) => Transform.scale(
-            scale: animation.value,
-            child: child,
+  Widget build(BuildContext context) => PressableDough(
+        child: GestureDetector(
+          onTapDown: widget.onPressed != null || widget.onLongPressed != null ? onTapDown : null,
+          onTapUp: widget.onPressed != null || widget.onLongPressed != null ? onTapUp : null,
+          onTapCancel: widget.onPressed != null || widget.onLongPressed != null ? onTapCancel : null,
+          onLongPress: widget.onLongPressed,
+          child: AnimatedBuilder(
+            animation: animation,
+            builder: (_, child) => Transform.scale(
+              scale: animation.value,
+              child: child,
+            ),
+            child: widget.child,
           ),
-          child: widget.child,
         ),
       );
 }

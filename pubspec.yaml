@@ -32,6 +32,7 @@ dependencies:
   collection: 1.19.1
   custom_refresh_indicator: 4.0.1
   dio: 5.8.0+1
+  dough: 2.0.0
   easy_localization: 3.0.7+1
   envied: 1.1.1
   extended_image: 9.1.0 # Major update available
