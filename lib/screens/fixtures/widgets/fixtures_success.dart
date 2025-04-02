@@ -105,8 +105,6 @@ class FixturesSuccess extends WatchingWidget {
                 barrierColor: context.colors.black.withValues(alpha: 0.5),
                 builder: (context) => FixturesFavoriteDialog(
                   onPressed: Navigator.of(context).pop,
-                  onReorderLeagues: getIt.get<LeagueStorageService>().reorderLeagues,
-                  onReorderTeams: getIt.get<TeamStorageService>().reorderTeams,
                 ),
               ),
               text: 'fixturesFavoriteTitle'.tr(),

@@ -21,20 +21,21 @@ class SettingsAppBar extends StatelessWidget {
         child: Row(
           children: [
             ///
-            /// BACK
+            /// ICON
             ///
             BalunButton(
-              onPressed: onPressed,
+              onPressed: () {},
               child: Container(
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: context.colors.white.withValues(alpha: 0.4),
                 ),
-                child: const BalunImage(
-                  imageUrl: BalunIcons.back,
+                child: BalunImage(
+                  imageUrl: BalunIcons.settings,
                   height: 32,
                   width: 32,
+                  color: context.colors.black,
                 ),
               ),
             ),
@@ -45,24 +46,12 @@ class SettingsAppBar extends StatelessWidget {
             /// TEXT
             ///
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    // TODO: Localize
-                    'Settings',
-                    style: context.textStyles.matchLeagueName,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    // TODO: Localize
-                    'Change some app parameters',
-                    style: context.textStyles.matchLeagueRound,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+              child: Text(
+                // TODO: Localize
+                'Settings',
+                style: context.textStyles.matchLeagueName,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],

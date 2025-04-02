@@ -20,7 +20,7 @@ class FixturesAppBar extends StatelessWidget {
         child: Row(
           children: [
             ///
-            /// BACK
+            /// ICON
             ///
             BalunButton(
               onPressed: onPressed,

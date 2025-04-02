@@ -8,6 +8,7 @@ enum BalunNavigationBarEnum {
   fixtures,
   countries,
   search,
+  settings,
 }
 
 class BalunNavigationBarService extends ValueNotifier<BalunNavigationBarEnum> {

@@ -26,6 +26,16 @@ class FixturesAllDialog extends WatchingWidget {
 
     return AlertDialog(
       elevation: 0,
+      contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 8),
+      actionsPadding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
+      backgroundColor: context.colors.greenish,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+        side: BorderSide(
+          color: context.colors.black,
+          width: 2,
+        ),
+      ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,22 +59,24 @@ class FixturesAllDialog extends WatchingWidget {
                   /// TEXT
                   ///
                   Text.rich(
-                    TextSpan(children: [
-                      TextSpan(
-                        text: 'fixturesAllDialogText'.tr(),
-                        style: context.textStyles.dialogText,
-                      ),
-                      TextSpan(
-                        text: activeDateFormatted,
-                        style: context.textStyles.dialogText.copyWith(
-                          fontWeight: FontWeight.w500,
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'fixturesAllDialogText'.tr(),
+                          style: context.textStyles.dialogText,
                         ),
-                      ),
-                      TextSpan(
-                        text: '.',
-                        style: context.textStyles.dialogText,
-                      ),
-                    ]),
+                        TextSpan(
+                          text: activeDateFormatted,
+                          style: context.textStyles.dialogText.copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        TextSpan(
+                          text: '.',
+                          style: context.textStyles.dialogText,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -81,16 +93,6 @@ class FixturesAllDialog extends WatchingWidget {
           ),
         ),
       ],
-      contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 8),
-      actionsPadding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
-      backgroundColor: context.colors.greenish,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-        side: BorderSide(
-          color: context.colors.black,
-          width: 2,
-        ),
-      ),
     );
   }
 }

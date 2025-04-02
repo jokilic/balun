@@ -118,7 +118,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
             ///
             Text(
               // TODO: Localize
-              'Here you can see your favorited leagues & teams.',
+              'Here you can see your favorited leagues and teams.',
               style: context.textStyles.dialogText,
             ),
             const SizedBox(height: 12),
@@ -129,8 +129,12 @@ class _FavoritesContentState extends State<FavoritesContent> {
             ),
             const SizedBox(height: 12),
             Text(
-              // TODO: Localize
-              'You can favorite others by opening relevant league / team and pressing the star icon.',
+              'fixturesFavoriteDialogText2'.tr(),
+              style: context.textStyles.dialogText,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'Reorder them by long-pressing and dragging in the desired position.',
               style: context.textStyles.dialogText,
             ),
             const SizedBox(height: 24),
