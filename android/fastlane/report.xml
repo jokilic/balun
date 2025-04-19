@@ -5,24 +5,37 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000246">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000501">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: puro flutter clean" time="7.172147">
+      <testcase classname="fastlane.lanes" name="1: puro flutter clean" time="6.192572">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: puro flutter pub get" time="3.473102">
+      <testcase classname="fastlane.lanes" name="2: puro flutter pub get" time="3.590099">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: puro flutter build appbundle" time="190.26737">
+      <testcase classname="fastlane.lanes" name="3: puro flutter build apk --target-platform=android-arm64" time="62.678658">
         
-          <failure message="/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/actions/actions_helper.rb:67:in &apos;Fastlane::Actions.execute_action&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/fast_file.rb:224:in &apos;Fastlane::FastFile.sh&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/fast_file.rb:216:in &apos;Fastlane::FastFile#sh&apos;&#10;Fastfile:16:in &apos;block (2 levels) in Fastlane::FastFile#parsing_binding&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/lane.rb:41:in &apos;Fastlane::Lane#call&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/runner.rb:49:in &apos;block in Fastlane::Runner#execute&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/runner.rb:45:in &apos;Dir.chdir&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/runner.rb:45:in &apos;Fastlane::Runner#execute&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/lane_manager.rb:46:in &apos;Fastlane::LaneManager.cruise_lane&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/command_line_handler.rb:34:in &apos;Fastlane::CommandLineHandler.handle&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/commands_generator.rb:110:in &apos;block (2 levels) in Fastlane::CommandsGenerator#run&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/commander-4.6.0/lib/commander/command.rb:187:in &apos;Commander::Command#call&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/commander-4.6.0/lib/commander/command.rb:157:in &apos;Commander::Command#run&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/commander-4.6.0/lib/commander/runner.rb:444:in &apos;Commander::Runner#run_active_command&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:124:in &apos;Commander::Runner#run!&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/commander-4.6.0/lib/commander/delegates.rb:18:in &apos;Commander::Delegates#run!&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/commands_generator.rb:363:in &apos;Fastlane::CommandsGenerator#run&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/commands_generator.rb:43:in &apos;Fastlane::CommandsGenerator.start&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/fastlane/lib/fastlane/cli_tools_distributor.rb:123:in &apos;Fastlane::CLIToolsDistributor.take_off&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/gems/fastlane-2.227.0/bin/fastlane:23:in &apos;&lt;top (required)&gt;&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/bin/fastlane:25:in &apos;Kernel#load&apos;&#10;/opt/homebrew/lib/ruby/gems/3.4.0/bin/fastlane:25:in &apos;&lt;main&gt;&apos;&#10;&#10;Exit status of command &apos;puro flutter build appbundle&apos; was 1 instead of 0.&#10;Changing current working directory to: /Users/josipkilic/Projects/balun&#10;&#10;Running Gradle task &apos;bundleRelease&apos;...                          &#10;Warning: The plugin flutter_local_notifications requires Android SDK version 35 or higher.&#10;For more information about build configuration, see https://flutter.dev/to/review-gradle-config.&#10;Warning: The plugin path_provider_android requires Android SDK version 35 or higher.&#10;For more information about build configuration, see https://flutter.dev/to/review-gradle-config.&#10;Warning: The plugin shared_preferences_android requires Android SDK version 35 or higher.&#10;For more information about build configuration, see https://flutter.dev/to/review-gradle-config.&#10;Warning: The plugin url_launcher_android requires Android SDK version 35 or higher.&#10;For more information about build configuration, see https://flutter.dev/to/review-gradle-config.&#10;Your project is configured to compile against Android SDK 34, but the following plugin(s) require to be compiled against a higher Android SDK version:&#10;- flutter_local_notifications compiles against Android SDK 35&#10;- path_provider_android compiles against Android SDK 35&#10;- shared_preferences_android compiles against Android SDK 35&#10;- url_launcher_android compiles against Android SDK 35&#10;Fix this issue by compiling against the highest Android SDK version (they are backward compatible).&#10;Add the following to /Users/josipkilic/Projects/balun/android/app/build.gradle:&#10;&#10;    android {&#10;        compileSdk = 35&#10;        ...&#10;    }&#10;&#10;Note: Some input files use or override a deprecated API.&#10;Note: Recompile with -Xlint:deprecation for details.&#10;Note: Some input files use unchecked or unsafe operations.&#10;Note: Recompile with -Xlint:unchecked for details.&#10;Note: /Users/josipkilic/.puro/shared/pub_cache/hosted/pub.dev/flutter_web_browser-0.17.3/android/src/main/java/dev/vbonnet/flutterwebbrowser/MethodCallHandlerImpl.java uses unchecked or unsafe operations.&#10;Note: Recompile with -Xlint:unchecked for details.&#10;Font asset &quot;MaterialIcons-Regular.otf&quot; was tree-shaken, reducing it from 1645184 to 1692 bytes (99.9% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.&#10;&#10;FAILURE: Build failed with an exception.&#10;&#10;* What went wrong:&#10;Execution failed for task &apos;:app:checkReleaseDuplicateClasses&apos;.&#10;&gt; Could not resolve all files for configuration &apos;:app:releaseRuntimeClasspath&apos;.&#10;   &gt; Could not find any matches for com.transistorsoft:tsbackgroundfetch:+ as no versions of com.transistorsoft:tsbackgroundfetch are available.&#10;     Searched in the following locations:&#10;       - file:/Users/josipkilic/Projects/balun/android/app/libs/com/transistorsoft/tsbackgroundfetch/maven-metadata.xml&#10;     Required by:&#10;         project :app &gt; project :background_fetch&#10;&#10;* Try:&#10;&gt; Run with --stacktrace option to get the stack trace.&#10;&gt; Run with --info or --debug option to get more log output.&#10;&gt; Run with --scan to get full insights.&#10;&#10;* Get more help at https://help.gradle.org&#10;&#10;BUILD FAILED in 3m 6s&#10;Running Gradle task &apos;bundleRelease&apos;...                            188.9s&#10;Gradle task bundleRelease failed with exit code 1&#10;" />
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: mv ../../build/app/outputs/flutter-apk/app-release.apk ../../build/app/outputs/flutter-apk/balun.apk" time="0.005782">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: set_github_release" time="0.404563">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: notification" time="0.356703">
         
       </testcase>
     
