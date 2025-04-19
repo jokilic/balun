@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:extended_image/extended_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -34,36 +36,45 @@ class BalunImage extends StatelessWidget {
     /// LOCAL IMAGE
     ///
     if (imageUrl.contains('assets/')) {
-      return ExtendedImage.asset(
-        imageUrl,
-        height: height,
-        width: width,
-        fit: fit,
-        color: color,
-        loadStateChanged: (state) => Animate(
-          key: ValueKey(state.extendedImageLoadState),
-          effects: const [
-            FadeEffect(
-              curve: Curves.easeIn,
-              duration: BalunConstants.longAnimationDuration,
-            ),
-          ],
-          child: switch (state.extendedImageLoadState) {
-            LoadState.completed => state.completedWidget,
-            LoadState.loading => BalunImagePlaceholder(
-                height: height,
-                width: width,
-                color: color,
-                radius: radius,
+      if (kIsWeb) {
+        return ExtendedImage.asset(
+          imageUrl,
+          height: height,
+          width: width,
+          fit: fit,
+          color: color,
+          loadStateChanged: (state) => Animate(
+            key: ValueKey(state.extendedImageLoadState),
+            effects: const [
+              FadeEffect(
+                curve: Curves.easeIn,
+                duration: BalunConstants.longAnimationDuration,
               ),
-            LoadState.failed => BalunImageError(
-                height: height,
-                width: width,
-                radius: radius,
-              ),
-          },
-        ),
-      );
+            ],
+            child: switch (state.extendedImageLoadState) {
+              LoadState.completed => state.completedWidget,
+              LoadState.loading => BalunImagePlaceholder(
+                  height: height,
+                  width: width,
+                  color: color,
+                  radius: radius,
+                ),
+              LoadState.failed => BalunImageError(
+                  height: height,
+                  width: width,
+                  radius: radius,
+                ),
+            },
+          ),
+        );
+      } else {
+        return Image.asset(
+          imageUrl,
+          height: height,
+          width: width,
+          fit: fit,
+        );
+      }
     }
 
     ///
@@ -115,35 +126,53 @@ class BalunImage extends StatelessWidget {
     /// NETWORK IMAGE
     ///
     else {
-      return ExtendedImage.network(
-        imageUrl,
-        height: height,
-        width: width,
-        fit: fit,
-        loadStateChanged: (state) => Animate(
-          key: ValueKey(state.extendedImageLoadState),
-          effects: const [
-            FadeEffect(
-              curve: Curves.easeIn,
-              duration: BalunConstants.longAnimationDuration,
-            ),
-          ],
-          child: switch (state.extendedImageLoadState) {
-            LoadState.completed => state.completedWidget,
-            LoadState.loading => BalunImagePlaceholder(
-                height: height,
-                width: width,
-                color: color,
-                radius: radius,
+      if (kIsWeb) {
+        return ExtendedImage.network(
+          imageUrl,
+          height: height,
+          width: width,
+          fit: fit,
+          loadStateChanged: (state) => Animate(
+            key: ValueKey(state.extendedImageLoadState),
+            effects: const [
+              FadeEffect(
+                curve: Curves.easeIn,
+                duration: BalunConstants.longAnimationDuration,
               ),
-            LoadState.failed => BalunImageError(
-                height: height,
-                width: width,
-                radius: radius,
-              ),
-          },
-        ),
-      );
+            ],
+            child: switch (state.extendedImageLoadState) {
+              LoadState.completed => state.completedWidget,
+              LoadState.loading => BalunImagePlaceholder(
+                  height: height,
+                  width: width,
+                  color: color,
+                  radius: radius,
+                ),
+              LoadState.failed => BalunImageError(
+                  height: height,
+                  width: width,
+                  radius: radius,
+                ),
+            },
+          ),
+        );
+      } else {
+        return CachedNetworkImage(
+          imageUrl: imageUrl,
+          height: height,
+          width: width,
+          fit: fit,
+          placeholder: (context, url) => BalunImagePlaceholder(
+            height: height,
+            width: width,
+            color: color,
+          ),
+          errorWidget: (context, url, error) => BalunImageError(
+            height: height,
+            width: width,
+          ),
+        );
+      }
     }
   }
 }

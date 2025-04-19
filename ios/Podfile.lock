@@ -1,6 +1,8 @@
 PODS:
   - audio_session (0.0.1):
     - Flutter
+  - background_fetch (1.3.8):
+    - Flutter
   - connectivity_plus (0.0.1):
     - Flutter
   - Flutter (1.0.0)
@@ -11,6 +13,8 @@ PODS:
   - flutter_inappwebview_ios/Core (0.0.1):
     - Flutter
     - OrderedSet (~> 6.0.3)
+  - flutter_local_notifications (0.0.1):
+    - Flutter
   - flutter_native_splash (2.4.3):
     - Flutter
   - flutter_web_browser (0.17.3):
@@ -40,9 +44,11 @@ PODS:
 
 DEPENDENCIES:
   - audio_session (from `.symlinks/plugins/audio_session/ios`)
+  - background_fetch (from `.symlinks/plugins/background_fetch/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - Flutter (from `Flutter`)
   - flutter_inappwebview_ios (from `.symlinks/plugins/flutter_inappwebview_ios/ios`)
+  - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - flutter_web_browser (from `.symlinks/plugins/flutter_web_browser/ios`)
   - just_audio (from `.symlinks/plugins/just_audio/darwin`)
@@ -61,12 +67,16 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   audio_session:
     :path: ".symlinks/plugins/audio_session/ios"
+  background_fetch:
+    :path: ".symlinks/plugins/background_fetch/ios"
   connectivity_plus:
     :path: ".symlinks/plugins/connectivity_plus/ios"
   Flutter:
     :path: Flutter
   flutter_inappwebview_ios:
     :path: ".symlinks/plugins/flutter_inappwebview_ios/ios"
+  flutter_local_notifications:
+    :path: ".symlinks/plugins/flutter_local_notifications/ios"
   flutter_native_splash:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
   flutter_web_browser:
@@ -88,9 +98,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   audio_session: 9bb7f6c970f21241b19f5a3658097ae459681ba0
+  background_fetch: 851122c99dc3f25a011a6aebec5379ccdf4ab5eb
   connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_inappwebview_ios: b89ba3482b96fb25e00c967aae065701b66e9b99
+  flutter_local_notifications: a5a732f069baa862e728d839dd2ebb904737effb
   flutter_native_splash: c32d145d68aeda5502d5f543ee38c192065986cf
   flutter_web_browser: 68b27d2c4773b059cef19e12c890cb204518d3c3
   just_audio: 4e391f57b79cad2b0674030a00453ca5ce817eed

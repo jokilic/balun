@@ -48,6 +48,16 @@ void initializeServices({
     ..registerSingletonAsync(
       () async => LoggerService(),
     )
+    // ..registerSingletonAsync(
+    //   () async {
+    //     final backgroundFetch = BackgroundFetchService(
+    //       logger: getIt.get<LoggerService>(),
+    //     );
+    //     await backgroundFetch.init();
+    //     return backgroundFetch;
+    //   },
+    //   dependsOn: [LoggerService],
+    // )
     ..registerSingletonAsync(
       () async {
         final packageInfo = PackageInfoService(
