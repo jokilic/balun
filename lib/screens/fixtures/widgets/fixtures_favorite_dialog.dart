@@ -57,8 +57,7 @@ class FixturesFavoriteDialog extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      // TODO: Localize
-                      'Reorder them from the Favorites section within Settings.',
+                      'fixturesFavoriteDialogText3'.tr(),
                       style: context.textStyles.dialogText,
                     ),
                   ],

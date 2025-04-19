@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/icons.dart';
@@ -49,15 +50,13 @@ class FavoritesAppBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    // TODO: Localize
-                    'Favorites',
+                    'settingsFavoritesTitle'.tr(),
                     style: context.textStyles.matchLeagueName,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    // TODO: Localize
-                    'Update your favorite teams & leagues',
+                    'settingsFavoritesSubtitle'.tr(),
                     style: context.textStyles.matchLeagueRound,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

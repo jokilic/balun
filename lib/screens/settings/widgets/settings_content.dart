@@ -1,10 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../routing.dart';
 import '../../../theme/icons.dart';
+import '../../../util/language.dart';
+import '../../../util/snackbars.dart';
 import 'settings_list_tile.dart';
 
-// TODO: Localize
 class SettingsContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ListView(
@@ -12,38 +14,50 @@ class SettingsContent extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         children: [
           SettingsListTile(
-            onPressed: () {},
+            onPressed: () => showSnackbar(
+              context,
+              icon: BalunIcons.workInProgress,
+              text: 'workInProgress'.tr(),
+            ),
             icon: BalunIcons.notifications,
-            title: 'Notifications',
-            subtitle: 'Live score alerts, goal updates & match start reminders',
+            title: 'settingsNotificationsSectionTitle'.tr(),
+            subtitle: 'settingsNotificationsSectionSubtitle'.tr(),
           ),
           const SizedBox(height: 4),
           SettingsListTile(
             onPressed: () => openFavorites(context),
             icon: BalunIcons.favoriteYes,
-            title: 'Favorites',
-            subtitle: 'Select your favorite teams & leagues for a personalized feed',
+            title: 'settingsFavoritesSectionTitle'.tr(),
+            subtitle: 'settingsFavoritesSectionSubtitle'.tr(),
           ),
           const SizedBox(height: 4),
           SettingsListTile(
-            onPressed: () {},
+            onPressed: () => showSnackbar(
+              context,
+              icon: BalunIcons.workInProgress,
+              text: 'workInProgress'.tr(),
+            ),
             icon: BalunIcons.theme,
-            title: 'Theme',
-            subtitle: 'Customize colors used throughout the app',
+            title: 'settingsThemeSectionTitle'.tr(),
+            subtitle: 'settingsThemeSectionSubtitle'.tr(),
           ),
           const SizedBox(height: 4),
           SettingsListTile(
-            onPressed: () {},
+            onPressed: () => toggleLanguage(context),
             icon: BalunIcons.language,
-            title: 'Language',
-            subtitle: 'Change the language used throughout the app',
+            title: 'settingsLanguageSectionTitle'.tr(),
+            subtitle: 'settingsLanguageSectionSubtitle'.tr(),
           ),
           const SizedBox(height: 4),
           SettingsListTile(
-            onPressed: () {},
+            onPressed: () => showSnackbar(
+              context,
+              icon: BalunIcons.workInProgress,
+              text: 'workInProgress'.tr(),
+            ),
             icon: BalunIcons.about,
-            title: 'About',
-            subtitle: 'App version info, developer details & send feedback',
+            title: 'settingsAboutSectionTitle'.tr(),
+            subtitle: 'settingsAboutSectionSubtitle'.tr(),
           ),
         ],
       );

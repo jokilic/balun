@@ -35,4 +35,5 @@ class BalunIcons {
   static const theme = 'assets/icons/theme.png';
   static const language = 'assets/icons/language.png';
   static const about = 'assets/icons/about.png';
+  static const workInProgress = 'assets/icons/work_in_progress.png';
 }

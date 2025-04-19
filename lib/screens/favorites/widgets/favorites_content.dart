@@ -117,24 +117,22 @@ class _FavoritesContentState extends State<FavoritesContent> {
             /// TEXT
             ///
             Text(
-              // TODO: Localize
-              'Here you can see your favorited leagues and teams.',
+              'settingsFavoritesText1'.tr(),
               style: context.textStyles.dialogText,
             ),
             const SizedBox(height: 12),
             Text(
-              // TODO: Localize
-              'Ones which are favorited will be more prominently displayed in the app, so you can see them more clearly and without distractions.',
+              'settingsFavoritesText2'.tr(),
               style: context.textStyles.dialogText,
             ),
             const SizedBox(height: 12),
             Text(
-              'fixturesFavoriteDialogText2'.tr(),
+              'settingsFavoritesText3'.tr(),
               style: context.textStyles.dialogText,
             ),
             const SizedBox(height: 12),
             Text(
-              'Reorder them by long-pressing and dragging in the desired position.',
+              'settingsFavoritesText4'.tr(),
               style: context.textStyles.dialogText,
             ),
             const SizedBox(height: 24),

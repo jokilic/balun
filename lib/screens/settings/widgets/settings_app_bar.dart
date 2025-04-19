@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/icons.dart';
@@ -47,8 +48,7 @@ class SettingsAppBar extends StatelessWidget {
             ///
             Expanded(
               child: Text(
-                // TODO: Localize
-                'Settings',
+                'settingsTitle'.tr(),
                 style: context.textStyles.matchLeagueName,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
