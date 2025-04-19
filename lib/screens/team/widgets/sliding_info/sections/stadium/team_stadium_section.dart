@@ -27,6 +27,7 @@ class TeamStadiumSection extends StatelessWidget {
             if (stadium?.name != null || stadium?.capacity != null)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ///
                   /// NAME
@@ -82,6 +83,7 @@ class TeamStadiumSection extends StatelessWidget {
             if (stadium?.address != null || stadium?.city != null)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ///
                   /// ADDRESS

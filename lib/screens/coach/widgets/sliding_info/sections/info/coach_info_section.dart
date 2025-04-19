@@ -33,6 +33,7 @@ class CoachInfoSection extends StatelessWidget {
           if (coach?.name != null || coach?.age != null)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ///
                 /// NAME
@@ -88,6 +89,7 @@ class CoachInfoSection extends StatelessWidget {
           if (coach?.birth != null)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ///
                 /// BIRTH PLACE
@@ -157,6 +159,7 @@ class CoachInfoSection extends StatelessWidget {
           if (coach?.height != null || coach?.weight != null)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ///
                 /// HEIGHT

@@ -73,6 +73,7 @@ class BalunImage extends StatelessWidget {
           height: height,
           width: width,
           fit: fit,
+          color: color,
         );
       }
     }
@@ -132,6 +133,7 @@ class BalunImage extends StatelessWidget {
           height: height,
           width: width,
           fit: fit,
+          color: color,
           loadStateChanged: (state) => Animate(
             key: ValueKey(state.extendedImageLoadState),
             effects: const [
@@ -162,6 +164,7 @@ class BalunImage extends StatelessWidget {
           height: height,
           width: width,
           fit: fit,
+          color: color,
           placeholder: (context, url) => BalunImagePlaceholder(
             height: height,
             width: width,

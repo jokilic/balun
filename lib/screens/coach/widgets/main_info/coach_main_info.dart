@@ -41,12 +41,15 @@ class CoachMainInfo extends WatchingWidget {
             const SizedBox(height: 48),
 
             ///
-            /// LOGO
+            /// PHOTO
             ///
-            BalunImage(
-              imageUrl: coach.photo ?? BalunIcons.placeholderPlayer,
-              height: 120,
-              width: 120,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: BalunImage(
+                imageUrl: coach.photo ?? BalunIcons.placeholderPlayer,
+                height: 120,
+                width: 120,
+              ),
             ),
 
             const SizedBox(height: 16),

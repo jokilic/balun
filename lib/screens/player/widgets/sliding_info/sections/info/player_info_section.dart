@@ -58,6 +58,7 @@ class PlayerInfoSection extends StatelessWidget {
           if (player?.name != null || player?.age != null)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ///
                 /// NAME
@@ -113,6 +114,7 @@ class PlayerInfoSection extends StatelessWidget {
           if (player?.birth != null)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ///
                 /// BIRTH PLACE
@@ -182,6 +184,7 @@ class PlayerInfoSection extends StatelessWidget {
           if (player?.height != null || player?.weight != null)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ///
                 /// HEIGHT

@@ -64,7 +64,7 @@ class PlayerMainInfo extends WatchingWidget {
           const SizedBox(height: 48),
 
           ///
-          /// LOGO
+          /// PHOTO
           ///
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
