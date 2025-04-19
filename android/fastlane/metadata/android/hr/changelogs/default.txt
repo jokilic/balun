@@ -1,4 +1,6 @@
-* Remove pull-to-refresh from Match
-* Flash score if match active in FixturesListTile & MatchMainInfo
-* Fancy refresh indicator
-* Small fixes in Match -> Events
+* Settings initial implementation
+* Navigation bar doesn't get animated on tap
+* Status bar color update
+* Circular player & coach photos
+* Small UI updates
+* Internet errors not classified as issues
