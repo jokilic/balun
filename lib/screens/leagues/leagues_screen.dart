@@ -55,37 +55,45 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 12),
-
-            ///
-            /// APP BAR
-            ///
-            LeaguesAppBar(
-              onPressed: Navigator.of(context).pop,
-              country: widget.country,
-            ),
-            const SizedBox(height: 8),
-
-            ///
-            /// CONTENT
-            ///
-            Expanded(
-              child: Animate(
-                key: ValueKey(leaguesState),
-                effects: const [
-                  FadeEffect(
-                    curve: Curves.easeIn,
-                    duration: BalunConstants.animationDuration,
-                  ),
-                ],
-                child: LeaguesContent(
-                  leaguesState: leaguesState,
-                ),
-              ),
+        child: Animate(
+          effects: const [
+            FadeEffect(
+              curve: Curves.easeIn,
+              duration: BalunConstants.longAnimationDuration,
             ),
           ],
+          child: Column(
+            children: [
+              const SizedBox(height: 12),
+
+              ///
+              /// APP BAR
+              ///
+              LeaguesAppBar(
+                onPressed: Navigator.of(context).pop,
+                country: widget.country,
+              ),
+              const SizedBox(height: 8),
+
+              ///
+              /// CONTENT
+              ///
+              Expanded(
+                child: Animate(
+                  key: ValueKey(leaguesState),
+                  effects: const [
+                    FadeEffect(
+                      curve: Curves.easeIn,
+                      duration: BalunConstants.animationDuration,
+                    ),
+                  ],
+                  child: LeaguesContent(
+                    leaguesState: leaguesState,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

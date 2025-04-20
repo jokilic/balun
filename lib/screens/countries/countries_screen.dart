@@ -38,42 +38,44 @@ class _CountriesScreenState extends State<CountriesScreen> {
       instanceName: 'countries',
     ).value;
 
-    return SafeArea(
-      child: Animate(
-        effects: const [
-          FadeEffect(
-            curve: Curves.easeIn,
-            duration: BalunConstants.longAnimationDuration,
-          ),
-        ],
-        child: Column(
-          children: [
-            const SizedBox(height: 12),
-
-            ///
-            /// APP BAR
-            ///
-            CountriesAppBar(),
-            const SizedBox(height: 8),
-
-            ///
-            /// CONTENT
-            ///
-            Expanded(
-              child: Animate(
-                key: ValueKey(countriesState),
-                effects: const [
-                  FadeEffect(
-                    curve: Curves.easeIn,
-                    duration: BalunConstants.animationDuration,
-                  ),
-                ],
-                child: CountriesContent(
-                  countriesState: countriesState,
-                ),
-              ),
+    return Scaffold(
+      body: SafeArea(
+        child: Animate(
+          effects: const [
+            FadeEffect(
+              curve: Curves.easeIn,
+              duration: BalunConstants.longAnimationDuration,
             ),
           ],
+          child: Column(
+            children: [
+              const SizedBox(height: 12),
+
+              ///
+              /// APP BAR
+              ///
+              CountriesAppBar(),
+              const SizedBox(height: 8),
+
+              ///
+              /// CONTENT
+              ///
+              Expanded(
+                child: Animate(
+                  key: ValueKey(countriesState),
+                  effects: const [
+                    FadeEffect(
+                      curve: Curves.easeIn,
+                      duration: BalunConstants.animationDuration,
+                    ),
+                  ],
+                  child: CountriesContent(
+                    countriesState: countriesState,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

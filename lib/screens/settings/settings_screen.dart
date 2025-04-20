@@ -42,33 +42,41 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) => Scaffold(
         body: SafeArea(
-          child: Column(
-            children: [
-              const SizedBox(height: 12),
-
-              ///
-              /// APP BAR
-              ///
-              SettingsAppBar(
-                onPressed: Navigator.of(context).pop,
-              ),
-              const SizedBox(height: 8),
-
-              ///
-              /// CONTENT
-              ///
-              Expanded(
-                child: Animate(
-                  effects: const [
-                    FadeEffect(
-                      curve: Curves.easeIn,
-                      duration: BalunConstants.animationDuration,
-                    ),
-                  ],
-                  child: SettingsContent(),
-                ),
+          child: Animate(
+            effects: const [
+              FadeEffect(
+                curve: Curves.easeIn,
+                duration: BalunConstants.longAnimationDuration,
               ),
             ],
+            child: Column(
+              children: [
+                const SizedBox(height: 12),
+
+                ///
+                /// APP BAR
+                ///
+                SettingsAppBar(
+                  onPressed: Navigator.of(context).pop,
+                ),
+                const SizedBox(height: 8),
+
+                ///
+                /// CONTENT
+                ///
+                Expanded(
+                  child: Animate(
+                    effects: const [
+                      FadeEffect(
+                        curve: Curves.easeIn,
+                        duration: BalunConstants.animationDuration,
+                      ),
+                    ],
+                    child: SettingsContent(),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       );

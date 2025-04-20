@@ -72,44 +72,46 @@ class _FixturesScreenState extends State<FixturesScreen> {
     return VisibilityDetector(
       key: widget.key ?? const ValueKey('fixtures'),
       onVisibilityChanged: (info) => getIt.get<PeriodicAPIService>().shouldFetchFixtures = info.visibleFraction > 0,
-      child: SafeArea(
-        child: Animate(
-          effects: const [
-            FadeEffect(
-              curve: Curves.easeIn,
-              duration: BalunConstants.longAnimationDuration,
-            ),
-          ],
-          child: Column(
-            children: [
-              const SizedBox(height: 16),
-
-              ///
-              /// DATE PICKER
-              ///
-              FixturesDatePicker(
-                currentDate: currentDate,
-              ),
-              const SizedBox(height: 12),
-
-              ///
-              /// CONTENT
-              ///
-              Expanded(
-                child: Animate(
-                  key: fixturesState is Success ? null : ValueKey(fixturesState),
-                  effects: const [
-                    FadeEffect(
-                      curve: Curves.easeIn,
-                      duration: BalunConstants.animationDuration,
-                    ),
-                  ],
-                  child: FixturesContent(
-                    fixturesState: fixturesState,
-                  ),
-                ),
+      child: Scaffold(
+        body: SafeArea(
+          child: Animate(
+            effects: const [
+              FadeEffect(
+                curve: Curves.easeIn,
+                duration: BalunConstants.longAnimationDuration,
               ),
             ],
+            child: Column(
+              children: [
+                const SizedBox(height: 16),
+
+                ///
+                /// DATE PICKER
+                ///
+                FixturesDatePicker(
+                  currentDate: currentDate,
+                ),
+                const SizedBox(height: 12),
+
+                ///
+                /// CONTENT
+                ///
+                Expanded(
+                  child: Animate(
+                    key: fixturesState is Success ? null : ValueKey(fixturesState),
+                    effects: const [
+                      FadeEffect(
+                        curve: Curves.easeIn,
+                        duration: BalunConstants.animationDuration,
+                      ),
+                    ],
+                    child: FixturesContent(
+                      fixturesState: fixturesState,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
