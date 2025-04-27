@@ -31,22 +31,48 @@ List<Event> calculatedCardsEvents(List<Event>? events) {
   return processedEvents;
 }
 
+/// Return player key which is used to check if player got a second yellow card
+String? getPlayerKey(Event event) {
+  final teamId = event.team?.id;
+  final player = event.player;
+
+  if (teamId == null || player == null) {
+    return null;
+  }
+
+  final identifier = player.id?.toString() ?? player.name?.toLowerCase().trim();
+
+  if (identifier == null || identifier.isEmpty) {
+    return null;
+  }
+
+  return '$teamId-$identifier';
+}
+
+/// Check if some player has received a second yellow card
 bool isSecondYellowCard(List<Event> events, Event currentEvent) {
+  /// Check only yellow‐card events
   if (currentEvent.detail?.toLowerCase() != 'yellow card') {
     return false;
   }
 
-  if (currentEvent.player?.id == null) {
+  final key = getPlayerKey(currentEvent);
+
+  if (key == null) {
     return false;
   }
 
-  final playerKey = '${currentEvent.team?.id}-${currentEvent.player?.id}';
+  var count = 0;
+  for (final e in events) {
+    if (e.detail?.toLowerCase() == 'yellow card' && getPlayerKey(e) == key) {
+      count++;
+    }
 
-  final yellowCardCount = events
-      .where(
-        (event) => '${event.team?.id}-${event.player?.id}' == playerKey && event.detail?.toLowerCase() == 'yellow card' && events.indexOf(event) <= events.indexOf(currentEvent),
-      )
-      .length;
+    /// stop counting once we've reached the current event
+    if (identical(e, currentEvent)) {
+      break;
+    }
+  }
 
-  return yellowCardCount == 2;
+  return count == 2;
 }
