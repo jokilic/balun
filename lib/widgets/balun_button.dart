@@ -29,7 +29,7 @@ class _BalunButtonState extends State<BalunButton> with SingleTickerProviderStat
 
     controller = AnimationController(
       vsync: this,
-      duration: BalunConstants.animationDuration,
+      duration: BalunConstants.shortAnimationDuration,
     );
 
     animation = Tween<double>(begin: 1, end: 0.95).animate(controller);

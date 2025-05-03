@@ -18,8 +18,9 @@ class BalunConstants {
   static final newsSearchApiKey = Env.newsSearchApiKey;
 
   static const expandDuration = Duration(milliseconds: 75);
-  static const animationDuration = Duration(milliseconds: 125);
-  static const longAnimationDuration = Duration(milliseconds: 250);
+  static const shortAnimationDuration = Duration(milliseconds: 150);
+  static const animationDuration = Duration(milliseconds: 300);
+  static const longAnimationDuration = Duration(milliseconds: 450);
   static const shimmerDuration = Duration(milliseconds: 1500);
   static const periodicAPICallDuration = Duration(minutes: 1);
 
