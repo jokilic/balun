@@ -1,12 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../util/dependencies.dart';
-import '../../../util/mouse_scroll.dart';
+import '../../../util/scroll_configuration.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image/balun_image.dart';
 import '../controllers/fixtures_date_controller.dart';
@@ -38,15 +37,8 @@ class FixturesDatePicker extends WatchingWidget {
 
     return SizedBox(
       height: 80,
-      child: Listener(
-        onPointerSignal: (event) {
-          if (event is PointerScrollEvent) {
-            handlePageViewMouseScroll(
-              event: event,
-              pageController: pageController,
-            );
-          }
-        },
+      child: ScrollConfiguration(
+        behavior: BalunScrollConfiguration(),
         child: PageView(
           controller: pageController,
           physics: const BouncingScrollPhysics(),
