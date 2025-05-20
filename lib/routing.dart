@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'screens/about/about_screen.dart';
 import 'screens/coach/coach_screen.dart';
 import 'screens/countries/countries_screen.dart';
 import 'screens/favorites/favorites_screen.dart';
@@ -49,6 +50,14 @@ void openSettings(BuildContext context) => pushScreen(
 void openFavorites(BuildContext context) => pushScreen(
       const FavoritesScreen(
         key: ValueKey('favorites'),
+      ),
+      context: context,
+    );
+
+/// Opens [AboutScreen]
+void openAbout(BuildContext context) => pushScreen(
+      const AboutScreen(
+        key: ValueKey('about'),
       ),
       context: context,
     );

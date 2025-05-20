@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../constants.dart';
-import '../../services/league_storage_service.dart';
-import '../../services/team_storage_service.dart';
-import '../../util/dependencies.dart';
-import 'widgets/favorites_app_bar.dart';
-import 'widgets/favorites_content.dart';
+import 'widgets/about_app_bar.dart';
+import 'widgets/about_content.dart';
 
-class FavoritesScreen extends StatelessWidget {
-  const FavoritesScreen({
+class AboutScreen extends StatelessWidget {
+  const AboutScreen({
     required super.key,
   });
 
@@ -31,7 +28,7 @@ class FavoritesScreen extends StatelessWidget {
                 ///
                 /// APP BAR
                 ///
-                FavoritesAppBar(
+                AboutAppBar(
                   onPressed: Navigator.of(context).pop,
                 ),
                 const SizedBox(height: 8),
@@ -47,11 +44,7 @@ class FavoritesScreen extends StatelessWidget {
                         duration: BalunConstants.animationDuration,
                       ),
                     ],
-                    child: FavoritesContent(
-                      onPressed: Navigator.of(context).pop,
-                      onReorderLeagues: getIt.get<LeagueStorageService>().reorderLeagues,
-                      onReorderTeams: getIt.get<TeamStorageService>().reorderTeams,
-                    ),
+                    child: AboutContent(),
                   ),
                 ),
               ],

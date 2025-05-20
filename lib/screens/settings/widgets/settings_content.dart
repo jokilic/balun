@@ -50,11 +50,7 @@ class SettingsContent extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           SettingsListTile(
-            onPressed: () => showSnackbar(
-              context,
-              icon: BalunIcons.workInProgress,
-              text: 'workInProgress'.tr(),
-            ),
+            onPressed: () => openAbout(context),
             icon: BalunIcons.about,
             title: 'settingsAboutSectionTitle'.tr(),
             subtitle: 'settingsAboutSectionSubtitle'.tr(),
