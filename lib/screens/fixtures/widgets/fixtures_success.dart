@@ -30,8 +30,7 @@ class FixturesSuccess extends WatchingWidget {
 
   @override
   Widget build(BuildContext context) {
-    final favoritedLeagues = watchIt<LeagueStorageService>()
-        .value
+    final favoritedLeagues = watchIt<LeagueStorageService>().value
         .map(
           (league) => League(
             id: league.id,
@@ -90,52 +89,64 @@ class FixturesSuccess extends WatchingWidget {
               DateTime.now(),
             ),
           ),
-      child: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+      child: CustomScrollView(
         physics: const BouncingScrollPhysics(),
-        children: [
+        slivers: [
+          ///
+          /// TOP PADDING
+          ///
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 16),
+          ),
+
           ///
           /// FAVORITE FIXTURES COMPACT
           ///
           if (favoriteSortedGroupedFixturesLeague.isNotEmpty) ...[
-            const SizedBox(height: 8),
-            FixturesAppBar(
-              onPressed: () => showDialog(
-                context: context,
-                barrierColor: context.colors.black.withValues(alpha: 0.5),
-                builder: (context) => FixturesFavoriteDialog(
-                  onPressed: Navigator.of(context).pop,
-                ),
-              ),
-              text: 'fixturesFavoriteTitle'.tr(),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 8),
             ),
-            const SizedBox(height: 24),
-            ListView.separated(
-              shrinkWrap: true,
+            SliverToBoxAdapter(
+              child: FixturesAppBar(
+                onPressed: () => showDialog(
+                  context: context,
+                  barrierColor: context.colors.black.withValues(alpha: 0.5),
+                  builder: (context) => FixturesFavoriteDialog(
+                    onPressed: Navigator.of(context).pop,
+                  ),
+                ),
+                text: 'fixturesFavoriteTitle'.tr(),
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 24),
+            ),
+            SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: favoriteSortedGroupedFixturesLeague.length,
-              itemBuilder: (_, leagueIndex) {
-                final league = favoriteSortedGroupedFixturesLeague.keys.elementAtOrNull(leagueIndex);
-                final fixtures = favoriteSortedGroupedFixturesLeague[league];
+              sliver: SliverList.separated(
+                itemCount: favoriteSortedGroupedFixturesLeague.length,
+                itemBuilder: (_, leagueIndex) {
+                  final league = favoriteSortedGroupedFixturesLeague.keys.elementAtOrNull(leagueIndex);
+                  final fixtures = favoriteSortedGroupedFixturesLeague[league];
 
-                return FixturesLeagueCompactListTile(
-                  onPressed: league?.id != null
-                      ? () => openLeague(
+                  return FixturesLeagueCompactListTile(
+                    onPressed: league?.id != null
+                        ? () => openLeague(
                             context,
                             leagueId: league?.id ?? 0,
                             season: league?.season ?? fixtures?.firstWhereOrNull((fixture) => fixture.league?.season != null)?.league?.season ?? getCurrentSeasonYear().toString(),
                           )
-                      : null,
-                  league: league,
-                  fixtures: fixtures,
-                  hasLiveFixturesLeague: hasLiveFixturesLeague(
+                        : null,
+                    league: league,
                     fixtures: fixtures,
-                  ),
-                  initiallyExpanded: true,
-                );
-              },
-              separatorBuilder: (_, __) => const SizedBox(height: 12),
+                    hasLiveFixturesLeague: hasLiveFixturesLeague(
+                      fixtures: fixtures,
+                    ),
+                    initiallyExpanded: true,
+                  );
+                },
+                separatorBuilder: (_, __) => const SizedBox(height: 12),
+              ),
             ),
           ],
 
@@ -143,40 +154,53 @@ class FixturesSuccess extends WatchingWidget {
           /// ALL MATCHES
           ///
           if (sortedGroupedFixtures.isNotEmpty) ...[
-            SizedBox(
-              height: favoriteSortedGroupedFixturesLeague.isNotEmpty ? 40 : 8,
-            ),
-            FixturesAppBar(
-              onPressed: () => showDialog(
-                context: context,
-                barrierColor: context.colors.black.withValues(alpha: 0.5),
-                builder: (context) => FixturesAllDialog(
-                  onPressed: Navigator.of(context).pop,
-                ),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: favoriteSortedGroupedFixturesLeague.isNotEmpty ? 40 : 8,
               ),
-              text: 'fixturesAllTitle'.tr(),
             ),
-            const SizedBox(height: 24),
-            ListView.separated(
-              shrinkWrap: true,
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: sortedGroupedFixtures.length,
-              itemBuilder: (_, countryIndex) {
-                final countryLeague = sortedGroupedFixtures.keys.elementAtOrNull(countryIndex);
-                final leagues = sortedGroupedFixtures[countryLeague];
-
-                return FixturesCountryListTile(
-                  countryLeague: countryLeague,
-                  leagues: leagues,
-                  hasLiveFixturesCountry: hasLiveFixturesCountry(
-                    leagues: leagues,
+            SliverToBoxAdapter(
+              child: FixturesAppBar(
+                onPressed: () => showDialog(
+                  context: context,
+                  barrierColor: context.colors.black.withValues(alpha: 0.5),
+                  builder: (context) => FixturesAllDialog(
+                    onPressed: Navigator.of(context).pop,
                   ),
-                );
-              },
-              separatorBuilder: (_, __) => const SizedBox(height: 12),
+                ),
+                text: 'fixturesAllTitle'.tr(),
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 24),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              sliver: SliverList.separated(
+                itemCount: sortedGroupedFixtures.length,
+                itemBuilder: (_, countryIndex) {
+                  final countryLeague = sortedGroupedFixtures.keys.elementAtOrNull(countryIndex);
+                  final leagues = sortedGroupedFixtures[countryLeague];
+
+                  return FixturesCountryListTile(
+                    countryLeague: countryLeague,
+                    leagues: leagues,
+                    hasLiveFixturesCountry: hasLiveFixturesCountry(
+                      leagues: leagues,
+                    ),
+                  );
+                },
+                separatorBuilder: (_, __) => const SizedBox(height: 12),
+              ),
             ),
           ],
+
+          ///
+          /// BOTTOM PADDING
+          ///
+          const SliverToBoxAdapter(
+            child: SizedBox(height: 16),
+          ),
         ],
       ),
     );
