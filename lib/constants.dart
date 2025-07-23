@@ -24,6 +24,13 @@ class BalunConstants {
   static const shimmerDuration = Duration(milliseconds: 1500);
   static const periodicAPICallDuration = Duration(minutes: 1);
 
+  static const josipVideo = 'assets/videos/josip.mp4';
+  static const welcomeToBalunSound = 'assets/audio/welcome_to_balun.mp3';
+
+  static const josipKilicWebsite = 'https://josipkilic.com';
+  static const josipGithubWebsite = 'https://github.com/jokilic';
+  static const josipKilicEmail = 'mailto:neksuses@gmail.com';
+
   /// Keys are country names from the backend
   static const favoriteCountryIDs = [
     'World',

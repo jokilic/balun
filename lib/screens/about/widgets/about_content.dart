@@ -1,91 +1,131 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../../constants.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/app_version.dart';
+import '../../../util/navigation.dart';
+import '../../../util/sound.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image/balun_image.dart';
+import 'about_video_widget.dart';
 
-// TODO: Localize
-class AboutContent extends StatelessWidget {
+class AboutContent extends StatefulWidget {
   @override
-  Widget build(BuildContext context) => SingleChildScrollView(
+  State<AboutContent> createState() => _AboutContentState();
+}
+
+class _AboutContentState extends State<AboutContent> {
+  late final AudioPlayer audioPlayer;
+
+  @override
+  void initState() {
+    super.initState();
+
+    audioPlayer = AudioPlayer()
+      ..setAsset(
+        BalunConstants.welcomeToBalunSound,
+        preload: false,
+      );
+  }
+
+  @override
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => ListView(
     padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
     physics: const BouncingScrollPhysics(),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ///
-        /// WHO MADE BALUN?
-        ///
-        Text(
-          'Who made Balun?',
-          style: context.textStyles.dialogSubtitle,
-        ),
-        const SizedBox(height: 12),
-        Text.rich(
-          TextSpan(
-            text: 'My name is ',
-            children: [
-              TextSpan(
-                text: 'Josip',
-                style: context.textStyles.teamTransferTeam,
-              ),
-              const TextSpan(
-                text: ' and I make mobile applications for my work and sometimes in my free time.',
-              ),
-            ],
+    children: [
+      ///
+      /// MY VIDEO
+      ///
+      Center(
+        child: BalunButton(
+          onLongPressed: () => playSound(
+            audioPlayer: audioPlayer,
           ),
-          style: context.textStyles.dialogText,
-        ),
-        const SizedBox(height: 12),
-        Text(
-          "I wanted to make an app to track football scores because I don't like popular ones which are full of ads and have cluttered UI.",
-          style: context.textStyles.dialogText,
-        ),
-        const SizedBox(height: 24),
-
-        ///
-        /// CONTACT ME?
-        ///
-        Text(
-          'Contact me?',
-          style: context.textStyles.dialogSubtitle,
-        ),
-        const SizedBox(height: 12),
-        Text.rich(
-          TextSpan(
-            text: 'You can contact me by sending me an ',
-            children: [
-              TextSpan(
-                text: 'e-mail',
-                style: context.textStyles.teamTransferTeam,
+          child: Container(
+            height: 160,
+            width: 160,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: context.colors.black,
+                width: 2,
               ),
-              const TextSpan(
-                text: '.',
-              ),
-            ],
+              shape: BoxShape.circle,
+            ),
+            child: ClipOval(
+              child: AboutVideoWidget(),
+            ),
           ),
-          style: context.textStyles.dialogText,
         ),
-        const SizedBox(height: 12),
-        Text(
-          'Write any ideas, wishes or problems you encountered. I will work on it when I get some time and inspiration.',
-          style: context.textStyles.dialogText,
-        ),
-        const SizedBox(height: 12),
-        Text(
-          'Write any ideas, wishes or problems you encountered. I will work on it when I get some time and inspiration.',
-          style: context.textStyles.dialogText,
-        ),
-        const SizedBox(height: 24),
+      ),
+      const SizedBox(height: 20),
 
-        ///
-        /// EMAIL BUTTON
-        ///
-        Center(
-          child: BalunButton(
-            onPressed: () {},
+      ///
+      /// WEBSITE BUTTON
+      ///
+      Center(
+        child: BalunButton(
+          onPressed: () => openUrlExternalBrowser(
+            context,
+            url: BalunConstants.josipKilicWebsite,
+          ),
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 14,
+              vertical: 12,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: context.colors.white.withValues(alpha: 0.4),
+              border: Border.all(
+                color: context.colors.black,
+                width: 2,
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                BalunImage(
+                  imageUrl: BalunIcons.website,
+                  height: 24,
+                  width: 24,
+                  color: context.colors.black,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'josipkilic.com',
+                  style: context.textStyles.dialogButton,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      const SizedBox(height: 16),
+
+      ///
+      /// GITHUB & EMAIL BUTTON
+      ///
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ///
+          /// GITHUB BUTTON
+          ///
+          BalunButton(
+            onPressed: () => openUrlExternalBrowser(
+              context,
+              url: BalunConstants.josipGithubWebsite,
+            ),
             child: Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: 14,
@@ -94,6 +134,58 @@ class AboutContent extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
                 color: context.colors.white.withValues(alpha: 0.4),
+                border: Border.all(
+                  color: context.colors.black,
+                  width: 2,
+                ),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  BalunImage(
+                    imageUrl: BalunIcons.programming,
+                    height: 24,
+                    width: 24,
+                    color: context.colors.black,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    'GitHub',
+                    style: context.textStyles.dialogButton,
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          const SizedBox(width: 16),
+
+          ///
+          /// EMAIL BUTTON
+          ///
+          BalunButton(
+            onPressed: () {
+              final uri = Uri.tryParse(BalunConstants.josipKilicEmail);
+
+              if (uri != null) {
+                launchUrl(
+                  uri,
+                  mode: LaunchMode.externalApplication,
+                );
+              }
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 14,
+                vertical: 12,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: context.colors.white.withValues(alpha: 0.4),
+                border: Border.all(
+                  color: context.colors.black,
+                  width: 2,
+                ),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -106,15 +198,118 @@ class AboutContent extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    'Contact me',
+                    'E-Mail',
                     style: context.textStyles.dialogButton,
                   ),
                 ],
               ),
             ),
           ),
+        ],
+      ),
+      const SizedBox(height: 28),
+      Text.rich(
+        TextSpan(
+          text: 'settingsAboutMyName'.tr(),
+          children: [
+            TextSpan(
+              text: 'Josip',
+              style: context.textStyles.teamTransferTeam,
+            ),
+            const TextSpan(
+              text: '.',
+            ),
+          ],
         ),
-      ],
-    ),
+        style: context.textStyles.dialogText,
+      ),
+      const SizedBox(height: 12),
+      Text(
+        'settingsAboutMakeMobileApps'.tr(),
+        style: context.textStyles.dialogText,
+      ),
+      const SizedBox(height: 12),
+      Text(
+        'settingsAboutWantedToMakeApp'.tr(),
+        style: context.textStyles.dialogText,
+      ),
+      const SizedBox(height: 12),
+      Text.rich(
+        TextSpan(
+          text: 'settingsAboutContactMe'.tr(),
+          children: [
+            TextSpan(
+              text: 'e-mail',
+              style: context.textStyles.teamTransferTeam,
+            ),
+            const TextSpan(
+              text: '.',
+            ),
+          ],
+        ),
+        style: context.textStyles.dialogText,
+      ),
+      const SizedBox(height: 12),
+      Text(
+        'settingsAboutWriteIdeas'.tr(),
+        style: context.textStyles.dialogText,
+      ),
+      Text(
+        'settingsAboutWorkWhenTime'.tr(),
+        style: context.textStyles.dialogText,
+      ),
+      const SizedBox(height: 20),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          BalunButton(
+            onLongPressed: () => playSound(
+              audioPlayer: audioPlayer,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: context.colors.black,
+                  width: 2,
+                ),
+              ),
+              child: ClipOval(
+                child: Image.asset(
+                  BalunIcons.appIcon,
+                  height: 48,
+                  width: 48,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'appName'.tr(),
+                style: context.textStyles.aboutAppName,
+              ),
+              FutureBuilder(
+                future: getAppVersion(),
+                builder: (_, snapshot) {
+                  final version = snapshot.data;
+
+                  if (version != null) {
+                    return Text(
+                      'v$version',
+                      style: context.textStyles.aboutAppVersion,
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+      const SizedBox(height: 28),
+    ],
   );
 }

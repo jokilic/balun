@@ -32,6 +32,8 @@ class BalunIcons {
   static const settings = 'assets/icons/settings.png';
   static const youTube = 'assets/icons/youtube.png';
   static const mail = 'assets/icons/mail.png';
+  static const programming = 'assets/icons/programming.png';
+  static const website = 'assets/icons/website.png';
   static const notifications = 'assets/icons/notifications.png';
   static const theme = 'assets/icons/theme.png';
   static const language = 'assets/icons/language.png';

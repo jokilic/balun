@@ -246,7 +246,7 @@ class BalunTheme {
       color: lightAppColors.black.withValues(alpha: 0.5),
     ),
     dialogButton: BalunTextStyles.dialogButton.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.black,
     ),
     dialogTitle: BalunTextStyles.dialogTitle.copyWith(
       color: lightAppColors.black,
@@ -268,6 +268,12 @@ class BalunTheme {
     ),
     newsTwoLetterSource: BalunTextStyles.newsTwoLetterSource.copyWith(
       color: lightAppColors.black,
+    ),
+    aboutAppName: BalunTextStyles.aboutAppName.copyWith(
+      color: lightAppColors.black,
+    ),
+    aboutAppVersion: BalunTextStyles.aboutAppVersion.copyWith(
+      color: lightAppColors.black.withValues(alpha: 0.5),
     ),
   );
 }

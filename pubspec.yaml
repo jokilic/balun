@@ -1,7 +1,7 @@
 name: balun
 description: "Simple Flutter application for football scores."
 publish_to: 'none'
-version: 1.4.6+146
+version: 1.4.7+147
 
 #
 # DEPLOYING APP
@@ -48,6 +48,7 @@ dependencies:
   hive_ce_flutter: 2.3.1
   internet_connection_checker_plus: 2.7.2
   intl: 0.20.2
+  just_audio: 0.10.4
   logger: 2.6.1
   package_info_plus: 8.3.0
   path_provider: 2.1.5
@@ -55,6 +56,7 @@ dependencies:
   sliding_up_panel2: 3.3.0+1
   timeago: 3.7.1
   url_launcher: 6.3.2
+  video_player: 2.10.0
   visibility_detector: 0.4.0+2
   watch_it: 1.6.5
   youtube_player_flutter: 9.1.1
@@ -78,6 +80,8 @@ flutter:
     - assets/fonts/
     - assets/icons/
     - assets/translations/
+    - assets/videos/
+
   fonts:
     - family: Lufga
       fonts:
