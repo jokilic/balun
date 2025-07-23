@@ -1,6 +1,3 @@
-* Settings initial implementation
-* Navigation bar doesn't get animated on tap
-* Status bar color update
-* Circular player & coach photos
-* Small UI updates
-* Internet errors not classified as issues
+* Small animation updates
+* Fix when second yellow card on player with no ID
+* Performance updates while scrolling
