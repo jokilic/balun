@@ -58,7 +58,7 @@ platform :android do
       name: "Balun v#{pubspec_version}",
       tag_name: "v#{pubspec_version}",
       description: (File.read("metadata/android/hr/changelogs/default.txt") rescue "No changelog provided"),
-      commitish: "master",
+      commitish: "main",
       upload_assets: ["../build/app/outputs/flutter-apk/balun.apk"],
       )
 
