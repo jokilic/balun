@@ -26,15 +26,15 @@ class BalunTheme {
   }
 
   static final lightAppColors = BalunColorsExtension(
-    primaryBackground: BalunColors.primaryBackground,
-    primaryForeground: BalunColors.primaryForeground,
-    secondaryBackground: BalunColors.secondaryBackground,
-    accentLight: BalunColors.accentLight,
-    danger: BalunColors.danger,
-    accentStrong: BalunColors.accentStrong,
-    info: BalunColors.info,
-    warning: BalunColors.warning,
-    alert: BalunColors.alert,
+    primaryBackground: BalunColors.white,
+    primaryForeground: BalunColors.black,
+    secondaryBackground: BalunColors.grey,
+    accentLight: BalunColors.lightGreen,
+    danger: BalunColors.red,
+    accentStrong: BalunColors.darkGreen,
+    info: BalunColors.blue,
+    warning: BalunColors.yellow,
+    alert: BalunColors.orange,
   );
 
   static final lightTextTheme = BalunTextThemesExtension(

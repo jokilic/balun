@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 abstract class BalunColors {
-  static const primaryBackground = Color(0xFFFFFFFF);
-  static const primaryForeground = Color(0xFF292928);
-  static const secondaryBackground = Color(0xFF303131);
+  static const white = Color(0xFFFFFFFF);
+  static const black = Color(0xFF292928);
+  static const grey = Color(0xFF303131);
 
-  static const accentLight = Color(0xFFBFCABD);
-  static const accentStrong = Color(0xFF417B5A);
+  static const lightGreen = Color(0xFFBFCABD);
+  static const darkGreen = Color(0xFF417B5A);
 
-  static const danger = Color(0xFFED3B3B);
-  static const info = Color(0xFF016FB9);
-  static const warning = Color(0xFFFCC938);
-  static const alert = Color(0xFFFF9505);
+  static const red = Color(0xFFED3B3B);
+  static const blue = Color(0xFF016FB9);
+  static const yellow = Color(0xFFFCC938);
+  static const orange = Color(0xFFFF9505);
 }
 
 class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
