@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 abstract class BalunColors {
   static const white = Color(0xFFFFFFFF);
-  static const black = Color(0xFF000000);
-  static const grey = Color(0xFF37393B);
+  static const black = Color(0xFF292928);
+  static const grey = Color(0xFF303131);
   static const greenish = Color(0xFFBFCABD);
   static const red = Color(0xFFED3B3B);
   static const green = Color(0xFF417B5A);
@@ -46,18 +46,17 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     Color? blue,
     Color? yellow,
     Color? orange,
-  }) =>
-      BalunColorsExtension(
-        white: white ?? this.white,
-        black: black ?? this.black,
-        grey: grey ?? this.grey,
-        greenish: greenish ?? this.greenish,
-        red: red ?? this.red,
-        green: green ?? this.green,
-        blue: blue ?? this.blue,
-        yellow: yellow ?? this.yellow,
-        orange: orange ?? this.orange,
-      );
+  }) => BalunColorsExtension(
+    white: white ?? this.white,
+    black: black ?? this.black,
+    grey: grey ?? this.grey,
+    greenish: greenish ?? this.greenish,
+    red: red ?? this.red,
+    green: green ?? this.green,
+    blue: blue ?? this.blue,
+    yellow: yellow ?? this.yellow,
+    orange: orange ?? this.orange,
+  );
 
   @override
   ThemeExtension<BalunColorsExtension> lerp(

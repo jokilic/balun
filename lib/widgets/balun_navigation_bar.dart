@@ -27,8 +27,8 @@ class BalunNavigationBar extends WatchingWidget {
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         selectedIndex: watchIt<BalunNavigationBarService>().value.index,
         onDestinationSelected: (newIndex) => getIt.get<BalunNavigationBarService>().changeNavigationBarIndex(
-              BalunNavigationBarEnum.values[newIndex],
-            ),
+          BalunNavigationBarEnum.values[newIndex],
+        ),
         animationDuration: BalunConstants.animationDuration,
         destinations: [
           ///
@@ -49,9 +49,9 @@ class BalunNavigationBar extends WatchingWidget {
                   ),
                   child: BalunImage(
                     imageUrl: BalunIcons.ballNavigation,
-                    height: 24,
-                    width: 24,
-                    color: context.colors.white.withValues(alpha: 0.25),
+                    height: 26,
+                    width: 26,
+                    color: context.colors.white,
                   ),
                 ),
 
@@ -71,7 +71,7 @@ class BalunNavigationBar extends WatchingWidget {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: context.colors.blue,
+                        color: context.colors.red,
                       ),
                       child: Text(
                         '${badgeNumber ?? ''}',
@@ -94,13 +94,13 @@ class BalunNavigationBar extends WatchingWidget {
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: context.colors.white,
+                    color: context.colors.green,
                   ),
                   child: BalunImage(
                     imageUrl: BalunIcons.ballNavigation,
-                    height: 24,
-                    width: 24,
-                    color: context.colors.black,
+                    height: 26,
+                    width: 26,
+                    color: context.colors.white,
                   ),
                 ),
 
@@ -120,7 +120,7 @@ class BalunNavigationBar extends WatchingWidget {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: context.colors.blue,
+                        color: context.colors.red,
                       ),
                       child: Text(
                         '${badgeNumber ?? ''}',
@@ -148,22 +148,22 @@ class BalunNavigationBar extends WatchingWidget {
               ),
               child: BalunImage(
                 imageUrl: BalunIcons.globe,
-                height: 24,
-                width: 24,
-                color: context.colors.white.withValues(alpha: 0.25),
+                height: 26,
+                width: 26,
+                color: context.colors.white,
               ),
             ),
             selectedIcon: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colors.white,
+                color: context.colors.green,
               ),
               child: BalunImage(
                 imageUrl: BalunIcons.globe,
-                height: 24,
-                width: 24,
-                color: context.colors.black,
+                height: 26,
+                width: 26,
+                color: context.colors.white,
               ),
             ),
             label: '',
@@ -181,22 +181,22 @@ class BalunNavigationBar extends WatchingWidget {
               ),
               child: BalunImage(
                 imageUrl: BalunIcons.search,
-                height: 24,
-                width: 24,
-                color: context.colors.white.withValues(alpha: 0.25),
+                height: 26,
+                width: 26,
+                color: context.colors.white,
               ),
             ),
             selectedIcon: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colors.white,
+                color: context.colors.green,
               ),
               child: BalunImage(
                 imageUrl: BalunIcons.search,
-                height: 24,
-                width: 24,
-                color: context.colors.black,
+                height: 26,
+                width: 26,
+                color: context.colors.white,
               ),
             ),
             label: '',
@@ -214,22 +214,22 @@ class BalunNavigationBar extends WatchingWidget {
               ),
               child: BalunImage(
                 imageUrl: BalunIcons.settings,
-                height: 24,
-                width: 24,
-                color: context.colors.white.withValues(alpha: 0.25),
+                height: 26,
+                width: 26,
+                color: context.colors.white,
               ),
             ),
             selectedIcon: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colors.white,
+                color: context.colors.green,
               ),
               child: BalunImage(
                 imageUrl: BalunIcons.settings,
-                height: 24,
-                width: 24,
-                color: context.colors.black,
+                height: 26,
+                width: 26,
+                color: context.colors.white,
               ),
             ),
             label: '',
