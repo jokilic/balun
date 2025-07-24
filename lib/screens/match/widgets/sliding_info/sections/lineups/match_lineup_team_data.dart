@@ -127,9 +127,9 @@ class MatchLineupTeamData extends StatelessWidget {
                               averageRating,
                               context: context,
                             )
-                          : context.colors.black.withValues(alpha: 0.5),
+                          : context.colors.primaryForeground.withValues(alpha: 0.5),
                       border: Border.all(
-                        color: context.colors.black,
+                        color: context.colors.primaryForeground,
                         width: 2,
                       ),
                       borderRadius: BorderRadius.circular(4),
@@ -137,7 +137,7 @@ class MatchLineupTeamData extends StatelessWidget {
                     child: Text(
                       !matchLive && averageRating != null ? averageRating.toStringAsFixed(1) : '---',
                       style: context.textStyles.matchLineupsSectionSubtitle.copyWith(
-                        color: context.colors.white,
+                        color: context.colors.primaryBackground,
                       ),
                     ),
                   ),

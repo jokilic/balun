@@ -13,13 +13,13 @@ class BalunSeperator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        margin: EdgeInsets.symmetric(
-          vertical: verticalSpace,
-        ),
-        height: 1,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: color ?? context.colors.greenish,
-        ),
-      );
+    margin: EdgeInsets.symmetric(
+      vertical: verticalSpace,
+    ),
+    height: 1,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(100),
+      color: color ?? context.colors.accentLight,
+    ),
+  );
 }

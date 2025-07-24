@@ -68,7 +68,7 @@ class _BalunAppState extends State<BalunApp> {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        systemNavigationBarColor: context.colors.black,
+        systemNavigationBarColor: context.colors.primaryForeground,
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.light,
         systemNavigationBarIconBrightness: Brightness.light,
@@ -78,49 +78,50 @@ class _BalunAppState extends State<BalunApp> {
 
   @override
   Widget build(BuildContext context) => EasyLocalization(
-        useOnlyLangCode: true,
-        supportedLocales: const [
-          Locale('en'),
-          Locale('hr'),
-        ],
-        fallbackLocale: const Locale('hr'),
-        path: 'assets/translations',
-        child: BalunWidget(),
-      );
+    useOnlyLangCode: true,
+    supportedLocales: const [
+      Locale('en'),
+      Locale('hr'),
+    ],
+    fallbackLocale: const Locale('hr'),
+    path: 'assets/translations',
+    child: BalunWidget(),
+  );
 }
 
 class BalunWidget extends WatchingWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          bottomNavigationBar: BalunNavigationBar(),
-          body: watchIt<BalunScreenService>().value,
-        ),
-        onGenerateTitle: (_) => 'appName'.tr(),
-        theme: BalunTheme.light,
-        builder: (_, child) {
-          /// Generate `appWidget`, with [Balun] content
-          final appWidget = child ??
-              const Scaffold(
-                body: Center(
-                  child: BalunLoader(),
-                ),
-              );
+    localizationsDelegates: context.localizationDelegates,
+    supportedLocales: context.supportedLocales,
+    locale: context.locale,
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(
+      bottomNavigationBar: BalunNavigationBar(),
+      body: watchIt<BalunScreenService>().value,
+    ),
+    onGenerateTitle: (_) => 'appName'.tr(),
+    theme: BalunTheme.light,
+    builder: (_, child) {
+      /// Generate `appWidget`, with [Balun] content
+      final appWidget =
+          child ??
+          const Scaffold(
+            body: Center(
+              child: BalunLoader(),
+            ),
+          );
 
-          /// Return `appWidget`, also [Banner] if app is `debug`
-          return kDebugMode
-              ? Banner(
-                  message: 'appName'.tr().toUpperCase(),
-                  color: getRandomBalunColor(context),
-                  location: BannerLocation.topEnd,
-                  layoutDirection: TextDirection.ltr,
-                  child: appWidget,
-                )
-              : appWidget;
-        },
-      );
+      /// Return `appWidget`, also [Banner] if app is `debug`
+      return kDebugMode
+          ? Banner(
+              message: 'appName'.tr().toUpperCase(),
+              color: getRandomBalunColor(context),
+              location: BannerLocation.topEnd,
+              layoutDirection: TextDirection.ltr,
+              child: appWidget,
+            )
+          : appWidget;
+    },
+  );
 }

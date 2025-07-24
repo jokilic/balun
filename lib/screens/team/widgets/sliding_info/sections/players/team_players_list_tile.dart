@@ -21,86 +21,86 @@ class TeamPlayersListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BalunButton(
-        onPressed: player.id != null
-            ? () => openPlayer(
-                  context,
-                  playerId: player.id!,
-                  season: season,
-                )
-            : null,
-        child: Container(
-          color: Colors.transparent,
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          child: Row(
-            children: [
-              ///
-              /// PHOTO
-              ///
-              ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: BalunImage(
-                  imageUrl: player.photo ?? BalunIcons.placeholderPlayer,
-                  height: 48,
-                  width: 48,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ///
-                    /// NAME
-                    ///
-                    if (player.name != null)
-                      Text(
-                        mixOrOriginalWords(player.name) ?? '---',
-                        style: context.textStyles.leagueTeamsTitle,
-                      ),
-
-                    ///
-                    /// AGE
-                    ///
-                    if (player.age != null) ...[
-                      Text(
-                        '${player.age!} ${'teamCoachesYearsOld'.tr()}',
-                        style: context.textStyles.leagueTeamsCountry,
-                      ),
-                      const SizedBox(width: 12),
-                    ],
-                  ],
-                ),
-              ),
-
-              ///
-              /// POSITION
-              ///
-              if (player.position != null)
-                Container(
-                  alignment: Alignment.center,
-                  width: 36,
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    color: getPositionColor(
-                      player.position!,
-                      context: context,
-                    ),
-                    border: Border.all(
-                      color: context.colors.black,
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Text(
-                    getPositionText(
-                          player.position!,
-                        ) ??
-                        '--',
-                    style: context.textStyles.matchPlayerStatisticsRating,
-                  ),
-                ),
-            ],
+    onPressed: player.id != null
+        ? () => openPlayer(
+            context,
+            playerId: player.id!,
+            season: season,
+          )
+        : null,
+    child: Container(
+      color: Colors.transparent,
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: Row(
+        children: [
+          ///
+          /// PHOTO
+          ///
+          ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: BalunImage(
+              imageUrl: player.photo ?? BalunIcons.placeholderPlayer,
+              height: 48,
+              width: 48,
+            ),
           ),
-        ),
-      );
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ///
+                /// NAME
+                ///
+                if (player.name != null)
+                  Text(
+                    mixOrOriginalWords(player.name) ?? '---',
+                    style: context.textStyles.leagueTeamsTitle,
+                  ),
+
+                ///
+                /// AGE
+                ///
+                if (player.age != null) ...[
+                  Text(
+                    '${player.age!} ${'teamCoachesYearsOld'.tr()}',
+                    style: context.textStyles.leagueTeamsCountry,
+                  ),
+                  const SizedBox(width: 12),
+                ],
+              ],
+            ),
+          ),
+
+          ///
+          /// POSITION
+          ///
+          if (player.position != null)
+            Container(
+              alignment: Alignment.center,
+              width: 36,
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: getPositionColor(
+                  player.position!,
+                  context: context,
+                ),
+                border: Border.all(
+                  color: context.colors.primaryForeground,
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Text(
+                getPositionText(
+                      player.position!,
+                    ) ??
+                    '--',
+                style: context.textStyles.matchPlayerStatisticsRating,
+              ),
+            ),
+        ],
+      ),
+    ),
+  );
 }

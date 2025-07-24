@@ -28,11 +28,11 @@ class FixturesAllDialog extends WatchingWidget {
       elevation: 0,
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 8),
       actionsPadding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
-      backgroundColor: context.colors.greenish,
+      backgroundColor: context.colors.accentLight,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
         side: BorderSide(
-          color: context.colors.black,
+          color: context.colors.primaryForeground,
           width: 2,
         ),
       ),

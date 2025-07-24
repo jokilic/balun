@@ -34,125 +34,125 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
   late var expanded = widget.initiallyExpanded;
 
   void toggleExpanded() => setState(
-        () => expanded = !expanded,
-      );
+    () => expanded = !expanded,
+  );
 
   @override
   Widget build(BuildContext context) => Column(
-        children: [
-          ///
-          /// COUNTRY TITLE
-          ///
-          BalunButton(
-            onPressed: toggleExpanded,
-            child: Container(
-              decoration: BoxDecoration(
-                color: context.colors.white.withValues(alpha: 0.5),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 12,
-              ),
-              child: Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: widget.countryLeague?.flag != null
-                        ? BalunImage(
-                            imageUrl: widget.countryLeague!.flag!,
-                            height: 40,
-                            width: 40,
-                            fit: BoxFit.cover,
-                          )
-                        : Container(
-                            padding: const EdgeInsets.all(8),
-                            color: context.colors.white,
-                            child: const BalunImage(
-                              imageUrl: BalunIcons.placeholderCountry,
-                              height: 28,
-                              width: 28,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Text(
-                      widget.countryLeague?.country != null
-                          ? mixOrOriginalWords(
-                                getCountryName(
-                                  country: widget.countryLeague!.country!,
-                                ),
-                              ) ??
-                              '---'
-                          : '---',
-                      style: context.textStyles.fixturesCountry,
-                    ),
-                  ),
-                  if (widget.hasLiveFixturesCountry) ...[
-                    const SizedBox(width: 16),
-                    Container(
-                      height: 28,
-                      width: 28,
-                      padding: const EdgeInsets.all(7),
-                      child: Animate(
-                        onPlay: (controller) => controller.loop(
-                          reverse: true,
-                          min: 0.6,
+    children: [
+      ///
+      /// COUNTRY TITLE
+      ///
+      BalunButton(
+        onPressed: toggleExpanded,
+        child: Container(
+          decoration: BoxDecoration(
+            color: context.colors.primaryBackground.withValues(alpha: 0.5),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 12,
+          ),
+          child: Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: widget.countryLeague?.flag != null
+                    ? BalunImage(
+                        imageUrl: widget.countryLeague!.flag!,
+                        height: 40,
+                        width: 40,
+                        fit: BoxFit.cover,
+                      )
+                    : Container(
+                        padding: const EdgeInsets.all(8),
+                        color: context.colors.primaryBackground,
+                        child: const BalunImage(
+                          imageUrl: BalunIcons.placeholderCountry,
+                          height: 28,
+                          width: 28,
+                          fit: BoxFit.cover,
                         ),
-                        effects: const [
-                          FadeEffect(
-                            curve: Curves.easeIn,
-                            duration: BalunConstants.shimmerDuration,
-                          ),
-                        ],
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: context.colors.red,
-                            border: Border.all(
-                              color: context.colors.black,
-                            ),
-                          ),
+                      ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  widget.countryLeague?.country != null
+                      ? mixOrOriginalWords(
+                              getCountryName(
+                                country: widget.countryLeague!.country!,
+                              ),
+                            ) ??
+                            '---'
+                      : '---',
+                  style: context.textStyles.fixturesCountry,
+                ),
+              ),
+              if (widget.hasLiveFixturesCountry) ...[
+                const SizedBox(width: 16),
+                Container(
+                  height: 28,
+                  width: 28,
+                  padding: const EdgeInsets.all(7),
+                  child: Animate(
+                    onPlay: (controller) => controller.loop(
+                      reverse: true,
+                      min: 0.6,
+                    ),
+                    effects: const [
+                      FadeEffect(
+                        curve: Curves.easeIn,
+                        duration: BalunConstants.shimmerDuration,
+                      ),
+                    ],
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: context.colors.danger,
+                        border: Border.all(
+                          color: context.colors.primaryForeground,
                         ),
                       ),
                     ),
-                  ],
-                ],
-              ),
-            ),
+                  ),
+                ),
+              ],
+            ],
           ),
+        ),
+      ),
 
-          ///
-          /// LEAGUES
-          ///
-          AnimatedSize(
-            duration: BalunConstants.expandDuration,
-            curve: Curves.easeIn,
-            child: expanded
-                ? ListView.separated(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: widget.leagues?.length ?? 0,
-                    itemBuilder: (_, leagueIndex) {
-                      final league = widget.leagues?.keys.elementAtOrNull(leagueIndex);
-                      final fixtures = widget.leagues?[league];
+      ///
+      /// LEAGUES
+      ///
+      AnimatedSize(
+        duration: BalunConstants.expandDuration,
+        curve: Curves.easeIn,
+        child: expanded
+            ? ListView.separated(
+                shrinkWrap: true,
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: widget.leagues?.length ?? 0,
+                itemBuilder: (_, leagueIndex) {
+                  final league = widget.leagues?.keys.elementAtOrNull(leagueIndex);
+                  final fixtures = widget.leagues?[league];
 
-                      return FixturesLeagueListTile(
-                        league: league,
-                        fixtures: fixtures,
-                        initiallyExpanded: widget.initiallyExpanded,
-                        hasLiveFixturesLeague: hasLiveFixturesLeague(
-                          fixtures: fixtures,
-                        ),
-                      );
-                    },
-                    separatorBuilder: (_, __) => const SizedBox(height: 12),
-                  )
-                : const SizedBox.shrink(),
-          ),
-        ],
-      );
+                  return FixturesLeagueListTile(
+                    league: league,
+                    fixtures: fixtures,
+                    initiallyExpanded: widget.initiallyExpanded,
+                    hasLiveFixturesLeague: hasLiveFixturesLeague(
+                      fixtures: fixtures,
+                    ),
+                  );
+                },
+                separatorBuilder: (_, __) => const SizedBox(height: 12),
+              )
+            : const SizedBox.shrink(),
+      ),
+    ],
+  );
 }

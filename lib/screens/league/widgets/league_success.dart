@@ -49,35 +49,35 @@ class _LeagueSuccessState extends State<LeagueSuccess> {
 
   @override
   Widget build(BuildContext context) => Stack(
-        children: [
-          ///
-          /// TOP CONTENT
-          ///
-          WidgetSize(
-            onChange: (size) => setState(
-              () => panelHeight = (MediaQuery.sizeOf(context).height - size.height) - 80,
-            ),
-            child: LeagueMainInfo(
-              league: widget.league,
-            ),
-          ),
+    children: [
+      ///
+      /// TOP CONTENT
+      ///
+      WidgetSize(
+        onChange: (size) => setState(
+          () => panelHeight = (MediaQuery.sizeOf(context).height - size.height) - 80,
+        ),
+        child: LeagueMainInfo(
+          league: widget.league,
+        ),
+      ),
 
-          ///
-          /// SLIDING CONTENT
-          ///
-          SlidingUpPanel(
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(40),
-            ),
-            color: context.colors.white,
-            scrollController: scrollController,
-            minHeight: panelHeight,
-            maxHeight: MediaQuery.sizeOf(context).height - 144,
-            panelBuilder: () => LeagueSlidingInfo(
-              league: widget.league,
-              scrollController: scrollController,
-            ),
-          ),
-        ],
-      );
+      ///
+      /// SLIDING CONTENT
+      ///
+      SlidingUpPanel(
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(40),
+        ),
+        color: context.colors.primaryBackground,
+        scrollController: scrollController,
+        minHeight: panelHeight,
+        maxHeight: MediaQuery.sizeOf(context).height - 144,
+        panelBuilder: () => LeagueSlidingInfo(
+          league: widget.league,
+          scrollController: scrollController,
+        ),
+      ),
+    ],
+  );
 }

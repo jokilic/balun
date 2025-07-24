@@ -19,58 +19,58 @@ class MatchPlayerStatisticsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
-        ),
-        child: Column(
-          children: [
-            ///
-            /// NO STATISTICS
-            ///
-            if (homePlayerStatistic == null && awayPlayerStatistic == null)
-              BalunEmpty(
-                message: 'matchPlayerStatisticsNo'.tr(),
-                isSmall: true,
-              )
-            else ...[
-              ///
-              /// HOME
-              ///
-              if (homePlayerStatistic != null)
-                MatchPlayerStatisticsContent(
-                  playerStatistic: homePlayerStatistic,
-                  season: season,
-                ),
+    padding: const EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 8,
+    ),
+    child: Column(
+      children: [
+        ///
+        /// NO STATISTICS
+        ///
+        if (homePlayerStatistic == null && awayPlayerStatistic == null)
+          BalunEmpty(
+            message: 'matchPlayerStatisticsNo'.tr(),
+            isSmall: true,
+          )
+        else ...[
+          ///
+          /// HOME
+          ///
+          if (homePlayerStatistic != null)
+            MatchPlayerStatisticsContent(
+              playerStatistic: homePlayerStatistic,
+              season: season,
+            ),
 
-              ///
-              /// DIVIDER
-              ///
-              if (homePlayerStatistic != null && awayPlayerStatistic != null)
-                Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 80,
-                    vertical: 20,
-                  ),
-                  height: 4,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: context.colors.black.withValues(alpha: 0.25),
-                  ),
-                ),
+          ///
+          /// DIVIDER
+          ///
+          if (homePlayerStatistic != null && awayPlayerStatistic != null)
+            Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 80,
+                vertical: 20,
+              ),
+              height: 4,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: context.colors.primaryForeground.withValues(alpha: 0.25),
+              ),
+            ),
 
-              ///
-              /// HOME
-              ///
-              if (awayPlayerStatistic != null)
-                MatchPlayerStatisticsContent(
-                  playerStatistic: awayPlayerStatistic,
-                  season: season,
-                ),
-            ],
+          ///
+          /// HOME
+          ///
+          if (awayPlayerStatistic != null)
+            MatchPlayerStatisticsContent(
+              playerStatistic: awayPlayerStatistic,
+              season: season,
+            ),
+        ],
 
-            const SizedBox(height: 24),
-          ],
-        ),
-      );
+        const SizedBox(height: 24),
+      ],
+    ),
+  );
 }

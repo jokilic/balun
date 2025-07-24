@@ -79,7 +79,7 @@ class _MatchSuccessState extends State<MatchSuccess> {
           borderRadius: const BorderRadius.vertical(
             top: Radius.circular(40),
           ),
-          color: context.colors.white,
+          color: context.colors.primaryBackground,
           scrollController: scrollController,
           minHeight: panelHeight,
           maxHeight: MediaQuery.sizeOf(context).height - 144,

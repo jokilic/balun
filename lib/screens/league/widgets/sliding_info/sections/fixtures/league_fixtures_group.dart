@@ -28,67 +28,67 @@ class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
   late var expanded = widget.initiallyExpanded;
 
   void toggleExpanded() => setState(
-        () => expanded = !expanded,
-      );
+    () => expanded = !expanded,
+  );
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          children: [
-            BalunButton(
-              onPressed: toggleExpanded,
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 4),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 12,
-                ),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: context.colors.black,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      mixOrOriginalWords(widget.round) ?? '---',
-                      style: context.textStyles.leagueFixturesTitle,
-                    ),
-                  ],
-                ),
+    padding: const EdgeInsets.symmetric(vertical: 8),
+    child: Column(
+      children: [
+        BalunButton(
+          onPressed: toggleExpanded,
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 12,
+            ),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: context.colors.primaryForeground,
               ),
+              borderRadius: BorderRadius.circular(8),
             ),
-            AnimatedSize(
-              duration: BalunConstants.expandDuration,
-              curve: Curves.easeIn,
-              child: expanded
-                  ? ListView.separated(
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: widget.fixtures.length,
-                      itemBuilder: (_, index) {
-                        final fixture = widget.fixtures[index];
-
-                        return LeagueFixturesListTile(
-                          fixture: fixture,
-                          fixturePlaying: isMatchPlaying(
-                            statusShort: fixture.fixture?.status?.short ?? '--',
-                          ),
-                          fixturePressed: () => openMatch(
-                            context,
-                            matchId: fixture.fixture!.id!,
-                          ),
-                        );
-                      },
-                      separatorBuilder: (_, __) => const SizedBox(height: 12),
-                    )
-                  : const SizedBox.shrink(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  mixOrOriginalWords(widget.round) ?? '---',
+                  style: context.textStyles.leagueFixturesTitle,
+                ),
+              ],
             ),
-          ],
+          ),
         ),
-      );
+        AnimatedSize(
+          duration: BalunConstants.expandDuration,
+          curve: Curves.easeIn,
+          child: expanded
+              ? ListView.separated(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: widget.fixtures.length,
+                  itemBuilder: (_, index) {
+                    final fixture = widget.fixtures[index];
+
+                    return LeagueFixturesListTile(
+                      fixture: fixture,
+                      fixturePlaying: isMatchPlaying(
+                        statusShort: fixture.fixture?.status?.short ?? '--',
+                      ),
+                      fixturePressed: () => openMatch(
+                        context,
+                        matchId: fixture.fixture!.id!,
+                      ),
+                    );
+                  },
+                  separatorBuilder: (_, __) => const SizedBox(height: 12),
+                )
+              : const SizedBox.shrink(),
+        ),
+      ],
+    ),
+  );
 }

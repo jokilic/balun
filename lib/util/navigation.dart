@@ -24,18 +24,18 @@ void openUrlExternalBrowser(BuildContext context, {required String? url}) {
       url: url,
       customTabsOptions: CustomTabsOptions(
         defaultColorSchemeParams: CustomTabsColorSchemeParams(
-          toolbarColor: context.colors.green,
-          navigationBarColor: context.colors.green,
-          secondaryToolbarColor: context.colors.green,
-          navigationBarDividerColor: context.colors.green,
+          toolbarColor: context.colors.accentStrong,
+          navigationBarColor: context.colors.accentStrong,
+          secondaryToolbarColor: context.colors.accentStrong,
+          navigationBarDividerColor: context.colors.accentStrong,
         ),
         showTitle: true,
         urlBarHidingEnabled: true,
       ),
       safariVCOptions: SafariViewControllerOptions(
         barCollapsingEnabled: true,
-        preferredBarTintColor: context.colors.green,
-        preferredControlTintColor: context.colors.black,
+        preferredBarTintColor: context.colors.accentStrong,
+        preferredControlTintColor: context.colors.primaryForeground,
         dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
         modalPresentationCapturesStatusBarAppearance: true,
       ),
@@ -49,66 +49,63 @@ Future<T?> pushScreen<T>(
   bool isCircularTransition = false,
   Duration? transitionDuration,
   Duration? reverseTransitionDuration,
-}) =>
-    Navigator.of(context).push<T>(
-      isCircularTransition
-          ? circularPageTransition(
-              screen,
-              transitionDuration: transitionDuration,
-              reverseTransitionDuration: reverseTransitionDuration,
-            )
-          : fadePageTransition(
-              screen,
-              transitionDuration: transitionDuration,
-              reverseTransitionDuration: reverseTransitionDuration,
-            ),
-    );
+}) => Navigator.of(context).push<T>(
+  isCircularTransition
+      ? circularPageTransition(
+          screen,
+          transitionDuration: transitionDuration,
+          reverseTransitionDuration: reverseTransitionDuration,
+        )
+      : fadePageTransition(
+          screen,
+          transitionDuration: transitionDuration,
+          reverseTransitionDuration: reverseTransitionDuration,
+        ),
+);
 
 Route<T> fadePageTransition<T>(
   Widget screen, {
   Duration? transitionDuration,
   Duration? reverseTransitionDuration,
-}) =>
-    PageRouteBuilder<T>(
-      transitionDuration: transitionDuration ?? BalunConstants.animationDuration,
-      reverseTransitionDuration: reverseTransitionDuration ?? BalunConstants.animationDuration,
-      pageBuilder: (_, __, ___) => screen,
-      transitionsBuilder: (_, animation, __, child) => FadeTransition(
-        opacity: animation,
-        child: child,
-      ),
-    );
+}) => PageRouteBuilder<T>(
+  transitionDuration: transitionDuration ?? BalunConstants.animationDuration,
+  reverseTransitionDuration: reverseTransitionDuration ?? BalunConstants.animationDuration,
+  pageBuilder: (_, __, ___) => screen,
+  transitionsBuilder: (_, animation, __, child) => FadeTransition(
+    opacity: animation,
+    child: child,
+  ),
+);
 
 Route<T> circularPageTransition<T>(
   Widget screen, {
   Duration? transitionDuration,
   Duration? reverseTransitionDuration,
-}) =>
-    PageRouteBuilder<T>(
-      transitionDuration: transitionDuration ?? BalunConstants.animationDuration,
-      reverseTransitionDuration: reverseTransitionDuration ?? BalunConstants.animationDuration,
-      opaque: false,
-      pageBuilder: (_, __, ___) => screen,
-      transitionsBuilder: (context, animation, _, child) {
-        final screenSize = MediaQuery.sizeOf(context);
+}) => PageRouteBuilder<T>(
+  transitionDuration: transitionDuration ?? BalunConstants.animationDuration,
+  reverseTransitionDuration: reverseTransitionDuration ?? BalunConstants.animationDuration,
+  opaque: false,
+  pageBuilder: (_, __, ___) => screen,
+  transitionsBuilder: (context, animation, _, child) {
+    final screenSize = MediaQuery.sizeOf(context);
 
-        final center = Offset(screenSize.width / 2, kToolbarHeight + 40);
+    final center = Offset(screenSize.width / 2, kToolbarHeight + 40);
 
-        const beginRadius = 0.0;
-        final endRadius = screenSize.height * 1.2;
+    const beginRadius = 0.0;
+    final endRadius = screenSize.height * 1.2;
 
-        final tween = Tween<double>(begin: beginRadius, end: endRadius);
-        final radiusTweenAnimation = animation.drive(tween);
+    final tween = Tween<double>(begin: beginRadius, end: endRadius);
+    final radiusTweenAnimation = animation.drive(tween);
 
-        return ClipPath(
-          clipper: CircularTransitionClipper(
-            radius: radiusTweenAnimation.value,
-            center: center,
-          ),
-          child: child,
-        );
-      },
+    return ClipPath(
+      clipper: CircularTransitionClipper(
+        radius: radiusTweenAnimation.value,
+        center: center,
+      ),
+      child: child,
     );
+  },
+);
 
 class CircularTransitionClipper extends CustomClipper<Path> {
   final double radius;

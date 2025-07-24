@@ -18,11 +18,11 @@ Color? textToColor(String? colorString) {
 
 Color getRandomBalunColor(BuildContext context) {
   final colors = [
-    context.colors.red,
-    context.colors.green,
-    context.colors.blue,
-    context.colors.yellow,
-    context.colors.orange,
+    context.colors.danger,
+    context.colors.accentStrong,
+    context.colors.info,
+    context.colors.warning,
+    context.colors.alert,
   ];
 
   return colors[Random().nextInt(colors.length)];

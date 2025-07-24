@@ -49,12 +49,12 @@ class MatchMainInfo extends WatchingWidget {
             onBackPressed: Navigator.of(context).pop,
             league: match.league!,
             onFavoritePressed: () => getIt.get<LeagueStorageService>().toggleLeague(
-                  passedLeague: League(
-                    id: match.league?.id,
-                    name: match.league?.name,
-                    logo: match.league?.logo,
-                  ),
-                ),
+              passedLeague: League(
+                id: match.league?.id,
+                name: match.league?.name,
+                logo: match.league?.logo,
+              ),
+            ),
             isFavorited: favoritedLeagues.any(
               (element) => element.id == match.league?.id,
             ),
@@ -75,10 +75,10 @@ class MatchMainInfo extends WatchingWidget {
                 child: BalunButton(
                   onPressed: match.teams?.home?.id != null
                       ? () => openTeam(
-                            context,
-                            teamId: match.teams!.home!.id!,
-                            season: match.league?.season ?? getCurrentSeasonYear().toString(),
-                          )
+                          context,
+                          teamId: match.teams!.home!.id!,
+                          season: match.league?.season ?? getCurrentSeasonYear().toString(),
+                        )
                       : null,
                   child: Container(
                     color: Colors.transparent,
@@ -125,7 +125,8 @@ class MatchMainInfo extends WatchingWidget {
                       textStatus: getMatchStatusShortOrNull(
                         statusShort: match.fixture?.status?.short ?? '--',
                       ),
-                      timeBeforeMatch: isMatchNotStarted(
+                      timeBeforeMatch:
+                          isMatchNotStarted(
                                 statusShort: match.fixture?.status?.short ?? '--',
                               ) &&
                               match.fixture?.timestamp != null
@@ -150,10 +151,10 @@ class MatchMainInfo extends WatchingWidget {
                 child: BalunButton(
                   onPressed: match.teams?.away?.id != null
                       ? () => openTeam(
-                            context,
-                            teamId: match.teams!.away!.id!,
-                            season: match.league?.season ?? getCurrentSeasonYear().toString(),
-                          )
+                          context,
+                          teamId: match.teams!.away!.id!,
+                          season: match.league?.season ?? getCurrentSeasonYear().toString(),
+                        )
                       : null,
                   child: Container(
                     color: Colors.transparent,
@@ -206,51 +207,52 @@ class MatchMainInfo extends WatchingWidget {
                     if (match.events?.isNotEmpty ?? false)
                       ...match.events!
                           .where(
-                        (event) => event.team?.id == match.teams?.home?.id && event.type?.toLowerCase() == 'goal' && event.detail?.toLowerCase() != 'missed penalty',
-                      )
+                            (event) => event.team?.id == match.teams?.home?.id && event.type?.toLowerCase() == 'goal' && event.detail?.toLowerCase() != 'missed penalty',
+                          )
                           .map(
-                        (event) {
-                          final playerName = mixOrOriginalWords(getLastWord(event.player?.name ?? '---')) ?? '---';
+                            (event) {
+                              final playerName = mixOrOriginalWords(getLastWord(event.player?.name ?? '---')) ?? '---';
 
-                          return BalunButton(
-                            onPressed: event.player?.id != null
-                                ? () => openPlayer(
-                                      context,
-                                      playerId: event.player!.id!,
-                                      season: match.league?.season ?? getCurrentSeasonYear().toString(),
-                                    )
-                                : null,
-                            child: Container(
-                              color: Colors.transparent,
-                              padding: const EdgeInsets.symmetric(vertical: 2),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    event.time?.extra != null ? "${(event.time?.elapsed ?? 0) + (event.time?.extra ?? 0)}'" : "${event.time?.elapsed}'",
-                                    style: context.textStyles.matchGoal.copyWith(
-                                      color: context.colors.black.withValues(alpha: 0.4),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Flexible(
-                                    child: Text(
-                                      event.detail?.toLowerCase() == 'penalty'
-                                          ? '$playerName (${'matchInfoPenalty'.tr()})'
-                                          : event.detail?.toLowerCase() == 'own goal'
+                              return BalunButton(
+                                onPressed: event.player?.id != null
+                                    ? () => openPlayer(
+                                        context,
+                                        playerId: event.player!.id!,
+                                        season: match.league?.season ?? getCurrentSeasonYear().toString(),
+                                      )
+                                    : null,
+                                child: Container(
+                                  color: Colors.transparent,
+                                  padding: const EdgeInsets.symmetric(vertical: 2),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        event.time?.extra != null ? "${(event.time?.elapsed ?? 0) + (event.time?.extra ?? 0)}'" : "${event.time?.elapsed}'",
+                                        style: context.textStyles.matchGoal.copyWith(
+                                          color: context.colors.primaryForeground.withValues(alpha: 0.4),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Flexible(
+                                        child: Text(
+                                          event.detail?.toLowerCase() == 'penalty'
+                                              ? '$playerName (${'matchInfoPenalty'.tr()})'
+                                              : event.detail?.toLowerCase() == 'own goal'
                                               ? '$playerName (${'matchInfoOwnGoal'.tr()})'
                                               : playerName,
-                                      style: context.textStyles.matchGoal,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
+                                          style: context.textStyles.matchGoal,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ).toList(),
+                                ),
+                              );
+                            },
+                          )
+                          .toList(),
                   ],
                 ),
               ),
@@ -279,7 +281,7 @@ class MatchMainInfo extends WatchingWidget {
                               TextSpan(
                                 text: ':',
                                 style: context.textStyles.fixturesScore.copyWith(
-                                  color: context.colors.black.withValues(alpha: 0.2),
+                                  color: context.colors.primaryForeground.withValues(alpha: 0.2),
                                 ),
                               ),
                               TextSpan(text: '${match.goals?.away ?? '-'}'),
@@ -296,7 +298,7 @@ class MatchMainInfo extends WatchingWidget {
                             TextSpan(
                               text: ':',
                               style: context.textStyles.fixturesScore.copyWith(
-                                color: context.colors.black.withValues(alpha: 0.2),
+                                color: context.colors.primaryForeground.withValues(alpha: 0.2),
                               ),
                             ),
                             TextSpan(text: '${match.goals?.away ?? '-'}'),
@@ -319,50 +321,51 @@ class MatchMainInfo extends WatchingWidget {
                     if (match.events?.isNotEmpty ?? false)
                       ...match.events!
                           .where(
-                        (event) => event.team?.id == match.teams?.away?.id && event.type?.toLowerCase() == 'goal' && event.detail?.toLowerCase() != 'missed penalty',
-                      )
+                            (event) => event.team?.id == match.teams?.away?.id && event.type?.toLowerCase() == 'goal' && event.detail?.toLowerCase() != 'missed penalty',
+                          )
                           .map(
-                        (event) {
-                          final playerName = mixOrOriginalWords(getLastWord(event.player?.name ?? '---')) ?? '---';
+                            (event) {
+                              final playerName = mixOrOriginalWords(getLastWord(event.player?.name ?? '---')) ?? '---';
 
-                          return BalunButton(
-                            onPressed: event.player?.id != null
-                                ? () => openPlayer(
-                                      context,
-                                      playerId: event.player!.id!,
-                                      season: match.league?.season ?? getCurrentSeasonYear().toString(),
-                                    )
-                                : null,
-                            child: Container(
-                              color: Colors.transparent,
-                              padding: const EdgeInsets.symmetric(vertical: 2),
-                              child: Row(
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      event.detail?.toLowerCase() == 'penalty'
-                                          ? '$playerName (${'matchInfoPenalty'.tr()})'
-                                          : event.detail?.toLowerCase() == 'own goal'
+                              return BalunButton(
+                                onPressed: event.player?.id != null
+                                    ? () => openPlayer(
+                                        context,
+                                        playerId: event.player!.id!,
+                                        season: match.league?.season ?? getCurrentSeasonYear().toString(),
+                                      )
+                                    : null,
+                                child: Container(
+                                  color: Colors.transparent,
+                                  padding: const EdgeInsets.symmetric(vertical: 2),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          event.detail?.toLowerCase() == 'penalty'
+                                              ? '$playerName (${'matchInfoPenalty'.tr()})'
+                                              : event.detail?.toLowerCase() == 'own goal'
                                               ? '$playerName (${'matchInfoOwnGoal'.tr()})'
                                               : playerName,
-                                      style: context.textStyles.matchGoal,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
+                                          style: context.textStyles.matchGoal,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Text(
+                                        event.time?.extra != null ? "${(event.time?.elapsed ?? 0) + (event.time?.extra ?? 0)}'" : "${event.time?.elapsed}'",
+                                        style: context.textStyles.matchGoal.copyWith(
+                                          color: context.colors.primaryForeground.withValues(alpha: 0.4),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    event.time?.extra != null ? "${(event.time?.elapsed ?? 0) + (event.time?.extra ?? 0)}'" : "${event.time?.elapsed}'",
-                                    style: context.textStyles.matchGoal.copyWith(
-                                      color: context.colors.black.withValues(alpha: 0.4),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ).toList(),
+                                ),
+                              );
+                            },
+                          )
+                          .toList(),
                   ],
                 ),
               ),

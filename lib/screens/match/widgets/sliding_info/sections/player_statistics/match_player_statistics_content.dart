@@ -28,88 +28,88 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
   var expanded = false;
 
   void toggleExpanded() => setState(
-        () => expanded = !expanded,
-      );
+    () => expanded = !expanded,
+  );
 
   @override
   Widget build(BuildContext context) => Column(
-        children: [
-          ///
-          /// INFO
-          ///
-          if (widget.playerStatistic?.team != null) ...[
-            BalunButton(
-              onPressed: toggleExpanded,
-              child: Container(
-                color: Colors.transparent,
-                child: Row(
+    children: [
+      ///
+      /// INFO
+      ///
+      if (widget.playerStatistic?.team != null) ...[
+        BalunButton(
+          onPressed: toggleExpanded,
+          child: Container(
+            color: Colors.transparent,
+            child: Row(
+              children: [
+                BalunButton(
+                  onPressed: widget.playerStatistic?.team?.id != null
+                      ? () => openTeam(
+                          context,
+                          teamId: widget.playerStatistic!.team!.id!,
+                          season: widget.season,
+                        )
+                      : null,
+                  child: BalunImage(
+                    imageUrl: widget.playerStatistic!.team!.logo!,
+                    height: 64,
+                    width: 64,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    mixOrOriginalWords(widget.playerStatistic!.team!.name ?? '---') ?? '---',
+                    style: context.textStyles.matchLineupsSectionTitle,
+                  ),
+                ),
+                AnimatedOpacity(
+                  opacity: expanded ? 0 : 1,
+                  duration: BalunConstants.animationDuration,
+                  curve: Curves.easeIn,
+                  child: BalunImage(
+                    imageUrl: BalunIcons.playerOut,
+                    height: 40,
+                    width: 40,
+                    color: context.colors.primaryForeground.withValues(alpha: 0.5),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: 4),
+      ],
+
+      ///
+      /// STATISTICS
+      ///
+      if (widget.playerStatistic?.statistics?.isNotEmpty ?? false) ...[
+        AnimatedSize(
+          duration: BalunConstants.expandDuration,
+          curve: Curves.easeIn,
+          child: expanded
+              ? Column(
                   children: [
-                    BalunButton(
-                      onPressed: widget.playerStatistic?.team?.id != null
-                          ? () => openTeam(
-                                context,
-                                teamId: widget.playerStatistic!.team!.id!,
-                                season: widget.season,
-                              )
-                          : null,
-                      child: BalunImage(
-                        imageUrl: widget.playerStatistic!.team!.logo!,
-                        height: 64,
-                        width: 64,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
+                    const SizedBox(height: 8),
+                    Align(
+                      alignment: Alignment.centerRight,
                       child: Text(
-                        mixOrOriginalWords(widget.playerStatistic!.team!.name ?? '---') ?? '---',
+                        'matchPlayerStatistics'.tr(),
                         style: context.textStyles.matchLineupsSectionTitle,
                       ),
                     ),
-                    AnimatedOpacity(
-                      opacity: expanded ? 0 : 1,
-                      duration: BalunConstants.animationDuration,
-                      curve: Curves.easeIn,
-                      child: BalunImage(
-                        imageUrl: BalunIcons.playerOut,
-                        height: 40,
-                        width: 40,
-                        color: context.colors.black.withValues(alpha: 0.5),
-                      ),
+                    const SizedBox(height: 12),
+                    MatchPlayerStatistic(
+                      statistics: widget.playerStatistic?.statistics,
                     ),
                   ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 4),
-          ],
-
-          ///
-          /// STATISTICS
-          ///
-          if (widget.playerStatistic?.statistics?.isNotEmpty ?? false) ...[
-            AnimatedSize(
-              duration: BalunConstants.expandDuration,
-              curve: Curves.easeIn,
-              child: expanded
-                  ? Column(
-                      children: [
-                        const SizedBox(height: 8),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            'matchPlayerStatistics'.tr(),
-                            style: context.textStyles.matchLineupsSectionTitle,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        MatchPlayerStatistic(
-                          statistics: widget.playerStatistic?.statistics,
-                        ),
-                      ],
-                    )
-                  : const SizedBox.shrink(),
-            ),
-          ],
-        ],
-      );
+                )
+              : const SizedBox.shrink(),
+        ),
+      ],
+    ],
+  );
 }

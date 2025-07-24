@@ -38,7 +38,7 @@ class LeagueFixturesListTile extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           border: Border.all(
-            color: context.colors.black,
+            color: context.colors.primaryForeground,
           ),
           borderRadius: BorderRadius.circular(8),
         ),

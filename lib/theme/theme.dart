@@ -13,11 +13,11 @@ class BalunTheme {
 
     return defaultTheme.copyWith(
       textSelectionTheme: TextSelectionThemeData(
-        cursorColor: lightAppColors.green,
-        selectionColor: lightAppColors.green,
-        selectionHandleColor: lightAppColors.green,
+        cursorColor: lightAppColors.accentStrong,
+        selectionColor: lightAppColors.accentStrong,
+        selectionHandleColor: lightAppColors.accentStrong,
       ),
-      scaffoldBackgroundColor: lightAppColors.greenish,
+      scaffoldBackgroundColor: lightAppColors.accentLight,
       extensions: [
         lightAppColors,
         lightTextTheme,
@@ -26,254 +26,254 @@ class BalunTheme {
   }
 
   static final lightAppColors = BalunColorsExtension(
-    white: BalunColors.white,
-    black: BalunColors.black,
-    grey: BalunColors.grey,
-    greenish: BalunColors.greenish,
-    red: BalunColors.red,
-    green: BalunColors.green,
-    blue: BalunColors.blue,
-    yellow: BalunColors.yellow,
-    orange: BalunColors.orange,
+    primaryBackground: BalunColors.primaryBackground,
+    primaryForeground: BalunColors.primaryForeground,
+    secondaryBackground: BalunColors.secondaryBackground,
+    accentLight: BalunColors.accentLight,
+    danger: BalunColors.danger,
+    accentStrong: BalunColors.accentStrong,
+    info: BalunColors.info,
+    warning: BalunColors.warning,
+    alert: BalunColors.alert,
   );
 
   static final lightTextTheme = BalunTextThemesExtension(
     error: BalunTextStyles.error.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     snackbar: BalunTextStyles.snackbar.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     fixturesCountry: BalunTextStyles.fixturesCountry.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     fixturesLeague: BalunTextStyles.fixturesLeague.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     fixturesMinute: BalunTextStyles.fixturesMinute.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     fixturesMinuteExtra: BalunTextStyles.fixturesMinuteExtra.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     fixturesName: BalunTextStyles.fixturesName.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     fixturesNameCompact: BalunTextStyles.fixturesNameCompact.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     fixturesScore: BalunTextStyles.fixturesScore.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     fixturesScoreCompact: BalunTextStyles.fixturesScoreCompact.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchLeagueName: BalunTextStyles.matchLeagueName.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchLeagueRound: BalunTextStyles.matchLeagueRound.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     matchGoal: BalunTextStyles.matchGoal.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchSectionTitle: BalunTextStyles.matchSectionTitle.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchInfoSectionTitle: BalunTextStyles.matchInfoSectionTitle.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     matchInfoSectionText: BalunTextStyles.matchInfoSectionText.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchInfoSectionBottomText: BalunTextStyles.matchInfoSectionBottomText.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchStandingsSectionTitle: BalunTextStyles.matchStandingsSectionTitle.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchStandingsSectionSubtitle: BalunTextStyles.matchStandingsSectionSubtitle.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchStandingsSectionText: BalunTextStyles.matchStandingsSectionText.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchStandingsSectionTextCompact: BalunTextStyles.matchStandingsSectionTextCompact.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchStandingsSectionForm: BalunTextStyles.matchStandingsSectionForm.copyWith(
-      color: lightAppColors.white,
+      color: lightAppColors.primaryBackground,
     ),
     matchEventsSectionTime: BalunTextStyles.matchEventsSectionTime.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     matchEventsSectionText: BalunTextStyles.matchEventsSectionText.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchEventsSectionResult: BalunTextStyles.matchEventsSectionResult.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchHighlightsVideoTitle: BalunTextStyles.matchHighlightsVideoTitle.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchHighlightsVideoChannel: BalunTextStyles.matchHighlightsVideoChannel.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchHighlightsVideoDescription: BalunTextStyles.matchHighlightsVideoDescription.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchHighlightsSimilarVideos: BalunTextStyles.matchHighlightsSimilarVideos.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchLineupsSectionTitle: BalunTextStyles.matchLineupsSectionTitle.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchLineupsSectionSubtitle: BalunTextStyles.matchLineupsSectionSubtitle.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchLineupsSectionText: BalunTextStyles.matchLineupsSectionText.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchLineupsSectionTextSmall: BalunTextStyles.matchLineupsSectionTextSmall.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     matchLineupsSectionPlayer: BalunTextStyles.matchLineupsSectionPlayer.copyWith(
-      color: lightAppColors.white,
+      color: lightAppColors.primaryBackground,
     ),
     matchLineupsSectionNumber: BalunTextStyles.matchLineupsSectionNumber.copyWith(
-      color: lightAppColors.white,
+      color: lightAppColors.primaryBackground,
     ),
     matchStatisticsSectionText: BalunTextStyles.matchStatisticsSectionText.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     matchStatisticsSectionNumber: BalunTextStyles.matchStatisticsSectionNumber.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchPlayerStatisticsName: BalunTextStyles.matchPlayerStatisticsName.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchPlayerStatisticsTitle: BalunTextStyles.matchPlayerStatisticsTitle.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     matchPlayerStatisticsText: BalunTextStyles.matchPlayerStatisticsText.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchPlayerStatisticsValue: BalunTextStyles.matchPlayerStatisticsValue.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchPlayerStatisticsRating: BalunTextStyles.matchPlayerStatisticsRating.copyWith(
-      color: lightAppColors.white,
+      color: lightAppColors.primaryBackground,
     ),
     matchH2HScore: BalunTextStyles.matchH2HScore.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchH2HTitle: BalunTextStyles.matchH2HTitle.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     matchH2HText: BalunTextStyles.matchH2HText.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     leagueName: BalunTextStyles.leagueName.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     leagueNameBold: BalunTextStyles.leagueNameBold.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     leagueCountry: BalunTextStyles.leagueCountry.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     leagueSeason: BalunTextStyles.leagueSeason.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     leagueTeamsTitle: BalunTextStyles.leagueTeamsTitle.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     leagueTeamsCountry: BalunTextStyles.leagueTeamsCountry.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     leagueTeamsFounded: BalunTextStyles.leagueTeamsFounded.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     leagueFixturesTitle: BalunTextStyles.leagueFixturesTitle.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     teamLeaguesSeason: BalunTextStyles.teamLeaguesSeason.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     teamFounded: BalunTextStyles.teamFounded.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     teamCoachCareerTeam: BalunTextStyles.teamCoachCareerTeam.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     teamCoachCareerTitle: BalunTextStyles.teamCoachCareerTitle.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     teamCoachCareerValue: BalunTextStyles.teamCoachCareerValue.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     teamTransferTeam: BalunTextStyles.teamTransferTeam.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     fixtureDatePickerActive: BalunTextStyles.fixtureDatePickerActive.copyWith(
-      color: lightAppColors.green.withValues(alpha: 0.5),
+      color: lightAppColors.accentStrong.withValues(alpha: 0.5),
     ),
     fixtureDatePickerInactive: BalunTextStyles.fixtureDatePickerInactive.copyWith(
-      color: lightAppColors.white,
+      color: lightAppColors.primaryBackground,
     ),
     seasonPickerActive: BalunTextStyles.seasonPickerActive.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     seasonPickerInactive: BalunTextStyles.seasonPickerInactive.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     searchPickerActive: BalunTextStyles.searchPickerActive.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     searchPickerInactive: BalunTextStyles.searchPickerInactive.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     searchTextField: BalunTextStyles.searchTextField.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     calendarDayActive: BalunTextStyles.calendarDayActive.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     calendarDayInactive: BalunTextStyles.calendarDayInactive.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     leaguesSubtitle: BalunTextStyles.leaguesSubtitle.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
     dialogButton: BalunTextStyles.dialogButton.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     dialogTitle: BalunTextStyles.dialogTitle.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     dialogText: BalunTextStyles.dialogText.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     dialogSubtitle: BalunTextStyles.dialogSubtitle.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     badgeNumber: BalunTextStyles.badgeNumber.copyWith(
-      color: lightAppColors.white,
+      color: lightAppColors.primaryBackground,
     ),
     matchLineupRating: BalunTextStyles.matchLineupRating.copyWith(
-      color: lightAppColors.white,
+      color: lightAppColors.primaryBackground,
     ),
     newsDateTime: BalunTextStyles.newsDateTime.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     newsTwoLetterSource: BalunTextStyles.newsTwoLetterSource.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     aboutAppName: BalunTextStyles.aboutAppName.copyWith(
-      color: lightAppColors.black,
+      color: lightAppColors.primaryForeground,
     ),
     aboutAppVersion: BalunTextStyles.aboutAppVersion.copyWith(
-      color: lightAppColors.black.withValues(alpha: 0.5),
+      color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
   );
 }

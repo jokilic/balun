@@ -21,74 +21,74 @@ class MatchSectionTitles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        height: 70,
-        child: ListView.separated(
-          key: const PageStorageKey('matchSectionTitles'),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
-          physics: const BouncingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemCount: MatchSectionEnum.values.length,
-          itemBuilder: (context, index) {
-            final section = MatchSection(
-              matchSectionEnum: MatchSectionEnum.values[index],
-            );
+    height: 70,
+    child: ListView.separated(
+      key: const PageStorageKey('matchSectionTitles'),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 8,
+      ),
+      physics: const BouncingScrollPhysics(),
+      scrollDirection: Axis.horizontal,
+      itemCount: MatchSectionEnum.values.length,
+      itemBuilder: (context, index) {
+        final section = MatchSection(
+          matchSectionEnum: MatchSectionEnum.values[index],
+        );
 
-            /// Hide [Highlights] section if:
-            /// a) Match is not finished
-            /// b) Remote value `hideHighlights` is enabled
-            /// c) Running the app on `web`
-            if (section ==
-                    MatchSection(
-                      matchSectionEnum: MatchSectionEnum.highlights,
-                    ) &&
-                (!matchFinished || getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb)) {
-              return const SizedBox.shrink();
-            }
+        /// Hide [Highlights] section if:
+        /// a) Match is not finished
+        /// b) Remote value `hideHighlights` is enabled
+        /// c) Running the app on `web`
+        if (section ==
+                MatchSection(
+                  matchSectionEnum: MatchSectionEnum.highlights,
+                ) &&
+            (!matchFinished || getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb)) {
+          return const SizedBox.shrink();
+        }
 
-            return BalunButton(
-              onPressed: () => titlePressed(section),
-              child: AnimatedContainer(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 32,
-                  vertical: 14,
-                ),
-                duration: BalunConstants.animationDuration,
-                curve: Curves.easeIn,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: activeMatchSection == section ? context.colors.black : context.colors.black.withValues(alpha: 0.075),
-                ),
-                child: Text(
-                  section.getMatchSectionName(),
-                  style: context.textStyles.matchSectionTitle.copyWith(
-                    color: activeMatchSection == section ? context.colors.white : context.colors.black,
-                  ),
-                ),
+        return BalunButton(
+          onPressed: () => titlePressed(section),
+          child: AnimatedContainer(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 32,
+              vertical: 14,
+            ),
+            duration: BalunConstants.animationDuration,
+            curve: Curves.easeIn,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: activeMatchSection == section ? context.colors.primaryForeground : context.colors.primaryForeground.withValues(alpha: 0.075),
+            ),
+            child: Text(
+              section.getMatchSectionName(),
+              style: context.textStyles.matchSectionTitle.copyWith(
+                color: activeMatchSection == section ? context.colors.primaryBackground : context.colors.primaryForeground,
               ),
-            );
-          },
-          separatorBuilder: (_, index) {
-            final section = MatchSection(
-              matchSectionEnum: MatchSectionEnum.values[index],
-            );
+            ),
+          ),
+        );
+      },
+      separatorBuilder: (_, index) {
+        final section = MatchSection(
+          matchSectionEnum: MatchSectionEnum.values[index],
+        );
 
-            /// Hide [Highlights] spacing if:
-            /// a) Match is not finished
-            /// b) Remote value `hideHighlights` is enabled
-            /// c) Running the app on `web`
-            if (section ==
-                    MatchSection(
-                      matchSectionEnum: MatchSectionEnum.highlights,
-                    ) &&
-                (!matchFinished || getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb)) {
-              return const SizedBox.shrink();
-            }
+        /// Hide [Highlights] spacing if:
+        /// a) Match is not finished
+        /// b) Remote value `hideHighlights` is enabled
+        /// c) Running the app on `web`
+        if (section ==
+                MatchSection(
+                  matchSectionEnum: MatchSectionEnum.highlights,
+                ) &&
+            (!matchFinished || getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb)) {
+          return const SizedBox.shrink();
+        }
 
-            return const SizedBox(width: 12);
-          },
-        ),
-      );
+        return const SizedBox(width: 12);
+      },
+    ),
+  );
 }

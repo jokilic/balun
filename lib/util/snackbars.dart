@@ -30,7 +30,7 @@ void showSnackbar(
             child: Text(
               text,
               style: context.textStyles.snackbar.copyWith(
-                color: context.colors.black,
+                color: context.colors.primaryForeground,
               ),
             ),
           ),
@@ -38,11 +38,11 @@ void showSnackbar(
         ],
       ),
       behavior: SnackBarBehavior.floating,
-      backgroundColor: context.colors.greenish,
+      backgroundColor: context.colors.accentLight,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
         side: BorderSide(
-          color: context.colors.black,
+          color: context.colors.primaryForeground,
           width: 2,
         ),
       ),

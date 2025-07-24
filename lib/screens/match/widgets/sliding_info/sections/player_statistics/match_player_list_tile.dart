@@ -26,8 +26,8 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
   var expanded = false;
 
   void toggleExpanded() => setState(
-        () => expanded = !expanded,
-      );
+    () => expanded = !expanded,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                       child: Text(
                         mixOrOriginalWords(widget.statisticData?.player?.name ?? '--') ?? '--',
                         style: context.textStyles.matchPlayerStatisticsName.copyWith(
-                          color: (substitute ?? false) && rating == null ? context.colors.black.withValues(alpha: 0.4) : null,
+                          color: (substitute ?? false) && rating == null ? context.colors.primaryForeground.withValues(alpha: 0.4) : null,
                         ),
                       ),
                     ),
@@ -139,7 +139,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                             context: context,
                           ),
                           border: Border.all(
-                            color: context.colors.black,
+                            color: context.colors.primaryForeground,
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(4),

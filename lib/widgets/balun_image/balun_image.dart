@@ -54,16 +54,16 @@ class BalunImage extends StatelessWidget {
             child: switch (state.extendedImageLoadState) {
               LoadState.completed => state.completedWidget,
               LoadState.loading => BalunImagePlaceholder(
-                  height: height,
-                  width: width,
-                  color: color,
-                  radius: radius,
-                ),
+                height: height,
+                width: width,
+                color: color,
+                radius: radius,
+              ),
               LoadState.failed => BalunImageError(
-                  height: height,
-                  width: width,
-                  radius: radius,
-                ),
+                height: height,
+                width: width,
+                radius: radius,
+              ),
             },
           ),
         );
@@ -122,7 +122,6 @@ class BalunImage extends StatelessWidget {
         ),
       );
     }
-
     ///
     /// NETWORK IMAGE
     ///
@@ -145,16 +144,16 @@ class BalunImage extends StatelessWidget {
             child: switch (state.extendedImageLoadState) {
               LoadState.completed => state.completedWidget,
               LoadState.loading => BalunImagePlaceholder(
-                  height: height,
-                  width: width,
-                  color: color,
-                  radius: radius,
-                ),
+                height: height,
+                width: width,
+                color: color,
+                radius: radius,
+              ),
               LoadState.failed => BalunImageError(
-                  height: height,
-                  width: width,
-                  radius: radius,
-                ),
+                height: height,
+                width: width,
+                radius: radius,
+              ),
             },
           ),
         );
@@ -200,43 +199,43 @@ class BalunImagePlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Animate(
-        onPlay: animate
-            ? (controller) => controller.loop(
-                  reverse: true,
-                  min: 0.6,
-                )
-            : null,
-        effects: animate
-            ? const [
-                FadeEffect(
-                  curve: Curves.easeIn,
-                  duration: BalunConstants.shimmerDuration,
-                ),
-              ]
-            : null,
-        child: Container(
-          padding: const EdgeInsets.all(6),
-          height: height,
-          width: width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(radius),
-            color: color ?? getRandomBalunColor(context),
-          ),
-          child: animate
-              ? null
-              : ClipRRect(
-                  borderRadius: BorderRadius.circular(radius),
-                  child: BalunImage(
-                    imageUrl: BalunIcons.ballNavigation,
-                    color: context.colors.black,
-                    height: height,
-                    width: width,
-                    fit: fit,
-                    radius: radius,
-                  ),
-                ),
-        ),
-      );
+    onPlay: animate
+        ? (controller) => controller.loop(
+            reverse: true,
+            min: 0.6,
+          )
+        : null,
+    effects: animate
+        ? const [
+            FadeEffect(
+              curve: Curves.easeIn,
+              duration: BalunConstants.shimmerDuration,
+            ),
+          ]
+        : null,
+    child: Container(
+      padding: const EdgeInsets.all(6),
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(radius),
+        color: color ?? getRandomBalunColor(context),
+      ),
+      child: animate
+          ? null
+          : ClipRRect(
+              borderRadius: BorderRadius.circular(radius),
+              child: BalunImage(
+                imageUrl: BalunIcons.ballNavigation,
+                color: context.colors.primaryForeground,
+                height: height,
+                width: width,
+                fit: fit,
+                radius: radius,
+              ),
+            ),
+    ),
+  );
 }
 
 class BalunImageError extends StatelessWidget {
@@ -255,17 +254,17 @@ class BalunImageError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        height: height,
-        width: width,
-        padding: EdgeInsets.all(
-          height != null ? height! / 6 : 6,
-        ),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: context.colors.red,
-            width: 2,
-          ),
-          borderRadius: BorderRadius.circular(radius),
-        ),
-      );
+    height: height,
+    width: width,
+    padding: EdgeInsets.all(
+      height != null ? height! / 6 : 6,
+    ),
+    decoration: BoxDecoration(
+      border: Border.all(
+        color: context.colors.danger,
+        width: 2,
+      ),
+      borderRadius: BorderRadius.circular(radius),
+    ),
+  );
 }

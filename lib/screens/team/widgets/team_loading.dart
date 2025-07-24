@@ -29,51 +29,51 @@ class _TeamLoadingState extends State<TeamLoading> {
 
   @override
   Widget build(BuildContext context) => Stack(
-        children: [
-          ///
-          /// TOP CONTENT
-          ///
-          Animate(
-            onPlay: (controller) => controller.loop(
-              reverse: true,
-              min: 0.6,
-            ),
-            effects: const [
-              FadeEffect(
-                curve: Curves.easeIn,
-                duration: BalunConstants.shimmerDuration,
-              ),
-            ],
-            child: TeamMainInfoLoading(),
-          ),
-
-          ///
-          /// SLIDING CONTENT
-          ///
-          SlidingUpPanel(
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(40),
-            ),
-            scrollController: scrollController,
-            color: context.colors.white,
-            minHeight: 336,
-            maxHeight: MediaQuery.sizeOf(context).height - 144,
-            panelBuilder: () => Animate(
-              onPlay: (controller) => controller.loop(
-                reverse: true,
-                min: 0.6,
-              ),
-              effects: const [
-                FadeEffect(
-                  curve: Curves.easeIn,
-                  duration: BalunConstants.shimmerDuration,
-                ),
-              ],
-              child: TeamSlidingInfoLoading(
-                scrollController: scrollController,
-              ),
-            ),
+    children: [
+      ///
+      /// TOP CONTENT
+      ///
+      Animate(
+        onPlay: (controller) => controller.loop(
+          reverse: true,
+          min: 0.6,
+        ),
+        effects: const [
+          FadeEffect(
+            curve: Curves.easeIn,
+            duration: BalunConstants.shimmerDuration,
           ),
         ],
-      );
+        child: TeamMainInfoLoading(),
+      ),
+
+      ///
+      /// SLIDING CONTENT
+      ///
+      SlidingUpPanel(
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(40),
+        ),
+        scrollController: scrollController,
+        color: context.colors.primaryBackground,
+        minHeight: 336,
+        maxHeight: MediaQuery.sizeOf(context).height - 144,
+        panelBuilder: () => Animate(
+          onPlay: (controller) => controller.loop(
+            reverse: true,
+            min: 0.6,
+          ),
+          effects: const [
+            FadeEffect(
+              curve: Curves.easeIn,
+              duration: BalunConstants.shimmerDuration,
+            ),
+          ],
+          child: TeamSlidingInfoLoading(
+            scrollController: scrollController,
+          ),
+        ),
+      ),
+    ],
+  );
 }

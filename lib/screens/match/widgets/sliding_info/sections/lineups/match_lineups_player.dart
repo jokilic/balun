@@ -71,20 +71,23 @@ class MatchLineupsPlayer extends StatelessWidget {
       /// Set player sizes & colors
       const playerSize = 32.0;
 
-      final playerPrimaryColor = textToColor(
+      final playerPrimaryColor =
+          textToColor(
             player?.player?.pos == 'G' ? playerColors?.goalkeeper?.primary : playerColors?.player?.primary,
           ) ??
-          context.colors.white;
+          context.colors.primaryBackground;
 
-      final playerBorderColor = textToColor(
+      final playerBorderColor =
+          textToColor(
             player?.player?.pos == 'G' ? playerColors?.goalkeeper?.border : playerColors?.player?.border,
           ) ??
-          context.colors.white;
+          context.colors.primaryBackground;
 
-      final playerNumberColor = textToColor(
+      final playerNumberColor =
+          textToColor(
             player?.player?.pos == 'G' ? playerColors?.goalkeeper?.number : playerColors?.player?.number,
           ) ??
-          context.colors.black;
+          context.colors.primaryForeground;
 
       final goals = playerStatistic?.statistic?.fold(
         0,
@@ -110,10 +113,10 @@ class MatchLineupsPlayer extends StatelessWidget {
         child: BalunButton(
           onPressed: player?.player?.id != null
               ? () => openPlayer(
-                    context,
-                    playerId: player!.player!.id!,
-                    season: season,
-                  )
+                  context,
+                  playerId: player!.player!.id!,
+                  season: season,
+                )
               : null,
           child: Stack(
             alignment: Alignment.center,
@@ -167,7 +170,7 @@ class MatchLineupsPlayer extends StatelessWidget {
                     imageUrl: BalunIcons.ball,
                     height: 20,
                     width: 20,
-                    color: context.colors.white,
+                    color: context.colors.primaryBackground,
                   ),
                 ),
 
@@ -209,7 +212,7 @@ class MatchLineupsPlayer extends StatelessWidget {
                     bottom: -6,
                     child: BalunImage(
                       imageUrl: BalunIcons.playerOut,
-                      color: context.colors.red,
+                      color: context.colors.danger,
                       height: 24,
                       width: 24,
                     ),
@@ -230,7 +233,7 @@ class MatchLineupsPlayer extends StatelessWidget {
                           context: context,
                         ),
                         border: Border.all(
-                          color: context.colors.black,
+                          color: context.colors.primaryForeground,
                           width: 2,
                         ),
                         borderRadius: BorderRadius.circular(4),

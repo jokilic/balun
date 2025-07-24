@@ -10,60 +10,60 @@ import '../../../../../../widgets/balun_seperator.dart';
 class LeagueTopYellowCardsLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Animate(
-        onPlay: (controller) => controller.loop(
-          reverse: true,
-          min: 0.6,
-        ),
-        effects: const [
-          FadeEffect(
-            curve: Curves.easeIn,
-            duration: BalunConstants.shimmerDuration,
-          ),
-        ],
-        child: ListView.separated(
-          shrinkWrap: true,
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 12,
-          itemBuilder: (_, __) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            child: Row(
+    onPlay: (controller) => controller.loop(
+      reverse: true,
+      min: 0.6,
+    ),
+    effects: const [
+      FadeEffect(
+        curve: Curves.easeIn,
+        duration: BalunConstants.shimmerDuration,
+      ),
+    ],
+    child: ListView.separated(
+      shrinkWrap: true,
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 12,
+      itemBuilder: (_, __) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Row(
+          children: [
+            Container(
+              height: 48,
+              width: 48,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: getRandomBalunColor(context),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 48,
-                  width: 48,
+                  height: 20,
+                  width: getRandomNumberFromBase(144),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: getRandomBalunColor(context),
+                    borderRadius: BorderRadius.circular(8),
+                    color: context.colors.primaryForeground.withValues(alpha: 0.25),
                   ),
                 ),
-                const SizedBox(width: 12),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 20,
-                      width: getRandomNumberFromBase(144),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: context.colors.black.withValues(alpha: 0.25),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Container(
-                      height: 12,
-                      width: getRandomNumberFromBase(96),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: context.colors.black.withValues(alpha: 0.15),
-                      ),
-                    ),
-                  ],
+                const SizedBox(height: 8),
+                Container(
+                  height: 12,
+                  width: getRandomNumberFromBase(96),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: context.colors.primaryForeground.withValues(alpha: 0.15),
+                  ),
                 ),
               ],
             ),
-          ),
-          separatorBuilder: (_, __) => const BalunSeperator(),
+          ],
         ),
-      );
+      ),
+      separatorBuilder: (_, __) => const BalunSeperator(),
+    ),
+  );
 }

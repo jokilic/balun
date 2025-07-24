@@ -56,7 +56,7 @@ class _AboutContentState extends State<AboutContent> {
             width: 160,
             decoration: BoxDecoration(
               border: Border.all(
-                color: context.colors.black,
+                color: context.colors.primaryForeground,
                 width: 2,
               ),
               shape: BoxShape.circle,
@@ -85,9 +85,9 @@ class _AboutContentState extends State<AboutContent> {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
-              color: context.colors.white.withValues(alpha: 0.4),
+              color: context.colors.primaryBackground.withValues(alpha: 0.4),
               border: Border.all(
-                color: context.colors.black,
+                color: context.colors.primaryForeground,
                 width: 2,
               ),
             ),
@@ -98,7 +98,7 @@ class _AboutContentState extends State<AboutContent> {
                   imageUrl: BalunIcons.website,
                   height: 24,
                   width: 24,
-                  color: context.colors.black,
+                  color: context.colors.primaryForeground,
                 ),
                 const SizedBox(width: 8),
                 Text(
@@ -133,9 +133,9 @@ class _AboutContentState extends State<AboutContent> {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: context.colors.white.withValues(alpha: 0.4),
+                color: context.colors.primaryBackground.withValues(alpha: 0.4),
                 border: Border.all(
-                  color: context.colors.black,
+                  color: context.colors.primaryForeground,
                   width: 2,
                 ),
               ),
@@ -146,7 +146,7 @@ class _AboutContentState extends State<AboutContent> {
                     imageUrl: BalunIcons.programming,
                     height: 24,
                     width: 24,
-                    color: context.colors.black,
+                    color: context.colors.primaryForeground,
                   ),
                   const SizedBox(width: 8),
                   Text(
@@ -181,9 +181,9 @@ class _AboutContentState extends State<AboutContent> {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: context.colors.white.withValues(alpha: 0.4),
+                color: context.colors.primaryBackground.withValues(alpha: 0.4),
                 border: Border.all(
-                  color: context.colors.black,
+                  color: context.colors.primaryForeground,
                   width: 2,
                 ),
               ),
@@ -194,7 +194,7 @@ class _AboutContentState extends State<AboutContent> {
                     imageUrl: BalunIcons.mail,
                     height: 24,
                     width: 24,
-                    color: context.colors.black,
+                    color: context.colors.primaryForeground,
                   ),
                   const SizedBox(width: 8),
                   Text(
@@ -270,7 +270,7 @@ class _AboutContentState extends State<AboutContent> {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: context.colors.black,
+                  color: context.colors.primaryForeground,
                   width: 2,
                 ),
               ),

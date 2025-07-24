@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../theme/theme.dart';
 
 Color? getPositionColor(String position, {required BuildContext context}) => switch (position.toLowerCase()) {
-      'goalkeeper' => context.colors.orange,
-      'defender' => context.colors.blue,
-      'midfielder' => context.colors.green,
-      'attacker' => context.colors.red,
-      _ => context.colors.black,
-    };
+  'goalkeeper' => context.colors.alert,
+  'defender' => context.colors.info,
+  'midfielder' => context.colors.accentStrong,
+  'attacker' => context.colors.danger,
+  _ => context.colors.primaryForeground,
+};
 
 String? getPositionText(String position) => position.substring(0, 1).toUpperCase();

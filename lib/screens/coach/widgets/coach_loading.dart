@@ -29,51 +29,51 @@ class _CoachLoadingState extends State<CoachLoading> {
 
   @override
   Widget build(BuildContext context) => Stack(
-        children: [
-          ///
-          /// TOP CONTENT
-          ///
-          Animate(
-            onPlay: (controller) => controller.loop(
-              reverse: true,
-              min: 0.6,
-            ),
-            effects: const [
-              FadeEffect(
-                curve: Curves.easeIn,
-                duration: BalunConstants.shimmerDuration,
-              ),
-            ],
-            child: CoachMainInfoLoading(),
-          ),
-
-          ///
-          /// SLIDING CONTENT
-          ///
-          SlidingUpPanel(
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(40),
-            ),
-            scrollController: scrollController,
-            color: context.colors.white,
-            minHeight: 400,
-            maxHeight: MediaQuery.sizeOf(context).height - 144,
-            panelBuilder: () => Animate(
-              onPlay: (controller) => controller.loop(
-                reverse: true,
-                min: 0.6,
-              ),
-              effects: const [
-                FadeEffect(
-                  curve: Curves.easeIn,
-                  duration: BalunConstants.shimmerDuration,
-                ),
-              ],
-              child: CoachSlidingInfoLoading(
-                scrollController: scrollController,
-              ),
-            ),
+    children: [
+      ///
+      /// TOP CONTENT
+      ///
+      Animate(
+        onPlay: (controller) => controller.loop(
+          reverse: true,
+          min: 0.6,
+        ),
+        effects: const [
+          FadeEffect(
+            curve: Curves.easeIn,
+            duration: BalunConstants.shimmerDuration,
           ),
         ],
-      );
+        child: CoachMainInfoLoading(),
+      ),
+
+      ///
+      /// SLIDING CONTENT
+      ///
+      SlidingUpPanel(
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(40),
+        ),
+        scrollController: scrollController,
+        color: context.colors.primaryBackground,
+        minHeight: 400,
+        maxHeight: MediaQuery.sizeOf(context).height - 144,
+        panelBuilder: () => Animate(
+          onPlay: (controller) => controller.loop(
+            reverse: true,
+            min: 0.6,
+          ),
+          effects: const [
+            FadeEffect(
+              curve: Curves.easeIn,
+              duration: BalunConstants.shimmerDuration,
+            ),
+          ],
+          child: CoachSlidingInfoLoading(
+            scrollController: scrollController,
+          ),
+        ),
+      ),
+    ],
+  );
 }

@@ -37,10 +37,10 @@ class MatchLineupListTile extends StatelessWidget {
     return BalunButton(
       onPressed: player?.id != null
           ? () => openPlayer(
-                context,
-                playerId: player!.id!,
-                season: season,
-              )
+              context,
+              playerId: player!.id!,
+              season: season,
+            )
           : null,
       child: Container(
         color: Colors.transparent,
@@ -56,25 +56,28 @@ class MatchLineupListTile extends StatelessWidget {
               width: 32,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: textToColor(
+                color:
+                    textToColor(
                       player?.pos == 'G' ? colors?.goalkeeper?.primary : colors?.player?.primary,
                     ) ??
-                    context.colors.white,
+                    context.colors.primaryBackground,
                 border: Border.all(
-                  color: textToColor(
+                  color:
+                      textToColor(
                         player?.pos == 'G' ? colors?.goalkeeper?.border : colors?.player?.border,
                       ) ??
-                      context.colors.white,
+                      context.colors.primaryBackground,
                   width: 2.5,
                 ),
               ),
               child: Text(
                 '${player?.number ?? '-'}',
                 style: context.textStyles.matchLineupsSectionNumber.copyWith(
-                  color: textToColor(
+                  color:
+                      textToColor(
                         player?.pos == 'G' ? colors?.goalkeeper?.number : colors?.player?.number,
                       ) ??
-                      context.colors.black,
+                      context.colors.primaryForeground,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -101,11 +104,11 @@ class MatchLineupListTile extends StatelessWidget {
                 const SizedBox(width: 4),
                 BalunImage(
                   imageUrl: BalunIcons.playerIn,
-                  color: context.colors.green,
+                  color: context.colors.accentStrong,
                   height: 24,
                   width: 24,
                 ),
-              ]
+              ],
           ],
         ),
       ),

@@ -29,44 +29,44 @@ class _MatchLoadingState extends State<MatchLoading> {
 
   @override
   Widget build(BuildContext context) => Stack(
-        children: [
-          Animate(
-            onPlay: (controller) => controller.loop(
-              reverse: true,
-              min: 0.6,
-            ),
-            effects: const [
-              FadeEffect(
-                curve: Curves.easeIn,
-                duration: BalunConstants.shimmerDuration,
-              ),
-            ],
-            child: MatchMainInfoLoading(),
-          ),
-          SlidingUpPanel(
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(40),
-            ),
-            scrollController: scrollController,
-            color: context.colors.white,
-            minHeight: 400,
-            maxHeight: MediaQuery.sizeOf(context).height - 144,
-            panelBuilder: () => Animate(
-              onPlay: (controller) => controller.loop(
-                reverse: true,
-                min: 0.6,
-              ),
-              effects: const [
-                FadeEffect(
-                  curve: Curves.easeIn,
-                  duration: BalunConstants.shimmerDuration,
-                ),
-              ],
-              child: MatchSlidingInfoLoading(
-                scrollController: scrollController,
-              ),
-            ),
+    children: [
+      Animate(
+        onPlay: (controller) => controller.loop(
+          reverse: true,
+          min: 0.6,
+        ),
+        effects: const [
+          FadeEffect(
+            curve: Curves.easeIn,
+            duration: BalunConstants.shimmerDuration,
           ),
         ],
-      );
+        child: MatchMainInfoLoading(),
+      ),
+      SlidingUpPanel(
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(40),
+        ),
+        scrollController: scrollController,
+        color: context.colors.primaryBackground,
+        minHeight: 400,
+        maxHeight: MediaQuery.sizeOf(context).height - 144,
+        panelBuilder: () => Animate(
+          onPlay: (controller) => controller.loop(
+            reverse: true,
+            min: 0.6,
+          ),
+          effects: const [
+            FadeEffect(
+              curve: Curves.easeIn,
+              duration: BalunConstants.shimmerDuration,
+            ),
+          ],
+          child: MatchSlidingInfoLoading(
+            scrollController: scrollController,
+          ),
+        ),
+      ),
+    ],
+  );
 }

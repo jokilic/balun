@@ -1,61 +1,63 @@
 import 'package:flutter/material.dart';
 
 abstract class BalunColors {
-  static const white = Color(0xFFFFFFFF);
-  static const black = Color(0xFF292928);
-  static const grey = Color(0xFF303131);
-  static const greenish = Color(0xFFBFCABD);
-  static const red = Color(0xFFED3B3B);
-  static const green = Color(0xFF417B5A);
-  static const blue = Color(0xFF016FB9);
-  static const yellow = Color(0xFFFCC938);
-  static const orange = Color(0xFFFF9505);
+  static const primaryBackground = Color(0xFFFFFFFF);
+  static const primaryForeground = Color(0xFF292928);
+  static const secondaryBackground = Color(0xFF303131);
+
+  static const accentLight = Color(0xFFBFCABD);
+  static const accentStrong = Color(0xFF417B5A);
+
+  static const danger = Color(0xFFED3B3B);
+  static const info = Color(0xFF016FB9);
+  static const warning = Color(0xFFFCC938);
+  static const alert = Color(0xFFFF9505);
 }
 
 class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
-  final Color white;
-  final Color black;
-  final Color grey;
-  final Color greenish;
-  final Color red;
-  final Color green;
-  final Color blue;
-  final Color yellow;
-  final Color orange;
+  final Color primaryBackground;
+  final Color primaryForeground;
+  final Color secondaryBackground;
+  final Color accentLight;
+  final Color accentStrong;
+  final Color danger;
+  final Color info;
+  final Color warning;
+  final Color alert;
 
   BalunColorsExtension({
-    required this.white,
-    required this.black,
-    required this.grey,
-    required this.greenish,
-    required this.red,
-    required this.green,
-    required this.blue,
-    required this.yellow,
-    required this.orange,
+    required this.primaryBackground,
+    required this.primaryForeground,
+    required this.secondaryBackground,
+    required this.accentLight,
+    required this.accentStrong,
+    required this.danger,
+    required this.info,
+    required this.warning,
+    required this.alert,
   });
 
   @override
   ThemeExtension<BalunColorsExtension> copyWith({
-    Color? white,
-    Color? black,
-    Color? grey,
-    Color? greenish,
-    Color? red,
-    Color? green,
-    Color? blue,
-    Color? yellow,
-    Color? orange,
+    Color? primaryBackground,
+    Color? primaryForeground,
+    Color? secondaryBackground,
+    Color? accentLight,
+    Color? accentStrong,
+    Color? danger,
+    Color? info,
+    Color? warning,
+    Color? alert,
   }) => BalunColorsExtension(
-    white: white ?? this.white,
-    black: black ?? this.black,
-    grey: grey ?? this.grey,
-    greenish: greenish ?? this.greenish,
-    red: red ?? this.red,
-    green: green ?? this.green,
-    blue: blue ?? this.blue,
-    yellow: yellow ?? this.yellow,
-    orange: orange ?? this.orange,
+    primaryBackground: primaryBackground ?? this.primaryBackground,
+    primaryForeground: primaryForeground ?? this.primaryForeground,
+    secondaryBackground: secondaryBackground ?? this.secondaryBackground,
+    accentLight: accentLight ?? this.accentLight,
+    accentStrong: accentStrong ?? this.accentStrong,
+    danger: danger ?? this.danger,
+    info: info ?? this.info,
+    warning: warning ?? this.warning,
+    alert: alert ?? this.alert,
   );
 
   @override
@@ -68,15 +70,15 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     }
 
     return BalunColorsExtension(
-      white: Color.lerp(white, other.white, t)!,
-      black: Color.lerp(black, other.black, t)!,
-      grey: Color.lerp(grey, other.grey, t)!,
-      greenish: Color.lerp(greenish, other.greenish, t)!,
-      red: Color.lerp(red, other.red, t)!,
-      green: Color.lerp(green, other.green, t)!,
-      blue: Color.lerp(blue, other.blue, t)!,
-      yellow: Color.lerp(yellow, other.yellow, t)!,
-      orange: Color.lerp(orange, other.orange, t)!,
+      primaryBackground: Color.lerp(primaryBackground, other.primaryBackground, t)!,
+      primaryForeground: Color.lerp(primaryForeground, other.primaryForeground, t)!,
+      secondaryBackground: Color.lerp(secondaryBackground, other.secondaryBackground, t)!,
+      accentLight: Color.lerp(accentLight, other.accentLight, t)!,
+      accentStrong: Color.lerp(accentStrong, other.accentStrong, t)!,
+      danger: Color.lerp(danger, other.danger, t)!,
+      info: Color.lerp(info, other.info, t)!,
+      warning: Color.lerp(warning, other.warning, t)!,
+      alert: Color.lerp(alert, other.alert, t)!,
     );
   }
 }

@@ -87,8 +87,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
 
   @override
   Widget build(BuildContext context) {
-    final favoritedLeagues = watchIt<LeagueStorageService>()
-        .value
+    final favoritedLeagues = watchIt<LeagueStorageService>().value
         .map(
           (league) => League(
             id: league.id,
@@ -161,7 +160,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                   proxyDecorator: (child, _, __) => ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Material(
-                      color: context.colors.white.withValues(alpha: 0.4),
+                      color: context.colors.primaryBackground.withValues(alpha: 0.4),
                       child: child,
                     ),
                   ),
@@ -183,10 +182,10 @@ class _FavoritesContentState extends State<FavoritesContent> {
                       key: ValueKey(league),
                       onPressed: league.id != null
                           ? () => openLeague(
-                                context,
-                                leagueId: league.id!,
-                                season: league.season ?? getCurrentSeasonYear().toString(),
-                              )
+                              context,
+                              leagueId: league.id!,
+                              season: league.season ?? getCurrentSeasonYear().toString(),
+                            )
                           : null,
                       child: Container(
                         color: Colors.transparent,
@@ -246,7 +245,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                   proxyDecorator: (child, _, __) => ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Material(
-                      color: context.colors.white.withValues(alpha: 0.4),
+                      color: context.colors.primaryBackground.withValues(alpha: 0.4),
                       child: child,
                     ),
                   ),
@@ -268,10 +267,10 @@ class _FavoritesContentState extends State<FavoritesContent> {
                       key: ValueKey(team),
                       onPressed: team.id != null
                           ? () => openTeam(
-                                context,
-                                teamId: team.id!,
-                                season: getCurrentSeasonYear().toString(),
-                              )
+                              context,
+                              teamId: team.id!,
+                              season: getCurrentSeasonYear().toString(),
+                            )
                           : null,
                       child: Container(
                         color: Colors.transparent,

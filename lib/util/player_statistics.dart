@@ -5,16 +5,16 @@ import '../theme/theme.dart';
 Color? getRatingColor(double rating, {required BuildContext context}) {
   switch (rating) {
     case >= 9.0:
-      return context.colors.blue;
+      return context.colors.info;
     case < 9.0 && >= 7.0:
-      return context.colors.green;
+      return context.colors.accentStrong;
     case < 7.0 && >= 6.5:
-      return context.colors.yellow;
+      return context.colors.warning;
     case < 6.5 && >= 5.5:
-      return context.colors.orange;
+      return context.colors.alert;
     case < 5.5:
-      return context.colors.red;
+      return context.colors.danger;
     default:
-      return context.colors.blue;
+      return context.colors.info;
   }
 }

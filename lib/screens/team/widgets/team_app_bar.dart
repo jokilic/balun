@@ -24,91 +24,91 @@ class TeamAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-        children: [
-          ///
-          /// BACK
-          ///
-          BalunButton(
-            onPressed: onBackPressed,
-            child: Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: context.colors.white.withValues(alpha: 0.4),
-              ),
-              child: const BalunImage(
-                imageUrl: BalunIcons.back,
-                height: 32,
-                width: 32,
-              ),
-            ),
+    children: [
+      ///
+      /// BACK
+      ///
+      BalunButton(
+        onPressed: onBackPressed,
+        child: Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: context.colors.primaryBackground.withValues(alpha: 0.4),
           ),
-
-          const SizedBox(width: 14),
-
-          ///
-          /// TEXT
-          ///
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (team?.name != null)
-                  Text(
-                    mixOrOriginalWords(team!.name) ?? '---',
-                    style: context.textStyles.matchLeagueName,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                if (team?.country != null)
-                  Text(
-                    mixOrOriginalWords(
-                          getCountryName(
-                            country: team!.country!,
-                          ),
-                        ) ??
-                        '---',
-                    style: context.textStyles.matchLeagueRound,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-              ],
-            ),
+          child: const BalunImage(
+            imageUrl: BalunIcons.back,
+            height: 32,
+            width: 32,
           ),
+        ),
+      ),
 
-          ///
-          /// FAVORITE
-          ///
-          const SizedBox(width: 14),
+      const SizedBox(width: 14),
 
-          BalunButton(
-            onPressed: onFavoritePressed,
-            child: Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: context.colors.white.withValues(alpha: 0.4),
+      ///
+      /// TEXT
+      ///
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (team?.name != null)
+              Text(
+                mixOrOriginalWords(team!.name) ?? '---',
+                style: context.textStyles.matchLeagueName,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
-              child: AnimatedSwitcher(
-                duration: BalunConstants.longAnimationDuration,
-                switchInCurve: Curves.easeIn,
-                switchOutCurve: Curves.easeIn,
-                child: isFavorited
-                    ? const BalunImage(
-                        key: ValueKey('yes'),
-                        imageUrl: BalunIcons.favoriteYes,
-                        height: 32,
-                        width: 32,
-                      )
-                    : const BalunImage(
-                        key: ValueKey('no'),
-                        imageUrl: BalunIcons.favoriteNo,
-                        height: 32,
-                        width: 32,
+            if (team?.country != null)
+              Text(
+                mixOrOriginalWords(
+                      getCountryName(
+                        country: team!.country!,
                       ),
+                    ) ??
+                    '---',
+                style: context.textStyles.matchLeagueRound,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-            ),
+          ],
+        ),
+      ),
+
+      ///
+      /// FAVORITE
+      ///
+      const SizedBox(width: 14),
+
+      BalunButton(
+        onPressed: onFavoritePressed,
+        child: Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: context.colors.primaryBackground.withValues(alpha: 0.4),
           ),
-        ],
-      );
+          child: AnimatedSwitcher(
+            duration: BalunConstants.longAnimationDuration,
+            switchInCurve: Curves.easeIn,
+            switchOutCurve: Curves.easeIn,
+            child: isFavorited
+                ? const BalunImage(
+                    key: ValueKey('yes'),
+                    imageUrl: BalunIcons.favoriteYes,
+                    height: 32,
+                    width: 32,
+                  )
+                : const BalunImage(
+                    key: ValueKey('no'),
+                    imageUrl: BalunIcons.favoriteNo,
+                    height: 32,
+                    width: 32,
+                  ),
+          ),
+        ),
+      ),
+    ],
+  );
 }

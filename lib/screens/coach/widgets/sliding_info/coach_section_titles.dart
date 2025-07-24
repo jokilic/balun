@@ -16,44 +16,44 @@ class CoachSectionTitles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        height: 70,
-        child: ListView.separated(
-          key: const PageStorageKey('coachSectionTitles'),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
-          physics: const BouncingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemCount: CoachSectionEnum.values.length,
-          itemBuilder: (context, index) {
-            final section = CoachSection(
-              coachSectionEnum: CoachSectionEnum.values[index],
-            );
+    height: 70,
+    child: ListView.separated(
+      key: const PageStorageKey('coachSectionTitles'),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 8,
+      ),
+      physics: const BouncingScrollPhysics(),
+      scrollDirection: Axis.horizontal,
+      itemCount: CoachSectionEnum.values.length,
+      itemBuilder: (context, index) {
+        final section = CoachSection(
+          coachSectionEnum: CoachSectionEnum.values[index],
+        );
 
-            return BalunButton(
-              onPressed: () => titlePressed(section),
-              child: AnimatedContainer(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 32,
-                  vertical: 14,
-                ),
-                duration: BalunConstants.animationDuration,
-                curve: Curves.easeIn,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: activeCoachSection == section ? context.colors.black : context.colors.black.withValues(alpha: 0.075),
-                ),
-                child: Text(
-                  section.getCoachSectionName(),
-                  style: context.textStyles.matchSectionTitle.copyWith(
-                    color: activeCoachSection == section ? context.colors.white : context.colors.black,
-                  ),
-                ),
+        return BalunButton(
+          onPressed: () => titlePressed(section),
+          child: AnimatedContainer(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 32,
+              vertical: 14,
+            ),
+            duration: BalunConstants.animationDuration,
+            curve: Curves.easeIn,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: activeCoachSection == section ? context.colors.primaryForeground : context.colors.primaryForeground.withValues(alpha: 0.075),
+            ),
+            child: Text(
+              section.getCoachSectionName(),
+              style: context.textStyles.matchSectionTitle.copyWith(
+                color: activeCoachSection == section ? context.colors.primaryBackground : context.colors.primaryForeground,
               ),
-            );
-          },
-          separatorBuilder: (_, __) => const SizedBox(width: 12),
-        ),
-      );
+            ),
+          ),
+        );
+      },
+      separatorBuilder: (_, __) => const SizedBox(width: 12),
+    ),
+  );
 }

@@ -40,15 +40,15 @@ class _BalunLoaderState extends State<BalunLoader> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
-        animation: controller,
-        builder: (_, child) => Transform.rotate(
-          angle: controller.value * 2 * pi,
-          child: BalunImage(
-            imageUrl: BalunIcons.ball,
-            height: widget.size,
-            width: widget.size,
-            color: widget.color ?? context.colors.white,
-          ),
-        ),
-      );
+    animation: controller,
+    builder: (_, child) => Transform.rotate(
+      angle: controller.value * 2 * pi,
+      child: BalunImage(
+        imageUrl: BalunIcons.ball,
+        height: widget.size,
+        width: widget.size,
+        color: widget.color ?? context.colors.primaryBackground,
+      ),
+    ),
+  );
 }

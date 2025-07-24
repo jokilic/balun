@@ -66,11 +66,11 @@ class FixturesSuccess extends WatchingWidget {
 
     return BallRefreshIndicator(
       ballColors: [
-        context.colors.black,
+        context.colors.primaryForeground,
       ],
-      backgroundColor: context.colors.white,
-      arrowColor: context.colors.black,
-      ballBorderColor: context.colors.black,
+      backgroundColor: context.colors.primaryBackground,
+      arrowColor: context.colors.primaryForeground,
+      ballBorderColor: context.colors.primaryForeground,
       ballRadius: 32,
       strokeWidth: 3.5,
       onRefresh: () => getIt
@@ -110,7 +110,7 @@ class FixturesSuccess extends WatchingWidget {
               child: FixturesAppBar(
                 onPressed: () => showDialog(
                   context: context,
-                  barrierColor: context.colors.black.withValues(alpha: 0.5),
+                  barrierColor: context.colors.primaryForeground.withValues(alpha: 0.5),
                   builder: (context) => FixturesFavoriteDialog(
                     onPressed: Navigator.of(context).pop,
                   ),
@@ -163,7 +163,7 @@ class FixturesSuccess extends WatchingWidget {
               child: FixturesAppBar(
                 onPressed: () => showDialog(
                   context: context,
-                  barrierColor: context.colors.black.withValues(alpha: 0.5),
+                  barrierColor: context.colors.primaryForeground.withValues(alpha: 0.5),
                   builder: (context) => FixturesAllDialog(
                     onPressed: Navigator.of(context).pop,
                   ),

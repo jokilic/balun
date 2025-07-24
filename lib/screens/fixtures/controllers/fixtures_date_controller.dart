@@ -68,7 +68,8 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
     7,
     (index) => currentDate.add(
       Duration(
-        days: index -
+        days:
+            index -
             getIt
                 .get<FixturesDateController>(
                   instanceName: 'fixtures',
@@ -99,70 +100,70 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
   }
 
   Future<void> updateDateViaPickerAndRefetch(BuildContext context) async => showCalendarDatePicker2Dialog(
-        context: context,
-        onValueChanged: (newValue) async {
-          final chosenDate = newValue.first;
+    context: context,
+    onValueChanged: (newValue) async {
+      final chosenDate = newValue.first;
 
-          if (chosenDate != null && value != chosenDate) {
-            Navigator.of(context).pop();
+      if (chosenDate != null && value != chosenDate) {
+        Navigator.of(context).pop();
 
-            value = chosenDate;
+        value = chosenDate;
 
-            await getIt
-                .get<FixturesController>(
-                  instanceName: 'fixtures',
-                )
-                .getFixturesFromDate(
-                  dateString: getDateForBackend(chosenDate),
-                );
-          }
-        },
-        config: CalendarDatePicker2WithActionButtonsConfig(
-          weekdayLabelTextStyle: context.textStyles.teamTransferTeam,
-          controlsTextStyle: context.textStyles.teamTransferTeam,
-          dayTextStyle: context.textStyles.calendarDayInactive,
-          todayTextStyle: context.textStyles.calendarDayActive,
-          selectedDayTextStyle: context.textStyles.calendarDayActive.copyWith(
-            color: context.colors.white,
-          ),
-          selectedMonthTextStyle: context.textStyles.calendarDayActive.copyWith(
-            color: context.colors.white,
-          ),
-          selectedYearTextStyle: context.textStyles.calendarDayActive.copyWith(
-            color: context.colors.white,
-          ),
-          selectedDayHighlightColor: context.colors.green,
-          daySplashColor: context.colors.green,
-          firstDayOfWeek: 1,
-          useAbbrLabelForMonthModePicker: true,
-          cancelButton: BalunButton(
-            child: Text(
-              'fixturesCalendarCancel'.tr().toUpperCase(),
-              style: context.textStyles.calendarDayInactive,
-            ),
-          ),
-          okButton: BalunButton(
-            child: Text(
-              'fixturesCalendarGo'.tr().toUpperCase(),
-              style: context.textStyles.teamTransferTeam,
-            ),
-          ),
-          lastMonthIcon: const BalunImage(
-            imageUrl: BalunIcons.back,
-            height: 20,
-            width: 20,
-          ),
-          nextMonthIcon: Transform.rotate(
-            angle: pi,
-            child: const BalunImage(
-              imageUrl: BalunIcons.back,
-              height: 20,
-              width: 20,
-            ),
-          ),
+        await getIt
+            .get<FixturesController>(
+              instanceName: 'fixtures',
+            )
+            .getFixturesFromDate(
+              dateString: getDateForBackend(chosenDate),
+            );
+      }
+    },
+    config: CalendarDatePicker2WithActionButtonsConfig(
+      weekdayLabelTextStyle: context.textStyles.teamTransferTeam,
+      controlsTextStyle: context.textStyles.teamTransferTeam,
+      dayTextStyle: context.textStyles.calendarDayInactive,
+      todayTextStyle: context.textStyles.calendarDayActive,
+      selectedDayTextStyle: context.textStyles.calendarDayActive.copyWith(
+        color: context.colors.primaryBackground,
+      ),
+      selectedMonthTextStyle: context.textStyles.calendarDayActive.copyWith(
+        color: context.colors.primaryBackground,
+      ),
+      selectedYearTextStyle: context.textStyles.calendarDayActive.copyWith(
+        color: context.colors.primaryBackground,
+      ),
+      selectedDayHighlightColor: context.colors.accentStrong,
+      daySplashColor: context.colors.accentStrong,
+      firstDayOfWeek: 1,
+      useAbbrLabelForMonthModePicker: true,
+      cancelButton: BalunButton(
+        child: Text(
+          'fixturesCalendarCancel'.tr().toUpperCase(),
+          style: context.textStyles.calendarDayInactive,
         ),
-        borderRadius: BorderRadius.circular(8),
-        dialogBackgroundColor: context.colors.greenish,
-        dialogSize: const Size(325, 400),
-      );
+      ),
+      okButton: BalunButton(
+        child: Text(
+          'fixturesCalendarGo'.tr().toUpperCase(),
+          style: context.textStyles.teamTransferTeam,
+        ),
+      ),
+      lastMonthIcon: const BalunImage(
+        imageUrl: BalunIcons.back,
+        height: 20,
+        width: 20,
+      ),
+      nextMonthIcon: Transform.rotate(
+        angle: pi,
+        child: const BalunImage(
+          imageUrl: BalunIcons.back,
+          height: 20,
+          width: 20,
+        ),
+      ),
+    ),
+    borderRadius: BorderRadius.circular(8),
+    dialogBackgroundColor: context.colors.accentLight,
+    dialogSize: const Size(325, 400),
+  );
 }

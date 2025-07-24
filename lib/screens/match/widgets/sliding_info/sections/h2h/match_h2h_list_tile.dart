@@ -35,7 +35,7 @@ class MatchH2HListTile extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           border: Border.all(
-            color: context.colors.black,
+            color: context.colors.primaryForeground,
           ),
           borderRadius: BorderRadius.circular(8),
         ),

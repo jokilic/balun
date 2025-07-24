@@ -20,7 +20,7 @@ class BalunNavigationBar extends WatchingWidget {
       ),
       child: NavigationBar(
         height: 88,
-        backgroundColor: context.colors.black,
+        backgroundColor: context.colors.primaryForeground,
         overlayColor: const WidgetStatePropertyAll(Colors.transparent),
         elevation: 0,
         indicatorColor: Colors.transparent,
@@ -45,13 +45,13 @@ class BalunNavigationBar extends WatchingWidget {
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: context.colors.grey,
+                    color: context.colors.secondaryBackground,
                   ),
                   child: BalunImage(
                     imageUrl: BalunIcons.ballNavigation,
                     height: 26,
                     width: 26,
-                    color: context.colors.white,
+                    color: context.colors.primaryBackground,
                   ),
                 ),
 
@@ -71,7 +71,7 @@ class BalunNavigationBar extends WatchingWidget {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: context.colors.red,
+                        color: context.colors.danger,
                       ),
                       child: Text(
                         '${badgeNumber ?? ''}',
@@ -94,13 +94,13 @@ class BalunNavigationBar extends WatchingWidget {
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: context.colors.green,
+                    color: context.colors.accentStrong,
                   ),
                   child: BalunImage(
                     imageUrl: BalunIcons.ballNavigation,
                     height: 26,
                     width: 26,
-                    color: context.colors.white,
+                    color: context.colors.primaryBackground,
                   ),
                 ),
 
@@ -120,7 +120,7 @@ class BalunNavigationBar extends WatchingWidget {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: context.colors.red,
+                        color: context.colors.danger,
                       ),
                       child: Text(
                         '${badgeNumber ?? ''}',
@@ -144,26 +144,26 @@ class BalunNavigationBar extends WatchingWidget {
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colors.grey,
+                color: context.colors.secondaryBackground,
               ),
               child: BalunImage(
                 imageUrl: BalunIcons.globe,
                 height: 26,
                 width: 26,
-                color: context.colors.white,
+                color: context.colors.primaryBackground,
               ),
             ),
             selectedIcon: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colors.green,
+                color: context.colors.accentStrong,
               ),
               child: BalunImage(
                 imageUrl: BalunIcons.globe,
                 height: 26,
                 width: 26,
-                color: context.colors.white,
+                color: context.colors.primaryBackground,
               ),
             ),
             label: '',
@@ -177,26 +177,26 @@ class BalunNavigationBar extends WatchingWidget {
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colors.grey,
+                color: context.colors.secondaryBackground,
               ),
               child: BalunImage(
                 imageUrl: BalunIcons.search,
                 height: 26,
                 width: 26,
-                color: context.colors.white,
+                color: context.colors.primaryBackground,
               ),
             ),
             selectedIcon: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colors.green,
+                color: context.colors.accentStrong,
               ),
               child: BalunImage(
                 imageUrl: BalunIcons.search,
                 height: 26,
                 width: 26,
-                color: context.colors.white,
+                color: context.colors.primaryBackground,
               ),
             ),
             label: '',
@@ -210,26 +210,26 @@ class BalunNavigationBar extends WatchingWidget {
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colors.grey,
+                color: context.colors.secondaryBackground,
               ),
               child: BalunImage(
                 imageUrl: BalunIcons.settings,
                 height: 26,
                 width: 26,
-                color: context.colors.white,
+                color: context.colors.primaryBackground,
               ),
             ),
             selectedIcon: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colors.green,
+                color: context.colors.accentStrong,
               ),
               child: BalunImage(
                 imageUrl: BalunIcons.settings,
                 height: 26,
                 width: 26,
-                color: context.colors.white,
+                color: context.colors.primaryBackground,
               ),
             ),
             label: '',

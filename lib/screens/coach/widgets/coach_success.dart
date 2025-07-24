@@ -36,35 +36,35 @@ class _CoachSuccessState extends State<CoachSuccess> {
 
   @override
   Widget build(BuildContext context) => Stack(
-        children: [
-          ///
-          /// TOP CONTENT
-          ///
-          WidgetSize(
-            onChange: (size) => setState(
-              () => panelHeight = (MediaQuery.sizeOf(context).height - size.height) - 80,
-            ),
-            child: CoachMainInfo(
-              coach: widget.coach,
-            ),
-          ),
+    children: [
+      ///
+      /// TOP CONTENT
+      ///
+      WidgetSize(
+        onChange: (size) => setState(
+          () => panelHeight = (MediaQuery.sizeOf(context).height - size.height) - 80,
+        ),
+        child: CoachMainInfo(
+          coach: widget.coach,
+        ),
+      ),
 
-          ///
-          /// SLIDING CONTENT
-          ///
-          SlidingUpPanel(
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(40),
-            ),
-            color: context.colors.white,
-            scrollController: scrollController,
-            minHeight: panelHeight,
-            maxHeight: MediaQuery.sizeOf(context).height - 144,
-            panelBuilder: () => CoachSlidingInfo(
-              coach: widget.coach,
-              scrollController: scrollController,
-            ),
-          ),
-        ],
-      );
+      ///
+      /// SLIDING CONTENT
+      ///
+      SlidingUpPanel(
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(40),
+        ),
+        color: context.colors.primaryBackground,
+        scrollController: scrollController,
+        minHeight: panelHeight,
+        maxHeight: MediaQuery.sizeOf(context).height - 144,
+        panelBuilder: () => CoachSlidingInfo(
+          coach: widget.coach,
+          scrollController: scrollController,
+        ),
+      ),
+    ],
+  );
 }

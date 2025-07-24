@@ -20,8 +20,8 @@ class MatchStatisticsListTile extends StatelessWidget {
     final homeProgress = (homeStatisticData?.valueDouble ?? 0) / ((homeStatisticData?.valueDouble ?? 0) + (awayStatisticData?.valueDouble ?? 0));
     final awayProgress = (awayStatisticData?.valueDouble ?? 0) / ((homeStatisticData?.valueDouble ?? 0) + (awayStatisticData?.valueDouble ?? 0));
 
-    final homeProgressColor = (homeStatisticData?.valueDouble ?? 0) > (awayStatisticData?.valueDouble ?? 0) ? context.colors.green : context.colors.greenish;
-    final awayProgressColor = (awayStatisticData?.valueDouble ?? 0) > (homeStatisticData?.valueDouble ?? 0) ? context.colors.green : context.colors.greenish;
+    final homeProgressColor = (homeStatisticData?.valueDouble ?? 0) > (awayStatisticData?.valueDouble ?? 0) ? context.colors.accentStrong : context.colors.accentLight;
+    final awayProgressColor = (awayStatisticData?.valueDouble ?? 0) > (homeStatisticData?.valueDouble ?? 0) ? context.colors.accentStrong : context.colors.accentLight;
 
     return Column(
       children: [
@@ -71,7 +71,7 @@ class MatchStatisticsListTile extends StatelessWidget {
                 angle: pi,
                 child: LinearProgressIndicator(
                   value: homeProgress.isNaN ? 0 : homeProgress,
-                  backgroundColor: context.colors.black.withValues(alpha: 0.15),
+                  backgroundColor: context.colors.primaryForeground.withValues(alpha: 0.15),
                   color: homeProgressColor,
                   borderRadius: BorderRadius.circular(100),
                   minHeight: 8,
@@ -82,7 +82,7 @@ class MatchStatisticsListTile extends StatelessWidget {
             Expanded(
               child: LinearProgressIndicator(
                 value: awayProgress.isNaN ? 0 : awayProgress,
-                backgroundColor: context.colors.black.withValues(alpha: 0.15),
+                backgroundColor: context.colors.primaryForeground.withValues(alpha: 0.15),
                 color: awayProgressColor,
                 borderRadius: BorderRadius.circular(100),
                 minHeight: 8,

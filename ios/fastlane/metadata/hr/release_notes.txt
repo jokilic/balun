@@ -1,4 +1,1 @@
-* Small animation updates
-* Fix when second yellow card on player with no ID
-* Performance updates while scrolling
-* Add About section in Settings
+* Small UI update in navigation bar

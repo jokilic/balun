@@ -34,107 +34,107 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
   late var expanded = widget.initiallyExpanded;
 
   void toggleExpanded() => setState(
-        () => expanded = !expanded,
-      );
+    () => expanded = !expanded,
+  );
 
   @override
   Widget build(BuildContext context) => Column(
-        children: [
-          ///
-          /// LEAGUE TITLE
-          ///
-          BalunButton(
-            onPressed: toggleExpanded,
-            child: Container(
-              decoration: BoxDecoration(
-                color: context.colors.white.withValues(alpha: 0.5),
-                borderRadius: BorderRadius.circular(8),
+    children: [
+      ///
+      /// LEAGUE TITLE
+      ///
+      BalunButton(
+        onPressed: toggleExpanded,
+        child: Container(
+          decoration: BoxDecoration(
+            color: context.colors.primaryBackground.withValues(alpha: 0.5),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          padding: const EdgeInsets.fromLTRB(32, 12, 16, 12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              BalunImage(
+                imageUrl: widget.league?.logo ?? BalunIcons.placeholderLeague,
+                height: 32,
+                width: 32,
               ),
-              padding: const EdgeInsets.fromLTRB(32, 12, 16, 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  BalunImage(
-                    imageUrl: widget.league?.logo ?? BalunIcons.placeholderLeague,
-                    height: 32,
-                    width: 32,
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Text(
-                      mixOrOriginalWords(widget.league?.name) ?? '---',
-                      style: context.textStyles.fixturesLeague,
-                      textAlign: TextAlign.left,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  mixOrOriginalWords(widget.league?.name) ?? '---',
+                  style: context.textStyles.fixturesLeague,
+                  textAlign: TextAlign.left,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              if (widget.hasLiveFixturesLeague) ...[
+                const SizedBox(width: 16),
+                Container(
+                  height: 28,
+                  width: 28,
+                  padding: const EdgeInsets.all(7),
+                  child: Animate(
+                    onPlay: (controller) => controller.loop(
+                      reverse: true,
+                      min: 0.6,
                     ),
-                  ),
-                  if (widget.hasLiveFixturesLeague) ...[
-                    const SizedBox(width: 16),
-                    Container(
-                      height: 28,
-                      width: 28,
-                      padding: const EdgeInsets.all(7),
-                      child: Animate(
-                        onPlay: (controller) => controller.loop(
-                          reverse: true,
-                          min: 0.6,
-                        ),
-                        effects: const [
-                          FadeEffect(
-                            curve: Curves.easeIn,
-                            duration: BalunConstants.shimmerDuration,
-                          ),
-                        ],
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: context.colors.red,
-                            border: Border.all(
-                              color: context.colors.black,
-                            ),
-                          ),
+                    effects: const [
+                      FadeEffect(
+                        curve: Curves.easeIn,
+                        duration: BalunConstants.shimmerDuration,
+                      ),
+                    ],
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: context.colors.danger,
+                        border: Border.all(
+                          color: context.colors.primaryForeground,
                         ),
                       ),
                     ),
-                  ],
-                ],
-              ),
-            ),
+                  ),
+                ),
+              ],
+            ],
           ),
+        ),
+      ),
 
-          ///
-          /// FIXTURES
-          ///
-          AnimatedSize(
-            duration: BalunConstants.expandDuration,
-            curve: Curves.easeIn,
-            child: expanded
-                ? ListView.separated(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: widget.fixtures?.length ?? 0,
-                    itemBuilder: (_, fixtureIndex) {
-                      final fixture = widget.fixtures![fixtureIndex];
+      ///
+      /// FIXTURES
+      ///
+      AnimatedSize(
+        duration: BalunConstants.expandDuration,
+        curve: Curves.easeIn,
+        child: expanded
+            ? ListView.separated(
+                shrinkWrap: true,
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: widget.fixtures?.length ?? 0,
+                itemBuilder: (_, fixtureIndex) {
+                  final fixture = widget.fixtures![fixtureIndex];
 
-                      return FixturesListTile(
-                        fixture: fixture,
-                        fixturePlaying: isMatchPlaying(
-                          statusShort: fixture.fixture?.status?.short ?? '--',
-                        ),
-                        fixturePressed: fixture.fixture?.id != null
-                            ? () => openMatch(
-                                  context,
-                                  matchId: fixture.fixture!.id!,
-                                )
-                            : null,
-                      );
-                    },
-                    separatorBuilder: (_, __) => const SizedBox(height: 8),
-                  )
-                : const SizedBox.shrink(),
-          ),
-        ],
-      );
+                  return FixturesListTile(
+                    fixture: fixture,
+                    fixturePlaying: isMatchPlaying(
+                      statusShort: fixture.fixture?.status?.short ?? '--',
+                    ),
+                    fixturePressed: fixture.fixture?.id != null
+                        ? () => openMatch(
+                            context,
+                            matchId: fixture.fixture!.id!,
+                          )
+                        : null,
+                  );
+                },
+                separatorBuilder: (_, __) => const SizedBox(height: 8),
+              )
+            : const SizedBox.shrink(),
+      ),
+    ],
+  );
 }

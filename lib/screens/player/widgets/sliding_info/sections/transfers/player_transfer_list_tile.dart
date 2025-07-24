@@ -36,10 +36,10 @@ class PlayerTransferListTile extends StatelessWidget {
               child: BalunButton(
                 onPressed: transfer.teams?.teamOut?.id != null
                     ? () => openTeam(
-                          context,
-                          teamId: transfer.teams!.teamOut!.id!,
-                          season: (dateLocal?.year ?? getCurrentSeasonYear()).toString(),
-                        )
+                        context,
+                        teamId: transfer.teams!.teamOut!.id!,
+                        season: (dateLocal?.year ?? getCurrentSeasonYear()).toString(),
+                      )
                     : null,
                 child: Container(
                   color: Colors.transparent,
@@ -49,7 +49,7 @@ class PlayerTransferListTile extends StatelessWidget {
                         imageUrl: BalunIcons.playerOut,
                         height: 28,
                         width: 28,
-                        color: context.colors.red,
+                        color: context.colors.danger,
                       ),
                       const SizedBox(height: 8),
                       BalunImage(
@@ -122,10 +122,10 @@ class PlayerTransferListTile extends StatelessWidget {
               child: BalunButton(
                 onPressed: transfer.teams?.teamIn?.id != null
                     ? () => openTeam(
-                          context,
-                          teamId: transfer.teams!.teamIn!.id!,
-                          season: (dateLocal?.year ?? getCurrentSeasonYear()).toString(),
-                        )
+                        context,
+                        teamId: transfer.teams!.teamIn!.id!,
+                        season: (dateLocal?.year ?? getCurrentSeasonYear()).toString(),
+                      )
                     : null,
                 child: Container(
                   color: Colors.transparent,
@@ -135,7 +135,7 @@ class PlayerTransferListTile extends StatelessWidget {
                         imageUrl: BalunIcons.playerIn,
                         height: 28,
                         width: 28,
-                        color: context.colors.green,
+                        color: context.colors.accentStrong,
                       ),
                       const SizedBox(height: 8),
                       BalunImage(

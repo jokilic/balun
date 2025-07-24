@@ -19,57 +19,57 @@ class PlayerAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-        children: [
-          ///
-          /// BACK
-          ///
-          BalunButton(
-            onPressed: onPressed,
-            child: Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: context.colors.white.withValues(alpha: 0.4),
-              ),
-              child: const BalunImage(
-                imageUrl: BalunIcons.back,
-                height: 32,
-                width: 32,
-              ),
-            ),
+    children: [
+      ///
+      /// BACK
+      ///
+      BalunButton(
+        onPressed: onPressed,
+        child: Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: context.colors.primaryBackground.withValues(alpha: 0.4),
           ),
-
-          const SizedBox(width: 14),
-
-          ///
-          /// TEXT
-          ///
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (player?.name != null)
-                  Text(
-                    mixOrOriginalWords(player!.name) ?? '---',
-                    style: context.textStyles.matchLeagueName,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                if (player?.nationality != null)
-                  Text(
-                    mixOrOriginalWords(
-                          getCountryName(
-                            country: player!.nationality!,
-                          ),
-                        ) ??
-                        '---',
-                    style: context.textStyles.matchLeagueRound,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-              ],
-            ),
+          child: const BalunImage(
+            imageUrl: BalunIcons.back,
+            height: 32,
+            width: 32,
           ),
-        ],
-      );
+        ),
+      ),
+
+      const SizedBox(width: 14),
+
+      ///
+      /// TEXT
+      ///
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (player?.name != null)
+              Text(
+                mixOrOriginalWords(player!.name) ?? '---',
+                style: context.textStyles.matchLeagueName,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            if (player?.nationality != null)
+              Text(
+                mixOrOriginalWords(
+                      getCountryName(
+                        country: player!.nationality!,
+                      ),
+                    ) ??
+                    '---',
+                style: context.textStyles.matchLeagueRound,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+          ],
+        ),
+      ),
+    ],
+  );
 }

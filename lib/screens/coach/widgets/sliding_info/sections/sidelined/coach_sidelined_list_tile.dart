@@ -50,7 +50,7 @@ class CoachSidelinedListTile extends StatelessWidget {
                   imageUrl: BalunIcons.playerOut,
                   height: 28,
                   width: 28,
-                  color: context.colors.red,
+                  color: context.colors.danger,
                 ),
                 const SizedBox(width: 8),
                 Text(
@@ -74,7 +74,7 @@ class CoachSidelinedListTile extends StatelessWidget {
                   imageUrl: BalunIcons.playerIn,
                   height: 28,
                   width: 28,
-                  color: context.colors.green,
+                  color: context.colors.accentStrong,
                 ),
                 const SizedBox(width: 8),
                 Text(
