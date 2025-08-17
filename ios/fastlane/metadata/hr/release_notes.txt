@@ -1,1 +1,3 @@
-* Small UI update in navigation bar
+* UI update in NavigationBar
+* Small translation update
+* Update dependencies
