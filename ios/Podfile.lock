@@ -25,7 +25,7 @@ PODS:
     - Flutter
     - FlutterMacOS
   - Sentry/HybridSDK (8.52.1)
-  - sentry_flutter (9.5.0):
+  - sentry_flutter (9.6.0):
     - Flutter
     - FlutterMacOS
     - Sentry/HybridSDK (= 8.52.1)
@@ -95,7 +95,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   audio_session: 9bb7f6c970f21241b19f5a3658097ae459681ba0
   connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
-  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   flutter_inappwebview_ios: b89ba3482b96fb25e00c967aae065701b66e9b99
   flutter_native_splash: c32d145d68aeda5502d5f543ee38c192065986cf
   flutter_web_browser: 68b27d2c4773b059cef19e12c890cb204518d3c3
@@ -104,12 +104,12 @@ SPEC CHECKSUMS:
   package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   Sentry: 2cbbe3592f30050c60e916c63c7f5a2fa584005e
-  sentry_flutter: fcd61ad26b7890479c182deff29f1f0714319b52
+  sentry_flutter: 9b1e3e6934cb7040ffb71383c95a35f73523180c
   shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
   sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
   url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
   video_player_avfoundation: 2cef49524dd1f16c5300b9cd6efd9611ce03639b
 
-PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+PODFILE CHECKSUM: 4f1c12611da7338d21589c0b2ecd6bd20b109694
 
 COCOAPODS: 1.16.2
