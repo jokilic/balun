@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
+<!DOCTYPE html><html><head>
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -44,6 +41,9 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 
 
+  
+
+  
   <style id="splash-screen-style">
     html {
       height: 100%
@@ -52,11 +52,9 @@
     body {
       margin: 0;
       min-height: 100%;
-      background-color: #417B5A;
+      background-color: #ffffff;
       background-image: url("splash/img/light-background.png");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
+      background-size: 100% 100%;
     }
 
     .center {
@@ -69,22 +67,19 @@
     }
 
     .contain {
-      display: block;
-      width: 100%;
-      height: 100%;
+      display:block;
+      width:100%; height:100%;
       object-fit: contain;
     }
 
     .stretch {
-      display: block;
-      width: 100%;
-      height: 100%;
+      display:block;
+      width:100%; height:100%;
     }
 
     .cover {
-      display: block;
-      width: 100%;
-      height: 100%;
+      display:block;
+      width:100%; height:100%;
       object-fit: cover;
     }
 
@@ -107,18 +102,7 @@
       bottom: 0;
       right: 0;
     }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #417B5A;
-        background-image: url("splash/img/dark-background.png");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-      }
-    }
   </style>
-
   <script id="splash-screen-script">
     function removeSplashFromWeb() {
       document.getElementById("splash")?.remove();
@@ -132,6 +116,7 @@
   <script src="flutter_bootstrap.js" async=""></script>
 
 
-</body>
 
-</html>
+
+
+</body></html>
