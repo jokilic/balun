@@ -2,11 +2,7 @@ import 'models/leagues/league/league.dart';
 import 'util/env.dart';
 
 class BalunConstants {
-  static const widthConstraint = 520;
-
   static final apiFootballBaseUrl = Env.apiFootballBaseUrl;
-
-  static final cloudflareWorkerUrl = Env.cloudflareWorkerUrl;
 
   static final remoteSettingsBaseUrl = Env.remoteSettingsBaseUrl;
   static final remoteSettingsJsonUrl = Env.remoteSettingsJsonUrl;

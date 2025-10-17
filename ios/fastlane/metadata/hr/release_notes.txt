@@ -3,3 +3,4 @@
 * High refresh rate
 * Refresh icons and splash screen
 * Update status bar and navigation bar colors
+* New API key
