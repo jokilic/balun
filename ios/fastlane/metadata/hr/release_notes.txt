@@ -1,3 +1,5 @@
-* UI update in NavigationBar
-* Small translation update
-* Update dependencies
+* Remove error logging
+* Dependency updates
+* High refresh rate
+* Refresh icons and splash screen
+* Update status bar and navigation bar colors
