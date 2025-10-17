@@ -52,28 +52,7 @@ Future<void> main() async {
   runApp(BalunApp());
 }
 
-class BalunApp extends StatefulWidget {
-  @override
-  State<BalunApp> createState() => _BalunAppState();
-}
-
-class _BalunAppState extends State<BalunApp> {
-  @override
-  void initState() {
-    super.initState();
-
-    /// Set the color of the navigation bar
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: context.colors.primaryForeground,
-        statusBarBrightness: Brightness.light,
-        statusBarIconBrightness: Brightness.light,
-        systemNavigationBarIconBrightness: Brightness.light,
-      ),
-    );
-  }
-
+class BalunApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => EasyLocalization(
     useOnlyLangCode: true,
@@ -101,6 +80,19 @@ class BalunWidget extends WatchingWidget {
     onGenerateTitle: (_) => 'appName'.tr(),
     theme: BalunTheme.light,
     builder: (_, child) {
+      /// Set the colors of status bar & navigation bar
+      final brightness = defaultTargetPlatform == TargetPlatform.iOS ? Brightness.light : Brightness.dark;
+
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarBrightness: brightness,
+          statusBarIconBrightness: brightness,
+          systemNavigationBarIconBrightness: brightness,
+          systemNavigationBarColor: Colors.transparent,
+        ),
+      );
+
       /// Generate `appWidget`, with [Balun] content
       final appWidget =
           child ??
