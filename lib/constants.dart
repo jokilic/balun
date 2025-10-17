@@ -2,7 +2,9 @@ import 'models/leagues/league/league.dart';
 import 'util/env.dart';
 
 class BalunConstants {
-  static final apiFootballBaseUrl = Env.apiFootballBaseUrl;
+  static final rapidApiKey = Env.rapidApiKey;
+  static final rapidApiHost = Env.rapidApiHost;
+  static final rapidApiBaseUrl = Env.rapidApiBaseUrl;
 
   static final remoteSettingsBaseUrl = Env.remoteSettingsBaseUrl;
   static final remoteSettingsJsonUrl = Env.remoteSettingsJsonUrl;

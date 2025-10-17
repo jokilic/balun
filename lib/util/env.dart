@@ -4,11 +4,14 @@ part 'env.g.dart';
 
 @Envied(path: '.env')
 abstract class Env {
-  @EnviedField(varName: 'API_FOOTBALL_API_KEY', obfuscate: true)
-  static final String apiFootballApiKey = _Env.apiFootballApiKey;
+  @EnviedField(varName: 'RAPIDAPI_KEY', obfuscate: true)
+  static final String rapidApiKey = _Env.rapidApiKey;
 
-  @EnviedField(varName: 'API_FOOTBALL_BASE_URL', obfuscate: true)
-  static final String apiFootballBaseUrl = _Env.apiFootballBaseUrl;
+  @EnviedField(varName: 'RAPIDAPI_HOST', obfuscate: true)
+  static final String rapidApiHost = _Env.rapidApiHost;
+
+  @EnviedField(varName: 'RAPIDAPI_BASE_URL', obfuscate: true)
+  static final String rapidApiBaseUrl = _Env.rapidApiBaseUrl;
 
   @EnviedField(varName: 'REMOTE_SETTINGS_BASE_URL', obfuscate: true)
   static final String remoteSettingsBaseUrl = _Env.remoteSettingsBaseUrl;
