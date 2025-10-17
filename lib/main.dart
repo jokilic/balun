@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:watch_it/watch_it.dart';
 
@@ -12,7 +11,7 @@ import 'services/balun_screen_service.dart';
 import 'theme/theme.dart';
 import 'util/color.dart';
 import 'util/dependencies.dart';
-import 'util/env.dart';
+import 'util/display_mode.dart';
 import 'widgets/balun_loader.dart';
 import 'widgets/balun_navigation_bar.dart';
 
@@ -25,6 +24,12 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp],
   );
+
+  /// Use `edge-to-edge` display
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
+  /// Set refresh rate to high
+  await setDisplayMode();
 
   /// Initialize [EasyLocalization]
   await EasyLocalization.ensureInitialized();
@@ -43,15 +48,8 @@ Future<void> main() async {
   /// Wait for initialization to finish
   await getIt.allReady();
 
-  /// Initialize [Sentry] & run [Balun]
-  await SentryFlutter.init(
-    (options) => options
-      ..dsn = kDebugMode || kIsWeb ? '' : Env.sentryDsn
-      ..debug = kDebugMode,
-    appRunner: () => runApp(
-      BalunApp(),
-    ),
-  );
+  /// Run [Balun]
+  runApp(BalunApp());
 }
 
 class BalunApp extends StatefulWidget {

@@ -8,7 +8,7 @@ part of 'league.dart';
 
 class LeagueAdapter extends TypeAdapter<League> {
   @override
-  final int typeId = 0;
+  final typeId = 0;
 
   @override
   League read(BinaryReader reader) {

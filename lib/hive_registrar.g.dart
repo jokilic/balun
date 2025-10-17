@@ -12,3 +12,10 @@ extension HiveRegistrar on HiveInterface {
     registerAdapter(TeamAdapter());
   }
 }
+
+extension IsolatedHiveRegistrar on IsolatedHiveInterface {
+  void registerAdapters() {
+    registerAdapter(LeagueAdapter());
+    registerAdapter(TeamAdapter());
+  }
+}

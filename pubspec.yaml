@@ -1,7 +1,7 @@
 name: balun
 description: "Simple Flutter application for football scores."
 publish_to: 'none'
-version: 1.5.1+151
+version: 1.5.5+155
 
 #
 # DEPLOYING APP
@@ -22,7 +22,7 @@ version: 1.5.1+151
 #
 
 environment:
-  sdk: 3.9.0
+  sdk: 3.9.2
 
 dependencies:
   flutter:
@@ -36,30 +36,29 @@ dependencies:
   dio: 5.9.0
   dough: 2.0.0
   easy_localization: 3.0.8
-  envied: 1.2.0
+  envied: 1.3.1
   extended_image: 10.0.1
   flutter_animate: 4.5.2
+  flutter_displaymode: 0.7.0
   # flutter_local_notifications: 19.1.0
-  flutter_native_splash: 2.4.6
-  flutter_svg: 2.2.0
+  flutter_native_splash: 2.4.7
   flutter_web_browser: 0.17.3
   get_it: 8.2.0
-  hive_ce: 2.11.3
-  hive_ce_flutter: 2.3.1
-  internet_connection_checker_plus: 2.7.2
+  hive_ce: 2.15.0
+  hive_ce_flutter: 2.3.2
+  internet_connection_checker_plus: 2.9.0
   intl: 0.20.2
-  just_audio: 0.10.4
-  logger: 2.6.1
-  package_info_plus: 8.3.1
+  just_audio: 0.10.5
+  logger: 2.6.2
+  package_info_plus: 9.0.0
   path_provider: 2.1.5
-  sentry_flutter: 9.6.0
   sliding_up_panel2: 3.3.0+1
   timeago: 3.7.1
   url_launcher: 6.3.2
   video_player: 2.10.0
   visibility_detector: 0.4.0+2
-  watch_it: 1.6.5
-  youtube_player_flutter: 9.1.2
+  watch_it: 1.7.0
+  youtube_player_flutter: 9.1.3
 
   calendar_date_picker2:
     git:
@@ -67,10 +66,10 @@ dependencies:
       ref: feature/on-value-changed-dialog
 
 dev_dependencies:
-  build_runner: 2.7.0
-  envied_generator: 1.2.0
+  build_runner: 2.9.0
+  envied_generator: 1.3.1
   flutter_launcher_icons: 0.14.4
-  hive_ce_generator: 1.9.3
+  hive_ce_generator: 1.10.0
 
 flutter:
   uses-material-design: true

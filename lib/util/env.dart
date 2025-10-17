@@ -30,7 +30,4 @@ abstract class Env {
 
   @EnviedField(varName: 'NEWS_SEARCH_API_KEY', obfuscate: true)
   static final String newsSearchApiKey = _Env.newsSearchApiKey;
-
-  @EnviedField(varName: 'SENTRY_DSN', obfuscate: true)
-  static final String sentryDsn = _Env.sentryDsn;
 }
