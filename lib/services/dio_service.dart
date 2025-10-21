@@ -28,10 +28,9 @@ class DioService {
   late final footballDio =
       Dio(
           BaseOptions(
-            baseUrl: BalunConstants.rapidApiBaseUrl,
+            baseUrl: BalunConstants.apiFootballBaseUrl,
             headers: {
-              'x-rapidapi-host': BalunConstants.rapidApiHost,
-              'x-rapidapi-key': BalunConstants.rapidApiKey,
+              'x-apisports-key': BalunConstants.apiFootballApiKey,
               'Content-Type': 'application/json',
             },
             validateStatus: (_) => true,
