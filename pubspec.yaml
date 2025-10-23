@@ -1,7 +1,7 @@
 name: balun
 description: "Simple Flutter application for football scores."
 publish_to: 'none'
-version: 1.6.1+161
+version: 1.6.2+162
 
 #
 # DEPLOYING APP
