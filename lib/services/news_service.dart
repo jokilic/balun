@@ -30,9 +30,8 @@ class NewsService {
         '/latest',
         queryParameters: {
           'q': searchQuery,
-          'language': 'hr, en',
-          'excludefield':
-              'keywords, creator, video_url, content, pubDateTZ, source_id, source_priority, language, country, category, ai_tag, sentiment, sentiment_stats, ai_region, ai_org',
+          'language': 'hr,en',
+          'excludefield': 'keywords,creator,video_url,content,pubDateTZ,source_id,source_priority,language,country,category,ai_tag,sentiment,sentiment_stats,ai_region,ai_org',
           'removeduplicate': '1',
         },
       );

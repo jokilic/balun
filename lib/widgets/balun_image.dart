@@ -39,12 +39,15 @@ class BalunImage extends StatelessWidget {
     /// LOCAL IMAGE
     ///
     if (imageUrl.contains('assets/')) {
-      return Image.asset(
-        imageUrl,
-        height: height,
-        width: width,
-        fit: fit,
-        color: color,
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(radius),
+        child: Image.asset(
+          imageUrl,
+          height: height,
+          width: width,
+          fit: fit,
+          color: color,
+        ),
       );
     }
 
@@ -62,20 +65,25 @@ class BalunImage extends StatelessWidget {
         child: SizedBox(
           height: height,
           width: width,
-          child: CachedNetworkSVGImage(
-            imageUrl,
-            height: height,
-            width: width,
-            fit: fit,
-            headers: httpHeaders,
-            placeholder: BalunImagePlaceholder(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(radius),
+            child: CachedNetworkSVGImage(
+              imageUrl,
               height: height,
               width: width,
-              color: color,
-            ),
-            errorWidget: BalunImageError(
-              height: height,
-              width: width,
+              fit: fit,
+              headers: httpHeaders,
+              placeholder: BalunImagePlaceholder(
+                height: height,
+                width: width,
+                color: color,
+                radius: radius,
+              ),
+              errorWidget: BalunImageError(
+                height: height,
+                width: width,
+                radius: radius,
+              ),
             ),
           ),
         ),
@@ -106,21 +114,26 @@ class BalunImage extends StatelessWidget {
     /// NETWORK IMAGE
     ///
     else {
-      return CachedNetworkImage(
-        imageUrl: imageUrl,
-        height: height,
-        width: width,
-        fit: fit,
-        color: color,
-        httpHeaders: httpHeaders,
-        placeholder: (context, url) => BalunImagePlaceholder(
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(radius),
+        child: CachedNetworkImage(
+          imageUrl: imageUrl,
           height: height,
           width: width,
+          fit: fit,
           color: color,
-        ),
-        errorWidget: (context, url, error) => BalunImageError(
-          height: height,
-          width: width,
+          httpHeaders: httpHeaders,
+          placeholder: (context, url) => BalunImagePlaceholder(
+            height: height,
+            width: width,
+            color: color,
+            radius: radius,
+          ),
+          errorWidget: (context, url, error) => BalunImageError(
+            height: height,
+            width: width,
+            radius: radius,
+          ),
         ),
       );
     }
@@ -131,7 +144,6 @@ class BalunImagePlaceholder extends StatelessWidget {
   final double? height;
   final double? width;
   final Color? color;
-  final BoxFit fit;
   final bool animate;
   final double radius;
 
@@ -139,7 +151,6 @@ class BalunImagePlaceholder extends StatelessWidget {
     required this.height,
     required this.width,
     required this.color,
-    this.fit = BoxFit.cover,
     this.animate = true,
     this.radius = 100,
     super.key,
@@ -166,8 +177,8 @@ class BalunImagePlaceholder extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(radius),
         color: color ?? getRandomBalunColor(context),
+        borderRadius: BorderRadius.circular(radius),
       ),
       child: animate
           ? null
@@ -178,7 +189,6 @@ class BalunImagePlaceholder extends StatelessWidget {
                 color: context.colors.primaryBackground,
                 height: height,
                 width: width,
-                fit: fit,
                 radius: radius,
               ),
             ),
@@ -189,13 +199,11 @@ class BalunImagePlaceholder extends StatelessWidget {
 class BalunImageError extends StatelessWidget {
   final double? height;
   final double? width;
-  final BoxFit fit;
   final double radius;
 
   const BalunImageError({
     required this.height,
     required this.width,
-    this.fit = BoxFit.cover,
     this.radius = 100,
     super.key,
   });
@@ -208,7 +216,7 @@ class BalunImageError extends StatelessWidget {
       height != null ? height! / 6 : 6,
     ),
     decoration: BoxDecoration(
-      color: context.colors.danger,
+      color: context.colors.secondaryBackground,
       borderRadius: BorderRadius.circular(radius),
     ),
     child: ClipRRect(
@@ -218,7 +226,6 @@ class BalunImageError extends StatelessWidget {
         color: context.colors.primaryBackground,
         height: height,
         width: width,
-        fit: fit,
         radius: radius,
       ),
     ),

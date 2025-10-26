@@ -35,7 +35,7 @@ void openUrlExternalBrowser(BuildContext context, {required String? url}) {
       safariVCOptions: SafariViewControllerOptions(
         barCollapsingEnabled: true,
         preferredBarTintColor: context.colors.accentStrong,
-        preferredControlTintColor: context.colors.primaryForeground,
+        preferredControlTintColor: context.colors.primaryBackground,
         dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
         modalPresentationCapturesStatusBarAppearance: true,
       ),
