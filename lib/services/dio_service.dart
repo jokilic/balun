@@ -25,21 +25,22 @@ class DioService {
   /// VARIABLES
   ///
 
-  late final footballDio = Dio(
-    BaseOptions(
-      baseUrl: BalunConstants.apiFootballBaseUrl,
-      headers: {
-        'x-apisports-key': BalunConstants.apiFootballApiKey,
-        'Content-Type': 'application/json',
-      },
-      validateStatus: (_) => true,
-    ),
-  );
-  // ..interceptors.add(
-  //   DioLoggerInterceptor(
-  //     logger: logger,
-  //   ),
-  // );
+  late final footballDio =
+      Dio(
+          BaseOptions(
+            baseUrl: BalunConstants.apiFootballBaseUrl,
+            headers: {
+              'x-apisports-key': BalunConstants.apiFootballApiKey,
+              'Content-Type': 'application/json',
+            },
+            validateStatus: (_) => true,
+          ),
+        )
+        ..interceptors.add(
+          DioLoggerInterceptor(
+            logger: logger,
+          ),
+        );
 
   late final remoteSettingsDio =
       Dio(

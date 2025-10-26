@@ -25,7 +25,10 @@ class YouTubeSearchService {
 
   Future<({YouTubeSearchResponse? youTubeSearch, String? error})> getYouTubeVideoSearch({
     required String searchQuery,
-    required String publishedAfter,
+    required DateTime publishedAfter,
+    int maxResults = 5,
+    String order = 'relevance',
+    bool onlyEmbeddable = true,
   }) async {
     try {
       final response = await dio.get(
@@ -33,11 +36,13 @@ class YouTubeSearchService {
         queryParameters: {
           'part': 'snippet',
           'q': searchQuery,
-          'publishedAfter': publishedAfter,
+          'publishedAfter': publishedAfter.toUtc().toIso8601String(),
           'type': 'video',
-          'maxResults': 5,
-          'videoSyndicated': true,
+          'maxResults': maxResults,
+          'order': order,
           'key': BalunConstants.apiYouTubeDataApiKey,
+          'videoEmbeddable': onlyEmbeddable ? 'true' : 'any',
+          'videoSyndicated': onlyEmbeddable ? 'true' : 'any',
         },
       );
 
