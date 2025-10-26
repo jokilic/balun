@@ -4,7 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../../constants.dart';
 import '../../../models/youtube_search/youtube_item.dart';
 import '../../../services/logger_service.dart';
 import '../../../services/youtube_search_service.dart';
@@ -51,38 +50,42 @@ class MatchHighlightsController extends ValueNotifier<BalunState<({List<YouTubeI
     value = Loading();
 
     final response = await youTubeSearch.getYouTubeVideoSearch(
-      searchQuery: '$homeTeamName $awayTeamName highlights ${matchDate.year}',
-      publishedAfter: matchDate.toUtc().subtract(
-        BalunConstants.highlightsPublishLeadIn,
-      ),
+      searchQuery: '$homeTeamName $awayTeamName ${matchDate.year}',
+      publishedAfter: matchDate.toUtc().toIso8601String(),
     );
 
-    if (response.error != null) {
+    /// Successful request
+    if (response.youTubeSearch != null && response.error == null) {
+      /// There are items, update to success state
+      if (response.youTubeSearch!.items.isNotEmpty) {
+        fetched = true;
+
+        youTubeItems = response.youTubeSearch!.items;
+
+        youTubeController = YoutubePlayerController(
+          initialVideoId: youTubeItems.first.id.videoId,
+        );
+
+        value = Success(
+          data: (
+            youTubeItems: youTubeItems,
+            activeYouTubeItem: youTubeItems.first,
+          ),
+        );
+      }
+      /// There are no items, update to empty state
+      else {
+        value = Empty();
+      }
+    }
+
+    /// Failed request
+    if (response.youTubeSearch == null && response.error != null) {
+      /// Error is not null, update to error state
       value = Error(
         error: response.error,
       );
-      return;
     }
-
-    youTubeItems = List.from(response.youTubeSearch?.items ?? []);
-
-    if (youTubeItems.isEmpty) {
-      value = Empty();
-      return;
-    }
-
-    fetched = true;
-
-    youTubeController = YoutubePlayerController(
-      initialVideoId: youTubeItems.first.id.videoId,
-    );
-
-    value = Success(
-      data: (
-        youTubeItems: youTubeItems,
-        activeYouTubeItem: youTubeItems.first,
-      ),
-    );
   }
 
   void playVideo({required YouTubeItem youTubeItem}) {
