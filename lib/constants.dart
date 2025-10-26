@@ -20,7 +20,6 @@ class BalunConstants {
   static const longAnimationDuration = Duration(milliseconds: 300);
   static const shimmerDuration = Duration(milliseconds: 1500);
   static const periodicAPICallDuration = Duration(minutes: 1);
-  static const highlightsPublishLeadIn = Duration(hours: 2);
 
   static const josipVideo = 'assets/videos/josip.mp4';
   static const welcomeToBalunSound = 'assets/audio/welcome_to_balun.mp3';

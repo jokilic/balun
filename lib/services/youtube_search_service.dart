@@ -25,7 +25,6 @@ class YouTubeSearchService {
 
   Future<({YouTubeSearchResponse? youTubeSearch, String? error})> getYouTubeVideoSearch({
     required String searchQuery,
-    required DateTime publishedAfter,
     int maxResults = 5,
     String order = 'relevance',
     bool onlyEmbeddable = true,
@@ -36,7 +35,6 @@ class YouTubeSearchService {
         queryParameters: {
           'part': 'snippet',
           'q': searchQuery,
-          'publishedAfter': publishedAfter.toUtc().toIso8601String(),
           'type': 'video',
           'maxResults': maxResults,
           'order': order,
