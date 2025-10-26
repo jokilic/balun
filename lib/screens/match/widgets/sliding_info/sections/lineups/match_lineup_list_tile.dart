@@ -10,7 +10,7 @@ import '../../../../../../util/color.dart';
 import '../../../../../../util/string.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image/balun_image.dart';
+import '../../../../../../widgets/balun_image.dart';
 
 class MatchLineupListTile extends StatelessWidget {
   final bool matchLive;

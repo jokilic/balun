@@ -6,7 +6,7 @@ import '../../../models/countries/country_response.dart';
 import '../../../theme/icons.dart';
 import '../../../util/string.dart';
 import '../../../util/word_mix.dart';
-import '../../../widgets/balun_image/balun_image.dart';
+import '../../../widgets/balun_image.dart';
 
 class CountriesListTile extends StatelessWidget {
   final CountryResponse country;

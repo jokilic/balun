@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../theme/icons.dart';
 import '../theme/theme.dart';
-import 'balun_image/balun_image.dart';
+import 'balun_image.dart';
 
 class BalunLoader extends StatefulWidget {
   final Color? color;

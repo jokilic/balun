@@ -484,6 +484,13 @@ abstract class BalunTextStyles {
     fontFamily: 'Lufga',
     height: 1,
   );
+
+  static const imageError = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'Lufga',
+    height: 1,
+  );
 }
 
 class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> {
@@ -566,6 +573,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   final TextStyle newsTwoLetterSource;
   final TextStyle aboutAppName;
   final TextStyle aboutAppVersion;
+  final TextStyle imageError;
 
   const BalunTextThemesExtension({
     required this.error,
@@ -647,6 +655,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required this.newsTwoLetterSource,
     required this.aboutAppName,
     required this.aboutAppVersion,
+    required this.imageError,
   });
 
   @override
@@ -730,6 +739,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     TextStyle? newsTwoLetterSource,
     TextStyle? aboutAppName,
     TextStyle? aboutAppVersion,
+    TextStyle? imageError,
   }) => BalunTextThemesExtension(
     error: error ?? this.error,
     snackbar: snackbar ?? this.snackbar,
@@ -810,6 +820,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     newsTwoLetterSource: newsTwoLetterSource ?? this.newsTwoLetterSource,
     aboutAppName: aboutAppName ?? this.aboutAppName,
     aboutAppVersion: aboutAppVersion ?? this.aboutAppVersion,
+    imageError: imageError ?? this.imageError,
   );
 
   @override
@@ -901,6 +912,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
       newsTwoLetterSource: TextStyle.lerp(newsTwoLetterSource, other.newsTwoLetterSource, t)!,
       aboutAppName: TextStyle.lerp(aboutAppName, other.aboutAppName, t)!,
       aboutAppVersion: TextStyle.lerp(aboutAppVersion, other.aboutAppVersion, t)!,
+      imageError: TextStyle.lerp(imageError, other.imageError, t)!,
     );
   }
 }

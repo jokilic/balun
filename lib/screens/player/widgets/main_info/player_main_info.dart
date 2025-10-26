@@ -13,7 +13,7 @@ import '../../../../util/string.dart';
 import '../../../../util/team_seasons.dart';
 import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
-import '../../../../widgets/balun_image/balun_image.dart';
+import '../../../../widgets/balun_image.dart';
 import '../../controllers/player_current_team_controller.dart';
 import '../../controllers/player_season_controller.dart';
 import '../player_app_bar.dart';
@@ -96,11 +96,11 @@ class PlayerMainInfo extends WatchingWidget {
           Text(
             player.player?.nationality != null
                 ? mixOrOriginalWords(
-                      getCountryName(
-                        country: player.player!.nationality!,
-                      ),
-                    ) ??
-                    '---'
+                        getCountryName(
+                          country: player.player!.nationality!,
+                        ),
+                      ) ??
+                      '---'
                 : '---',
             style: context.textStyles.leagueCountry,
             textAlign: TextAlign.center,
@@ -115,10 +115,10 @@ class PlayerMainInfo extends WatchingWidget {
               child: BalunButton(
                 onPressed: currentTeam.id != null
                     ? () => openTeam(
-                          context,
-                          teamId: currentTeam.id!,
-                          season: player.statistics?.firstOrNull?.league?.season ?? getCurrentSeasonYear().toString(),
-                        )
+                        context,
+                        teamId: currentTeam.id!,
+                        season: player.statistics?.firstOrNull?.league?.season ?? getCurrentSeasonYear().toString(),
+                      )
                     : null,
                 child: Container(
                   color: Colors.transparent,

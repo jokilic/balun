@@ -17,6 +17,7 @@ class BalunIcons {
   static const assist = 'assets/icons/assist.png';
   static const missedPenalty = 'assets/icons/missed_penalty.png';
   static const error = 'assets/icons/error.png';
+  static const imageError = 'assets/icons/image_error.png';
   static const injury = 'assets/icons/injury.png';
   static const favoriteNo = 'assets/icons/favorite_no.png';
   static const favoriteYes = 'assets/icons/favorite_yes.png';

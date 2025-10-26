@@ -6,7 +6,7 @@ import '../../../../../models/search/search_leagues/search_league_response.dart'
 import '../../../../../theme/icons.dart';
 import '../../../../../util/string.dart';
 import '../../../../../util/word_mix.dart';
-import '../../../../../widgets/balun_image/balun_image.dart';
+import '../../../../../widgets/balun_image.dart';
 
 class SearchLeaguesListTile extends StatelessWidget {
   final SearchLeagueResponse league;

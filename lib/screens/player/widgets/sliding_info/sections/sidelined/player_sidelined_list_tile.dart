@@ -5,7 +5,7 @@ import '../../../../../../models/sidelined/sidelined_inner_response.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
-import '../../../../../../widgets/balun_image/balun_image.dart';
+import '../../../../../../widgets/balun_image.dart';
 
 class PlayerSidelinedListTile extends StatelessWidget {
   final SidelinedInnerResponse sidelined;

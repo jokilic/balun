@@ -4,7 +4,7 @@ import '../../../../../../models/news/news_result.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image/balun_image.dart';
+import '../../../../../../widgets/balun_image.dart';
 
 class TeamNewsListTile extends StatelessWidget {
   final NewsResult newsResult;

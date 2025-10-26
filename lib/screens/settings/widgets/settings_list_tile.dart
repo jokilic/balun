@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../theme/theme.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../widgets/balun_image/balun_image.dart';
+import '../../../widgets/balun_image.dart';
 
 class SettingsListTile extends StatelessWidget {
   final String icon;

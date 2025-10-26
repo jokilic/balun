@@ -11,7 +11,7 @@ import '../../../../../../util/date_time.dart';
 import '../../../../../../util/string.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image/balun_image.dart';
+import '../../../../../../widgets/balun_image.dart';
 
 class MatchInfoSection extends StatelessWidget {
   final DateTime? timestamp;
@@ -123,10 +123,10 @@ class MatchInfoSection extends StatelessWidget {
             BalunButton(
               onPressed: league?.id != null
                   ? () => openLeague(
-                        context,
-                        leagueId: league!.id!,
-                        season: league?.season ?? getCurrentSeasonYear().toString(),
-                      )
+                      context,
+                      leagueId: league!.id!,
+                      season: league?.season ?? getCurrentSeasonYear().toString(),
+                    )
                   : null,
               child: Container(
                 color: Colors.transparent,
@@ -182,10 +182,10 @@ class MatchInfoSection extends StatelessWidget {
             BalunButton(
               onPressed: league?.id != null
                   ? () => openLeague(
-                        context,
-                        leagueId: league!.id!,
-                        season: league?.season ?? getCurrentSeasonYear().toString(),
-                      )
+                      context,
+                      leagueId: league!.id!,
+                      season: league?.season ?? getCurrentSeasonYear().toString(),
+                    )
                   : null,
               child: Container(
                 color: Colors.transparent,

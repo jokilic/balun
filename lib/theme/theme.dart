@@ -275,6 +275,9 @@ class BalunTheme {
     aboutAppVersion: BalunTextStyles.aboutAppVersion.copyWith(
       color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
     ),
+    imageError: BalunTextStyles.imageError.copyWith(
+      color: lightAppColors.primaryForeground,
+    ),
   );
 }
 

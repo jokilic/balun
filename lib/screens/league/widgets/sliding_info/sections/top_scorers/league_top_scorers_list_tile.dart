@@ -7,7 +7,7 @@ import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image/balun_image.dart';
+import '../../../../../../widgets/balun_image.dart';
 
 class LeagueTopScorersListTile extends StatelessWidget {
   final PlayerResponse? scorer;
@@ -26,10 +26,10 @@ class LeagueTopScorersListTile extends StatelessWidget {
       return BalunButton(
         onPressed: scorer?.player?.id != null
             ? () => openPlayer(
-                  context,
-                  playerId: scorer!.player!.id!,
-                  season: season,
-                )
+                context,
+                playerId: scorer!.player!.id!,
+                season: season,
+              )
             : null,
         child: Container(
           color: Colors.transparent,

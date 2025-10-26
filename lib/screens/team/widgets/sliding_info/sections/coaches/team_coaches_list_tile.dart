@@ -7,7 +7,7 @@ import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image/balun_image.dart';
+import '../../../../../../widgets/balun_image.dart';
 import 'team_coach_career_list_tile.dart';
 
 class TeamCoachesListTile extends StatefulWidget {
@@ -25,77 +25,77 @@ class _TeamCoachesListTileState extends State<TeamCoachesListTile> {
   var expanded = false;
 
   void toggleExpanded() => setState(
-        () => expanded = !expanded,
-      );
+    () => expanded = !expanded,
+  );
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        child: Column(
-          children: [
-            ///
-            /// INFO
-            ///
-            BalunButton(
-              onPressed: toggleExpanded,
-              child: Container(
-                color: Colors.transparent,
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: BalunImage(
-                        imageUrl: widget.coach.photo ?? BalunIcons.placeholderPlayer,
-                        height: 48,
-                        width: 48,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (widget.coach.name != null)
-                            Text(
-                              mixOrOriginalWords(widget.coach.name) ?? '---',
-                              style: context.textStyles.leagueTeamsTitle,
-                            ),
-                          if (widget.coach.age != null)
-                            Text(
-                              '${widget.coach.age!} ${'teamCoachesYearsOld'.tr()}',
-                              style: context.textStyles.leagueTeamsCountry,
-                            ),
-                        ],
-                      ),
-                    ),
-                  ],
+    padding: const EdgeInsets.symmetric(vertical: 12),
+    child: Column(
+      children: [
+        ///
+        /// INFO
+        ///
+        BalunButton(
+          onPressed: toggleExpanded,
+          child: Container(
+            color: Colors.transparent,
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: BalunImage(
+                    imageUrl: widget.coach.photo ?? BalunIcons.placeholderPlayer,
+                    height: 48,
+                    width: 48,
+                  ),
                 ),
-              ),
-            ),
-
-            ///
-            /// CAREER
-            ///
-            if (widget.coach.career?.isNotEmpty ?? false)
-              AnimatedSize(
-                duration: BalunConstants.expandDuration,
-                curve: Curves.easeIn,
-                child: expanded
-                    ? Padding(
-                        padding: const EdgeInsets.only(top: 28, bottom: 8),
-                        child: Column(
-                          children: widget.coach.career!
-                              .map(
-                                (careerSingle) => TeamCoachCareerListTile(
-                                  career: careerSingle,
-                                ),
-                              )
-                              .toList(),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (widget.coach.name != null)
+                        Text(
+                          mixOrOriginalWords(widget.coach.name) ?? '---',
+                          style: context.textStyles.leagueTeamsTitle,
                         ),
-                      )
-                    : const SizedBox.shrink(),
-              ),
-          ],
+                      if (widget.coach.age != null)
+                        Text(
+                          '${widget.coach.age!} ${'teamCoachesYearsOld'.tr()}',
+                          style: context.textStyles.leagueTeamsCountry,
+                        ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
-      );
+
+        ///
+        /// CAREER
+        ///
+        if (widget.coach.career?.isNotEmpty ?? false)
+          AnimatedSize(
+            duration: BalunConstants.expandDuration,
+            curve: Curves.easeIn,
+            child: expanded
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 28, bottom: 8),
+                    child: Column(
+                      children: widget.coach.career!
+                          .map(
+                            (careerSingle) => TeamCoachCareerListTile(
+                              career: careerSingle,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  )
+                : const SizedBox.shrink(),
+          ),
+      ],
+    ),
+  );
 }

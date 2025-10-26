@@ -12,7 +12,7 @@ import '../../../../util/string.dart';
 import '../../../../util/team_seasons.dart';
 import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
-import '../../../../widgets/balun_image/balun_image.dart';
+import '../../../../widgets/balun_image.dart';
 import '../../controllers/team_season_controller.dart';
 import '../team_app_bar.dart';
 
@@ -56,8 +56,8 @@ class TeamMainInfo extends WatchingWidget {
             onBackPressed: Navigator.of(context).pop,
             team: team.team,
             onFavoritePressed: () => getIt.get<TeamStorageService>().toggleTeam(
-                  passedTeam: team.team,
-                ),
+              passedTeam: team.team,
+            ),
             isFavorited: favoritedTeams.any(
               (element) => element.id == team.team?.id,
             ),
@@ -92,11 +92,11 @@ class TeamMainInfo extends WatchingWidget {
             Text(
               team.team?.country != null
                   ? mixOrOriginalWords(
-                        getCountryName(
-                          country: team.team!.country!,
-                        ),
-                      ) ??
-                      '---'
+                          getCountryName(
+                            country: team.team!.country!,
+                          ),
+                        ) ??
+                        '---'
                   : '---',
               style: context.textStyles.leagueCountry,
               textAlign: TextAlign.center,

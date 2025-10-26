@@ -8,7 +8,7 @@ import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image/balun_image.dart';
+import '../../../../../../widgets/balun_image.dart';
 
 class TeamCoachCareerListTile extends StatelessWidget {
   final Career career;
@@ -29,10 +29,10 @@ class TeamCoachCareerListTile extends StatelessWidget {
     return BalunButton(
       onPressed: career.team?.id != null
           ? () => openTeam(
-                context,
-                teamId: career.team!.id!,
-                season: (endLocal?.year ?? startLocal?.year ?? getCurrentSeasonYear()).toString(),
-              )
+              context,
+              teamId: career.team!.id!,
+              season: (endLocal?.year ?? startLocal?.year ?? getCurrentSeasonYear()).toString(),
+            )
           : null,
       child: Container(
         color: Colors.transparent,

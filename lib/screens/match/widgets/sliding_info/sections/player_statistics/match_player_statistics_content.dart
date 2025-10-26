@@ -8,7 +8,7 @@ import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image/balun_image.dart';
+import '../../../../../../widgets/balun_image.dart';
 import 'match_player_statistic.dart';
 
 class MatchPlayerStatisticsContent extends StatefulWidget {

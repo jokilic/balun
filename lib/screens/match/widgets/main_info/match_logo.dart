@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../widgets/balun_image/balun_image.dart';
+import '../../../../widgets/balun_image.dart';
 
 class MatchLogo extends StatelessWidget {
   final String logo;
@@ -11,8 +11,8 @@ class MatchLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BalunImage(
-        imageUrl: logo,
-        height: 80,
-        width: 80,
-      );
+    imageUrl: logo,
+    height: 80,
+    width: 80,
+  );
 }

@@ -9,7 +9,7 @@ import '../../../../util/date_time.dart';
 import '../../../../util/string.dart';
 import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
-import '../../../../widgets/balun_image/balun_image.dart';
+import '../../../../widgets/balun_image.dart';
 import '../coach_app_bar.dart';
 
 class CoachMainInfo extends WatchingWidget {
@@ -21,108 +21,108 @@ class CoachMainInfo extends WatchingWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
+    padding: const EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 8,
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(height: 12),
+
+        ///
+        /// BACK & LEAGUE
+        ///
+        CoachAppBar(
+          onPressed: Navigator.of(context).pop,
+          coach: coach,
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: 12),
 
-            ///
-            /// BACK & LEAGUE
-            ///
-            CoachAppBar(
-              onPressed: Navigator.of(context).pop,
-              coach: coach,
-            ),
+        const SizedBox(height: 48),
 
-            const SizedBox(height: 48),
+        ///
+        /// PHOTO
+        ///
+        ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: BalunImage(
+            imageUrl: coach.photo ?? BalunIcons.placeholderPlayer,
+            height: 120,
+            width: 120,
+          ),
+        ),
 
-            ///
-            /// PHOTO
-            ///
-            ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: BalunImage(
-                imageUrl: coach.photo ?? BalunIcons.placeholderPlayer,
-                height: 120,
-                width: 120,
-              ),
-            ),
+        const SizedBox(height: 16),
 
-            const SizedBox(height: 16),
+        ///
+        /// NAME
+        ///
+        Text(
+          mixOrOriginalWords(coach.firstName) ?? '--',
+          style: context.textStyles.leagueName,
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          mixOrOriginalWords(coach.lastName) ?? '--',
+          style: context.textStyles.leagueNameBold,
+          textAlign: TextAlign.center,
+        ),
 
-            ///
-            /// NAME
-            ///
-            Text(
-              mixOrOriginalWords(coach.firstName) ?? '--',
-              style: context.textStyles.leagueName,
-              textAlign: TextAlign.center,
-            ),
-            Text(
-              mixOrOriginalWords(coach.lastName) ?? '--',
-              style: context.textStyles.leagueNameBold,
-              textAlign: TextAlign.center,
-            ),
+        ///
+        /// COUNTRY
+        ///
+        Text(
+          coach.nationality != null
+              ? mixOrOriginalWords(
+                      getCountryName(
+                        country: coach.nationality!,
+                      ),
+                    ) ??
+                    '---'
+              : '---',
+          style: context.textStyles.leagueCountry,
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 4),
 
-            ///
-            /// COUNTRY
-            ///
-            Text(
-              coach.nationality != null
-                  ? mixOrOriginalWords(
-                        getCountryName(
-                          country: coach.nationality!,
-                        ),
-                      ) ??
-                      '---'
-                  : '---',
-              style: context.textStyles.leagueCountry,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 4),
-
-            ///
-            /// TEAM
-            ///
-            if (coach.team != null)
-              Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: BalunButton(
-                  onPressed: coach.team?.id != null
-                      ? () => openTeam(
-                            context,
-                            teamId: coach.team!.id!,
-                            season: getCurrentSeasonYear().toString(),
-                          )
-                      : null,
-                  child: Container(
-                    color: Colors.transparent,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        BalunImage(
-                          imageUrl: coach.team?.logo ?? BalunIcons.placeholderTeam,
-                          height: 32,
-                          width: 32,
-                        ),
-                        const SizedBox(width: 8),
-                        Flexible(
-                          child: Text(
-                            mixOrOriginalWords(coach.team?.name) ?? '---',
-                            style: context.textStyles.leagueCountry,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
+        ///
+        /// TEAM
+        ///
+        if (coach.team != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: BalunButton(
+              onPressed: coach.team?.id != null
+                  ? () => openTeam(
+                      context,
+                      teamId: coach.team!.id!,
+                      season: getCurrentSeasonYear().toString(),
+                    )
+                  : null,
+              child: Container(
+                color: Colors.transparent,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    BalunImage(
+                      imageUrl: coach.team?.logo ?? BalunIcons.placeholderTeam,
+                      height: 32,
+                      width: 32,
                     ),
-                  ),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        mixOrOriginalWords(coach.team?.name) ?? '---',
+                        style: context.textStyles.leagueCountry,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-          ],
-        ),
-      );
+            ),
+          ),
+      ],
+    ),
+  );
 }

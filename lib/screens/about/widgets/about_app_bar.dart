@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../widgets/balun_button.dart';
-import '../../../widgets/balun_image/balun_image.dart';
+import '../../../widgets/balun_image.dart';
 
 class AboutAppBar extends StatelessWidget {
   final Function() onPressed;

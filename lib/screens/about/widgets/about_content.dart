@@ -10,7 +10,7 @@ import '../../../util/app_version.dart';
 import '../../../util/navigation.dart';
 import '../../../util/sound.dart';
 import '../../../widgets/balun_button.dart';
-import '../../../widgets/balun_image/balun_image.dart';
+import '../../../widgets/balun_image.dart';
 import 'about_video_widget.dart';
 
 class AboutContent extends StatefulWidget {

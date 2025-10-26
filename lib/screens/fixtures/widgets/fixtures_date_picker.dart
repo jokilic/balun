@@ -7,7 +7,7 @@ import '../../../theme/theme.dart';
 import '../../../util/dependencies.dart';
 import '../../../util/scroll_configuration.dart';
 import '../../../widgets/balun_button.dart';
-import '../../../widgets/balun_image/balun_image.dart';
+import '../../../widgets/balun_image.dart';
 import '../controllers/fixtures_date_controller.dart';
 
 class FixturesDatePicker extends WatchingWidget {

@@ -7,7 +7,7 @@ import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
-import '../../../../../../widgets/balun_image/balun_image.dart';
+import '../../../../../../widgets/balun_image.dart';
 
 class LeagueTopAssistsListTile extends StatelessWidget {
   final PlayerResponse? assist;
@@ -26,10 +26,10 @@ class LeagueTopAssistsListTile extends StatelessWidget {
       return BalunButton(
         onPressed: assist?.player?.id != null
             ? () => openPlayer(
-                  context,
-                  playerId: assist!.player!.id!,
-                  season: season,
-                )
+                context,
+                playerId: assist!.player!.id!,
+                season: season,
+              )
             : null,
         child: Container(
           color: Colors.transparent,

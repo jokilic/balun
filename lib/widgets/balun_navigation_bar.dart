@@ -7,7 +7,7 @@ import '../services/balun_navigation_bar_service.dart';
 import '../theme/icons.dart';
 import '../theme/theme.dart';
 import '../util/dependencies.dart';
-import 'balun_image/balun_image.dart';
+import 'balun_image.dart';
 
 class BalunNavigationBar extends WatchingWidget {
   @override

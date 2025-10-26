@@ -1,16 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:extended_image/extended_image.dart';
-import 'package:flutter/foundation.dart';
+import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../../constants.dart';
-import '../../services/remote_settings_service.dart';
-import '../../theme/icons.dart';
-import '../../theme/theme.dart';
-import '../../util/color.dart';
-import '../../util/dependencies.dart';
-import 'balun_image_svg_stub.dart';
+import '../constants.dart';
+import '../services/remote_settings_service.dart';
+import '../theme/icons.dart';
+import '../theme/theme.dart';
+import '../util/color.dart';
+import '../util/dependencies.dart';
+
+const httpHeaders = {
+  'User-Agent': 'Mozilla/5.0',
+  'Referer': 'https://www.api-football.com',
+};
 
 class BalunImage extends StatelessWidget {
   final String imageUrl;
@@ -36,46 +39,13 @@ class BalunImage extends StatelessWidget {
     /// LOCAL IMAGE
     ///
     if (imageUrl.contains('assets/')) {
-      if (kIsWeb) {
-        return ExtendedImage.asset(
-          imageUrl,
-          height: height,
-          width: width,
-          fit: fit,
-          color: color,
-          loadStateChanged: (state) => Animate(
-            key: ValueKey(state.extendedImageLoadState),
-            effects: const [
-              FadeEffect(
-                curve: Curves.easeIn,
-                duration: BalunConstants.longAnimationDuration,
-              ),
-            ],
-            child: switch (state.extendedImageLoadState) {
-              LoadState.completed => state.completedWidget,
-              LoadState.loading => BalunImagePlaceholder(
-                height: height,
-                width: width,
-                color: color,
-                radius: radius,
-              ),
-              LoadState.failed => BalunImageError(
-                height: height,
-                width: width,
-                radius: radius,
-              ),
-            },
-          ),
-        );
-      } else {
-        return Image.asset(
-          imageUrl,
-          height: height,
-          width: width,
-          fit: fit,
-          color: color,
-        );
-      }
+      return Image.asset(
+        imageUrl,
+        height: height,
+        width: width,
+        fit: fit,
+        color: color,
+      );
     }
 
     ///
@@ -92,11 +62,21 @@ class BalunImage extends StatelessWidget {
         child: SizedBox(
           height: height,
           width: width,
-          child: BalunImageSVG(
-            imageUrl: imageUrl,
+          child: CachedNetworkSVGImage(
+            imageUrl,
             height: height,
             width: width,
             fit: fit,
+            headers: httpHeaders,
+            placeholder: BalunImagePlaceholder(
+              height: height,
+              width: width,
+              color: color,
+            ),
+            errorWidget: BalunImageError(
+              height: height,
+              width: width,
+            ),
           ),
         ),
       );
@@ -126,55 +106,23 @@ class BalunImage extends StatelessWidget {
     /// NETWORK IMAGE
     ///
     else {
-      if (kIsWeb) {
-        return ExtendedImage.network(
-          imageUrl,
+      return CachedNetworkImage(
+        imageUrl: imageUrl,
+        height: height,
+        width: width,
+        fit: fit,
+        color: color,
+        httpHeaders: httpHeaders,
+        placeholder: (context, url) => BalunImagePlaceholder(
           height: height,
           width: width,
-          fit: fit,
           color: color,
-          loadStateChanged: (state) => Animate(
-            key: ValueKey(state.extendedImageLoadState),
-            effects: const [
-              FadeEffect(
-                curve: Curves.easeIn,
-                duration: BalunConstants.longAnimationDuration,
-              ),
-            ],
-            child: switch (state.extendedImageLoadState) {
-              LoadState.completed => state.completedWidget,
-              LoadState.loading => BalunImagePlaceholder(
-                height: height,
-                width: width,
-                color: color,
-                radius: radius,
-              ),
-              LoadState.failed => BalunImageError(
-                height: height,
-                width: width,
-                radius: radius,
-              ),
-            },
-          ),
-        );
-      } else {
-        return CachedNetworkImage(
-          imageUrl: imageUrl,
+        ),
+        errorWidget: (context, url, error) => BalunImageError(
           height: height,
           width: width,
-          fit: fit,
-          color: color,
-          placeholder: (context, url) => BalunImagePlaceholder(
-            height: height,
-            width: width,
-            color: color,
-          ),
-          errorWidget: (context, url, error) => BalunImageError(
-            height: height,
-            width: width,
-          ),
-        );
-      }
+        ),
+      );
     }
   }
 }
@@ -227,7 +175,7 @@ class BalunImagePlaceholder extends StatelessWidget {
               borderRadius: BorderRadius.circular(radius),
               child: BalunImage(
                 imageUrl: BalunIcons.ballNavigation,
-                color: context.colors.primaryForeground,
+                color: context.colors.primaryBackground,
                 height: height,
                 width: width,
                 fit: fit,
@@ -260,11 +208,19 @@ class BalunImageError extends StatelessWidget {
       height != null ? height! / 6 : 6,
     ),
     decoration: BoxDecoration(
-      border: Border.all(
-        color: context.colors.danger,
-        width: 2,
-      ),
+      color: context.colors.danger,
       borderRadius: BorderRadius.circular(radius),
+    ),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(radius),
+      child: BalunImage(
+        imageUrl: BalunIcons.imageError,
+        color: context.colors.primaryBackground,
+        height: height,
+        width: width,
+        fit: fit,
+        radius: radius,
+      ),
     ),
   );
 }

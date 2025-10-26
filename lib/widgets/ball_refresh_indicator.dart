@@ -7,7 +7,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 import '../theme/icons.dart';
-import 'balun_image/balun_image.dart';
+import 'balun_image.dart';
 
 extension _GetRandomFromList<T> on List<T> {
   T get random => this[math.Random().nextInt(length)];
@@ -50,9 +50,9 @@ class BallRefreshIndicator extends StatefulWidget {
     this.controller,
     super.key,
   }) : assert(
-          ballColors.length > 0,
-          'ballColors cannot be empty.',
-        );
+         ballColors.length > 0,
+         'ballColors cannot be empty.',
+       );
 
   @override
   State<BallRefreshIndicator> createState() => _BallRefreshIndicatorState();
@@ -410,30 +410,30 @@ class Arrow extends StatelessWidget {
     required this.strokeWidth,
     this.distanceFromCenter = 0.0,
     super.key,
-  })  : assert(
-          radius > distanceFromCenter,
-          'Distance from center needs to be smaller than radius',
-        ),
-        assert(
-          distanceFromCenter >= 0,
-          'The distance from the center must be greater than or equal to 0',
-        ),
-        assert(
-          radius >= 0,
-          'The radius must be greater than or equal to 0',
-        );
+  }) : assert(
+         radius > distanceFromCenter,
+         'Distance from center needs to be smaller than radius',
+       ),
+       assert(
+         distanceFromCenter >= 0,
+         'The distance from the center must be greater than or equal to 0',
+       ),
+       assert(
+         radius >= 0,
+         'The radius must be greater than or equal to 0',
+       );
 
   @override
   Widget build(BuildContext context) => CustomPaint(
-        size: Size.square(radius * 2),
-        painter: ArrowPainter(
-          angle: angle,
-          color: color,
-          strokeWidth: strokeWidth,
-          radius: radius,
-          distanceFromCenter: distanceFromCenter,
-        ),
-      );
+    size: Size.square(radius * 2),
+    painter: ArrowPainter(
+      angle: angle,
+      color: color,
+      strokeWidth: strokeWidth,
+      radius: radius,
+      distanceFromCenter: distanceFromCenter,
+    ),
+  );
 }
 
 class ArrowPainter extends CustomPainter {
