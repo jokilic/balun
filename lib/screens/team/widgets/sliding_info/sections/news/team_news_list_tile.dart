@@ -37,7 +37,6 @@ class TeamNewsListTile extends StatelessWidget {
                 height: 120,
                 width: double.infinity,
                 fit: BoxFit.cover,
-                radius: 8,
               ),
             ),
             const SizedBox(height: 16),

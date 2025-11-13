@@ -143,7 +143,6 @@ class TeamStadiumSection extends StatelessWidget {
               height: 200,
               width: double.infinity,
               fit: BoxFit.cover,
-              radius: 8,
             ),
           ),
         ],

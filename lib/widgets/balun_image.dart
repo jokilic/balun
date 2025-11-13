@@ -29,7 +29,7 @@ class BalunImage extends StatelessWidget {
     this.width,
     this.fit = BoxFit.contain,
     this.color,
-    this.radius = 100,
+    this.radius = 8,
     super.key,
   });
 
