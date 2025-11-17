@@ -36,7 +36,7 @@ Future<void> main() async {
 
   /// Initialize services
   initializeServices(
-    enableRemoteSettings: !kDebugMode && defaultTargetPlatform == TargetPlatform.iOS,
+    enableRemoteSettings: !kDebugMode && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS),
     enablePeriodicFetching: !kDebugMode,
   );
 
