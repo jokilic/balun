@@ -1,1 +1,3 @@
+* Default radius in `BalunImage` is 8
+* Upgrade dependencies
 * Some code refactors
