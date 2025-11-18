@@ -1,2 +1,2 @@
-* Remove unnecessary packages
 * Past & future matches for a team
+* Remove unnecessary packages
