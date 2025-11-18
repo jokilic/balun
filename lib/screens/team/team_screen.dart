@@ -10,6 +10,7 @@ import '../../util/dependencies.dart';
 import 'controllers/team_coaches_controller.dart';
 import 'controllers/team_controller.dart';
 import 'controllers/team_leagues_controller.dart';
+import 'controllers/team_matches_controller.dart';
 import 'controllers/team_news_controller.dart';
 import 'controllers/team_players_controller.dart';
 import 'controllers/team_season_controller.dart';
@@ -47,6 +48,13 @@ class _TeamScreenState extends State<TeamScreen> {
       () => TeamNewsController(
         logger: getIt.get<LoggerService>(),
         news: getIt.get<NewsService>(),
+      ),
+      instanceName: '${widget.teamId}',
+    );
+    registerIfNotInitialized<TeamMatchesController>(
+      () => TeamMatchesController(
+        logger: getIt.get<LoggerService>(),
+        api: getIt.get<APIService>(),
       ),
       instanceName: '${widget.teamId}',
     );
@@ -119,6 +127,9 @@ class _TeamScreenState extends State<TeamScreen> {
         instanceName: '${widget.teamId}',
       )
       ..unregister<TeamNewsController>(
+        instanceName: '${widget.teamId}',
+      )
+      ..unregister<TeamMatchesController>(
         instanceName: '${widget.teamId}',
       )
       ..unregister<TeamStandingsController>(

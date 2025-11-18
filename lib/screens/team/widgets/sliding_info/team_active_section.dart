@@ -4,6 +4,7 @@ import '../../../../models/sections/team_section.dart';
 import '../../../../models/teams/team_response.dart';
 import 'sections/coaches/team_coaches_section.dart';
 import 'sections/leagues/team_leagues_section.dart';
+import 'sections/matches/team_matches_section.dart';
 import 'sections/news/team_news_section.dart';
 import 'sections/players/team_players_section.dart';
 import 'sections/stadium/team_stadium_section.dart';
@@ -23,50 +24,58 @@ class TeamActiveSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (teamSection) {
-        TeamSection(
-          teamSectionEnum: TeamSectionEnum.stadium,
-        ) =>
-          TeamStadiumSection(
-            stadium: team.venue,
-          ),
-        TeamSection(
-          teamSectionEnum: TeamSectionEnum.news,
-        ) =>
-          TeamNewsSection(
-            teamId: team.team?.id,
-            teamName: team.team?.name,
-          ),
-        TeamSection(
-          teamSectionEnum: TeamSectionEnum.leagues,
-        ) =>
-          TeamLeaguesSection(
-            teamId: team.team?.id,
-          ),
-        TeamSection(
-          teamSectionEnum: TeamSectionEnum.standings,
-        ) =>
-          TeamStandingsSection(
-            teamId: team.team?.id,
-            season: activeSeason,
-          ),
-        TeamSection(
-          teamSectionEnum: TeamSectionEnum.coaches,
-        ) =>
-          TeamCoachesSection(
-            teamId: team.team?.id,
-          ),
-        TeamSection(
-          teamSectionEnum: TeamSectionEnum.players,
-        ) =>
-          TeamPlayersSection(
-            teamId: team.team?.id,
-            season: activeSeason,
-          ),
-        TeamSection(
-          teamSectionEnum: TeamSectionEnum.transfers,
-        ) =>
-          TeamTransfersSection(
-            teamId: team.team?.id,
-          ),
-      };
+    TeamSection(
+      teamSectionEnum: TeamSectionEnum.stadium,
+    ) =>
+      TeamStadiumSection(
+        stadium: team.venue,
+      ),
+    TeamSection(
+      teamSectionEnum: TeamSectionEnum.news,
+    ) =>
+      TeamNewsSection(
+        teamId: team.team?.id,
+        teamName: team.team?.name,
+      ),
+    TeamSection(
+      teamSectionEnum: TeamSectionEnum.matches,
+    ) =>
+      TeamMatchesSection(
+        teamId: team.team?.id,
+        lastNumber: 5,
+        nextNumber: 5,
+      ),
+    TeamSection(
+      teamSectionEnum: TeamSectionEnum.leagues,
+    ) =>
+      TeamLeaguesSection(
+        teamId: team.team?.id,
+      ),
+    TeamSection(
+      teamSectionEnum: TeamSectionEnum.standings,
+    ) =>
+      TeamStandingsSection(
+        teamId: team.team?.id,
+        season: activeSeason,
+      ),
+    TeamSection(
+      teamSectionEnum: TeamSectionEnum.coaches,
+    ) =>
+      TeamCoachesSection(
+        teamId: team.team?.id,
+      ),
+    TeamSection(
+      teamSectionEnum: TeamSectionEnum.players,
+    ) =>
+      TeamPlayersSection(
+        teamId: team.team?.id,
+        season: activeSeason,
+      ),
+    TeamSection(
+      teamSectionEnum: TeamSectionEnum.transfers,
+    ) =>
+      TeamTransfersSection(
+        teamId: team.team?.id,
+      ),
+  };
 }

@@ -1,3 +1,2 @@
-* Default radius in `BalunImage` is 8
-* Upgrade dependencies
-* Some code refactors
+* Remove unnecessary packages
+* Past & future matches for a team

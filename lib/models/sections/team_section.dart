@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 enum TeamSectionEnum {
   stadium,
   news,
+  matches,
   leagues,
   standings,
   coaches,
@@ -18,14 +19,15 @@ class TeamSection {
   });
 
   String getTeamSectionName() => switch (teamSectionEnum) {
-        TeamSectionEnum.stadium => 'teamSectionStadium'.tr(),
-        TeamSectionEnum.news => 'teamSectionNews'.tr(),
-        TeamSectionEnum.leagues => 'teamSectionLeagues'.tr(),
-        TeamSectionEnum.standings => 'teamSectionStandings'.tr(),
-        TeamSectionEnum.coaches => 'teamSectionCoaches'.tr(),
-        TeamSectionEnum.players => 'teamSectionPlayers'.tr(),
-        TeamSectionEnum.transfers => 'teamSectionTransfers'.tr(),
-      };
+    TeamSectionEnum.stadium => 'teamSectionStadium'.tr(),
+    TeamSectionEnum.news => 'teamSectionNews'.tr(),
+    TeamSectionEnum.matches => 'teamSectionMatches'.tr(),
+    TeamSectionEnum.leagues => 'teamSectionLeagues'.tr(),
+    TeamSectionEnum.standings => 'teamSectionStandings'.tr(),
+    TeamSectionEnum.coaches => 'teamSectionCoaches'.tr(),
+    TeamSectionEnum.players => 'teamSectionPlayers'.tr(),
+    TeamSectionEnum.transfers => 'teamSectionTransfers'.tr(),
+  };
 
   @override
   String toString() => 'TeamSection(teamSectionEnum: $teamSectionEnum)';

@@ -6,11 +6,11 @@ import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/state.dart';
 
-class LeagueFixturesController extends ValueNotifier<BalunState<List<FixtureResponse>>> {
+class TeamMatchesController extends ValueNotifier<BalunState<List<FixtureResponse>>> {
   final LoggerService logger;
   final APIService api;
 
-  LeagueFixturesController({
+  TeamMatchesController({
     required this.logger,
     required this.api,
   }) : super(Initial());
@@ -19,51 +19,62 @@ class LeagueFixturesController extends ValueNotifier<BalunState<List<FixtureResp
   /// VARIABLES
   ///
 
-  String? fetchedSeason;
+  var fetched = false;
 
   ///
   /// METHODS
   ///
 
-  Future<void> getFixturesFromLeagueAndSeason({
-    required int? leagueId,
-    required String? season,
+  Future<void> getFixturesFromTeam({
+    required int? teamId,
+    required int lastNumber,
+    required int nextNumber,
   }) async {
-    if (leagueId == null || season == null) {
+    if (teamId == null) {
       value = Error(
-        error: 'leagueIdOrSeasonNull'.tr(),
+        error: 'teamIdNull'.tr(),
       );
     }
 
-    if (fetchedSeason == season) {
+    if (fetched) {
       return;
     }
 
     value = Loading();
 
-    final response = await api.getFixturesFromLeagueAndSeason(
-      leagueId: leagueId!,
-      season: season!,
-    );
+    /// Create two API calls
+    final futureList = [
+      api.getFixturesFromTeam(
+        teamId: teamId!,
+        lastNumber: lastNumber,
+      ),
+      api.getFixturesFromTeam(
+        teamId: teamId,
+        nextNumber: nextNumber,
+      ),
+    ];
 
-    /// Successful request
-    if (response.fixturesResponse != null && response.error == null) {
+    /// Call API requests
+    final responses = await Future.wait(futureList);
+
+    /// At least one successful request
+    if (responses.any((response) => response.fixturesResponse != null) && responses.any((response) => response.error == null)) {
       /// Errors exist, update to error state
-      if (response.fixturesResponse!.errors?.isNotEmpty ?? false) {
+      if (responses.any((response) => response.fixturesResponse!.errors?.isNotEmpty)) {
         value = Error(
-          error: response.fixturesResponse!.errors!.toString(),
+          error: responses.singleOrNull?.fixturesResponse!.errors!.toString(),
         );
       }
       /// Response is not null, update to success state
       else if (response.fixturesResponse!.response?.isNotEmpty ?? false) {
-        fetchedSeason = season;
+        fetched = true;
         value = Success(
           data: response.fixturesResponse!.response!,
         );
       }
       /// Response is null, update to empty state
       else {
-        fetchedSeason = season;
+        fetched = true;
         value = Empty();
       }
     }

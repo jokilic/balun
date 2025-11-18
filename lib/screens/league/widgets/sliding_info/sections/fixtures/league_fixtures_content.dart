@@ -27,7 +27,7 @@ class LeagueFixturesContent extends StatelessWidget {
       children: [
         if (groupedFixtures.futureGroups.isNotEmpty) ...[
           Text(
-            'leagueFixturesUpcoming'.tr(),
+            'fixturesUpcoming'.tr(),
             style: context.textStyles.matchStandingsSectionSubtitle,
           ),
           ListView.builder(
@@ -47,7 +47,7 @@ class LeagueFixturesContent extends StatelessWidget {
           ),
         ],
         Text(
-          groupedFixtures.futureGroups.isNotEmpty ? 'leagueFixturesPlayed'.tr() : 'leagueFixturesAll'.tr(),
+          groupedFixtures.futureGroups.isNotEmpty ? 'fixturesPlayed'.tr() : 'fixturesAll'.tr(),
           style: context.textStyles.matchStandingsSectionSubtitle,
         ),
         ListView.builder(
