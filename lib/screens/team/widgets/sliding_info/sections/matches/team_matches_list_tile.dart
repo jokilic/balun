@@ -32,7 +32,10 @@ class TeamMatchesListTile extends StatelessWidget {
       onPressed: fixturePressed,
       child: Container(
         margin: const EdgeInsets.all(4),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 12,
+        ),
         decoration: BoxDecoration(
           border: Border.all(
             color: context.colors.primaryForeground,
@@ -40,71 +43,64 @@ class TeamMatchesListTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Column(
               children: [
-                if (fixture.league != null)
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          mixOrOriginalWords(fixture.league!.round) ?? '---',
-                          style: context.textStyles.matchH2HTitle,
-                        ),
-                        Text(
-                          mixOrOriginalWords(fixture.league!.name) ?? '---',
-                          style: context.textStyles.matchH2HText,
-                        ),
-                      ],
-                    ),
-                  ),
-                if (matchDateTime != null)
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          DateFormat(
-                            'd. MMMM y.',
-                            context.locale.toLanguageTag(),
-                          ).format(matchDateTime),
-                          style: context.textStyles.matchH2HTitle,
-                          textAlign: TextAlign.right,
-                        ),
-                        Text(
-                          DateFormat(
-                            'HH:mm',
-                            context.locale.toLanguageTag(),
-                          ).format(matchDateTime),
-                          style: context.textStyles.matchH2HText,
-                          textAlign: TextAlign.right,
-                        ),
-                      ],
-                    ),
-                  ),
+                Text(
+                  matchDateTime != null
+                      ? DateFormat(
+                          'HH:mm',
+                          context.locale.toLanguageTag(),
+                        ).format(matchDateTime)
+                      : '---',
+                  style: context.textStyles.matchH2HText,
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  matchDateTime != null
+                      ? DateFormat(
+                          'd. MMMM y.',
+                          context.locale.toLanguageTag(),
+                        ).format(matchDateTime)
+                      : '---',
+                  style: context.textStyles.matchH2HTitle,
+                  textAlign: TextAlign.center,
+                ),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ///
                 /// HOME
                 ///
-                BalunImage(
-                  imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
-                  height: 56,
-                  width: 56,
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
+                          style: context.textStyles.fixturesNameCompact,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      BalunImage(
+                        imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
+                        height: 40,
+                        width: 40,
+                      ),
+                    ],
+                  ),
                 ),
-
-                const SizedBox(width: 24),
 
                 ///
                 /// SCORE
                 ///
+                const SizedBox(width: 12),
                 if (fixturePlaying)
                   Animate(
                     onPlay: (controller) => controller.loop(
@@ -117,46 +113,47 @@ class TeamMatchesListTile extends StatelessWidget {
                         duration: BalunConstants.shimmerDuration,
                       ),
                     ],
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(text: '${fixture.goals?.home ?? '-'}'),
-                          TextSpan(
-                            text: ':',
-                            style: context.textStyles.matchH2HScore,
-                          ),
-                          TextSpan(text: '${fixture.goals?.away ?? '-'}'),
-                        ],
-                      ),
-                      style: context.textStyles.matchH2HScore,
+                    child: Text(
+                      '${fixture.goals?.home ?? '-'}:${fixture.goals?.away ?? '-'}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: context.textStyles.fixturesScoreCompact,
                       textAlign: TextAlign.center,
                     ),
                   )
                 else
-                  Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(text: '${fixture.goals?.home ?? '-'}'),
-                        TextSpan(
-                          text: ':',
-                          style: context.textStyles.matchH2HScore,
-                        ),
-                        TextSpan(text: '${fixture.goals?.away ?? '-'}'),
-                      ],
-                    ),
-                    style: context.textStyles.matchH2HScore,
+                  Text(
+                    '${fixture.goals?.home ?? '-'}:${fixture.goals?.away ?? '-'}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.textStyles.fixturesScoreCompact,
                     textAlign: TextAlign.center,
                   ),
-
-                const SizedBox(width: 24),
+                const SizedBox(width: 12),
 
                 ///
                 /// AWAY
                 ///
-                BalunImage(
-                  imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
-                  height: 56,
-                  width: 56,
+                Expanded(
+                  child: Row(
+                    children: [
+                      BalunImage(
+                        imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
+                        height: 40,
+                        width: 40,
+                      ),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          mixOrOriginalWords(fixture.teams?.away?.name) ?? '---',
+                          style: context.textStyles.fixturesNameCompact,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

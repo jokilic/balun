@@ -1,13 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../../routing.dart';
-import '../../../../../../util/h2h.dart';
+import '../../../../../../theme/theme.dart';
 import '../../../../../../util/string.dart';
+import '../../../../../../util/team_fixtures.dart';
 import 'team_matches_list_tile.dart';
 
 class TeamMatchesContent extends StatelessWidget {
-  final List<FixtureResponse>? fixtures;
+  final ({List<FixtureResponse> upcomingFixtures, List<FixtureResponse> playedFixtures}) fixtures;
 
   const TeamMatchesContent({
     required this.fixtures,
@@ -15,30 +17,81 @@ class TeamMatchesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sortedFixtures = getHead2HeadList(
-      fixtures: fixtures ?? [],
+    final sortedUpcomingFixtures = sortTeamFixturesUpcoming(
+      fixtures: fixtures.upcomingFixtures,
     );
 
-    return ListView.separated(
+    final sortedPlayedFixtures = sortTeamFixturesPlayed(
+      fixtures: fixtures.playedFixtures,
+    );
+
+    return ListView(
       shrinkWrap: true,
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: sortedFixtures?.length ?? 0,
-      itemBuilder: (_, index) {
-        final fixture = sortedFixtures![index];
+      children: [
+        ///
+        /// UPCOMING FIXTURES
+        ///
+        if (sortedUpcomingFixtures?.isNotEmpty ?? false) ...[
+          Text(
+            'fixturesUpcoming'.tr(),
+            style: context.textStyles.matchStandingsSectionSubtitle,
+          ),
+          ListView.separated(
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(top: 16, bottom: 28),
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: sortedUpcomingFixtures!.length,
+            itemBuilder: (_, index) {
+              final fixture = sortedUpcomingFixtures[index];
 
-        return TeamMatchesListTile(
-          fixture: fixture,
-          fixturePlaying: isMatchPlaying(
-            statusShort: fixture.fixture?.status?.short ?? '--',
+              return TeamMatchesListTile(
+                fixture: fixture,
+                fixturePlaying: isMatchPlaying(
+                  statusShort: fixture.fixture?.status?.short ?? '--',
+                ),
+                fixturePressed: () => openMatch(
+                  context,
+                  matchId: fixture.fixture!.id!,
+                ),
+              );
+            },
+            separatorBuilder: (_, __) => const SizedBox(height: 12),
           ),
-          fixturePressed: () => openMatch(
-            context,
-            matchId: fixture.fixture!.id!,
+        ],
+
+        ///
+        /// PLAYED FIXTURES
+        ///
+        if (sortedPlayedFixtures?.isNotEmpty ?? false) ...[
+          Text(
+            'fixturesPlayed'.tr(),
+            style: context.textStyles.matchStandingsSectionSubtitle,
           ),
-        );
-      },
-      separatorBuilder: (_, __) => const SizedBox(height: 12),
+          ListView.separated(
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(top: 16),
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: sortedPlayedFixtures!.length,
+            itemBuilder: (_, index) {
+              final fixture = sortedPlayedFixtures[index];
+
+              return TeamMatchesListTile(
+                fixture: fixture,
+                fixturePlaying: isMatchPlaying(
+                  statusShort: fixture.fixture?.status?.short ?? '--',
+                ),
+                fixturePressed: () => openMatch(
+                  context,
+                  matchId: fixture.fixture!.id!,
+                ),
+              );
+            },
+            separatorBuilder: (_, __) => const SizedBox(height: 12),
+          ),
+        ],
+      ],
     );
   }
 }
