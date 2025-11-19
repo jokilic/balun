@@ -81,7 +81,7 @@ class BalunWidget extends WatchingWidget {
     onGenerateTitle: (_) => 'appName'.tr(),
     theme: BalunTheme.light,
     darkTheme: BalunTheme.dark,
-    themeMode: ThemeMode.dark,
+    themeMode: ThemeMode.light,
     themeAnimationDuration: BalunConstants.animationDuration,
     themeAnimationCurve: Curves.easeIn,
     builder: (_, child) {

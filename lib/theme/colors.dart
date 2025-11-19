@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../util/color.dart';
+
 abstract class BalunColors {
   ///
   /// LIGHT
@@ -7,15 +9,33 @@ abstract class BalunColors {
 
   static const black = Color(0xFF292928);
   static const grey = Color(0xFF303131);
-  static const lightGreen = Color(0xFFBFCABD);
+
+  // static const lightGreen = Color(0xFFBFCABD);
+
+  static const green = Color(0xFF417B5A);
+  static final middleGreen = lightenColor(
+    color: green,
+    factor: 0.02,
+  );
+  static final lightGreen = lightenColor(
+    color: green,
+    factor: 0.04,
+  );
 
   ///
   /// DARK
   ///
 
-  static const dark = Color(0xFF262836);
-  static const middleDark = Color(0xFF211F2A);
-  static const lightDark = Color(0xFF1F1D2B);
+  static const dark = Color(0xFF17293C);
+  static final middleDark = lightenColor(
+    color: dark,
+    factor: 0.02,
+  );
+  static final lightDark = lightenColor(
+    color: dark,
+    factor: 0.04,
+  );
+
   static const purple = Color(0xFF4F5090);
 
   ///
@@ -23,7 +43,6 @@ abstract class BalunColors {
   ///
 
   static const white = Color(0xFFFFFFFF);
-  static const darkGreen = Color(0xFF417B5A);
   static const red = Color(0xFFED3B3B);
   static const blue = Color(0xFF016FB9);
   static const yellow = Color(0xFFFCC938);

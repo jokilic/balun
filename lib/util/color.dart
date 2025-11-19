@@ -27,3 +27,16 @@ Color getRandomBalunColor(BuildContext context) {
 
   return colors[Random().nextInt(colors.length)];
 }
+
+Color lightenColor({
+  required Color color,
+  required double factor,
+}) {
+  final hsl = HSLColor.fromColor(color);
+
+  final lightened = hsl.withLightness(
+    (hsl.lightness + factor).clamp(0.0, 1.0),
+  );
+
+  return lightened.toColor();
+}
