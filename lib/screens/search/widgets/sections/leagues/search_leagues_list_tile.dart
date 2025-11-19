@@ -41,10 +41,11 @@ class SearchLeaguesListTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
                 color: context.colors.primaryBackground,
               ),
-              child: const BalunImage(
+              child: BalunImage(
                 imageUrl: BalunIcons.placeholderLeague,
                 height: 28,
                 width: 28,
+                color: context.colors.primaryForeground,
               ),
             ),
           const SizedBox(width: 16),

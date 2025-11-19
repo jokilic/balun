@@ -69,6 +69,7 @@ class LeagueMainInfo extends WatchingWidget {
             imageUrl: league.league?.logo ?? BalunIcons.placeholderLeague,
             height: 120,
             width: 120,
+
           ),
 
           const SizedBox(height: 16),

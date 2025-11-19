@@ -35,10 +35,11 @@ class MatchAppBar extends StatelessWidget {
             shape: BoxShape.circle,
             color: context.colors.primaryBackground.withValues(alpha: 0.4),
           ),
-          child: const BalunImage(
+          child: BalunImage(
             imageUrl: BalunIcons.back,
             height: 32,
             width: 32,
+            color: context.colors.primaryForeground,
           ),
         ),
       ),
@@ -94,11 +95,12 @@ class MatchAppBar extends StatelessWidget {
                     height: 32,
                     width: 32,
                   )
-                : const BalunImage(
-                    key: ValueKey('no'),
+                : BalunImage(
+                    key: const ValueKey('no'),
                     imageUrl: BalunIcons.favoriteNo,
                     height: 32,
                     width: 32,
+                    color: context.colors.primaryForeground,
                   ),
           ),
         ),

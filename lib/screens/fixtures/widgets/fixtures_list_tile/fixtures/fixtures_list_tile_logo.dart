@@ -5,9 +5,11 @@ import '../../../../../widgets/balun_image.dart';
 
 class FixturesListTileLogo extends StatelessWidget {
   final String logo;
+  final bool hasProperLogo;
 
   const FixturesListTileLogo({
     required this.logo,
+    required this.hasProperLogo,
   });
 
   @override
@@ -21,6 +23,7 @@ class FixturesListTileLogo extends StatelessWidget {
     padding: const EdgeInsets.all(8),
     child: BalunImage(
       imageUrl: logo,
+      color: !hasProperLogo ? context.colors.primaryForeground : null,
     ),
   );
 }

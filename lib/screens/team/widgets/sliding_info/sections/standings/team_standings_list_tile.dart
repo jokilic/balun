@@ -47,6 +47,7 @@ class _TeamStandingsListTileState extends State<TeamStandingsListTile> {
                   imageUrl: widget.standing.league?.logo ?? BalunIcons.placeholderLeague,
                   height: 48,
                   width: 48,
+
                 ),
                 const SizedBox(width: 12),
                 Expanded(

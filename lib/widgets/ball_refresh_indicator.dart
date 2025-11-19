@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import '../theme/icons.dart';
 import 'balun_image.dart';
 
-extension _GetRandomFromList<T> on List<T> {
+extension GetRandomFromList<T> on List<T> {
   T get random => this[math.Random().nextInt(length)];
 }
 
@@ -59,39 +59,39 @@ class BallRefreshIndicator extends StatefulWidget {
 }
 
 class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with TickerProviderStateMixin {
-  IndicatorController? _internalIndicatorController;
-  IndicatorController get controller => widget.controller ?? (_internalIndicatorController ??= IndicatorController());
+  IndicatorController? internalIndicatorController;
+  IndicatorController get controller => widget.controller ?? (internalIndicatorController ??= IndicatorController());
 
-  late final Ticker _ticker;
-  final _ballPosition = ValueNotifier<Offset>(Offset.zero);
+  late final Ticker ticker;
+  final ballPosition = ValueNotifier<Offset>(Offset.zero);
 
-  Offset _direction = Offset.zero;
-  double _lastAngle = 0;
-  Size _rectSize = Size.zero;
-  late Color _ballColor;
+  Offset direction = Offset.zero;
+  double lastAngle = 0;
+  Size rectSize = Size.zero;
+  late Color ballColor;
 
-  late final _shakeController = AnimationController(
+  late final shakeController = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 50),
   );
-  late final _arrowOpacityController = AnimationController(
+  late final arrowOpacityController = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 100),
   );
-  late final _centerController = AnimationController(
+  late final centerController = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 300),
   );
 
-  ShakeState _shakeState = ShakeState(shift: Offset.zero, isInitial: true);
+  ShakeState shakeState = ShakeState(shift: Offset.zero, isInitial: true);
 
   @override
   void initState() {
-    _ballColor = widget.ballColors.length > 1 ? widget.ballColors.random : widget.ballColors.first;
+    ballColor = widget.ballColors.length > 1 ? widget.ballColors.random : widget.ballColors.first;
 
-    _ticker = createTicker(_onTick);
-    _shakeController.addStatusListener(_onShakeStatusChanged);
-    _centerController.addListener(_onCenterChanged);
+    ticker = createTicker(onTick);
+    shakeController.addStatusListener(onShakeStatusChanged);
+    centerController.addListener(onCenterChanged);
 
     super.initState();
   }
@@ -101,63 +101,63 @@ class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with Ticker
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.controller != widget.controller && widget.controller != null) {
-      _internalIndicatorController?.dispose();
-      _internalIndicatorController = null;
+      internalIndicatorController?.dispose();
+      internalIndicatorController = null;
     }
 
     assert(
-      widget.controller == null || (widget.controller != null && _internalIndicatorController == null),
+      widget.controller == null || (widget.controller != null && internalIndicatorController == null),
       'An internal indicator should not exist when an external indicator is provided.',
     );
   }
 
-  void _onShakeStatusChanged(AnimationStatus status) {
-    if (status == AnimationStatus.completed && _shakeState.isInitial) {
-      _shakeState = ShakeState(shift: _shakeState.shift, isInitial: false);
-      _shakeController.reverse(from: 1);
+  void onShakeStatusChanged(AnimationStatus status) {
+    if (status == AnimationStatus.completed && shakeState.isInitial) {
+      shakeState = ShakeState(shift: shakeState.shift, isInitial: false);
+      shakeController.reverse(from: 1);
     }
   }
 
-  void _onCenterChanged() {
-    _ballPosition.value = _centerTween.transform(_centerController.value);
+  void onCenterChanged() {
+    ballPosition.value = centerTween.transform(centerController.value);
   }
 
-  void _onHitBorder(Offset direction) {
+  void onHitBorder(Offset direction) {
     setState(() {
-      _shakeState = ShakeState(
+      shakeState = ShakeState(
         shift: direction * widget.shakeOffset,
         isInitial: true,
       );
 
       // Update ball color
       if (widget.ballColors.length > 1) {
-        final colors = widget.ballColors.where((color) => color != _ballColor).toList();
-        _ballColor = colors.random;
+        final colors = widget.ballColors.where((color) => color != ballColor).toList();
+        ballColor = colors.random;
       }
 
-      _shakeController.forward(from: 0);
+      shakeController.forward(from: 0);
       HapticFeedback.lightImpact().ignore();
     });
   }
 
-  Duration _prevTickerDuration = Duration.zero;
-  void _onTick(Duration time) {
-    final delta = time - _prevTickerDuration;
-    _prevTickerDuration = time;
+  Duration prevTickerDuration = Duration.zero;
+  void onTick(Duration time) {
+    final delta = time - prevTickerDuration;
+    prevTickerDuration = time;
 
-    var ballPosition = _ballPosition.value + _direction * delta.inMilliseconds.toDouble() * widget.acceleration;
+    var ballPosition = this.ballPosition.value + direction * delta.inMilliseconds.toDouble() * widget.acceleration;
 
-    final ballSafeSpace = Size(_rectSize.width - widget.ballRadius * 2, _rectSize.height - widget.ballRadius * 2);
+    final ballSafeSpace = Size(rectSize.width - widget.ballRadius * 2, rectSize.height - widget.ballRadius * 2);
 
     if (ballPosition.dx < 0) {
-      _onHitBorder(_direction);
+      onHitBorder(direction);
 
-      _direction = Offset(-_direction.dx, _direction.dy);
+      direction = Offset(-direction.dx, direction.dy);
       ballPosition = Offset(-ballPosition.dx, ballPosition.dy);
     } else if (ballPosition.dx > ballSafeSpace.width) {
-      _onHitBorder(_direction);
+      onHitBorder(direction);
 
-      _direction = Offset(-_direction.dx, _direction.dy);
+      direction = Offset(-direction.dx, direction.dy);
       ballPosition = Offset(
         ballPosition.dx - (ballPosition.dx - ballSafeSpace.width),
         ballPosition.dy,
@@ -165,24 +165,24 @@ class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with Ticker
     }
 
     if (ballPosition.dy < 0) {
-      _onHitBorder(_direction);
+      onHitBorder(direction);
 
-      _direction = Offset(_direction.dx, -_direction.dy);
+      direction = Offset(direction.dx, -direction.dy);
       ballPosition = Offset(ballPosition.dx, -ballPosition.dy);
     } else if (ballPosition.dy > ballSafeSpace.height) {
-      _onHitBorder(_direction);
+      onHitBorder(direction);
 
-      _direction = Offset(_direction.dx, -_direction.dy);
+      direction = Offset(direction.dx, -direction.dy);
       ballPosition = Offset(
         ballPosition.dx,
         ballPosition.dy - (ballPosition.dy - ballSafeSpace.height),
       );
     }
 
-    _ballPosition.value = ballPosition;
+    this.ballPosition.value = ballPosition;
   }
 
-  double _calculateAngle({
+  double calculateAngle({
     required Offset origin,
     required Offset point,
   }) {
@@ -192,7 +192,7 @@ class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with Ticker
     return normalizedAngle;
   }
 
-  final _centerTween = Tween<Offset>(
+  final centerTween = Tween<Offset>(
     begin: Offset.zero,
     end: Offset.zero,
   );
@@ -204,7 +204,7 @@ class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with Ticker
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        _rectSize = constraints.biggest;
+        rectSize = constraints.biggest;
 
         const arrowRadius = 100.0;
 
@@ -223,7 +223,7 @@ class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with Ticker
           autoRebuild: false,
           onStateChanged: (change) {
             if (change.didChange(to: IndicatorState.settling)) {
-              final angle = _lastAngle;
+              final angle = lastAngle;
 
               const scale = 1.0;
 
@@ -231,29 +231,29 @@ class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with Ticker
                 center.dx + scale * math.sin(angle),
                 center.dy - scale * math.cos(angle),
               );
-              _ballPosition.value = Offset(
+              ballPosition.value = Offset(
                 center.dx - ballRadius,
                 center.dy - ballRadius,
               );
-              _direction = target - center;
-              _ticker.start();
+              direction = target - center;
+              ticker.start();
             }
             if (change.didChange(to: IndicatorState.complete)) {
-              _prevTickerDuration = Duration.zero;
-              _direction = Offset.zero;
-              _ticker.stop();
+              prevTickerDuration = Duration.zero;
+              direction = Offset.zero;
+              ticker.stop();
 
-              _centerTween
+              centerTween
                 ..end = Offset(center.dx - ballRadius, center.dy - ballRadius)
-                ..begin = _ballPosition.value;
-              _centerController.forward(from: 0);
+                ..begin = ballPosition.value;
+              centerController.forward(from: 0);
             }
 
             if (change.didChange(to: IndicatorState.armed)) {
-              _arrowOpacityController.forward(from: 0);
+              arrowOpacityController.forward(from: 0);
               HapticFeedback.selectionClick().ignore();
             } else if (change.didChange(from: IndicatorState.armed)) {
-              _arrowOpacityController.reverse(from: 1);
+              arrowOpacityController.reverse(from: 1);
               HapticFeedback.selectionClick().ignore();
             }
           },
@@ -280,13 +280,13 @@ class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with Ticker
                         imageUrl: BalunIcons.ballNavigation,
                         height: 32,
                         width: 32,
-                        color: _ballColor,
+                        color: ballColor,
                       )
                     : BalunImage(
                         imageUrl: BalunIcons.ballNavigation,
                         height: 32,
                         width: 32,
-                        color: _ballColor,
+                        color: ballColor,
                       ),
               ),
             );
@@ -298,8 +298,8 @@ class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with Ticker
                 PositionedTransition(
                   rect: RelativeRectTween(
                     begin: RelativeRect.fill,
-                    end: RelativeRect.fill.shift(_shakeState.shift),
-                  ).animate(_shakeController),
+                    end: RelativeRect.fill.shift(shakeState.shift),
+                  ).animate(shakeController),
                   child: child,
                 ),
                 if (!controller.isIdle)
@@ -310,12 +310,12 @@ class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with Ticker
 
                       final double angle;
                       if (event != null) {
-                        _lastAngle = angle = _calculateAngle(
+                        lastAngle = angle = calculateAngle(
                           origin: center,
                           point: event.localPosition,
                         );
                       } else {
-                        angle = _lastAngle;
+                        angle = lastAngle;
                       }
 
                       return Positioned(
@@ -323,7 +323,7 @@ class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with Ticker
                         top: center.dy - arrowRadius,
                         child: FadeTransition(
                           opacity: CurvedAnimation(
-                            parent: _arrowOpacityController,
+                            parent: arrowOpacityController,
                             curve: Curves.easeIn,
                           ),
                           child: Arrow(
@@ -341,9 +341,9 @@ class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with Ticker
                   Align(
                     alignment: Alignment.topLeft,
                     child: AnimatedBuilder(
-                      animation: _ballPosition,
+                      animation: ballPosition,
                       builder: (context, _) => Transform.translate(
-                        offset: _ballPosition.value,
+                        offset: ballPosition.value,
                         child: ball,
                       ),
                     ),
@@ -383,12 +383,12 @@ class _BallRefreshIndicatorState extends State<BallRefreshIndicator> with Ticker
 
   @override
   void dispose() {
-    _ticker.dispose();
-    _ballPosition.dispose();
-    _shakeController.dispose();
-    _arrowOpacityController.dispose();
-    _centerController.dispose();
-    _internalIndicatorController?.dispose();
+    ticker.dispose();
+    ballPosition.dispose();
+    shakeController.dispose();
+    arrowOpacityController.dispose();
+    centerController.dispose();
+    internalIndicatorController?.dispose();
 
     super.dispose();
   }

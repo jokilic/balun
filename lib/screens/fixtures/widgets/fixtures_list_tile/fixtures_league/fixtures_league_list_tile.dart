@@ -58,6 +58,7 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
                 imageUrl: widget.league?.logo ?? BalunIcons.placeholderLeague,
                 height: 32,
                 width: 32,
+
               ),
               const SizedBox(width: 16),
               Expanded(

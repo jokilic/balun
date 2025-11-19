@@ -17,12 +17,18 @@ class BalunIcons {
   static const assist = 'assets/icons/assist.png';
   static const missedPenalty = 'assets/icons/missed_penalty.png';
   static const error = 'assets/icons/error.png';
-  static const imageError = 'assets/icons/image_error.png';
   static const injury = 'assets/icons/injury.png';
-  static const favoriteNo = 'assets/icons/favorite_no.png';
   static const favoriteYes = 'assets/icons/favorite_yes.png';
   static const placeholderCountry = 'assets/icons/globe_color.png';
   static const placeholderPlayer = 'assets/icons/placeholder_player.png';
+  static const notifications = 'assets/icons/notifications.png';
+  static const theme = 'assets/icons/theme.png';
+  static const language = 'assets/icons/language.png';
+  static const about = 'assets/icons/about.png';
+  static const workInProgress = 'assets/icons/work_in_progress.png';
+
+  static const imageError = 'assets/icons/image_error.png';
+  static const favoriteNo = 'assets/icons/favorite_no.png';
   static const placeholderLeague = 'assets/icons/placeholder_league.png';
   static const placeholderTeam = 'assets/icons/placeholder_team.png';
   static const calendar = 'assets/icons/calendar.png';
@@ -35,9 +41,4 @@ class BalunIcons {
   static const mail = 'assets/icons/mail.png';
   static const programming = 'assets/icons/programming.png';
   static const website = 'assets/icons/website.png';
-  static const notifications = 'assets/icons/notifications.png';
-  static const theme = 'assets/icons/theme.png';
-  static const language = 'assets/icons/language.png';
-  static const about = 'assets/icons/about.png';
-  static const workInProgress = 'assets/icons/work_in_progress.png';
 }

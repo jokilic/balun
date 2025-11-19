@@ -148,17 +148,19 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
           style: context.textStyles.bodyMdBold,
         ),
       ),
-      lastMonthIcon: const BalunImage(
+      lastMonthIcon: BalunImage(
         imageUrl: BalunIcons.back,
         height: 20,
         width: 20,
+        color: context.colors.primaryForeground,
       ),
       nextMonthIcon: Transform.rotate(
         angle: pi,
-        child: const BalunImage(
+        child: BalunImage(
           imageUrl: BalunIcons.back,
           height: 20,
           width: 20,
+          color: context.colors.primaryForeground,
         ),
       ),
     ),

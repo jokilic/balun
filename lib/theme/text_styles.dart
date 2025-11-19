@@ -287,60 +287,60 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
     required Map<BalunTextStyleToken, TextStyle> styles,
   }) : styles = Map.unmodifiable(styles);
 
-  TextStyle _resolve(BalunTextStyleToken token) => styles[token]!;
+  TextStyle resolve(BalunTextStyleToken token) => styles[token]!;
 
-  TextStyle get displayXxl => _resolve(BalunTextStyleToken.displayXxl);
-  TextStyle get displayXl => _resolve(BalunTextStyleToken.displayXl);
-  TextStyle get headlineXl => _resolve(BalunTextStyleToken.headlineXl);
-  TextStyle get headlineXlLoose => _resolve(BalunTextStyleToken.headlineXlLoose);
-  TextStyle get headlineLgBold => _resolve(BalunTextStyleToken.headlineLgBold);
-  TextStyle get headlineLg => _resolve(BalunTextStyleToken.headlineLg);
-  TextStyle get headlineMdBold => _resolve(BalunTextStyleToken.headlineMdBold);
-  TextStyle get headlineMd => _resolve(BalunTextStyleToken.headlineMd);
-  TextStyle get headlineMdLight => _resolve(BalunTextStyleToken.headlineMdLight);
-  TextStyle get titleLgBoldTight => _resolve(BalunTextStyleToken.titleLgBoldTight);
-  TextStyle get titleLgBold => _resolve(BalunTextStyleToken.titleLgBold);
-  TextStyle get titleLgExtraBold => _resolve(BalunTextStyleToken.titleLgExtraBold);
-  TextStyle get titleLgLight => _resolve(BalunTextStyleToken.titleLgLight);
-  TextStyle get titleMdExtraBold => _resolve(BalunTextStyleToken.titleMdExtraBold);
-  TextStyle get titleMdBold => _resolve(BalunTextStyleToken.titleMdBold);
-  TextStyle get titleMd => _resolve(BalunTextStyleToken.titleMd);
-  TextStyle get titleMdLight => _resolve(BalunTextStyleToken.titleMdLight);
-  TextStyle get bodyLgExtraBold => _resolve(BalunTextStyleToken.bodyLgExtraBold);
-  TextStyle get bodyLgBoldLoose => _resolve(BalunTextStyleToken.bodyLgBoldLoose);
-  TextStyle get bodyLgBold => _resolve(BalunTextStyleToken.bodyLgBold);
-  TextStyle get bodyLgMedium => _resolve(BalunTextStyleToken.bodyLgMedium);
-  TextStyle get bodyLgTight => _resolve(BalunTextStyleToken.bodyLgTight);
-  TextStyle get bodyLg => _resolve(BalunTextStyleToken.bodyLg);
-  TextStyle get bodyLgLight => _resolve(BalunTextStyleToken.bodyLgLight);
-  TextStyle get bodyMdExtraBold => _resolve(BalunTextStyleToken.bodyMdExtraBold);
-  TextStyle get bodyMdBold => _resolve(BalunTextStyleToken.bodyMdBold);
-  TextStyle get bodyMd => _resolve(BalunTextStyleToken.bodyMd);
-  TextStyle get bodyMdLight => _resolve(BalunTextStyleToken.bodyMdLight);
-  TextStyle get labelBold => _resolve(BalunTextStyleToken.labelBold);
-  TextStyle get labelMedium => _resolve(BalunTextStyleToken.labelMedium);
-  TextStyle get label => _resolve(BalunTextStyleToken.label);
-  TextStyle get captionBold => _resolve(BalunTextStyleToken.captionBold);
-  TextStyle get caption => _resolve(BalunTextStyleToken.caption);
-  TextStyle get microBold => _resolve(BalunTextStyleToken.microBold);
-  TextStyle get micro => _resolve(BalunTextStyleToken.micro);
-  TextStyle get titleLgLightMuted => _resolve(BalunTextStyleToken.titleLgLightMuted);
-  TextStyle get labelMuted => _resolve(BalunTextStyleToken.labelMuted);
-  TextStyle get labelMediumMuted => _resolve(BalunTextStyleToken.labelMediumMuted);
-  TextStyle get bodyMdBoldMuted => _resolve(BalunTextStyleToken.bodyMdBoldMuted);
-  TextStyle get bodyLgBoldOnPrimary => _resolve(BalunTextStyleToken.bodyLgBoldOnPrimary);
-  TextStyle get microBoldOnPrimary => _resolve(BalunTextStyleToken.microBoldOnPrimary);
-  TextStyle get titleMdMuted => _resolve(BalunTextStyleToken.titleMdMuted);
-  TextStyle get titleLgBoldMuted => _resolve(BalunTextStyleToken.titleLgBoldMuted);
-  TextStyle get bodyLgMediumMuted => _resolve(BalunTextStyleToken.bodyLgMediumMuted);
-  TextStyle get bodyMdLightMuted => _resolve(BalunTextStyleToken.bodyMdLightMuted);
-  TextStyle get labelBoldMuted => _resolve(BalunTextStyleToken.labelBoldMuted);
-  TextStyle get titleMdExtraBoldAccent => _resolve(BalunTextStyleToken.titleMdExtraBoldAccent);
-  TextStyle get bodyLgOnPrimary => _resolve(BalunTextStyleToken.bodyLgOnPrimary);
-  TextStyle get bodyLgMuted => _resolve(BalunTextStyleToken.bodyLgMuted);
-  TextStyle get labelBoldOnPrimary => _resolve(BalunTextStyleToken.labelBoldOnPrimary);
-  TextStyle get captionBoldOnPrimary => _resolve(BalunTextStyleToken.captionBoldOnPrimary);
-  TextStyle get bodyLgTightMuted => _resolve(BalunTextStyleToken.bodyLgTightMuted);
+  TextStyle get displayXxl => resolve(BalunTextStyleToken.displayXxl);
+  TextStyle get displayXl => resolve(BalunTextStyleToken.displayXl);
+  TextStyle get headlineXl => resolve(BalunTextStyleToken.headlineXl);
+  TextStyle get headlineXlLoose => resolve(BalunTextStyleToken.headlineXlLoose);
+  TextStyle get headlineLgBold => resolve(BalunTextStyleToken.headlineLgBold);
+  TextStyle get headlineLg => resolve(BalunTextStyleToken.headlineLg);
+  TextStyle get headlineMdBold => resolve(BalunTextStyleToken.headlineMdBold);
+  TextStyle get headlineMd => resolve(BalunTextStyleToken.headlineMd);
+  TextStyle get headlineMdLight => resolve(BalunTextStyleToken.headlineMdLight);
+  TextStyle get titleLgBoldTight => resolve(BalunTextStyleToken.titleLgBoldTight);
+  TextStyle get titleLgBold => resolve(BalunTextStyleToken.titleLgBold);
+  TextStyle get titleLgExtraBold => resolve(BalunTextStyleToken.titleLgExtraBold);
+  TextStyle get titleLgLight => resolve(BalunTextStyleToken.titleLgLight);
+  TextStyle get titleMdExtraBold => resolve(BalunTextStyleToken.titleMdExtraBold);
+  TextStyle get titleMdBold => resolve(BalunTextStyleToken.titleMdBold);
+  TextStyle get titleMd => resolve(BalunTextStyleToken.titleMd);
+  TextStyle get titleMdLight => resolve(BalunTextStyleToken.titleMdLight);
+  TextStyle get bodyLgExtraBold => resolve(BalunTextStyleToken.bodyLgExtraBold);
+  TextStyle get bodyLgBoldLoose => resolve(BalunTextStyleToken.bodyLgBoldLoose);
+  TextStyle get bodyLgBold => resolve(BalunTextStyleToken.bodyLgBold);
+  TextStyle get bodyLgMedium => resolve(BalunTextStyleToken.bodyLgMedium);
+  TextStyle get bodyLgTight => resolve(BalunTextStyleToken.bodyLgTight);
+  TextStyle get bodyLg => resolve(BalunTextStyleToken.bodyLg);
+  TextStyle get bodyLgLight => resolve(BalunTextStyleToken.bodyLgLight);
+  TextStyle get bodyMdExtraBold => resolve(BalunTextStyleToken.bodyMdExtraBold);
+  TextStyle get bodyMdBold => resolve(BalunTextStyleToken.bodyMdBold);
+  TextStyle get bodyMd => resolve(BalunTextStyleToken.bodyMd);
+  TextStyle get bodyMdLight => resolve(BalunTextStyleToken.bodyMdLight);
+  TextStyle get labelBold => resolve(BalunTextStyleToken.labelBold);
+  TextStyle get labelMedium => resolve(BalunTextStyleToken.labelMedium);
+  TextStyle get label => resolve(BalunTextStyleToken.label);
+  TextStyle get captionBold => resolve(BalunTextStyleToken.captionBold);
+  TextStyle get caption => resolve(BalunTextStyleToken.caption);
+  TextStyle get microBold => resolve(BalunTextStyleToken.microBold);
+  TextStyle get micro => resolve(BalunTextStyleToken.micro);
+  TextStyle get titleLgLightMuted => resolve(BalunTextStyleToken.titleLgLightMuted);
+  TextStyle get labelMuted => resolve(BalunTextStyleToken.labelMuted);
+  TextStyle get labelMediumMuted => resolve(BalunTextStyleToken.labelMediumMuted);
+  TextStyle get bodyMdBoldMuted => resolve(BalunTextStyleToken.bodyMdBoldMuted);
+  TextStyle get bodyLgBoldOnPrimary => resolve(BalunTextStyleToken.bodyLgBoldOnPrimary);
+  TextStyle get microBoldOnPrimary => resolve(BalunTextStyleToken.microBoldOnPrimary);
+  TextStyle get titleMdMuted => resolve(BalunTextStyleToken.titleMdMuted);
+  TextStyle get titleLgBoldMuted => resolve(BalunTextStyleToken.titleLgBoldMuted);
+  TextStyle get bodyLgMediumMuted => resolve(BalunTextStyleToken.bodyLgMediumMuted);
+  TextStyle get bodyMdLightMuted => resolve(BalunTextStyleToken.bodyMdLightMuted);
+  TextStyle get labelBoldMuted => resolve(BalunTextStyleToken.labelBoldMuted);
+  TextStyle get titleMdExtraBoldAccent => resolve(BalunTextStyleToken.titleMdExtraBoldAccent);
+  TextStyle get bodyLgOnPrimary => resolve(BalunTextStyleToken.bodyLgOnPrimary);
+  TextStyle get bodyLgMuted => resolve(BalunTextStyleToken.bodyLgMuted);
+  TextStyle get labelBoldOnPrimary => resolve(BalunTextStyleToken.labelBoldOnPrimary);
+  TextStyle get captionBoldOnPrimary => resolve(BalunTextStyleToken.captionBoldOnPrimary);
+  TextStyle get bodyLgTightMuted => resolve(BalunTextStyleToken.bodyLgTightMuted);
 
   @override
   BalunTextThemesExtension copyWith({
@@ -369,7 +369,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
 
     final lerped = <BalunTextStyleToken, TextStyle>{};
     for (final token in BalunTextStyleToken.values) {
-      lerped[token] = TextStyle.lerp(_resolve(token), other._resolve(token), t)!;
+      lerped[token] = TextStyle.lerp(resolve(token), other.resolve(token), t)!;
     }
 
     return BalunTextThemesExtension(styles: lerped);

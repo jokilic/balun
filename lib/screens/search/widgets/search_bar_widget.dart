@@ -54,10 +54,11 @@ class SearchBarWidget extends StatelessWidget {
           child: Container(
             color: Colors.transparent,
             padding: const EdgeInsets.all(10),
-            child: const BalunImage(
+            child: BalunImage(
               imageUrl: BalunIcons.search,
               height: 24,
               width: 24,
+              color: context.colors.primaryForeground,
             ),
           ),
         ),

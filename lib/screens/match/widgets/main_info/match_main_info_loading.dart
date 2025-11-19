@@ -28,10 +28,11 @@ class MatchMainInfoLoading extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: context.colors.primaryBackground.withValues(alpha: 0.4),
                 ),
-                child: const BalunImage(
+                child: BalunImage(
                   imageUrl: BalunIcons.back,
                   height: 32,
                   width: 32,
+                  color: context.colors.primaryForeground,
                 ),
               ),
             ),
