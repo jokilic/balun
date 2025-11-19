@@ -56,9 +56,7 @@ class FixturesDatePicker extends WatchingWidget {
                 margin: const EdgeInsets.all(8),
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: !dates.contains(activeDate)
-                      ? context.colors.datePickerActiveBackground
-                      : context.colors.datePickerInactiveBackground,
+                  color: !dates.contains(activeDate) ? context.colors.datePickerActiveBackground : context.colors.datePickerInactiveBackground,
                   borderRadius: BorderRadius.circular(100),
                 ),
                 child: Center(
@@ -69,9 +67,7 @@ class FixturesDatePicker extends WatchingWidget {
                         imageUrl: BalunIcons.calendar,
                         height: 20,
                         width: 20,
-                        color: !dates.contains(activeDate)
-                            ? context.colors.datePickerInactiveIconColor
-                            : context.colors.datePickerActiveIconColor,
+                        color: !dates.contains(activeDate) ? context.colors.datePickerInactiveIconColor : context.colors.datePickerActiveIconColor,
                       ),
                       const SizedBox(height: 8),
                       Text(
@@ -109,9 +105,7 @@ class FixturesDatePicker extends WatchingWidget {
                       margin: const EdgeInsets.all(8),
                       padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
-                        color: activeDate == date
-                            ? context.colors.datePickerActiveBackground
-                            : context.colors.datePickerInactiveBackground,
+                        color: activeDate == date ? context.colors.datePickerActiveBackground : context.colors.datePickerInactiveBackground,
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: Center(
@@ -160,9 +154,7 @@ class FixturesDatePicker extends WatchingWidget {
                 margin: const EdgeInsets.all(8),
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: !dates.contains(activeDate)
-                      ? context.colors.datePickerActiveBackground
-                      : context.colors.datePickerInactiveBackground,
+                  color: !dates.contains(activeDate) ? context.colors.datePickerActiveBackground : context.colors.datePickerInactiveBackground,
                   borderRadius: BorderRadius.circular(100),
                 ),
                 child: Center(
@@ -173,9 +165,7 @@ class FixturesDatePicker extends WatchingWidget {
                         imageUrl: BalunIcons.calendar,
                         height: 20,
                         width: 20,
-                        color: !dates.contains(activeDate)
-                            ? context.colors.datePickerInactiveIconColor
-                            : context.colors.datePickerActiveIconColor,
+                        color: !dates.contains(activeDate) ? context.colors.datePickerInactiveIconColor : context.colors.datePickerActiveIconColor,
                       ),
                       const SizedBox(height: 8),
                       Text(

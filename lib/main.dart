@@ -8,6 +8,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:watch_it/watch_it.dart';
 
 import 'constants.dart';
+import 'models/theme/theme_model.dart';
 import 'services/balun_screen_service.dart';
 import 'services/theme_service.dart';
 import 'theme/theme.dart';
@@ -72,59 +73,69 @@ class BalunApp extends StatelessWidget {
 class BalunWidget extends WatchingWidget {
   @override
   Widget build(BuildContext context) {
-    final activeTheme = getBalunTheme(
-      watchIt<ThemeService>().value,
-    );
+    final balunThemeEnum = watchIt<ThemeService>().value;
 
-    return MaterialApp(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        bottomNavigationBar: BalunNavigationBar(),
-        body: watchIt<BalunScreenService>().value,
+    final activeTheme = getBalunTheme(balunThemeEnum);
+
+    final isDarkTheme = balunThemeEnum == BalunThemeEnum.dark || (balunThemeEnum == null && MediaQuery.of(context).platformBrightness == Brightness.dark);
+
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        statusBarBrightness: isDarkTheme ? Brightness.dark : Brightness.light,
+        systemNavigationBarColor: Colors.transparent,
+        statusBarIconBrightness: isDarkTheme ? Brightness.light : Brightness.dark,
+        systemNavigationBarIconBrightness: isDarkTheme ? Brightness.light : Brightness.dark,
       ),
-      onGenerateTitle: (_) => 'appName'.tr(),
-      theme: activeTheme ?? BalunTheme.light,
-      darkTheme: activeTheme ?? BalunTheme.dark,
-      themeMode: activeTheme == null ? ThemeMode.system : null,
-      themeAnimationDuration: BalunConstants.animationDuration,
-      themeAnimationCurve: Curves.easeIn,
-      builder: (_, child) {
-        /// Set the colors of status bar & navigation bar
-        final brightness = defaultTargetPlatform == TargetPlatform.iOS ? Brightness.light : Brightness.dark;
+      child: MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          bottomNavigationBar: BalunNavigationBar(),
+          body: watchIt<BalunScreenService>().value,
+        ),
+        onGenerateTitle: (_) => 'appName'.tr(),
+        theme: activeTheme ?? BalunTheme.light,
+        darkTheme: activeTheme ?? BalunTheme.dark,
+        themeMode: activeTheme == null ? ThemeMode.system : null,
+        themeAnimationDuration: BalunConstants.animationDuration,
+        themeAnimationCurve: Curves.easeIn,
+        builder: (_, child) {
+          /// Set the colors of status bar & navigation bar
+          final brightness = defaultTargetPlatform == TargetPlatform.iOS ? Brightness.light : Brightness.dark;
 
-        SystemChrome.setSystemUIOverlayStyle(
-          SystemUiOverlayStyle(
-            statusBarColor: Colors.transparent,
-            statusBarBrightness: brightness,
-            statusBarIconBrightness: brightness,
-            systemNavigationBarIconBrightness: brightness,
-            systemNavigationBarColor: Colors.transparent,
-          ),
-        );
+          SystemChrome.setSystemUIOverlayStyle(
+            SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarBrightness: brightness,
+              statusBarIconBrightness: brightness,
+              systemNavigationBarIconBrightness: brightness,
+              systemNavigationBarColor: Colors.transparent,
+            ),
+          );
 
-        /// Generate `appWidget`, with [Balun] content
-        final appWidget =
-            child ??
-            const Scaffold(
-              body: Center(
-                child: BalunLoader(),
-              ),
-            );
+          /// Generate `appWidget`, with [Balun] content
+          final appWidget =
+              child ??
+              const Scaffold(
+                body: Center(
+                  child: BalunLoader(),
+                ),
+              );
 
-        /// Return `appWidget`, also [Banner] if app is `debug`
-        return kDebugMode
-            ? Banner(
-                message: 'appName'.tr().toUpperCase(),
-                color: getRandomBalunColor(context),
-                location: BannerLocation.topEnd,
-                layoutDirection: TextDirection.ltr,
-                child: appWidget,
-              )
-            : appWidget;
-      },
+          /// Return `appWidget`, also [Banner] if app is `debug`
+          return kDebugMode
+              ? Banner(
+                  message: 'appName'.tr().toUpperCase(),
+                  color: getRandomBalunColor(context),
+                  location: BannerLocation.topEnd,
+                  layoutDirection: TextDirection.ltr,
+                  child: appWidget,
+                )
+              : appWidget;
+        },
+      ),
     );
   }
 }
