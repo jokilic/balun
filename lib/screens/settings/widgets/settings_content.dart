@@ -1,10 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
 import '../../../routing.dart';
+import '../../../services/theme_service.dart';
 import '../../../theme/icons.dart';
+import '../../../util/dependencies.dart';
 import '../../../util/language.dart';
 import '../../../util/snackbars.dart';
+import '../../../util/theme.dart';
 import 'settings_list_tile.dart';
 
 class SettingsContent extends StatelessWidget {
@@ -32,18 +36,44 @@ class SettingsContent extends StatelessWidget {
       ),
       const SizedBox(height: 4),
       SettingsListTile(
-        onPressed: () => showSnackbar(
-          context,
-          icon: BalunIcons.workInProgress,
-          text: 'workInProgress'.tr(),
-        ),
+        onPressed: () async {
+          final newTheme = await getIt.get<ThemeService>().toggleTheme();
+
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+          await Future.delayed(
+            BalunConstants.longAnimationDuration,
+          );
+
+          final themeName = getThemeName(newTheme);
+
+          showSnackbar(
+            context,
+            icon: BalunIcons.theme,
+            text: themeName,
+          );
+        },
         icon: BalunIcons.theme,
         title: 'settingsThemeSectionTitle'.tr(),
         subtitle: 'settingsThemeSectionSubtitle'.tr(),
       ),
       const SizedBox(height: 4),
       SettingsListTile(
-        onPressed: () => toggleLanguage(context),
+        onPressed: () async {
+          await toggleLanguage(context);
+
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+          await Future.delayed(
+            BalunConstants.longAnimationDuration,
+          );
+
+          showSnackbar(
+            context,
+            icon: BalunIcons.language,
+            text: context.locale == const Locale('en') ? 'settingsLanguageEnglish'.tr() : 'settingsLanguageCroatian'.tr(),
+          );
+        },
         icon: BalunIcons.language,
         title: 'settingsLanguageSectionTitle'.tr(),
         subtitle: 'settingsLanguageSectionSubtitle'.tr(),

@@ -9,10 +9,12 @@ import 'package:watch_it/watch_it.dart';
 
 import 'constants.dart';
 import 'services/balun_screen_service.dart';
+import 'services/theme_service.dart';
 import 'theme/theme.dart';
 import 'util/color.dart';
 import 'util/dependencies.dart';
 import 'util/display_mode.dart';
+import 'util/theme.dart';
 import 'widgets/balun_loader.dart';
 import 'widgets/balun_navigation_bar.dart';
 
@@ -69,54 +71,60 @@ class BalunApp extends StatelessWidget {
 
 class BalunWidget extends WatchingWidget {
   @override
-  Widget build(BuildContext context) => MaterialApp(
-    localizationsDelegates: context.localizationDelegates,
-    supportedLocales: context.supportedLocales,
-    locale: context.locale,
-    debugShowCheckedModeBanner: false,
-    home: Scaffold(
-      bottomNavigationBar: BalunNavigationBar(),
-      body: watchIt<BalunScreenService>().value,
-    ),
-    onGenerateTitle: (_) => 'appName'.tr(),
-    theme: BalunTheme.light,
-    darkTheme: BalunTheme.dark,
-    themeMode: ThemeMode.light,
-    themeAnimationDuration: BalunConstants.animationDuration,
-    themeAnimationCurve: Curves.easeIn,
-    builder: (_, child) {
-      /// Set the colors of status bar & navigation bar
-      final brightness = defaultTargetPlatform == TargetPlatform.iOS ? Brightness.light : Brightness.dark;
+  Widget build(BuildContext context) {
+    final activeTheme = getBalunTheme(
+      watchIt<ThemeService>().value,
+    );
 
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarBrightness: brightness,
-          statusBarIconBrightness: brightness,
-          systemNavigationBarIconBrightness: brightness,
-          systemNavigationBarColor: Colors.transparent,
-        ),
-      );
+    return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        bottomNavigationBar: BalunNavigationBar(),
+        body: watchIt<BalunScreenService>().value,
+      ),
+      onGenerateTitle: (_) => 'appName'.tr(),
+      theme: activeTheme ?? BalunTheme.light,
+      darkTheme: activeTheme ?? BalunTheme.dark,
+      themeMode: activeTheme == null ? ThemeMode.system : null,
+      themeAnimationDuration: BalunConstants.animationDuration,
+      themeAnimationCurve: Curves.easeIn,
+      builder: (_, child) {
+        /// Set the colors of status bar & navigation bar
+        final brightness = defaultTargetPlatform == TargetPlatform.iOS ? Brightness.light : Brightness.dark;
 
-      /// Generate `appWidget`, with [Balun] content
-      final appWidget =
-          child ??
-          const Scaffold(
-            body: Center(
-              child: BalunLoader(),
-            ),
-          );
+        SystemChrome.setSystemUIOverlayStyle(
+          SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarBrightness: brightness,
+            statusBarIconBrightness: brightness,
+            systemNavigationBarIconBrightness: brightness,
+            systemNavigationBarColor: Colors.transparent,
+          ),
+        );
 
-      /// Return `appWidget`, also [Banner] if app is `debug`
-      return kDebugMode
-          ? Banner(
-              message: 'appName'.tr().toUpperCase(),
-              color: getRandomBalunColor(context),
-              location: BannerLocation.topEnd,
-              layoutDirection: TextDirection.ltr,
-              child: appWidget,
-            )
-          : appWidget;
-    },
-  );
+        /// Generate `appWidget`, with [Balun] content
+        final appWidget =
+            child ??
+            const Scaffold(
+              body: Center(
+                child: BalunLoader(),
+              ),
+            );
+
+        /// Return `appWidget`, also [Banner] if app is `debug`
+        return kDebugMode
+            ? Banner(
+                message: 'appName'.tr().toUpperCase(),
+                color: getRandomBalunColor(context),
+                location: BannerLocation.topEnd,
+                layoutDirection: TextDirection.ltr,
+                child: appWidget,
+              )
+            : appWidget;
+      },
+    );
+  }
 }

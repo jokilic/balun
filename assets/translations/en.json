@@ -590,5 +590,10 @@
     "settingsFavoritesText2": "Ones which are favorited will be more prominently displayed in the app, so you can see them more clearly and without distractions.",
     "settingsFavoritesText3": "Favorite them by opening and pressing the star icon.",
     "settingsFavoritesText4": "Reorder them by long-pressing and dragging to the desired position.",
+    "settingsThemeLight": "Light theme",
+    "settingsThemeDark": "Dark theme",
+    "settingsThemeSystem": "System theme",
+    "settingsLanguageEnglish": "English language",
+    "settingsLanguageCroatian": "Croatian language",
     "workInProgress": "This is still a work in progress"
 }

@@ -5,6 +5,7 @@ import '../constants.dart';
 import '../hive_registrar.g.dart';
 import '../models/leagues/league/league.dart';
 import '../models/teams/team/team.dart';
+import '../models/theme/theme_model.dart';
 import '../util/path.dart';
 import 'logger_service.dart';
 
@@ -20,6 +21,7 @@ class HiveService implements Disposable {
   ///
 
   late final Box<bool> firstStart;
+  late final Box<ThemeModel> balunTheme;
   late final Box<League> leagues;
   late final Box<Team> teams;
 
@@ -34,9 +36,10 @@ class HiveService implements Disposable {
       ..init(directory?.path)
       ..registerAdapters();
 
-    firstStart = await Hive.openBox<bool>('firstStart');
-    leagues = await Hive.openBox<League>('leagueBox');
-    teams = await Hive.openBox<Team>('teamBox');
+    firstStart = await Hive.openBox<bool>('firstStartBox');
+    balunTheme = await Hive.openBox<ThemeModel>('balunThemeBox');
+    leagues = await Hive.openBox<League>('leaguesBox');
+    teams = await Hive.openBox<Team>('teamsBox');
 
     if (firstStart.values.isEmpty) {
       await writeLeagues(BalunConstants.popularLeagues);
@@ -51,14 +54,29 @@ class HiveService implements Disposable {
   @override
   Future<void> onDispose() async {
     await firstStart.close();
+    await balunTheme.close();
     await leagues.close();
     await teams.close();
+
     await Hive.close();
   }
 
   ///
   /// METHODS
   ///
+
+  BalunThemeEnum? getBalunTheme() => balunTheme.values.toList().firstOrNull?.balunThemeEnum;
+
+  Future<void> writeBalunTheme(BalunThemeEnum? newBalunThemeEnum) async {
+    await balunTheme.clear();
+
+    if (newBalunThemeEnum != null) {
+      await balunTheme.put(
+        0,
+        ThemeModel(balunThemeEnum: newBalunThemeEnum),
+      );
+    }
+  }
 
   Future<void> writeFirstStart() async {
     await firstStart.clear();

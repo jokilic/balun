@@ -5,17 +5,13 @@
 import 'package:hive_ce/hive.dart';
 import 'package:balun/models/leagues/league/league.dart';
 import 'package:balun/models/teams/team/team.dart';
+import 'package:balun/models/theme/theme_model.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
-    registerAdapter(LeagueAdapter());
+    registerAdapter(BalunThemeEnumAdapter());
+    registerAdapter(ThemeModelAdapter());
     registerAdapter(TeamAdapter());
-  }
-}
-
-extension IsolatedHiveRegistrar on IsolatedHiveInterface {
-  void registerAdapters() {
     registerAdapter(LeagueAdapter());
-    registerAdapter(TeamAdapter());
   }
 }

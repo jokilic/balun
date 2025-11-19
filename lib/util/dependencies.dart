@@ -14,6 +14,7 @@ import '../services/package_info_service.dart';
 import '../services/periodic_api_service.dart';
 import '../services/remote_settings_service.dart';
 import '../services/team_storage_service.dart';
+import '../services/theme_service.dart';
 import '../services/youtube_search_service.dart';
 
 final getIt = GetIt.instance;
@@ -65,6 +66,13 @@ void initializeServices({
         return hive;
       },
       dependsOn: [LoggerService],
+    )
+    ..registerSingletonAsync(
+      () async => ThemeService(
+        logger: getIt.get<LoggerService>(),
+        hive: getIt.get<HiveService>(),
+      ),
+      dependsOn: [LoggerService, HiveService],
     )
     ..registerSingletonAsync(
       () async => LeagueStorageService(

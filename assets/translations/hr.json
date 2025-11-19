@@ -590,5 +590,10 @@
     "settingsFavoritesText2": "Oni koji su označeni kao favoriti bit će istaknutiji u aplikaciji, kako bi ih lakše i jasnije vidio.",
     "settingsFavoritesText3": "Označi ih kao favorite tako da ih otvoriš i pritisneš ikonu zvjezdice.",
     "settingsFavoritesText4": "Promijeni njihov redoslijed dugim pritiskom i povlačenjem na željenu poziciju.",
+    "settingsThemeLight": "Svjetla tema",
+    "settingsThemeDark": "Tamna tema",
+    "settingsThemeSystem": "Tema sustava",
+    "settingsLanguageEnglish": "Engleski jezik",
+    "settingsLanguageCroatian": "Hrvatski jezik",
     "workInProgress": "Ovo još uvijek nije dovršeno"
 }

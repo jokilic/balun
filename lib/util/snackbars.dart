@@ -17,7 +17,7 @@ void showSnackbar(
         children: [
           const SizedBox(width: 4),
           ClipRRect(
-            borderRadius: BorderRadius.circular(100),
+            borderRadius: BorderRadius.circular(8),
             child: BalunImage(
               imageUrl: icon,
               fit: BoxFit.cover,
