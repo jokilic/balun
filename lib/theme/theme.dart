@@ -25,6 +25,31 @@ class BalunTheme {
     );
   }
 
+  ///
+  /// DARK
+  ///
+
+  static ThemeData get dark {
+    final defaultTheme = ThemeData.dark();
+
+    return defaultTheme.copyWith(
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: darkAppColors.accentStrong,
+        selectionColor: darkAppColors.accentStrong,
+        selectionHandleColor: darkAppColors.accentStrong,
+      ),
+      scaffoldBackgroundColor: darkAppColors.accentLight,
+      extensions: [
+        darkAppColors,
+        darkTextTheme,
+      ],
+    );
+  }
+
+  ///
+  /// COLORS
+  ///
+
   static final lightAppColors = BalunColorsExtension(
     primaryBackground: BalunColors.white,
     primaryForeground: BalunColors.black,
@@ -37,167 +62,204 @@ class BalunTheme {
     alert: BalunColors.orange,
   );
 
-  static final lightTextTheme = BalunTextThemesExtension(
+  static final darkAppColors = BalunColorsExtension(
+    primaryBackground: BalunColors.grey,
+    primaryForeground: BalunColors.white,
+    secondaryBackground: BalunColors.black,
+    accentLight: BalunColors.black,
+    danger: BalunColors.red,
+    accentStrong: BalunColors.darkGreen,
+    info: BalunColors.blue,
+    warning: BalunColors.yellow,
+    alert: BalunColors.orange,
+  );
+
+  ///
+  /// TEXT THEMES
+  ///
+
+  static final lightTextTheme = buildTextTheme(
+    lightAppColors,
+    onPrimaryColor: lightAppColors.primaryBackground,
+  );
+
+  static final darkTextTheme = buildTextTheme(
+    darkAppColors,
+    onPrimaryColor: darkAppColors.primaryForeground,
+  );
+
+  ///
+  /// METHODS
+  ///
+
+  static BalunTextThemesExtension buildTextTheme(
+    BalunColorsExtension colors, {
+    required Color onPrimaryColor,
+  }) => BalunTextThemesExtension(
     styles: {
       BalunTextStyleToken.displayXxl: BalunTextStyles.displayXxl.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.displayXl: BalunTextStyles.displayXl.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.headlineXl: BalunTextStyles.headlineXl.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.headlineXlLoose: BalunTextStyles.headlineXlLoose.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.headlineLgBold: BalunTextStyles.headlineLgBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.headlineLg: BalunTextStyles.headlineLg.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.headlineMdBold: BalunTextStyles.headlineMdBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.headlineMd: BalunTextStyles.headlineMd.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.headlineMdLight: BalunTextStyles.headlineMdLight.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.titleLgBoldTight: BalunTextStyles.titleLgBoldTight.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.titleLgBold: BalunTextStyles.titleLgBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.titleLgExtraBold: BalunTextStyles.titleLgExtraBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.titleLgLight: BalunTextStyles.titleLgLight.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.titleMdExtraBold: BalunTextStyles.titleMdExtraBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.titleMdBold: BalunTextStyles.titleMdBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.titleMd: BalunTextStyles.titleMd.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.titleMdLight: BalunTextStyles.titleMdLight.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyLgExtraBold: BalunTextStyles.bodyLgExtraBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyLgBoldLoose: BalunTextStyles.bodyLgBoldLoose.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyLgBold: BalunTextStyles.bodyLgBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyLgMedium: BalunTextStyles.bodyLgMedium.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyLgTight: BalunTextStyles.bodyLgTight.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyLg: BalunTextStyles.bodyLg.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyLgLight: BalunTextStyles.bodyLgLight.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyMdExtraBold: BalunTextStyles.bodyMdExtraBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyMdBold: BalunTextStyles.bodyMdBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyMd: BalunTextStyles.bodyMd.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyMdLight: BalunTextStyles.bodyMdLight.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.labelBold: BalunTextStyles.labelBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.labelMedium: BalunTextStyles.labelMedium.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.label: BalunTextStyles.label.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.captionBold: BalunTextStyles.captionBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.caption: BalunTextStyles.caption.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.microBold: BalunTextStyles.microBold.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.micro: BalunTextStyles.micro.copyWith(
-        color: lightAppColors.primaryForeground,
+        color: colors.primaryForeground,
       ),
       BalunTextStyleToken.titleLgLightMuted: BalunTextStyles.titleLgLight.copyWith(
-        color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
+        color: colors.primaryForeground.withValues(alpha: 0.5),
       ),
       BalunTextStyleToken.labelMuted: BalunTextStyles.label.copyWith(
-        color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
+        color: colors.primaryForeground.withValues(alpha: 0.5),
       ),
       BalunTextStyleToken.labelMediumMuted: BalunTextStyles.labelMedium.copyWith(
-        color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
+        color: colors.primaryForeground.withValues(alpha: 0.5),
       ),
       BalunTextStyleToken.bodyMdBoldMuted: BalunTextStyles.bodyMdBold.copyWith(
-        color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
+        color: colors.primaryForeground.withValues(alpha: 0.5),
       ),
       BalunTextStyleToken.bodyLgBoldOnPrimary: BalunTextStyles.bodyLgBold.copyWith(
-        color: lightAppColors.primaryBackground,
+        color: onPrimaryColor,
       ),
       BalunTextStyleToken.microBoldOnPrimary: BalunTextStyles.microBold.copyWith(
-        color: lightAppColors.primaryBackground,
+        color: onPrimaryColor,
       ),
       BalunTextStyleToken.titleMdMuted: BalunTextStyles.titleMd.copyWith(
-        color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
+        color: colors.primaryForeground.withValues(alpha: 0.5),
       ),
       BalunTextStyleToken.titleLgBoldMuted: BalunTextStyles.titleLgBold.copyWith(
-        color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
+        color: colors.primaryForeground.withValues(alpha: 0.5),
       ),
       BalunTextStyleToken.bodyLgMediumMuted: BalunTextStyles.bodyLgMedium.copyWith(
-        color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
+        color: colors.primaryForeground.withValues(alpha: 0.5),
       ),
       BalunTextStyleToken.bodyMdLightMuted: BalunTextStyles.bodyMdLight.copyWith(
-        color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
+        color: colors.primaryForeground.withValues(alpha: 0.5),
       ),
       BalunTextStyleToken.labelBoldMuted: BalunTextStyles.labelBold.copyWith(
-        color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
+        color: colors.primaryForeground.withValues(alpha: 0.5),
       ),
       BalunTextStyleToken.titleMdExtraBoldAccent: BalunTextStyles.titleMdExtraBold.copyWith(
-        color: lightAppColors.accentStrong.withValues(alpha: 0.5),
+        color: colors.accentStrong.withValues(alpha: 0.5),
       ),
       BalunTextStyleToken.bodyLgOnPrimary: BalunTextStyles.bodyLg.copyWith(
-        color: lightAppColors.primaryBackground,
+        color: onPrimaryColor,
       ),
       BalunTextStyleToken.bodyLgMuted: BalunTextStyles.bodyLg.copyWith(
-        color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
+        color: colors.primaryForeground.withValues(alpha: 0.5),
       ),
       BalunTextStyleToken.labelBoldOnPrimary: BalunTextStyles.labelBold.copyWith(
-        color: lightAppColors.primaryBackground,
+        color: onPrimaryColor,
       ),
       BalunTextStyleToken.captionBoldOnPrimary: BalunTextStyles.captionBold.copyWith(
-        color: lightAppColors.primaryBackground,
+        color: onPrimaryColor,
       ),
       BalunTextStyleToken.bodyLgTightMuted: BalunTextStyles.bodyLgTight.copyWith(
-        color: lightAppColors.primaryForeground.withValues(alpha: 0.5),
+        color: colors.primaryForeground.withValues(alpha: 0.5),
       ),
     },
   );
 }
+
+///
+/// EXTENSIONS
+///
 
 extension BalunThemeExtension on ThemeData {
   BalunColorsExtension get balunColors => extension<BalunColorsExtension>() ?? BalunTheme.lightAppColors;

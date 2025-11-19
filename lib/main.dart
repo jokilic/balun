@@ -7,6 +7,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:watch_it/watch_it.dart';
 
+import 'constants.dart';
 import 'services/balun_screen_service.dart';
 import 'theme/theme.dart';
 import 'util/color.dart';
@@ -79,6 +80,10 @@ class BalunWidget extends WatchingWidget {
     ),
     onGenerateTitle: (_) => 'appName'.tr(),
     theme: BalunTheme.light,
+    darkTheme: BalunTheme.dark,
+    themeMode: ThemeMode.dark,
+    themeAnimationDuration: BalunConstants.animationDuration,
+    themeAnimationCurve: Curves.easeIn,
     builder: (_, child) {
       /// Set the colors of status bar & navigation bar
       final brightness = defaultTargetPlatform == TargetPlatform.iOS ? Brightness.light : Brightness.dark;
