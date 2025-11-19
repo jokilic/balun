@@ -5,6 +5,25 @@ import '../models/teams/team/team.dart';
 import 'string.dart';
 
 ///
+/// FIXTURES DATE PICKER
+///
+
+int getPageForActiveDate({
+  required List<DateTime> dates,
+  required DateTime value,
+}) {
+  final activeDateIndex = dates.indexWhere(
+    (date) => date == value,
+  );
+
+  if (activeDateIndex == -1) {
+    return 0;
+  }
+
+  return activeDateIndex + 1;
+}
+
+///
 /// FAVORITE FIXTURES
 ///
 
@@ -12,18 +31,17 @@ List<FixtureResponse> getFavoriteFixtures({
   required List<FixtureResponse> fixtures,
   required List<League> favoritedLeagues,
   required List<Team> favoritedTeams,
-}) =>
-    fixtures
-        .where(
-          (fixture) =>
-              favoritedLeagues.any(
-                (league) => fixture.league?.id == league.id,
-              ) ||
-              favoritedTeams.any(
-                (team) => fixture.teams?.home?.id == team.id || fixture.teams?.away?.id == team.id,
-              ),
-        )
-        .toList();
+}) => fixtures
+    .where(
+      (fixture) =>
+          favoritedLeagues.any(
+            (league) => fixture.league?.id == league.id,
+          ) ||
+          favoritedTeams.any(
+            (team) => fixture.teams?.home?.id == team.id || fixture.teams?.away?.id == team.id,
+          ),
+    )
+    .toList();
 
 ///
 /// FIXTURES
@@ -68,7 +86,6 @@ Map<League, Map<League, List<FixtureResponse>>> groupFixturesWithCountries({
             ),
             () => [],
           )
-
           /// Add the current fixture to the appropriate group
           .add(fixture);
     }
@@ -94,21 +111,20 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixturesWithCountries
 
         if (isAFavorite && isBFavorite) {
           /// Both countries are favorite, sort by their order in `countryIDs`
-          return countryIDs.indexOf(a.key.country!).compareTo(
+          return countryIDs
+              .indexOf(a.key.country!)
+              .compareTo(
                 countryIDs.indexOf(b.key.country!),
               );
         }
-
         /// Only A is favorite, it should come first
         else if (isAFavorite) {
           return -1;
         }
-
         /// Only B is favorite, it should come first
         else if (isBFavorite) {
           return 1;
         }
-
         /// Neither country is favorite, sort alphabetically
         else {
           return a.key.country!.compareTo(b.key.country!);
@@ -137,7 +153,6 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixturesWithCountries
               if (priorityA != priorityB) {
                 return priorityB.compareTo(priorityA);
               }
-
               /// If leagues have the same priority, sort by team priority
               else {
                 final teamPriorityA = a.value.any(
@@ -264,7 +279,9 @@ Map<League, List<FixtureResponse>> sortGroupedFixturesWithLeagues({
               /// Get indices for teams in fixture A
               final homeTeamIndexA = favoritedTeams.indexWhere((team) => team.id == a.teams?.home?.id);
               final awayTeamIndexA = favoritedTeams.indexWhere((team) => team.id == a.teams?.away?.id);
-              final bestIndexA = [homeTeamIndexA, awayTeamIndexA].where((index) => index != -1).fold(
+              final bestIndexA = [homeTeamIndexA, awayTeamIndexA]
+                  .where((index) => index != -1)
+                  .fold(
                     favoritedTeams.length,
                     (prev, curr) => curr < prev ? curr : prev,
                   );
@@ -272,7 +289,9 @@ Map<League, List<FixtureResponse>> sortGroupedFixturesWithLeagues({
               /// Get indices for teams in fixture B
               final homeTeamIndexB = favoritedTeams.indexWhere((team) => team.id == b.teams?.home?.id);
               final awayTeamIndexB = favoritedTeams.indexWhere((team) => team.id == b.teams?.away?.id);
-              final bestIndexB = [homeTeamIndexB, awayTeamIndexB].where((index) => index != -1).fold(
+              final bestIndexB = [homeTeamIndexB, awayTeamIndexB]
+                  .where((index) => index != -1)
+                  .fold(
                     favoritedTeams.length,
                     (prev, curr) => curr < prev ? curr : prev,
                   );
@@ -347,9 +366,8 @@ Map<League, List<FixtureResponse>> groupLeagueFixtures({
 
       /// Find or create the league group
       groupedData[leagueEntry]!
-
-          /// Add the current fixture to the appropriate group
-          .add(fixture);
+      /// Add the current fixture to the appropriate group
+      .add(fixture);
     }
   }
 
