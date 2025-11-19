@@ -8,7 +8,7 @@ class FixturesCountryListTileLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
     decoration: BoxDecoration(
-      color: context.colors.primaryBackground.withValues(alpha: 0.5),
+      color: context.colors.primaryBackgroundLight,
       borderRadius: BorderRadius.circular(8),
     ),
     padding: const EdgeInsets.symmetric(

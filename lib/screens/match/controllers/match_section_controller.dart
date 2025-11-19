@@ -9,10 +9,10 @@ class MatchSectionController extends ValueNotifier<MatchSection> {
   MatchSectionController({
     required this.logger,
   }) : super(
-          MatchSection(
-            matchSectionEnum: MatchSectionEnum.info,
-          ),
-        );
+         MatchSection(
+           matchSectionEnum: MatchSectionEnum.info,
+         ),
+       );
 
   ///
   /// METHODS

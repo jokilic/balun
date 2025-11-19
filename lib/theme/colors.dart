@@ -6,6 +6,7 @@ abstract class BalunColors {
   static const grey = Color(0xFF303131);
 
   static const dark = Color(0xFF2A2B42);
+  static const middleDark = Color(0xFF21243F);
   static const lightDark = Color(0xFF171C3B);
 
   static const lightGreen = Color(0xFFBFCABD);
@@ -19,6 +20,7 @@ abstract class BalunColors {
 
 class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
   final Color primaryBackground;
+  final Color primaryBackgroundLight;
   final Color primaryForeground;
   final Color secondaryBackground;
   final Color accentLight;
@@ -32,6 +34,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
   final Color datePickerActiveIconColor;
   final Color datePickerInactiveIconColor;
   final Color slidingInfoPanelBackground;
+  final Color matchField;
   final Color danger;
   final Color info;
   final Color warning;
@@ -39,6 +42,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
 
   BalunColorsExtension({
     required this.primaryBackground,
+    required this.primaryBackgroundLight,
     required this.primaryForeground,
     required this.secondaryBackground,
     required this.accentLight,
@@ -52,6 +56,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     required this.datePickerActiveIconColor,
     required this.datePickerInactiveIconColor,
     required this.slidingInfoPanelBackground,
+    required this.matchField,
     required this.danger,
     required this.info,
     required this.warning,
@@ -61,6 +66,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
   @override
   ThemeExtension<BalunColorsExtension> copyWith({
     Color? primaryBackground,
+    Color? primaryBackgroundLight,
     Color? primaryForeground,
     Color? secondaryBackground,
     Color? accentLight,
@@ -74,12 +80,14 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     Color? datePickerActiveIconColor,
     Color? datePickerInactiveIconColor,
     Color? slidingInfoPanelBackground,
+    Color? matchField,
     Color? danger,
     Color? info,
     Color? warning,
     Color? alert,
   }) => BalunColorsExtension(
     primaryBackground: primaryBackground ?? this.primaryBackground,
+    primaryBackgroundLight: primaryBackgroundLight ?? this.primaryBackgroundLight,
     primaryForeground: primaryForeground ?? this.primaryForeground,
     secondaryBackground: secondaryBackground ?? this.secondaryBackground,
     accentLight: accentLight ?? this.accentLight,
@@ -93,6 +101,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     datePickerActiveIconColor: datePickerActiveIconColor ?? this.datePickerActiveIconColor,
     datePickerInactiveIconColor: datePickerInactiveIconColor ?? this.datePickerInactiveIconColor,
     slidingInfoPanelBackground: slidingInfoPanelBackground ?? this.slidingInfoPanelBackground,
+    matchField: matchField ?? this.matchField,
     danger: danger ?? this.danger,
     info: info ?? this.info,
     warning: warning ?? this.warning,
@@ -110,6 +119,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
 
     return BalunColorsExtension(
       primaryBackground: Color.lerp(primaryBackground, other.primaryBackground, t)!,
+      primaryBackgroundLight: Color.lerp(primaryBackgroundLight, other.primaryBackgroundLight, t)!,
       primaryForeground: Color.lerp(primaryForeground, other.primaryForeground, t)!,
       secondaryBackground: Color.lerp(secondaryBackground, other.secondaryBackground, t)!,
       accentLight: Color.lerp(accentLight, other.accentLight, t)!,
@@ -123,6 +133,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
       datePickerActiveIconColor: Color.lerp(datePickerActiveIconColor, other.datePickerActiveIconColor, t)!,
       datePickerInactiveIconColor: Color.lerp(datePickerInactiveIconColor, other.datePickerInactiveIconColor, t)!,
       slidingInfoPanelBackground: Color.lerp(slidingInfoPanelBackground, other.slidingInfoPanelBackground, t)!,
+      matchField: Color.lerp(matchField, other.matchField, t)!,
       danger: Color.lerp(danger, other.danger, t)!,
       info: Color.lerp(info, other.info, t)!,
       warning: Color.lerp(warning, other.warning, t)!,

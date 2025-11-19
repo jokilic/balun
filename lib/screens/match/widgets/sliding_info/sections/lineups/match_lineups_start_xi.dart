@@ -44,16 +44,16 @@ class MatchLineupsStartXI extends StatelessWidget {
               height: fieldHeight,
               width: fieldWidth,
               decoration: BoxDecoration(
-                color: context.colors.accentStrong,
+                color: context.colors.matchField,
                 border: Border.all(
-                  color: context.colors.accentStrong,
+                  color: context.colors.primaryForeground,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: CustomPaint(
                 painter: FieldPainter(
-                  linesColor: context.colors.primaryBackground.withValues(alpha: 0.4),
+                  linesColor: context.colors.primaryBackgroundLight,
                 ),
                 child: Stack(
                   children: [

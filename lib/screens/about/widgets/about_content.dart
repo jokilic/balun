@@ -85,7 +85,7 @@ class _AboutContentState extends State<AboutContent> {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
-              color: context.colors.primaryBackground.withValues(alpha: 0.4),
+              color: context.colors.primaryBackgroundLight,
               border: Border.all(
                 color: context.colors.primaryForeground,
                 width: 2,
@@ -133,7 +133,7 @@ class _AboutContentState extends State<AboutContent> {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: context.colors.primaryBackground.withValues(alpha: 0.4),
+                color: context.colors.primaryBackgroundLight,
                 border: Border.all(
                   color: context.colors.primaryForeground,
                   width: 2,
@@ -181,7 +181,7 @@ class _AboutContentState extends State<AboutContent> {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: context.colors.primaryBackground.withValues(alpha: 0.4),
+                color: context.colors.primaryBackgroundLight,
                 border: Border.all(
                   color: context.colors.primaryForeground,
                   width: 2,

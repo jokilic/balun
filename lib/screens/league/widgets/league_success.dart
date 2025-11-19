@@ -69,7 +69,7 @@ class _LeagueSuccessState extends State<LeagueSuccess> {
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(40),
         ),
-        color: context.colors.primaryBackground,
+        color: context.colors.slidingInfoPanelBackground,
         scrollController: scrollController,
         minHeight: panelHeight,
         maxHeight: MediaQuery.sizeOf(context).height - 144,

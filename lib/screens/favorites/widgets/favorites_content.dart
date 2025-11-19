@@ -160,7 +160,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                   proxyDecorator: (child, _, __) => ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Material(
-                      color: context.colors.primaryBackground.withValues(alpha: 0.4),
+                      color: context.colors.primaryBackgroundLight,
                       child: child,
                     ),
                   ),
@@ -245,7 +245,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                   proxyDecorator: (child, _, __) => ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Material(
-                      color: context.colors.primaryBackground.withValues(alpha: 0.4),
+                      color: context.colors.primaryBackgroundLight,
                       child: child,
                     ),
                   ),

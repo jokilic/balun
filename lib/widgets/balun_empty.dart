@@ -30,6 +30,7 @@ class BalunEmpty extends StatelessWidget {
             imageUrl: BalunIcons.ball,
             height: isSmall ? 120 : 144,
             width: isSmall ? 120 : 144,
+            color: context.colors.primaryForeground,
           ),
         ),
         SizedBox(height: isSmall ? 8 : 16),

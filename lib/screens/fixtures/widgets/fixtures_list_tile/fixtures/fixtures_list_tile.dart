@@ -33,7 +33,7 @@ class FixturesListTile extends StatelessWidget {
         vertical: 16,
       ),
       decoration: BoxDecoration(
-        color: context.colors.primaryBackground.withValues(alpha: 0.5),
+        color: context.colors.primaryBackgroundLight,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(

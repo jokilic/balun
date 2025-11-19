@@ -9,7 +9,7 @@ class FixturesLeagueCompactListTileLoading extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.all(12),
     decoration: BoxDecoration(
-      color: context.colors.primaryBackground.withValues(alpha: 0.5),
+      color: context.colors.primaryBackgroundLight,
       borderRadius: BorderRadius.circular(8),
     ),
     child: Row(

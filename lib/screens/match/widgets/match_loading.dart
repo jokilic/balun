@@ -47,8 +47,8 @@ class _MatchLoadingState extends State<MatchLoading> {
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(40),
         ),
+        color: context.colors.slidingInfoPanelBackground,
         scrollController: scrollController,
-        color: context.colors.primaryBackground,
         minHeight: 400,
         maxHeight: MediaQuery.sizeOf(context).height - 144,
         panelBuilder: () => Animate(

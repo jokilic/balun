@@ -37,7 +37,7 @@ class SettingsListTile extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: context.colors.primaryBackground.withValues(alpha: 0.4),
+                color: context.colors.primaryBackgroundLight,
               ),
               child: BalunImage(
                 imageUrl: icon,

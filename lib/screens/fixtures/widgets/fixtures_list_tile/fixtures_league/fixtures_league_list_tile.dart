@@ -47,7 +47,7 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
         onPressed: toggleExpanded,
         child: Container(
           decoration: BoxDecoration(
-            color: context.colors.primaryBackground.withValues(alpha: 0.5),
+            color: context.colors.primaryBackgroundLight,
             borderRadius: BorderRadius.circular(8),
           ),
           padding: const EdgeInsets.fromLTRB(32, 12, 16, 12),
@@ -58,7 +58,6 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
                 imageUrl: widget.league?.logo ?? BalunIcons.placeholderLeague,
                 height: 32,
                 width: 32,
-
               ),
               const SizedBox(width: 16),
               Expanded(

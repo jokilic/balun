@@ -37,7 +37,7 @@ class SearchBarWidget extends StatelessWidget {
       textInputAction: TextInputAction.search,
       decoration: InputDecoration(
         filled: true,
-        fillColor: context.colors.primaryBackground.withValues(alpha: 0.4),
+        fillColor: context.colors.primaryBackgroundLight,
         errorBorder: border,
         border: border,
         enabledBorder: border,

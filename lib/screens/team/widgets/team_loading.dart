@@ -54,8 +54,8 @@ class _TeamLoadingState extends State<TeamLoading> {
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(40),
         ),
+        color: context.colors.slidingInfoPanelBackground,
         scrollController: scrollController,
-        color: context.colors.primaryBackground,
         minHeight: 336,
         maxHeight: MediaQuery.sizeOf(context).height - 144,
         panelBuilder: () => Animate(

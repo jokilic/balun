@@ -26,7 +26,7 @@ class PlayerMainInfoLoading extends StatelessWidget {
                 padding: const EdgeInsets.all(14),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: context.colors.primaryBackground.withValues(alpha: 0.4),
+                  color: context.colors.primaryBackgroundLight,
                 ),
                 child: BalunImage(
                   imageUrl: BalunIcons.back,
