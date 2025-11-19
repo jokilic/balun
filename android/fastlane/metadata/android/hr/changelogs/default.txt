@@ -1,2 +1,8 @@
-* Past & future matches for a team
-* Remove unnecessary packages
+* Refactor text styles
+* Refactor colors
+* Add dark theme
+* Animate date picker when chosen
+* Remove some unwanted stuff
+* Add theme functionality in Settings
+* Update status bar colors
+* Convert icons to WebP
