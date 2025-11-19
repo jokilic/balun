@@ -74,7 +74,7 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
                     Flexible(
                       child: Text(
                         mixOrOriginalWords(widget.league?.name) ?? '---',
-                        style: context.textStyles.fixturesLeague,
+                        style: context.textStyles.bodyLgBold,
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

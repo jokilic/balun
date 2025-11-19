@@ -103,7 +103,7 @@ class FixturesListTile extends StatelessWidget {
               Expanded(
                 child: Text(
                   mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
-                  style: context.textStyles.fixturesName,
+                  style: context.textStyles.bodyLgBold,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -131,14 +131,14 @@ class FixturesListTile extends StatelessWidget {
                               TextSpan(text: '${fixture.goals?.home ?? '-'}'),
                               TextSpan(
                                 text: ':',
-                                style: context.textStyles.fixturesScore.copyWith(
+                                style: context.textStyles.displayXxl.copyWith(
                                   color: context.colors.accentLight,
                                 ),
                               ),
                               TextSpan(text: '${fixture.goals?.away ?? '-'}'),
                             ],
                           ),
-                          style: context.textStyles.fixturesScore,
+                          style: context.textStyles.displayXxl,
                           textAlign: TextAlign.center,
                         ),
                       )
@@ -148,14 +148,14 @@ class FixturesListTile extends StatelessWidget {
                             TextSpan(text: '${fixture.goals?.home ?? '-'}'),
                             TextSpan(
                               text: ':',
-                              style: context.textStyles.fixturesScore.copyWith(
+                              style: context.textStyles.displayXxl.copyWith(
                                 color: context.colors.accentLight,
                               ),
                             ),
                             TextSpan(text: '${fixture.goals?.away ?? '-'}'),
                           ],
                         ),
-                        style: context.textStyles.fixturesScore,
+                        style: context.textStyles.displayXxl,
                         textAlign: TextAlign.center,
                       ),
               ),
@@ -166,7 +166,7 @@ class FixturesListTile extends StatelessWidget {
               Expanded(
                 child: Text(
                   mixOrOriginalWords(fixture.teams?.away?.name) ?? '---',
-                  style: context.textStyles.fixturesName,
+                  style: context.textStyles.bodyLgBold,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.right,

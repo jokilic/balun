@@ -76,7 +76,7 @@ class BalunNavigationBar extends WatchingWidget {
                       child: Text(
                         '${badgeNumber ?? ''}',
                         maxLines: 1,
-                        style: context.textStyles.badgeNumber,
+                        style: context.textStyles.labelBoldOnPrimary,
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -125,7 +125,7 @@ class BalunNavigationBar extends WatchingWidget {
                       child: Text(
                         '${badgeNumber ?? ''}',
                         maxLines: 1,
-                        style: context.textStyles.badgeNumber,
+                        style: context.textStyles.labelBoldOnPrimary,
                         textAlign: TextAlign.center,
                       ),
                     ),

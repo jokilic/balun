@@ -55,7 +55,7 @@ class TeamCoachCareerListTile extends StatelessWidget {
                     children: [
                       Text(
                         mixOrOriginalWords(career.team?.name) ?? '--',
-                        style: context.textStyles.teamCoachCareerTeam,
+                        style: context.textStyles.titleMdBold,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -63,28 +63,28 @@ class TeamCoachCareerListTile extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           'coachCareerStart'.tr(),
-                          style: context.textStyles.teamCoachCareerTitle,
+                          style: context.textStyles.labelBoldMuted,
                         ),
                         Text(
                           DateFormat(
                             'd. MMMM y.',
                             context.locale.toLanguageTag(),
                           ).format(startLocal),
-                          style: context.textStyles.teamCoachCareerValue,
+                          style: context.textStyles.bodyLg,
                         ),
                       ],
                       if (endLocal != null) ...[
                         const SizedBox(height: 4),
                         Text(
                           'coachCareerEnd'.tr(),
-                          style: context.textStyles.teamCoachCareerTitle,
+                          style: context.textStyles.labelBoldMuted,
                         ),
                         Text(
                           DateFormat(
                             'd. MMMM y.',
                             context.locale.toLanguageTag(),
                           ).format(endLocal),
-                          style: context.textStyles.teamCoachCareerValue,
+                          style: context.textStyles.bodyLg,
                         ),
                       ],
                     ],

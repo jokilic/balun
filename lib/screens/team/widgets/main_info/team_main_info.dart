@@ -81,7 +81,7 @@ class TeamMainInfo extends WatchingWidget {
           ///
           Text(
             mixOrOriginalWords(team.team?.name ?? '---') ?? '---',
-            style: context.textStyles.leagueNameBold,
+            style: context.textStyles.headlineXlLoose,
             textAlign: TextAlign.center,
           ),
 
@@ -98,7 +98,7 @@ class TeamMainInfo extends WatchingWidget {
                         ) ??
                         '---'
                   : '---',
-              style: context.textStyles.leagueCountry,
+              style: context.textStyles.bodyLg,
               textAlign: TextAlign.center,
             ),
 
@@ -109,7 +109,7 @@ class TeamMainInfo extends WatchingWidget {
             const SizedBox(height: 4),
             Text(
               '${'leagueTeamsFounded'.tr()} ${team.team?.founded}',
-              style: context.textStyles.teamFounded,
+              style: context.textStyles.labelMuted,
               textAlign: TextAlign.center,
             ),
           ],
@@ -120,7 +120,7 @@ class TeamMainInfo extends WatchingWidget {
           ///
           Text(
             'teamInfoSeason'.tr(),
-            style: context.textStyles.leagueSeason,
+            style: context.textStyles.bodyLgMediumMuted,
             textAlign: TextAlign.center,
           ),
 
@@ -149,7 +149,7 @@ class TeamMainInfo extends WatchingWidget {
                       child: Center(
                         child: Text(
                           '$year',
-                          style: seasonState == year.toString() ? context.textStyles.seasonPickerActive : context.textStyles.seasonPickerInactive,
+                          style: seasonState == year.toString() ? context.textStyles.titleMdExtraBold : context.textStyles.bodyLgMuted,
                           textAlign: TextAlign.center,
                         ),
                       ),

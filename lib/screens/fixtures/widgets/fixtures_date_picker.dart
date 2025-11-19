@@ -76,8 +76,8 @@ class FixturesDatePicker extends WatchingWidget {
                           context.locale.toLanguageTag(),
                         ).format(activeDate).toUpperCase(),
                         style: !dates.contains(activeDate)
-                            ? context.textStyles.fixtureDatePickerActive.copyWith(fontSize: 14)
-                            : context.textStyles.fixtureDatePickerInactive.copyWith(fontSize: 14),
+                            ? context.textStyles.titleMdExtraBoldAccent.copyWith(fontSize: 14)
+                            : context.textStyles.bodyLgOnPrimary.copyWith(fontSize: 14),
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -119,7 +119,7 @@ class FixturesDatePicker extends WatchingWidget {
                                       'E',
                                       context.locale.toLanguageTag(),
                                     ).format(date).toUpperCase(),
-                              style: activeDate == date ? context.textStyles.fixtureDatePickerActive : context.textStyles.fixtureDatePickerInactive,
+                              style: activeDate == date ? context.textStyles.titleMdExtraBoldAccent : context.textStyles.bodyLgOnPrimary,
                               textAlign: TextAlign.center,
                             ),
                             if (date != currentDate)
@@ -129,8 +129,8 @@ class FixturesDatePicker extends WatchingWidget {
                                   context.locale.toLanguageTag(),
                                 ).format(date).toUpperCase(),
                                 style: activeDate == date
-                                    ? context.textStyles.fixtureDatePickerActive.copyWith(fontSize: 14)
-                                    : context.textStyles.fixtureDatePickerInactive.copyWith(fontSize: 14),
+                                    ? context.textStyles.titleMdExtraBoldAccent.copyWith(fontSize: 14)
+                                    : context.textStyles.bodyLgOnPrimary.copyWith(fontSize: 14),
                                 textAlign: TextAlign.center,
                               ),
                           ],
@@ -174,8 +174,8 @@ class FixturesDatePicker extends WatchingWidget {
                           context.locale.toLanguageTag(),
                         ).format(activeDate).toUpperCase(),
                         style: !dates.contains(activeDate)
-                            ? context.textStyles.fixtureDatePickerActive.copyWith(fontSize: 14)
-                            : context.textStyles.fixtureDatePickerInactive.copyWith(fontSize: 14),
+                            ? context.textStyles.titleMdExtraBoldAccent.copyWith(fontSize: 14)
+                            : context.textStyles.bodyLgOnPrimary.copyWith(fontSize: 14),
                         textAlign: TextAlign.center,
                       ),
                     ],

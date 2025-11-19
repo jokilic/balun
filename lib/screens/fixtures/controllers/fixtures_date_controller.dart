@@ -119,17 +119,17 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
       }
     },
     config: CalendarDatePicker2WithActionButtonsConfig(
-      weekdayLabelTextStyle: context.textStyles.teamTransferTeam,
-      controlsTextStyle: context.textStyles.teamTransferTeam,
-      dayTextStyle: context.textStyles.calendarDayInactive,
-      todayTextStyle: context.textStyles.calendarDayActive,
-      selectedDayTextStyle: context.textStyles.calendarDayActive.copyWith(
+      weekdayLabelTextStyle: context.textStyles.bodyMdBold,
+      controlsTextStyle: context.textStyles.bodyMdBold,
+      dayTextStyle: context.textStyles.bodyMd,
+      todayTextStyle: context.textStyles.bodyLgBold,
+      selectedDayTextStyle: context.textStyles.bodyLgBold.copyWith(
         color: context.colors.primaryBackground,
       ),
-      selectedMonthTextStyle: context.textStyles.calendarDayActive.copyWith(
+      selectedMonthTextStyle: context.textStyles.bodyLgBold.copyWith(
         color: context.colors.primaryBackground,
       ),
-      selectedYearTextStyle: context.textStyles.calendarDayActive.copyWith(
+      selectedYearTextStyle: context.textStyles.bodyLgBold.copyWith(
         color: context.colors.primaryBackground,
       ),
       selectedDayHighlightColor: context.colors.accentStrong,
@@ -139,13 +139,13 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
       cancelButton: BalunButton(
         child: Text(
           'fixturesCalendarCancel'.tr().toUpperCase(),
-          style: context.textStyles.calendarDayInactive,
+          style: context.textStyles.bodyMd,
         ),
       ),
       okButton: BalunButton(
         child: Text(
           'fixturesCalendarGo'.tr().toUpperCase(),
-          style: context.textStyles.teamTransferTeam,
+          style: context.textStyles.bodyMdBold,
         ),
       ),
       lastMonthIcon: const BalunImage(

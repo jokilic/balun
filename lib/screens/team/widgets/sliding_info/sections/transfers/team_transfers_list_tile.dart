@@ -43,7 +43,7 @@ class _TeamTransfersListTileState extends State<TeamTransfersListTile> {
                     Expanded(
                       child: Text(
                         mixOrOriginalWords(widget.transfer.player?.name) ?? '---',
-                        style: context.textStyles.leagueTeamsTitle,
+                        style: context.textStyles.titleMd,
                         textAlign: TextAlign.center,
                       ),
                     ),

@@ -32,7 +32,7 @@ class SearchBarWidget extends StatelessWidget {
       controller: textEditingController,
       onSubmitted: onSubmitted,
       cursorColor: context.colors.primaryForeground,
-      style: context.textStyles.searchTextField,
+      style: context.textStyles.titleMd,
       keyboardType: TextInputType.name,
       textInputAction: TextInputAction.search,
       decoration: InputDecoration(
@@ -46,7 +46,7 @@ class SearchBarWidget extends StatelessWidget {
         focusedErrorBorder: border,
         contentPadding: const EdgeInsets.all(16),
         hintText: 'searchHint'.tr(),
-        hintStyle: context.textStyles.searchTextField.copyWith(
+        hintStyle: context.textStyles.titleMd.copyWith(
           color: context.colors.primaryForeground.withValues(alpha: 0.5),
         ),
         suffixIcon: BalunButton(

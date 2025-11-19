@@ -42,12 +42,12 @@ class SearchPlayersListTile extends StatelessWidget {
               children: [
                 Text(
                   mixOrOriginalWords(player.player?.name) ?? '---',
-                  style: context.textStyles.fixturesLeague,
+                  style: context.textStyles.bodyLgBold,
                 ),
                 if (player.player?.nationality != null)
                   Text(
                     mixOrOriginalWords(player.player!.nationality) ?? '---',
-                    style: context.textStyles.leaguesSubtitle,
+                    style: context.textStyles.labelMediumMuted,
                   ),
               ],
             ),

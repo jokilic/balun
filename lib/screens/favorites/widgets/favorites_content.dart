@@ -117,22 +117,22 @@ class _FavoritesContentState extends State<FavoritesContent> {
             ///
             Text(
               'settingsFavoritesText1'.tr(),
-              style: context.textStyles.dialogText,
+              style: context.textStyles.bodyMdLight,
             ),
             const SizedBox(height: 12),
             Text(
               'settingsFavoritesText2'.tr(),
-              style: context.textStyles.dialogText,
+              style: context.textStyles.bodyMdLight,
             ),
             const SizedBox(height: 12),
             Text(
               'settingsFavoritesText3'.tr(),
-              style: context.textStyles.dialogText,
+              style: context.textStyles.bodyMdLight,
             ),
             const SizedBox(height: 12),
             Text(
               'settingsFavoritesText4'.tr(),
-              style: context.textStyles.dialogText,
+              style: context.textStyles.bodyMdLight,
             ),
             const SizedBox(height: 24),
 
@@ -141,7 +141,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
             ///
             Text(
               'fixturesFavoriteDialogLeagues'.tr(),
-              style: context.textStyles.dialogSubtitle,
+              style: context.textStyles.titleMd,
             ),
             const SizedBox(height: 12),
             if (favoritedLeagues.isEmpty)
@@ -149,7 +149,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
                   'fixturesFavoriteDialogNoLeagues'.tr(),
-                  style: context.textStyles.dialogText,
+                  style: context.textStyles.bodyMdLight,
                 ),
               )
             else
@@ -206,7 +206,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                                 mixOrOriginalWords(league.name) ?? '---',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: context.textStyles.dialogText.copyWith(
+                                style: context.textStyles.bodyMdLight.copyWith(
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -226,7 +226,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
             ///
             Text(
               'fixturesFavoriteDialogTeams'.tr(),
-              style: context.textStyles.dialogSubtitle,
+              style: context.textStyles.titleMd,
             ),
             const SizedBox(height: 12),
             if (favoritedTeams.isEmpty)
@@ -234,7 +234,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
                   'fixturesFavoriteDialogNoTeams'.tr(),
-                  style: context.textStyles.dialogText,
+                  style: context.textStyles.bodyMdLight,
                 ),
               )
             else
@@ -291,7 +291,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                                 mixOrOriginalWords(team.name) ?? '---',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: context.textStyles.dialogText.copyWith(
+                                style: context.textStyles.bodyMdLight.copyWith(
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),

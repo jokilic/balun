@@ -55,14 +55,14 @@ class MatchAppBar extends StatelessWidget {
             if (league.name != null)
               Text(
                 mixOrOriginalWords(league.name) ?? '---',
-                style: context.textStyles.matchLeagueName,
+                style: context.textStyles.titleLgBold,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
             if (league.round != null)
               Text(
                 mixOrOriginalWords(league.round) ?? '---',
-                style: context.textStyles.matchLeagueRound,
+                style: context.textStyles.labelMediumMuted,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

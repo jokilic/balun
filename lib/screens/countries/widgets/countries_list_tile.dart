@@ -59,7 +59,7 @@ class CountriesListTile extends StatelessWidget {
                         ) ??
                         '---'
                   : '---',
-              style: context.textStyles.fixturesCountry,
+              style: context.textStyles.titleMdBold,
             ),
           ),
         ],

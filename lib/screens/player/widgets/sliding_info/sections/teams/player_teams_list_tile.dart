@@ -57,7 +57,7 @@ class _PlayerTeamsListTileState extends State<PlayerTeamsListTile> {
                 Expanded(
                   child: Text(
                     mixOrOriginalWords(widget.team?.team?.name) ?? '--',
-                    style: context.textStyles.matchPlayerStatisticsName,
+                    style: context.textStyles.titleMd,
                   ),
                 ),
               ],
@@ -102,7 +102,7 @@ class _PlayerTeamsListTileState extends State<PlayerTeamsListTile> {
                                 ),
                                 child: Text(
                                   '$season',
-                                  style: context.textStyles.teamLeaguesSeason,
+                                  style: context.textStyles.titleMdBold,
                                 ),
                               ),
                             ),

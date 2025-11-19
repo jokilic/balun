@@ -78,7 +78,7 @@ class MatchEventsSection extends StatelessWidget {
                         Expanded(
                           child: Text(
                             'matchEventsStarted'.tr(),
-                            style: context.textStyles.matchEventsSectionResult,
+                            style: context.textStyles.bodyMd,
                           ),
                         ),
                       ],
@@ -114,12 +114,12 @@ class MatchEventsSection extends StatelessWidget {
                         Expanded(
                           child: Text(
                             'matchEvents1stHalf'.tr(),
-                            style: context.textStyles.matchEventsSectionResult,
+                            style: context.textStyles.bodyMd,
                           ),
                         ),
                         Text(
                           '${score!.halftime!.home}:${score!.halftime!.away}',
-                          style: context.textStyles.matchEventsSectionResult,
+                          style: context.textStyles.bodyMd,
                         ),
                       ],
                     ),
@@ -154,12 +154,12 @@ class MatchEventsSection extends StatelessWidget {
                         Expanded(
                           child: Text(
                             score?.extratime?.home == null && score?.extratime?.away == null ? 'matchEventsFullTime'.tr() : 'matchEventsFullTimeRegularTime'.tr(),
-                            style: context.textStyles.matchEventsSectionResult,
+                            style: context.textStyles.bodyMd,
                           ),
                         ),
                         Text(
                           '${score!.fulltime!.home}:${score!.fulltime!.away}',
-                          style: context.textStyles.matchEventsSectionResult,
+                          style: context.textStyles.bodyMd,
                         ),
                       ],
                     ),
@@ -217,12 +217,12 @@ class MatchEventsSection extends StatelessWidget {
                         Expanded(
                           child: Text(
                             'matchEventsExtraTime'.tr(),
-                            style: context.textStyles.matchEventsSectionResult,
+                            style: context.textStyles.bodyMd,
                           ),
                         ),
                         Text(
                           '${score!.extratime!.home}:${score!.extratime!.away}',
-                          style: context.textStyles.matchEventsSectionResult,
+                          style: context.textStyles.bodyMd,
                         ),
                       ],
                     ),
@@ -264,12 +264,12 @@ class MatchEventsSection extends StatelessWidget {
                         Expanded(
                           child: Text(
                             'matchEventsPenalties'.tr(),
-                            style: context.textStyles.matchEventsSectionResult,
+                            style: context.textStyles.bodyMd,
                           ),
                         ),
                         Text(
                           '${score!.penalty!.home}:${score!.penalty!.away}',
-                          style: context.textStyles.matchEventsSectionResult,
+                          style: context.textStyles.bodyMd,
                         ),
                       ],
                     ),

@@ -71,7 +71,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     Expanded(
                       child: Text(
                         mixOrOriginalWords(widget.statisticData?.player?.name ?? '--') ?? '--',
-                        style: context.textStyles.matchPlayerStatisticsName.copyWith(
+                        style: context.textStyles.titleMd.copyWith(
                           color: (substitute ?? false) && rating == null ? context.colors.primaryForeground.withValues(alpha: 0.4) : null,
                         ),
                       ),
@@ -146,7 +146,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                         ),
                         child: Text(
                           '$rating',
-                          style: context.textStyles.matchPlayerStatisticsRating,
+                          style: context.textStyles.bodyLgBoldOnPrimary,
                         ),
                       ),
                     ],
@@ -184,7 +184,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     ///
                                     Text(
                                       'matchPlayerInfo'.tr(),
-                                      style: context.textStyles.matchPlayerStatisticsTitle,
+                                      style: context.textStyles.titleLgBoldMuted,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
@@ -214,7 +214,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     ///
                                     Text(
                                       'matchPlayerShots'.tr(),
-                                      style: context.textStyles.matchPlayerStatisticsTitle,
+                                      style: context.textStyles.titleLgBoldMuted,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
@@ -232,7 +232,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     ///
                                     Text(
                                       'matchPlayerGoals'.tr(),
-                                      style: context.textStyles.matchPlayerStatisticsTitle,
+                                      style: context.textStyles.titleLgBoldMuted,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
@@ -258,7 +258,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     ///
                                     Text(
                                       'matchPlayerPasses'.tr(),
-                                      style: context.textStyles.matchPlayerStatisticsTitle,
+                                      style: context.textStyles.titleLgBoldMuted,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
@@ -280,7 +280,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     ///
                                     Text(
                                       'matchPlayerTackles'.tr(),
-                                      style: context.textStyles.matchPlayerStatisticsTitle,
+                                      style: context.textStyles.titleLgBoldMuted,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
@@ -308,7 +308,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     ///
                                     Text(
                                       'matchPlayerDuels'.tr(),
-                                      style: context.textStyles.matchPlayerStatisticsTitle,
+                                      style: context.textStyles.titleLgBoldMuted,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
@@ -326,7 +326,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     ///
                                     Text(
                                       'matchPlayerDribbles'.tr(),
-                                      style: context.textStyles.matchPlayerStatisticsTitle,
+                                      style: context.textStyles.titleLgBoldMuted,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
@@ -348,7 +348,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     ///
                                     Text(
                                       'matchPlayerFouls'.tr(),
-                                      style: context.textStyles.matchPlayerStatisticsTitle,
+                                      style: context.textStyles.titleLgBoldMuted,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
@@ -366,7 +366,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     ///
                                     Text(
                                       'matchPlayerCards'.tr(),
-                                      style: context.textStyles.matchPlayerStatisticsTitle,
+                                      style: context.textStyles.titleLgBoldMuted,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(
@@ -384,7 +384,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                                     ///
                                     Text(
                                       'matchPlayerPenalties'.tr(),
-                                      style: context.textStyles.matchPlayerStatisticsTitle,
+                                      style: context.textStyles.titleLgBoldMuted,
                                     ),
                                     const SizedBox(height: 8),
                                     MatchPlayerListTileValue(

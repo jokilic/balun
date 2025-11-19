@@ -51,11 +51,11 @@ class LeagueTopAssistsListTile extends StatelessWidget {
                   if (assist?.player?.name != null)
                     Text(
                       mixOrOriginalWords(assist!.player!.name) ?? '---',
-                      style: context.textStyles.leagueTeamsTitle,
+                      style: context.textStyles.titleMd,
                     ),
                   Text(
                     '$numberOfAssists ${'leagueTopAssistsNumber'.tr()}',
-                    style: context.textStyles.leagueTeamsCountry,
+                    style: context.textStyles.bodyMdLightMuted,
                   ),
                 ],
               ),

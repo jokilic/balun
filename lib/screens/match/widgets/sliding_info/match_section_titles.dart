@@ -63,7 +63,7 @@ class MatchSectionTitles extends StatelessWidget {
             ),
             child: Text(
               section.getMatchSectionName(),
-              style: context.textStyles.matchSectionTitle.copyWith(
+              style: context.textStyles.bodyLg.copyWith(
                 color: activeMatchSection == section ? context.colors.primaryBackground : context.colors.primaryForeground,
               ),
             ),

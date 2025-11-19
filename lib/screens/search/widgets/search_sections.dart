@@ -31,7 +31,7 @@ class SearchSections extends StatelessWidget {
               child: Center(
                 child: Text(
                   section.getSearchSectionName(),
-                  style: activeSearchSection == section ? context.textStyles.searchPickerActive : context.textStyles.searchPickerInactive,
+                  style: activeSearchSection == section ? context.textStyles.titleMdExtraBold : context.textStyles.bodyLgMuted,
                   textAlign: TextAlign.center,
                 ),
               ),

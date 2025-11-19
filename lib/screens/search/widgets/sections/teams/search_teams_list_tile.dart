@@ -40,7 +40,7 @@ class SearchTeamsListTile extends StatelessWidget {
               children: [
                 Text(
                   mixOrOriginalWords(team.team?.name) ?? '---',
-                  style: context.textStyles.fixturesLeague,
+                  style: context.textStyles.bodyLgBold,
                 ),
                 if (team.team?.country != null)
                   Text(
@@ -50,7 +50,7 @@ class SearchTeamsListTile extends StatelessWidget {
                           ),
                         ) ??
                         '---',
-                    style: context.textStyles.leaguesSubtitle,
+                    style: context.textStyles.labelMediumMuted,
                   ),
               ],
             ),

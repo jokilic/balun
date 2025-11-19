@@ -61,7 +61,7 @@ class TeamTransferListTile extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(
                         mixOrOriginalWords(transfer.teams?.teamOut?.name) ?? '---',
-                        style: context.textStyles.teamTransferTeam,
+                        style: context.textStyles.bodyMdBold,
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -89,7 +89,7 @@ class TeamTransferListTile extends StatelessWidget {
                       'd. MMMM y.',
                       context.locale.toLanguageTag(),
                     ).format(dateLocal),
-                    style: context.textStyles.teamTransferTeam,
+                    style: context.textStyles.bodyMdBold,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
@@ -98,7 +98,7 @@ class TeamTransferListTile extends StatelessWidget {
                 if (transfer.type != null) ...[
                   Text(
                     'playerTransferPrice'.tr(),
-                    style: context.textStyles.teamCoachCareerTitle,
+                    style: context.textStyles.labelBoldMuted,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 2),
@@ -106,7 +106,7 @@ class TeamTransferListTile extends StatelessWidget {
                     getTransferType(
                       transferType: transfer.type!,
                     ),
-                    style: context.textStyles.teamCoachCareerValue,
+                    style: context.textStyles.bodyLg,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 4),
@@ -149,7 +149,7 @@ class TeamTransferListTile extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(
                         mixOrOriginalWords(transfer.teams?.teamIn?.name) ?? '---',
-                        style: context.textStyles.teamTransferTeam,
+                        style: context.textStyles.bodyMdBold,
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

@@ -40,12 +40,12 @@ class MatchEventsListTile extends StatelessWidget {
               children: [
                 Text(
                   elapsedTime != null ? "$elapsedTime'" : '--',
-                  style: context.textStyles.matchEventsSectionTime,
+                  style: context.textStyles.labelMuted,
                 ),
                 if (extraTime != null)
                   Text(
                     '+$extraTime',
-                    style: context.textStyles.matchEventsSectionTime.copyWith(
+                    style: context.textStyles.labelMuted.copyWith(
                       fontSize: 12,
                     ),
                   ),
@@ -78,12 +78,12 @@ class MatchEventsListTile extends StatelessWidget {
               children: [
                 Text(
                   elapsedTime != null ? "$elapsedTime'" : '--',
-                  style: context.textStyles.matchEventsSectionTime,
+                  style: context.textStyles.labelMuted,
                 ),
                 if (extraTime != null)
                   Text(
                     '+$extraTime',
-                    style: context.textStyles.matchEventsSectionTime.copyWith(
+                    style: context.textStyles.labelMuted.copyWith(
                       fontSize: 12,
                     ),
                   ),
@@ -139,19 +139,19 @@ class MatchEventsListTile extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                     text: mixOrOriginalWords(event.player?.name) ?? '---',
-                                    style: context.textStyles.matchEventsSectionText.copyWith(
+                                    style: context.textStyles.bodyLgLight.copyWith(
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                   if (eventDetail.toLowerCase() == 'penalty')
                                     TextSpan(
                                       text: ' (${'matchInfoPenalty'.tr()})',
-                                      style: context.textStyles.matchEventsSectionText,
+                                      style: context.textStyles.bodyLgLight,
                                     ),
                                   if (eventDetail.toLowerCase() == 'own goal')
                                     TextSpan(
                                       text: ' (${'matchInfoOwnGoal'.tr()})',
-                                      style: context.textStyles.matchEventsSectionText,
+                                      style: context.textStyles.bodyLgLight,
                                     ),
                                 ],
                               ),
@@ -175,7 +175,7 @@ class MatchEventsListTile extends StatelessWidget {
                       Flexible(
                         child: Text(
                           'matchInfoMissedPenalty'.tr(),
-                          style: context.textStyles.matchEventsSectionText,
+                          style: context.textStyles.bodyLgLight,
                         ),
                       ),
                     ],
@@ -214,7 +214,7 @@ class MatchEventsListTile extends StatelessWidget {
                             Flexible(
                               child: Text(
                                 mixOrOriginalWords(event.assist!.name) ?? '---',
-                                style: context.textStyles.matchEventsSectionText,
+                                style: context.textStyles.bodyLgLight,
                               ),
                             ),
                           ],
@@ -255,19 +255,19 @@ class MatchEventsListTile extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                     text: mixOrOriginalWords(event.player?.name) ?? '---',
-                                    style: context.textStyles.matchEventsSectionText.copyWith(
+                                    style: context.textStyles.bodyLgLight.copyWith(
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                   if (eventDetail.toLowerCase() == 'penalty')
                                     TextSpan(
                                       text: ' (${'matchInfoPenalty'.tr()})',
-                                      style: context.textStyles.matchEventsSectionText,
+                                      style: context.textStyles.bodyLgLight,
                                     ),
                                   if (eventDetail.toLowerCase() == 'own goal')
                                     TextSpan(
                                       text: ' (${'matchInfoOwnGoal'.tr()})',
-                                      style: context.textStyles.matchEventsSectionText,
+                                      style: context.textStyles.bodyLgLight,
                                     ),
                                 ],
                               ),
@@ -315,7 +315,7 @@ class MatchEventsListTile extends StatelessWidget {
                   Flexible(
                     child: Text(
                       mixOrOriginalWords(event.player?.name) ?? '---',
-                      style: context.textStyles.matchEventsSectionText.copyWith(
+                      style: context.textStyles.bodyLgLight.copyWith(
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -341,7 +341,7 @@ class MatchEventsListTile extends StatelessWidget {
                     getEventCommentText(
                       eventComment: event.comments!,
                     ),
-                    style: context.textStyles.matchEventsSectionText,
+                    style: context.textStyles.bodyLgLight,
                   ),
                 ),
               ],
@@ -385,7 +385,7 @@ class MatchEventsListTile extends StatelessWidget {
                   Flexible(
                     child: Text(
                       mixOrOriginalWords(event.assist?.name) ?? '---',
-                      style: context.textStyles.matchEventsSectionText,
+                      style: context.textStyles.bodyLgLight,
                     ),
                   ),
                 ],
@@ -423,7 +423,7 @@ class MatchEventsListTile extends StatelessWidget {
                   Flexible(
                     child: Text(
                       mixOrOriginalWords(event.player?.name) ?? '---',
-                      style: context.textStyles.matchEventsSectionText.copyWith(
+                      style: context.textStyles.bodyLgLight.copyWith(
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -456,7 +456,7 @@ class MatchEventsListTile extends StatelessWidget {
               Flexible(
                 child: Text(
                   'matchEventsVAR'.tr(),
-                  style: context.textStyles.matchEventsSectionText.copyWith(
+                  style: context.textStyles.bodyLgLight.copyWith(
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -476,7 +476,7 @@ class MatchEventsListTile extends StatelessWidget {
                     eventType: eventType,
                     eventDetail: eventDetail,
                   ),
-                  style: context.textStyles.matchEventsSectionText,
+                  style: context.textStyles.bodyLgLight,
                 ),
               ),
             ],
@@ -500,7 +500,7 @@ class MatchEventsListTile extends StatelessWidget {
         Flexible(
           child: Text(
             eventDetail,
-            style: context.textStyles.matchEventsSectionText,
+            style: context.textStyles.bodyLgLight,
           ),
         ),
       ],

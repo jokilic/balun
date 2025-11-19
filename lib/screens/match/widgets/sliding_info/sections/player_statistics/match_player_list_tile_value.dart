@@ -20,14 +20,14 @@ class MatchPlayerListTileValue extends StatelessWidget {
             Flexible(
               child: Text(
                 title,
-                style: context.textStyles.matchPlayerStatisticsText,
+                style: context.textStyles.bodyMdLight,
               ),
             ),
             const SizedBox(width: 8),
             Flexible(
               child: Text(
                 text,
-                style: context.textStyles.matchPlayerStatisticsValue,
+                style: context.textStyles.bodyMd,
               ),
             )
           ],

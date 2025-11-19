@@ -87,7 +87,7 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                             ) ??
                             '---'
                       : '---',
-                  style: context.textStyles.fixturesCountry,
+                  style: context.textStyles.titleMdBold,
                 ),
               ),
               if (widget.hasLiveFixturesCountry) ...[

@@ -52,11 +52,11 @@ class MatchH2HListTile extends StatelessWidget {
                       children: [
                         Text(
                           mixOrOriginalWords(fixture.league!.round) ?? '---',
-                          style: context.textStyles.matchH2HTitle,
+                          style: context.textStyles.labelBold,
                         ),
                         Text(
                           mixOrOriginalWords(fixture.league!.name) ?? '---',
-                          style: context.textStyles.matchH2HText,
+                          style: context.textStyles.labelMuted,
                         ),
                       ],
                     ),
@@ -71,7 +71,7 @@ class MatchH2HListTile extends StatelessWidget {
                             'd. MMMM y.',
                             context.locale.toLanguageTag(),
                           ).format(matchDateTime),
-                          style: context.textStyles.matchH2HTitle,
+                          style: context.textStyles.labelBold,
                           textAlign: TextAlign.right,
                         ),
                         Text(
@@ -79,7 +79,7 @@ class MatchH2HListTile extends StatelessWidget {
                             'HH:mm',
                             context.locale.toLanguageTag(),
                           ).format(matchDateTime),
-                          style: context.textStyles.matchH2HText,
+                          style: context.textStyles.labelMuted,
                           textAlign: TextAlign.right,
                         ),
                       ],
@@ -123,12 +123,12 @@ class MatchH2HListTile extends StatelessWidget {
                           TextSpan(text: '${fixture.goals?.home ?? '-'}'),
                           TextSpan(
                             text: ':',
-                            style: context.textStyles.matchH2HScore,
+                            style: context.textStyles.displayXl,
                           ),
                           TextSpan(text: '${fixture.goals?.away ?? '-'}'),
                         ],
                       ),
-                      style: context.textStyles.matchH2HScore,
+                      style: context.textStyles.displayXl,
                       textAlign: TextAlign.center,
                     ),
                   )
@@ -139,12 +139,12 @@ class MatchH2HListTile extends StatelessWidget {
                         TextSpan(text: '${fixture.goals?.home ?? '-'}'),
                         TextSpan(
                           text: ':',
-                          style: context.textStyles.matchH2HScore,
+                          style: context.textStyles.displayXl,
                         ),
                         TextSpan(text: '${fixture.goals?.away ?? '-'}'),
                       ],
                     ),
-                    style: context.textStyles.matchH2HScore,
+                    style: context.textStyles.displayXl,
                     textAlign: TextAlign.center,
                   ),
 

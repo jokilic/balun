@@ -53,7 +53,7 @@ class LeagueFixturesListTile extends StatelessWidget {
                           context.locale.toLanguageTag(),
                         ).format(matchDateTime)
                       : '---',
-                  style: context.textStyles.matchH2HText,
+                  style: context.textStyles.labelMuted,
                   textAlign: TextAlign.center,
                 ),
                 Text(
@@ -63,7 +63,7 @@ class LeagueFixturesListTile extends StatelessWidget {
                           context.locale.toLanguageTag(),
                         ).format(matchDateTime)
                       : '---',
-                  style: context.textStyles.matchH2HTitle,
+                  style: context.textStyles.labelBold,
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -81,7 +81,7 @@ class LeagueFixturesListTile extends StatelessWidget {
                       Flexible(
                         child: Text(
                           mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
-                          style: context.textStyles.fixturesNameCompact,
+                          style: context.textStyles.bodyMd,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.right,
@@ -117,7 +117,7 @@ class LeagueFixturesListTile extends StatelessWidget {
                       '${fixture.goals?.home ?? '-'}:${fixture.goals?.away ?? '-'}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: context.textStyles.fixturesScoreCompact,
+                      style: context.textStyles.titleLgBoldTight,
                       textAlign: TextAlign.center,
                     ),
                   )
@@ -126,7 +126,7 @@ class LeagueFixturesListTile extends StatelessWidget {
                     '${fixture.goals?.home ?? '-'}:${fixture.goals?.away ?? '-'}',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: context.textStyles.fixturesScoreCompact,
+                    style: context.textStyles.titleLgBoldTight,
                     textAlign: TextAlign.center,
                   ),
                 const SizedBox(width: 12),
@@ -146,7 +146,7 @@ class LeagueFixturesListTile extends StatelessWidget {
                       Flexible(
                         child: Text(
                           mixOrOriginalWords(fixture.teams?.away?.name) ?? '---',
-                          style: context.textStyles.fixturesNameCompact,
+                          style: context.textStyles.bodyMd,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,

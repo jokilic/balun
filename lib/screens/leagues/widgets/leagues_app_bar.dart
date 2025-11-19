@@ -60,13 +60,13 @@ class LeaguesAppBar extends StatelessWidget {
                       ),
                     ) ??
                     '---',
-                style: context.textStyles.matchLeagueName,
+                style: context.textStyles.titleLgBold,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
                 'leaguesAppBar'.tr(),
-                style: context.textStyles.matchLeagueRound,
+                style: context.textStyles.labelMediumMuted,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

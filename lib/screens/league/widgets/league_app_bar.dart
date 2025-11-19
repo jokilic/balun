@@ -56,7 +56,7 @@ class LeagueAppBar extends StatelessWidget {
             if (league.name != null)
               Text(
                 mixOrOriginalWords(league.name) ?? '---',
-                style: context.textStyles.matchLeagueName,
+                style: context.textStyles.titleLgBold,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -65,7 +65,7 @@ class LeagueAppBar extends StatelessWidget {
                 getLeagueType(
                   leagueType: league.type!,
                 ),
-                style: context.textStyles.matchLeagueRound,
+                style: context.textStyles.labelMediumMuted,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

@@ -213,7 +213,7 @@ class MatchMainInfoLoading extends StatelessWidget {
                   const SizedBox(width: 4),
                   Text(
                     ':',
-                    style: context.textStyles.fixturesScore.copyWith(
+                    style: context.textStyles.displayXxl.copyWith(
                       color: context.colors.primaryForeground.withValues(alpha: 0.2),
                     ),
                   ),

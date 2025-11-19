@@ -139,7 +139,7 @@ class MatchLineupsPlayer extends StatelessWidget {
                 ),
                 child: Text(
                   '${player?.player?.number ?? '--'}',
-                  style: context.textStyles.matchLineupsSectionNumber.copyWith(
+                  style: context.textStyles.bodyLgBoldOnPrimary.copyWith(
                     color: playerNumberColor,
                   ),
                   textAlign: TextAlign.center,
@@ -154,7 +154,7 @@ class MatchLineupsPlayer extends StatelessWidget {
                   bottom: -16,
                   child: Text(
                     mixOrOriginalWords(getLastWord(player!.player!.name!)) ?? '---',
-                    style: context.textStyles.matchLineupsSectionPlayer,
+                    style: context.textStyles.microBoldOnPrimary,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -240,7 +240,7 @@ class MatchLineupsPlayer extends StatelessWidget {
                       ),
                       child: Text(
                         rating.toStringAsFixed(1),
-                        style: context.textStyles.matchLineupRating,
+                        style: context.textStyles.captionBoldOnPrimary,
                       ),
                     ),
                   ),

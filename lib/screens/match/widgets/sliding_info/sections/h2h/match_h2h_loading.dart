@@ -110,7 +110,7 @@ class MatchHead2HeadLoading extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   ':',
-                  style: context.textStyles.matchH2HScore,
+                  style: context.textStyles.displayXl,
                 ),
                 const SizedBox(width: 8),
                 Container(

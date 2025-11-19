@@ -46,7 +46,7 @@ class FixturesCompactListTile extends StatelessWidget {
                 Flexible(
                   child: Text(
                     mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
-                    style: context.textStyles.fixturesNameCompact,
+                    style: context.textStyles.bodyMd,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.right,
@@ -82,7 +82,7 @@ class FixturesCompactListTile extends StatelessWidget {
                 scoreText,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: context.textStyles.fixturesScoreCompact,
+                style: context.textStyles.titleLgBoldTight,
                 textAlign: TextAlign.center,
               ),
             )
@@ -91,7 +91,7 @@ class FixturesCompactListTile extends StatelessWidget {
               scoreText,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: context.textStyles.fixturesScoreCompact,
+              style: context.textStyles.titleLgBoldTight,
               textAlign: TextAlign.center,
             ),
           const SizedBox(width: 12),
@@ -111,7 +111,7 @@ class FixturesCompactListTile extends StatelessWidget {
                 Flexible(
                   child: Text(
                     mixOrOriginalWords(fixture.teams?.away?.name) ?? '---',
-                    style: context.textStyles.fixturesNameCompact,
+                    style: context.textStyles.bodyMd,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.left,

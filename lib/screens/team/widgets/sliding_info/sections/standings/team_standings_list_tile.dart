@@ -56,7 +56,7 @@ class _TeamStandingsListTileState extends State<TeamStandingsListTile> {
                       if (widget.standing.league?.name != null)
                         Text(
                           mixOrOriginalWords(widget.standing.league!.name) ?? '---',
-                          style: context.textStyles.leagueTeamsTitle,
+                          style: context.textStyles.titleMd,
                         ),
                       if (widget.standing.league?.country != null)
                         Text(
@@ -66,7 +66,7 @@ class _TeamStandingsListTileState extends State<TeamStandingsListTile> {
                                 ),
                               ) ??
                               '---',
-                          style: context.textStyles.leagueTeamsCountry,
+                          style: context.textStyles.bodyMdLightMuted,
                         ),
                     ],
                   ),

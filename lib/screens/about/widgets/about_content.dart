@@ -103,7 +103,7 @@ class _AboutContentState extends State<AboutContent> {
                 const SizedBox(width: 8),
                 Text(
                   'josipkilic.com',
-                  style: context.textStyles.dialogButton,
+                  style: context.textStyles.bodyMdExtraBold,
                 ),
               ],
             ),
@@ -151,7 +151,7 @@ class _AboutContentState extends State<AboutContent> {
                   const SizedBox(width: 8),
                   Text(
                     'GitHub',
-                    style: context.textStyles.dialogButton,
+                    style: context.textStyles.bodyMdExtraBold,
                   ),
                 ],
               ),
@@ -199,7 +199,7 @@ class _AboutContentState extends State<AboutContent> {
                   const SizedBox(width: 8),
                   Text(
                     'E-Mail',
-                    style: context.textStyles.dialogButton,
+                    style: context.textStyles.bodyMdExtraBold,
                   ),
                 ],
               ),
@@ -214,24 +214,24 @@ class _AboutContentState extends State<AboutContent> {
           children: [
             TextSpan(
               text: 'Josip',
-              style: context.textStyles.teamTransferTeam,
+              style: context.textStyles.bodyMdBold,
             ),
             const TextSpan(
               text: '.',
             ),
           ],
         ),
-        style: context.textStyles.dialogText,
+        style: context.textStyles.bodyMdLight,
       ),
       const SizedBox(height: 12),
       Text(
         'settingsAboutMakeMobileApps'.tr(),
-        style: context.textStyles.dialogText,
+        style: context.textStyles.bodyMdLight,
       ),
       const SizedBox(height: 12),
       Text(
         'settingsAboutWantedToMakeApp'.tr(),
-        style: context.textStyles.dialogText,
+        style: context.textStyles.bodyMdLight,
       ),
       const SizedBox(height: 12),
       Text.rich(
@@ -240,23 +240,23 @@ class _AboutContentState extends State<AboutContent> {
           children: [
             TextSpan(
               text: 'e-mail',
-              style: context.textStyles.teamTransferTeam,
+              style: context.textStyles.bodyMdBold,
             ),
             const TextSpan(
               text: '.',
             ),
           ],
         ),
-        style: context.textStyles.dialogText,
+        style: context.textStyles.bodyMdLight,
       ),
       const SizedBox(height: 12),
       Text(
         'settingsAboutWriteIdeas'.tr(),
-        style: context.textStyles.dialogText,
+        style: context.textStyles.bodyMdLight,
       ),
       Text(
         'settingsAboutWorkWhenTime'.tr(),
-        style: context.textStyles.dialogText,
+        style: context.textStyles.bodyMdLight,
       ),
       const SizedBox(height: 20),
       Row(
@@ -289,7 +289,7 @@ class _AboutContentState extends State<AboutContent> {
             children: [
               Text(
                 'appName'.tr(),
-                style: context.textStyles.aboutAppName,
+                style: context.textStyles.titleLgExtraBold,
               ),
               FutureBuilder(
                 future: getAppVersion(),
@@ -299,7 +299,7 @@ class _AboutContentState extends State<AboutContent> {
                   if (version != null) {
                     return Text(
                       'v$version',
-                      style: context.textStyles.aboutAppVersion,
+                      style: context.textStyles.bodyLgTightMuted,
                     );
                   }
                   return const SizedBox.shrink();

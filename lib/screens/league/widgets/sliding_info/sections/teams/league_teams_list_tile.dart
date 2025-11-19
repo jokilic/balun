@@ -46,19 +46,19 @@ class LeagueTeamsListTile extends StatelessWidget {
                 if (team.team?.name != null)
                   Text(
                     mixOrOriginalWords(team.team!.name) ?? '---',
-                    style: context.textStyles.leagueTeamsTitle,
+                    style: context.textStyles.titleMd,
                   ),
                 if (team.team?.country != null)
                   Text(
                     getCountryName(
                       country: mixOrOriginalWords(team.team!.country) ?? '---',
                     ),
-                    style: context.textStyles.leagueTeamsCountry,
+                    style: context.textStyles.bodyMdLightMuted,
                   ),
                 if (team.team?.founded != null)
                   Text(
                     '${'leagueTeamsFounded'.tr()} ${team.team!.founded}',
-                    style: context.textStyles.leagueTeamsFounded,
+                    style: context.textStyles.labelMedium,
                   ),
               ],
             ),

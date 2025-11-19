@@ -47,7 +47,7 @@ class FixturesAppBar extends StatelessWidget {
         Expanded(
           child: Text(
             text,
-            style: context.textStyles.matchLeagueName,
+            style: context.textStyles.titleLgBold,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

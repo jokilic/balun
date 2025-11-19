@@ -46,7 +46,7 @@ class LeagueSectionTitles extends StatelessWidget {
             ),
             child: Text(
               section.getLeagueSectionName(),
-              style: context.textStyles.matchSectionTitle.copyWith(
+              style: context.textStyles.bodyLg.copyWith(
                 color: activeLeagueSection == section ? context.colors.primaryBackground : context.colors.primaryForeground,
               ),
             ),

@@ -33,7 +33,7 @@ class FixturesFavoriteDialog extends StatelessWidget {
         ///
         Text(
           'fixturesFavoriteTitle'.tr(),
-          style: context.textStyles.dialogTitle,
+          style: context.textStyles.headlineLg,
         ),
         const SizedBox(height: 8),
         Flexible(
@@ -48,17 +48,17 @@ class FixturesFavoriteDialog extends StatelessWidget {
                 ///
                 Text(
                   'fixturesFavoriteDialogText1'.tr(),
-                  style: context.textStyles.dialogText,
+                  style: context.textStyles.bodyMdLight,
                 ),
                 const SizedBox(height: 12),
                 Text(
                   'fixturesFavoriteDialogText2'.tr(),
-                  style: context.textStyles.dialogText,
+                  style: context.textStyles.bodyMdLight,
                 ),
                 const SizedBox(height: 16),
                 Text(
                   'fixturesFavoriteDialogText3'.tr(),
-                  style: context.textStyles.dialogText,
+                  style: context.textStyles.bodyMdLight,
                 ),
               ],
             ),
@@ -71,7 +71,7 @@ class FixturesFavoriteDialog extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           'fixturesDialogOkay'.tr().toUpperCase(),
-          style: context.textStyles.dialogButton,
+          style: context.textStyles.bodyMdExtraBold,
         ),
       ),
     ],

@@ -43,7 +43,7 @@ class CountriesAppBar extends StatelessWidget {
         Expanded(
           child: Text(
             'countriesAppBar'.tr(),
-            style: context.textStyles.matchLeagueName,
+            style: context.textStyles.titleLgBold,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

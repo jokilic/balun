@@ -72,7 +72,7 @@ class MatchLineupListTile extends StatelessWidget {
               ),
               child: Text(
                 '${player?.number ?? '-'}',
-                style: context.textStyles.matchLineupsSectionNumber.copyWith(
+                style: context.textStyles.bodyLgBoldOnPrimary.copyWith(
                   color:
                       textToColor(
                         player?.pos == 'G' ? colors?.goalkeeper?.number : colors?.player?.number,
@@ -90,7 +90,7 @@ class MatchLineupListTile extends StatelessWidget {
             Flexible(
               child: Text(
                 mixOrOriginalWords(getLastWord(player?.name ?? '---')) ?? '---',
-                style: context.textStyles.matchStandingsSectionText,
+                style: context.textStyles.bodyLgMedium,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

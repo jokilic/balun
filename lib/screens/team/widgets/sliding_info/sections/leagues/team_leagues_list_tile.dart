@@ -56,7 +56,7 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                       if (widget.league.league?.name != null)
                         Text(
                           mixOrOriginalWords(widget.league.league!.name) ?? '---',
-                          style: context.textStyles.leagueTeamsTitle,
+                          style: context.textStyles.titleMd,
                         ),
                       if (widget.league.country?.name != null)
                         Text(
@@ -66,7 +66,7 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                                 ),
                               ) ??
                               '---',
-                          style: context.textStyles.leagueTeamsCountry,
+                          style: context.textStyles.bodyMdLightMuted,
                         ),
                     ],
                   ),
@@ -113,7 +113,7 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                                 ),
                                 child: Text(
                                   '${season.year}',
-                                  style: context.textStyles.teamLeaguesSeason,
+                                  style: context.textStyles.titleMdBold,
                                 ),
                               ),
                             ),

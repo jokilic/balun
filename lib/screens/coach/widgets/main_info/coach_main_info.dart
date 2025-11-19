@@ -59,12 +59,12 @@ class CoachMainInfo extends WatchingWidget {
         ///
         Text(
           mixOrOriginalWords(coach.firstName) ?? '--',
-          style: context.textStyles.leagueName,
+          style: context.textStyles.headlineMdLight,
           textAlign: TextAlign.center,
         ),
         Text(
           mixOrOriginalWords(coach.lastName) ?? '--',
-          style: context.textStyles.leagueNameBold,
+          style: context.textStyles.headlineXlLoose,
           textAlign: TextAlign.center,
         ),
 
@@ -80,7 +80,7 @@ class CoachMainInfo extends WatchingWidget {
                     ) ??
                     '---'
               : '---',
-          style: context.textStyles.leagueCountry,
+          style: context.textStyles.bodyLg,
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 4),
@@ -113,7 +113,7 @@ class CoachMainInfo extends WatchingWidget {
                     Flexible(
                       child: Text(
                         mixOrOriginalWords(coach.team?.name) ?? '---',
-                        style: context.textStyles.leagueCountry,
+                        style: context.textStyles.bodyLg,
                         textAlign: TextAlign.center,
                       ),
                     ),

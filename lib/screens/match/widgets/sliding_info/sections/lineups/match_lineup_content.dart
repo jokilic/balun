@@ -73,7 +73,7 @@ class MatchLineupContent extends StatelessWidget {
           const SizedBox(height: 28),
           Text(
             'matchLineupManagers'.tr(),
-            style: context.textStyles.matchLineupsSectionTitle,
+            style: context.textStyles.headlineMdBold,
           ),
           const SizedBox(height: 4),
           Row(
@@ -92,7 +92,7 @@ class MatchLineupContent extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
                       mixOrOriginalWords(homeLineup?.coach?.name ?? '---') ?? '---',
-                      style: context.textStyles.matchStandingsSectionTextCompact,
+                      style: context.textStyles.titleMd,
                     ),
                   ),
                 ),
@@ -110,7 +110,7 @@ class MatchLineupContent extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
                       mixOrOriginalWords(awayLineup?.coach?.name ?? '---') ?? '---',
-                      style: context.textStyles.matchStandingsSectionTextCompact,
+                      style: context.textStyles.titleMd,
                       textAlign: TextAlign.right,
                     ),
                   ),
@@ -126,7 +126,7 @@ class MatchLineupContent extends StatelessWidget {
           ///
           Text(
             'matchLineupSubstitutions'.tr(),
-            style: context.textStyles.matchLineupsSectionTitle,
+            style: context.textStyles.headlineMdBold,
           ),
           const SizedBox(height: 16),
           MatchLineupsList(

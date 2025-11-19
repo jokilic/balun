@@ -56,7 +56,7 @@ class TeamAppBar extends StatelessWidget {
             if (team?.name != null)
               Text(
                 mixOrOriginalWords(team!.name) ?? '---',
-                style: context.textStyles.matchLeagueName,
+                style: context.textStyles.titleLgBold,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -68,7 +68,7 @@ class TeamAppBar extends StatelessWidget {
                       ),
                     ) ??
                     '---',
-                style: context.textStyles.matchLeagueRound,
+                style: context.textStyles.labelMediumMuted,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

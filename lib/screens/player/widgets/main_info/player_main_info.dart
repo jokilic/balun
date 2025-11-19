@@ -81,12 +81,12 @@ class PlayerMainInfo extends WatchingWidget {
           ///
           Text(
             mixOrOriginalWords(player.player?.firstName) ?? '--',
-            style: context.textStyles.leagueName,
+            style: context.textStyles.headlineMdLight,
             textAlign: TextAlign.center,
           ),
           Text(
             mixOrOriginalWords(player.player?.lastName) ?? '--',
-            style: context.textStyles.leagueNameBold,
+            style: context.textStyles.headlineXlLoose,
             textAlign: TextAlign.center,
           ),
 
@@ -102,7 +102,7 @@ class PlayerMainInfo extends WatchingWidget {
                       ) ??
                       '---'
                 : '---',
-            style: context.textStyles.leagueCountry,
+            style: context.textStyles.bodyLg,
             textAlign: TextAlign.center,
           ),
 
@@ -134,7 +134,7 @@ class PlayerMainInfo extends WatchingWidget {
                       Flexible(
                         child: Text(
                           mixOrOriginalWords(currentTeam.name) ?? '---',
-                          style: context.textStyles.fixturesLeague,
+                          style: context.textStyles.bodyLgBold,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -151,7 +151,7 @@ class PlayerMainInfo extends WatchingWidget {
           ///
           Text(
             'playerInfoSeason'.tr(),
-            style: context.textStyles.leagueSeason,
+            style: context.textStyles.bodyLgMediumMuted,
             textAlign: TextAlign.center,
           ),
 
@@ -180,7 +180,7 @@ class PlayerMainInfo extends WatchingWidget {
                       child: Center(
                         child: Text(
                           '$year',
-                          style: seasonState == year.toString() ? context.textStyles.seasonPickerActive : context.textStyles.seasonPickerInactive,
+                          style: seasonState == year.toString() ? context.textStyles.titleMdExtraBold : context.textStyles.bodyLgMuted,
                           textAlign: TextAlign.center,
                         ),
                       ),

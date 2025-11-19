@@ -42,12 +42,12 @@ class SearchCoachesListTile extends StatelessWidget {
               children: [
                 Text(
                   mixOrOriginalWords(coach.name) ?? '---',
-                  style: context.textStyles.fixturesLeague,
+                  style: context.textStyles.bodyLgBold,
                 ),
                 if (coach.nationality != null)
                   Text(
                     mixOrOriginalWords(coach.nationality) ?? '---',
-                    style: context.textStyles.leaguesSubtitle,
+                    style: context.textStyles.labelMediumMuted,
                   ),
               ],
             ),

@@ -51,11 +51,11 @@ class LeagueTopScorersListTile extends StatelessWidget {
                   if (scorer?.player?.name != null)
                     Text(
                       mixOrOriginalWords(scorer!.player!.name) ?? '---',
-                      style: context.textStyles.leagueTeamsTitle,
+                      style: context.textStyles.titleMd,
                     ),
                   Text(
                     '$numberOfGoals ${'leagueTopScorersNumber'.tr()}',
-                    style: context.textStyles.leagueTeamsCountry,
+                    style: context.textStyles.bodyMdLightMuted,
                   ),
                 ],
               ),

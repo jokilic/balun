@@ -78,7 +78,7 @@ class PlayerTransfersLoading extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     'playerTransferPrice'.tr(),
-                    style: context.textStyles.teamCoachCareerTitle,
+                    style: context.textStyles.labelBoldMuted,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 2),

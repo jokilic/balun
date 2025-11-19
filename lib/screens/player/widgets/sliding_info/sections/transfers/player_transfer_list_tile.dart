@@ -60,7 +60,7 @@ class PlayerTransferListTile extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(
                         mixOrOriginalWords(transfer.teams?.teamOut?.name) ?? '---',
-                        style: context.textStyles.teamTransferTeam,
+                        style: context.textStyles.bodyMdBold,
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -88,7 +88,7 @@ class PlayerTransferListTile extends StatelessWidget {
                       'd. MMMM y.',
                       context.locale.toLanguageTag(),
                     ).format(dateLocal),
-                    style: context.textStyles.teamTransferTeam,
+                    style: context.textStyles.bodyMdBold,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
@@ -97,13 +97,13 @@ class PlayerTransferListTile extends StatelessWidget {
                 if (transfer.type != null) ...[
                   Text(
                     'playerTransferPrice'.tr(),
-                    style: context.textStyles.teamCoachCareerTitle,
+                    style: context.textStyles.labelBoldMuted,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 2),
                   Text(
                     transfer.type!,
-                    style: context.textStyles.teamCoachCareerValue,
+                    style: context.textStyles.bodyLg,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 4),
@@ -146,7 +146,7 @@ class PlayerTransferListTile extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(
                         mixOrOriginalWords(transfer.teams?.teamIn?.name) ?? '---',
-                        style: context.textStyles.teamTransferTeam,
+                        style: context.textStyles.bodyMdBold,
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

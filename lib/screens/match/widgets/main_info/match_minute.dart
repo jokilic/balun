@@ -36,7 +36,7 @@ class MatchMinute extends StatelessWidget {
         if (timeBeforeMatch != null)
           Text(
             timeBeforeMatch!,
-            style: context.textStyles.fixturesMinute,
+            style: context.textStyles.titleLgLightMuted,
             textAlign: TextAlign.center,
           )
         ///
@@ -45,7 +45,7 @@ class MatchMinute extends StatelessWidget {
         else if (textStatus != null)
           Text(
             textStatus!.toUpperCase(),
-            style: context.textStyles.fixturesMinute,
+            style: context.textStyles.titleLgLightMuted,
             textAlign: TextAlign.center,
           )
         ///
@@ -54,14 +54,14 @@ class MatchMinute extends StatelessWidget {
         else if (minutes != null && minutes?.extra == null) ...[
           Text(
             minutes!.minutes.toString(),
-            style: context.textStyles.fixturesMinute,
+            style: context.textStyles.titleLgLightMuted,
             textAlign: TextAlign.center,
           ),
           Positioned(
             right: -6,
             child: Text(
               "'",
-              style: context.textStyles.fixturesMinute,
+              style: context.textStyles.titleLgLightMuted,
               textAlign: TextAlign.center,
             ),
           ),
@@ -76,18 +76,18 @@ class MatchMinute extends StatelessWidget {
             children: [
               Text(
                 minutes!.minutes.toString(),
-                style: context.textStyles.fixturesMinute,
+                style: context.textStyles.titleLgLightMuted,
                 textAlign: TextAlign.center,
               ),
               Text(
                 "'",
-                style: context.textStyles.fixturesMinute,
+                style: context.textStyles.titleLgLightMuted,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(width: 2),
               Text(
                 '+${minutes!.extra}',
-                style: context.textStyles.fixturesMinuteExtra,
+                style: context.textStyles.labelMuted,
               ),
             ],
           ),

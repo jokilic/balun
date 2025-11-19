@@ -55,7 +55,7 @@ class TeamPlayersListTile extends StatelessWidget {
                 if (player.name != null)
                   Text(
                     mixOrOriginalWords(player.name) ?? '---',
-                    style: context.textStyles.leagueTeamsTitle,
+                    style: context.textStyles.titleMd,
                   ),
 
                 ///
@@ -64,7 +64,7 @@ class TeamPlayersListTile extends StatelessWidget {
                 if (player.age != null) ...[
                   Text(
                     '${player.age!} ${'teamCoachesYearsOld'.tr()}',
-                    style: context.textStyles.leagueTeamsCountry,
+                    style: context.textStyles.bodyMdLightMuted,
                   ),
                   const SizedBox(width: 12),
                 ],
@@ -96,7 +96,7 @@ class TeamPlayersListTile extends StatelessWidget {
                       player.position!,
                     ) ??
                     '--',
-                style: context.textStyles.matchPlayerStatisticsRating,
+                style: context.textStyles.bodyLgBoldOnPrimary,
               ),
             ),
         ],

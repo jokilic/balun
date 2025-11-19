@@ -45,7 +45,7 @@ class FixturesAllDialog extends WatchingWidget {
           ///
           Text(
             'fixturesAllTitle'.tr(),
-            style: context.textStyles.dialogTitle,
+            style: context.textStyles.headlineLg,
           ),
           const SizedBox(height: 8),
           Flexible(
@@ -63,17 +63,17 @@ class FixturesAllDialog extends WatchingWidget {
                       children: [
                         TextSpan(
                           text: 'fixturesAllDialogText'.tr(),
-                          style: context.textStyles.dialogText,
+                          style: context.textStyles.bodyMdLight,
                         ),
                         TextSpan(
                           text: activeDateFormatted,
-                          style: context.textStyles.dialogText.copyWith(
+                          style: context.textStyles.bodyMdLight.copyWith(
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                         TextSpan(
                           text: '.',
-                          style: context.textStyles.dialogText,
+                          style: context.textStyles.bodyMdLight,
                         ),
                       ],
                     ),
@@ -89,7 +89,7 @@ class FixturesAllDialog extends WatchingWidget {
           onPressed: onPressed,
           child: Text(
             'fixturesDialogOkay'.tr().toUpperCase(),
-            style: context.textStyles.dialogButton,
+            style: context.textStyles.bodyMdExtraBold,
           ),
         ),
       ],

@@ -51,7 +51,7 @@ class SearchCountriesListTile extends StatelessWidget {
           Flexible(
             child: Text(
               mixOrOriginalWords(country.name ?? '---') ?? '---',
-              style: context.textStyles.fixturesCountry,
+              style: context.textStyles.titleMdBold,
             ),
           ),
         ],

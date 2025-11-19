@@ -35,7 +35,7 @@ class BalunError extends StatelessWidget {
         SizedBox(height: isSmall ? 8 : 16),
         Text(
           error,
-          style: context.textStyles.error.copyWith(
+          style: context.textStyles.headlineMd.copyWith(
             fontSize: isSmall ? 20 : 24,
           ),
           textAlign: TextAlign.center,
@@ -44,7 +44,7 @@ class BalunError extends StatelessWidget {
           SizedBox(height: isSmall ? 2 : 4),
           Text(
             smallMessage!,
-            style: context.textStyles.error.copyWith(
+            style: context.textStyles.headlineMd.copyWith(
               fontSize: isSmall ? 14 : 18,
             ),
             textAlign: TextAlign.center,

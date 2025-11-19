@@ -34,7 +34,7 @@ class MatchStatisticsListTile extends StatelessWidget {
             Expanded(
               child: Text(
                 '${homeStatisticData?.value ?? '-'}',
-                style: context.textStyles.matchStatisticsSectionNumber,
+                style: context.textStyles.headlineLgBold,
                 textAlign: TextAlign.left,
               ),
             ),
@@ -45,7 +45,7 @@ class MatchStatisticsListTile extends StatelessWidget {
                   getStatisticText(
                     statisticData: homeStatisticData!,
                   ),
-                  style: context.textStyles.matchStatisticsSectionText,
+                  style: context.textStyles.titleMdMuted,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -53,7 +53,7 @@ class MatchStatisticsListTile extends StatelessWidget {
             Expanded(
               child: Text(
                 '${awayStatisticData?.value ?? '-'}',
-                style: context.textStyles.matchStatisticsSectionNumber,
+                style: context.textStyles.headlineLgBold,
                 textAlign: TextAlign.right,
               ),
             ),

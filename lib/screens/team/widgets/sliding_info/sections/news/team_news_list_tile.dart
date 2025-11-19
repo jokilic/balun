@@ -53,7 +53,7 @@ class TeamNewsListTile extends StatelessWidget {
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
-                  style: context.textStyles.leagueTeamsTitle,
+                  style: context.textStyles.titleMd,
                 ),
               ),
 
@@ -74,7 +74,7 @@ class TeamNewsListTile extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.right,
-                      style: context.textStyles.newsDateTime,
+                      style: context.textStyles.micro,
                     ),
 
                   /// Favicon
@@ -100,7 +100,7 @@ class TeamNewsListTile extends StatelessWidget {
                             )
                           : Text(
                               newsResult.sourceUrl?.replaceAll(RegExp(r'https?://(www\.)?'), '').substring(0, 2) ?? '?',
-                              style: context.textStyles.newsTwoLetterSource,
+                              style: context.textStyles.bodyLgExtraBold,
                               textAlign: TextAlign.center,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -121,7 +121,7 @@ class TeamNewsListTile extends StatelessWidget {
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.left,
-            style: context.textStyles.leagueTeamsCountry,
+            style: context.textStyles.bodyMdLightMuted,
           ),
         ],
       ),

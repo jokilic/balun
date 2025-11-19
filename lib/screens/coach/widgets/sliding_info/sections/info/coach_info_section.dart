@@ -45,11 +45,11 @@ class CoachInfoSection extends StatelessWidget {
                       children: [
                         Text(
                           'coachInfoName'.tr(),
-                          style: context.textStyles.matchInfoSectionTitle,
+                          style: context.textStyles.bodyMdBoldMuted,
                         ),
                         Text(
                           mixOrOriginalWords(coach!.name) ?? '---',
-                          style: context.textStyles.matchInfoSectionText,
+                          style: context.textStyles.titleMdLight,
                         ),
                       ],
                     ),
@@ -67,12 +67,12 @@ class CoachInfoSection extends StatelessWidget {
                       children: [
                         Text(
                           'coachInfoAge'.tr(),
-                          style: context.textStyles.matchInfoSectionTitle,
+                          style: context.textStyles.bodyMdBoldMuted,
                           textAlign: TextAlign.right,
                         ),
                         Text(
                           '${coach!.age!}',
-                          style: context.textStyles.matchInfoSectionText,
+                          style: context.textStyles.titleMdLight,
                           textAlign: TextAlign.right,
                         ),
                       ],
@@ -101,12 +101,12 @@ class CoachInfoSection extends StatelessWidget {
                       children: [
                         Text(
                           'coachInfoBirthPlace'.tr(),
-                          style: context.textStyles.matchInfoSectionTitle,
+                          style: context.textStyles.bodyMdBoldMuted,
                         ),
                         if (coach?.birth?.place != null)
                           Text(
                             mixOrOriginalWords(coach!.birth!.place) ?? '---',
-                            style: context.textStyles.matchInfoSectionText,
+                            style: context.textStyles.titleMdLight,
                           ),
                         if (coach?.birth?.country != null)
                           Text(
@@ -116,7 +116,7 @@ class CoachInfoSection extends StatelessWidget {
                                   ),
                                 ) ??
                                 '---',
-                            style: context.textStyles.matchInfoSectionText,
+                            style: context.textStyles.titleMdLight,
                           ),
                       ],
                     ),
@@ -134,7 +134,7 @@ class CoachInfoSection extends StatelessWidget {
                       children: [
                         Text(
                           'coachInfoBirthDate'.tr(),
-                          style: context.textStyles.matchInfoSectionTitle,
+                          style: context.textStyles.bodyMdBoldMuted,
                           textAlign: TextAlign.right,
                         ),
                         Text(
@@ -142,7 +142,7 @@ class CoachInfoSection extends StatelessWidget {
                             'd. MMMM y.',
                             context.locale.toLanguageTag(),
                           ).format(birthDate),
-                          style: context.textStyles.matchInfoSectionText,
+                          style: context.textStyles.titleMdLight,
                           textAlign: TextAlign.right,
                         ),
                       ],
@@ -171,11 +171,11 @@ class CoachInfoSection extends StatelessWidget {
                       children: [
                         Text(
                           'coachInfoHeight'.tr(),
-                          style: context.textStyles.matchInfoSectionTitle,
+                          style: context.textStyles.bodyMdBoldMuted,
                         ),
                         Text(
                           coach!.height!,
-                          style: context.textStyles.matchInfoSectionText,
+                          style: context.textStyles.titleMdLight,
                         ),
                       ],
                     ),
@@ -193,12 +193,12 @@ class CoachInfoSection extends StatelessWidget {
                       children: [
                         Text(
                           'coachInfoWeight'.tr(),
-                          style: context.textStyles.matchInfoSectionTitle,
+                          style: context.textStyles.bodyMdBoldMuted,
                           textAlign: TextAlign.right,
                         ),
                         Text(
                           coach!.weight!,
-                          style: context.textStyles.matchInfoSectionText,
+                          style: context.textStyles.titleMdLight,
                           textAlign: TextAlign.right,
                         ),
                       ],

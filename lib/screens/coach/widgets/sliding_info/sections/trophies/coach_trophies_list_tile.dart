@@ -24,7 +24,7 @@ class CoachTrophiesListTile extends StatelessWidget {
             if (trophy.place != null) ...[
               Text(
                 trophy.place!,
-                style: context.textStyles.teamCoachCareerTeam,
+                style: context.textStyles.titleMdBold,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),
@@ -36,7 +36,7 @@ class CoachTrophiesListTile extends StatelessWidget {
             if (trophy.season != null) ...[
               Text(
                 trophy.season!,
-                style: context.textStyles.teamTransferTeam,
+                style: context.textStyles.bodyMdBold,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),
@@ -48,7 +48,7 @@ class CoachTrophiesListTile extends StatelessWidget {
             if (trophy.league != null) ...[
               Text(
                 mixOrOriginalWords(trophy.league) ?? '---',
-                style: context.textStyles.teamTransferTeam,
+                style: context.textStyles.bodyMdBold,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),
@@ -65,7 +65,7 @@ class CoachTrophiesListTile extends StatelessWidget {
                       ),
                     ) ??
                     '---',
-                style: context.textStyles.leagueTeamsCountry,
+                style: context.textStyles.bodyMdLightMuted,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),

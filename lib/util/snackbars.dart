@@ -29,7 +29,7 @@ void showSnackbar(
           Expanded(
             child: Text(
               text,
-              style: context.textStyles.snackbar.copyWith(
+              style: context.textStyles.bodyLgBoldLoose.copyWith(
                 color: context.colors.primaryForeground,
               ),
             ),

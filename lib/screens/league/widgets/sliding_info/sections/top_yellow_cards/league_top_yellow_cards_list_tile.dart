@@ -51,11 +51,11 @@ class LeagueTopYellowCardsListTile extends StatelessWidget {
                   if (yellowCard?.player?.name != null)
                     Text(
                       mixOrOriginalWords(yellowCard!.player!.name) ?? '---',
-                      style: context.textStyles.leagueTeamsTitle,
+                      style: context.textStyles.titleMd,
                     ),
                   Text(
                     '$numberOfCards ${'leagueTopYellowCardsNumber'.tr()}',
-                    style: context.textStyles.leagueTeamsCountry,
+                    style: context.textStyles.bodyMdLightMuted,
                   ),
                 ],
               ),

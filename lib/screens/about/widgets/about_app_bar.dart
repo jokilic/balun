@@ -51,13 +51,13 @@ class AboutAppBar extends StatelessWidget {
             children: [
               Text(
                 'settingsAboutTitle'.tr(),
-                style: context.textStyles.matchLeagueName,
+                style: context.textStyles.titleLgBold,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
                 'settingsAboutSubtitle'.tr(),
-                style: context.textStyles.matchLeagueRound,
+                style: context.textStyles.labelMediumMuted,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

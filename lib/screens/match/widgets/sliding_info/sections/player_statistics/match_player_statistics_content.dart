@@ -62,7 +62,7 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
                 Expanded(
                   child: Text(
                     mixOrOriginalWords(widget.playerStatistic!.team!.name ?? '---') ?? '---',
-                    style: context.textStyles.matchLineupsSectionTitle,
+                    style: context.textStyles.headlineMdBold,
                   ),
                 ),
                 AnimatedOpacity(
@@ -98,7 +98,7 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
                       alignment: Alignment.centerRight,
                       child: Text(
                         'matchPlayerStatistics'.tr(),
-                        style: context.textStyles.matchLineupsSectionTitle,
+                        style: context.textStyles.headlineMdBold,
                       ),
                     ),
                     const SizedBox(height: 12),

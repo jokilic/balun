@@ -98,7 +98,7 @@ class MatchMainInfo extends WatchingWidget {
                         ///
                         Text(
                           mixOrOriginalWords(match.teams?.home?.name) ?? '---',
-                          style: context.textStyles.fixturesName,
+                          style: context.textStyles.bodyLgBold,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
@@ -174,7 +174,7 @@ class MatchMainInfo extends WatchingWidget {
                         ///
                         Text(
                           mixOrOriginalWords(match.teams?.away?.name) ?? '---',
-                          style: context.textStyles.fixturesName,
+                          style: context.textStyles.bodyLgBold,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
@@ -229,7 +229,7 @@ class MatchMainInfo extends WatchingWidget {
                                     children: [
                                       Text(
                                         event.time?.extra != null ? "${(event.time?.elapsed ?? 0) + (event.time?.extra ?? 0)}'" : "${event.time?.elapsed}'",
-                                        style: context.textStyles.matchGoal.copyWith(
+                                        style: context.textStyles.labelMedium.copyWith(
                                           color: context.colors.primaryForeground.withValues(alpha: 0.4),
                                         ),
                                       ),
@@ -241,7 +241,7 @@ class MatchMainInfo extends WatchingWidget {
                                               : event.detail?.toLowerCase() == 'own goal'
                                               ? '$playerName (${'matchInfoOwnGoal'.tr()})'
                                               : playerName,
-                                          style: context.textStyles.matchGoal,
+                                          style: context.textStyles.labelMedium,
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                         ),
@@ -280,14 +280,14 @@ class MatchMainInfo extends WatchingWidget {
                               TextSpan(text: '${match.goals?.home ?? '-'}'),
                               TextSpan(
                                 text: ':',
-                                style: context.textStyles.fixturesScore.copyWith(
+                                style: context.textStyles.displayXxl.copyWith(
                                   color: context.colors.primaryForeground.withValues(alpha: 0.2),
                                 ),
                               ),
                               TextSpan(text: '${match.goals?.away ?? '-'}'),
                             ],
                           ),
-                          style: context.textStyles.fixturesScore,
+                          style: context.textStyles.displayXxl,
                           textAlign: TextAlign.center,
                         ),
                       )
@@ -297,14 +297,14 @@ class MatchMainInfo extends WatchingWidget {
                             TextSpan(text: '${match.goals?.home ?? '-'}'),
                             TextSpan(
                               text: ':',
-                              style: context.textStyles.fixturesScore.copyWith(
+                              style: context.textStyles.displayXxl.copyWith(
                                 color: context.colors.primaryForeground.withValues(alpha: 0.2),
                               ),
                             ),
                             TextSpan(text: '${match.goals?.away ?? '-'}'),
                           ],
                         ),
-                        style: context.textStyles.fixturesScore,
+                        style: context.textStyles.displayXxl,
                         textAlign: TextAlign.center,
                       ),
               ),
@@ -347,7 +347,7 @@ class MatchMainInfo extends WatchingWidget {
                                               : event.detail?.toLowerCase() == 'own goal'
                                               ? '$playerName (${'matchInfoOwnGoal'.tr()})'
                                               : playerName,
-                                          style: context.textStyles.matchGoal,
+                                          style: context.textStyles.labelMedium,
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                         ),
@@ -355,7 +355,7 @@ class MatchMainInfo extends WatchingWidget {
                                       const SizedBox(width: 8),
                                       Text(
                                         event.time?.extra != null ? "${(event.time?.elapsed ?? 0) + (event.time?.extra ?? 0)}'" : "${event.time?.elapsed}'",
-                                        style: context.textStyles.matchGoal.copyWith(
+                                        style: context.textStyles.labelMedium.copyWith(
                                           color: context.colors.primaryForeground.withValues(alpha: 0.4),
                                         ),
                                       ),

@@ -44,7 +44,7 @@ class PlayerInfoSection extends StatelessWidget {
                 Expanded(
                   child: Text(
                     '${mixOrOriginalWords(player?.firstName)} ${'playerInfoInjured'.tr()}.',
-                    style: context.textStyles.matchInfoSectionText,
+                    style: context.textStyles.titleMdLight,
                   ),
                 ),
               ],
@@ -70,11 +70,11 @@ class PlayerInfoSection extends StatelessWidget {
                       children: [
                         Text(
                           'playerInfoName'.tr(),
-                          style: context.textStyles.matchInfoSectionTitle,
+                          style: context.textStyles.bodyMdBoldMuted,
                         ),
                         Text(
                           mixOrOriginalWords(player!.name) ?? '---',
-                          style: context.textStyles.matchInfoSectionText,
+                          style: context.textStyles.titleMdLight,
                         ),
                       ],
                     ),
@@ -92,12 +92,12 @@ class PlayerInfoSection extends StatelessWidget {
                       children: [
                         Text(
                           'playerInfoAge'.tr(),
-                          style: context.textStyles.matchInfoSectionTitle,
+                          style: context.textStyles.bodyMdBoldMuted,
                           textAlign: TextAlign.right,
                         ),
                         Text(
                           '${player!.age!}',
-                          style: context.textStyles.matchInfoSectionText,
+                          style: context.textStyles.titleMdLight,
                           textAlign: TextAlign.right,
                         ),
                       ],
@@ -126,12 +126,12 @@ class PlayerInfoSection extends StatelessWidget {
                       children: [
                         Text(
                           'playerInfoBirthPlace'.tr(),
-                          style: context.textStyles.matchInfoSectionTitle,
+                          style: context.textStyles.bodyMdBoldMuted,
                         ),
                         if (player?.birth?.place != null)
                           Text(
                             mixOrOriginalWords(player!.birth!.place) ?? '---',
-                            style: context.textStyles.matchInfoSectionText,
+                            style: context.textStyles.titleMdLight,
                           ),
                         if (player?.birth?.country != null)
                           Text(
@@ -141,7 +141,7 @@ class PlayerInfoSection extends StatelessWidget {
                                   ),
                                 ) ??
                                 '---',
-                            style: context.textStyles.matchInfoSectionText,
+                            style: context.textStyles.titleMdLight,
                           ),
                       ],
                     ),
@@ -159,7 +159,7 @@ class PlayerInfoSection extends StatelessWidget {
                       children: [
                         Text(
                           'playerInfoBirthDate'.tr(),
-                          style: context.textStyles.matchInfoSectionTitle,
+                          style: context.textStyles.bodyMdBoldMuted,
                           textAlign: TextAlign.right,
                         ),
                         Text(
@@ -167,7 +167,7 @@ class PlayerInfoSection extends StatelessWidget {
                             'd. MMMM y.',
                             context.locale.toLanguageTag(),
                           ).format(birthDate),
-                          style: context.textStyles.matchInfoSectionText,
+                          style: context.textStyles.titleMdLight,
                           textAlign: TextAlign.right,
                         ),
                       ],
@@ -196,11 +196,11 @@ class PlayerInfoSection extends StatelessWidget {
                       children: [
                         Text(
                           'playerInfoHeight'.tr(),
-                          style: context.textStyles.matchInfoSectionTitle,
+                          style: context.textStyles.bodyMdBoldMuted,
                         ),
                         Text(
                           player!.height!,
-                          style: context.textStyles.matchInfoSectionText,
+                          style: context.textStyles.titleMdLight,
                         ),
                       ],
                     ),
@@ -218,12 +218,12 @@ class PlayerInfoSection extends StatelessWidget {
                       children: [
                         Text(
                           'playerInfoWeight'.tr(),
-                          style: context.textStyles.matchInfoSectionTitle,
+                          style: context.textStyles.bodyMdBoldMuted,
                           textAlign: TextAlign.right,
                         ),
                         Text(
                           player!.weight!,
-                          style: context.textStyles.matchInfoSectionText,
+                          style: context.textStyles.titleMdLight,
                           textAlign: TextAlign.right,
                         ),
                       ],

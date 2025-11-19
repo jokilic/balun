@@ -90,7 +90,7 @@ class MatchHighlightsContent extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
             youTubeData.activeYouTubeItem.snippet.title,
-            style: context.textStyles.matchHighlightsVideoTitle,
+            style: context.textStyles.titleMdBold,
           ),
         ),
         const SizedBox(height: 2),
@@ -100,7 +100,7 @@ class MatchHighlightsContent extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: Text(
               youTubeData.activeYouTubeItem.snippet.channelTitle,
-              style: context.textStyles.matchHighlightsVideoChannel,
+              style: context.textStyles.labelMedium,
               textAlign: TextAlign.right,
             ),
           ),
@@ -112,7 +112,7 @@ class MatchHighlightsContent extends StatelessWidget {
           ),
           child: Text(
             youTubeData.activeYouTubeItem.snippet.description,
-            style: context.textStyles.matchHighlightsVideoDescription,
+            style: context.textStyles.label,
           ),
         ),
 
@@ -122,7 +122,7 @@ class MatchHighlightsContent extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
             'matchHighlightsSimilarVideos'.tr(),
-            style: context.textStyles.matchHighlightsSimilarVideos,
+            style: context.textStyles.headlineMdBold,
           ),
         ),
 
@@ -171,7 +171,7 @@ class MatchHighlightsContent extends StatelessWidget {
                         children: [
                           Text(
                             youTubeItem.snippet.title,
-                            style: context.textStyles.matchHighlightsVideoTitle.copyWith(
+                            style: context.textStyles.titleMdBold.copyWith(
                               color: youTubeData.activeYouTubeItem == youTubeItem ? context.colors.primaryBackground : null,
                             ),
                             maxLines: 2,
@@ -180,7 +180,7 @@ class MatchHighlightsContent extends StatelessWidget {
                           const SizedBox(height: 4),
                           Text(
                             youTubeItem.snippet.channelTitle,
-                            style: context.textStyles.matchHighlightsVideoDescription.copyWith(
+                            style: context.textStyles.label.copyWith(
                               color: youTubeData.activeYouTubeItem == youTubeItem ? context.colors.primaryBackground : null,
                             ),
                           ),

@@ -34,7 +34,7 @@ class CoachSidelinedListTile extends StatelessWidget {
           if (sidelined.type != null)
             Text(
               sidelined.type!,
-              style: context.textStyles.teamCoachCareerTeam,
+              style: context.textStyles.titleMdBold,
               textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -58,7 +58,7 @@ class CoachSidelinedListTile extends StatelessWidget {
                     'd. MMMM y.',
                     context.locale.toLanguageTag(),
                   ).format(startLocal),
-                  style: context.textStyles.leagueTeamsCountry,
+                  style: context.textStyles.bodyMdLightMuted,
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -82,7 +82,7 @@ class CoachSidelinedListTile extends StatelessWidget {
                     'd. MMMM y.',
                     context.locale.toLanguageTag(),
                   ).format(endLocal),
-                  style: context.textStyles.leagueTeamsCountry,
+                  style: context.textStyles.bodyMdLightMuted,
                   textAlign: TextAlign.center,
                 ),
               ],

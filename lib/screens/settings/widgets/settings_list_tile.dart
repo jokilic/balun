@@ -60,7 +60,7 @@ class SettingsListTile extends StatelessWidget {
                 ///
                 Text(
                   title,
-                  style: context.textStyles.fixturesLeague,
+                  style: context.textStyles.bodyLgBold,
                 ),
 
                 ///
@@ -68,7 +68,7 @@ class SettingsListTile extends StatelessWidget {
                 ///
                 Text(
                   subtitle,
-                  style: context.textStyles.leaguesSubtitle,
+                  style: context.textStyles.labelMediumMuted,
                 ),
               ],
             ),

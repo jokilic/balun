@@ -55,7 +55,7 @@ class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
               children: [
                 Text(
                   mixOrOriginalWords(widget.round) ?? '---',
-                  style: context.textStyles.leagueFixturesTitle,
+                  style: context.textStyles.bodyLgMedium,
                 ),
               ],
             ),

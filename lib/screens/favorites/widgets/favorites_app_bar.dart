@@ -51,13 +51,13 @@ class FavoritesAppBar extends StatelessWidget {
             children: [
               Text(
                 'settingsFavoritesTitle'.tr(),
-                style: context.textStyles.matchLeagueName,
+                style: context.textStyles.titleLgBold,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
                 'settingsFavoritesSubtitle'.tr(),
-                style: context.textStyles.matchLeagueRound,
+                style: context.textStyles.labelMediumMuted,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

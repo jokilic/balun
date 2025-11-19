@@ -31,7 +31,7 @@ class LeagueStandingsContent extends StatelessWidget {
               if (standing.first.group != null)
                 Text(
                   mixOrOriginalWords(standing.first.group) ?? '---',
-                  style: context.textStyles.matchStandingsSectionSubtitle,
+                  style: context.textStyles.headlineMd,
                   maxLines: 1,
                   textAlign: TextAlign.center,
                 ),
@@ -43,7 +43,7 @@ class LeagueStandingsContent extends StatelessWidget {
                     width: 36,
                     child: Text(
                       'leagueStandingsPlayed'.tr(),
-                      style: context.textStyles.matchStandingsSectionText,
+                      style: context.textStyles.bodyLgMedium,
                       maxLines: 1,
                       textAlign: TextAlign.center,
                     ),
@@ -53,7 +53,7 @@ class LeagueStandingsContent extends StatelessWidget {
                     width: 36,
                     child: Text(
                       'leagueStandingsWins'.tr(),
-                      style: context.textStyles.matchStandingsSectionText,
+                      style: context.textStyles.bodyLgMedium,
                       maxLines: 1,
                       textAlign: TextAlign.center,
                     ),
@@ -63,7 +63,7 @@ class LeagueStandingsContent extends StatelessWidget {
                     width: 36,
                     child: Text(
                       'leagueStandingsPoints'.tr(),
-                      style: context.textStyles.matchStandingsSectionText,
+                      style: context.textStyles.bodyLgMedium,
                       maxLines: 1,
                       textAlign: TextAlign.center,
                     ),

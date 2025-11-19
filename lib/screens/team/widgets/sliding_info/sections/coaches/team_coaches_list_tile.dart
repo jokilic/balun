@@ -58,12 +58,12 @@ class _TeamCoachesListTileState extends State<TeamCoachesListTile> {
                       if (widget.coach.name != null)
                         Text(
                           mixOrOriginalWords(widget.coach.name) ?? '---',
-                          style: context.textStyles.leagueTeamsTitle,
+                          style: context.textStyles.titleMd,
                         ),
                       if (widget.coach.age != null)
                         Text(
                           '${widget.coach.age!} ${'teamCoachesYearsOld'.tr()}',
-                          style: context.textStyles.leagueTeamsCountry,
+                          style: context.textStyles.bodyMdLightMuted,
                         ),
                     ],
                   ),

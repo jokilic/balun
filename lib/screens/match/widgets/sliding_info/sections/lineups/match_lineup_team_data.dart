@@ -59,7 +59,7 @@ class MatchLineupTeamData extends StatelessWidget {
                 child: playerNumberColor != null
                     ? Text(
                         lineup?.team?.name?.substring(0, 1) ?? '',
-                        style: context.textStyles.matchLineupsSectionNumber.copyWith(
+                        style: context.textStyles.bodyLgBoldOnPrimary.copyWith(
                           color: playerNumberColor,
                           fontSize: 24,
                         ),
@@ -76,7 +76,7 @@ class MatchLineupTeamData extends StatelessWidget {
             Expanded(
               child: Text(
                 mixOrOriginalWords(lineup?.team?.name) ?? '---',
-                style: context.textStyles.matchLineupsSectionTitle,
+                style: context.textStyles.headlineMdBold,
               ),
             ),
           ],
@@ -94,12 +94,12 @@ class MatchLineupTeamData extends StatelessWidget {
                   children: [
                     Text(
                       'matchLineupFormation'.tr(),
-                      style: context.textStyles.matchLineupsSectionText,
+                      style: context.textStyles.bodyMd,
                     ),
                     const SizedBox(height: 6),
                     Text(
                       lineup!.formation!,
-                      style: context.textStyles.matchLineupsSectionSubtitle,
+                      style: context.textStyles.titleMdBold,
                     ),
                   ],
                 ),
@@ -113,7 +113,7 @@ class MatchLineupTeamData extends StatelessWidget {
                 children: [
                   Text(
                     'matchLineupTeamRating'.tr(),
-                    style: context.textStyles.matchLineupsSectionText,
+                    style: context.textStyles.bodyMd,
                   ),
                   const SizedBox(height: 6),
                   Container(
@@ -136,7 +136,7 @@ class MatchLineupTeamData extends StatelessWidget {
                     ),
                     child: Text(
                       !matchLive && averageRating != null ? averageRating.toStringAsFixed(1) : '---',
-                      style: context.textStyles.matchLineupsSectionSubtitle.copyWith(
+                      style: context.textStyles.titleMdBold.copyWith(
                         color: context.colors.primaryBackground,
                       ),
                     ),

@@ -66,11 +66,11 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                       children: [
                         Text(
                           mixOrOriginalWords(widget.statistic?.team?.name) ?? '--',
-                          style: context.textStyles.matchPlayerStatisticsName,
+                          style: context.textStyles.titleMd,
                         ),
                         Text(
                           mixOrOriginalWords(widget.statistic?.league?.name) ?? '--',
-                          style: context.textStyles.matchPlayerStatisticsText,
+                          style: context.textStyles.bodyMdLight,
                         ),
                       ],
                     ),
@@ -104,7 +104,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                             ///
                             Text(
                               'playerStatisticsGames'.tr(),
-                              style: context.textStyles.matchPlayerStatisticsTitle,
+                              style: context.textStyles.titleLgBoldMuted,
                             ),
                             const SizedBox(height: 8),
                             PlayerStatisticsListTileValue(
@@ -146,7 +146,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                             ///
                             Text(
                               'playerStatisticsShots'.tr(),
-                              style: context.textStyles.matchPlayerStatisticsTitle,
+                              style: context.textStyles.titleLgBoldMuted,
                             ),
                             const SizedBox(height: 8),
                             PlayerStatisticsListTileValue(
@@ -164,7 +164,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                             ///
                             Text(
                               'playerStatisticsSubstitutes'.tr(),
-                              style: context.textStyles.matchPlayerStatisticsTitle,
+                              style: context.textStyles.titleLgBoldMuted,
                             ),
                             const SizedBox(height: 8),
                             PlayerStatisticsListTileValue(
@@ -186,7 +186,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                             ///
                             Text(
                               'playerStatisticsGoals'.tr(),
-                              style: context.textStyles.matchPlayerStatisticsTitle,
+                              style: context.textStyles.titleLgBoldMuted,
                             ),
                             const SizedBox(height: 8),
                             PlayerStatisticsListTileValue(
@@ -212,7 +212,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                             ///
                             Text(
                               'playerStatisticsPasses'.tr(),
-                              style: context.textStyles.matchPlayerStatisticsTitle,
+                              style: context.textStyles.titleLgBoldMuted,
                             ),
                             const SizedBox(height: 8),
                             PlayerStatisticsListTileValue(
@@ -240,7 +240,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                             ///
                             Text(
                               'playerStatisticsTackles'.tr(),
-                              style: context.textStyles.matchPlayerStatisticsTitle,
+                              style: context.textStyles.titleLgBoldMuted,
                             ),
                             const SizedBox(height: 8),
                             PlayerStatisticsListTileValue(
@@ -262,7 +262,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                             ///
                             Text(
                               'playerStatisticsDuels'.tr(),
-                              style: context.textStyles.matchPlayerStatisticsTitle,
+                              style: context.textStyles.titleLgBoldMuted,
                             ),
                             const SizedBox(height: 8),
                             PlayerStatisticsListTileValue(
@@ -280,7 +280,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                             ///
                             Text(
                               'playerStatisticsDribbles'.tr(),
-                              style: context.textStyles.matchPlayerStatisticsTitle,
+                              style: context.textStyles.titleLgBoldMuted,
                             ),
                             const SizedBox(height: 8),
                             PlayerStatisticsListTileValue(
@@ -302,7 +302,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                             ///
                             Text(
                               'playerStatisticsFouls'.tr(),
-                              style: context.textStyles.matchPlayerStatisticsTitle,
+                              style: context.textStyles.titleLgBoldMuted,
                             ),
                             const SizedBox(height: 8),
                             PlayerStatisticsListTileValue(
@@ -320,7 +320,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                             ///
                             Text(
                               'playerStatisticsCards'.tr(),
-                              style: context.textStyles.matchPlayerStatisticsTitle,
+                              style: context.textStyles.titleLgBoldMuted,
                             ),
                             const SizedBox(height: 8),
                             PlayerStatisticsListTileValue(
@@ -338,7 +338,7 @@ class _PlayerStatisticsListTileState extends State<PlayerStatisticsListTile> {
                             ///
                             Text(
                               'playerStatisticsPenalties'.tr(),
-                              style: context.textStyles.matchPlayerStatisticsTitle,
+                              style: context.textStyles.titleLgBoldMuted,
                             ),
                             const SizedBox(height: 8),
                             PlayerStatisticsListTileValue(

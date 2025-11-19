@@ -39,11 +39,11 @@ class TeamStadiumSection extends StatelessWidget {
                     children: [
                       Text(
                         'teamStadiumName'.tr(),
-                        style: context.textStyles.matchInfoSectionTitle,
+                        style: context.textStyles.bodyMdBoldMuted,
                       ),
                       Text(
                         mixOrOriginalWords(stadium!.name) ?? '---',
-                        style: context.textStyles.matchInfoSectionText,
+                        style: context.textStyles.titleMdLight,
                       ),
                     ],
                   ),
@@ -61,12 +61,12 @@ class TeamStadiumSection extends StatelessWidget {
                     children: [
                       Text(
                         'teamStadiumCapacity'.tr(),
-                        style: context.textStyles.matchInfoSectionTitle,
+                        style: context.textStyles.bodyMdBoldMuted,
                         textAlign: TextAlign.right,
                       ),
                       Text(
                         '${stadium!.capacity!}',
-                        style: context.textStyles.matchInfoSectionText,
+                        style: context.textStyles.titleMdLight,
                         textAlign: TextAlign.right,
                       ),
                     ],
@@ -95,11 +95,11 @@ class TeamStadiumSection extends StatelessWidget {
                     children: [
                       Text(
                         'teamStadiumAddress'.tr(),
-                        style: context.textStyles.matchInfoSectionTitle,
+                        style: context.textStyles.bodyMdBoldMuted,
                       ),
                       Text(
                         mixOrOriginalWords(stadium!.address) ?? '---',
-                        style: context.textStyles.matchInfoSectionText,
+                        style: context.textStyles.titleMdLight,
                       ),
                     ],
                   ),
@@ -117,12 +117,12 @@ class TeamStadiumSection extends StatelessWidget {
                     children: [
                       Text(
                         'teamStadiumCity'.tr(),
-                        style: context.textStyles.matchInfoSectionTitle,
+                        style: context.textStyles.bodyMdBoldMuted,
                         textAlign: TextAlign.right,
                       ),
                       Text(
                         mixOrOriginalWords(stadium!.city) ?? '---',
-                        style: context.textStyles.matchInfoSectionText,
+                        style: context.textStyles.titleMdLight,
                         textAlign: TextAlign.right,
                       ),
                     ],

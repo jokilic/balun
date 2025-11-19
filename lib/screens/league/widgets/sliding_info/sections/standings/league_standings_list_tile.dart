@@ -39,7 +39,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
             children: [
               Text(
                 '${widget.standing.rank ?? '--'}',
-                style: context.textStyles.matchStandingsSectionText,
+                style: context.textStyles.bodyLgMedium,
               ),
               const SizedBox(width: 12),
               BalunImage(
@@ -51,7 +51,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
               Expanded(
                 child: Text(
                   mixOrOriginalWords(widget.standing.team?.name ?? '--') ?? '--',
-                  style: context.textStyles.matchStandingsSectionText,
+                  style: context.textStyles.bodyLgMedium,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -61,7 +61,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                 width: 36,
                 child: Text(
                   '${widget.standing.all?.played ?? '--'}',
-                  style: context.textStyles.matchStandingsSectionText,
+                  style: context.textStyles.bodyLgMedium,
                   maxLines: 1,
                   textAlign: TextAlign.center,
                 ),
@@ -71,7 +71,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                 width: 36,
                 child: Text(
                   '${widget.standing.all?.win ?? '--'}',
-                  style: context.textStyles.matchStandingsSectionText,
+                  style: context.textStyles.bodyLgMedium,
                   maxLines: 1,
                   textAlign: TextAlign.center,
                 ),
@@ -81,7 +81,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                 width: 36,
                 child: Text(
                   '${widget.standing.points ?? '--'}',
-                  style: context.textStyles.matchStandingsSectionText,
+                  style: context.textStyles.bodyLgMedium,
                   maxLines: 1,
                   textAlign: TextAlign.center,
                 ),
@@ -101,7 +101,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                           children: [
                             Text(
                               'leagueStandingsForm'.tr(),
-                              style: context.textStyles.matchStandingsSectionText.copyWith(
+                              style: context.textStyles.bodyLgMedium.copyWith(
                                 color: context.colors.primaryForeground.withValues(alpha: 0.5),
                               ),
                               maxLines: 1,
@@ -131,7 +131,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                                       ),
                                       child: Text(
                                         letter,
-                                        style: context.textStyles.matchStandingsSectionForm,
+                                        style: context.textStyles.bodyLgBoldOnPrimary,
                                       ),
                                     );
                                   },
@@ -143,7 +143,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                           children: [
                             Text(
                               'leagueStandingsPointsLong'.tr(),
-                              style: context.textStyles.matchStandingsSectionText.copyWith(
+                              style: context.textStyles.bodyLgMedium.copyWith(
                                 color: context.colors.primaryForeground.withValues(alpha: 0.5),
                               ),
                               maxLines: 1,
@@ -152,7 +152,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                             const SizedBox(width: 8),
                             Text(
                               '${widget.standing.points ?? '--'}',
-                              style: context.textStyles.matchStandingsSectionText,
+                              style: context.textStyles.bodyLgMedium,
                               maxLines: 1,
                               textAlign: TextAlign.center,
                             ),
@@ -163,7 +163,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                           children: [
                             Text(
                               'leagueStandingsGoalDifferenceLong'.tr(),
-                              style: context.textStyles.matchStandingsSectionText.copyWith(
+                              style: context.textStyles.bodyLgMedium.copyWith(
                                 color: context.colors.primaryForeground.withValues(alpha: 0.5),
                               ),
                               maxLines: 1,
@@ -172,7 +172,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                             const SizedBox(width: 8),
                             Text(
                               '${widget.standing.goalsDiff ?? '--'}',
-                              style: context.textStyles.matchStandingsSectionText,
+                              style: context.textStyles.bodyLgMedium,
                               maxLines: 1,
                               textAlign: TextAlign.center,
                             ),
@@ -183,7 +183,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                           children: [
                             Text(
                               'leagueStandingsPlayedGamesLong'.tr(),
-                              style: context.textStyles.matchStandingsSectionText.copyWith(
+                              style: context.textStyles.bodyLgMedium.copyWith(
                                 color: context.colors.primaryForeground.withValues(alpha: 0.5),
                               ),
                               maxLines: 1,
@@ -192,7 +192,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                             const SizedBox(width: 8),
                             Text(
                               '${widget.standing.all?.played ?? '--'}',
-                              style: context.textStyles.matchStandingsSectionText,
+                              style: context.textStyles.bodyLgMedium,
                               maxLines: 1,
                               textAlign: TextAlign.center,
                             ),
@@ -203,7 +203,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                           children: [
                             Text(
                               'leagueStandingsWonGamesLong'.tr(),
-                              style: context.textStyles.matchStandingsSectionText.copyWith(
+                              style: context.textStyles.bodyLgMedium.copyWith(
                                 color: context.colors.primaryForeground.withValues(alpha: 0.5),
                               ),
                               maxLines: 1,
@@ -212,7 +212,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                             const SizedBox(width: 8),
                             Text(
                               '${widget.standing.all?.win ?? '--'}',
-                              style: context.textStyles.matchStandingsSectionText,
+                              style: context.textStyles.bodyLgMedium,
                               maxLines: 1,
                               textAlign: TextAlign.center,
                             ),
@@ -223,7 +223,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                           children: [
                             Text(
                               'leagueStandingsDrewGamesLong'.tr(),
-                              style: context.textStyles.matchStandingsSectionText.copyWith(
+                              style: context.textStyles.bodyLgMedium.copyWith(
                                 color: context.colors.primaryForeground.withValues(alpha: 0.5),
                               ),
                               maxLines: 1,
@@ -232,7 +232,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                             const SizedBox(width: 8),
                             Text(
                               '${widget.standing.all?.draw ?? '--'}',
-                              style: context.textStyles.matchStandingsSectionText,
+                              style: context.textStyles.bodyLgMedium,
                               maxLines: 1,
                               textAlign: TextAlign.center,
                             ),
@@ -243,7 +243,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                           children: [
                             Text(
                               'leagueStandingsLostGamesLong'.tr(),
-                              style: context.textStyles.matchStandingsSectionText.copyWith(
+                              style: context.textStyles.bodyLgMedium.copyWith(
                                 color: context.colors.primaryForeground.withValues(alpha: 0.5),
                               ),
                               maxLines: 1,
@@ -252,7 +252,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                             const SizedBox(width: 8),
                             Text(
                               '${widget.standing.all?.lose ?? '--'}',
-                              style: context.textStyles.matchStandingsSectionText,
+                              style: context.textStyles.bodyLgMedium,
                               maxLines: 1,
                               textAlign: TextAlign.center,
                             ),
@@ -263,7 +263,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                           children: [
                             Text(
                               'leagueStandingsScoredGoalsLong'.tr(),
-                              style: context.textStyles.matchStandingsSectionText.copyWith(
+                              style: context.textStyles.bodyLgMedium.copyWith(
                                 color: context.colors.primaryForeground.withValues(alpha: 0.5),
                               ),
                               maxLines: 1,
@@ -272,7 +272,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                             const SizedBox(width: 8),
                             Text(
                               '${widget.standing.all?.goals?.goalsFor ?? '--'}',
-                              style: context.textStyles.matchStandingsSectionText,
+                              style: context.textStyles.bodyLgMedium,
                               maxLines: 1,
                               textAlign: TextAlign.center,
                             ),
@@ -283,7 +283,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                           children: [
                             Text(
                               'leagueStandingsConcededGoalsLong'.tr(),
-                              style: context.textStyles.matchStandingsSectionText.copyWith(
+                              style: context.textStyles.bodyLgMedium.copyWith(
                                 color: context.colors.primaryForeground.withValues(alpha: 0.5),
                               ),
                               maxLines: 1,
@@ -292,7 +292,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                             const SizedBox(width: 8),
                             Text(
                               '${widget.standing.all?.goals?.goalsAgainst ?? '--'}',
-                              style: context.textStyles.matchStandingsSectionText,
+                              style: context.textStyles.bodyLgMedium,
                               maxLines: 1,
                               textAlign: TextAlign.center,
                             ),
@@ -302,7 +302,7 @@ class _LeagueStandingsListTileState extends State<LeagueStandingsListTile> {
                           const SizedBox(height: 16),
                           Text(
                             mixOrOriginalWords(widget.standing.description) ?? '---',
-                            style: context.textStyles.matchStandingsSectionTextCompact,
+                            style: context.textStyles.titleMd,
                           ),
                         ],
                         const SizedBox(height: 8),

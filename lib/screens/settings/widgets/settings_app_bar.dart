@@ -49,7 +49,7 @@ class SettingsAppBar extends StatelessWidget {
         Expanded(
           child: Text(
             'settingsTitle'.tr(),
-            style: context.textStyles.matchLeagueName,
+            style: context.textStyles.titleLgBold,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

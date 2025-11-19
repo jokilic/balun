@@ -54,14 +54,14 @@ class SearchLeaguesListTile extends StatelessWidget {
               children: [
                 Text(
                   mixOrOriginalWords(league.league?.name) ?? '---',
-                  style: context.textStyles.fixturesLeague,
+                  style: context.textStyles.bodyLgBold,
                 ),
                 if (league.league?.type != null)
                   Text(
                     getLeagueType(
                       leagueType: league.league!.type!,
                     ),
-                    style: context.textStyles.leaguesSubtitle,
+                    style: context.textStyles.labelMediumMuted,
                   ),
               ],
             ),

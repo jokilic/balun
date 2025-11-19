@@ -61,20 +61,20 @@ class MatchInfoSection extends StatelessWidget {
                     children: [
                       Text(
                         'matchInfoTime'.tr(),
-                        style: context.textStyles.matchInfoSectionTitle,
+                        style: context.textStyles.bodyMdBoldMuted,
                       ),
                       Text(
                         DateFormat(
                           'd. MMMM y. - HH:mm',
                           context.locale.toLanguageTag(),
                         ).format(matchDateTime),
-                        style: context.textStyles.matchInfoSectionText,
+                        style: context.textStyles.titleMdLight,
                       ),
                       const SizedBox(height: 2),
                       if (matchDateTimeAgo != null)
                         Text(
                           matchDateTimeAgo,
-                          style: context.textStyles.matchInfoSectionBottomText,
+                          style: context.textStyles.bodyMdLight,
                         ),
                     ],
                   ),
@@ -102,11 +102,11 @@ class MatchInfoSection extends StatelessWidget {
                     children: [
                       Text(
                         'matchInfoStatus'.tr(),
-                        style: context.textStyles.matchInfoSectionTitle,
+                        style: context.textStyles.bodyMdBoldMuted,
                       ),
                       Text(
                         getMatchStatusLong(status!.short ?? ''),
-                        style: context.textStyles.matchInfoSectionText,
+                        style: context.textStyles.titleMdLight,
                       ),
                     ],
                   ),
@@ -151,19 +151,19 @@ class MatchInfoSection extends StatelessWidget {
                         children: [
                           Text(
                             'matchInfoLeague'.tr(),
-                            style: context.textStyles.matchInfoSectionTitle,
+                            style: context.textStyles.bodyMdBoldMuted,
                           ),
                           if (league?.name != null) ...[
                             Text(
                               mixOrOriginalWords(league!.name) ?? '---',
-                              style: context.textStyles.matchInfoSectionText,
+                              style: context.textStyles.titleMdLight,
                             ),
                             const SizedBox(height: 2),
                           ],
                           if (league?.country != null)
                             Text(
                               mixOrOriginalWords(league!.country) ?? '---',
-                              style: context.textStyles.matchInfoSectionBottomText,
+                              style: context.textStyles.bodyMdLight,
                             ),
                         ],
                       ),
@@ -203,19 +203,19 @@ class MatchInfoSection extends StatelessWidget {
                         children: [
                           Text(
                             'matchInfoRound'.tr(),
-                            style: context.textStyles.matchInfoSectionTitle,
+                            style: context.textStyles.bodyMdBoldMuted,
                           ),
                           if (league?.round != null) ...[
                             Text(
                               mixOrOriginalWords(league!.round) ?? '---',
-                              style: context.textStyles.matchInfoSectionText,
+                              style: context.textStyles.titleMdLight,
                             ),
                             const SizedBox(height: 2),
                           ],
                           if (league?.season != null)
                             Text(
                               '${'matchInfoSeason'.tr()} ${league!.season!}',
-                              style: context.textStyles.matchInfoSectionBottomText,
+                              style: context.textStyles.bodyMdLight,
                             ),
                         ],
                       ),
@@ -245,11 +245,11 @@ class MatchInfoSection extends StatelessWidget {
                     children: [
                       Text(
                         'matchInfoReferee'.tr(),
-                        style: context.textStyles.matchInfoSectionTitle,
+                        style: context.textStyles.bodyMdBoldMuted,
                       ),
                       Text(
                         mixOrOriginalWords(referee) ?? '---',
-                        style: context.textStyles.matchInfoSectionText,
+                        style: context.textStyles.titleMdLight,
                       ),
                     ],
                   ),
@@ -277,19 +277,19 @@ class MatchInfoSection extends StatelessWidget {
                     children: [
                       Text(
                         'matchInfoVenue'.tr(),
-                        style: context.textStyles.matchInfoSectionTitle,
+                        style: context.textStyles.bodyMdBoldMuted,
                       ),
                       if (venue?.name != null) ...[
                         Text(
                           mixOrOriginalWords(venue!.name) ?? '---',
-                          style: context.textStyles.matchInfoSectionText,
+                          style: context.textStyles.titleMdLight,
                         ),
                         const SizedBox(height: 2),
                       ],
                       if (venue?.city != null)
                         Text(
                           mixOrOriginalWords(venue!.city) ?? '---',
-                          style: context.textStyles.matchInfoSectionBottomText,
+                          style: context.textStyles.bodyMdLight,
                         ),
                     ],
                   ),

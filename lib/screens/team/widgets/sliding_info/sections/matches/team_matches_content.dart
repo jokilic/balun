@@ -36,7 +36,7 @@ class TeamMatchesContent extends StatelessWidget {
         if (sortedUpcomingFixtures?.isNotEmpty ?? false) ...[
           Text(
             'fixturesUpcoming'.tr(),
-            style: context.textStyles.matchStandingsSectionSubtitle,
+            style: context.textStyles.headlineMd,
           ),
           ListView.separated(
             shrinkWrap: true,
@@ -67,7 +67,7 @@ class TeamMatchesContent extends StatelessWidget {
         if (sortedPlayedFixtures?.isNotEmpty ?? false) ...[
           Text(
             'fixturesPlayed'.tr(),
-            style: context.textStyles.matchStandingsSectionSubtitle,
+            style: context.textStyles.headlineMd,
           ),
           ListView.separated(
             shrinkWrap: true,
