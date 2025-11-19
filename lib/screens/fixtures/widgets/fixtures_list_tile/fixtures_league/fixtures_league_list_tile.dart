@@ -47,7 +47,7 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
         onPressed: toggleExpanded,
         child: Container(
           decoration: BoxDecoration(
-            color: context.colors.primaryBackgroundLight,
+            color: context.colors.fixtureListTileBackground,
             borderRadius: BorderRadius.circular(8),
           ),
           padding: const EdgeInsets.fromLTRB(32, 12, 16, 12),

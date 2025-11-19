@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
 
 abstract class BalunColors {
-  static const white = Color(0xFFFFFFFF);
+  ///
+  /// LIGHT
+  ///
+
   static const black = Color(0xFF292928);
   static const grey = Color(0xFF303131);
-
-  static const dark = Color(0xFF2A2B42);
-  static const middleDark = Color(0xFF21243F);
-  static const lightDark = Color(0xFF171C3B);
-
   static const lightGreen = Color(0xFFBFCABD);
-  static const darkGreen = Color(0xFF417B5A);
 
+  ///
+  /// DARK
+  ///
+
+  static const dark = Color(0xFF262836);
+  static const middleDark = Color(0xFF211F2A);
+  static const lightDark = Color(0xFF1F1D2B);
+  static const purple = Color(0xFF4F5090);
+
+  ///
+  /// NEUTRAL
+  ///
+
+  static const white = Color(0xFFFFFFFF);
+  static const darkGreen = Color(0xFF417B5A);
   static const red = Color(0xFFED3B3B);
   static const blue = Color(0xFF016FB9);
   static const yellow = Color(0xFFFCC938);
@@ -25,6 +37,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
   final Color secondaryBackground;
   final Color accentLight;
   final Color accentStrong;
+  final Color fixtureListTileBackground;
   final Color navigationBarBackground;
   final Color navigationBarItemBackground;
   final Color navigationBarItemSelectedBackground;
@@ -47,6 +60,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     required this.secondaryBackground,
     required this.accentLight,
     required this.accentStrong,
+    required this.fixtureListTileBackground,
     required this.navigationBarBackground,
     required this.navigationBarItemBackground,
     required this.navigationBarItemSelectedBackground,
@@ -71,6 +85,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     Color? secondaryBackground,
     Color? accentLight,
     Color? accentStrong,
+    Color? fixtureListTileBackground,
     Color? navigationBarBackground,
     Color? navigationBarItemBackground,
     Color? navigationBarItemSelectedBackground,
@@ -92,6 +107,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     secondaryBackground: secondaryBackground ?? this.secondaryBackground,
     accentLight: accentLight ?? this.accentLight,
     accentStrong: accentStrong ?? this.accentStrong,
+    fixtureListTileBackground: fixtureListTileBackground ?? this.fixtureListTileBackground,
     navigationBarBackground: navigationBarBackground ?? this.navigationBarBackground,
     navigationBarItemBackground: navigationBarItemBackground ?? this.navigationBarItemBackground,
     navigationBarItemSelectedBackground: navigationBarItemSelectedBackground ?? this.navigationBarItemSelectedBackground,
@@ -124,6 +140,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
       secondaryBackground: Color.lerp(secondaryBackground, other.secondaryBackground, t)!,
       accentLight: Color.lerp(accentLight, other.accentLight, t)!,
       accentStrong: Color.lerp(accentStrong, other.accentStrong, t)!,
+      fixtureListTileBackground: Color.lerp(fixtureListTileBackground, other.fixtureListTileBackground, t)!,
       navigationBarBackground: Color.lerp(navigationBarBackground, other.navigationBarBackground, t)!,
       navigationBarItemBackground: Color.lerp(navigationBarItemBackground, other.navigationBarItemBackground, t)!,
       navigationBarItemSelectedBackground: Color.lerp(navigationBarItemSelectedBackground, other.navigationBarItemSelectedBackground, t)!,
