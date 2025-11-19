@@ -20,6 +20,15 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
   final Color secondaryBackground;
   final Color accentLight;
   final Color accentStrong;
+  final Color navigationBarBackground;
+  final Color navigationBarItemBackground;
+  final Color navigationBarItemSelectedBackground;
+  final Color navigationBarIconColor;
+  final Color datePickerActiveBackground;
+  final Color datePickerInactiveBackground;
+  final Color datePickerActiveIconColor;
+  final Color datePickerInactiveIconColor;
+  final Color slidingInfoPanelBackground;
   final Color danger;
   final Color info;
   final Color warning;
@@ -31,6 +40,15 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     required this.secondaryBackground,
     required this.accentLight,
     required this.accentStrong,
+    required this.navigationBarBackground,
+    required this.navigationBarItemBackground,
+    required this.navigationBarItemSelectedBackground,
+    required this.navigationBarIconColor,
+    required this.datePickerActiveBackground,
+    required this.datePickerInactiveBackground,
+    required this.datePickerActiveIconColor,
+    required this.datePickerInactiveIconColor,
+    required this.slidingInfoPanelBackground,
     required this.danger,
     required this.info,
     required this.warning,
@@ -44,6 +62,15 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     Color? secondaryBackground,
     Color? accentLight,
     Color? accentStrong,
+    Color? navigationBarBackground,
+    Color? navigationBarItemBackground,
+    Color? navigationBarItemSelectedBackground,
+    Color? navigationBarIconColor,
+    Color? datePickerActiveBackground,
+    Color? datePickerInactiveBackground,
+    Color? datePickerActiveIconColor,
+    Color? datePickerInactiveIconColor,
+    Color? slidingInfoPanelBackground,
     Color? danger,
     Color? info,
     Color? warning,
@@ -54,6 +81,15 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     secondaryBackground: secondaryBackground ?? this.secondaryBackground,
     accentLight: accentLight ?? this.accentLight,
     accentStrong: accentStrong ?? this.accentStrong,
+    navigationBarBackground: navigationBarBackground ?? this.navigationBarBackground,
+    navigationBarItemBackground: navigationBarItemBackground ?? this.navigationBarItemBackground,
+    navigationBarItemSelectedBackground: navigationBarItemSelectedBackground ?? this.navigationBarItemSelectedBackground,
+    navigationBarIconColor: navigationBarIconColor ?? this.navigationBarIconColor,
+    datePickerActiveBackground: datePickerActiveBackground ?? this.datePickerActiveBackground,
+    datePickerInactiveBackground: datePickerInactiveBackground ?? this.datePickerInactiveBackground,
+    datePickerActiveIconColor: datePickerActiveIconColor ?? this.datePickerActiveIconColor,
+    datePickerInactiveIconColor: datePickerInactiveIconColor ?? this.datePickerInactiveIconColor,
+    slidingInfoPanelBackground: slidingInfoPanelBackground ?? this.slidingInfoPanelBackground,
     danger: danger ?? this.danger,
     info: info ?? this.info,
     warning: warning ?? this.warning,
@@ -75,6 +111,15 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
       secondaryBackground: Color.lerp(secondaryBackground, other.secondaryBackground, t)!,
       accentLight: Color.lerp(accentLight, other.accentLight, t)!,
       accentStrong: Color.lerp(accentStrong, other.accentStrong, t)!,
+      navigationBarBackground: Color.lerp(navigationBarBackground, other.navigationBarBackground, t)!,
+      navigationBarItemBackground: Color.lerp(navigationBarItemBackground, other.navigationBarItemBackground, t)!,
+      navigationBarItemSelectedBackground: Color.lerp(navigationBarItemSelectedBackground, other.navigationBarItemSelectedBackground, t)!,
+      navigationBarIconColor: Color.lerp(navigationBarIconColor, other.navigationBarIconColor, t)!,
+      datePickerActiveBackground: Color.lerp(datePickerActiveBackground, other.datePickerActiveBackground, t)!,
+      datePickerInactiveBackground: Color.lerp(datePickerInactiveBackground, other.datePickerInactiveBackground, t)!,
+      datePickerActiveIconColor: Color.lerp(datePickerActiveIconColor, other.datePickerActiveIconColor, t)!,
+      datePickerInactiveIconColor: Color.lerp(datePickerInactiveIconColor, other.datePickerInactiveIconColor, t)!,
+      slidingInfoPanelBackground: Color.lerp(slidingInfoPanelBackground, other.slidingInfoPanelBackground, t)!,
       danger: Color.lerp(danger, other.danger, t)!,
       info: Color.lerp(info, other.info, t)!,
       warning: Color.lerp(warning, other.warning, t)!,
