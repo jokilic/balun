@@ -44,7 +44,6 @@ dependencies:
   hive_ce_flutter: 2.3.3
   internet_connection_checker_plus: 2.9.1
   intl: 0.20.2
-  just_audio: 0.10.5
   logger: 2.6.2
   package_info_plus: 9.0.0
   path_provider: 2.1.5
@@ -71,7 +70,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/audio/
     - assets/fonts/
     - assets/icons/
     - assets/translations/

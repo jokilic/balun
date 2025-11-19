@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constants.dart';
@@ -8,36 +7,11 @@ import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../util/app_version.dart';
 import '../../../util/navigation.dart';
-import '../../../util/sound.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 import 'about_video_widget.dart';
 
-class AboutContent extends StatefulWidget {
-  @override
-  State<AboutContent> createState() => _AboutContentState();
-}
-
-class _AboutContentState extends State<AboutContent> {
-  late final AudioPlayer audioPlayer;
-
-  @override
-  void initState() {
-    super.initState();
-
-    audioPlayer = AudioPlayer()
-      ..setAsset(
-        BalunConstants.welcomeToBalunSound,
-        preload: false,
-      );
-  }
-
-  @override
-  void dispose() {
-    audioPlayer.dispose();
-    super.dispose();
-  }
-
+class AboutContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ListView(
     padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
@@ -47,23 +21,18 @@ class _AboutContentState extends State<AboutContent> {
       /// MY VIDEO
       ///
       Center(
-        child: BalunButton(
-          onLongPressed: () => playSound(
-            audioPlayer: audioPlayer,
+        child: Container(
+          height: 160,
+          width: 160,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: context.colors.primaryForeground,
+              width: 2,
+            ),
+            shape: BoxShape.circle,
           ),
-          child: Container(
-            height: 160,
-            width: 160,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: context.colors.primaryForeground,
-                width: 2,
-              ),
-              shape: BoxShape.circle,
-            ),
-            child: ClipOval(
-              child: AboutVideoWidget(),
-            ),
+          child: ClipOval(
+            child: AboutVideoWidget(),
           ),
         ),
       ),
@@ -262,24 +231,19 @@ class _AboutContentState extends State<AboutContent> {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          BalunButton(
-            onLongPressed: () => playSound(
-              audioPlayer: audioPlayer,
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: context.colors.primaryForeground,
-                  width: 2,
-                ),
+          Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: context.colors.primaryForeground,
+                width: 2,
               ),
-              child: ClipOval(
-                child: Image.asset(
-                  BalunIcons.appIcon,
-                  height: 48,
-                  width: 48,
-                ),
+            ),
+            child: ClipOval(
+              child: Image.asset(
+                BalunIcons.appIcon,
+                height: 48,
+                width: 48,
               ),
             ),
           ),
