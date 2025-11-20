@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constants.dart';
-import '../../../routing.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../util/app_version.dart';
@@ -232,22 +231,19 @@ class AboutContent extends StatelessWidget {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          BalunButton(
-            onLongPressed: () => openStatus(context),
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: context.colors.primaryForeground,
-                  width: 2,
-                ),
+          Container(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: context.colors.primaryForeground,
+                width: 2,
               ),
-              child: ClipOval(
-                child: Image.asset(
-                  BalunIcons.appIcon,
-                  height: 48,
-                  width: 48,
-                ),
+            ),
+            child: ClipOval(
+              child: Image.asset(
+                BalunIcons.appIcon,
+                height: 48,
+                width: 48,
               ),
             ),
           ),

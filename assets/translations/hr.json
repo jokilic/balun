@@ -574,6 +574,8 @@
     "settingsThemeSectionSubtitle": "Prilagodi boje korištene u aplikaciji",
     "settingsLanguageSectionTitle": "Jezik",
     "settingsLanguageSectionSubtitle": "Promijeni jezik korišten u aplikaciji",
+    "settingsStatusSectionTitle": "Status",
+    "settingsStatusSectionSubtitle": "Informacije o nogometnim podacima i korištenju",
     "settingsAboutSectionTitle": "O aplikaciji",
     "settingsAboutSectionSubtitle": "Informacije o verziji, podaci o developeru i slanje povratnih informacija",
     "settingsAboutTitle": "O aplikaciji",
@@ -599,5 +601,11 @@
     "statusEmptyState": "Status je prazan",
     "statusErrorState": "Neka čudna pogreška statusa",
     "statusAppBarTitle": "Status",
-    "statusAppBarSubtitle": "Podaci vezani za korištenje API-ja"
+    "statusAppBarSubtitle": "Informacije o nogometnim podacima",
+    "statusNotPossible": "Balun ne bi bio moguć bez podataka sa ",
+    "statusDataUsedToShow": "Podaci se koriste za prikaz logotipa, slika i informacija za države, lige, timove, igrače i razne stvari.",
+    "statusSubscription": "pretplata",
+    "statusSubscriptionNotActive": "Pretplata nije aktivna",
+    "statusExpires": "Istječe",
+    "statusRequests": "Zahtjevi"
 }

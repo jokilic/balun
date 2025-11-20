@@ -574,6 +574,8 @@
     "settingsThemeSectionSubtitle": "Customize colors used throughout the app",
     "settingsLanguageSectionTitle": "Language",
     "settingsLanguageSectionSubtitle": "Change the language used throughout the app",
+    "settingsStatusSectionTitle": "Status",
+    "settingsStatusSectionSubtitle": "Info about football data & usage",
     "settingsAboutSectionTitle": "About",
     "settingsAboutSectionSubtitle": "App version, details about the developer and sending feedback",
     "settingsAboutTitle": "About",
@@ -599,5 +601,11 @@
     "statusEmptyState": "Status is empty",
     "statusErrorState": "Some weird status error",
     "statusAppBarTitle": "Status",
-    "statusAppBarSubtitle": "Data regarding API usage"
+    "statusAppBarSubtitle": "Info regarding football data",
+    "statusNotPossible": "Balun wouldn't be possible without the data from ",
+    "statusDataUsedToShow": "Data is used to show logos, images & information for countries, leagues, teams, players and various other things.",
+    "statusSubscription": "subscription",
+    "statusSubscriptionNotActive": "Subscription is not active",
+    "statusExpires": "Expires on",
+    "statusRequests": "Requests"
 }

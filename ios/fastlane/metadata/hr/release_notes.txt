@@ -8,3 +8,4 @@
 * Convert icons to WebP
 * Scrollable titles in all sections
 * Added dark splash
+* StatusScreen showing data about requests, etc.

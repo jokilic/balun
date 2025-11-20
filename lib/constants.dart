@@ -28,6 +28,8 @@ class BalunConstants {
   static const josipGithubWebsite = 'https://github.com/jokilic';
   static const josipKilicEmail = 'mailto:neksuses@gmail.com';
 
+  static const apiFootballWebsite = 'https://www.api-football.com';
+
   /// Keys are country names from the backend
   static const favoriteCountryIDs = [
     'World',

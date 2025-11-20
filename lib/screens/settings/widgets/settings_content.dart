@@ -80,6 +80,13 @@ class SettingsContent extends StatelessWidget {
       ),
       const SizedBox(height: 4),
       SettingsListTile(
+        onPressed: () => openStatus(context),
+        icon: BalunIcons.status,
+        title: 'settingsStatusSectionTitle'.tr(),
+        subtitle: 'settingsStatusSectionSubtitle'.tr(),
+      ),
+      const SizedBox(height: 4),
+      SettingsListTile(
         onPressed: () => openAbout(context),
         icon: BalunIcons.about,
         title: 'settingsAboutSectionTitle'.tr(),

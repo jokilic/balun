@@ -1,6 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/status/status_inner_response.dart';
+import '../../../theme/icons.dart';
+import 'status_list_tile.dart';
+import 'status_static_widget_list.dart';
 
 class StatusSuccess extends StatelessWidget {
   final StatusInnerResponse status;
@@ -9,29 +13,46 @@ class StatusSuccess extends StatelessWidget {
     required this.status,
   });
 
-  // TODO: Logo of API-Football with link to site and data below
   @override
-  Widget build(BuildContext context) {
-    return Text(status.account?.firstName ?? 'No name');
+  Widget build(BuildContext context) => ListView(
+    padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+    physics: const BouncingScrollPhysics(),
+    children: [
+      ...getStatusStaticWidgetList(context),
 
-    // return ListView.separated(
-    //   padding: const EdgeInsets.only(bottom: 24),
-    //   physics: const BouncingScrollPhysics(),
-    //   itemCount: sortedCountries.length,
-    //   itemBuilder: (_, index) {
-    //     final country = sortedCountries[index];
+      ///
+      /// ACCOUNT
+      ///
+      StatusListTile(
+        icon: BalunIcons.account,
+        title: '${status.account?.firstName} ${status.account?.lastName}',
+        subtitle: status.account?.email ?? '--',
+      ),
 
-    //     return CountriesListTile(
-    //       country: country,
-    //       countryPressed: country.name != null
-    //           ? () => openLeagues(
-    //               context,
-    //               country: country.name!,
-    //             )
-    //           : null,
-    //     );
-    //   },
-    //   separatorBuilder: (_, __) => const SizedBox(height: 4),
-    // );
-  }
+      ///
+      /// SUBSCRIPTION
+      ///
+      StatusListTile(
+        icon: BalunIcons.subscription,
+        title: (status.subscription?.active ?? false) ? '${status.subscription?.plan} ${'statusSubscription'.tr()}' : 'statusSubscriptionNotActive'.tr(),
+        subtitle: status.subscription?.end != null
+            ? '${'statusExpires'.tr()} ${DateFormat(
+                'd. MMMM y.',
+                context.locale.toLanguageTag(),
+              ).format(status.subscription!.end!)}'
+            : null,
+      ),
+
+      ///
+      /// REQUESTS
+      ///
+      StatusListTile(
+        icon: BalunIcons.requests,
+        title: 'statusRequests'.tr(),
+        subtitle: '${status.requests?.current} / ${status.requests?.limitDay}',
+      ),
+
+      const SizedBox(height: 28),
+    ],
+  );
 }

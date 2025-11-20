@@ -24,7 +24,12 @@ class BalunIcons {
   static const notifications = 'assets/icons/notifications.webp';
   static const theme = 'assets/icons/theme.webp';
   static const language = 'assets/icons/language.webp';
+  static const status = 'assets/icons/status.webp';
   static const about = 'assets/icons/about.webp';
+  static const account = 'assets/icons/account.webp';
+  static const subscription = 'assets/icons/subscription.webp';
+  static const requests = 'assets/icons/requests.webp';
+  static const apiFootball = 'assets/icons/api_football.webp';
   static const workInProgress = 'assets/icons/work_in_progress.webp';
 
   static const imageError = 'assets/icons/image_error.webp';
