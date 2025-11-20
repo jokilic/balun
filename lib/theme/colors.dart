@@ -56,8 +56,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
   final Color primaryBackgroundLight;
   final Color primaryForeground;
   final Color secondaryBackground;
-  final Color accentLight;
-  final Color accentStrong;
+  final Color accent;
   final Color fixtureListTileBackground;
   final Color navigationBarBackground;
   final Color navigationBarItemBackground;
@@ -80,8 +79,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     required this.primaryBackgroundLight,
     required this.primaryForeground,
     required this.secondaryBackground,
-    required this.accentLight,
-    required this.accentStrong,
+    required this.accent,
     required this.fixtureListTileBackground,
     required this.navigationBarBackground,
     required this.navigationBarItemBackground,
@@ -106,8 +104,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     Color? primaryBackgroundLight,
     Color? primaryForeground,
     Color? secondaryBackground,
-    Color? accentLight,
-    Color? accentStrong,
+    Color? accent,
     Color? fixtureListTileBackground,
     Color? navigationBarBackground,
     Color? navigationBarItemBackground,
@@ -129,8 +126,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     primaryBackgroundLight: primaryBackgroundLight ?? this.primaryBackgroundLight,
     primaryForeground: primaryForeground ?? this.primaryForeground,
     secondaryBackground: secondaryBackground ?? this.secondaryBackground,
-    accentLight: accentLight ?? this.accentLight,
-    accentStrong: accentStrong ?? this.accentStrong,
+    accent: accent ?? this.accent,
     fixtureListTileBackground: fixtureListTileBackground ?? this.fixtureListTileBackground,
     navigationBarBackground: navigationBarBackground ?? this.navigationBarBackground,
     navigationBarItemBackground: navigationBarItemBackground ?? this.navigationBarItemBackground,
@@ -163,8 +159,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
       primaryBackgroundLight: Color.lerp(primaryBackgroundLight, other.primaryBackgroundLight, t)!,
       primaryForeground: Color.lerp(primaryForeground, other.primaryForeground, t)!,
       secondaryBackground: Color.lerp(secondaryBackground, other.secondaryBackground, t)!,
-      accentLight: Color.lerp(accentLight, other.accentLight, t)!,
-      accentStrong: Color.lerp(accentStrong, other.accentStrong, t)!,
+      accent: Color.lerp(accent, other.accent, t)!,
       fixtureListTileBackground: Color.lerp(fixtureListTileBackground, other.fixtureListTileBackground, t)!,
       navigationBarBackground: Color.lerp(navigationBarBackground, other.navigationBarBackground, t)!,
       navigationBarItemBackground: Color.lerp(navigationBarItemBackground, other.navigationBarItemBackground, t)!,

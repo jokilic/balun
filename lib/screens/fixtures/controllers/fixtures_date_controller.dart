@@ -137,8 +137,8 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
       selectedYearTextStyle: context.textStyles.bodyLgBold.copyWith(
         color: context.colors.primaryBackground,
       ),
-      selectedDayHighlightColor: context.colors.accentStrong,
-      daySplashColor: context.colors.accentStrong,
+      selectedDayHighlightColor: context.colors.accent,
+      daySplashColor: context.colors.accent,
       firstDayOfWeek: 1,
       useAbbrLabelForMonthModePicker: true,
       cancelButton: BalunButton(
@@ -170,7 +170,7 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
       ),
     ),
     borderRadius: BorderRadius.circular(8),
-    dialogBackgroundColor: context.colors.accentLight,
+    dialogBackgroundColor: context.colors.accent,
     dialogSize: const Size(325, 400),
   );
 }

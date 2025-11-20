@@ -38,7 +38,7 @@ void showSnackbar(
         ],
       ),
       behavior: SnackBarBehavior.floating,
-      backgroundColor: context.colors.accentLight,
+      backgroundColor: context.colors.accent,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
         side: BorderSide(

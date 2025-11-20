@@ -24,17 +24,17 @@ void openUrlExternalBrowser(BuildContext context, {required String? url}) {
       url: url,
       customTabsOptions: CustomTabsOptions(
         defaultColorSchemeParams: CustomTabsColorSchemeParams(
-          toolbarColor: context.colors.accentStrong,
-          navigationBarColor: context.colors.accentStrong,
-          secondaryToolbarColor: context.colors.accentStrong,
-          navigationBarDividerColor: context.colors.accentStrong,
+          toolbarColor: context.colors.accent,
+          navigationBarColor: context.colors.accent,
+          secondaryToolbarColor: context.colors.accent,
+          navigationBarDividerColor: context.colors.accent,
         ),
         showTitle: true,
         urlBarHidingEnabled: true,
       ),
       safariVCOptions: SafariViewControllerOptions(
         barCollapsingEnabled: true,
-        preferredBarTintColor: context.colors.accentStrong,
+        preferredBarTintColor: context.colors.accent,
         preferredControlTintColor: context.colors.primaryBackground,
         dismissButtonStyle: SafariViewControllerDismissButtonStyle.close,
         modalPresentationCapturesStatusBarAppearance: true,

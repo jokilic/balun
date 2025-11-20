@@ -134,7 +134,7 @@ class FixturesListTile extends StatelessWidget {
                               TextSpan(
                                 text: ':',
                                 style: context.textStyles.displayXxl.copyWith(
-                                  color: context.colors.accentLight,
+                                  color: context.colors.accent,
                                 ),
                               ),
                               TextSpan(text: '${fixture.goals?.away ?? '-'}'),
@@ -151,7 +151,7 @@ class FixturesListTile extends StatelessWidget {
                             TextSpan(
                               text: ':',
                               style: context.textStyles.displayXxl.copyWith(
-                                color: context.colors.accentLight,
+                                color: context.colors.accent,
                               ),
                             ),
                             TextSpan(text: '${fixture.goals?.away ?? '-'}'),

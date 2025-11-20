@@ -28,7 +28,7 @@ class FixturesAllDialog extends WatchingWidget {
       elevation: 0,
       contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 8),
       actionsPadding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
-      backgroundColor: context.colors.accentLight,
+      backgroundColor: context.colors.accent,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
         side: BorderSide(

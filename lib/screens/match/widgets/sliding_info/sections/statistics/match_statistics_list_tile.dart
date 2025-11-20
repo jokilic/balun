@@ -20,8 +20,8 @@ class MatchStatisticsListTile extends StatelessWidget {
     final homeProgress = (homeStatisticData?.valueDouble ?? 0) / ((homeStatisticData?.valueDouble ?? 0) + (awayStatisticData?.valueDouble ?? 0));
     final awayProgress = (awayStatisticData?.valueDouble ?? 0) / ((homeStatisticData?.valueDouble ?? 0) + (awayStatisticData?.valueDouble ?? 0));
 
-    final homeProgressColor = (homeStatisticData?.valueDouble ?? 0) > (awayStatisticData?.valueDouble ?? 0) ? context.colors.accentStrong : context.colors.accentLight;
-    final awayProgressColor = (awayStatisticData?.valueDouble ?? 0) > (homeStatisticData?.valueDouble ?? 0) ? context.colors.accentStrong : context.colors.accentLight;
+    final homeProgressColor = (homeStatisticData?.valueDouble ?? 0) > (awayStatisticData?.valueDouble ?? 0) ? context.colors.accent : context.colors.accent;
+    final awayProgressColor = (awayStatisticData?.valueDouble ?? 0) > (homeStatisticData?.valueDouble ?? 0) ? context.colors.accent : context.colors.accent;
 
     return Column(
       children: [

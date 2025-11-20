@@ -19,7 +19,7 @@ class BalunSeperator extends StatelessWidget {
     height: 1,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(100),
-      color: color ?? context.colors.accentLight,
+      color: color ?? context.colors.accent,
     ),
   );
 }

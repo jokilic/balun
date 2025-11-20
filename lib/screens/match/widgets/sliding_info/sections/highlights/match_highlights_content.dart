@@ -70,8 +70,8 @@ class MatchHighlightsContent extends StatelessWidget {
                   ProgressBar(
                     isExpanded: true,
                     colors: ProgressBarColors(
-                      handleColor: context.colors.accentStrong,
-                      playedColor: context.colors.accentLight,
+                      handleColor: context.colors.accent,
+                      playedColor: context.colors.accent,
                       backgroundColor: context.colors.secondaryBackground,
                       bufferedColor: context.colors.primaryBackground,
                     ),
@@ -147,7 +147,7 @@ class MatchHighlightsContent extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: youTubeData.activeYouTubeItem == youTubeItem ? context.colors.accentStrong : Colors.transparent,
+                  color: youTubeData.activeYouTubeItem == youTubeItem ? context.colors.accent : Colors.transparent,
                 ),
                 margin: const EdgeInsets.symmetric(horizontal: 8),
                 padding: const EdgeInsets.symmetric(

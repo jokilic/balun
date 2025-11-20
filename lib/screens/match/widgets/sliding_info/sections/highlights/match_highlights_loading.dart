@@ -137,7 +137,7 @@ class MatchHighlightsLoading extends StatelessWidget {
             (index) => Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: index == 0 ? context.colors.accentStrong : Colors.transparent,
+                color: index == 0 ? context.colors.accent : Colors.transparent,
               ),
               margin: const EdgeInsets.symmetric(horizontal: 8),
               padding: const EdgeInsets.symmetric(

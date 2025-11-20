@@ -18,8 +18,8 @@ Color? textToColor(String? colorString) {
 
 Color getRandomBalunColor(BuildContext context) {
   final colors = [
+    context.colors.success,
     context.colors.danger,
-    context.colors.accentStrong,
     context.colors.info,
     context.colors.warning,
     context.colors.alert,

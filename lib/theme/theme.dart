@@ -13,11 +13,11 @@ class BalunTheme {
 
     return defaultTheme.copyWith(
       textSelectionTheme: TextSelectionThemeData(
-        cursorColor: lightAppColors.accentStrong,
-        selectionColor: lightAppColors.accentStrong,
-        selectionHandleColor: lightAppColors.accentStrong,
+        cursorColor: lightAppColors.accent,
+        selectionColor: lightAppColors.accent,
+        selectionHandleColor: lightAppColors.accent,
       ),
-      scaffoldBackgroundColor: lightAppColors.accentLight,
+      scaffoldBackgroundColor: lightAppColors.accent,
       extensions: [
         lightAppColors,
         lightTextTheme,
@@ -34,11 +34,11 @@ class BalunTheme {
 
     return defaultTheme.copyWith(
       textSelectionTheme: TextSelectionThemeData(
-        cursorColor: darkAppColors.accentStrong,
-        selectionColor: darkAppColors.accentStrong,
-        selectionHandleColor: darkAppColors.accentStrong,
+        cursorColor: darkAppColors.accent,
+        selectionColor: darkAppColors.accent,
+        selectionHandleColor: darkAppColors.accent,
       ),
-      scaffoldBackgroundColor: darkAppColors.accentLight,
+      scaffoldBackgroundColor: darkAppColors.accent,
       extensions: [
         darkAppColors,
         darkTextTheme,
@@ -55,8 +55,7 @@ class BalunTheme {
     primaryBackgroundLight: BalunColors.lightLight,
     primaryForeground: BalunColors.black,
     secondaryBackground: BalunColors.grey,
-    accentLight: BalunColors.light,
-    accentStrong: BalunColors.light,
+    accent: BalunColors.light,
     fixtureListTileBackground: BalunColors.lightLight,
     navigationBarBackground: BalunColors.black,
     navigationBarItemBackground: BalunColors.grey,
@@ -80,8 +79,7 @@ class BalunTheme {
     primaryBackgroundLight: BalunColors.purple.withValues(alpha: 0.4),
     primaryForeground: BalunColors.white,
     secondaryBackground: BalunColors.middleDark,
-    accentLight: BalunColors.dark,
-    accentStrong: BalunColors.white,
+    accent: BalunColors.dark,
     fixtureListTileBackground: BalunColors.middleDark,
     navigationBarBackground: BalunColors.lightDark,
     navigationBarItemBackground: BalunColors.middleDark.withValues(alpha: 0.4),
