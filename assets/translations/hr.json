@@ -595,5 +595,9 @@
     "settingsThemeSystem": "Tema sustava",
     "settingsLanguageEnglish": "Engleski jezik",
     "settingsLanguageCroatian": "Hrvatski jezik",
-    "workInProgress": "Ovo još uvijek nije dovršeno"
+    "workInProgress": "Ovo još uvijek nije dovršeno",
+    "statusEmptyState": "Status je prazan",
+    "statusErrorState": "Neka čudna pogreška statusa",
+    "statusAppBarTitle": "Status",
+    "statusAppBarSubtitle": "Podaci vezani za korištenje API-ja"
 }

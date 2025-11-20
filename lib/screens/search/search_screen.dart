@@ -18,7 +18,9 @@ import 'widgets/search_bar_widget.dart';
 import 'widgets/search_sections.dart';
 
 class SearchScreen extends WatchingStatefulWidget {
-  const SearchScreen({required super.key});
+  const SearchScreen({
+    required super.key,
+  });
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();

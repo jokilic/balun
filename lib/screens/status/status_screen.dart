@@ -6,38 +6,38 @@ import '../../constants.dart';
 import '../../services/api_service.dart';
 import '../../services/logger_service.dart';
 import '../../util/dependencies.dart';
-import 'countries_controller.dart';
-import 'widgets/countries_app_bar.dart';
-import 'widgets/countries_content.dart';
+import 'status_controller.dart';
+import 'widget/status_app_bar.dart';
+import 'widget/status_content.dart';
 
-class CountriesScreen extends WatchingStatefulWidget {
-  const CountriesScreen({
+class StatusScreen extends WatchingStatefulWidget {
+  const StatusScreen({
     required super.key,
   });
 
   @override
-  State<CountriesScreen> createState() => _CountriesScreenState();
+  State<StatusScreen> createState() => _StatusScreenState();
 }
 
-class _CountriesScreenState extends State<CountriesScreen> {
+class _StatusScreenState extends State<StatusScreen> {
   @override
   void initState() {
     super.initState();
 
-    registerIfNotInitialized<CountriesController>(
-      () => CountriesController(
+    registerIfNotInitialized<StatusController>(
+      () => StatusController(
         logger: getIt.get<LoggerService>(),
         api: getIt.get<APIService>(),
       ),
-      instanceName: 'countries',
-      afterRegister: (controller) => controller.getCountries(),
+      instanceName: 'status',
+      afterRegister: (controller) => controller.getStatus(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final countriesState = watchIt<CountriesController>(
-      instanceName: 'countries',
+    final statusState = watchIt<StatusController>(
+      instanceName: 'status',
     ).value;
 
     return Scaffold(
@@ -50,13 +50,16 @@ class _CountriesScreenState extends State<CountriesScreen> {
             ),
           ],
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 12),
 
               ///
               /// APP BAR
               ///
-              CountriesAppBar(),
+              StatusAppBar(
+                onPressed: Navigator.of(context).pop,
+              ),
               const SizedBox(height: 8),
 
               ///
@@ -64,15 +67,14 @@ class _CountriesScreenState extends State<CountriesScreen> {
               ///
               Expanded(
                 child: Animate(
-                  key: ValueKey(countriesState),
                   effects: const [
                     FadeEffect(
                       curve: Curves.easeIn,
                       duration: BalunConstants.animationDuration,
                     ),
                   ],
-                  child: CountriesContent(
-                    countriesState: countriesState,
+                  child: StatusContent(
+                    statusState: statusState,
                   ),
                 ),
               ),

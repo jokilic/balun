@@ -17,7 +17,9 @@ import 'widgets/fixtures_content.dart';
 import 'widgets/fixtures_date_picker.dart';
 
 class FixturesScreen extends WatchingStatefulWidget {
-  const FixturesScreen({required super.key});
+  const FixturesScreen({
+    required super.key,
+  });
 
   @override
   State<FixturesScreen> createState() => _FixturesScreenState();

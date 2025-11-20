@@ -595,5 +595,9 @@
     "settingsThemeSystem": "System theme",
     "settingsLanguageEnglish": "English language",
     "settingsLanguageCroatian": "Croatian language",
-    "workInProgress": "This is still a work in progress"
+    "workInProgress": "This is still a work in progress",
+    "statusEmptyState": "Status is empty",
+    "statusErrorState": "Some weird status error",
+    "statusAppBarTitle": "Status",
+    "statusAppBarSubtitle": "Data regarding API usage"
 }
