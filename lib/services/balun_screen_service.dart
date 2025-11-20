@@ -6,6 +6,8 @@ import '../screens/fixtures/fixtures_screen.dart';
 import '../screens/search/search_screen.dart';
 import '../screens/settings/settings_screen.dart';
 import '../util/dependencies.dart';
+import '../util/fixtures.dart';
+import '../util/scrollable_titles.dart';
 import '../widgets/balun_loader.dart';
 import 'balun_navigation_bar_service.dart';
 import 'logger_service.dart';
@@ -49,11 +51,20 @@ class BalunScreenService extends ValueNotifier<Widget> {
 
     /// `Fixtures` are active, reanimate date picker
     if (newNavigationValue == BalunNavigationBarEnum.fixtures) {
-      getIt
-          .get<FixturesDateController>(
-            instanceName: 'fixtures',
-          )
-          .animateDatePicker();
+      if (getIt.isRegistered<FixturesDateController>(instanceName: 'fixtures')) {
+        final fixturesDateController = getIt.get<FixturesDateController>(
+          instanceName: 'fixtures',
+        );
+
+        animateScrollableTitles(
+          pageController: fixturesDateController.controller,
+          viewportFraction: fixturesDateController.viewportFraction,
+          targetPage: getPageForActiveDate(
+            dates: fixturesDateController.dates,
+            value: fixturesDateController.value,
+          ),
+        );
+      }
     }
   }
 }

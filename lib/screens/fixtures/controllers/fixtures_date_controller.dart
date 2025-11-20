@@ -6,13 +6,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../constants.dart';
 import '../../../services/logger_service.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../util/date_time.dart';
 import '../../../util/dependencies.dart';
 import '../../../util/fixtures.dart';
+import '../../../util/scrollable_titles.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 import 'fixtures_controller.dart';
@@ -30,7 +30,23 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
       viewportFraction: viewportFraction,
     );
 
-    animateDatePicker();
+    dates = List.generate(
+      datesLength,
+      (index) => currentDate.add(
+        Duration(
+          days: index - initialPage,
+        ),
+      ),
+    );
+
+    animateScrollableTitles(
+      pageController: controller,
+      viewportFraction: viewportFraction,
+      targetPage: getPageForActiveDate(
+        dates: dates,
+        value: value,
+      ),
+    );
   }
 
   @override
@@ -48,50 +64,11 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
   final datesLength = 7;
 
   late final PageController controller;
-
-  late final dates = List.generate(
-    datesLength,
-    (index) => currentDate.add(
-      Duration(
-        days:
-            index -
-            getIt
-                .get<FixturesDateController>(
-                  instanceName: 'fixtures',
-                )
-                .initialPage,
-      ),
-    ),
-  );
+  late final List<DateTime> dates;
 
   ///
   /// METHODS
   ///
-
-  void animateDatePicker() => WidgetsBinding.instance.addPostFrameCallback(
-    (_) {
-      if (!controller.hasClients || !controller.position.hasViewportDimension) {
-        return;
-      }
-
-      final targetPage = getPageForActiveDate(
-        dates: dates,
-        value: value,
-      );
-      final viewportDimension = controller.position.viewportDimension;
-      final pageWidth = viewportFraction * viewportDimension;
-      final targetOffset = targetPage * pageWidth;
-
-      controller.animateTo(
-        targetOffset.clamp(
-          controller.position.minScrollExtent,
-          controller.position.maxScrollExtent,
-        ),
-        duration: BalunConstants.animationDuration,
-        curve: Curves.easeIn,
-      );
-    },
-  );
 
   void updateDateAndRefetch(DateTime newDate) {
     final oldValue = value;
@@ -99,8 +76,6 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
     value = newDate;
 
     if (oldValue != value) {
-      animateDatePicker();
-
       getIt
           .get<FixturesController>(
             instanceName: 'fixtures',
@@ -109,7 +84,14 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
             dateString: getDateForBackend(value),
           );
 
-      animateDatePicker();
+      animateScrollableTitles(
+        pageController: controller,
+        viewportFraction: viewportFraction,
+        targetPage: getPageForActiveDate(
+          dates: dates,
+          value: value,
+        ),
+      );
     }
   }
 
@@ -131,7 +113,14 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
               dateString: getDateForBackend(chosenDate),
             );
 
-        animateDatePicker();
+        animateScrollableTitles(
+          pageController: controller,
+          viewportFraction: viewportFraction,
+          targetPage: getPageForActiveDate(
+            dates: dates,
+            value: value,
+          ),
+        );
       }
     },
     config: CalendarDatePicker2WithActionButtonsConfig(
