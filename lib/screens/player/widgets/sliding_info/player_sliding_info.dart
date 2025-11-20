@@ -55,6 +55,11 @@ class PlayerSlidingInfo extends WatchingWidget {
         /// SECTIONS
         ///
         PlayerSectionTitles(
+          itemKeys: getIt
+              .get<PlayerSectionController>(
+                instanceName: '${player.player?.id}',
+              )
+              .itemKeys,
           activePlayerSection: playerSection,
           titlePressed: getIt
               .get<PlayerSectionController>(

@@ -50,6 +50,11 @@ class CoachSlidingInfo extends WatchingWidget {
         /// SECTIONS
         ///
         CoachSectionTitles(
+          itemKeys: getIt
+              .get<CoachSectionController>(
+                instanceName: '${coach.id}',
+              )
+              .itemKeys,
           activeCoachSection: coachSection,
           titlePressed: getIt
               .get<CoachSectionController>(

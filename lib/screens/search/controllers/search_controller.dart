@@ -7,6 +7,7 @@ import '../../../models/sections/search_section.dart';
 import '../../../services/api_service.dart';
 import '../../../services/logger_service.dart';
 import '../../../util/dependencies.dart';
+import '../../../util/scrollable.dart';
 import 'search_coaches_controller.dart';
 import 'search_countries_controller.dart';
 import 'search_leagues_controller.dart';
@@ -22,6 +23,10 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
     required this.api,
   }) : super(SearchSection(searchSectionEnum: SearchSectionEnum.countries)) {
     textEditingController = TextEditingController();
+
+    itemKeys = {
+      for (final section in SearchSectionEnum.values) section.index: GlobalKey(),
+    };
   }
 
   @override
@@ -34,6 +39,7 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
   ///
 
   late final TextEditingController textEditingController;
+  late final Map<int, GlobalKey> itemKeys;
 
   ///
   /// METHODS
@@ -43,6 +49,11 @@ class SearchController extends ValueNotifier<SearchSection> implements Disposabl
     if (value != newSection) {
       value = newSection;
       textEditingController.clear();
+
+      animateActiveSectionTitle(
+        itemKeys: itemKeys,
+        newSectionIndex: newSection.searchSectionEnum.index,
+      );
     }
   }
 

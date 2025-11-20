@@ -112,6 +112,11 @@ class _SearchScreenState extends State<SearchScreen> {
               /// SEARCH SECTIONS
               ///
               SearchSections(
+                itemKeys: getIt
+                    .get<SearchController>(
+                      instanceName: 'search',
+                    )
+                    .itemKeys,
                 activeSearchSection: searchSection,
                 titlePressed: getIt
                     .get<SearchController>(

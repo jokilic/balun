@@ -6,10 +6,12 @@ import '../../../../theme/theme.dart';
 import '../../../../widgets/balun_button.dart';
 
 class PlayerSectionTitles extends StatelessWidget {
+  final Map<int, GlobalKey> itemKeys;
   final PlayerSection activePlayerSection;
   final Function(PlayerSection pressedSection) titlePressed;
 
   const PlayerSectionTitles({
+    required this.itemKeys,
     required this.activePlayerSection,
     required this.titlePressed,
   });
@@ -32,6 +34,7 @@ class PlayerSectionTitles extends StatelessWidget {
         );
 
         return BalunButton(
+          key: itemKeys[section.playerSectionEnum.index],
           onPressed: () => titlePressed(section),
           child: AnimatedContainer(
             padding: const EdgeInsets.symmetric(

@@ -55,6 +55,11 @@ class LeagueSlidingInfo extends WatchingWidget {
         /// SECTIONS
         ///
         LeagueSectionTitles(
+          itemKeys: getIt
+              .get<LeagueSectionController>(
+                instanceName: '${league.league?.id}',
+              )
+              .itemKeys,
           activeLeagueSection: leagueSection,
           titlePressed: getIt
               .get<LeagueSectionController>(
