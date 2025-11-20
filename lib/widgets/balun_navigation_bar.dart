@@ -71,7 +71,7 @@ class BalunNavigationBar extends WatchingWidget {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: context.colors.danger,
+                        color: context.colors.navigationBarItemBackground,
                       ),
                       child: Text(
                         '${badgeNumber ?? ''}',
@@ -120,7 +120,7 @@ class BalunNavigationBar extends WatchingWidget {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: context.colors.danger,
+                        color: context.colors.navigationBarItemSelectedBackground,
                       ),
                       child: Text(
                         '${badgeNumber ?? ''}',
