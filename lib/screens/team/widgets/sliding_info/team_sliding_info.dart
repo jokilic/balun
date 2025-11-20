@@ -31,8 +31,8 @@ class TeamSlidingInfo extends WatchingWidget {
     ).value;
 
     final pageController = getIt
-        .get<TeamSeasonController>(
-          instanceName: 'fixtures',
+        .get<TeamSectionController>(
+          instanceName: '${team.team?.id}',
         )
         .controller;
 

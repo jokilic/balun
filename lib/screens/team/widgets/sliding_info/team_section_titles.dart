@@ -6,7 +6,7 @@ import '../../../../theme/theme.dart';
 import '../../../../widgets/balun_button.dart';
 
 class TeamSectionTitles extends StatelessWidget {
-  final PageController pageController;
+  final ScrollController pageController;
   final TeamSection activeTeamSection;
   final Function(TeamSection pressedSection) titlePressed;
 

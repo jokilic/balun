@@ -57,7 +57,7 @@ class BalunScreenService extends ValueNotifier<Widget> {
         );
 
         animateScrollableTitles(
-          pageController: fixturesDateController.controller,
+          scrollController: fixturesDateController.controller,
           viewportFraction: fixturesDateController.viewportFraction,
           targetPage: getPageForActiveDate(
             dates: fixturesDateController.dates,

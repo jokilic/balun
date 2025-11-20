@@ -40,7 +40,7 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
     );
 
     animateScrollableTitles(
-      pageController: controller,
+      scrollController: controller,
       viewportFraction: viewportFraction,
       targetPage: getPageForActiveDate(
         dates: dates,
@@ -85,7 +85,7 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
           );
 
       animateScrollableTitles(
-        pageController: controller,
+        scrollController: controller,
         viewportFraction: viewportFraction,
         targetPage: getPageForActiveDate(
           dates: dates,
@@ -114,7 +114,7 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
             );
 
         animateScrollableTitles(
-          pageController: controller,
+          scrollController: controller,
           viewportFraction: viewportFraction,
           targetPage: getPageForActiveDate(
             dates: dates,

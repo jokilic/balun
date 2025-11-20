@@ -19,7 +19,7 @@ class TeamSectionController extends ValueNotifier<TeamSection> implements Dispos
     );
 
     animateScrollableTitles(
-      pageController: controller,
+      scrollController: controller,
       viewportFraction: viewportFraction,
       targetPage: TeamSectionEnum.stadium.index,
     );
@@ -34,10 +34,9 @@ class TeamSectionController extends ValueNotifier<TeamSection> implements Dispos
   /// VARIABLES
   ///
 
-  // TODO: Check this viewportFraction
   final viewportFraction = 0.4;
 
-  late final PageController controller;
+  late final ScrollController controller;
 
   ///
   /// METHODS
@@ -46,6 +45,12 @@ class TeamSectionController extends ValueNotifier<TeamSection> implements Dispos
   void updateState(TeamSection newSection) {
     if (value != newSection) {
       value = newSection;
+
+      animateScrollableTitles(
+        scrollController: controller,
+        viewportFraction: viewportFraction,
+        targetPage: newSection.teamSectionEnum.index,
+      );
     }
   }
 }
