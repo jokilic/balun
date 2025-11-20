@@ -24,62 +24,61 @@ class LeagueActiveSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (leagueSection) {
-        LeagueSection(
-          leagueSectionEnum: LeagueSectionEnum.standings,
-        ) =>
-          LeagueStandingsSection(
-            leagueId: league.league?.id,
-            season: activeSeason,
-          ),
-        LeagueSection(
-          leagueSectionEnum: LeagueSectionEnum.fixtures,
-        ) =>
-          LeagueFixturesSection(
-            leagueId: league.league?.id,
-            season: activeSeason,
-          ),
-        LeagueSection(
-          leagueSectionEnum: LeagueSectionEnum.news,
-        ) =>
-          LeagueNewsSection(
-            leagueId: league.league?.id,
-            leagueName: league.league?.name,
-            leagueCountry: league.country?.name,
-          ),
-        LeagueSection(
-          leagueSectionEnum: LeagueSectionEnum.teams,
-        ) =>
-          LeagueTeamsSection(
-            leagueId: league.league?.id,
-            season: activeSeason,
-          ),
-        LeagueSection(
-          leagueSectionEnum: LeagueSectionEnum.topScorers,
-        ) =>
-          LeagueTopScorersSection(
-            leagueId: league.league?.id,
-            season: activeSeason,
-          ),
-        LeagueSection(
-          leagueSectionEnum: LeagueSectionEnum.topAssists,
-        ) =>
-          LeagueTopAssistsSection(
-            leagueId: league.league?.id,
-            season: activeSeason,
-          ),
-        LeagueSection(
-          leagueSectionEnum: LeagueSectionEnum.topYellowCards,
-        ) =>
-          LeagueTopYellowCardsSection(
-            leagueId: league.league?.id,
-            season: activeSeason,
-          ),
-        LeagueSection(
-          leagueSectionEnum: LeagueSectionEnum.topRedCards,
-        ) =>
-          LeagueTopRedCardsSection(
-            leagueId: league.league?.id,
-            season: activeSeason,
-          ),
-      };
+    LeagueSection(
+      leagueSectionEnum: LeagueSectionEnum.standings,
+    ) =>
+      LeagueStandingsSection(
+        leagueId: league.league?.id,
+        season: activeSeason,
+      ),
+    LeagueSection(
+      leagueSectionEnum: LeagueSectionEnum.fixtures,
+    ) =>
+      LeagueFixturesSection(
+        leagueId: league.league?.id,
+        season: activeSeason,
+      ),
+    LeagueSection(
+      leagueSectionEnum: LeagueSectionEnum.news,
+    ) =>
+      LeagueNewsSection(
+        leagueId: league.league?.id,
+        leagueName: league.league?.name,
+      ),
+    LeagueSection(
+      leagueSectionEnum: LeagueSectionEnum.teams,
+    ) =>
+      LeagueTeamsSection(
+        leagueId: league.league?.id,
+        season: activeSeason,
+      ),
+    LeagueSection(
+      leagueSectionEnum: LeagueSectionEnum.topScorers,
+    ) =>
+      LeagueTopScorersSection(
+        leagueId: league.league?.id,
+        season: activeSeason,
+      ),
+    LeagueSection(
+      leagueSectionEnum: LeagueSectionEnum.topAssists,
+    ) =>
+      LeagueTopAssistsSection(
+        leagueId: league.league?.id,
+        season: activeSeason,
+      ),
+    LeagueSection(
+      leagueSectionEnum: LeagueSectionEnum.topYellowCards,
+    ) =>
+      LeagueTopYellowCardsSection(
+        leagueId: league.league?.id,
+        season: activeSeason,
+      ),
+    LeagueSection(
+      leagueSectionEnum: LeagueSectionEnum.topRedCards,
+    ) =>
+      LeagueTopRedCardsSection(
+        leagueId: league.league?.id,
+        season: activeSeason,
+      ),
+  };
 }

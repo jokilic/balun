@@ -15,12 +15,10 @@ import 'league_news_loading.dart';
 class LeagueNewsSection extends WatchingStatefulWidget {
   final int? leagueId;
   final String? leagueName;
-  final String? leagueCountry;
 
   const LeagueNewsSection({
     required this.leagueId,
     required this.leagueName,
-    required this.leagueCountry,
   });
 
   @override
@@ -37,7 +35,6 @@ class _LeagueNewsSectionState extends State<LeagueNewsSection> {
         )
         .getNewsFromLeague(
           leagueName: widget.leagueName,
-          leagueCountry: widget.leagueCountry,
         );
   }
 
@@ -57,21 +54,21 @@ class _LeagueNewsSectionState extends State<LeagueNewsSection> {
       ],
       child: switch (newsState) {
         Initial() => BalunError(
-            error: 'initialState'.tr(),
-            isSmall: true,
-          ),
+          error: 'initialState'.tr(),
+          isSmall: true,
+        ),
         Loading() => LeagueNewsLoading(),
         Empty() => BalunEmpty(
-            message: 'leagueNewsEmptyState'.tr(),
-            isSmall: true,
-          ),
+          message: 'leagueNewsEmptyState'.tr(),
+          isSmall: true,
+        ),
         Error() => BalunError(
-            error: (newsState as Error).error ?? 'leagueNewsErrorState'.tr(),
-            isSmall: true,
-          ),
+          error: (newsState as Error).error ?? 'leagueNewsErrorState'.tr(),
+          isSmall: true,
+        ),
         Success() => LeagueNewsContent(
-            news: (newsState as Success).data,
-          ),
+          news: (newsState as Success).data,
+        ),
       },
     );
   }
