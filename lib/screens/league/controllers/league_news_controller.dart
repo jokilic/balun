@@ -27,8 +27,9 @@ class LeagueNewsController extends ValueNotifier<BalunState<List<NewsResult>>> {
 
   Future<void> getNewsFromLeague({
     required String? leagueName,
+    required String? leagueCountry,
   }) async {
-    if (leagueName == null) {
+    if (leagueName == null || leagueCountry == null) {
       value = Error(
         error: 'leagueNameNull'.tr(),
       );
@@ -41,7 +42,7 @@ class LeagueNewsController extends ValueNotifier<BalunState<List<NewsResult>>> {
     value = Loading();
 
     final leagueNameCountryResponse = await news.getNewsSearch(
-      searchQuery: '$leagueName football',
+      searchQuery: '$leagueName $leagueCountry',
     );
 
     /// Successful request
@@ -53,6 +54,7 @@ class LeagueNewsController extends ValueNotifier<BalunState<List<NewsResult>>> {
           data: leagueNameCountryResponse.newsResponse!.results!,
         );
       }
+
       /// Response is null, try to search only `leagueName`
       else {
         final leagueNameResponse = await news.getNewsSearch(
@@ -68,6 +70,7 @@ class LeagueNewsController extends ValueNotifier<BalunState<List<NewsResult>>> {
               data: leagueNameResponse.newsResponse!.results!,
             );
           }
+
           /// Response is null, update to empty state
           else {
             fetched = true;
