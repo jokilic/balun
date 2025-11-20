@@ -110,7 +110,6 @@ class FixturesSuccess extends WatchingWidget {
               child: FixturesAppBar(
                 onPressed: () => showDialog(
                   context: context,
-                  barrierColor: context.colors.primaryForeground.withValues(alpha: 0.5),
                   builder: (context) => FixturesFavoriteDialog(
                     onPressed: Navigator.of(context).pop,
                   ),
@@ -163,7 +162,6 @@ class FixturesSuccess extends WatchingWidget {
               child: FixturesAppBar(
                 onPressed: () => showDialog(
                   context: context,
-                  barrierColor: context.colors.primaryForeground.withValues(alpha: 0.5),
                   builder: (context) => FixturesAllDialog(
                     onPressed: Navigator.of(context).pop,
                   ),
