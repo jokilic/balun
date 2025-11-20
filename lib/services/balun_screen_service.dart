@@ -7,7 +7,7 @@ import '../screens/search/search_screen.dart';
 import '../screens/settings/settings_screen.dart';
 import '../util/dependencies.dart';
 import '../util/fixtures.dart';
-import '../util/scrollable_titles.dart';
+import '../util/scrollable.dart';
 import '../widgets/balun_loader.dart';
 import 'balun_navigation_bar_service.dart';
 import 'logger_service.dart';
@@ -56,7 +56,7 @@ class BalunScreenService extends ValueNotifier<Widget> {
           instanceName: 'fixtures',
         );
 
-        animateScrollableTitles(
+        animateActiveFixtureDate(
           scrollController: fixturesDateController.controller,
           viewportFraction: fixturesDateController.viewportFraction,
           targetPage: getPageForActiveDate(

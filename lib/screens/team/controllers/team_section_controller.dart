@@ -1,42 +1,25 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
 import '../../../models/sections/team_section.dart';
 import '../../../services/logger_service.dart';
-import '../../../util/scrollable_titles.dart';
+import '../../../util/scrollable.dart';
 
-class TeamSectionController extends ValueNotifier<TeamSection> implements Disposable {
+class TeamSectionController extends ValueNotifier<TeamSection> {
   final LoggerService logger;
 
   TeamSectionController({
     required this.logger,
   }) : super(TeamSection(teamSectionEnum: TeamSectionEnum.stadium)) {
-    controller = PageController(
-      initialPage: TeamSectionEnum.stadium.index,
-      viewportFraction: viewportFraction,
-    );
-
-    animateScrollableTitles(
-      scrollController: controller,
-      viewportFraction: viewportFraction,
-      targetPage: TeamSectionEnum.stadium.index,
-    );
-  }
-
-  @override
-  FutureOr onDispose() {
-    controller.dispose();
+    itemKeys = {
+      for (final section in TeamSectionEnum.values) section.index: GlobalKey(),
+    };
   }
 
   ///
   /// VARIABLES
   ///
 
-  final viewportFraction = 0.4;
-
-  late final ScrollController controller;
+  late final Map<int, GlobalKey> itemKeys;
 
   ///
   /// METHODS
@@ -46,10 +29,9 @@ class TeamSectionController extends ValueNotifier<TeamSection> implements Dispos
     if (value != newSection) {
       value = newSection;
 
-      animateScrollableTitles(
-        scrollController: controller,
-        viewportFraction: viewportFraction,
-        targetPage: newSection.teamSectionEnum.index,
+      animateActiveSectionTitle(
+        itemKeys: itemKeys,
+        newSectionIndex: newSection.teamSectionEnum.index,
       );
     }
   }

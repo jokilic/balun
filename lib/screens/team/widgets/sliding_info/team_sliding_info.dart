@@ -30,12 +30,6 @@ class TeamSlidingInfo extends WatchingWidget {
       instanceName: '${team.team?.id}',
     ).value;
 
-    final pageController = getIt
-        .get<TeamSectionController>(
-          instanceName: '${team.team?.id}',
-        )
-        .controller;
-
     return ListView(
       controller: scrollController,
       physics: const BouncingScrollPhysics(),
@@ -61,7 +55,11 @@ class TeamSlidingInfo extends WatchingWidget {
         /// SECTIONS
         ///
         TeamSectionTitles(
-          pageController: pageController,
+          itemKeys: getIt
+              .get<TeamSectionController>(
+                instanceName: '${team.team?.id}',
+              )
+              .itemKeys,
           activeTeamSection: teamSection,
           titlePressed: getIt
               .get<TeamSectionController>(

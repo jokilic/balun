@@ -6,12 +6,12 @@ import '../../../../theme/theme.dart';
 import '../../../../widgets/balun_button.dart';
 
 class TeamSectionTitles extends StatelessWidget {
-  final ScrollController pageController;
+  final Map<int, GlobalKey> itemKeys;
   final TeamSection activeTeamSection;
   final Function(TeamSection pressedSection) titlePressed;
 
   const TeamSectionTitles({
-    required this.pageController,
+    required this.itemKeys,
     required this.activeTeamSection,
     required this.titlePressed,
   });
@@ -20,7 +20,6 @@ class TeamSectionTitles extends StatelessWidget {
   Widget build(BuildContext context) => SizedBox(
     height: 70,
     child: ListView.separated(
-      controller: pageController,
       key: const PageStorageKey('teamSectionTitles'),
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
@@ -35,6 +34,7 @@ class TeamSectionTitles extends StatelessWidget {
         );
 
         return BalunButton(
+          key: itemKeys[section.teamSectionEnum.index],
           onPressed: () => titlePressed(section),
           child: AnimatedContainer(
             padding: const EdgeInsets.symmetric(

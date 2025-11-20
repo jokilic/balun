@@ -12,7 +12,7 @@ import '../../../theme/theme.dart';
 import '../../../util/date_time.dart';
 import '../../../util/dependencies.dart';
 import '../../../util/fixtures.dart';
-import '../../../util/scrollable_titles.dart';
+import '../../../util/scrollable.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 import 'fixtures_controller.dart';
@@ -39,7 +39,7 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
       ),
     );
 
-    animateScrollableTitles(
+    animateActiveFixtureDate(
       scrollController: controller,
       viewportFraction: viewportFraction,
       targetPage: getPageForActiveDate(
@@ -84,7 +84,7 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
             dateString: getDateForBackend(value),
           );
 
-      animateScrollableTitles(
+      animateActiveFixtureDate(
         scrollController: controller,
         viewportFraction: viewportFraction,
         targetPage: getPageForActiveDate(
@@ -113,7 +113,7 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
               dateString: getDateForBackend(chosenDate),
             );
 
-        animateScrollableTitles(
+        animateActiveFixtureDate(
           scrollController: controller,
           viewportFraction: viewportFraction,
           targetPage: getPageForActiveDate(

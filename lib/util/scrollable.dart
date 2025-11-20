@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-void animateScrollableTitles({
+void animateActiveFixtureDate({
   required ScrollController scrollController,
   required double viewportFraction,
   required int targetPage,
@@ -26,3 +26,22 @@ void animateScrollableTitles({
     );
   },
 );
+
+void animateActiveSectionTitle({
+  required Map<int, GlobalKey> itemKeys,
+  required int newSectionIndex,
+}) {
+  final targetKey = itemKeys[newSectionIndex];
+  final targetContext = targetKey?.currentContext;
+
+  if (targetContext == null) {
+    return;
+  }
+
+  Scrollable.ensureVisible(
+    targetContext,
+    duration: BalunConstants.animationDuration,
+    curve: Curves.easeIn,
+    alignment: 0.5,
+  );
+}
