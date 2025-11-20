@@ -10,10 +10,10 @@ class ErrorResponse {
   });
 
   factory ErrorResponse.fromMap(Map<String, dynamic> map) => ErrorResponse(
-        time: map['time'] != null ? DateTime.fromMillisecondsSinceEpoch(map['time'] as int) : null,
-        bug: map['bug'] != null ? map['bug'] as String : null,
-        report: map['report'] != null ? map['report'] as String : null,
-      );
+    time: map['time'] != null ? DateTime.fromMillisecondsSinceEpoch(map['time'] as int) : null,
+    bug: map['bug'] != null ? map['bug'] as String : null,
+    report: map['report'] != null ? map['report'] as String : null,
+  );
 
   @override
   String toString() => 'ErrorResponse(time: $time, bug: $bug, report: $report)';

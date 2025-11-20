@@ -6,3 +6,5 @@
 * Add theme functionality in Settings
 * Update status bar colors
 * Convert icons to WebP
+* Scrollable titles in all sections
+* Added dark splash

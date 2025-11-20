@@ -17,6 +17,7 @@ import '../models/search/search_teams/search_teams_response.dart';
 import '../models/sidelined/sidelined_response.dart';
 import '../models/squads/squads_response.dart';
 import '../models/standings/standings_response.dart';
+import '../models/status/status_response.dart';
 import '../models/teams/teams_response.dart';
 import '../models/transfers/transfers_response.dart';
 import '../models/trophies/trophies_response.dart';
@@ -33,6 +34,47 @@ class APIService {
     required this.dio,
     required this.internetConnection,
   });
+
+  ///
+  /// `/status`
+  ///
+
+  Future<({StatusResponse? statusResponse, String? error})> getStatus() async {
+    try {
+      final response = await dio.get(
+        '/status',
+      );
+
+      /// Handle status codes
+      switch (response.statusCode) {
+        /// Response is successful
+        case 200:
+        case 304:
+          try {
+            final parsedResponse = await computeStatus(response.data);
+            return (statusResponse: parsedResponse, error: null);
+          } catch (e) {
+            final error = 'API -> getStatus -> parsing error -> $e';
+            logger.e(error);
+            return (statusResponse: null, error: error);
+          }
+
+        /// Response is not successful
+        default:
+          final error = 'API -> getStatus -> StatusCode ${response.statusCode}';
+          logger.e(error);
+
+          return (statusResponse: null, error: error);
+      }
+    } catch (e) {
+      final error = await handleCatch(
+        methodName: 'getStatus',
+        mainError: '$e',
+      );
+
+      return (statusResponse: null, error: error);
+    }
+  }
 
   ///
   /// `/countries`

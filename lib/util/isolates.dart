@@ -16,6 +16,7 @@ import '../models/search/search_teams/search_teams_response.dart';
 import '../models/sidelined/sidelined_response.dart';
 import '../models/squads/squads_response.dart';
 import '../models/standings/standings_response.dart';
+import '../models/status/status_response.dart';
 import '../models/teams/teams_response.dart';
 import '../models/transfers/transfers_response.dart';
 import '../models/trophies/trophies_response.dart';
@@ -80,3 +81,6 @@ YouTubeSearchResponse parseYouTubeSearch(data) => YouTubeSearchResponse.fromMap(
 
 Future<NewsResponse> computeNews(data) async => compute(parseNews, data);
 NewsResponse parseNews(data) => NewsResponse.fromMap(data);
+
+Future<StatusResponse> computeStatus(data) async => compute(parseStatus, data);
+StatusResponse parseStatus(data) => StatusResponse.fromMap(data);
