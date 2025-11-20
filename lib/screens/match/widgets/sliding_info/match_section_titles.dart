@@ -9,11 +9,13 @@ import '../../../../util/dependencies.dart';
 import '../../../../widgets/balun_button.dart';
 
 class MatchSectionTitles extends StatelessWidget {
+  final Map<int, GlobalKey> itemKeys;
   final MatchSection activeMatchSection;
   final Function(MatchSection pressedSection) titlePressed;
   final bool matchFinished;
 
   const MatchSectionTitles({
+    required this.itemKeys,
     required this.activeMatchSection,
     required this.titlePressed,
     required this.matchFinished,
@@ -45,10 +47,13 @@ class MatchSectionTitles extends StatelessWidget {
                   matchSectionEnum: MatchSectionEnum.highlights,
                 ) &&
             (!matchFinished || getIt.get<RemoteSettingsService>().value.hideHighlights || kIsWeb)) {
-          return const SizedBox.shrink();
+          return SizedBox.shrink(
+            key: itemKeys[section.matchSectionEnum.index],
+          );
         }
 
         return BalunButton(
+          key: itemKeys[section.matchSectionEnum.index],
           onPressed: () => titlePressed(section),
           child: AnimatedContainer(
             padding: const EdgeInsets.symmetric(

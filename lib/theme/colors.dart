@@ -17,7 +17,6 @@ abstract class BalunColors {
     factor: 0.04,
   );
 
-  static const green = Color(0xFF417B5A);
   static const black = Color(0xFF292928);
   static final grey = lightenColor(
     color: black,
@@ -45,6 +44,7 @@ abstract class BalunColors {
   ///
 
   static const white = Color(0xFFFFFFFF);
+  static const green = Color(0xFF417B5A);
   static const red = Color(0xFFED3B3B);
   static const blue = Color(0xFF016FB9);
   static const yellow = Color(0xFFFCC938);

@@ -2,17 +2,24 @@ import 'package:flutter/material.dart';
 
 import '../../../models/sections/match_section.dart';
 import '../../../services/logger_service.dart';
+import '../../../util/scrollable.dart';
 
 class MatchSectionController extends ValueNotifier<MatchSection> {
   final LoggerService logger;
 
   MatchSectionController({
     required this.logger,
-  }) : super(
-         MatchSection(
-           matchSectionEnum: MatchSectionEnum.info,
-         ),
-       );
+  }) : super(MatchSection(matchSectionEnum: MatchSectionEnum.info)) {
+    itemKeys = {
+      for (final section in MatchSectionEnum.values) section.index: GlobalKey(),
+    };
+  }
+
+  ///
+  /// VARIABLES
+  ///
+
+  late final Map<int, GlobalKey> itemKeys;
 
   ///
   /// METHODS
@@ -62,6 +69,11 @@ class MatchSectionController extends ValueNotifier<MatchSection> {
   void updateState(MatchSection newSection) {
     if (value != newSection) {
       value = newSection;
+
+      animateActiveSectionTitle(
+        itemKeys: itemKeys,
+        newSectionIndex: newSection.matchSectionEnum.index,
+      );
     }
   }
 }

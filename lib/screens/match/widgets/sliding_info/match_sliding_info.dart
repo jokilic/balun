@@ -53,6 +53,11 @@ class MatchSlidingInfo extends WatchingWidget {
         /// SECTIONS
         ///
         MatchSectionTitles(
+          itemKeys: getIt
+              .get<MatchSectionController>(
+                instanceName: '${match.fixture?.id}',
+              )
+              .itemKeys,
           activeMatchSection: matchSection,
           titlePressed: getIt
               .get<MatchSectionController>(
