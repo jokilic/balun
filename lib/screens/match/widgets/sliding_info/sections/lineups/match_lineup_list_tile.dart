@@ -104,9 +104,9 @@ class MatchLineupListTile extends StatelessWidget {
                 const SizedBox(width: 4),
                 BalunImage(
                   imageUrl: BalunIcons.playerIn,
-                  color: context.colors.accentStrong,
                   height: 24,
                   width: 24,
+                  color: context.colors.success,
                 ),
               ],
           ],

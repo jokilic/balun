@@ -135,7 +135,7 @@ class PlayerTransferListTile extends StatelessWidget {
                         imageUrl: BalunIcons.playerIn,
                         height: 28,
                         width: 28,
-                        color: context.colors.accentStrong,
+                        color: context.colors.success,
                       ),
                       const SizedBox(height: 8),
                       BalunImage(

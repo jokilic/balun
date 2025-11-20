@@ -5,7 +5,7 @@ import '../theme/theme.dart';
 Color? getPositionColor(String position, {required BuildContext context}) => switch (position.toLowerCase()) {
   'goalkeeper' => context.colors.alert,
   'defender' => context.colors.info,
-  'midfielder' => context.colors.accentStrong,
+  'midfielder' => context.colors.success,
   'attacker' => context.colors.danger,
   _ => context.colors.primaryForeground,
 };

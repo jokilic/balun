@@ -1,7 +1,7 @@
 name: balun
 description: "Simple Flutter application for football scores."
 publish_to: 'none'
-version: 1.8.0+180
+version: 1.8.1+181
 
 #
 # DEPLOYING APP
@@ -52,7 +52,7 @@ dependencies:
   url_launcher: 6.3.2
   video_player: 2.10.1
   visibility_detector: 0.4.0+2
-  watch_it: 2.1.1
+  watch_it: 2.2.0
   youtube_player_flutter: 9.1.3
 
   calendar_date_picker2:

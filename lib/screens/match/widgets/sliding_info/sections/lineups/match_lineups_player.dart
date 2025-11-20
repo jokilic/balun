@@ -212,9 +212,9 @@ class MatchLineupsPlayer extends StatelessWidget {
                     bottom: -6,
                     child: BalunImage(
                       imageUrl: BalunIcons.playerOut,
-                      color: context.colors.danger,
                       height: 24,
                       width: 24,
+                      color: context.colors.danger,
                     ),
                   ),
 

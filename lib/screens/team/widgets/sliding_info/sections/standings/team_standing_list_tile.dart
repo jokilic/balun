@@ -122,7 +122,7 @@ class _TeamStandingListTileState extends State<TeamStandingListTile> {
                                     children: standing.form!.split('').map(
                                       (letter) {
                                         final color = switch (letter.toUpperCase()) {
-                                          'W' => context.colors.accentStrong,
+                                          'W' => context.colors.success,
                                           'L' => context.colors.danger,
                                           'D' => context.colors.primaryForeground.withValues(alpha: 0.4),
                                           _ => context.colors.info,

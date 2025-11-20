@@ -7,7 +7,7 @@ Color? getRatingColor(double rating, {required BuildContext context}) {
     case >= 9.0:
       return context.colors.info;
     case < 9.0 && >= 7.0:
-      return context.colors.accentStrong;
+      return context.colors.success;
     case < 7.0 && >= 6.5:
       return context.colors.warning;
     case < 6.5 && >= 5.5:

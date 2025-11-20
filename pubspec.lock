@@ -1082,10 +1082,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_android
-      sha256: "1a109ee074e2a3b17ec3f2785248cb3e93c1e4abab878f637bc33267089f05a3"
+      sha256: "5387615091fb9bcacfe03e140437be22c3a3cd7ac53052ec9a16d2a6a370a994"
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.26"
+    version: "6.3.27"
   url_launcher_ios:
     dependency: transitive
     description:
@@ -1226,10 +1226,10 @@ packages:
     dependency: "direct main"
     description:
       name: watch_it
-      sha256: "98e091d39aab70c57c6d38883ad83b9a22a0e12683e0222391d20d61cda4d250"
+      sha256: "22ca46b22da37d3c0b8d1ffb59d1f98715509e4ff47312de36459d76f20478ec"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
+    version: "2.2.0"
   watcher:
     dependency: transitive
     description:
