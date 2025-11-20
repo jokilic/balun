@@ -97,10 +97,10 @@ flutter:
         - asset: assets/fonts/Lufga900.ttf
           weight: 900
 
-# Run code generation - `dart run build_runner build -d`
+# Run code generation - `flutter pub run build_runner build -d`
 
 # Configuration for 'flutter_launcher_icons'
-# Run icon generation with 'dart run flutter_launcher_icons:main'
+# Run icon generation with 'flutter pub run flutter_launcher_icons:main'
 flutter_launcher_icons:
   image_path_android: 'assets/icon.png'
   image_path_ios: 'assets/icon.png'
@@ -128,11 +128,12 @@ flutter_launcher_icons:
     image_path: 'assets/icon.png'
 
 # Configuration for 'flutter_native_splash'
-# Run splash screen generation with 'dart run flutter_native_splash:create'
+# Run splash screen generation with 'flutter pub run flutter_native_splash:create'
 flutter_native_splash:
   background_image: 'assets/splash.png'
+  background_image_dark: 'assets/splash_dark.png'
   android_12:
     image: 'assets/splash_icon.png'
     color: '#417B5A'
     image_dark: 'assets/splash_icon.png'
-    color_dark: '#417B5A'
+    color_dark: '#17293C'

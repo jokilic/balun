@@ -9,8 +9,8 @@ import 'package:balun/models/theme/theme_model.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
-    registerAdapter(BalunThemeEnumAdapter());
     registerAdapter(ThemeModelAdapter());
+    registerAdapter(BalunThemeEnumAdapter());
     registerAdapter(TeamAdapter());
     registerAdapter(LeagueAdapter());
   }
