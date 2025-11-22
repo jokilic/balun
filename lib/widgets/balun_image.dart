@@ -69,6 +69,7 @@ class BalunImage extends StatelessWidget {
             borderRadius: BorderRadius.circular(radius),
             child: CachedNetworkSVGImage(
               imageUrl,
+              fadeDuration: BalunConstants.shortAnimationDuration,
               height: height,
               width: width,
               fit: fit,
@@ -117,6 +118,9 @@ class BalunImage extends StatelessWidget {
       return ClipRRect(
         borderRadius: BorderRadius.circular(radius),
         child: CachedNetworkImage(
+          fadeInDuration: BalunConstants.shortAnimationDuration,
+          fadeOutDuration: BalunConstants.shortAnimationDuration,
+          placeholderFadeInDuration: BalunConstants.shortAnimationDuration,
           imageUrl: imageUrl,
           height: height,
           width: width,
