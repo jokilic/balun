@@ -39,7 +39,7 @@ dependencies:
   flutter_displaymode: 0.7.0
   flutter_native_splash: 2.4.7
   flutter_web_browser: 0.17.3
-  get_it: 9.0.5
+  get_it: 9.1.0
   hive_ce: 2.15.1
   hive_ce_flutter: 2.3.3
   internet_connection_checker_plus: 2.9.1
