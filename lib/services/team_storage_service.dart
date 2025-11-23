@@ -6,10 +6,6 @@ import 'hive_service.dart';
 import 'logger_service.dart';
 
 class TeamStorageService extends ValueNotifier<List<Team>> {
-  ///
-  /// CONSTRUCTOR
-  ///
-
   final LoggerService logger;
   final List<Team> hiveTeams;
 
@@ -34,7 +30,6 @@ class TeamStorageService extends ValueNotifier<List<Team>> {
     if (teamExists) {
       value = List.from(value..removeWhere((team) => team.id == passedTeam.id));
     }
-
     /// Team doesn't exist, add it to state & storage
     else {
       final newList = List<Team>.from(value);
@@ -56,7 +51,6 @@ class TeamStorageService extends ValueNotifier<List<Team>> {
       if (closestIndex != -1) {
         newList.insert(closestIndex + 1, passedTeam);
       }
-
       /// List is empty, just add to the end
       else {
         newList.add(passedTeam);

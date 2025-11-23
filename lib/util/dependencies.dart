@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 import '../services/api_service.dart';
+import '../services/background_fetch_service.dart';
 import '../services/balun_navigation_bar_badge_service.dart';
 import '../services/balun_navigation_bar_service.dart';
 import '../services/balun_screen_service.dart';
@@ -143,6 +144,13 @@ void initializeServices({
         return periodicAPI;
       },
       dependsOn: [LoggerService],
+    )
+    ..registerSingletonAsync(
+      () async => BackgroundFetchService(
+        logger: getIt.get<LoggerService>(),
+        hive: getIt.get<HiveService>(),
+      ),
+      dependsOn: [LoggerService, HiveService],
     )
     ..registerSingletonAsync(
       () async => BalunNavigationBarService(

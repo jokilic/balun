@@ -6,10 +6,6 @@ import 'hive_service.dart';
 import 'logger_service.dart';
 
 class LeagueStorageService extends ValueNotifier<List<League>> {
-  ///
-  /// CONSTRUCTOR
-  ///
-
   final LoggerService logger;
   final List<League> hiveLeagues;
 
@@ -35,13 +31,11 @@ class LeagueStorageService extends ValueNotifier<List<League>> {
     /// League exists, remove it from state & storage
     if (leagueExists) {
       value = List.from(
-        value
-          ..removeWhere(
-            (league) => league.id == passedLeague.id,
-          ),
+        value..removeWhere(
+          (league) => league.id == passedLeague.id,
+        ),
       );
     }
-
     /// League doesn't exist, add it to state & storage
     else {
       final newList = List<League>.from(value);
@@ -63,7 +57,6 @@ class LeagueStorageService extends ValueNotifier<List<League>> {
       if (closestIndex != -1) {
         newList.insert(closestIndex + 1, passedLeague);
       }
-
       /// List is empty, just add to the end
       else {
         newList.add(passedLeague);

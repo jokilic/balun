@@ -22,12 +22,13 @@ version: 1.8.5+185
 #
 
 environment:
-  sdk: 3.10.0
+  sdk: 3.10.1
 
 dependencies:
   flutter:
     sdk: flutter
 
+  background_fetch: 1.5.0
   cached_network_image: 3.4.1
   cached_network_svg_image: 1.2.0
   collection: 1.19.1

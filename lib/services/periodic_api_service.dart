@@ -11,10 +11,6 @@ import '../util/dependencies.dart';
 import 'logger_service.dart';
 
 class PeriodicAPIService implements Disposable {
-  ///
-  /// CONSTRUCTOR
-  ///
-
   final LoggerService logger;
 
   PeriodicAPIService({

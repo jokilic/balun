@@ -11,10 +11,6 @@ import 'logger_service.dart';
 ///
 
 class DioService {
-  ///
-  /// CONSTRUCTOR
-  ///
-
   final LoggerService logger;
 
   DioService({
