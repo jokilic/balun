@@ -15,6 +15,7 @@ import 'theme/theme.dart';
 import 'util/color.dart';
 import 'util/dependencies.dart';
 import 'util/display_mode.dart';
+import 'util/localization.dart';
 import 'util/theme.dart';
 import 'widgets/balun_loader.dart';
 import 'widgets/balun_navigation_bar.dart';
@@ -36,7 +37,7 @@ Future<void> main() async {
   await setDisplayMode();
 
   /// Initialize [EasyLocalization]
-  await EasyLocalization.ensureInitialized();
+  await initializeLocalization();
 
   /// Initialize services
   initializeServices(

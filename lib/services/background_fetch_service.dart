@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:background_fetch/background_fetch.dart';
 import 'package:flutter/material.dart';
 
+import '../util/localization.dart';
 import 'hive_service.dart';
 import 'logger_service.dart';
 
@@ -66,26 +67,15 @@ class BackgroundFetchService {
         DartPluginRegistrant.ensureInitialized();
 
         /// Initialize [EasyLocalization]
-        // await initializeLocalization();
+        await initializeLocalization();
 
         /// Initialize services
         // final initialization = await initializeServices();
 
         /// Everything initialized successfully
         // if (initialization?.container != null) {
-        //   ///
-        //   /// Notifications
-        //   ///
+        //   /// Handle notification logic
         //   await initialization!.container!.read(notificationProvider).handleNotifications();
-
-        //   ///
-        //   /// Widget
-        //   ///
-        //   await initialization.container!
-        //       .read(homeWidgetProvider)
-        //       .handleWidget(
-        //         languageCode: 'en',
-        //       );
         // }
 
         /// Finish task
@@ -127,26 +117,15 @@ Future<void> backgroundFetchHeadlessTask(HeadlessTask task) async {
   DartPluginRegistrant.ensureInitialized();
 
   /// Initialize [EasyLocalization]
-  // await initializeLocalization();
+  await initializeLocalization();
 
   /// Initialize services
   // final initialization = await initializeServices();
 
   /// Everything initialized successfully
   // if (initialization?.container != null) {
-  //   ///
-  //   /// Notifications
-  //   ///
+  //   /// Handle notification logic
   //   await initialization!.container!.read(notificationProvider).handleNotifications();
-
-  //   ///
-  //   /// Widget
-  //   ///
-  //   await initialization.container!
-  //       .read(homeWidgetProvider)
-  //       .handleWidget(
-  //         languageCode: 'en',
-  //       );
   // }
 
   /// Finish task
