@@ -11,6 +11,7 @@ import '../services/hive_service.dart';
 import '../services/league_storage_service.dart';
 import '../services/logger_service.dart';
 import '../services/news_service.dart';
+import '../services/notification_service.dart';
 import '../services/package_info_service.dart';
 import '../services/periodic_api_service.dart';
 import '../services/remote_settings_service.dart';
@@ -146,11 +147,27 @@ void initializeServices({
       dependsOn: [LoggerService],
     )
     ..registerSingletonAsync(
-      () async => BackgroundFetchService(
-        logger: getIt.get<LoggerService>(),
-        hive: getIt.get<HiveService>(),
-      ),
+      () async {
+        final backgroundFetch = BackgroundFetchService(
+          logger: getIt.get<LoggerService>(),
+          hive: getIt.get<HiveService>(),
+        );
+        await backgroundFetch.init();
+        return backgroundFetch;
+      },
       dependsOn: [LoggerService, HiveService],
+    )
+    ..registerSingletonAsync(
+      () async {
+        final notification = NotificationService(
+          logger: getIt.get<LoggerService>(),
+          hive: getIt.get<HiveService>(),
+          api: getIt.get<APIService>(),
+        );
+        await notification.init();
+        return notification;
+      },
+      dependsOn: [LoggerService, HiveService, APIService],
     )
     ..registerSingletonAsync(
       () async => BalunNavigationBarService(
