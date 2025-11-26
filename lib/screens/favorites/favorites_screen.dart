@@ -15,48 +15,48 @@ class FavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: SafeArea(
-          child: Animate(
-            effects: const [
-              FadeEffect(
-                curve: Curves.easeIn,
-                duration: BalunConstants.longAnimationDuration,
-              ),
-            ],
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 12),
-
-                ///
-                /// APP BAR
-                ///
-                FavoritesAppBar(
-                  onPressed: Navigator.of(context).pop,
-                ),
-                const SizedBox(height: 8),
-
-                ///
-                /// CONTENT
-                ///
-                Expanded(
-                  child: Animate(
-                    effects: const [
-                      FadeEffect(
-                        curve: Curves.easeIn,
-                        duration: BalunConstants.animationDuration,
-                      ),
-                    ],
-                    child: FavoritesContent(
-                      onPressed: Navigator.of(context).pop,
-                      onReorderLeagues: getIt.get<LeagueStorageService>().reorderLeagues,
-                      onReorderTeams: getIt.get<TeamStorageService>().reorderTeams,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+    body: SafeArea(
+      child: Animate(
+        effects: const [
+          FadeEffect(
+            curve: Curves.easeIn,
+            duration: BalunConstants.longAnimationDuration,
           ),
+        ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 12),
+
+            ///
+            /// APP BAR
+            ///
+            FavoritesAppBar(
+              onPressed: Navigator.of(context).pop,
+            ),
+            const SizedBox(height: 8),
+
+            ///
+            /// CONTENT
+            ///
+            Expanded(
+              child: Animate(
+                effects: const [
+                  FadeEffect(
+                    curve: Curves.easeIn,
+                    duration: BalunConstants.animationDuration,
+                  ),
+                ],
+                child: FavoritesContent(
+                  onPressed: Navigator.of(context).pop,
+                  onReorderLeagues: getIt.get<LeagueStorageService>().reorderLeagues,
+                  onReorderTeams: getIt.get<TeamStorageService>().reorderTeams,
+                ),
+              ),
+            ),
+          ],
         ),
-      );
+      ),
+    ),
+  );
 }

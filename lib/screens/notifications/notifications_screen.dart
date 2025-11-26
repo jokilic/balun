@@ -5,6 +5,7 @@ import 'package:watch_it/watch_it.dart';
 import '../../constants.dart';
 import '../../services/hive_service.dart';
 import '../../services/logger_service.dart';
+import '../../services/notification_service.dart';
 import '../../util/dependencies.dart';
 import 'notifications_controller.dart';
 import 'widgets/notifications_app_bar.dart';
@@ -28,6 +29,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       () => NotificationsController(
         logger: getIt.get<LoggerService>(),
         hive: getIt.get<HiveService>(),
+        notification: getIt.get<NotificationService>(),
       ),
       instanceName: 'notifications',
     );
@@ -74,6 +76,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   ],
                   child: NotificationsContent(
                     notificationsState: notificationsState,
+                    onPressedFavoriteLeagues: getIt.get<NotificationsController>(instanceName: 'notifications').onPressedFavoriteLeagues,
+                    onPressedFavoriteTeams: getIt.get<NotificationsController>(instanceName: 'notifications').onPressedFavoriteTeams,
+                    onPressedTestNotification: getIt.get<NotificationsController>(instanceName: 'notifications').testNotification,
                   ),
                 ),
               ),

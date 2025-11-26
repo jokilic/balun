@@ -25,7 +25,6 @@ class ThemeService extends ValueNotifier<BalunThemeEnum?> {
     };
 
     value = newTheme;
-
     await hive.writeBalunTheme(newTheme);
 
     return newTheme;

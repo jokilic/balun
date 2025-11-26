@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import '../constants.dart';
 import '../util/env.dart';
@@ -21,63 +22,85 @@ class DioService {
   /// VARIABLES
   ///
 
-  late final footballDio =
-      Dio(
-          BaseOptions(
-            baseUrl: BalunConstants.apiFootballBaseUrl,
-            headers: {
-              'x-apisports-key': BalunConstants.apiFootballApiKey,
-              'Content-Type': 'application/json',
-            },
-            validateStatus: (_) => true,
-          ),
-        )
-        ..interceptors.add(
-          DioLoggerInterceptor(
-            logger: logger,
-          ),
-        );
+  late final Dio footballDio;
+  late final Dio remoteSettingsDio;
+  late final Dio youTubeSearchDio;
+  late final Dio newsDio;
 
-  late final remoteSettingsDio =
-      Dio(
-          BaseOptions(
-            baseUrl: BalunConstants.remoteSettingsBaseUrl,
-            validateStatus: (_) => true,
-          ),
-        )
-        ..interceptors.add(
-          DioLoggerInterceptor(
-            logger: logger,
-          ),
-        );
+  ///
+  /// INIT
+  ///
 
-  late final youTubeSearchDio =
-      Dio(
-          BaseOptions(
-            baseUrl: BalunConstants.apiYouTubeDataBaseUrl,
-            validateStatus: (_) => true,
-          ),
-        )
-        ..interceptors.add(
-          DioLoggerInterceptor(
-            logger: logger,
-          ),
-        );
+  void init() {
+    ///
+    /// Initialize variables
+    ///
 
-  late final newsDio =
-      Dio(
-          BaseOptions(
-            baseUrl: BalunConstants.newsSearchBaseUrl,
-            headers: {
-              'x-access-key': Env.newsSearchApiKey,
-              'Content-Type': 'application/json',
-            },
-            validateStatus: (_) => true,
-          ),
-        )
-        ..interceptors.add(
-          DioLoggerInterceptor(
-            logger: logger,
-          ),
-        );
+    footballDio = Dio(
+      BaseOptions(
+        baseUrl: BalunConstants.apiFootballBaseUrl,
+        headers: {
+          'x-apisports-key': BalunConstants.apiFootballApiKey,
+          'Content-Type': 'application/json',
+        },
+        validateStatus: (_) => true,
+      ),
+    );
+
+    remoteSettingsDio = Dio(
+      BaseOptions(
+        baseUrl: BalunConstants.remoteSettingsBaseUrl,
+        validateStatus: (_) => true,
+      ),
+    );
+
+    youTubeSearchDio = Dio(
+      BaseOptions(
+        baseUrl: BalunConstants.apiYouTubeDataBaseUrl,
+        validateStatus: (_) => true,
+      ),
+    );
+
+    newsDio = Dio(
+      BaseOptions(
+        baseUrl: BalunConstants.newsSearchBaseUrl,
+        headers: {
+          'x-access-key': Env.newsSearchApiKey,
+          'Content-Type': 'application/json',
+        },
+        validateStatus: (_) => true,
+      ),
+    );
+
+    ///
+    /// Add interceptors
+    ///
+
+    // if (kDebugMode) {
+    if (false) {
+      footballDio.interceptors.add(
+        DioLoggerInterceptor(
+          logger: logger,
+        ),
+      );
+
+      remoteSettingsDio.interceptors.add(
+        DioLoggerInterceptor(
+          logger: logger,
+        ),
+      );
+
+      youTubeSearchDio.interceptors.add(
+        DioLoggerInterceptor(
+          logger: logger,
+        ),
+      );
+
+      newsDio.interceptors.add(
+        DioLoggerInterceptor(
+          logger: logger,
+        ),
+      );
+    }
+  }
 }

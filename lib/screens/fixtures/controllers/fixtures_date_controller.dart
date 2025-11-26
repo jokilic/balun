@@ -112,15 +112,6 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
             .getFixturesFromDate(
               dateString: getDateForBackend(chosenDate),
             );
-
-        animateActiveFixtureDate(
-          scrollController: controller,
-          viewportFraction: viewportFraction,
-          targetPage: getPageForActiveDate(
-            dates: dates,
-            value: value,
-          ),
-        );
       }
     },
     config: CalendarDatePicker2WithActionButtonsConfig(

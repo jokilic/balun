@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer' as dev;
 import 'dart:math';
 import 'dart:ui';
 
@@ -45,11 +46,11 @@ class NotificationService {
     final notificationSettings = hive.getNotificationSettings();
 
     /// Notifications are not initialized & they are enabled in settings
-    if (flutterLocalNotificationsPlugin == null && (notificationSettings.showLeagueNotifications || notificationSettings.showTeamNotifications)) {
-      flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-      await initializeNotifications();
-      await requestNotificationPermissions();
-    }
+    // if (flutterLocalNotificationsPlugin == null && (notificationSettings.showLeagueNotifications || notificationSettings.showTeamNotifications)) {
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    await initializeNotifications();
+    await requestNotificationPermissions();
+    // }
   }
 
   ///
@@ -99,7 +100,8 @@ class NotificationService {
     final currentDate = DateTime(now.year, now.month, now.day);
 
     /// Do logic if within nightly timeframe
-    if (now.hour >= startHour && now.hour <= endHour) {
+    // if (now.hour >= startHour && now.hour <= endHour) {
+    if (true) {
       /// Get today fixtures
       final todayFixtures = await fetchTodayFixtures(
         currentDate: currentDate,
@@ -218,6 +220,12 @@ class NotificationService {
             );
           }
 
+          // TODO: Remove this
+          changeLines.add(
+            '⏱️ Full time! $homeTeamName $currentHomeGoals - '
+            '$currentAwayGoals $awayTeamName',
+          );
+
           /// Save fixture snapshot to [Hive]
           await hiveNotificationFixturesBox.put(
             fixtureId,
@@ -256,6 +264,8 @@ class NotificationService {
 
   Future<void> showFixturesNotification(List<String> lines) async {
     final count = lines.length;
+
+    dev.log('[JOSIP] Count -> $count');
 
     final androidDetails = AndroidNotificationDetails(
       'match_updates_channel',
@@ -385,11 +395,11 @@ class NotificationService {
 
       if (permissionsGranted) {
         /// Show notification
-        // await showNotification(
-        //   title: 'testNotificationTitle'.tr(),
-        //   text: getRandomWeatherJoke(),
-        //   notificationType: NotificationType.test,
-        // );
+        await showNotification(
+          title: 'testNotificationTitle'.tr(),
+          text: getRandomFootballJoke(),
+          notificationId: 8,
+        );
       }
     } catch (e) {
       final error = 'TestNotification -> catch -> $e';
@@ -397,11 +407,61 @@ class NotificationService {
     }
   }
 
-  /// Returns a random weather joke
-  String getRandomWeatherJoke() {
+  /// Returns a random football joke
+  String getRandomFootballJoke() {
     final random = Random();
     final index = random.nextInt(50);
-    return 'weatherJoke${index + 1}'.tr();
+    return 'footballJoke${index + 1}'.tr();
+  }
+
+  /// Shows a notification
+  Future<void> showNotification({
+    required String title,
+    required String text,
+    required int notificationId,
+  }) async {
+    try {
+      final bigTextStyleInformation = BigTextStyleInformation(
+        text,
+        contentTitle: title,
+        htmlFormatBigText: true,
+        htmlFormatContent: true,
+      );
+
+      final androidNotificationDetails = AndroidNotificationDetails(
+        'balun_channel_id',
+        'Balun notifications',
+        channelDescription: 'Notifications shown by the Balun app',
+        styleInformation: bigTextStyleInformation,
+        importance: Importance.max,
+        priority: Priority.high,
+        ticker: 'ticker',
+      );
+
+      const iosNotificationDetails = DarwinNotificationDetails(
+        categoryIdentifier: 'balun_category_id',
+      );
+
+      const macOSNotificationDetails = DarwinNotificationDetails(
+        categoryIdentifier: 'balun_category_id',
+      );
+
+      final notificationDetails = NotificationDetails(
+        android: androidNotificationDetails,
+        iOS: iosNotificationDetails,
+        macOS: macOSNotificationDetails,
+      );
+
+      await flutterLocalNotificationsPlugin?.show(
+        notificationId,
+        title,
+        text,
+        notificationDetails,
+      );
+    } catch (e) {
+      final error = 'ShowNotification -> catch -> $e';
+      logger.e(error);
+    }
   }
 
   /// Triggered when user presses a notification

@@ -7,7 +7,10 @@ import '../../../util/random.dart';
 class StatusListTileLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: 12),
+    padding: const EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 12,
+    ),
     child: Row(
       children: [
         Container(
@@ -18,7 +21,7 @@ class StatusListTileLoading extends StatelessWidget {
             color: getRandomBalunColor(context),
           ),
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: 14),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -93,7 +93,7 @@ void initializeServices({
     ..registerSingletonAsync(
       () async => DioService(
         logger: getIt.get<LoggerService>(),
-      ),
+      )..init(),
       dependsOn: [LoggerService],
     )
     ..registerSingletonAsync(

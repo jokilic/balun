@@ -8,7 +8,7 @@ import 'status_static_widget_list.dart';
 class StatusLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ListView(
-    padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+    padding: const EdgeInsets.only(top: 8, bottom: 24),
     physics: const BouncingScrollPhysics(),
     children: [
       ...getStatusStaticWidgetList(context),
