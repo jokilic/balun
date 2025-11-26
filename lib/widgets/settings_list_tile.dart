@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../theme/theme.dart';
-import '../../../../../../widgets/balun_button.dart';
-import '../../../widgets/balun_image.dart';
+import '../../../../theme/theme.dart';
+import '../../../../widgets/balun_button.dart';
+import 'balun_image.dart';
 
 class SettingsListTile extends StatelessWidget {
   final String icon;
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final Function()? onPressed;
 
   const SettingsListTile({
     required this.icon,
     required this.title,
-    required this.subtitle,
-    required this.onPressed,
+    this.subtitle,
+    this.onPressed,
   });
 
   @override
@@ -51,7 +51,7 @@ class SettingsListTile extends StatelessWidget {
           ///
           /// TEXT
           ///
-          Flexible(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -66,10 +66,11 @@ class SettingsListTile extends StatelessWidget {
                 ///
                 /// SUBTITLE
                 ///
-                Text(
-                  subtitle,
-                  style: context.textStyles.labelMediumMuted,
-                ),
+                if (subtitle?.isNotEmpty ?? false)
+                  Text(
+                    subtitle!,
+                    style: context.textStyles.labelMediumMuted,
+                  ),
               ],
             ),
           ),

@@ -9,7 +9,7 @@ import '../../../util/dependencies.dart';
 import '../../../util/language.dart';
 import '../../../util/snackbars.dart';
 import '../../../util/theme.dart';
-import 'settings_list_tile.dart';
+import '../../../widgets/settings_list_tile.dart';
 
 class SettingsContent extends StatelessWidget {
   @override
@@ -18,11 +18,7 @@ class SettingsContent extends StatelessWidget {
     physics: const BouncingScrollPhysics(),
     children: [
       SettingsListTile(
-        onPressed: () => showSnackbar(
-          context,
-          icon: BalunIcons.workInProgress,
-          text: 'workInProgress'.tr(),
-        ),
+        onPressed: () => openNotifications(context),
         icon: BalunIcons.notifications,
         title: 'settingsNotificationsSectionTitle'.tr(),
         subtitle: 'settingsNotificationsSectionSubtitle'.tr(),

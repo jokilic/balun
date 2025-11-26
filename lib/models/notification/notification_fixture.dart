@@ -2,7 +2,7 @@ import 'package:hive_ce/hive.dart';
 
 part 'notification_fixture.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 4)
 class NotificationFixture {
   @HiveField(0)
   final int? fixtureId;

@@ -8,10 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hive_ce/hive.dart';
 
-import '../main.dart';
 import '../models/fixtures/fixture_response.dart';
 import '../models/notification/notification_fixture.dart';
-import '../theme/icons.dart';
 import '../util/date_time.dart';
 import '../util/dependencies.dart';
 import '../util/localization.dart';
@@ -44,10 +42,10 @@ class NotificationService {
   ///
 
   Future<void> init() async {
-    final useNotifications = hive.getUseNotifications();
+    final notificationSettings = hive.getNotificationSettings();
 
     /// Notifications are not initialized & they are enabled in settings
-    if (flutterLocalNotificationsPlugin == null && useNotifications) {
+    if (flutterLocalNotificationsPlugin == null && (notificationSettings.showLeagueNotifications || notificationSettings.showTeamNotifications)) {
       flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
       await initializeNotifications();
       await requestNotificationPermissions();
@@ -274,7 +272,7 @@ class NotificationService {
 
     const iOSDetails = DarwinNotificationDetails();
 
-    await notificationsPlugin.show(
+    await flutterLocalNotificationsPlugin?.show(
       1000, // fixed id for "summary" notification
       count == 1 ? 'Match update' : '$count match updates',
       lines.first, // short body; full list is in expanded view on Android
@@ -373,61 +371,6 @@ class NotificationService {
     }
   }
 
-  /// Shows a notification
-  Future<void> showNotification({
-    required String title,
-    required String text,
-    required NotificationType notificationType,
-  }) async {
-    try {
-      final bigTextStyleInformation = BigTextStyleInformation(
-        text,
-        contentTitle: title,
-        htmlFormatBigText: true,
-        htmlFormatContent: true,
-      );
-
-      final androidNotificationDetails = AndroidNotificationDetails(
-        'balun_channel_id',
-        'Balun notifications',
-        channelDescription: 'Notifications shown by the Balun app',
-        styleInformation: bigTextStyleInformation,
-        importance: Importance.max,
-        priority: Priority.high,
-        ticker: 'ticker',
-      );
-
-      const iosNotificationDetails = DarwinNotificationDetails(
-        categoryIdentifier: 'balun_category_id',
-      );
-
-      const macOSNotificationDetails = DarwinNotificationDetails(
-        categoryIdentifier: 'balun_category_id',
-      );
-
-      final notificationDetails = NotificationDetails(
-        android: androidNotificationDetails,
-        iOS: iosNotificationDetails,
-        macOS: macOSNotificationDetails,
-      );
-
-      final payload = NotificationPayload(
-        notificationType: notificationType,
-      ).toJson();
-
-      await flutterLocalNotificationsPlugin?.show(
-        notificationType.index,
-        title,
-        text,
-        notificationDetails,
-        payload: payload,
-      );
-    } catch (e) {
-      final error = 'ShowNotification -> catch -> $e';
-      logger.e(error);
-    }
-  }
-
   /// Shows a test notification
   Future<void> testNotification() async {
     try {
@@ -442,11 +385,11 @@ class NotificationService {
 
       if (permissionsGranted) {
         /// Show notification
-        await showNotification(
-          title: 'testNotificationTitle'.tr(),
-          text: getRandomWeatherJoke(),
-          notificationType: NotificationType.test,
-        );
+        // await showNotification(
+        //   title: 'testNotificationTitle'.tr(),
+        //   text: getRandomWeatherJoke(),
+        //   notificationType: NotificationType.test,
+        // );
       }
     } catch (e) {
       final error = 'TestNotification -> catch -> $e';
@@ -463,69 +406,69 @@ class NotificationService {
 
   /// Triggered when user presses a notification
   Future<void> handlePressedNotification({required String? payload}) async {
-    try {
-      final context = navigatorKey.currentState?.context;
+    // try {
+    //   final context = navigatorKey.currentState?.context;
 
-      if (payload != null && context != null) {
-        /// Parse to `NotificationPayload`
-        final notificationPayload = NotificationPayload.fromJson(payload);
+    //   if (payload != null && context != null) {
+    //     /// Parse to `NotificationPayload`
+    //     final notificationPayload = NotificationPayload.fromJson(payload);
 
-        /// Navigate to base route
-        Navigator.of(context).popUntil((route) => route.isFirst);
+    //     /// Navigate to base route
+    //     Navigator.of(context).popUntil((route) => route.isFirst);
 
-        switch (notificationPayload.notificationType) {
-          ///
-          /// Hourly notification
-          ///
-          case NotificationType.hourly:
-            if (notificationPayload.location != null) {
-              /// Get location index
-              final locationIndex = ref.read(hiveProvider).indexOf(notificationPayload.location!);
+    //     switch (notificationPayload.notificationType) {
+    //       ///
+    //       /// Hourly notification
+    //       ///
+    //       case NotificationType.hourly:
+    //         if (notificationPayload.location != null) {
+    //           /// Get location index
+    //           final locationIndex = ref.read(hiveProvider).indexOf(notificationPayload.location!);
 
-              /// Go to `CardsScreen` with proper location
-              ref.read(cardMovingProvider.notifier).moving = false;
-              ref.read(cardIndexProvider.notifier).currentIndex = locationIndex;
-              if (ref.read(cardAdditionalControllerProvider).hasClients) {
-                ref.read(cardAdditionalControllerProvider).jumpTo(0);
-              }
-              await ref.read(navigationBarIndexProvider.notifier).changeNavigationBarIndex(NavigationBarItems.cards.index);
-              await Future.delayed(PromajaDurations.cardsSwiperNotificationDelay);
-              for (var i = 0; i < locationIndex; i++) {
-                ref.read(cardsSwiperControllerProvider).swipe(CardSwiperDirection.right);
-                await Future.delayed(PromajaDurations.cardSwiperAnimation);
-              }
-            }
+    //           /// Go to `CardsScreen` with proper location
+    //           ref.read(cardMovingProvider.notifier).moving = false;
+    //           ref.read(cardIndexProvider.notifier).currentIndex = locationIndex;
+    //           if (ref.read(cardAdditionalControllerProvider).hasClients) {
+    //             ref.read(cardAdditionalControllerProvider).jumpTo(0);
+    //           }
+    //           await ref.read(navigationBarIndexProvider.notifier).changeNavigationBarIndex(NavigationBarItems.cards.index);
+    //           await Future.delayed(PromajaDurations.cardsSwiperNotificationDelay);
+    //           for (var i = 0; i < locationIndex; i++) {
+    //             ref.read(cardsSwiperControllerProvider).swipe(CardSwiperDirection.right);
+    //             await Future.delayed(PromajaDurations.cardSwiperAnimation);
+    //           }
+    //         }
 
-          ///
-          /// Morning / evening notification
-          ///
-          case NotificationType.morning:
-          case NotificationType.evening:
-            if (notificationPayload.location != null) {
-              /// Get location index
-              final locationIndex = ref.read(hiveProvider).indexOf(notificationPayload.location!);
+    //       ///
+    //       /// Morning / evening notification
+    //       ///
+    //       case NotificationType.morning:
+    //       case NotificationType.evening:
+    //         if (notificationPayload.location != null) {
+    //           /// Get location index
+    //           final locationIndex = ref.read(hiveProvider).indexOf(notificationPayload.location!);
 
-              /// Go to `ForecastScreen` with proper location
-              await ref.read(hiveProvider.notifier).addActiveLocationIndexToBox(index: locationIndex);
-              await ref.read(navigationBarIndexProvider.notifier).changeNavigationBarIndex(NavigationBarItems.weather.index);
-            }
+    //           /// Go to `ForecastScreen` with proper location
+    //           await ref.read(hiveProvider.notifier).addActiveLocationIndexToBox(index: locationIndex);
+    //           await ref.read(navigationBarIndexProvider.notifier).changeNavigationBarIndex(NavigationBarItems.weather.index);
+    //         }
 
-          ///
-          /// Test notification
-          ///
-          case NotificationType.test:
-            logger.f('Hello testy test');
-        }
-      }
-      /// Payload or context is null
-      else {
-        const error = 'HandlePressedNotification -> Payload or context is null';
-        logger.e(error);
-      }
-    } catch (e) {
-      final error = 'HandlePressedNotification -> catch -> $e';
-      logger.e(error);
-    }
+    //       ///
+    //       /// Test notification
+    //       ///
+    //       case NotificationType.test:
+    //         logger.f('Hello testy test');
+    //     }
+    //   }
+    //   /// Payload or context is null
+    //   else {
+    //     const error = 'HandlePressedNotification -> Payload or context is null';
+    //     logger.e(error);
+    //   }
+    // } catch (e) {
+    //   final error = 'HandlePressedNotification -> catch -> $e';
+    //   logger.e(error);
+    // }
   }
 
   /// Triggered when the user taps the notification

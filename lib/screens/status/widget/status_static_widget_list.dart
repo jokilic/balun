@@ -65,25 +65,31 @@ List<Widget> getStatusStaticWidgetList(BuildContext context) => [
     ),
   ),
   const SizedBox(height: 28),
-  Text.rich(
-    TextSpan(
-      text: 'statusNotPossible'.tr(),
-      children: [
-        TextSpan(
-          text: 'API-Football',
-          style: context.textStyles.bodyMdBold,
-        ),
-        const TextSpan(
-          text: '.',
-        ),
-      ],
+  Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 16),
+    child: Text.rich(
+      TextSpan(
+        text: 'statusNotPossible'.tr(),
+        children: [
+          TextSpan(
+            text: 'API-Football',
+            style: context.textStyles.bodyMdBold,
+          ),
+          const TextSpan(
+            text: '.',
+          ),
+        ],
+      ),
+      style: context.textStyles.bodyMdLight,
     ),
-    style: context.textStyles.bodyMdLight,
   ),
   const SizedBox(height: 12),
-  Text(
-    'statusDataUsedToShow'.tr(),
-    style: context.textStyles.bodyMdLight,
+  Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 16),
+    child: Text(
+      'statusDataUsedToShow'.tr(),
+      style: context.textStyles.bodyMdLight,
+    ),
   ),
   const SizedBox(height: 20),
 ];

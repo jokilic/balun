@@ -5,6 +5,7 @@ import '../constants.dart';
 import '../hive_registrar.g.dart';
 import '../models/leagues/league/league.dart';
 import '../models/notification/notification_fixture.dart';
+import '../models/notification/notification_settings.dart';
 import '../models/teams/team/team.dart';
 import '../models/theme/theme_model.dart';
 import '../util/path.dart';
@@ -22,7 +23,7 @@ class HiveService implements Disposable {
   ///
 
   late final Box<bool> firstStart;
-  late final Box<bool> useNotifications;
+  late final Box<NotificationSettings> notificationSettings;
   late final Box<ThemeModel> balunTheme;
 
   late final Box<League> leagues;
@@ -42,10 +43,12 @@ class HiveService implements Disposable {
       ..registerAdapters();
 
     firstStart = await Hive.openBox<bool>('firstStartBox');
-    firstStart = await Hive.openBox<bool>('useNotificationsBox');
+    notificationSettings = await Hive.openBox<NotificationSettings>('notificationSettingsBox');
     balunTheme = await Hive.openBox<ThemeModel>('balunThemeBox');
+
     leagues = await Hive.openBox<League>('leaguesBox');
     teams = await Hive.openBox<Team>('teamsBox');
+
     notificationFixtures = await Hive.openBox<NotificationFixture>('notificationFixturesBox');
 
     if (firstStart.values.isEmpty) {
@@ -61,7 +64,7 @@ class HiveService implements Disposable {
   @override
   Future<void> onDispose() async {
     await firstStart.close();
-    await useNotifications.close();
+    await notificationSettings.close();
     await balunTheme.close();
     await leagues.close();
     await teams.close();
@@ -76,7 +79,12 @@ class HiveService implements Disposable {
 
   BalunThemeEnum? getBalunTheme() => balunTheme.values.toList().firstOrNull?.balunThemeEnum;
 
-  bool getUseNotifications() => useNotifications.values.toList().firstOrNull ?? false;
+  NotificationSettings getNotificationSettings() =>
+      notificationSettings.values.toList().firstOrNull ??
+      NotificationSettings(
+        showLeagueNotifications: false,
+        showTeamNotifications: false,
+      );
 
   Future<void> writeBalunTheme(BalunThemeEnum? newBalunThemeEnum) async {
     await balunTheme.clear();
@@ -94,9 +102,9 @@ class HiveService implements Disposable {
     await firstStart.put(0, false);
   }
 
-  Future<void> writeUseNotifications(bool value) async {
-    await useNotifications.clear();
-    await useNotifications.put(0, value);
+  Future<void> writeNotificationSettings(NotificationSettings newSettings) async {
+    await notificationSettings.clear();
+    await notificationSettings.put(0, newSettings);
   }
 
   Future<void> writeLeagues(List<League> passedLeagues) async {

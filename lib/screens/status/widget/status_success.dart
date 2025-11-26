@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../models/status/status_inner_response.dart';
 import '../../../theme/icons.dart';
-import 'status_list_tile.dart';
+import '../../../widgets/settings_list_tile.dart';
 import 'status_static_widget_list.dart';
 
 class StatusSuccess extends StatelessWidget {
@@ -15,7 +15,7 @@ class StatusSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView(
-    padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+    padding: const EdgeInsets.only(top: 8, bottom: 24),
     physics: const BouncingScrollPhysics(),
     children: [
       ...getStatusStaticWidgetList(context),
@@ -23,7 +23,7 @@ class StatusSuccess extends StatelessWidget {
       ///
       /// ACCOUNT
       ///
-      StatusListTile(
+      SettingsListTile(
         icon: BalunIcons.account,
         title: '${status.account?.firstName} ${status.account?.lastName}',
         subtitle: status.account?.email ?? '--',
@@ -32,7 +32,7 @@ class StatusSuccess extends StatelessWidget {
       ///
       /// SUBSCRIPTION
       ///
-      StatusListTile(
+      SettingsListTile(
         icon: BalunIcons.subscription,
         title: (status.subscription?.active ?? false) ? '${status.subscription?.plan} ${'statusSubscription'.tr()}' : 'statusSubscriptionNotActive'.tr(),
         subtitle: status.subscription?.end != null
@@ -46,7 +46,7 @@ class StatusSuccess extends StatelessWidget {
       ///
       /// REQUESTS
       ///
-      StatusListTile(
+      SettingsListTile(
         icon: BalunIcons.requests,
         title: 'statusRequests'.tr(),
         subtitle: '${status.requests?.current} / ${status.requests?.limitDay}',

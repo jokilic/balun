@@ -177,6 +177,10 @@ class AboutContent extends StatelessWidget {
         ],
       ),
       const SizedBox(height: 28),
+
+      ///
+      /// TEXT
+      ///
       Text.rich(
         TextSpan(
           text: 'settingsAboutMyName'.tr(),
@@ -227,7 +231,11 @@ class AboutContent extends StatelessWidget {
         'settingsAboutWorkWhenTime'.tr(),
         style: context.textStyles.bodyMdLight,
       ),
-      const SizedBox(height: 20),
+      const SizedBox(height: 24),
+
+      ///
+      /// APP LOGO & VERSION
+      ///
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -8,7 +8,7 @@ part of 'notification_fixture.dart';
 
 class NotificationFixtureAdapter extends TypeAdapter<NotificationFixture> {
   @override
-  final typeId = 0;
+  final typeId = 4;
 
   @override
   NotificationFixture read(BinaryReader reader) {

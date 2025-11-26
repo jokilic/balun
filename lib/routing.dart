@@ -8,12 +8,21 @@ import 'screens/fixtures/fixtures_screen.dart';
 import 'screens/league/league_screen.dart';
 import 'screens/leagues/leagues_screen.dart';
 import 'screens/match/match_screen.dart';
+import 'screens/notifications/notifications_screen.dart';
 import 'screens/player/player_screen.dart';
 import 'screens/search/search_screen.dart';
 import 'screens/settings/settings_screen.dart';
 import 'screens/status/status_screen.dart';
 import 'screens/team/team_screen.dart';
 import 'util/navigation.dart';
+
+/// Opens [NotificationsScreen]
+void openNotifications(BuildContext context) => pushScreen(
+  const NotificationsScreen(
+    key: ValueKey('notifications'),
+  ),
+  context: context,
+);
 
 /// Opens [StatusScreen]
 void openStatus(BuildContext context) => pushScreen(
