@@ -6,12 +6,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:hive_ce/hive.dart';
 
 import '../main.dart';
+import '../models/fixtures/fixture_response.dart';
+import '../models/notification/notification_fixture.dart';
 import '../theme/icons.dart';
+import '../util/date_time.dart';
+import '../util/dependencies.dart';
+import '../util/localization.dart';
+import '../util/string.dart';
 import 'api_service.dart';
 import 'hive_service.dart';
+import 'league_storage_service.dart';
 import 'logger_service.dart';
+import 'team_storage_service.dart';
 
 class NotificationService {
   final LoggerService logger;
@@ -35,11 +44,10 @@ class NotificationService {
   ///
 
   Future<void> init() async {
-    final settings = hive.getPromajaSettingsFromBox();
+    final useNotifications = hive.getUseNotifications();
 
     /// Notifications are not initialized & they are enabled in settings
-    if (flutterLocalNotificationsPlugin == null &&
-        (settings.notification.hourlyNotification || settings.notification.morningNotification || settings.notification.eveningNotification)) {
+    if (flutterLocalNotificationsPlugin == null && useNotifications) {
       flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
       await initializeNotifications();
       await requestNotificationPermissions();
@@ -49,6 +57,233 @@ class NotificationService {
   ///
   /// METHODS
   ///
+
+  /// Calls API & fetches fixtures from today
+  Future<List<FixtureResponse>?> fetchTodayFixtures({required DateTime currentDate}) async {
+    /// Call API
+    final response = await api.getFixturesFromDate(
+      dateString: getDateForBackend(currentDate),
+    );
+
+    /// Successful request
+    if (response.fixturesResponse != null && response.error == null) {
+      /// Errors exist, return null
+      if (response.fixturesResponse!.errors?.isNotEmpty ?? false) {
+        return null;
+      }
+      /// Response is not null, update to success state
+      else if (response.fixturesResponse!.response?.isNotEmpty ?? false) {
+        return response.fixturesResponse!.response!;
+      }
+      /// Response is null, return null
+      else {
+        return null;
+      }
+    }
+
+    /// Failed request
+    if (response.fixturesResponse == null && response.error != null) {
+      /// Error is not null, return null
+      return null;
+    }
+
+    return null;
+  }
+
+  /// Fetches today's fixtures and generates notification data
+  Future<void> fetchFixturesAndNotify() async {
+    /// Generate hours where notifications should run
+    const startHour = 15;
+    const endHour = 23;
+
+    /// Generate `currentDate` in a format suitable for backend
+    final now = DateTime.now();
+    final currentDate = DateTime(now.year, now.month, now.day);
+
+    /// Do logic if within nightly timeframe
+    if (now.hour >= startHour && now.hour <= endHour) {
+      /// Get today fixtures
+      final todayFixtures = await fetchTodayFixtures(
+        currentDate: currentDate,
+      );
+
+      /// Fixtures fetched successfully, continue
+      if (todayFixtures?.isNotEmpty ?? false) {
+        // TODO: Perhaps pass favorited values
+        /// Get favorite leagues & teams
+        final favoriteLeagues = getIt.get<LeagueStorageService>().value;
+        final favoriteTeams = getIt.get<TeamStorageService>().value;
+
+        /// Get favorite leagues & teams `IDs`
+        final favoriteLeagueIds = favoriteLeagues.map((league) => league.id).toList();
+        final favoriteTeamsIds = favoriteTeams.map((team) => team.id).toList();
+
+        /// Get fixtures which contain favorited leagues & teams
+        final monitoredFixtures = todayFixtures!.where((fixture) {
+          final inFavLeague = favoriteLeagueIds.contains(fixture.league?.id);
+          final hasFavTeam = favoriteTeamsIds.contains(fixture.teams?.home?.id) || favoriteTeamsIds.contains(fixture.teams?.away?.id);
+
+          return inFavLeague || hasFavTeam;
+        }).toList();
+
+        /// Get box of [NotificationFixtures] from [Hive]
+        final hiveNotificationFixturesBox = Hive.box<NotificationFixture>('notificationFixturesBox');
+
+        /// Collect all changes here
+        final changeLines = <String>[];
+
+        for (final fixture in monitoredFixtures) {
+          /// Get `fixtureId` and value from [Hive] if exists
+          final fixtureId = fixture.fixture?.id;
+          final prev = hiveNotificationFixturesBox.get(fixtureId);
+
+          /// Store current state of goals
+          final currentHomeGoals = fixture.goals?.home;
+          final currentAwayGoals = fixture.goals?.away;
+
+          /// Store current fixture status
+          final statusShort = fixture.fixture?.status?.short;
+
+          /// Calculate total goals now and before
+          final totalGoals = (currentHomeGoals ?? 0) + (currentAwayGoals ?? 0);
+          final prevTotalGoals = (prev?.homeGoals ?? 0) + (prev?.awayGoals ?? 0);
+
+          /// Check if a goal happened
+          final wasGoal =
+              prev != null &&
+              totalGoals > prevTotalGoals &&
+              isMatchPlaying(
+                statusShort: statusShort ?? '--',
+              );
+
+          /// Check if half-time happened
+          final isHalfTime = statusShort == 'HT' && (prev == null || prev.statusShort != 'HT') && !(prev?.halfTimeNotified ?? false);
+
+          /// Check if extra-time happened
+          final isExtraTime = statusShort == 'ET' && (prev == null || prev.statusShort != 'ET') && !(prev?.extraTimeNotified ?? false);
+
+          /// Check if penalties happened
+          final isPenalties = statusShort == 'P' && (prev == null || prev.statusShort != 'P') && !(prev?.penaltiesNotified ?? false);
+
+          /// Check if full-time happened
+          final isFullTime =
+              isMatchFinished(
+                statusShort: statusShort ?? '--',
+              ) &&
+              (prev == null ||
+                  !isMatchFinished(
+                    statusShort: prev.statusShort ?? '--',
+                  )) &&
+              !(prev?.fullTimeNotified ?? false);
+
+          /// Store team names
+          final homeTeamName = fixture.teams?.home?.name;
+          final awayTeamName = fixture.teams?.away?.name;
+
+          /// Build line for goal notification
+          if (wasGoal && totalGoals > (prev.lastNotifiedTotalGoals ?? 0)) {
+            changeLines.add(
+              '⚽️ Goal! $homeTeamName $currentHomeGoals - '
+              '$currentAwayGoals $awayTeamName ($statusShort)',
+            );
+          }
+
+          /// Build line for half-time notification
+          if (isHalfTime) {
+            changeLines.add(
+              '⏱️ Half time! $homeTeamName $currentHomeGoals - '
+              '$currentAwayGoals $awayTeamName',
+            );
+          }
+
+          /// Build line for extra-time notification
+          if (isExtraTime) {
+            changeLines.add(
+              '⏱️ Extra time! $homeTeamName $currentHomeGoals - '
+              '$currentAwayGoals $awayTeamName',
+            );
+          }
+
+          /// Build line for penalties notification
+          if (isPenalties) {
+            changeLines.add(
+              '⏱️ Penalties! $homeTeamName $currentHomeGoals - '
+              '$currentAwayGoals $awayTeamName',
+            );
+          }
+
+          /// Build line for full-time notification
+          if (isFullTime) {
+            changeLines.add(
+              '⏱️ Full time! $homeTeamName $currentHomeGoals - '
+              '$currentAwayGoals $awayTeamName',
+            );
+          }
+
+          /// Save fixture snapshot to [Hive]
+          await hiveNotificationFixturesBox.put(
+            fixtureId,
+            NotificationFixture(
+              fixtureId: fixtureId,
+              homeName: homeTeamName,
+              awayName: awayTeamName,
+              homeGoals: currentHomeGoals,
+              awayGoals: currentAwayGoals,
+              statusShort: statusShort,
+              halfTimeNotified: isHalfTime || (prev?.halfTimeNotified ?? false),
+              extraTimeNotified: isExtraTime || (prev?.extraTimeNotified ?? false),
+              penaltiesNotified: isPenalties || (prev?.penaltiesNotified ?? false),
+              fullTimeNotified: isFullTime || (prev?.fullTimeNotified ?? false),
+              lastNotifiedTotalGoals: wasGoal ? totalGoals : (prev?.lastNotifiedTotalGoals ?? totalGoals),
+            ),
+          );
+        }
+
+        /// Cleanup old fixture snapshots (yesterday and earlier)
+        final currentFixtureIds = monitoredFixtures.map((fixture) => fixture.fixture?.id).toSet();
+
+        for (final key in hiveNotificationFixturesBox.keys.toList()) {
+          if (!currentFixtureIds.contains(key)) {
+            await hiveNotificationFixturesBox.delete(key);
+          }
+        }
+
+        /// Send one grouped notification if there are changes
+        if (changeLines.isNotEmpty) {
+          await showFixturesNotification(changeLines);
+        }
+      }
+    }
+  }
+
+  Future<void> showFixturesNotification(List<String> lines) async {
+    final count = lines.length;
+
+    final androidDetails = AndroidNotificationDetails(
+      'match_updates_channel',
+      'Match updates',
+      channelDescription: 'Goals, HT and FT for your favorites',
+      importance: Importance.max,
+      priority: Priority.high,
+      styleInformation: InboxStyleInformation(
+        lines,
+        contentTitle: '$count updates in your favorites',
+        summaryText: 'Tap to open app',
+      ),
+    );
+
+    const iOSDetails = DarwinNotificationDetails();
+
+    await notificationsPlugin.show(
+      1000, // fixed id for "summary" notification
+      count == 1 ? 'Match update' : '$count match updates',
+      lines.first, // short body; full list is in expanded view on Android
+      NotificationDetails(
+        android: androidDetails,
+        iOS: iOSDetails,
+      ),
+    );
+  }
 
   /// Initializes [FlutterLocalNotifications] plugin
   Future<bool> initializeNotifications() async {
@@ -138,16 +373,6 @@ class NotificationService {
     }
   }
 
-  /// Cancels all notifications
-  Future<void> cancelNotifications() async {
-    try {
-      await flutterLocalNotificationsPlugin?.cancelAll();
-    } catch (e) {
-      final error = 'CancelNotifications -> catch -> $e';
-      logger.e(error);
-    }
-  }
-
   /// Shows a notification
   Future<void> showNotification({
     required String title,
@@ -234,276 +459,6 @@ class NotificationService {
     final random = Random();
     final index = random.nextInt(50);
     return 'weatherJoke${index + 1}'.tr();
-  }
-
-  /// Handles notification logic, depending on `NotificationSettings`
-  Future<void> handleNotifications() async {
-    try {
-      final settings = hive.getPromajaSettingsFromBox();
-
-      final location = settings.notification.location;
-
-      /// Location exists
-      if (location != null) {
-        ///
-        /// Hourly notification is active, fetch current weather and show it
-        ///
-        if (settings.notification.hourlyNotification) {
-          /// Fetch current weather
-          final currentWeather = await api.fetchCurrentWeather(
-            location: location,
-          );
-
-          /// Current weather is successfully fetched
-          if (currentWeather != null) {
-            await triggerHourlyNotification(
-              currentWeather: currentWeather,
-              showCelsius: settings.unit.temperature == TemperatureUnit.celsius,
-              location: location,
-            );
-          }
-        }
-
-        ///
-        /// Morning notification is active
-        ///
-        if (settings.notification.morningNotification) {
-          /// Check if notification should be triggered
-          final shouldShowNotification = shouldTriggerNotification(
-            isEveningNotification: false,
-          );
-
-          /// Notification should be shown
-          if (shouldShowNotification) {
-            /// Fetch today's forecast
-            final forecastWeather = await api.fetchForecastWeather(
-              location: location,
-              isTomorrow: false,
-            );
-
-            /// Forecast weather is successfully fetched
-            if (forecastWeather != null) {
-              /// Show notification
-              await triggerForecastNotification(
-                forecastWeather: forecastWeather,
-                showCelsius: settings.unit.temperature == TemperatureUnit.celsius,
-                isEvening: false,
-                location: location,
-              );
-
-              /// Store new value of `NotificationLastShown` in [Hive]
-              final oldNotificationLastShown = hive.getNotificationLastShownFromBox();
-
-              final newNotificationLastShown = NotificationLastShown(
-                morningNotificationLastShown: DateTime.now(),
-                eveningNotificationLastShown: oldNotificationLastShown?.eveningNotificationLastShown ?? DateTime.fromMillisecondsSinceEpoch(0),
-              );
-
-              await hive.addNotificationLastShownToBox(
-                notificationLastShown: newNotificationLastShown,
-              );
-            }
-          }
-        }
-
-        ///
-        /// Evening notification is active
-        ///
-        if (settings.notification.eveningNotification) {
-          /// Check if notification should be triggered
-          final shouldShowNotification = shouldTriggerNotification(
-            isEveningNotification: true,
-          );
-
-          /// Notification should be shown
-          if (shouldShowNotification) {
-            /// Fetch tomorrow's forecast
-            final forecastWeather = await api.fetchForecastWeather(
-              location: location,
-              isTomorrow: true,
-            );
-
-            /// Forecast weather is successfully fetched
-            if (forecastWeather != null) {
-              /// Show notification
-              await triggerForecastNotification(
-                forecastWeather: forecastWeather,
-                showCelsius: settings.unit.temperature == TemperatureUnit.celsius,
-                isEvening: true,
-                location: location,
-              );
-
-              /// Store new value of `NotificationLastShown` in [Hive]
-              final oldNotificationLastShown = hive.getNotificationLastShownFromBox();
-
-              final newNotificationLastShown = NotificationLastShown(
-                morningNotificationLastShown: oldNotificationLastShown?.morningNotificationLastShown ?? DateTime.fromMillisecondsSinceEpoch(0),
-                eveningNotificationLastShown: DateTime.now(),
-              );
-
-              await hive.addNotificationLastShownToBox(
-                notificationLastShown: newNotificationLastShown,
-              );
-            }
-          }
-        }
-      }
-      /// Location doesn't exist
-      else {
-        const error = 'HandleNotifications -> Location is null';
-        logger.e(error);
-      }
-    } catch (e) {
-      final error = 'HandleNotifications -> catch -> $e';
-      logger.e(error);
-    }
-  }
-
-  /// Triggers hourly notification with proper data
-  Future<void> triggerHourlyNotification({
-    required ResponseCurrentWeather currentWeather,
-    required bool showCelsius,
-    required Location location,
-  }) async {
-    try {
-      /// Store relevant values in variables
-      final locationName = currentWeather.location.name;
-
-      final temp = showCelsius ? '${currentWeather.current.tempC.round()}°C' : '${currentWeather.current.tempF.round()}°F';
-
-      final weatherDescription = getWeatherDescription(
-        code: currentWeather.current.condition.code,
-        isDay: currentWeather.current.isDay == 1,
-      );
-
-      final title = 'hourlyNotificationTitle'.tr();
-
-      final text = 'hourlyNotificationText'.tr(
-        args: defaultTargetPlatform == TargetPlatform.android
-            ? [
-                '<b>$locationName</b>',
-                '<b>${weatherDescription.toLowerCase()}</b>',
-                '<b>$temp</b>',
-              ]
-            : [
-                locationName,
-                weatherDescription.toLowerCase(),
-                temp,
-              ],
-      );
-
-      await showNotification(
-        title: title,
-        text: text,
-        notificationType: NotificationType.hourly,
-        location: location,
-      );
-    } catch (e) {
-      final error = 'TriggerHourlyNotification -> catch -> $e';
-      logger.e(error);
-    }
-  }
-
-  /// Triggers forecast notification with proper data
-  Future<void> triggerForecastNotification({
-    required ResponseForecastWeather forecastWeather,
-    required bool showCelsius,
-    required bool isEvening,
-    required Location location,
-  }) async {
-    try {
-      /// Store relevant values in variables
-      final locationName = forecastWeather.location.name;
-
-      final time = DateTime.now().add(
-        isEvening ? const Duration(days: 1) : Duration.zero,
-      );
-      final forecast = forecastWeather.forecast.forecastDays
-          .where(
-            (forecastDay) => forecastDay.dateEpoch.year == time.year && forecastDay.dateEpoch.month == time.month && forecastDay.dateEpoch.day == time.day,
-          )
-          .toList()
-          .firstOrNull;
-
-      /// Forecast exists, show it
-      if (forecast != null) {
-        final minTemp = showCelsius ? '${forecast.day.minTempC.round()}°C' : '${forecast.day.minTempF.round()}°F';
-        final maxTemp = showCelsius ? '${forecast.day.maxTempC.round()}°C' : '${forecast.day.maxTempF.round()}°F';
-
-        final weatherDescription = getWeatherDescription(
-          code: forecast.day.condition.code,
-          isDay: true,
-        );
-
-        final title = isEvening ? 'eveningNotificationTitle'.tr() : 'morningNotificationTitle'.tr();
-
-        final text = isEvening
-            ? 'eveningNotificationText'.tr(
-                args: defaultTargetPlatform == TargetPlatform.android
-                    ? [
-                        '<b>$locationName</b>',
-                        '<b>${weatherDescription.toLowerCase()}</b>',
-                        '<b>$minTemp</b>',
-                        '<b>$maxTemp</b>',
-                      ]
-                    : [
-                        locationName,
-                        weatherDescription.toLowerCase(),
-                        minTemp,
-                        maxTemp,
-                      ],
-              )
-            : 'morningNotificationText'.tr(
-                args: defaultTargetPlatform == TargetPlatform.android
-                    ? [
-                        '<b>$locationName</b>',
-                        '<b>${weatherDescription.toLowerCase()}</b>',
-                        '<b>$minTemp</b>',
-                        '<b>$maxTemp</b>',
-                      ]
-                    : [
-                        locationName,
-                        weatherDescription.toLowerCase(),
-                        minTemp,
-                        maxTemp,
-                      ],
-              );
-
-        await showNotification(
-          title: title,
-          text: text,
-          notificationType: isEvening ? NotificationType.evening : NotificationType.morning,
-          location: location,
-        );
-      }
-    } catch (e) {
-      final error = 'TriggerForecastNotification -> ${isEvening ? 'Evening' : 'Morning'} notification -> catch -> $e';
-      logger.e(error);
-    }
-  }
-
-  /// Checks when last notification was triggered and returns `true` if it's more than 20 hours
-  bool shouldTriggerNotification({required bool isEveningNotification}) {
-    final now = DateTime.now();
-
-    final startHour = isEveningNotification ? 19 : 8;
-    final endHour = isEveningNotification ? 21 : 10;
-
-    /// Notification is triggered between `startHour` & `endHour`
-    if (now.hour >= startHour && now.hour <= endHour) {
-      /// Get [DateTime] when the last notification is triggered
-      final lastShownNotification = hive.getNotificationLastShownFromBox();
-      final lastShownNotificationDateTime =
-          (isEveningNotification ? lastShownNotification?.eveningNotificationLastShown : lastShownNotification?.morningNotificationLastShown) ??
-          DateTime.fromMillisecondsSinceEpoch(0);
-
-      /// Calculate difference between the last notification and current time
-      final difference = now.difference(lastShownNotificationDateTime);
-
-      /// The difference is more than 20 hours, we should trigger the notification
-      return difference.inHours > 20;
-    }
-    return false;
   }
 
   /// Triggered when user presses a notification
@@ -597,13 +552,16 @@ Future<void> onDidReceiveBackgroundNotificationResponse(NotificationResponse not
   await initializeLocalization();
 
   /// Initialize services
-  final initialization = await initializeServices();
+  initializeServices(
+    enableRemoteSettings: !kDebugMode && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS),
+    enablePeriodicFetching: !kDebugMode,
+  );
 
-  if (initialization?.container != null) {
-    await initialization!.container!
-        .read(notificationProvider)
-        .handlePressedNotification(
-          payload: notificationResponse.payload,
-        );
-  }
+  /// Wait for initialization to finish
+  await getIt.allReady();
+
+  /// Handle notification
+  await getIt.get<NotificationService>().handlePressedNotification(
+    payload: notificationResponse.payload,
+  );
 }
