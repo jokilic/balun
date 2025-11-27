@@ -101,7 +101,9 @@ class NotificationService {
     final currentDate = DateTime(now.year, now.month, now.day);
 
     /// Do logic if within nightly timeframe
-    if (now.hour >= startHour && now.hour <= endHour) {
+    // TODO: Reintroduce this
+    // if (now.hour >= startHour && now.hour <= endHour) {
+    if (true) {
       /// Get today fixtures
       final todayFixtures = await fetchTodayFixtures(
         currentDate: currentDate,
@@ -113,6 +115,9 @@ class NotificationService {
         final favoriteLeagues = getIt.get<LeagueStorageService>().value;
         final favoriteTeams = getIt.get<TeamStorageService>().value;
 
+        /// Get notification settings
+        final notificationSettings = hive.getNotificationSettings();
+
         /// Get favorite leagues & teams `IDs`
         final favoriteLeagueIds = favoriteLeagues.map((league) => league.id).toList();
         final favoriteTeamsIds = favoriteTeams.map((team) => team.id).toList();
@@ -122,7 +127,7 @@ class NotificationService {
           final inFavLeague = favoriteLeagueIds.contains(fixture.league?.id);
           final hasFavTeam = favoriteTeamsIds.contains(fixture.teams?.home?.id) || favoriteTeamsIds.contains(fixture.teams?.away?.id);
 
-          return inFavLeague || hasFavTeam;
+          return (notificationSettings.showLeagueNotifications && inFavLeague) || (notificationSettings.showTeamNotifications && hasFavTeam);
         }).toList();
 
         /// Get box of [NotificationFixtures] from [Hive]
@@ -251,6 +256,14 @@ class NotificationService {
         if (changeLines.isNotEmpty) {
           await showFixturesNotification(changeLines);
         }
+
+        /// Show an info notification
+        // TODO: Remove this
+        await showNotification(
+          title: '⚽️ Balun!',
+          text: 'Changes -> ${changeLines.length}',
+          notificationId: 1,
+        );
       }
     }
   }

@@ -29,6 +29,9 @@ class BalunIcons {
   static const account = 'assets/icons/account.webp';
   static const subscription = 'assets/icons/subscription.webp';
   static const requests = 'assets/icons/requests.webp';
+  static const notificationCheckbox = 'assets/icons/notification_checkbox.webp';
+  static const notificationLeague = 'assets/icons/notification_league.webp';
+  static const notificationTeam = 'assets/icons/notification_team.webp';
   static const apiFootball = 'assets/icons/api_football.webp';
   static const workInProgress = 'assets/icons/work_in_progress.webp';
 

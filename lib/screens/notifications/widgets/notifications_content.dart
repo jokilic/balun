@@ -49,9 +49,10 @@ class NotificationsContent extends StatelessWidget {
       ///
       SettingsListTile(
         onPressed: onPressedFavoriteLeagues,
-        icon: BalunIcons.placeholderLeague,
+        icon: BalunIcons.notificationLeague,
         title: 'notificationsFavoriteLeaguesTitle'.tr(),
         subtitle: 'notificationsFavoriteLeaguesSubtitle'.tr(),
+        isActive: notificationsState.showLeagueNotifications,
       ),
 
       ///
@@ -59,9 +60,10 @@ class NotificationsContent extends StatelessWidget {
       ///
       SettingsListTile(
         onPressed: onPressedFavoriteTeams,
-        icon: BalunIcons.placeholderTeam,
+        icon: BalunIcons.notificationTeam,
         title: 'notificationsFavoriteTeamsTitle'.tr(),
         subtitle: 'notificationsFavoriteTeamsSubtitle'.tr(),
+        isActive: notificationsState.showTeamNotifications,
       ),
 
       ///

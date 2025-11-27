@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../theme/theme.dart';
 import '../../../../widgets/balun_button.dart';
+import '../theme/icons.dart';
 import 'balun_image.dart';
 
 class SettingsListTile extends StatelessWidget {
@@ -9,12 +10,14 @@ class SettingsListTile extends StatelessWidget {
   final String title;
   final String? subtitle;
   final Function()? onPressed;
+  final bool? isActive;
 
   const SettingsListTile({
     required this.icon,
     required this.title,
     this.subtitle,
     this.onPressed,
+    this.isActive,
   });
 
   @override
@@ -74,6 +77,24 @@ class SettingsListTile extends StatelessWidget {
               ],
             ),
           ),
+
+          ///
+          /// CHECKBOX
+          ///
+          if (isActive != null)
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: context.colors.primaryBackgroundLight,
+              ),
+              child: BalunImage(
+                imageUrl: BalunIcons.notificationCheckbox,
+                height: 28,
+                width: 28,
+                color: isActive! ? null : context.colors.accent,
+              ),
+            ),
         ],
       ),
     ),
