@@ -67,10 +67,6 @@ class NotificationService {
 
   /// Fetches today's fixtures and generates notification data
   Future<void> fetchFixturesAndNotify() async {
-    /// Generate hours where notifications should run
-    const startHour = 15; // 15:00
-    const endHour = 0; // midnight
-
     /// Generate `currentDate` in a format suitable for backend
     final now = DateTime.now();
     final currentDate = DateTime(now.year, now.month, now.day);
@@ -79,10 +75,10 @@ class NotificationService {
     final hour = now.hour;
 
     /// Do logic if within timeframe
-    final isWithinTimeframe = (startHour <= endHour) ? (hour >= startHour && hour <= endHour) : (hour >= startHour || hour <= endHour);
+    final isInRange = (hour >= 15) || (hour == 0);
 
     /// Currently within timeframe, run logic
-    if (isWithinTimeframe) {
+    if (isInRange) {
       /// Get today fixtures
       final todayFixtures = await fetchTodayFixtures(
         currentDate: currentDate,
