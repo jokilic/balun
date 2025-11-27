@@ -10,6 +10,7 @@ import 'package:hive_ce/hive.dart';
 
 import '../main.dart';
 import '../models/fixtures/fixture_response.dart';
+import '../models/notification/notification_change.dart';
 import '../models/notification/notification_fixture.dart';
 import '../routing.dart';
 import '../util/date_time.dart';
@@ -39,6 +40,12 @@ class NotificationService {
 
   FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
 
+  final groupKey = 'com.josipkilic.balun.fixture_updates';
+  final groupChannelId = 'balun_channel_id';
+  final groupChannelName = 'Balun notifications';
+  final groupChannelDescription = 'Notifications shown by the Balun app';
+  final threadIdentifier = 'fixture_updates_thread';
+
   ///
   /// INIT
   ///
@@ -58,52 +65,25 @@ class NotificationService {
   /// METHODS
   ///
 
-  /// Calls API & fetches fixtures from today
-  Future<List<FixtureResponse>?> fetchTodayFixtures({required DateTime currentDate}) async {
-    /// Call API
-    final response = await api.getFixturesFromDate(
-      dateString: getDateForBackend(currentDate),
-    );
-
-    /// Successful request
-    if (response.fixturesResponse != null && response.error == null) {
-      /// Errors exist, return null
-      if (response.fixturesResponse!.errors?.isNotEmpty ?? false) {
-        return null;
-      }
-      /// Response is not null, update to success state
-      else if (response.fixturesResponse!.response?.isNotEmpty ?? false) {
-        return response.fixturesResponse!.response!;
-      }
-      /// Response is null, return null
-      else {
-        return null;
-      }
-    }
-
-    /// Failed request
-    if (response.fixturesResponse == null && response.error != null) {
-      /// Error is not null, return null
-      return null;
-    }
-
-    return null;
-  }
-
   /// Fetches today's fixtures and generates notification data
   Future<void> fetchFixturesAndNotify() async {
     /// Generate hours where notifications should run
-    const startHour = 15;
-    const endHour = 0;
+    // TODO: Update this to 15
+    const startHour = 12; // 15:00
+    const endHour = 0; // midnight
 
     /// Generate `currentDate` in a format suitable for backend
     final now = DateTime.now();
     final currentDate = DateTime(now.year, now.month, now.day);
 
-    /// Do logic if within nightly timeframe
-    // TODO: Reintroduce this
-    // if (now.hour >= startHour && now.hour <= endHour) {
-    if (true) {
+    /// Store `hour` in a seperate variable
+    final hour = now.hour;
+
+    /// Do logic if within timeframe
+    final isWithinTimeframe = (startHour <= endHour) ? (hour >= startHour && hour <= endHour) : (hour >= startHour || hour <= endHour);
+
+    /// Currently within timeframe, run logic
+    if (isWithinTimeframe) {
       /// Get today fixtures
       final todayFixtures = await fetchTodayFixtures(
         currentDate: currentDate,
@@ -134,7 +114,7 @@ class NotificationService {
         final hiveNotificationFixturesBox = Hive.box<NotificationFixture>('notificationFixturesBox');
 
         /// Collect all changes here
-        final changeLines = <String>[];
+        final changes = <NotificationChange>[];
 
         for (final fixture in monitoredFixtures) {
           /// Get `fixtureId` and value from [Hive] if exists
@@ -184,43 +164,77 @@ class NotificationService {
           final homeTeamName = fixture.teams?.home?.name;
           final awayTeamName = fixture.teams?.away?.name;
 
+          // TODO: Make with bold if Android
+          // TODO: Move this
+          String scoreLine() => '$homeTeamName $currentHomeGoals - $currentAwayGoals $awayTeamName';
+
           /// Build line for goal notification
           if (wasGoal && totalGoals > (prev.lastNotifiedTotalGoals ?? 0)) {
-            changeLines.add(
-              '⚽️ Goal! $homeTeamName $currentHomeGoals - '
-              '$currentAwayGoals $awayTeamName ($statusShort)',
+            changes.add(
+              NotificationChange(
+                fixtureId: fixtureId,
+                type: NotificationChangeType.goal,
+                title: '⚽️ Goal!',
+                body: scoreLine(),
+                summaryLine: '[GOAL] ${scoreLine()}',
+                payload: '$fixtureId',
+              ),
             );
           }
 
           /// Build line for half-time notification
           if (isHalfTime) {
-            changeLines.add(
-              '⏱️ Half time! $homeTeamName $currentHomeGoals - '
-              '$currentAwayGoals $awayTeamName',
+            changes.add(
+              NotificationChange(
+                fixtureId: fixtureId,
+                type: NotificationChangeType.halfTime,
+                title: '⏱️ Half time!',
+                body: scoreLine(),
+                summaryLine: '[HT] ${scoreLine()}',
+                payload: '$fixtureId',
+              ),
             );
           }
 
           /// Build line for extra-time notification
           if (isExtraTime) {
-            changeLines.add(
-              '⏱️ Extra time! $homeTeamName $currentHomeGoals - '
-              '$currentAwayGoals $awayTeamName',
+            changes.add(
+              NotificationChange(
+                fixtureId: fixtureId,
+                type: NotificationChangeType.extraTime,
+                title: '⏱️ Extra time!',
+                body: scoreLine(),
+                summaryLine: '[ET] ${scoreLine()}',
+                payload: '$fixtureId',
+              ),
             );
           }
 
           /// Build line for penalties notification
           if (isPenalties) {
-            changeLines.add(
-              '⏱️ Penalties! $homeTeamName $currentHomeGoals - '
-              '$currentAwayGoals $awayTeamName',
+            changes.add(
+              NotificationChange(
+                fixtureId: fixtureId,
+                type: NotificationChangeType.penalties,
+                title: '⏱️ Penalties!',
+                body: scoreLine(),
+                summaryLine: '[P] ${scoreLine()}',
+                payload: '$fixtureId',
+              ),
             );
           }
 
           /// Build line for full-time notification
           if (isFullTime) {
-            changeLines.add(
-              '⏱️ Full time! $homeTeamName $currentHomeGoals - '
-              '$currentAwayGoals $awayTeamName',
+            changes.add(
+              NotificationChange(
+                fixtureId: fixtureId,
+                type: NotificationChangeType.fullTime,
+                title: '⏱️ Full time!',
+                body: scoreLine(),
+                summaryLine: '[FT] ${scoreLine()}',
+                payload: '$fixtureId',
+              ),
             );
           }
 
@@ -253,46 +267,120 @@ class NotificationService {
         }
 
         /// Send one grouped notification if there are changes
-        if (changeLines.isNotEmpty) {
-          await showFixturesNotification(changeLines);
+        if (changes.isNotEmpty) {
+          await showGroupedFixturesNotifications(changes);
         }
 
         /// Show an info notification
         // TODO: Remove this
         await showNotification(
           title: '⚽️ Balun!',
-          text: 'Changes -> ${changeLines.length}',
+          text: 'Changes -> ${changes.length}',
           notificationId: 1,
         );
       }
     }
   }
 
-  Future<void> showFixturesNotification(List<String> lines) async {
-    final count = lines.length;
-
-    final androidDetails = AndroidNotificationDetails(
-      'match_updates_channel',
-      'Match updates',
-      channelDescription: 'Goals, HT and FT for your favorites',
-      importance: Importance.max,
-      priority: Priority.high,
-      styleInformation: InboxStyleInformation(
-        lines,
-        contentTitle: '$count updates in your favorites',
-        summaryText: 'Tap to open app',
-      ),
+  /// Calls API & fetches fixtures from today
+  Future<List<FixtureResponse>?> fetchTodayFixtures({required DateTime currentDate}) async {
+    /// Call API
+    final response = await api.getFixturesFromDate(
+      dateString: getDateForBackend(currentDate),
     );
 
-    const iOSDetails = DarwinNotificationDetails();
+    /// Successful request
+    if (response.fixturesResponse != null && response.error == null) {
+      /// Errors exist, return null
+      if (response.fixturesResponse!.errors?.isNotEmpty ?? false) {
+        return null;
+      }
+      /// Response is not null, update to success state
+      else if (response.fixturesResponse!.response?.isNotEmpty ?? false) {
+        return response.fixturesResponse!.response!;
+      }
+      /// Response is null, return null
+      else {
+        return null;
+      }
+    }
+
+    /// Failed request
+    if (response.fixturesResponse == null && response.error != null) {
+      /// Error is not null, return null
+      return null;
+    }
+
+    return null;
+  }
+
+  Future<void> showGroupedFixturesNotifications(List<NotificationChange> changes) async {
+    /// Individual notifications
+    for (var i = 0; i < changes.length; i++) {
+      final change = changes[i];
+
+      final androidDetails = AndroidNotificationDetails(
+        groupChannelId,
+        groupChannelName,
+        channelDescription: groupChannelDescription,
+        importance: Importance.max,
+        priority: Priority.high,
+        groupKey: groupKey,
+      );
+
+      final iOSDetails = DarwinNotificationDetails(
+        threadIdentifier: threadIdentifier,
+      );
+
+      await flutterLocalNotificationsPlugin?.show(
+        change.fixtureId ?? i,
+        change.title,
+        change.body,
+        NotificationDetails(
+          android: androidDetails,
+          iOS: iOSDetails,
+        ),
+        payload: change.payload,
+      );
+    }
+
+    /// Summary notification
+    final lines = changes.map((c) => c.summaryLine ?? '--').toList();
+    final count = changes.length;
+
+    final inboxStyle = InboxStyleInformation(
+      lines,
+      // TODO: Localize
+      contentTitle: '$count updates in your favourites',
+      summaryText: 'Your favourite matches',
+    );
+
+    final summaryAndroidDetails = AndroidNotificationDetails(
+      groupChannelId,
+      groupChannelName,
+      channelDescription: groupChannelDescription,
+      styleInformation: inboxStyle,
+      groupKey: groupKey,
+      setAsGroupSummary: true,
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+
+    final summaryIOSDetails = DarwinNotificationDetails(
+      threadIdentifier: threadIdentifier,
+    );
+
+    /// Generate notification `id`
+    final id = DateTime.now().millisecondsSinceEpoch % 1000000000;
 
     await flutterLocalNotificationsPlugin?.show(
-      1000, // fixed id for "summary" notification
-      count == 1 ? 'Match update' : '$count match updates',
-      lines.first, // short body; full list is in expanded view on Android
+      id,
+      // TODO: Localize
+      'Match updates',
+      '$count updates in your favourites',
       NotificationDetails(
-        android: androidDetails,
-        iOS: iOSDetails,
+        android: summaryAndroidDetails,
+        iOS: summaryIOSDetails,
       ),
     );
   }
