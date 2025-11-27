@@ -1,4 +1,5 @@
 enum NotificationChangeType {
+  matchStarted,
   goal,
   halfTime,
   extraTime,

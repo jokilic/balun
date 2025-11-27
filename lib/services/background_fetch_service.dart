@@ -55,7 +55,7 @@ class BackgroundFetchService {
     /// Configure [BackgroundFetch]
     await BackgroundFetch.configure(
       BackgroundFetchConfig(
-        minimumFetchInterval: 20,
+        minimumFetchInterval: 15,
         startOnBoot: true,
         stopOnTerminate: false,
         enableHeadless: true,

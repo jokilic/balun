@@ -68,8 +68,7 @@ class NotificationService {
   /// Fetches today's fixtures and generates notification data
   Future<void> fetchFixturesAndNotify() async {
     /// Generate hours where notifications should run
-    // TODO: Update this to 15
-    const startHour = 12; // 15:00
+    const startHour = 15; // 15:00
     const endHour = 0; // midnight
 
     /// Generate `currentDate` in a format suitable for backend
@@ -132,6 +131,16 @@ class NotificationService {
           final totalGoals = (currentHomeGoals ?? 0) + (currentAwayGoals ?? 0);
           final prevTotalGoals = (prev?.homeGoals ?? 0) + (prev?.awayGoals ?? 0);
 
+          /// Check if match just started
+          final hasMatchStarted =
+              prev != null &&
+              isMatchNotStarted(
+                statusShort: prev.statusShort ?? '--',
+              ) &&
+              isMatchPlaying(
+                statusShort: statusShort ?? '--',
+              );
+
           /// Check if a goal happened
           final wasGoal =
               prev != null &&
@@ -164,9 +173,26 @@ class NotificationService {
           final homeTeamName = fixture.teams?.home?.name;
           final awayTeamName = fixture.teams?.away?.name;
 
+          // TODO: Localize all values below & changes values
+
           // TODO: Make with bold if Android
-          // TODO: Move this
+          // TODO: Move this somewhere
           String scoreLine() => '$homeTeamName $currentHomeGoals - $currentAwayGoals $awayTeamName';
+          String fixtureLine() => '$homeTeamName - $awayTeamName';
+
+          /// Build line for match start notification
+          if (hasMatchStarted) {
+            changes.add(
+              NotificationChange(
+                fixtureId: fixtureId,
+                type: NotificationChangeType.matchStarted,
+                title: '⏱️ Match start!',
+                body: fixtureLine(),
+                summaryLine: '[KICKOFF] ${fixtureLine()}',
+                payload: '$fixtureId',
+              ),
+            );
+          }
 
           /// Build line for goal notification
           if (wasGoal && totalGoals > (prev.lastNotifiedTotalGoals ?? 0)) {
@@ -218,7 +244,7 @@ class NotificationService {
                 type: NotificationChangeType.penalties,
                 title: '⏱️ Penalties!',
                 body: scoreLine(),
-                summaryLine: '[P] ${scoreLine()}',
+                summaryLine: '[PEN] ${scoreLine()}',
                 payload: '$fixtureId',
               ),
             );
@@ -275,7 +301,7 @@ class NotificationService {
         // TODO: Remove this
         await showNotification(
           title: '⚽️ Balun!',
-          text: 'Changes -> ${changes.length}',
+          text: '${changes.length} changes in matches',
           notificationId: 1,
         );
       }
@@ -485,11 +511,14 @@ class NotificationService {
       final permissionsGranted = await requestNotificationPermissions();
 
       if (permissionsGranted) {
+        /// Generate notification `id`
+        final id = DateTime.now().millisecondsSinceEpoch % 1000000000;
+
         /// Show notification
         await showNotification(
           title: 'notificationsTestNotificationTitle'.tr(),
           text: getRandomFootballJoke(),
-          notificationId: 0,
+          notificationId: id,
         );
       }
     } catch (e) {
