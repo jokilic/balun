@@ -81,7 +81,8 @@ class SettingsListTile extends StatelessWidget {
           ///
           /// CHECKBOX
           ///
-          if (isActive != null)
+          if (isActive != null) ...[
+            const SizedBox(width: 8),
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
@@ -95,6 +96,7 @@ class SettingsListTile extends StatelessWidget {
                 color: isActive! ? null : context.colors.accent,
               ),
             ),
+          ],
         ],
       ),
     ),
