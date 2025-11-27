@@ -76,8 +76,7 @@ class DioService {
     /// Add interceptors
     ///
 
-    // if (kDebugMode) {
-    if (false) {
+    if (kDebugMode) {
       footballDio.interceptors.add(
         DioLoggerInterceptor(
           logger: logger,

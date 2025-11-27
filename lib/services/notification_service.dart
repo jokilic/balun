@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer' as dev;
 import 'dart:math';
 import 'dart:ui';
 
@@ -9,8 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hive_ce/hive.dart';
 
+import '../main.dart';
 import '../models/fixtures/fixture_response.dart';
 import '../models/notification/notification_fixture.dart';
+import '../routing.dart';
 import '../util/date_time.dart';
 import '../util/dependencies.dart';
 import '../util/localization.dart';
@@ -46,11 +47,11 @@ class NotificationService {
     final notificationSettings = hive.getNotificationSettings();
 
     /// Notifications are not initialized & they are enabled in settings
-    // if (flutterLocalNotificationsPlugin == null && (notificationSettings.showLeagueNotifications || notificationSettings.showTeamNotifications)) {
-    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    await initializeNotifications();
-    await requestNotificationPermissions();
-    // }
+    if (flutterLocalNotificationsPlugin == null && (notificationSettings.showLeagueNotifications || notificationSettings.showTeamNotifications)) {
+      flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+      await initializeNotifications();
+      await requestNotificationPermissions();
+    }
   }
 
   ///
@@ -93,15 +94,14 @@ class NotificationService {
   Future<void> fetchFixturesAndNotify() async {
     /// Generate hours where notifications should run
     const startHour = 15;
-    const endHour = 23;
+    const endHour = 0;
 
     /// Generate `currentDate` in a format suitable for backend
     final now = DateTime.now();
     final currentDate = DateTime(now.year, now.month, now.day);
 
     /// Do logic if within nightly timeframe
-    // if (now.hour >= startHour && now.hour <= endHour) {
-    if (true) {
+    if (now.hour >= startHour && now.hour <= endHour) {
       /// Get today fixtures
       final todayFixtures = await fetchTodayFixtures(
         currentDate: currentDate,
@@ -109,7 +109,6 @@ class NotificationService {
 
       /// Fixtures fetched successfully, continue
       if (todayFixtures?.isNotEmpty ?? false) {
-        // TODO: Perhaps pass favorited values
         /// Get favorite leagues & teams
         final favoriteLeagues = getIt.get<LeagueStorageService>().value;
         final favoriteTeams = getIt.get<TeamStorageService>().value;
@@ -220,12 +219,6 @@ class NotificationService {
             );
           }
 
-          // TODO: Remove this
-          changeLines.add(
-            '⏱️ Full time! $homeTeamName $currentHomeGoals - '
-            '$currentAwayGoals $awayTeamName',
-          );
-
           /// Save fixture snapshot to [Hive]
           await hiveNotificationFixturesBox.put(
             fixtureId,
@@ -265,8 +258,6 @@ class NotificationService {
   Future<void> showFixturesNotification(List<String> lines) async {
     final count = lines.length;
 
-    dev.log('[JOSIP] Count -> $count');
-
     final androidDetails = AndroidNotificationDetails(
       'match_updates_channel',
       'Match updates',
@@ -296,7 +287,6 @@ class NotificationService {
   /// Initializes [FlutterLocalNotifications] plugin
   Future<bool> initializeNotifications() async {
     try {
-      // TODO: Icon
       /// `Android`
       const initializationSettingsAndroid = AndroidInitializationSettings('app_icon');
 
@@ -396,9 +386,9 @@ class NotificationService {
       if (permissionsGranted) {
         /// Show notification
         await showNotification(
-          title: 'testNotificationTitle'.tr(),
+          title: 'notificationsTestNotificationTitle'.tr(),
           text: getRandomFootballJoke(),
-          notificationId: 8,
+          notificationId: 0,
         );
       }
     } catch (e) {
@@ -419,6 +409,7 @@ class NotificationService {
     required String title,
     required String text,
     required int notificationId,
+    String? payload,
   }) async {
     try {
       final bigTextStyleInformation = BigTextStyleInformation(
@@ -457,6 +448,7 @@ class NotificationService {
         title,
         text,
         notificationDetails,
+        payload: payload,
       );
     } catch (e) {
       final error = 'ShowNotification -> catch -> $e';
@@ -466,69 +458,33 @@ class NotificationService {
 
   /// Triggered when user presses a notification
   Future<void> handlePressedNotification({required String? payload}) async {
-    // try {
-    //   final context = navigatorKey.currentState?.context;
+    try {
+      final context = navigatorKey.currentState?.context;
 
-    //   if (payload != null && context != null) {
-    //     /// Parse to `NotificationPayload`
-    //     final notificationPayload = NotificationPayload.fromJson(payload);
+      if (payload != null && context != null) {
+        /// Parse `payload` to `int`
+        final payloadFixtureId = int.tryParse(payload);
 
-    //     /// Navigate to base route
-    //     Navigator.of(context).popUntil((route) => route.isFirst);
+        /// Navigate to base route
+        Navigator.of(context).popUntil((route) => route.isFirst);
 
-    //     switch (notificationPayload.notificationType) {
-    //       ///
-    //       /// Hourly notification
-    //       ///
-    //       case NotificationType.hourly:
-    //         if (notificationPayload.location != null) {
-    //           /// Get location index
-    //           final locationIndex = ref.read(hiveProvider).indexOf(notificationPayload.location!);
-
-    //           /// Go to `CardsScreen` with proper location
-    //           ref.read(cardMovingProvider.notifier).moving = false;
-    //           ref.read(cardIndexProvider.notifier).currentIndex = locationIndex;
-    //           if (ref.read(cardAdditionalControllerProvider).hasClients) {
-    //             ref.read(cardAdditionalControllerProvider).jumpTo(0);
-    //           }
-    //           await ref.read(navigationBarIndexProvider.notifier).changeNavigationBarIndex(NavigationBarItems.cards.index);
-    //           await Future.delayed(PromajaDurations.cardsSwiperNotificationDelay);
-    //           for (var i = 0; i < locationIndex; i++) {
-    //             ref.read(cardsSwiperControllerProvider).swipe(CardSwiperDirection.right);
-    //             await Future.delayed(PromajaDurations.cardSwiperAnimation);
-    //           }
-    //         }
-
-    //       ///
-    //       /// Morning / evening notification
-    //       ///
-    //       case NotificationType.morning:
-    //       case NotificationType.evening:
-    //         if (notificationPayload.location != null) {
-    //           /// Get location index
-    //           final locationIndex = ref.read(hiveProvider).indexOf(notificationPayload.location!);
-
-    //           /// Go to `ForecastScreen` with proper location
-    //           await ref.read(hiveProvider.notifier).addActiveLocationIndexToBox(index: locationIndex);
-    //           await ref.read(navigationBarIndexProvider.notifier).changeNavigationBarIndex(NavigationBarItems.weather.index);
-    //         }
-
-    //       ///
-    //       /// Test notification
-    //       ///
-    //       case NotificationType.test:
-    //         logger.f('Hello testy test');
-    //     }
-    //   }
-    //   /// Payload or context is null
-    //   else {
-    //     const error = 'HandlePressedNotification -> Payload or context is null';
-    //     logger.e(error);
-    //   }
-    // } catch (e) {
-    //   final error = 'HandlePressedNotification -> catch -> $e';
-    //   logger.e(error);
-    // }
+        /// `fixtureId` is parsed properly, open [MatchScreen]
+        if (payloadFixtureId != null) {
+          openMatch(
+            context,
+            matchId: payloadFixtureId,
+          );
+        }
+      }
+      /// Payload or context is null
+      else {
+        const error = 'HandlePressedNotification -> Payload or context is null';
+        logger.e(error);
+      }
+    } catch (e) {
+      final error = 'HandlePressedNotification -> catch -> $e';
+      logger.e(error);
+    }
   }
 
   /// Triggered when the user taps the notification

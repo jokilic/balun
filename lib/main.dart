@@ -10,7 +10,6 @@ import 'package:watch_it/watch_it.dart';
 import 'constants.dart';
 import 'models/theme/theme_model.dart';
 import 'services/balun_screen_service.dart';
-import 'services/notification_service.dart';
 import 'services/theme_service.dart';
 import 'theme/theme.dart';
 import 'util/color.dart';
@@ -20,6 +19,8 @@ import 'util/localization.dart';
 import 'util/theme.dart';
 import 'widgets/balun_loader.dart';
 import 'widgets/balun_navigation_bar.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   /// Initialize Flutter related tasks
@@ -53,9 +54,6 @@ Future<void> main() async {
 
   /// Wait for initialization to finish
   await getIt.allReady();
-
-  // TODO: Remove
-  await getIt.get<NotificationService>().fetchFixturesAndNotify();
 
   /// Run [Balun]
   runApp(BalunApp());
@@ -92,6 +90,7 @@ class BalunWidget extends WatchingWidget {
         systemNavigationBarIconBrightness: isDarkTheme ? Brightness.light : Brightness.dark,
       ),
       child: MaterialApp(
+        navigatorKey: navigatorKey,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

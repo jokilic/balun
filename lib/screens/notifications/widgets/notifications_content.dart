@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/notification/notification_settings.dart';
@@ -29,8 +30,7 @@ class NotificationsContent extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Text(
-          // TODO: Localize
-          'Here you can toggle notifications which get sent to your device as fixtures progress.',
+          'notificationsText1'.tr(),
           style: context.textStyles.bodyMdLight,
         ),
       ),
@@ -38,8 +38,7 @@ class NotificationsContent extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Text(
-          // TODO: Localize
-          'Keep in mind Balun is not using any backend infrastructure and notifications are reliant on the OS allowing the app to wake-up and check for fixture updates.',
+          'notificationsText2'.tr(),
           style: context.textStyles.bodyMdLight,
         ),
       ),
@@ -51,9 +50,8 @@ class NotificationsContent extends StatelessWidget {
       SettingsListTile(
         onPressed: onPressedFavoriteLeagues,
         icon: BalunIcons.placeholderLeague,
-        // TODO: Localize
-        title: 'Favorite leagues',
-        subtitle: 'Notifications for your favorite leagues',
+        title: 'notificationsFavoriteLeaguesTitle'.tr(),
+        subtitle: 'notificationsFavoriteLeaguesSubtitle'.tr(),
       ),
 
       ///
@@ -62,9 +60,8 @@ class NotificationsContent extends StatelessWidget {
       SettingsListTile(
         onPressed: onPressedFavoriteTeams,
         icon: BalunIcons.placeholderTeam,
-        // TODO: Localize
-        title: 'Favorite teams',
-        subtitle: 'Notifications for your favorite teams',
+        title: 'notificationsFavoriteTeamsTitle'.tr(),
+        subtitle: 'notificationsFavoriteTeamsSubtitle'.tr(),
       ),
 
       ///
@@ -73,9 +70,8 @@ class NotificationsContent extends StatelessWidget {
       SettingsListTile(
         onPressed: onPressedTestNotification,
         icon: BalunIcons.notifications,
-        // TODO: Localize
-        title: 'Test notification',
-        subtitle: 'Send a test notification',
+        title: 'notificationsTestNotificationTitle'.tr(),
+        subtitle: 'notificationsTestNotificationSubtitle'.tr(),
       ),
     ],
   );

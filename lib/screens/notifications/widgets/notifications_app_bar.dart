@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/icons.dart';
@@ -50,15 +51,13 @@ class NotificationsAppBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                // TODO: Localize
-                'Notifications',
+                'notificationsAppBarTitle'.tr(),
                 style: context.textStyles.titleLgBold,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                // TODO: Localize
-                'Your notification settings',
+                'notificationsAppBarSubtitle'.tr(),
                 style: context.textStyles.labelMediumMuted,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,

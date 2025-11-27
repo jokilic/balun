@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../constants.dart';
+import '../../services/background_fetch_service.dart';
 import '../../services/hive_service.dart';
 import '../../services/logger_service.dart';
 import '../../services/notification_service.dart';
@@ -30,6 +31,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         logger: getIt.get<LoggerService>(),
         hive: getIt.get<HiveService>(),
         notification: getIt.get<NotificationService>(),
+        backgroundFetch: getIt.get<BackgroundFetchService>(),
       ),
       instanceName: 'notifications',
     );

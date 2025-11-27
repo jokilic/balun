@@ -2,11 +2,14 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:background_fetch/background_fetch.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../util/dependencies.dart';
 import '../util/localization.dart';
 import 'hive_service.dart';
 import 'logger_service.dart';
+import 'notification_service.dart';
 
 class BackgroundFetchService {
   final LoggerService logger;
@@ -23,17 +26,27 @@ class BackgroundFetchService {
 
   Future<void> init() async {
     await initializeHeadlessTask();
-
-    // TODO: Enable or disable depending on Hive value
+    await toggleTask();
   }
 
   ///
   /// METHODS
   ///
 
-  Future<void> startFetching() async => BackgroundFetch.start();
+  /// Toggle task, depending on notifications being active
+  Future<void> toggleTask() async {
+    final notificationSettings = hive.getNotificationSettings();
 
-  Future<void> stopFetching() async => BackgroundFetch.stop();
+    if (notificationSettings.showLeagueNotifications || notificationSettings.showTeamNotifications) {
+      await startTask();
+    } else {
+      await stopTask();
+    }
+  }
+
+  Future<void> startTask() async => BackgroundFetch.start();
+
+  Future<void> stopTask() async => BackgroundFetch.stop();
 
   Future<void> initializeHeadlessTask() async {
     /// Register headless task
@@ -70,13 +83,16 @@ class BackgroundFetchService {
         await initializeLocalization();
 
         /// Initialize services
-        // final initialization = await initializeServices();
+        initializeServices(
+          enableRemoteSettings: !kDebugMode && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS),
+          enablePeriodicFetching: !kDebugMode,
+        );
 
-        /// Everything initialized successfully
-        // if (initialization?.container != null) {
-        //   /// Handle notification logic
-        //   await initialization!.container!.read(notificationProvider).handleNotifications();
-        // }
+        /// Wait for initialization to finish
+        await getIt.allReady();
+
+        /// Fetch fixtures and show notifications
+        await getIt.get<NotificationService>().fetchFixturesAndNotify();
 
         /// Finish task
         await BackgroundFetch.finish(taskId);
@@ -120,13 +136,16 @@ Future<void> backgroundFetchHeadlessTask(HeadlessTask task) async {
   await initializeLocalization();
 
   /// Initialize services
-  // final initialization = await initializeServices();
+  initializeServices(
+    enableRemoteSettings: !kDebugMode && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS),
+    enablePeriodicFetching: !kDebugMode,
+  );
 
-  /// Everything initialized successfully
-  // if (initialization?.container != null) {
-  //   /// Handle notification logic
-  //   await initialization!.container!.read(notificationProvider).handleNotifications();
-  // }
+  /// Wait for initialization to finish
+  await getIt.allReady();
+
+  /// Fetch fixtures and show notifications
+  await getIt.get<NotificationService>().fetchFixturesAndNotify();
 
   /// Finish task
   await BackgroundFetch.finish(taskId);
