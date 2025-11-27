@@ -389,7 +389,7 @@ class NotificationService {
   Future<bool> initializeNotifications() async {
     try {
       /// `Android`
-      const initializationSettingsAndroid = AndroidInitializationSettings('app_icon');
+      const initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
 
       /// `iOS`
       const initializationSettingsDarwin = DarwinInitializationSettings();
