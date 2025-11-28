@@ -75,7 +75,9 @@ class NotificationService {
     final hour = now.hour;
 
     /// Do logic if within timeframe
-    final isInRange = (hour >= 15) || (hour == 0);
+    // final isInRange = (hour >= 15) || (hour == 0);
+    // TODO: Remove this and introduce commented out value
+    final isInRange = (hour >= 10) || (hour == 0);
 
     /// Currently within timeframe, run logic
     if (isInRange) {

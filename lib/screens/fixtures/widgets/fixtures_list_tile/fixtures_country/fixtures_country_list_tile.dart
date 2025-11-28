@@ -14,12 +14,14 @@ import '../../../../../widgets/balun_image.dart';
 import '../fixtures_league/fixtures_league_list_tile.dart';
 
 class FixturesCountryListTile extends StatefulWidget {
+  final Function(League? league) onLongPressedListTile;
   final League? countryLeague;
   final Map<League, List<FixtureResponse>>? leagues;
   final bool initiallyExpanded;
   final bool hasLiveFixturesCountry;
 
   const FixturesCountryListTile({
+    required this.onLongPressedListTile,
     required this.countryLeague,
     required this.leagues,
     required this.hasLiveFixturesCountry,
@@ -141,6 +143,7 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                   final fixtures = widget.leagues?[league];
 
                   return FixturesLeagueListTile(
+                    onLongPressed: () => widget.onLongPressedListTile(league),
                     league: league,
                     fixtures: fixtures,
                     initiallyExpanded: widget.initiallyExpanded,

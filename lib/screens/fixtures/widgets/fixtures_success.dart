@@ -181,6 +181,15 @@ class FixturesSuccess extends WatchingWidget {
                   final leagues = sortedGroupedFixtures[countryLeague];
 
                   return FixturesCountryListTile(
+                    onLongPressedListTile: (league) {
+                      if (league?.id != null) {
+                        openLeague(
+                          context,
+                          leagueId: league?.id ?? 0,
+                          season: league?.season ?? fixtures.firstWhereOrNull((fixture) => fixture.league?.season != null)?.league?.season ?? getCurrentSeasonYear().toString(),
+                        );
+                      }
+                    },
                     countryLeague: countryLeague,
                     leagues: leagues,
                     hasLiveFixturesCountry: hasLiveFixturesCountry(

@@ -14,12 +14,14 @@ import '../../../../../widgets/balun_image.dart';
 import '../fixtures/fixtures_list_tile.dart';
 
 class FixturesLeagueListTile extends StatefulWidget {
+  final Function()? onLongPressed;
   final League? league;
   final List<FixtureResponse>? fixtures;
   final bool initiallyExpanded;
   final bool hasLiveFixturesLeague;
 
   const FixturesLeagueListTile({
+    required this.onLongPressed,
     required this.league,
     required this.fixtures,
     required this.hasLiveFixturesLeague,
@@ -45,6 +47,7 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
       ///
       BalunButton(
         onPressed: toggleExpanded,
+        onLongPressed: widget.onLongPressed,
         child: Container(
           decoration: BoxDecoration(
             color: context.colors.fixtureListTileBackground,

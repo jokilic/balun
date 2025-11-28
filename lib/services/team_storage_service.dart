@@ -24,11 +24,17 @@ class TeamStorageService extends ValueNotifier<List<Team>> {
     }
 
     /// Check if team exists in storage
-    final teamExists = value.any((team) => team.id == passedTeam.id);
+    final teamExists = value.any(
+      (team) => team.id == passedTeam.id,
+    );
 
     /// Team exists, remove it from state & storage
     if (teamExists) {
-      value = List.from(value..removeWhere((team) => team.id == passedTeam.id));
+      value = List.from(
+        value..removeWhere(
+          (team) => team.id == passedTeam.id,
+        ),
+      );
     }
     /// Team doesn't exist, add it to state & storage
     else {
