@@ -385,6 +385,7 @@ class NotificationService {
       channelDescription: groupChannelDescription,
       styleInformation: inboxStyle,
       groupKey: groupKey,
+      number: count,
       setAsGroupSummary: true,
       importance: Importance.max,
       priority: Priority.high,
@@ -392,6 +393,9 @@ class NotificationService {
 
     final summaryIOSDetails = DarwinNotificationDetails(
       threadIdentifier: threadIdentifier,
+      badgeNumber: count,
+      // TODO: Localize
+      subtitle: 'You favorite matches',
     );
 
     /// Generate notification `id`
