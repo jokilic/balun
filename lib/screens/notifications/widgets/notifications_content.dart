@@ -10,6 +10,7 @@ class NotificationsContent extends StatelessWidget {
   final NotificationSettings notificationsState;
   final Function() onPressedFavoriteLeagues;
   final Function() onPressedFavoriteTeams;
+  final Function() onPressedFavoriteMatches;
   final Function() onPressedTestNotification;
   final Function() onPressedTriggerNotification;
 
@@ -17,6 +18,7 @@ class NotificationsContent extends StatelessWidget {
     required this.notificationsState,
     required this.onPressedFavoriteLeagues,
     required this.onPressedFavoriteTeams,
+    required this.onPressedFavoriteMatches,
     required this.onPressedTestNotification,
     required this.onPressedTriggerNotification,
   });
@@ -41,6 +43,14 @@ class NotificationsContent extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Text(
           'notificationsText2'.tr(),
+          style: context.textStyles.bodyMdLight,
+        ),
+      ),
+      const SizedBox(height: 12),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
+          'notificationsText3'.tr(),
           style: context.textStyles.bodyMdLight,
         ),
       ),
@@ -69,6 +79,17 @@ class NotificationsContent extends StatelessWidget {
       ),
 
       ///
+      /// FAVORITE MATCHES
+      ///
+      SettingsListTile(
+        onPressed: onPressedFavoriteMatches,
+        icon: BalunIcons.notificationMatch,
+        title: 'notificationsFavoriteMatchesTitle'.tr(),
+        subtitle: 'notificationsFavoriteMatchesSubtitle'.tr(),
+        isActive: notificationsState.showMatchNotifications,
+      ),
+
+      ///
       /// TEST NOTIFICATION
       ///
       SettingsListTile(
@@ -83,7 +104,7 @@ class NotificationsContent extends StatelessWidget {
       ///
       SettingsListTile(
         onPressed: onPressedTriggerNotification,
-        icon: BalunIcons.notifications,
+        icon: BalunIcons.notificationCheckbox,
         title: 'Trigger notifications',
         subtitle: 'Do the notification logic',
       ),

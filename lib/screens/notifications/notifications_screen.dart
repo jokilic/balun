@@ -80,6 +80,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                     notificationsState: notificationsState,
                     onPressedFavoriteLeagues: getIt.get<NotificationsController>(instanceName: 'notifications').onPressedFavoriteLeagues,
                     onPressedFavoriteTeams: getIt.get<NotificationsController>(instanceName: 'notifications').onPressedFavoriteTeams,
+                    onPressedFavoriteMatches: getIt.get<NotificationsController>(instanceName: 'notifications').onPressedFavoriteMatches,
                     onPressedTestNotification: getIt.get<NotificationsController>(instanceName: 'notifications').testNotification,
                     // TODO: Remove this
                     onPressedTriggerNotification: getIt.get<NotificationService>().fetchFixturesAndNotify,

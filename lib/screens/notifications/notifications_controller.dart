@@ -28,6 +28,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
       newNotificationSettings: NotificationSettings(
         showLeagueNotifications: !value.showLeagueNotifications,
         showTeamNotifications: value.showTeamNotifications,
+        showMatchNotifications: value.showMatchNotifications,
       ),
     );
 
@@ -43,6 +44,23 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
       newNotificationSettings: NotificationSettings(
         showLeagueNotifications: value.showLeagueNotifications,
         showTeamNotifications: !value.showTeamNotifications,
+        showMatchNotifications: value.showMatchNotifications,
+      ),
+    );
+
+    /// Initialize notifications if necessary
+    await notification.init();
+
+    /// Toggle task, depending on notifications being active
+    await backgroundFetch.toggleTask();
+  }
+
+  Future<void> onPressedFavoriteMatches() async {
+    await updateState(
+      newNotificationSettings: NotificationSettings(
+        showLeagueNotifications: value.showLeagueNotifications,
+        showTeamNotifications: value.showTeamNotifications,
+        showMatchNotifications: !value.showMatchNotifications,
       ),
     );
 

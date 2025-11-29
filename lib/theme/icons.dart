@@ -32,6 +32,7 @@ class BalunIcons {
   static const notificationCheckbox = 'assets/icons/notification_checkbox.webp';
   static const notificationLeague = 'assets/icons/notification_league.webp';
   static const notificationTeam = 'assets/icons/notification_team.webp';
+  static const notificationMatch = 'assets/icons/notification_match.webp';
   static const apiFootball = 'assets/icons/api_football.webp';
   static const workInProgress = 'assets/icons/work_in_progress.webp';
 

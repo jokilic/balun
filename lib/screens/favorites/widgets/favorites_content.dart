@@ -120,13 +120,19 @@ class _FavoritesContentState extends State<FavoritesContent> {
             ///
             /// TEXT
             ///
-            Text(
-              'settingsFavoritesText1'.tr(),
-              style: context.textStyles.bodyMdLight,
-            ),
-            const SizedBox(height: 12),
-            Text(
-              'settingsFavoritesText2'.tr(),
+            Text.rich(
+              TextSpan(
+                text: 'settingsFavoritesText1'.tr(),
+                children: [
+                  TextSpan(
+                    text: 'settingsFavoritesText2'.tr(),
+                    style: context.textStyles.bodyMdBold,
+                  ),
+                  const TextSpan(
+                    text: '.',
+                  ),
+                ],
+              ),
               style: context.textStyles.bodyMdLight,
             ),
             const SizedBox(height: 12),
@@ -137,6 +143,11 @@ class _FavoritesContentState extends State<FavoritesContent> {
             const SizedBox(height: 12),
             Text(
               'settingsFavoritesText4'.tr(),
+              style: context.textStyles.bodyMdLight,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'settingsFavoritesText5'.tr(),
               style: context.textStyles.bodyMdLight,
             ),
             const SizedBox(height: 24),
@@ -315,8 +326,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
             /// MATCHES
             ///
             Text(
-              // TODO: Localize
-              'Matches',
+              'fixturesFavoriteDialogMatches'.tr(),
               style: context.textStyles.titleMd,
             ),
             const SizedBox(height: 12),
@@ -324,8 +334,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
-                  // TODO: Localize
-                  'No favorited matches yet',
+                  'fixturesFavoriteDialogNoMatches'.tr(),
                   style: context.textStyles.bodyMdLight,
                 ),
               )
@@ -378,6 +387,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                             ),
                             const SizedBox(width: 12),
                             Expanded(
+                              flex: 5,
                               child: Text(
                                 mixOrOriginalWords(match.homeTeamName) ?? '---',
                                 maxLines: 1,
@@ -389,12 +399,25 @@ class _FavoritesContentState extends State<FavoritesContent> {
                             ),
                             Expanded(
                               child: Text(
+                                ' - ',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: context.textStyles.bodyMdLight.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 5,
+                              child: Text(
                                 mixOrOriginalWords(match.awayTeamName) ?? '---',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: context.textStyles.bodyMdLight.copyWith(
                                   fontWeight: FontWeight.w500,
                                 ),
+                                textAlign: TextAlign.right,
                               ),
                             ),
                             const SizedBox(width: 12),

@@ -90,6 +90,7 @@ class HiveService implements Disposable {
       NotificationSettings(
         showLeagueNotifications: false,
         showTeamNotifications: false,
+        showMatchNotifications: false,
       );
 
   Future<void> writeBalunTheme(BalunThemeEnum? newBalunThemeEnum) async {

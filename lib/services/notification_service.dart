@@ -76,12 +76,11 @@ class NotificationService {
     final hour = now.hour;
 
     /// Do logic if within timeframe
+    // TODO: Uncomment this and use it
     // final isInRange = (hour >= 15) || (hour == 0);
-    // TODO: Remove this and introduce commented out value
-    final isInRange = (hour >= 10) || (hour == 0);
 
     /// Currently within timeframe, run logic
-    if (isInRange) {
+    if (true) {
       /// Get today fixtures
       final todayFixtures = await fetchTodayFixtures(
         currentDate: currentDate,
@@ -92,22 +91,25 @@ class NotificationService {
         /// Get favorite leagues, teams & matches
         final favoriteLeagues = getIt.get<LeagueStorageService>().value;
         final favoriteTeams = getIt.get<TeamStorageService>().value;
-        // TODO: I'm also passing `favoritedMatches`, can you add functionality to also include them in this logic
         final favoriteMatches = getIt.get<MatchStorageService>().value;
 
         /// Get notification settings
         final notificationSettings = hive.getNotificationSettings();
 
         /// Get favorite leagues & teams `IDs`
-        final favoriteLeagueIds = favoriteLeagues.map((league) => league.id).toList();
-        final favoriteTeamsIds = favoriteTeams.map((team) => team.id).toList();
+        final favoriteLeagueIds = favoriteLeagues.map((league) => league.id).whereType<int>().toSet();
+        final favoriteTeamsIds = favoriteTeams.map((team) => team.id).whereType<int>().toSet();
+        final favoriteMatchIds = favoriteMatches.map((match) => match.matchId).whereType<int>().toSet();
 
         /// Get fixtures which contain favorited leagues & teams
         final monitoredFixtures = todayFixtures!.where((fixture) {
           final inFavLeague = favoriteLeagueIds.contains(fixture.league?.id);
           final hasFavTeam = favoriteTeamsIds.contains(fixture.teams?.home?.id) || favoriteTeamsIds.contains(fixture.teams?.away?.id);
+          final isFavMatch = favoriteMatchIds.contains(fixture.fixture?.id);
 
-          return (notificationSettings.showLeagueNotifications && inFavLeague) || (notificationSettings.showTeamNotifications && hasFavTeam);
+          return (notificationSettings.showLeagueNotifications && inFavLeague) ||
+              (notificationSettings.showTeamNotifications && hasFavTeam) ||
+              (notificationSettings.showMatchNotifications && isFavMatch);
         }).toList();
 
         /// Get box of [NotificationFixtures] from [Hive]
@@ -175,9 +177,8 @@ class NotificationService {
           final awayTeamName = fixture.teams?.away?.name;
 
           // TODO: Localize all values below & changes values
-
           // TODO: Make with bold if Android
-          // TODO: Move this somewhere
+
           String scoreLine() => '$homeTeamName $currentHomeGoals - $currentAwayGoals $awayTeamName';
           String fixtureLine() => '$homeTeamName - $awayTeamName';
 
@@ -297,14 +298,6 @@ class NotificationService {
         if (changes.isNotEmpty) {
           await showGroupedFixturesNotifications(changes);
         }
-
-        /// Show an info notification
-        // TODO: Remove this
-        await showNotification(
-          title: '⚽️ Balun!',
-          text: '${changes.length} changes in matches',
-          notificationId: 1,
-        );
       }
     }
   }
