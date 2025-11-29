@@ -4,6 +4,7 @@
 
 import 'package:hive_ce/hive.dart';
 import 'package:balun/models/leagues/league/league.dart';
+import 'package:balun/models/matches/favorite_match.dart';
 import 'package:balun/models/notification/notification_fixture.dart';
 import 'package:balun/models/notification/notification_settings.dart';
 import 'package:balun/models/teams/team/team.dart';
@@ -13,9 +14,10 @@ extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
     registerAdapter(BalunThemeEnumAdapter());
     registerAdapter(ThemeModelAdapter());
+    registerAdapter(NotificationSettingsAdapter());
     registerAdapter(LeagueAdapter());
     registerAdapter(TeamAdapter());
-    registerAdapter(NotificationSettingsAdapter());
+    registerAdapter(FavoriteMatchAdapter());
     registerAdapter(NotificationFixtureAdapter());
   }
 }

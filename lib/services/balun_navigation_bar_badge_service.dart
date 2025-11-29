@@ -6,6 +6,7 @@ import '../util/dependencies.dart';
 import '../util/fixtures.dart';
 import 'league_storage_service.dart';
 import 'logger_service.dart';
+import 'match_storage_service.dart';
 import 'team_storage_service.dart';
 
 class BalunNavigationBarBadgeService extends ValueNotifier<int?> {
@@ -36,6 +37,7 @@ class BalunNavigationBarBadgeService extends ValueNotifier<int?> {
           )
           .toList(),
       favoritedTeams: getIt.get<TeamStorageService>().value,
+      favoritedMatches: getIt.get<MatchStorageService>().value,
     );
 
     value = favoriteFixtures.isNotEmpty ? favoriteFixtures.length : null;

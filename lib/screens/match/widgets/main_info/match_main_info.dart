@@ -5,9 +5,9 @@ import 'package:watch_it/watch_it.dart';
 
 import '../../../../constants.dart';
 import '../../../../models/fixtures/fixture_response.dart';
-import '../../../../models/leagues/league/league.dart';
+import '../../../../models/matches/favorite_match.dart';
 import '../../../../routing.dart';
-import '../../../../services/league_storage_service.dart';
+import '../../../../services/match_storage_service.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/date_time.dart';
@@ -30,7 +30,7 @@ class MatchMainInfo extends WatchingWidget {
 
   @override
   Widget build(BuildContext context) {
-    final favoritedLeagues = watchIt<LeagueStorageService>().value;
+    final favoritedMatches = watchIt<MatchStorageService>().value;
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -48,15 +48,23 @@ class MatchMainInfo extends WatchingWidget {
           MatchAppBar(
             onBackPressed: Navigator.of(context).pop,
             league: match.league!,
-            onFavoritePressed: () => getIt.get<LeagueStorageService>().toggleLeague(
-              passedLeague: League(
-                id: match.league?.id,
-                name: match.league?.name,
-                logo: match.league?.logo,
+            onFavoritePressed: () => getIt.get<MatchStorageService>().toggleMatch(
+              passedMatch: FavoriteMatch(
+                matchId: match.fixture?.id,
+                matchDate: match.fixture?.date,
+                leagueId: match.league?.id,
+                leagueName: match.league?.name,
+                leagueLogo: match.league?.logo,
+                homeTeamId: match.teams?.home?.id,
+                homeTeamName: match.teams?.home?.name,
+                homeTeamLogo: match.teams?.home?.logo,
+                awayTeamId: match.teams?.away?.id,
+                awayTeamName: match.teams?.away?.name,
+                awayTeamLogo: match.teams?.away?.logo,
               ),
             ),
-            isFavorited: favoritedLeagues.any(
-              (element) => element.id == match.league?.id,
+            isFavorited: favoritedMatches.any(
+              (element) => element.matchId == match.fixture?.id,
             ),
           ),
 

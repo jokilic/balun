@@ -4,6 +4,7 @@ import 'package:hive_ce_flutter/hive_flutter.dart';
 import '../constants.dart';
 import '../hive_registrar.g.dart';
 import '../models/leagues/league/league.dart';
+import '../models/matches/favorite_match.dart';
 import '../models/notification/notification_fixture.dart';
 import '../models/notification/notification_settings.dart';
 import '../models/teams/team/team.dart';
@@ -28,6 +29,7 @@ class HiveService implements Disposable {
 
   late final Box<League> leagues;
   late final Box<Team> teams;
+  late final Box<FavoriteMatch> matches;
 
   late final Box<NotificationFixture> notificationFixtures;
 
@@ -48,6 +50,7 @@ class HiveService implements Disposable {
 
     leagues = await Hive.openBox<League>('leaguesBox');
     teams = await Hive.openBox<Team>('teamsBox');
+    matches = await Hive.openBox<FavoriteMatch>('matchesBox');
 
     notificationFixtures = await Hive.openBox<NotificationFixture>('notificationFixturesBox');
 
@@ -66,8 +69,11 @@ class HiveService implements Disposable {
     await firstStart.close();
     await notificationSettings.close();
     await balunTheme.close();
+
     await leagues.close();
     await teams.close();
+    await matches.close();
+
     await notificationFixtures.close();
 
     await Hive.close();
@@ -115,5 +121,10 @@ class HiveService implements Disposable {
   Future<void> writeTeams(List<Team> passedTeams) async {
     await teams.clear();
     await teams.addAll(passedTeams);
+  }
+
+  Future<void> writeMatches(List<FavoriteMatch> passedMatches) async {
+    await matches.clear();
+    await matches.addAll(passedMatches);
   }
 }

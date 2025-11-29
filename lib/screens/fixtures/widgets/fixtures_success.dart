@@ -7,6 +7,7 @@ import '../../../models/fixtures/fixture_response.dart';
 import '../../../models/fixtures/league/league.dart';
 import '../../../routing.dart';
 import '../../../services/league_storage_service.dart';
+import '../../../services/match_storage_service.dart';
 import '../../../services/team_storage_service.dart';
 import '../../../theme/theme.dart';
 import '../../../util/date_time.dart';
@@ -42,10 +43,13 @@ class FixturesSuccess extends WatchingWidget {
 
     final favoritedTeams = watchIt<TeamStorageService>().value;
 
+    final favoritedMatches = watchIt<MatchStorageService>().value;
+
     final favoriteFixtures = getFavoriteFixtures(
       fixtures: fixtures,
       favoritedLeagues: favoritedLeagues,
       favoritedTeams: favoritedTeams,
+      favoritedMatches: favoritedMatches,
     );
 
     final favoriteSortedGroupedFixturesLeague = sortGroupedFixturesWithLeagues(
@@ -54,6 +58,7 @@ class FixturesSuccess extends WatchingWidget {
       ),
       favoritedLeagues: favoritedLeagues,
       favoritedTeams: favoritedTeams,
+      favoritedMatches: favoritedMatches,
     );
 
     final sortedGroupedFixtures = sortGroupedFixturesWithCountries(
@@ -62,6 +67,7 @@ class FixturesSuccess extends WatchingWidget {
       ),
       favoritedLeagues: favoritedLeagues,
       favoritedTeams: favoritedTeams,
+      favoritedMatches: favoritedMatches,
     );
 
     return BallRefreshIndicator(

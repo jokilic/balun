@@ -5,6 +5,7 @@ import 'package:watch_it/watch_it.dart';
 import '../../../models/fixtures/league/league.dart';
 import '../../../routing.dart';
 import '../../../services/league_storage_service.dart';
+import '../../../services/match_storage_service.dart';
 import '../../../services/team_storage_service.dart';
 import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
@@ -17,11 +18,13 @@ class FavoritesContent extends WatchingStatefulWidget {
   final Function() onPressed;
   final Function(int oldIndex, int newIndex) onReorderLeagues;
   final Function(int oldIndex, int newIndex) onReorderTeams;
+  final Function(int oldIndex, int newIndex) onReorderMatches;
 
   const FavoritesContent({
     required this.onPressed,
     required this.onReorderLeagues,
     required this.onReorderTeams,
+    required this.onReorderMatches,
   });
 
   @override
@@ -98,6 +101,8 @@ class _FavoritesContentState extends State<FavoritesContent> {
         .toList();
 
     final favoritedTeams = watchIt<TeamStorageService>().value;
+
+    final favoritedMatches = watchIt<MatchStorageService>().value;
 
     return Listener(
       onPointerMove: (event) => onPointerMove(
@@ -295,6 +300,108 @@ class _FavoritesContentState extends State<FavoritesContent> {
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+
+            const SizedBox(height: 24),
+
+            ///
+            /// MATCHES
+            ///
+            Text(
+              // TODO: Localize
+              'Matches',
+              style: context.textStyles.titleMd,
+            ),
+            const SizedBox(height: 12),
+            if (favoritedMatches.isEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  // TODO: Localize
+                  'No favorited matches yet',
+                  style: context.textStyles.bodyMdLight,
+                ),
+              )
+            else
+              SizedBox(
+                height: (40 * favoritedMatches.length).toDouble(),
+                width: double.maxFinite,
+                child: ReorderableListView.builder(
+                  proxyDecorator: (child, _, __) => ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Material(
+                      color: context.colors.primaryBackgroundLight,
+                      child: child,
+                    ),
+                  ),
+                  onReorderStart: (_) => isDragging = true,
+                  onReorderEnd: (_) => isDragging = false,
+                  onReorder: (oldIndex, newIndex) {
+                    if (newIndex > oldIndex) {
+                      newIndex--;
+                    }
+
+                    widget.onReorderMatches(oldIndex, newIndex);
+                  },
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: favoritedMatches.length,
+                  itemBuilder: (_, index) {
+                    final match = favoritedMatches[index];
+
+                    return BalunButton(
+                      key: ValueKey(match),
+                      onPressed: match.matchId != null
+                          ? () => openMatch(
+                              context,
+                              matchId: match.matchId!,
+                            )
+                          : null,
+                      child: Container(
+                        color: Colors.transparent,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
+                        child: Row(
+                          children: [
+                            BalunImage(
+                              imageUrl: match.homeTeamLogo ?? BalunIcons.placeholderTeam,
+                              height: 32,
+                              width: 32,
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                mixOrOriginalWords(match.homeTeamName) ?? '---',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: context.textStyles.bodyMdLight.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                mixOrOriginalWords(match.awayTeamName) ?? '---',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: context.textStyles.bodyMdLight.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            BalunImage(
+                              imageUrl: match.awayTeamLogo ?? BalunIcons.placeholderTeam,
+                              height: 32,
+                              width: 32,
                             ),
                           ],
                         ),

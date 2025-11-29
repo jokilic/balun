@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../constants.dart';
 import '../../services/league_storage_service.dart';
+import '../../services/match_storage_service.dart';
 import '../../services/team_storage_service.dart';
 import '../../util/dependencies.dart';
 import 'widgets/favorites_app_bar.dart';
@@ -51,6 +52,7 @@ class FavoritesScreen extends StatelessWidget {
                   onPressed: Navigator.of(context).pop,
                   onReorderLeagues: getIt.get<LeagueStorageService>().reorderLeagues,
                   onReorderTeams: getIt.get<TeamStorageService>().reorderTeams,
+                  onReorderMatches: getIt.get<MatchStorageService>().reorderMatches,
                 ),
               ),
             ),

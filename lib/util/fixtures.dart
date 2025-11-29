@@ -1,6 +1,7 @@
 import '../constants.dart';
 import '../models/fixtures/fixture_response.dart';
 import '../models/fixtures/league/league.dart';
+import '../models/matches/favorite_match.dart';
 import '../models/teams/team/team.dart';
 import 'string.dart';
 
@@ -27,10 +28,12 @@ int getPageForActiveDate({
 /// FAVORITE FIXTURES
 ///
 
+// TODO: I'm also passing `favoritedMatches`, can you add functionality to also get them
 List<FixtureResponse> getFavoriteFixtures({
   required List<FixtureResponse> fixtures,
   required List<League> favoritedLeagues,
   required List<Team> favoritedTeams,
+  required List<FavoriteMatch> favoritedMatches,
 }) => fixtures
     .where(
       (fixture) =>
@@ -94,10 +97,12 @@ Map<League, Map<League, List<FixtureResponse>>> groupFixturesWithCountries({
   return groupedData;
 }
 
+// TODO: I'm also passing `favoritedMatches`, can you add functionality to also sort them
 Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixturesWithCountries({
   required Map<League, Map<League, List<FixtureResponse>>> groupedFixtures,
   required List<League> favoritedLeagues,
   required List<Team> favoritedTeams,
+  required List<FavoriteMatch> favoritedMatches,
 }) {
   const countryIDs = BalunConstants.favoriteCountryIDs;
 
@@ -242,10 +247,12 @@ Map<League, List<FixtureResponse>> groupFixturesWithLeagues({
   return groupedData;
 }
 
+// TODO: I'm also passing `favoritedMatches`, can you add functionality to also sort them
 Map<League, List<FixtureResponse>> sortGroupedFixturesWithLeagues({
   required Map<League, List<FixtureResponse>> groupedFixtures,
   required List<League> favoritedLeagues,
   required List<Team> favoritedTeams,
+  required List<FavoriteMatch> favoritedMatches,
 }) {
   /// Sort leagues
   final sortedLeagues = groupedFixtures.entries.toList()

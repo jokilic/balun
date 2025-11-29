@@ -10,6 +10,7 @@ import '../services/dio_service.dart';
 import '../services/hive_service.dart';
 import '../services/league_storage_service.dart';
 import '../services/logger_service.dart';
+import '../services/match_storage_service.dart';
 import '../services/news_service.dart';
 import '../services/notification_service.dart';
 import '../services/package_info_service.dart';
@@ -87,6 +88,13 @@ void initializeServices({
       () async => TeamStorageService(
         logger: getIt.get<LoggerService>(),
         hiveTeams: getIt.get<HiveService>().teams.values.toList(),
+      ),
+      dependsOn: [LoggerService, HiveService],
+    )
+    ..registerSingletonAsync(
+      () async => MatchStorageService(
+        logger: getIt.get<LoggerService>(),
+        hiveMatches: getIt.get<HiveService>().matches.values.toList(),
       ),
       dependsOn: [LoggerService, HiveService],
     )

@@ -21,6 +21,7 @@ import 'api_service.dart';
 import 'hive_service.dart';
 import 'league_storage_service.dart';
 import 'logger_service.dart';
+import 'match_storage_service.dart';
 import 'team_storage_service.dart';
 
 class NotificationService {
@@ -88,9 +89,11 @@ class NotificationService {
 
       /// Fixtures fetched successfully, continue
       if (todayFixtures?.isNotEmpty ?? false) {
-        /// Get favorite leagues & teams
+        /// Get favorite leagues, teams & matches
         final favoriteLeagues = getIt.get<LeagueStorageService>().value;
         final favoriteTeams = getIt.get<TeamStorageService>().value;
+        // TODO: I'm also passing `favoritedMatches`, can you add functionality to also include them in this logic
+        final favoriteMatches = getIt.get<MatchStorageService>().value;
 
         /// Get notification settings
         final notificationSettings = hive.getNotificationSettings();
