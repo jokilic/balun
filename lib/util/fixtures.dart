@@ -106,7 +106,6 @@ Map<League, Map<League, List<FixtureResponse>>> groupFixturesWithCountries({
   return groupedData;
 }
 
-// TODO: I'm also passing `favoritedMatches`, can you add functionality to also sort them
 Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixturesWithCountries({
   required Map<League, Map<League, List<FixtureResponse>>> groupedFixtures,
   required List<League> favoritedLeagues,
@@ -114,6 +113,17 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixturesWithCountries
   required List<FavoriteMatch> favoritedMatches,
 }) {
   const countryIDs = BalunConstants.favoriteCountryIDs;
+  final favoritedTeamIds = favoritedTeams.map((team) => team.id).whereType<int>().toSet();
+  final favoritedMatchIds = favoritedMatches.map((match) => match.matchId).whereType<int>().toSet();
+
+  bool hasFavoritedTeam(FixtureResponse fixture) {
+    final homeId = fixture.teams?.home?.id;
+    final awayId = fixture.teams?.away?.id;
+
+    return (homeId != null && favoritedTeamIds.contains(homeId)) || (awayId != null && favoritedTeamIds.contains(awayId));
+  }
+
+  bool isFavoritedMatch(FixtureResponse fixture) => favoritedMatchIds.contains(fixture.fixture?.id);
 
   /// Sort countries
   final sortedCountries = groupedFixtures.entries.toList()
@@ -167,18 +177,16 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixturesWithCountries
               if (priorityA != priorityB) {
                 return priorityB.compareTo(priorityA);
               }
+              final matchPriorityA = a.value.any(isFavoritedMatch);
+              final matchPriorityB = b.value.any(isFavoritedMatch);
+
+              if (matchPriorityA != matchPriorityB) {
+                return matchPriorityA ? -1 : 1;
+              }
               /// If leagues have the same priority, sort by team priority
               else {
-                final teamPriorityA = a.value.any(
-                  (fixture) => favoritedTeams.any(
-                    (team) => team.id == fixture.teams?.home?.id || team.id == fixture.teams?.away?.id,
-                  ),
-                );
-                final teamPriorityB = b.value.any(
-                  (fixture) => favoritedTeams.any(
-                    (team) => team.id == fixture.teams?.home?.id || team.id == fixture.teams?.away?.id,
-                  ),
-                );
+                final teamPriorityA = a.value.any(hasFavoritedTeam);
+                final teamPriorityB = b.value.any(hasFavoritedTeam);
 
                 if (teamPriorityA != teamPriorityB) {
                   return teamPriorityA ? -1 : 1;
@@ -196,12 +204,15 @@ Map<League, Map<League, List<FixtureResponse>>> sortGroupedFixturesWithCountries
               final sortedFixturesList = leagueEntry.value
                 ..sort(
                   (a, b) {
-                    final priorityA = favoritedTeams.any(
-                      (team) => team.id == a.teams?.home?.id || team.id == a.teams?.away?.id,
-                    );
-                    final priorityB = favoritedTeams.any(
-                      (team) => team.id == b.teams?.home?.id || team.id == b.teams?.away?.id,
-                    );
+                    final isFavoritedMatchA = isFavoritedMatch(a);
+                    final isFavoritedMatchB = isFavoritedMatch(b);
+
+                    if (isFavoritedMatchA != isFavoritedMatchB) {
+                      return isFavoritedMatchA ? -1 : 1;
+                    }
+
+                    final priorityA = hasFavoritedTeam(a);
+                    final priorityB = hasFavoritedTeam(b);
 
                     if (priorityA != priorityB) {
                       return priorityA ? -1 : 1;
@@ -256,13 +267,57 @@ Map<League, List<FixtureResponse>> groupFixturesWithLeagues({
   return groupedData;
 }
 
-// TODO: I'm also passing `favoritedMatches`, can you add functionality to also sort them
 Map<League, List<FixtureResponse>> sortGroupedFixturesWithLeagues({
   required Map<League, List<FixtureResponse>> groupedFixtures,
   required List<League> favoritedLeagues,
   required List<Team> favoritedTeams,
   required List<FavoriteMatch> favoritedMatches,
 }) {
+  final favoritedMatchIds = favoritedMatches.map((match) => match.matchId).whereType<int>().toSet();
+  final favoritedTeamPriority = <int, int>{};
+
+  for (var i = 0; i < favoritedTeams.length; i++) {
+    final id = favoritedTeams[i].id;
+
+    if (id != null && !favoritedTeamPriority.containsKey(id)) {
+      favoritedTeamPriority[id] = i;
+    }
+  }
+
+  bool hasFavoritedTeam(FixtureResponse fixture) {
+    final homeId = fixture.teams?.home?.id;
+    final awayId = fixture.teams?.away?.id;
+
+    return (homeId != null && favoritedTeamPriority.containsKey(homeId)) || (awayId != null && favoritedTeamPriority.containsKey(awayId));
+  }
+
+  bool isFavoritedMatch(FixtureResponse fixture) => favoritedMatchIds.contains(fixture.fixture?.id);
+
+  int bestTeamPriority(FixtureResponse fixture) {
+    var best = favoritedTeams.length;
+    final homeId = fixture.teams?.home?.id;
+
+    if (homeId != null) {
+      final priority = favoritedTeamPriority[homeId];
+
+      if (priority != null && priority < best) {
+        best = priority;
+      }
+    }
+
+    final awayId = fixture.teams?.away?.id;
+
+    if (awayId != null) {
+      final priority = favoritedTeamPriority[awayId];
+
+      if (priority != null && priority < best) {
+        best = priority;
+      }
+    }
+
+    return best;
+  }
+
   /// Sort leagues
   final sortedLeagues = groupedFixtures.entries.toList()
     ..sort(
@@ -281,6 +336,20 @@ Map<League, List<FixtureResponse>> sortGroupedFixturesWithLeagues({
         }
 
         /// If neither league is favorited, sort by ID
+        final matchPriorityA = a.value.any(isFavoritedMatch);
+        final matchPriorityB = b.value.any(isFavoritedMatch);
+
+        if (matchPriorityA != matchPriorityB) {
+          return matchPriorityA ? -1 : 1;
+        }
+
+        final teamPriorityA = a.value.any(hasFavoritedTeam);
+        final teamPriorityB = b.value.any(hasFavoritedTeam);
+
+        if (teamPriorityA != teamPriorityB) {
+          return teamPriorityA ? -1 : 1;
+        }
+
         return a.key.id!.compareTo(b.key.id!);
       },
     );
@@ -292,25 +361,15 @@ Map<League, List<FixtureResponse>> sortGroupedFixturesWithLeagues({
         final sortedFixturesList = leagueEntry.value
           ..sort(
             (a, b) {
-              /// Get indices for teams in fixture A
-              final homeTeamIndexA = favoritedTeams.indexWhere((team) => team.id == a.teams?.home?.id);
-              final awayTeamIndexA = favoritedTeams.indexWhere((team) => team.id == a.teams?.away?.id);
-              final bestIndexA = [homeTeamIndexA, awayTeamIndexA]
-                  .where((index) => index != -1)
-                  .fold(
-                    favoritedTeams.length,
-                    (prev, curr) => curr < prev ? curr : prev,
-                  );
+              final isFavoritedMatchA = isFavoritedMatch(a);
+              final isFavoritedMatchB = isFavoritedMatch(b);
 
-              /// Get indices for teams in fixture B
-              final homeTeamIndexB = favoritedTeams.indexWhere((team) => team.id == b.teams?.home?.id);
-              final awayTeamIndexB = favoritedTeams.indexWhere((team) => team.id == b.teams?.away?.id);
-              final bestIndexB = [homeTeamIndexB, awayTeamIndexB]
-                  .where((index) => index != -1)
-                  .fold(
-                    favoritedTeams.length,
-                    (prev, curr) => curr < prev ? curr : prev,
-                  );
+              if (isFavoritedMatchA != isFavoritedMatchB) {
+                return isFavoritedMatchA ? -1 : 1;
+              }
+
+              final bestIndexA = bestTeamPriority(a);
+              final bestIndexB = bestTeamPriority(b);
 
               /// If both fixtures have favorited teams, sort by best index
               if (bestIndexA != favoritedTeams.length && bestIndexB != favoritedTeams.length) {
