@@ -1,6 +1,21 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 
-Future<void> toggleLanguage(BuildContext context) async => context.setLocale(
-  Locale(context.locale == const Locale('en') ? 'hr' : 'en'),
-);
+import '../theme/icons.dart';
+
+String? getLanguageSnackbarText({required String languageCode}) => switch (languageCode) {
+  'hr' => 'settingsLanguageCroatian'.tr(),
+  'en' => 'settingsLanguageEnglish'.tr(),
+  _ => null,
+};
+
+String? getLanguageText({required String languageCode}) => switch (languageCode) {
+  'hr' => 'languageCroatian'.tr(),
+  'en' => 'languageEnglish'.tr(),
+  _ => null,
+};
+
+String getLanguageIcon({required String languageCode}) => switch (languageCode) {
+  'hr' => BalunIcons.croatia,
+  'en' => BalunIcons.unitedKingdom,
+  _ => BalunIcons.placeholderLanguage,
+};

@@ -54,7 +54,18 @@ class NotificationsContent extends StatelessWidget {
           style: context.textStyles.bodyMdLight,
         ),
       ),
-      const SizedBox(height: 20),
+      const SizedBox(height: 24),
+
+      ///
+      /// TITLE
+      ///
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
+          'notificationsNotificationsTitle'.tr(),
+          style: context.textStyles.titleMd,
+        ),
+      ),
 
       ///
       /// FAVORITE LEAGUES
@@ -87,6 +98,18 @@ class NotificationsContent extends StatelessWidget {
         title: 'notificationsFavoriteMatchesTitle'.tr(),
         subtitle: 'notificationsFavoriteMatchesSubtitle'.tr(),
         isActive: notificationsState.showMatchNotifications,
+      ),
+      const SizedBox(height: 24),
+
+      ///
+      /// TITLE
+      ///
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
+          'notificationsTestingTitle'.tr(),
+          style: context.textStyles.titleMd,
+        ),
       ),
 
       ///

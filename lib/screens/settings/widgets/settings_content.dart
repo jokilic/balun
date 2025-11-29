@@ -6,7 +6,6 @@ import '../../../routing.dart';
 import '../../../services/theme_service.dart';
 import '../../../theme/icons.dart';
 import '../../../util/dependencies.dart';
-import '../../../util/language.dart';
 import '../../../util/snackbars.dart';
 import '../../../util/theme.dart';
 import '../../../widgets/settings_list_tile.dart';
@@ -55,21 +54,7 @@ class SettingsContent extends StatelessWidget {
       ),
       const SizedBox(height: 4),
       SettingsListTile(
-        onPressed: () async {
-          await toggleLanguage(context);
-
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-          await Future.delayed(
-            BalunConstants.longAnimationDuration,
-          );
-
-          showSnackbar(
-            context,
-            icon: BalunIcons.language,
-            text: context.locale == const Locale('en') ? 'settingsLanguageEnglish'.tr() : 'settingsLanguageCroatian'.tr(),
-          );
-        },
+        onPressed: () => openLanguage(context),
         icon: BalunIcons.language,
         title: 'settingsLanguageSectionTitle'.tr(),
         subtitle: 'settingsLanguageSectionSubtitle'.tr(),

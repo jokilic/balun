@@ -5,6 +5,7 @@ import 'screens/coach/coach_screen.dart';
 import 'screens/countries/countries_screen.dart';
 import 'screens/favorites/favorites_screen.dart';
 import 'screens/fixtures/fixtures_screen.dart';
+import 'screens/language/language_screen.dart';
 import 'screens/league/league_screen.dart';
 import 'screens/leagues/leagues_screen.dart';
 import 'screens/match/match_screen.dart';
@@ -15,6 +16,14 @@ import 'screens/settings/settings_screen.dart';
 import 'screens/status/status_screen.dart';
 import 'screens/team/team_screen.dart';
 import 'util/navigation.dart';
+
+/// Opens [LanguageScreen]
+void openLanguage(BuildContext context) => pushScreen(
+  const LanguageScreen(
+    key: ValueKey('language'),
+  ),
+  context: context,
+);
 
 /// Opens [NotificationsScreen]
 void openNotifications(BuildContext context) => pushScreen(
