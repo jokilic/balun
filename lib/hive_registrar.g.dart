@@ -14,10 +14,10 @@ extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
     registerAdapter(BalunThemeEnumAdapter());
     registerAdapter(ThemeModelAdapter());
-    registerAdapter(NotificationSettingsAdapter());
     registerAdapter(LeagueAdapter());
     registerAdapter(TeamAdapter());
     registerAdapter(FavoriteMatchAdapter());
+    registerAdapter(NotificationSettingsAdapter());
     registerAdapter(NotificationFixtureAdapter());
   }
 }

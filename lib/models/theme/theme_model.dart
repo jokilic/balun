@@ -8,6 +8,10 @@ enum BalunThemeEnum {
   light,
   @HiveField(1)
   dark,
+  @HiveField(2)
+  white,
+  @HiveField(3)
+  blue,
 }
 
 @HiveType(typeId: 2)

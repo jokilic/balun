@@ -49,6 +49,10 @@ class BalunThemeEnumAdapter extends TypeAdapter<BalunThemeEnum> {
         return BalunThemeEnum.light;
       case 1:
         return BalunThemeEnum.dark;
+      case 2:
+        return BalunThemeEnum.white;
+      case 3:
+        return BalunThemeEnum.blue;
       default:
         return BalunThemeEnum.light;
     }
@@ -61,6 +65,10 @@ class BalunThemeEnumAdapter extends TypeAdapter<BalunThemeEnum> {
         writer.writeByte(0);
       case BalunThemeEnum.dark:
         writer.writeByte(1);
+      case BalunThemeEnum.white:
+        writer.writeByte(2);
+      case BalunThemeEnum.blue:
+        writer.writeByte(3);
     }
   }
 

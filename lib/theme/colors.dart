@@ -8,10 +8,6 @@ abstract class BalunColors {
   ///
 
   static const light = Color(0xFFBFCABD);
-  static final middleLight = lightenColor(
-    color: light,
-    factor: 0.02,
-  );
   static final lightLight = lightenColor(
     color: light,
     factor: 0.04,
@@ -38,6 +34,36 @@ abstract class BalunColors {
   );
 
   static const purple = Color(0xFF4F5090);
+
+  ///
+  /// LIGHT
+  ///
+
+  static const whiteThemeColor = Color(0xFFDAD6D6);
+  static final middleWhite = lightenColor(
+    color: whiteThemeColor,
+    factor: 0.02,
+  );
+  static final lightWhite = lightenColor(
+    color: whiteThemeColor,
+    factor: 0.04,
+  );
+
+  ///
+  /// BLUE
+  ///
+
+  static const blueThemeColor = Color(0xFF2B3A67);
+  static final middleBlue = lightenColor(
+    color: blueThemeColor,
+    factor: 0.02,
+  );
+  static final lightBlue = lightenColor(
+    color: blueThemeColor,
+    factor: 0.04,
+  );
+
+  static const yellowBlueTheme = Color(0xFFFFC482);
 
   ///
   /// NEUTRAL

@@ -47,6 +47,48 @@ class BalunTheme {
   }
 
   ///
+  /// WHITE
+  ///
+
+  static ThemeData get white {
+    final defaultTheme = ThemeData.light();
+
+    return defaultTheme.copyWith(
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: whiteAppColors.accent,
+        selectionColor: whiteAppColors.accent,
+        selectionHandleColor: whiteAppColors.accent,
+      ),
+      scaffoldBackgroundColor: whiteAppColors.accent,
+      extensions: [
+        whiteAppColors,
+        whiteTextTheme,
+      ],
+    );
+  }
+
+  ///
+  /// DARK
+  ///
+
+  static ThemeData get blue {
+    final defaultTheme = ThemeData.dark();
+
+    return defaultTheme.copyWith(
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: blueAppColors.accent,
+        selectionColor: blueAppColors.accent,
+        selectionHandleColor: blueAppColors.accent,
+      ),
+      scaffoldBackgroundColor: blueAppColors.accent,
+      extensions: [
+        blueAppColors,
+        blueTextTheme,
+      ],
+    );
+  }
+
+  ///
   /// COLORS
   ///
 
@@ -98,6 +140,54 @@ class BalunTheme {
     alert: BalunColors.orange,
   );
 
+  static final whiteAppColors = BalunColorsExtension(
+    primaryBackground: BalunColors.whiteThemeColor,
+    primaryBackgroundLight: BalunColors.lightWhite,
+    primaryForeground: BalunColors.black,
+    secondaryBackground: BalunColors.grey,
+    accent: BalunColors.whiteThemeColor,
+    fixtureListTileBackground: BalunColors.lightWhite,
+    navigationBarBackground: BalunColors.middleWhite,
+    navigationBarItemBackground: BalunColors.lightWhite,
+    navigationBarItemSelectedBackground: BalunColors.black,
+    navigationBarIconColor: BalunColors.middleWhite,
+    datePickerActiveBackground: BalunColors.black,
+    datePickerInactiveBackground: BalunColors.lightWhite,
+    datePickerActiveIconColor: BalunColors.whiteThemeColor,
+    datePickerInactiveIconColor: BalunColors.whiteThemeColor,
+    slidingInfoPanelBackground: BalunColors.whiteThemeColor,
+    matchField: BalunColors.black.withValues(alpha: 0.4),
+    success: BalunColors.green,
+    danger: BalunColors.red,
+    info: BalunColors.blue,
+    warning: BalunColors.yellow,
+    alert: BalunColors.orange,
+  );
+
+  static final blueAppColors = BalunColorsExtension(
+    primaryBackground: BalunColors.blueThemeColor,
+    primaryBackgroundLight: BalunColors.yellowBlueTheme.withValues(alpha: 0.4),
+    primaryForeground: BalunColors.white,
+    secondaryBackground: BalunColors.middleBlue,
+    accent: BalunColors.blueThemeColor,
+    fixtureListTileBackground: BalunColors.middleBlue,
+    navigationBarBackground: BalunColors.lightBlue,
+    navigationBarItemBackground: BalunColors.middleBlue.withValues(alpha: 0.4),
+    navigationBarItemSelectedBackground: BalunColors.yellowBlueTheme,
+    navigationBarIconColor: BalunColors.white,
+    datePickerActiveBackground: BalunColors.yellowBlueTheme,
+    datePickerInactiveBackground: BalunColors.middleBlue,
+    datePickerActiveIconColor: BalunColors.white,
+    datePickerInactiveIconColor: BalunColors.white,
+    slidingInfoPanelBackground: BalunColors.middleBlue,
+    matchField: BalunColors.yellowBlueTheme.withValues(alpha: 0.4),
+    success: BalunColors.green,
+    danger: BalunColors.red,
+    info: BalunColors.blue,
+    warning: BalunColors.yellow,
+    alert: BalunColors.orange,
+  );
+
   ///
   /// TEXT THEMES
   ///
@@ -110,6 +200,16 @@ class BalunTheme {
   static final darkTextTheme = buildTextTheme(
     darkAppColors,
     onPrimaryColor: darkAppColors.primaryForeground,
+  );
+
+  static final whiteTextTheme = buildTextTheme(
+    whiteAppColors,
+    onPrimaryColor: whiteAppColors.primaryBackground,
+  );
+
+  static final blueTextTheme = buildTextTheme(
+    blueAppColors,
+    onPrimaryColor: blueAppColors.primaryForeground,
   );
 
   ///

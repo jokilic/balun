@@ -80,7 +80,8 @@ class BalunWidget extends WatchingWidget {
 
     final activeTheme = getBalunTheme(balunThemeEnum);
 
-    final isDarkTheme = balunThemeEnum == BalunThemeEnum.dark || (balunThemeEnum == null && MediaQuery.of(context).platformBrightness == Brightness.dark);
+    final isDarkTheme =
+        balunThemeEnum == BalunThemeEnum.dark || balunThemeEnum == BalunThemeEnum.blue || (balunThemeEnum == null && MediaQuery.of(context).platformBrightness == Brightness.dark);
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
