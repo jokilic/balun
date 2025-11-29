@@ -5,13 +5,13 @@ import 'package:watch_it/watch_it.dart';
 
 import '../../../../constants.dart';
 import '../../../../models/fixtures/fixture_response.dart';
-import '../../../../models/matches/favorite_match.dart';
 import '../../../../routing.dart';
 import '../../../../services/match_storage_service.dart';
 import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/date_time.dart';
 import '../../../../util/dependencies.dart';
+import '../../../../util/match.dart';
 import '../../../../util/string.dart';
 import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
@@ -49,18 +49,8 @@ class MatchMainInfo extends WatchingWidget {
             onBackPressed: Navigator.of(context).pop,
             league: match.league!,
             onFavoritePressed: () => getIt.get<MatchStorageService>().toggleMatch(
-              passedMatch: FavoriteMatch(
-                matchId: match.fixture?.id,
-                matchDate: match.fixture?.date,
-                leagueId: match.league?.id,
-                leagueName: match.league?.name,
-                leagueLogo: match.league?.logo,
-                homeTeamId: match.teams?.home?.id,
-                homeTeamName: match.teams?.home?.name,
-                homeTeamLogo: match.teams?.home?.logo,
-                awayTeamId: match.teams?.away?.id,
-                awayTeamName: match.teams?.away?.name,
-                awayTeamLogo: match.teams?.away?.logo,
+              passedMatch: getFavoriteMatch(
+                match: match,
               ),
             ),
             isFavorited: favoritedMatches.any(

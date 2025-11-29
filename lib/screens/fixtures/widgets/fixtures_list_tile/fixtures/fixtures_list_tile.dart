@@ -17,19 +17,22 @@ import 'fixtures_list_tile_minute.dart';
 class FixturesListTile extends StatelessWidget {
   final FixtureResponse fixture;
   final bool fixturePlaying;
-  final Function()? fixturePressed;
+  final Function()? onFixturePressed;
+  final Function()? onFixtureLongPressed;
   final bool isFavorited;
 
   const FixturesListTile({
     required this.fixture,
     required this.fixturePlaying,
-    required this.fixturePressed,
+    required this.onFixturePressed,
+    required this.onFixtureLongPressed,
     required this.isFavorited,
   });
 
   @override
   Widget build(BuildContext context) => BalunButton(
-    onPressed: fixturePressed,
+    onPressed: onFixturePressed,
+    onLongPressed: onFixtureLongPressed,
     child: Container(
       decoration: BoxDecoration(
         color: context.colors.fixtureListTileBackground,
@@ -192,10 +195,13 @@ class FixturesListTile extends StatelessWidget {
           ///
           /// FAVORITE
           ///
-          if (isFavorited)
-            Positioned(
-              right: -4,
-              top: -4,
+          Positioned(
+            right: -4,
+            top: -4,
+            child: AnimatedOpacity(
+              opacity: isFavorited ? 1 : 0,
+              duration: BalunConstants.animationDuration,
+              curve: Curves.easeIn,
               child: BalunImage(
                 imageUrl: BalunIcons.favoriteYes,
                 height: 28,
@@ -203,6 +209,7 @@ class FixturesListTile extends StatelessWidget {
                 color: context.colors.accent,
               ),
             ),
+          ),
         ],
       ),
     ),

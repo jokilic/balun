@@ -16,6 +16,7 @@ import '../fixtures/fixtures_compact_list_tile.dart';
 
 class FixturesLeagueCompactListTile extends StatefulWidget {
   final Function()? onPressed;
+  final Function(FixtureResponse fixture) onFixtureLongPressed;
   final League? league;
   final List<FixtureResponse>? fixtures;
   final bool initiallyExpanded;
@@ -24,6 +25,7 @@ class FixturesLeagueCompactListTile extends StatefulWidget {
 
   const FixturesLeagueCompactListTile({
     required this.onPressed,
+    required this.onFixtureLongPressed,
     required this.league,
     required this.fixtures,
     required this.hasLiveFixturesLeague,
@@ -146,12 +148,13 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
                     fixturePlaying: isMatchPlaying(
                       statusShort: fixture.fixture?.status?.short ?? '--',
                     ),
-                    fixturePressed: fixture.fixture?.id != null
+                    onFixturePressed: fixture.fixture?.id != null
                         ? () => openMatch(
                             context,
                             matchId: fixture.fixture!.id!,
                           )
                         : null,
+                    onFixtureLongPressed: () => widget.onFixtureLongPressed(fixture),
                     isFavorited: widget.favoritedMatches.any(
                       (element) => element.matchId == fixture.fixture?.id,
                     ),

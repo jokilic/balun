@@ -13,20 +13,23 @@ class FixturesCompactListTile extends StatelessWidget {
   final FixtureResponse fixture;
   final String scoreText;
   final bool fixturePlaying;
-  final Function()? fixturePressed;
+  final Function()? onFixturePressed;
+  final Function()? onFixtureLongPressed;
   final bool isFavorited;
 
   const FixturesCompactListTile({
     required this.fixture,
     required this.scoreText,
     required this.fixturePlaying,
-    required this.fixturePressed,
+    required this.onFixturePressed,
+    required this.onFixtureLongPressed,
     required this.isFavorited,
   });
 
   @override
   Widget build(BuildContext context) => BalunButton(
-    onPressed: fixturePressed,
+    onPressed: onFixturePressed,
+    onLongPressed: onFixtureLongPressed,
     child: Container(
       decoration: BoxDecoration(
         color: context.colors.fixtureListTileBackground,
@@ -135,10 +138,13 @@ class FixturesCompactListTile extends StatelessWidget {
           ///
           /// FAVORITE
           ///
-          if (isFavorited)
-            Positioned(
-              right: -2,
-              top: -3,
+          Positioned(
+            right: -2,
+            top: -3,
+            child: AnimatedOpacity(
+              opacity: isFavorited ? 1 : 0,
+              duration: BalunConstants.animationDuration,
+              curve: Curves.easeIn,
               child: BalunImage(
                 imageUrl: BalunIcons.favoriteYes,
                 height: 20,
@@ -146,6 +152,7 @@ class FixturesCompactListTile extends StatelessWidget {
                 color: context.colors.accent,
               ),
             ),
+          ),
         ],
       ),
     ),
