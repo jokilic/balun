@@ -5,7 +5,6 @@ import 'package:watch_it/watch_it.dart';
 
 import '../../constants.dart';
 import '../../services/logger_service.dart';
-import '../../theme/icons.dart';
 import '../../util/dependencies.dart';
 import '../../util/language.dart';
 import '../../util/snackbars.dart';

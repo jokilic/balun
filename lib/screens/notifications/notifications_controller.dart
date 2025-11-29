@@ -73,6 +73,10 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
 
   void testNotification() => notification.testNotification();
 
+  void triggerNotifications() => notification.fetchFixturesAndNotify(
+    isTesting: true,
+  );
+
   Future<void> updateState({
     required NotificationSettings newNotificationSettings,
   }) async {

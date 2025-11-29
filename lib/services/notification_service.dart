@@ -67,7 +67,23 @@ class NotificationService {
   ///
 
   /// Fetches today's fixtures and generates notification data
-  Future<void> fetchFixturesAndNotify() async {
+  Future<void> fetchFixturesAndNotify({bool isTesting = false}) async {
+    /// Initialize notifications if testing
+
+    /// Initialize notifications if they're not initialized
+    if (flutterLocalNotificationsPlugin == null) {
+      flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+      await initializeNotifications();
+    }
+
+    /// Check permissions
+    final permissionsGranted = await requestNotificationPermissions();
+
+    /// Permissions not granted, don't do anything
+    if (!permissionsGranted) {
+      return;
+    }
+
     /// Generate `currentDate` in a format suitable for backend
     final now = DateTime.now();
     final currentDate = DateTime(now.year, now.month, now.day);
@@ -76,11 +92,10 @@ class NotificationService {
     final hour = now.hour;
 
     /// Do logic if within timeframe
-    // TODO: Uncomment this and use it
-    // final isInRange = (hour >= 15) || (hour == 0);
+    final isInRange = (hour >= 15) || (hour == 0);
 
     /// Currently within timeframe, run logic
-    if (true) {
+    if (isTesting || isInRange) {
       /// Get today fixtures
       final todayFixtures = await fetchTodayFixtures(
         currentDate: currentDate,
@@ -300,6 +315,19 @@ class NotificationService {
         }
       }
     }
+
+    /// Show notification if testing is done
+    if (isTesting) {
+      /// Generate notification `id`
+      final id = DateTime.now().millisecondsSinceEpoch % 1000000000;
+
+      /// Show notification
+      await showNotification(
+        title: 'notificationsTriggerNotificationsNotificationTitle'.tr(),
+        text: 'notificationsTriggerNotificationsNotificationSubtitle'.tr(),
+        notificationId: id,
+      );
+    }
   }
 
   /// Calls API & fetches fixtures from today
@@ -508,17 +536,20 @@ class NotificationService {
       /// Check permissions
       final permissionsGranted = await requestNotificationPermissions();
 
-      if (permissionsGranted) {
-        /// Generate notification `id`
-        final id = DateTime.now().millisecondsSinceEpoch % 1000000000;
-
-        /// Show notification
-        await showNotification(
-          title: 'notificationsTestNotificationTitle'.tr(),
-          text: getRandomFootballJoke(),
-          notificationId: id,
-        );
+      /// Permissions not granted, don't do anything
+      if (!permissionsGranted) {
+        return;
       }
+
+      /// Generate notification `id`
+      final id = DateTime.now().millisecondsSinceEpoch % 1000000000;
+
+      /// Show notification
+      await showNotification(
+        title: 'notificationsTestNotificationNotificationTitle'.tr(),
+        text: getRandomFootballJoke(),
+        notificationId: id,
+      );
     } catch (e) {
       final error = 'TestNotification -> catch -> $e';
       logger.e(error);

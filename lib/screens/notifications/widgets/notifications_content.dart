@@ -12,7 +12,7 @@ class NotificationsContent extends StatelessWidget {
   final Function() onPressedFavoriteTeams;
   final Function() onPressedFavoriteMatches;
   final Function() onPressedTestNotification;
-  final Function() onPressedTriggerNotification;
+  final Function() onPressedTriggerNotifications;
 
   const NotificationsContent({
     required this.notificationsState,
@@ -20,7 +20,7 @@ class NotificationsContent extends StatelessWidget {
     required this.onPressedFavoriteTeams,
     required this.onPressedFavoriteMatches,
     required this.onPressedTestNotification,
-    required this.onPressedTriggerNotification,
+    required this.onPressedTriggerNotifications,
   });
 
   @override
@@ -126,10 +126,10 @@ class NotificationsContent extends StatelessWidget {
       /// TRIGGER NOTIFICATIONS
       ///
       SettingsListTile(
-        onPressed: onPressedTriggerNotification,
+        onPressed: onPressedTriggerNotifications,
         icon: BalunIcons.notificationCheckbox,
-        title: 'Trigger notifications',
-        subtitle: 'Do the notification logic',
+        title: 'notificationsTriggerNotificationsTitle'.tr(),
+        subtitle: 'notificationsTriggerNotificationsSubtitle'.tr(),
       ),
     ],
   );
