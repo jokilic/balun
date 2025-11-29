@@ -17,16 +17,8 @@ class ThemeService extends ValueNotifier<BalunThemeEnum?> {
   /// METHODS
   ///
 
-  Future<BalunThemeEnum?> toggleTheme() async {
-    final newTheme = switch (value) {
-      BalunThemeEnum.light => BalunThemeEnum.dark,
-      BalunThemeEnum.dark => null,
-      _ => BalunThemeEnum.light,
-    };
-
-    value = newTheme;
-    await hive.writeBalunTheme(newTheme);
-
-    return newTheme;
+  Future<void> setTheme({required BalunThemeEnum? newThemeEnum}) async {
+    value = newThemeEnum;
+    await hive.writeBalunTheme(newThemeEnum);
   }
 }

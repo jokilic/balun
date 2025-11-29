@@ -1,13 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
 import '../../../routing.dart';
-import '../../../services/theme_service.dart';
 import '../../../theme/icons.dart';
-import '../../../util/dependencies.dart';
-import '../../../util/snackbars.dart';
-import '../../../util/theme.dart';
 import '../../../widgets/settings_list_tile.dart';
 
 class SettingsContent extends StatelessWidget {
@@ -31,23 +26,7 @@ class SettingsContent extends StatelessWidget {
       ),
       const SizedBox(height: 4),
       SettingsListTile(
-        onPressed: () async {
-          final newTheme = await getIt.get<ThemeService>().toggleTheme();
-
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-          await Future.delayed(
-            BalunConstants.longAnimationDuration,
-          );
-
-          final themeName = getThemeName(newTheme);
-
-          showSnackbar(
-            context,
-            icon: BalunIcons.theme,
-            text: themeName,
-          );
-        },
+        onPressed: () => openTheme(context),
         icon: BalunIcons.theme,
         title: 'settingsThemeSectionTitle'.tr(),
         subtitle: 'settingsThemeSectionSubtitle'.tr(),

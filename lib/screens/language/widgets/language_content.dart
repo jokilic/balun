@@ -79,9 +79,7 @@ class LanguageContent extends StatelessWidget {
                           color: languageState == Locale(languageCode) ? context.colors.primaryBackgroundLight : context.colors.accent,
                         ),
                         child: BalunImage(
-                          imageUrl: getLanguageIcon(
-                            languageCode: languageCode,
-                          ),
+                          imageUrl: getLanguageIcon(languageCode),
                           height: 56,
                           width: 56,
                         ),
@@ -93,10 +91,7 @@ class LanguageContent extends StatelessWidget {
                     /// TITLE
                     ///
                     Text(
-                      getLanguageText(
-                            languageCode: languageCode,
-                          ) ??
-                          '--',
+                      getLanguageText(languageCode) ?? '--',
                       style: languageState == Locale(languageCode) ? context.textStyles.bodyMdExtraBold : context.textStyles.bodyMd,
                     ),
                   ],

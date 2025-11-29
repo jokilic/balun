@@ -29,7 +29,7 @@ class LanguageController extends ValueNotifier<Locale?> {
     required String languageCode,
   }) async {
     final newLocale = Locale(languageCode);
-    await context.setLocale(newLocale);
     value = newLocale;
+    await context.setLocale(newLocale);
   }
 }

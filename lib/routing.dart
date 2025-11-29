@@ -15,7 +15,16 @@ import 'screens/search/search_screen.dart';
 import 'screens/settings/settings_screen.dart';
 import 'screens/status/status_screen.dart';
 import 'screens/team/team_screen.dart';
+import 'screens/theme/theme_screen.dart';
 import 'util/navigation.dart';
+
+/// Opens [ThemeScreen]
+void openTheme(BuildContext context) => pushScreen(
+  const ThemeScreen(
+    key: ValueKey('theme'),
+  ),
+  context: context,
+);
 
 /// Opens [LanguageScreen]
 void openLanguage(BuildContext context) => pushScreen(

@@ -1,56 +1,45 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../constants.dart';
 import '../../services/logger_service.dart';
+import '../../services/theme_service.dart';
+import '../../theme/icons.dart';
 import '../../util/dependencies.dart';
-import '../../util/language.dart';
 import '../../util/snackbars.dart';
-import 'language_controller.dart';
-import 'widgets/language_app_bar.dart';
-import 'widgets/language_content.dart';
+import '../../util/theme.dart';
+import 'theme_controller.dart';
+import 'widgets/theme_app_bar.dart';
+import 'widgets/theme_content.dart';
 
-class LanguageScreen extends WatchingStatefulWidget {
-  const LanguageScreen({
+class ThemeScreen extends WatchingStatefulWidget {
+  const ThemeScreen({
     required super.key,
   });
 
   @override
-  State<LanguageScreen> createState() => _LanguageScreenState();
+  State<ThemeScreen> createState() => _ThemeScreenState();
 }
 
-class _LanguageScreenState extends State<LanguageScreen> {
+class _ThemeScreenState extends State<ThemeScreen> {
   @override
   void initState() {
     super.initState();
 
-    registerIfNotInitialized<LanguageController>(
-      () => LanguageController(
+    registerIfNotInitialized<ThemeController>(
+      () => ThemeController(
         logger: getIt.get<LoggerService>(),
+        theme: getIt.get<ThemeService>(),
       ),
-      instanceName: 'language',
+      instanceName: 'theme',
     );
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    getIt
-        .get<LanguageController>(
-          instanceName: 'language',
-        )
-        .init(
-          locale: context.locale,
-        );
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final languageState = watchIt<LanguageController>(
-      instanceName: 'language',
+    final themeState = watchIt<ThemeController>(
+      instanceName: 'theme',
     ).value;
 
     return Scaffold(
@@ -70,7 +59,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
               ///
               /// APP BAR
               ///
-              LanguageAppBar(
+              ThemeAppBar(
                 onPressed: Navigator.of(context).pop,
               ),
               const SizedBox(height: 8),
@@ -86,14 +75,13 @@ class _LanguageScreenState extends State<LanguageScreen> {
                       duration: BalunConstants.animationDuration,
                     ),
                   ],
-                  child: LanguageContent(
-                    languageState: languageState,
-                    onPressedLanguage: (languageCode) async {
+                  child: ThemeContent(
+                    themeState: themeState,
+                    onPressedTheme: (themeEnum) async {
                       await getIt
-                          .get<LanguageController>(instanceName: 'language')
-                          .onPressedLanguage(
-                            context: context,
-                            languageCode: languageCode,
+                          .get<ThemeController>(instanceName: 'theme')
+                          .onPressedTheme(
+                            themeEnum: themeEnum,
                           );
 
                       ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -102,12 +90,12 @@ class _LanguageScreenState extends State<LanguageScreen> {
                         BalunConstants.longAnimationDuration,
                       );
 
-                      final snackbarText = getLanguageSnackbarText(languageCode);
+                      final snackbarText = getThemeSnackbarText(themeEnum);
 
                       if (snackbarText?.isNotEmpty ?? false) {
                         showSnackbar(
                           context,
-                          icon: getLanguageIcon(languageCode),
+                          icon: BalunIcons.theme,
                           text: snackbarText!,
                         );
                       }
