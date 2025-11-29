@@ -8,6 +8,7 @@ import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
 import '../../../../util/scroll_configuration.dart';
+import '../../../../util/snackbars.dart';
 import '../../../../util/string.dart';
 import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
@@ -52,9 +53,19 @@ class LeagueMainInfo extends WatchingWidget {
           LeagueAppBar(
             onBackPressed: Navigator.of(context).pop,
             league: league.league!,
-            onFavoritePressed: () => getIt.get<LeagueStorageService>().toggleLeague(
-              passedLeague: league.league,
-            ),
+            onFavoritePressed: () async {
+              final leagueAdded = await getIt.get<LeagueStorageService>().toggleLeague(
+                passedLeague: league.league,
+              );
+
+              if (leagueAdded ?? false) {
+                showSnackbar(
+                  context,
+                  icon: league.league?.logo ?? BalunIcons.notificationLeague,
+                  text: 'snackbarFavoriteLeague'.tr(),
+                );
+              }
+            },
             isFavorited: favoritedLeagues.any(
               (element) => element.id == league.league?.id,
             ),
@@ -69,7 +80,6 @@ class LeagueMainInfo extends WatchingWidget {
             imageUrl: league.league?.logo ?? BalunIcons.placeholderLeague,
             height: 120,
             width: 120,
-
           ),
 
           const SizedBox(height: 16),

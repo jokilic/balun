@@ -18,9 +18,9 @@ class MatchStorageService extends ValueNotifier<List<FavoriteMatch>> {
   /// METHODS
   ///
 
-  Future<void> toggleMatch({required FavoriteMatch? passedMatch}) async {
+  Future<bool?> toggleMatch({required FavoriteMatch? passedMatch}) async {
     if (passedMatch == null) {
-      return;
+      return null;
     }
 
     /// Check if match exists in storage
@@ -67,6 +67,9 @@ class MatchStorageService extends ValueNotifier<List<FavoriteMatch>> {
 
     /// Update storage
     await getIt.get<HiveService>().writeMatches(value);
+
+    /// Return `true` / `false`, depending on match being added or removed
+    return !matchExists;
   }
 
   /// Triggered when reordering matches in [FixturesFavoriteDialog]

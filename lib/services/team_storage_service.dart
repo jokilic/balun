@@ -18,9 +18,9 @@ class TeamStorageService extends ValueNotifier<List<Team>> {
   /// METHODS
   ///
 
-  Future<void> toggleTeam({required Team? passedTeam}) async {
+  Future<bool?> toggleTeam({required Team? passedTeam}) async {
     if (passedTeam == null) {
-      return;
+      return null;
     }
 
     /// Check if team exists in storage
@@ -67,6 +67,9 @@ class TeamStorageService extends ValueNotifier<List<Team>> {
 
     /// Update storage
     await getIt.get<HiveService>().writeTeams(value);
+
+    /// Return `true` / `false`, depending on team being added or removed
+    return !teamExists;
   }
 
   /// Triggered when reordering teams in [FixturesFavoriteDialog]

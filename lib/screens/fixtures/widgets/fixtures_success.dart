@@ -9,11 +9,13 @@ import '../../../routing.dart';
 import '../../../services/league_storage_service.dart';
 import '../../../services/match_storage_service.dart';
 import '../../../services/team_storage_service.dart';
+import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
 import '../../../util/date_time.dart';
 import '../../../util/dependencies.dart';
 import '../../../util/fixtures.dart';
 import '../../../util/match.dart';
+import '../../../util/snackbars.dart';
 import '../../../widgets/ball_refresh_indicator.dart';
 import '../controllers/fixtures_controller.dart';
 import '../controllers/fixtures_date_controller.dart';
@@ -143,11 +145,21 @@ class FixturesSuccess extends WatchingWidget {
                             season: league?.season ?? fixtures?.firstWhereOrNull((fixture) => fixture.league?.season != null)?.league?.season ?? getCurrentSeasonYear().toString(),
                           )
                         : null,
-                    onFixtureLongPressed: (fixture) => getIt.get<MatchStorageService>().toggleMatch(
-                      passedMatch: getFavoriteMatch(
-                        match: fixture,
-                      ),
-                    ),
+                    onFixtureLongPressed: (fixture) async {
+                      final matchAdded = await getIt.get<MatchStorageService>().toggleMatch(
+                        passedMatch: getFavoriteMatch(
+                          match: fixture,
+                        ),
+                      );
+
+                      if (matchAdded ?? false) {
+                        showSnackbar(
+                          context,
+                          icon: BalunIcons.notificationMatch,
+                          text: 'snackbarFavoriteMatch'.tr(),
+                        );
+                      }
+                    },
                     league: league,
                     fixtures: fixtures,
                     hasLiveFixturesLeague: hasLiveFixturesLeague(
@@ -203,11 +215,21 @@ class FixturesSuccess extends WatchingWidget {
                         );
                       }
                     },
-                    onFixtureLongPressed: (fixture) => getIt.get<MatchStorageService>().toggleMatch(
-                      passedMatch: getFavoriteMatch(
-                        match: fixture,
-                      ),
-                    ),
+                    onFixtureLongPressed: (fixture) async {
+                      final matchAdded = await getIt.get<MatchStorageService>().toggleMatch(
+                        passedMatch: getFavoriteMatch(
+                          match: fixture,
+                        ),
+                      );
+
+                      if (matchAdded ?? false) {
+                        showSnackbar(
+                          context,
+                          icon: BalunIcons.notificationMatch,
+                          text: 'snackbarFavoriteMatch'.tr(),
+                        );
+                      }
+                    },
                     countryLeague: countryLeague,
                     leagues: leagues,
                     hasLiveFixturesCountry: hasLiveFixturesCountry(

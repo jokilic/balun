@@ -18,9 +18,9 @@ class LeagueStorageService extends ValueNotifier<List<League>> {
   /// METHODS
   ///
 
-  Future<void> toggleLeague({required League? passedLeague}) async {
+  Future<bool?> toggleLeague({required League? passedLeague}) async {
     if (passedLeague == null) {
-      return;
+      return null;
     }
 
     /// Check if league exists in storage
@@ -67,6 +67,9 @@ class LeagueStorageService extends ValueNotifier<List<League>> {
 
     /// Update storage
     await getIt.get<HiveService>().writeLeagues(value);
+
+    /// Return `true` / `false`, depending on league being added or removed
+    return !leagueExists;
   }
 
   /// Triggered when reordering leagues in [FixturesFavoriteDialog]

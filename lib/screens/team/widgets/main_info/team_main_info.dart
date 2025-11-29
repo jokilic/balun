@@ -8,6 +8,7 @@ import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/dependencies.dart';
 import '../../../../util/scroll_configuration.dart';
+import '../../../../util/snackbars.dart';
 import '../../../../util/string.dart';
 import '../../../../util/team_seasons.dart';
 import '../../../../util/word_mix.dart';
@@ -55,9 +56,19 @@ class TeamMainInfo extends WatchingWidget {
           TeamAppBar(
             onBackPressed: Navigator.of(context).pop,
             team: team.team,
-            onFavoritePressed: () => getIt.get<TeamStorageService>().toggleTeam(
-              passedTeam: team.team,
-            ),
+            onFavoritePressed: () async {
+              final teamAdded = await getIt.get<TeamStorageService>().toggleTeam(
+                passedTeam: team.team,
+              );
+
+              if (teamAdded ?? false) {
+                showSnackbar(
+                  context,
+                  icon: team.team?.logo ?? BalunIcons.notificationTeam,
+                  text: 'snackbarFavoriteTeam'.tr(),
+                );
+              }
+            },
             isFavorited: favoritedTeams.any(
               (element) => element.id == team.team?.id,
             ),

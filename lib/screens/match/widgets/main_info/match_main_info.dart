@@ -12,6 +12,7 @@ import '../../../../theme/theme.dart';
 import '../../../../util/date_time.dart';
 import '../../../../util/dependencies.dart';
 import '../../../../util/match.dart';
+import '../../../../util/snackbars.dart';
 import '../../../../util/string.dart';
 import '../../../../util/word_mix.dart';
 import '../../../../widgets/balun_button.dart';
@@ -48,11 +49,21 @@ class MatchMainInfo extends WatchingWidget {
           MatchAppBar(
             onBackPressed: Navigator.of(context).pop,
             league: match.league!,
-            onFavoritePressed: () => getIt.get<MatchStorageService>().toggleMatch(
-              passedMatch: getFavoriteMatch(
-                match: match,
-              ),
-            ),
+            onFavoritePressed: () async {
+              final matchAdded = await getIt.get<MatchStorageService>().toggleMatch(
+                passedMatch: getFavoriteMatch(
+                  match: match,
+                ),
+              );
+
+              if (matchAdded ?? false) {
+                showSnackbar(
+                  context,
+                  icon: BalunIcons.notificationMatch,
+                  text: 'snackbarFavoriteMatch'.tr(),
+                );
+              }
+            },
             isFavorited: favoritedMatches.any(
               (element) => element.matchId == match.fixture?.id,
             ),

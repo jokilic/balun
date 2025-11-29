@@ -34,7 +34,6 @@ class BalunIcons {
   static const notificationTeam = 'assets/icons/notification_team.webp';
   static const notificationMatch = 'assets/icons/notification_match.webp';
   static const apiFootball = 'assets/icons/api_football.webp';
-  static const workInProgress = 'assets/icons/work_in_progress.webp';
 
   static const imageError = 'assets/icons/image_error.webp';
   static const favoriteNo = 'assets/icons/favorite_no.webp';
