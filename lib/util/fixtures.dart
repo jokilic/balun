@@ -28,23 +28,32 @@ int getPageForActiveDate({
 /// FAVORITE FIXTURES
 ///
 
-// TODO: I'm also passing `favoritedMatches`, can you add functionality to also get them
 List<FixtureResponse> getFavoriteFixtures({
   required List<FixtureResponse> fixtures,
   required List<League> favoritedLeagues,
   required List<Team> favoritedTeams,
   required List<FavoriteMatch> favoritedMatches,
-}) => fixtures
-    .where(
-      (fixture) =>
-          favoritedLeagues.any(
-            (league) => fixture.league?.id == league.id,
-          ) ||
-          favoritedTeams.any(
-            (team) => fixture.teams?.home?.id == team.id || fixture.teams?.away?.id == team.id,
-          ),
-    )
-    .toList();
+}) {
+  final favoriteLeagueIds = favoritedLeagues.map((league) => league.id).whereType<int>().toSet();
+  final favoriteTeamIds = favoritedTeams.map((team) => team.id).whereType<int>().toSet();
+  final favoriteMatchIds = favoritedMatches.map((match) => match.matchId).whereType<int>().toSet();
+
+  return fixtures
+      .where(
+        (fixture) {
+          final leagueId = fixture.league?.id;
+          final homeId = fixture.teams?.home?.id;
+          final awayId = fixture.teams?.away?.id;
+          final matchId = fixture.fixture?.id;
+
+          return (leagueId != null && favoriteLeagueIds.contains(leagueId)) ||
+              (homeId != null && favoriteTeamIds.contains(homeId)) ||
+              (awayId != null && favoriteTeamIds.contains(awayId)) ||
+              (matchId != null && favoriteMatchIds.contains(matchId));
+        },
+      )
+      .toList();
+}
 
 ///
 /// FIXTURES
