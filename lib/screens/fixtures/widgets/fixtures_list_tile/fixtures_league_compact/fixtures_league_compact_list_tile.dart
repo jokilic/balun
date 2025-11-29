@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../../constants.dart';
 import '../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../models/fixtures/league/league.dart';
+import '../../../../../models/matches/favorite_match.dart';
 import '../../../../../routing.dart';
 import '../../../../../theme/icons.dart';
 import '../../../../../theme/theme.dart';
@@ -19,12 +20,14 @@ class FixturesLeagueCompactListTile extends StatefulWidget {
   final List<FixtureResponse>? fixtures;
   final bool initiallyExpanded;
   final bool hasLiveFixturesLeague;
+  final List<FavoriteMatch> favoritedMatches;
 
   const FixturesLeagueCompactListTile({
     required this.onPressed,
     required this.league,
     required this.fixtures,
     required this.hasLiveFixturesLeague,
+    required this.favoritedMatches,
     this.initiallyExpanded = false,
   });
 
@@ -149,6 +152,9 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
                             matchId: fixture.fixture!.id!,
                           )
                         : null,
+                    isFavorited: widget.favoritedMatches.any(
+                      (element) => element.matchId == fixture.fixture?.id,
+                    ),
                   );
                 },
                 separatorBuilder: (_, __) => const SizedBox(height: 8),

@@ -14,112 +14,138 @@ class FixturesCompactListTile extends StatelessWidget {
   final String scoreText;
   final bool fixturePlaying;
   final Function()? fixturePressed;
+  final bool isFavorited;
 
   const FixturesCompactListTile({
     required this.fixture,
     required this.scoreText,
     required this.fixturePlaying,
     required this.fixturePressed,
+    required this.isFavorited,
   });
 
   @override
   Widget build(BuildContext context) => BalunButton(
     onPressed: fixturePressed,
     child: Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 12,
-      ),
       decoration: BoxDecoration(
         color: context.colors.fixtureListTileBackground,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Row(
+      child: Stack(
         children: [
           ///
-          /// HOME
+          /// CONTENT
           ///
-          Expanded(
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 12,
+            ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Flexible(
-                  child: Text(
-                    mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
-                    style: context.textStyles.bodyMd,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.right,
+                ///
+                /// HOME
+                ///
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
+                          style: context.textStyles.bodyMd,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      BalunImage(
+                        imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
+                        height: 28,
+                        width: 28,
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(width: 6),
-                BalunImage(
-                  imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
-                  height: 28,
-                  width: 28,
+
+                ///
+                /// SCORE
+                ///
+                const SizedBox(width: 12),
+                if (fixturePlaying)
+                  Animate(
+                    onPlay: (controller) => controller.loop(
+                      reverse: true,
+                      min: 0.3,
+                    ),
+                    effects: const [
+                      FadeEffect(
+                        curve: Curves.easeIn,
+                        duration: BalunConstants.shimmerDuration,
+                      ),
+                    ],
+                    child: Text(
+                      scoreText,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: context.textStyles.titleLgBoldTight,
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                else
+                  Text(
+                    scoreText,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.textStyles.titleLgBoldTight,
+                    textAlign: TextAlign.center,
+                  ),
+                const SizedBox(width: 12),
+
+                ///
+                /// AWAY
+                ///
+                Expanded(
+                  child: Row(
+                    children: [
+                      BalunImage(
+                        imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
+                        height: 28,
+                        width: 28,
+                      ),
+                      const SizedBox(width: 6),
+                      Flexible(
+                        child: Text(
+                          mixOrOriginalWords(fixture.teams?.away?.name) ?? '---',
+                          style: context.textStyles.bodyMd,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
 
           ///
-          /// SCORE
+          /// FAVORITE
           ///
-          const SizedBox(width: 12),
-          if (fixturePlaying)
-            Animate(
-              onPlay: (controller) => controller.loop(
-                reverse: true,
-                min: 0.3,
+          if (isFavorited)
+            Positioned(
+              right: -2,
+              top: -3,
+              child: BalunImage(
+                imageUrl: BalunIcons.favoriteYes,
+                height: 20,
+                width: 20,
+                color: context.colors.accent,
               ),
-              effects: const [
-                FadeEffect(
-                  curve: Curves.easeIn,
-                  duration: BalunConstants.shimmerDuration,
-                ),
-              ],
-              child: Text(
-                scoreText,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: context.textStyles.titleLgBoldTight,
-                textAlign: TextAlign.center,
-              ),
-            )
-          else
-            Text(
-              scoreText,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: context.textStyles.titleLgBoldTight,
-              textAlign: TextAlign.center,
             ),
-          const SizedBox(width: 12),
-
-          ///
-          /// AWAY
-          ///
-          Expanded(
-            child: Row(
-              children: [
-                BalunImage(
-                  imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
-                  height: 28,
-                  width: 28,
-                ),
-                const SizedBox(width: 6),
-                Flexible(
-                  child: Text(
-                    mixOrOriginalWords(fixture.teams?.away?.name) ?? '---',
-                    style: context.textStyles.bodyMd,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     ),

@@ -148,6 +148,7 @@ class FixturesSuccess extends WatchingWidget {
                       fixtures: fixtures,
                     ),
                     initiallyExpanded: true,
+                    favoritedMatches: favoritedMatches,
                   );
                 },
                 separatorBuilder: (_, __) => const SizedBox(height: 12),
@@ -201,6 +202,7 @@ class FixturesSuccess extends WatchingWidget {
                     hasLiveFixturesCountry: hasLiveFixturesCountry(
                       leagues: leagues,
                     ),
+                    favoritedMatches: favoritedMatches,
                   );
                 },
                 separatorBuilder: (_, __) => const SizedBox(height: 12),
