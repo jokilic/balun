@@ -139,6 +139,13 @@ Uint8List? composeSideBySidePng({
   final canvas = img.Image(
     width: resizedHome.width + resizedAway.width,
     height: targetHeight,
+    numChannels: 4,
+  );
+
+  /// Fill background to avoid default black; white keeps logos crisp on Android largeIcon.
+  img.fill(
+    canvas,
+    color: img.ColorRgba8(255, 255, 255, 255),
   );
 
   img.compositeImage(
