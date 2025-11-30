@@ -1,11 +1,7 @@
-* Refactor text styles
-* Refactor colors
-* Add dark theme
-* Animate date picker when chosen
-* Remove some unwanted stuff
-* Add theme functionality in Settings
-* Update status bar colors
-* Convert icons to WebP
-* Scrollable titles in all sections
-* Added dark splash
-* StatusScreen showing data about requests, etc.
+* New screens in Settings
+* Notifications
+* New themes
+* Favorite matches
+* Faster image animations
+* Lots of code refactors
+* Upgrade dependencies
