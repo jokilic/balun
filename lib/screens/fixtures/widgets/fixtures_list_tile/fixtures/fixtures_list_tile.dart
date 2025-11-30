@@ -196,17 +196,17 @@ class FixturesListTile extends StatelessWidget {
           /// FAVORITE
           ///
           Positioned(
-            right: -4,
-            top: -4,
+            right: -2,
+            top: -3,
             child: AnimatedOpacity(
               opacity: isFavorited ? 1 : 0,
               duration: BalunConstants.animationDuration,
               curve: Curves.easeIn,
               child: BalunImage(
                 imageUrl: BalunIcons.favoriteYes,
-                height: 28,
-                width: 28,
-                color: context.colors.accent,
+                height: 24,
+                width: 24,
+                color: context.colors.datePickerActiveBackground,
               ),
             ),
           ),

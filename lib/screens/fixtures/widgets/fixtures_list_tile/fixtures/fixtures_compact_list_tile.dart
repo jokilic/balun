@@ -149,7 +149,7 @@ class FixturesCompactListTile extends StatelessWidget {
                 imageUrl: BalunIcons.favoriteYes,
                 height: 20,
                 width: 20,
-                color: context.colors.accent,
+                color: context.colors.datePickerActiveBackground,
               ),
             ),
           ),
