@@ -341,12 +341,19 @@ class NotificationService {
           }
         }
 
-        /// Send one grouped notification if there are changes
+        /// `changes` exist
         if (changes.isNotEmpty) {
+          /// Send one grouped notification if there are changes
           await showGroupedFixturesNotifications(
             changes,
             playNotificationSound: notificationSettings.playNotificationSound,
           );
+
+          /// Send one summary notification with details about `changes`
+          // await showSummaryNotification(
+          //   changes,
+          //   playNotificationSound: notificationSettings.playNotificationSound,
+          // );
         }
       }
     }
@@ -471,6 +478,14 @@ class NotificationService {
         payload: change.payload,
       );
     }
+  }
+
+  /// Shows summary notification with `changes`
+  Future<void> showSummaryNotification(
+    List<NotificationChange> changes, {
+    required bool playNotificationSound,
+  }) async {
+    final isAndroid = defaultTargetPlatform == TargetPlatform.android;
 
     /// Summary notification
     final lines = changes.map((c) => c.summaryLine ?? '--').toList();
@@ -504,7 +519,6 @@ class NotificationService {
     final summaryIOSDetails = DarwinNotificationDetails(
       threadIdentifier: threadIdentifier,
       badgeNumber: count,
-      subtitle: 'notificationSummaryText'.tr(),
       sound: playNotificationSound ? 'sound.aiff' : null,
       presentSound: playNotificationSound,
     );
