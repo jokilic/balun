@@ -458,6 +458,8 @@ class NotificationService {
       final iOSDetails = DarwinNotificationDetails(
         threadIdentifier: threadIdentifier,
         attachments: iosAttachments.isNotEmpty ? iosAttachments : null,
+        sound: 'sound.aiff',
+        presentSound: playNotificationSound,
       );
 
       await flutterLocalNotificationsPlugin?.show(
@@ -505,6 +507,8 @@ class NotificationService {
       threadIdentifier: threadIdentifier,
       badgeNumber: count,
       subtitle: 'notificationSummaryText'.tr(),
+      sound: 'sound.aiff',
+      presentSound: playNotificationSound,
     );
 
     /// Generate notification `id`
@@ -676,12 +680,16 @@ class NotificationService {
         ticker: 'ticker',
       );
 
-      const iosNotificationDetails = DarwinNotificationDetails(
+      final iosNotificationDetails = DarwinNotificationDetails(
         categoryIdentifier: 'balun_category_id',
+        sound: 'sound.aiff',
+        presentSound: playNotificationSound,
       );
 
-      const macOSNotificationDetails = DarwinNotificationDetails(
+      final macOSNotificationDetails = DarwinNotificationDetails(
         categoryIdentifier: 'balun_category_id',
+        sound: 'sound.aiff',
+        presentSound: playNotificationSound,
       );
 
       final notificationDetails = NotificationDetails(
