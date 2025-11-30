@@ -386,7 +386,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                               width: 32,
                             ),
                             const SizedBox(width: 12),
-                            Expanded(
+                            Flexible(
                               flex: 5,
                               child: Text(
                                 mixOrOriginalWords(match.homeTeamName) ?? '---',
@@ -397,9 +397,10 @@ class _FavoritesContentState extends State<FavoritesContent> {
                                 ),
                               ),
                             ),
-                            Expanded(
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 6),
                               child: Text(
-                                ' - ',
+                                '-',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: context.textStyles.bodyMdLight.copyWith(
@@ -408,7 +409,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                                 textAlign: TextAlign.center,
                               ),
                             ),
-                            Expanded(
+                            Flexible(
                               flex: 5,
                               child: Text(
                                 mixOrOriginalWords(match.awayTeamName) ?? '---',
@@ -417,7 +418,6 @@ class _FavoritesContentState extends State<FavoritesContent> {
                                 style: context.textStyles.bodyMdLight.copyWith(
                                   fontWeight: FontWeight.w500,
                                 ),
-                                textAlign: TextAlign.right,
                               ),
                             ),
                             const SizedBox(width: 12),
