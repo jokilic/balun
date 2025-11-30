@@ -132,7 +132,7 @@ class BalunTheme {
     datePickerActiveIconColor: BalunColors.white,
     datePickerInactiveIconColor: BalunColors.white,
     slidingInfoPanelBackground: BalunColors.middleDark,
-    matchField: BalunColors.purple.withValues(alpha: 0.4),
+    matchField: BalunColors.middleDark,
     success: BalunColors.green,
     danger: BalunColors.red,
     info: BalunColors.blue,
@@ -149,14 +149,14 @@ class BalunTheme {
     fixtureListTileBackground: BalunColors.lightWhite,
     navigationBarBackground: BalunColors.middleWhite,
     navigationBarItemBackground: BalunColors.lightWhite,
-    navigationBarItemSelectedBackground: BalunColors.black,
-    navigationBarIconColor: BalunColors.middleWhite,
-    datePickerActiveBackground: BalunColors.black,
+    navigationBarItemSelectedBackground: BalunColors.greenWhiteTheme,
+    navigationBarIconColor: BalunColors.black,
+    datePickerActiveBackground: BalunColors.greenWhiteTheme,
     datePickerInactiveBackground: BalunColors.lightWhite,
-    datePickerActiveIconColor: BalunColors.whiteThemeColor,
-    datePickerInactiveIconColor: BalunColors.whiteThemeColor,
+    datePickerActiveIconColor: BalunColors.black,
+    datePickerInactiveIconColor: BalunColors.black,
     slidingInfoPanelBackground: BalunColors.whiteThemeColor,
-    matchField: BalunColors.black.withValues(alpha: 0.4),
+    matchField: BalunColors.greenWhiteTheme,
     success: BalunColors.green,
     danger: BalunColors.red,
     info: BalunColors.blue,
@@ -166,7 +166,7 @@ class BalunTheme {
 
   static final blueAppColors = BalunColorsExtension(
     primaryBackground: BalunColors.blueThemeColor,
-    primaryBackgroundLight: BalunColors.yellowBlueTheme.withValues(alpha: 0.4),
+    primaryBackgroundLight: BalunColors.yellowBlueTheme,
     primaryForeground: BalunColors.white,
     secondaryBackground: BalunColors.middleBlue,
     accent: BalunColors.blueThemeColor,
@@ -180,7 +180,7 @@ class BalunTheme {
     datePickerActiveIconColor: BalunColors.white,
     datePickerInactiveIconColor: BalunColors.white,
     slidingInfoPanelBackground: BalunColors.middleBlue,
-    matchField: BalunColors.yellowBlueTheme.withValues(alpha: 0.4),
+    matchField: BalunColors.middleBlue,
     success: BalunColors.green,
     danger: BalunColors.red,
     info: BalunColors.blue,
@@ -204,7 +204,7 @@ class BalunTheme {
 
   static final whiteTextTheme = buildTextTheme(
     whiteAppColors,
-    onPrimaryColor: whiteAppColors.primaryBackground,
+    onPrimaryColor: whiteAppColors.primaryForeground,
   );
 
   static final blueTextTheme = buildTextTheme(

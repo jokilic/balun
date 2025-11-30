@@ -36,7 +36,7 @@ abstract class BalunColors {
   static const purple = Color(0xFF4F5090);
 
   ///
-  /// LIGHT
+  /// WHITE
   ///
 
   static const whiteThemeColor = Color(0xFFDAD6D6);
@@ -48,6 +48,8 @@ abstract class BalunColors {
     color: whiteThemeColor,
     factor: 0.04,
   );
+
+  static const greenWhiteTheme = Color(0xFFA6D3A0);
 
   ///
   /// BLUE
