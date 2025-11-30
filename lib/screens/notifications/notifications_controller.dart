@@ -34,7 +34,9 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     );
 
     /// Initialize notifications if necessary
-    await notification.init();
+    await notification.init(
+      overrideInit: true,
+    );
 
     /// Toggle task, depending on notifications being active
     await backgroundFetch.toggleTask();
@@ -51,7 +53,9 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     );
 
     /// Initialize notifications if necessary
-    await notification.init();
+    await notification.init(
+      overrideInit: true,
+    );
 
     /// Toggle task, depending on notifications being active
     await backgroundFetch.toggleTask();
@@ -68,7 +72,9 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     );
 
     /// Initialize notifications if necessary
-    await notification.init();
+    await notification.init(
+      overrideInit: true,
+    );
 
     /// Toggle task, depending on notifications being active
     await backgroundFetch.toggleTask();
@@ -85,7 +91,9 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     );
 
     /// Initialize notifications if necessary
-    await notification.init();
+    await notification.init(
+      overrideInit: true,
+    );
 
     /// Toggle task, depending on notifications being active
     await backgroundFetch.toggleTask();

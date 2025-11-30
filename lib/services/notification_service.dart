@@ -55,11 +55,12 @@ class NotificationService {
   /// INIT
   ///
 
-  Future<void> init() async {
+  Future<void> init({bool overrideInit = false}) async {
     final notificationSettings = hive.getNotificationSettings();
 
     /// Notifications are not initialized & they are enabled in settings
-    if (flutterLocalNotificationsPlugin == null && (notificationSettings.showLeagueNotifications || notificationSettings.showTeamNotifications)) {
+    if (flutterLocalNotificationsPlugin == null &&
+        (overrideInit || (notificationSettings.showLeagueNotifications || notificationSettings.showTeamNotifications || notificationSettings.showMatchNotifications))) {
       flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
       await initializeNotifications();
       await requestNotificationPermissions();
