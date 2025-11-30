@@ -31,6 +31,7 @@ Future<ByteArrayAndroidBitmap?> buildAndroidTeamLogosLargeIcon({
     homeBytes: homeBytes,
     awayBytes: awayBytes,
     targetHeight: targetHeight,
+    backgroundColor: img.ColorRgba8(255, 255, 255, 255),
   );
 
   if (mergedPng == null) {
@@ -89,6 +90,58 @@ Future<List<DarwinNotificationAttachment>> buildIosTeamLogoAttachments({
   return attachments;
 }
 
+/// Builds a single combined crest attachment for iOS with transparent background
+Future<List<DarwinNotificationAttachment>> buildIosCombinedTeamLogoAttachment({
+  required Dio dio,
+  required String? homeLogoUrl,
+  required String? awayLogoUrl,
+  int targetHeight = 256,
+}) async {
+  final attachments = <DarwinNotificationAttachment>[];
+
+  final tempDir = await getTemporaryDirectory();
+  final timestamp = DateTime.now().millisecondsSinceEpoch;
+
+  final homeBytes = await downloadImageBytes(
+    dio: dio,
+    url: homeLogoUrl,
+  );
+  final awayBytes = await downloadImageBytes(
+    dio: dio,
+    url: awayLogoUrl,
+  );
+
+  if (homeBytes == null || awayBytes == null) {
+    return attachments;
+  }
+
+  final mergedPng = composeSideBySidePng(
+    homeBytes: homeBytes,
+    awayBytes: awayBytes,
+    targetHeight: targetHeight,
+    backgroundColor: img.ColorRgba8(255, 255, 255, 0),
+  );
+
+  if (mergedPng == null) {
+    return attachments;
+  }
+
+  final path = p.join(
+    tempDir.path,
+    'balun_logos_combined_$timestamp.png',
+  );
+  final file = File(path);
+  await file.writeAsBytes(
+    mergedPng,
+    flush: true,
+  );
+  attachments.add(
+    DarwinNotificationAttachment(path),
+  );
+
+  return attachments;
+}
+
 Future<Uint8List?> downloadImageBytes({
   required Dio dio,
   required String? url,
@@ -119,6 +172,7 @@ Uint8List? composeSideBySidePng({
   required Uint8List homeBytes,
   required Uint8List awayBytes,
   required int targetHeight,
+  img.Color? backgroundColor,
 }) {
   final homeImage = img.decodeImage(homeBytes);
   final awayImage = img.decodeImage(awayBytes);
@@ -142,11 +196,15 @@ Uint8List? composeSideBySidePng({
     numChannels: 4,
   );
 
-  /// Fill background to avoid default black; white keeps logos crisp on Android largeIcon.
-  img.fill(
-    canvas,
-    color: img.ColorRgba8(255, 255, 255, 255),
-  );
+  /// Fill background to avoid default black
+  /// Pass transparent for iOO
+  /// White for Android `largeIcon`
+  if (backgroundColor != null) {
+    img.fill(
+      canvas,
+      color: backgroundColor,
+    );
+  }
 
   img.compositeImage(
     canvas,

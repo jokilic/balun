@@ -426,7 +426,7 @@ class NotificationService {
 
       List<DarwinNotificationAttachment>? iosAttachments;
       if (hasLogos && isiOS) {
-        iosAttachments = await buildIosTeamLogoAttachments(
+        iosAttachments = await buildIosCombinedTeamLogoAttachment(
           dio: dio,
           homeLogoUrl: change.homeLogoUrl,
           awayLogoUrl: change.awayLogoUrl,
