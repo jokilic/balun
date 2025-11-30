@@ -653,7 +653,7 @@
     "notificationsTriggerNotificationsTitle": "Trigger notifications",
     "notificationsTriggerNotificationsSubtitle": "Run the notification logic",
     "notificationsTriggerNotificationsNotificationTitle": "Notification logic finished",
-    "notificationsTriggerNotificationsNotificationSubtitle": "You should get additional notifications if goal updates & match reminders are found.",
+    "notificationsTriggerNotificationsNotificationSubtitle": "No additional notifications because no changes were found in your favorite matches.",
     "themeAppBarTitle": "Theme",
     "themeAppBarSubtitle": "Your theme settings",
     "themeText1": "Here you can update theme which gets used throughout Balun.",

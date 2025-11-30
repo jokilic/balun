@@ -653,7 +653,7 @@
     "notificationsTriggerNotificationsTitle": "Isprobaj obavijesti",
     "notificationsTriggerNotificationsSubtitle": "Pokreni logiku obavijesti",
     "notificationsTriggerNotificationsNotificationTitle": "Logika obavijesti završena",
-    "notificationsTriggerNotificationsNotificationSubtitle": "Trebao si dobiti dodatne obavijesti ako su pronađeni golovi i događaji na utakmicama.",
+    "notificationsTriggerNotificationsNotificationSubtitle": "Nema dodatnih obavijesti jer nisu pronađene promjene u tvojim omiljenim utakmicama.",
     "themeAppBarTitle": "Tema",
     "themeAppBarSubtitle": "Tvoje postavke teme",
     "themeText1": "Ovdje možeš promijeniti temu koja se koristi kroz Balun.",

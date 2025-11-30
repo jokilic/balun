@@ -341,7 +341,7 @@ class NotificationService {
           }
         }
 
-        /// `changes` exist
+        /// `changes` exist, show grouped notification
         if (changes.isNotEmpty) {
           /// Send one grouped notification if there are changes
           await showGroupedFixturesNotifications(
@@ -355,21 +355,21 @@ class NotificationService {
           //   playNotificationSound: notificationSettings.playNotificationSound,
           // );
         }
+
+        /// Show notification if testing is done & no changes
+        if (isTesting && changes.isEmpty) {
+          /// Generate notification `id`
+          final id = DateTime.now().millisecondsSinceEpoch % 1000000000;
+
+          /// Show notification
+          await showNotification(
+            title: 'notificationsTriggerNotificationsNotificationTitle'.tr(),
+            text: 'notificationsTriggerNotificationsNotificationSubtitle'.tr(),
+            notificationId: id,
+            playNotificationSound: notificationSettings.playNotificationSound,
+          );
+        }
       }
-    }
-
-    /// Show notification if testing is done
-    if (isTesting) {
-      /// Generate notification `id`
-      final id = DateTime.now().millisecondsSinceEpoch % 1000000000;
-
-      /// Show notification
-      await showNotification(
-        title: 'notificationsTriggerNotificationsNotificationTitle'.tr(),
-        text: 'notificationsTriggerNotificationsNotificationSubtitle'.tr(),
-        notificationId: id,
-        playNotificationSound: notificationSettings.playNotificationSound,
-      );
     }
   }
 
