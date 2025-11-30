@@ -7,15 +7,21 @@ import 'package:image/image.dart' as img;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
-/// Builds a side-by-side crest image for Android notifications.
-Future<BigPictureStyleInformation?> buildAndroidTeamLogosBigPicture({
+/// Builds teams image for Android `largeIcon`
+Future<ByteArrayAndroidBitmap?> buildAndroidTeamLogosLargeIcon({
   required Dio dio,
   required String? homeLogoUrl,
   required String? awayLogoUrl,
   int targetHeight = 128,
 }) async {
-  final homeBytes = await downloadImageBytes(dio, homeLogoUrl);
-  final awayBytes = await downloadImageBytes(dio, awayLogoUrl);
+  final homeBytes = await downloadImageBytes(
+    dio: dio,
+    url: homeLogoUrl,
+  );
+  final awayBytes = await downloadImageBytes(
+    dio: dio,
+    url: awayLogoUrl,
+  );
 
   if (homeBytes == null || awayBytes == null) {
     return null;
@@ -31,14 +37,7 @@ Future<BigPictureStyleInformation?> buildAndroidTeamLogosBigPicture({
     return null;
   }
 
-  final bitmap = ByteArrayAndroidBitmap(mergedPng);
-
-  return BigPictureStyleInformation(
-    bitmap,
-    hideExpandedLargeIcon: true,
-    htmlFormatContent: true,
-    htmlFormatTitle: true,
-  );
+  return ByteArrayAndroidBitmap(mergedPng);
 }
 
 /// Downloads team logos to temp storage and returns iOS notification attachments
@@ -54,7 +53,10 @@ Future<List<DarwinNotificationAttachment>> buildIosTeamLogoAttachments({
   final timestamp = DateTime.now().millisecondsSinceEpoch;
 
   Future<void> addAttachment(String? url, String label) async {
-    final bytes = await downloadImageBytes(dio, url);
+    final bytes = await downloadImageBytes(
+      dio: dio,
+      url: url,
+    );
     if (bytes == null) {
       return;
     }
@@ -87,7 +89,10 @@ Future<List<DarwinNotificationAttachment>> buildIosTeamLogoAttachments({
   return attachments;
 }
 
-Future<Uint8List?> downloadImageBytes(Dio dio, String? url) async {
+Future<Uint8List?> downloadImageBytes({
+  required Dio dio,
+  required String? url,
+}) async {
   if (url?.isEmpty ?? true) {
     return null;
   }

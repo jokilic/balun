@@ -393,76 +393,68 @@ class NotificationService {
     return null;
   }
 
+  /// Shows notifications for fixtures
   Future<void> showGroupedFixturesNotifications(
     List<NotificationChange> changes, {
     required bool playNotificationSound,
   }) async {
     final isAndroid = defaultTargetPlatform == TargetPlatform.android;
+    final isiOS = defaultTargetPlatform == TargetPlatform.iOS;
 
-    final homeLogoUrl = changes
-        .firstWhere(
-          (c) => c.homeLogoUrl != null,
-          orElse: () => changes.first,
-        )
-        .homeLogoUrl;
-
-    final awayLogoUrl = changes
-        .firstWhere(
-          (c) => c.awayLogoUrl != null,
-          orElse: () => changes.first,
-        )
-        .awayLogoUrl;
-
-    final hasLogos = homeLogoUrl != null && awayLogoUrl != null;
-
-    BigPictureStyleInformation? bigPicture;
-    var iosAttachments = const <DarwinNotificationAttachment>[];
-
-    if (hasLogos && defaultTargetPlatform == TargetPlatform.android) {
-      bigPicture = await buildAndroidTeamLogosBigPicture(
-        dio: getIt.get<DioService>().footballDio,
-        homeLogoUrl: homeLogoUrl,
-        awayLogoUrl: awayLogoUrl,
-      );
-    }
-
-    if (hasLogos && defaultTargetPlatform == TargetPlatform.iOS) {
-      iosAttachments = await buildIosTeamLogoAttachments(
-        dio: getIt.get<DioService>().footballDio,
-        homeLogoUrl: homeLogoUrl,
-        awayLogoUrl: awayLogoUrl,
-      );
-    }
+    final dio = getIt.get<DioService>().footballDio;
 
     /// Individual notifications
     for (var i = 0; i < changes.length; i++) {
       final change = changes[i];
 
+      /// Generate team logos for notification
+      final hasLogos = (change.homeLogoUrl?.isNotEmpty ?? false) && (change.awayLogoUrl?.isNotEmpty ?? false);
+
+      ByteArrayAndroidBitmap? largeIcon;
+      if (isAndroid && hasLogos) {
+        largeIcon = await buildAndroidTeamLogosLargeIcon(
+          dio: dio,
+          homeLogoUrl: change.homeLogoUrl,
+          awayLogoUrl: change.awayLogoUrl,
+        );
+      }
+
+      List<DarwinNotificationAttachment>? iosAttachments;
+      if (hasLogos && isiOS) {
+        iosAttachments = await buildIosTeamLogoAttachments(
+          dio: dio,
+          homeLogoUrl: change.homeLogoUrl,
+          awayLogoUrl: change.awayLogoUrl,
+        );
+      }
+
+      /// Generate notification details for `Android`
       final androidDetails = AndroidNotificationDetails(
         groupChannelId,
         groupChannelName,
         channelDescription: groupChannelDescription,
-        sound: const RawResourceAndroidNotificationSound('notification'),
+        sound: playNotificationSound ? const RawResourceAndroidNotificationSound('notification') : null,
         playSound: playNotificationSound,
         importance: Importance.max,
         priority: Priority.high,
         groupKey: groupKey,
-        styleInformation:
-            bigPicture ??
-            DefaultStyleInformation(
-              isAndroid,
-              isAndroid,
-            ),
+        largeIcon: largeIcon,
+        styleInformation: DefaultStyleInformation(
+          isAndroid,
+          isAndroid,
+        ),
         ticker: 'ticker',
       );
 
+      /// Generate notification details for `iOS`
       final iOSDetails = DarwinNotificationDetails(
         threadIdentifier: threadIdentifier,
-        attachments: iosAttachments.isNotEmpty ? iosAttachments : null,
-        sound: 'sound.aiff',
+        attachments: iosAttachments,
+        sound: playNotificationSound ? 'sound.aiff' : null,
         presentSound: playNotificationSound,
       );
 
+      /// Show notification
       await flutterLocalNotificationsPlugin?.show(
         change.fixtureId ?? i,
         change.title,
