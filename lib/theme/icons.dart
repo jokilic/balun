@@ -33,6 +33,7 @@ class BalunIcons {
   static const notificationLeague = 'assets/icons/notification_league.webp';
   static const notificationTeam = 'assets/icons/notification_team.webp';
   static const notificationMatch = 'assets/icons/notification_match.webp';
+  static const notificationSound = 'assets/icons/notification_sound.webp';
   static const apiFootball = 'assets/icons/api_football.webp';
   static const croatia = 'assets/icons/croatia.webp';
   static const unitedKingdom = 'assets/icons/united_kingdom.webp';

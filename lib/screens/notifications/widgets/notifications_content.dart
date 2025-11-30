@@ -119,7 +119,7 @@ class NotificationsContent extends StatelessWidget {
       ///
       SettingsListTile(
         onPressed: onPressedNotificationSound,
-        icon: BalunIcons.notificationMatch,
+        icon: BalunIcons.notificationSound,
         title: 'notificationSoundTitle'.tr(),
         subtitle: 'notificationSoundSubtitle'.tr(),
         isActive: notificationsState.playNotificationSound,
