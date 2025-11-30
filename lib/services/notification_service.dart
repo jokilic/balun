@@ -203,14 +203,11 @@ class NotificationService {
 
           final isAndroid = defaultTargetPlatform == TargetPlatform.android;
 
-          String formatTeamName(String? teamName) {
-            final name = teamName ?? '--';
-            return isAndroid ? '<b>$name</b>' : name;
-          }
+          String formatGoals(int? currentGoals) => isAndroid ? '<b>$currentGoals</b>' : '$currentGoals';
 
-          String scoreLine() => '${mixOrOriginalWords(formatTeamName(homeTeamName))} $currentHomeGoals - $currentAwayGoals ${mixOrOriginalWords(formatTeamName(awayTeamName))}';
+          String scoreLine() => '${mixOrOriginalWords(homeTeamName)} ${formatGoals(currentHomeGoals)} - ${formatGoals(currentAwayGoals)} ${mixOrOriginalWords(awayTeamName)}';
 
-          String fixtureLine() => '${mixOrOriginalWords(formatTeamName(homeTeamName))} - ${mixOrOriginalWords(formatTeamName(awayTeamName))}';
+          String fixtureLine() => '${mixOrOriginalWords(homeTeamName)} - ${mixOrOriginalWords(awayTeamName)}';
 
           /// Build line for match start notification
           if (hasMatchStarted) {
