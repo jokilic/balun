@@ -13,11 +13,11 @@ import 'package:balun/models/theme/theme_model.dart';
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
     registerAdapter(BalunThemeEnumAdapter());
-    registerAdapter(ThemeModelAdapter());
-    registerAdapter(LeagueAdapter());
-    registerAdapter(TeamAdapter());
     registerAdapter(FavoriteMatchAdapter());
-    registerAdapter(NotificationSettingsAdapter());
+    registerAdapter(LeagueAdapter());
     registerAdapter(NotificationFixtureAdapter());
+    registerAdapter(NotificationSettingsAdapter());
+    registerAdapter(TeamAdapter());
+    registerAdapter(ThemeModelAdapter());
   }
 }

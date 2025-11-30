@@ -10,16 +10,19 @@ class NotificationSettings {
   final bool showTeamNotifications;
   @HiveField(2)
   final bool showMatchNotifications;
+  @HiveField(3)
+  final bool playNotificationSound;
 
   NotificationSettings({
     required this.showLeagueNotifications,
     required this.showTeamNotifications,
     required this.showMatchNotifications,
+    required this.playNotificationSound,
   });
 
   @override
   String toString() =>
-      'NotificationSettings(showLeagueNotifications: $showLeagueNotifications, showTeamNotifications: $showTeamNotifications, showMatchNotifications: $showMatchNotifications)';
+      'NotificationSettings(showLeagueNotifications: $showLeagueNotifications, showTeamNotifications: $showTeamNotifications, showMatchNotifications: $showMatchNotifications, playNotificationSound: $playNotificationSound)';
 
   @override
   bool operator ==(covariant NotificationSettings other) {
@@ -29,9 +32,10 @@ class NotificationSettings {
 
     return other.showLeagueNotifications == showLeagueNotifications &&
         other.showTeamNotifications == showTeamNotifications &&
-        other.showMatchNotifications == showMatchNotifications;
+        other.showMatchNotifications == showMatchNotifications &&
+        other.playNotificationSound == playNotificationSound;
   }
 
   @override
-  int get hashCode => showLeagueNotifications.hashCode ^ showTeamNotifications.hashCode ^ showMatchNotifications.hashCode;
+  int get hashCode => showLeagueNotifications.hashCode ^ showTeamNotifications.hashCode ^ showMatchNotifications.hashCode ^ playNotificationSound.hashCode;
 }

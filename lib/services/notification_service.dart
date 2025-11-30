@@ -72,8 +72,6 @@ class NotificationService {
 
   /// Fetches today's fixtures and generates notification data
   Future<void> fetchFixturesAndNotify({bool isTesting = false}) async {
-    /// Initialize notifications if testing
-
     /// Initialize notifications if they're not initialized
     if (flutterLocalNotificationsPlugin == null) {
       flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -98,6 +96,9 @@ class NotificationService {
     /// Do logic if within timeframe
     final isInRange = (hour >= 15) || (hour == 0);
 
+    /// Get notification settings
+    final notificationSettings = hive.getNotificationSettings();
+
     /// Currently within timeframe, run logic
     if (isTesting || isInRange) {
       /// Get today fixtures
@@ -111,9 +112,6 @@ class NotificationService {
         final favoriteLeagues = getIt.get<LeagueStorageService>().value;
         final favoriteTeams = getIt.get<TeamStorageService>().value;
         final favoriteMatches = getIt.get<MatchStorageService>().value;
-
-        /// Get notification settings
-        final notificationSettings = hive.getNotificationSettings();
 
         /// Get favorite leagues & teams `IDs`
         final favoriteLeagueIds = favoriteLeagues.map((league) => league.id).whereType<int>().toSet();
@@ -339,7 +337,10 @@ class NotificationService {
 
         /// Send one grouped notification if there are changes
         if (changes.isNotEmpty) {
-          await showGroupedFixturesNotifications(changes);
+          await showGroupedFixturesNotifications(
+            changes,
+            playNotificationSound: notificationSettings.playNotificationSound,
+          );
         }
       }
     }
@@ -354,6 +355,7 @@ class NotificationService {
         title: 'notificationsTriggerNotificationsNotificationTitle'.tr(),
         text: 'notificationsTriggerNotificationsNotificationSubtitle'.tr(),
         notificationId: id,
+        playNotificationSound: notificationSettings.playNotificationSound,
       );
     }
   }
@@ -390,7 +392,10 @@ class NotificationService {
     return null;
   }
 
-  Future<void> showGroupedFixturesNotifications(List<NotificationChange> changes) async {
+  Future<void> showGroupedFixturesNotifications(
+    List<NotificationChange> changes, {
+    required bool playNotificationSound,
+  }) async {
     final isAndroid = defaultTargetPlatform == TargetPlatform.android;
 
     final homeLogoUrl = changes
@@ -436,6 +441,8 @@ class NotificationService {
         groupChannelId,
         groupChannelName,
         channelDescription: groupChannelDescription,
+        sound: const RawResourceAndroidNotificationSound('notification'),
+        playSound: playNotificationSound,
         importance: Importance.max,
         priority: Priority.high,
         groupKey: groupKey,
@@ -484,6 +491,8 @@ class NotificationService {
       groupChannelId,
       groupChannelName,
       channelDescription: groupChannelDescription,
+      sound: const RawResourceAndroidNotificationSound('notification'),
+      playSound: playNotificationSound,
       styleInformation: inboxStyle,
       groupKey: groupKey,
       number: count,
@@ -600,7 +609,7 @@ class NotificationService {
   }
 
   /// Shows a test notification
-  Future<void> testNotification() async {
+  Future<void> testNotification({required bool playNotificationSound}) async {
     try {
       /// Initialize notifications if they're not initialized
       if (flutterLocalNotificationsPlugin == null) {
@@ -624,6 +633,7 @@ class NotificationService {
         title: 'notificationsTestNotificationNotificationTitle'.tr(),
         text: getRandomFootballJoke(),
         notificationId: id,
+        playNotificationSound: playNotificationSound,
       );
     } catch (e) {
       final error = 'TestNotification -> catch -> $e';
@@ -643,6 +653,7 @@ class NotificationService {
     required String title,
     required String text,
     required int notificationId,
+    required bool playNotificationSound,
     String? payload,
   }) async {
     try {
@@ -657,6 +668,8 @@ class NotificationService {
         'balun_channel_id',
         'Balun notifications',
         channelDescription: 'Notifications shown by the Balun app',
+        sound: const RawResourceAndroidNotificationSound('notification'),
+        playSound: playNotificationSound,
         styleInformation: bigTextStyleInformation,
         importance: Importance.max,
         priority: Priority.high,

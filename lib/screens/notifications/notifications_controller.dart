@@ -29,6 +29,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
         showLeagueNotifications: !value.showLeagueNotifications,
         showTeamNotifications: value.showTeamNotifications,
         showMatchNotifications: value.showMatchNotifications,
+        playNotificationSound: value.playNotificationSound,
       ),
     );
 
@@ -45,6 +46,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
         showLeagueNotifications: value.showLeagueNotifications,
         showTeamNotifications: !value.showTeamNotifications,
         showMatchNotifications: value.showMatchNotifications,
+        playNotificationSound: value.playNotificationSound,
       ),
     );
 
@@ -61,6 +63,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
         showLeagueNotifications: value.showLeagueNotifications,
         showTeamNotifications: value.showTeamNotifications,
         showMatchNotifications: !value.showMatchNotifications,
+        playNotificationSound: value.playNotificationSound,
       ),
     );
 
@@ -71,7 +74,26 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     await backgroundFetch.toggleTask();
   }
 
-  void testNotification() => notification.testNotification();
+  Future<void> onPressedNotificationSound() async {
+    await updateState(
+      newNotificationSettings: NotificationSettings(
+        showLeagueNotifications: value.showLeagueNotifications,
+        showTeamNotifications: value.showTeamNotifications,
+        showMatchNotifications: value.showMatchNotifications,
+        playNotificationSound: !value.playNotificationSound,
+      ),
+    );
+
+    /// Initialize notifications if necessary
+    await notification.init();
+
+    /// Toggle task, depending on notifications being active
+    await backgroundFetch.toggleTask();
+  }
+
+  void testNotification() => notification.testNotification(
+    playNotificationSound: hive.getNotificationSettings().playNotificationSound,
+  );
 
   void triggerNotifications() => notification.fetchFixturesAndNotify(
     isTesting: true,

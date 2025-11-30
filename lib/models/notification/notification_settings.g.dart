@@ -20,19 +20,22 @@ class NotificationSettingsAdapter extends TypeAdapter<NotificationSettings> {
       showLeagueNotifications: fields[0] as bool,
       showTeamNotifications: fields[1] as bool,
       showMatchNotifications: fields[2] as bool,
+      playNotificationSound: fields[3] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, NotificationSettings obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.showLeagueNotifications)
       ..writeByte(1)
       ..write(obj.showTeamNotifications)
       ..writeByte(2)
-      ..write(obj.showMatchNotifications);
+      ..write(obj.showMatchNotifications)
+      ..writeByte(3)
+      ..write(obj.playNotificationSound);
   }
 
   @override

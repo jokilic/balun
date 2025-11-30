@@ -11,6 +11,7 @@ class NotificationsContent extends StatelessWidget {
   final Function() onPressedFavoriteLeagues;
   final Function() onPressedFavoriteTeams;
   final Function() onPressedFavoriteMatches;
+  final Function() onPressedNotificationSound;
   final Function() onPressedTestNotification;
   final Function() onPressedTriggerNotifications;
 
@@ -19,6 +20,7 @@ class NotificationsContent extends StatelessWidget {
     required this.onPressedFavoriteLeagues,
     required this.onPressedFavoriteTeams,
     required this.onPressedFavoriteMatches,
+    required this.onPressedNotificationSound,
     required this.onPressedTestNotification,
     required this.onPressedTriggerNotifications,
   });
@@ -98,6 +100,29 @@ class NotificationsContent extends StatelessWidget {
         title: 'notificationsFavoriteMatchesTitle'.tr(),
         subtitle: 'notificationsFavoriteMatchesSubtitle'.tr(),
         isActive: notificationsState.showMatchNotifications,
+      ),
+      const SizedBox(height: 24),
+
+      ///
+      /// TITLE
+      ///
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
+          'notificationsSoundsTitle'.tr(),
+          style: context.textStyles.titleMd,
+        ),
+      ),
+
+      ///
+      /// NOTIFICATION SOUND
+      ///
+      SettingsListTile(
+        onPressed: onPressedNotificationSound,
+        icon: BalunIcons.notificationMatch,
+        title: 'notificationSoundTitle'.tr(),
+        subtitle: 'notificationSoundSubtitle'.tr(),
+        isActive: notificationsState.playNotificationSound,
       ),
       const SizedBox(height: 24),
 
