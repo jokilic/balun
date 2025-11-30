@@ -46,9 +46,13 @@ class NotificationService {
   FlutterLocalNotificationsPlugin? flutterLocalNotificationsPlugin;
 
   final groupKey = 'com.josipkilic.balun.fixture_updates';
-  final groupChannelId = 'balun_channel_id';
-  final groupChannelName = 'Balun notifications';
-  final groupChannelDescription = 'Notifications shown by the Balun app';
+
+  static const soundChannelId = 'balun_channel_sound';
+  static const silentChannelId = 'balun_channel_silent';
+
+  static const channelName = 'Balun notifications';
+  static const channelDescription = 'Notifications shown by the Balun app';
+
   final threadIdentifier = 'fixture_updates_thread';
 
   ///
@@ -70,6 +74,9 @@ class NotificationService {
   ///
   /// METHODS
   ///
+
+  /// Returns proper notification `channelId`
+  String getNotificationChannelId(bool playSound) => playSound ? soundChannelId : silentChannelId;
 
   /// Fetches today's fixtures and generates notification data
   Future<void> fetchFixturesAndNotify({bool isTesting = false}) async {
@@ -343,6 +350,8 @@ class NotificationService {
 
         /// `changes` exist, show grouped notification
         if (changes.isNotEmpty) {
+          await createAndroidNotificationChannels();
+
           /// Send one grouped notification if there are changes
           await showGroupedFixturesNotifications(
             changes,
@@ -414,6 +423,9 @@ class NotificationService {
     final isiOS = defaultTargetPlatform == TargetPlatform.iOS;
 
     final dio = getIt.get<DioService>().footballDio;
+    final channelId = getNotificationChannelId(playNotificationSound);
+
+    await createAndroidNotificationChannels();
 
     /// Individual notifications
     for (var i = 0; i < changes.length; i++) {
@@ -442,9 +454,9 @@ class NotificationService {
 
       /// Generate notification details for `Android`
       final androidDetails = AndroidNotificationDetails(
-        groupChannelId,
-        groupChannelName,
-        channelDescription: groupChannelDescription,
+        channelId,
+        channelName,
+        channelDescription: channelDescription,
         sound: playNotificationSound ? const RawResourceAndroidNotificationSound('notification') : null,
         playSound: playNotificationSound,
         importance: Importance.max,
@@ -486,6 +498,9 @@ class NotificationService {
     required bool playNotificationSound,
   }) async {
     final isAndroid = defaultTargetPlatform == TargetPlatform.android;
+    final channelId = getNotificationChannelId(playNotificationSound);
+
+    await createAndroidNotificationChannels();
 
     /// Summary notification
     final lines = changes.map((c) => c.summaryLine ?? '--').toList();
@@ -503,9 +518,9 @@ class NotificationService {
     );
 
     final summaryAndroidDetails = AndroidNotificationDetails(
-      groupChannelId,
-      groupChannelName,
-      channelDescription: groupChannelDescription,
+      channelId,
+      channelName,
+      channelDescription: channelDescription,
       sound: playNotificationSound ? const RawResourceAndroidNotificationSound('notification') : null,
       playSound: playNotificationSound,
       styleInformation: inboxStyle,
@@ -558,6 +573,8 @@ class NotificationService {
         onDidReceiveNotificationResponse: onDidReceiveNotificationResponse,
         onDidReceiveBackgroundNotificationResponse: onDidReceiveBackgroundNotificationResponse,
       );
+
+      await createAndroidNotificationChannels();
 
       return initialized ?? false;
     } catch (e) {
@@ -673,6 +690,8 @@ class NotificationService {
     String? payload,
   }) async {
     try {
+      await createAndroidNotificationChannels();
+
       final bigTextStyleInformation = BigTextStyleInformation(
         text,
         contentTitle: title,
@@ -680,10 +699,11 @@ class NotificationService {
         htmlFormatContent: true,
       );
 
+      final channelId = getNotificationChannelId(playNotificationSound);
       final androidNotificationDetails = AndroidNotificationDetails(
-        'balun_channel_id',
-        'Balun notifications',
-        channelDescription: 'Notifications shown by the Balun app',
+        channelId,
+        channelName,
+        channelDescription: channelDescription,
         sound: playNotificationSound ? const RawResourceAndroidNotificationSound('notification') : null,
         playSound: playNotificationSound,
         styleInformation: bigTextStyleInformation,
@@ -752,6 +772,37 @@ class NotificationService {
       final error = 'HandlePressedNotification -> catch -> $e';
       logger.e(error);
     }
+  }
+
+  /// Creates sound & silent notification channels for Android
+  Future<void> createAndroidNotificationChannels() async {
+    if (defaultTargetPlatform != TargetPlatform.android) {
+      return;
+    }
+
+    final androidPlugin = flutterLocalNotificationsPlugin?.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+    if (androidPlugin == null) {
+      return;
+    }
+
+    const soundChannel = AndroidNotificationChannel(
+      soundChannelId,
+      channelName,
+      description: channelDescription,
+      importance: Importance.max,
+      sound: RawResourceAndroidNotificationSound('notification'),
+    );
+
+    const silentChannel = AndroidNotificationChannel(
+      silentChannelId,
+      'Balun notifications (silent)',
+      description: channelDescription,
+      importance: Importance.max,
+      playSound: false,
+    );
+
+    await androidPlugin.createNotificationChannel(soundChannel);
+    await androidPlugin.createNotificationChannel(silentChannel);
   }
 
   /// Triggered when the user taps the notification
