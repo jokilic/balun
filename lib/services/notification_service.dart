@@ -483,7 +483,7 @@ class NotificationService {
       groupChannelId,
       groupChannelName,
       channelDescription: groupChannelDescription,
-      sound: const RawResourceAndroidNotificationSound('notification'),
+      sound: playNotificationSound ? const RawResourceAndroidNotificationSound('notification') : null,
       playSound: playNotificationSound,
       styleInformation: inboxStyle,
       groupKey: groupKey,
@@ -497,7 +497,7 @@ class NotificationService {
       threadIdentifier: threadIdentifier,
       badgeNumber: count,
       subtitle: 'notificationSummaryText'.tr(),
-      sound: 'sound.aiff',
+      sound: playNotificationSound ? 'sound.aiff' : null,
       presentSound: playNotificationSound,
     );
 
@@ -662,7 +662,7 @@ class NotificationService {
         'balun_channel_id',
         'Balun notifications',
         channelDescription: 'Notifications shown by the Balun app',
-        sound: const RawResourceAndroidNotificationSound('notification'),
+        sound: playNotificationSound ? const RawResourceAndroidNotificationSound('notification') : null,
         playSound: playNotificationSound,
         styleInformation: bigTextStyleInformation,
         importance: Importance.max,
@@ -672,13 +672,13 @@ class NotificationService {
 
       final iosNotificationDetails = DarwinNotificationDetails(
         categoryIdentifier: 'balun_category_id',
-        sound: 'sound.aiff',
+        sound: playNotificationSound ? 'sound.aiff' : null,
         presentSound: playNotificationSound,
       );
 
       final macOSNotificationDetails = DarwinNotificationDetails(
         categoryIdentifier: 'balun_category_id',
-        sound: 'sound.aiff',
+        sound: playNotificationSound ? 'sound.aiff' : null,
         presentSound: playNotificationSound,
       );
 
