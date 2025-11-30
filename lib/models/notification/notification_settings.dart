@@ -11,18 +11,30 @@ class NotificationSettings {
   @HiveField(2)
   final bool showMatchNotifications;
   @HiveField(3)
+  final bool triggerMatchStart;
+  @HiveField(4)
+  final bool triggerGoal;
+  @HiveField(5)
+  final bool triggerMatchProgress;
+  @HiveField(6)
+  final bool triggerFullTime;
+  @HiveField(7)
   final bool playNotificationSound;
 
   NotificationSettings({
     required this.showLeagueNotifications,
     required this.showTeamNotifications,
     required this.showMatchNotifications,
+    required this.triggerMatchStart,
+    required this.triggerGoal,
+    required this.triggerMatchProgress,
+    required this.triggerFullTime,
     required this.playNotificationSound,
   });
 
   @override
   String toString() =>
-      'NotificationSettings(showLeagueNotifications: $showLeagueNotifications, showTeamNotifications: $showTeamNotifications, showMatchNotifications: $showMatchNotifications, playNotificationSound: $playNotificationSound)';
+      'NotificationSettings(showLeagueNotifications: $showLeagueNotifications, showTeamNotifications: $showTeamNotifications, showMatchNotifications: $showMatchNotifications, triggerMatchStart: $triggerMatchStart, triggerGoal: $triggerGoal, triggerMatchProgress: $triggerMatchProgress, triggerFullTime: $triggerFullTime, playNotificationSound: $playNotificationSound)';
 
   @override
   bool operator ==(covariant NotificationSettings other) {
@@ -33,9 +45,21 @@ class NotificationSettings {
     return other.showLeagueNotifications == showLeagueNotifications &&
         other.showTeamNotifications == showTeamNotifications &&
         other.showMatchNotifications == showMatchNotifications &&
+        other.triggerMatchStart == triggerMatchStart &&
+        other.triggerGoal == triggerGoal &&
+        other.triggerMatchProgress == triggerMatchProgress &&
+        other.triggerFullTime == triggerFullTime &&
         other.playNotificationSound == playNotificationSound;
   }
 
   @override
-  int get hashCode => showLeagueNotifications.hashCode ^ showTeamNotifications.hashCode ^ showMatchNotifications.hashCode ^ playNotificationSound.hashCode;
+  int get hashCode =>
+      showLeagueNotifications.hashCode ^
+      showTeamNotifications.hashCode ^
+      showMatchNotifications.hashCode ^
+      triggerMatchStart.hashCode ^
+      triggerGoal.hashCode ^
+      triggerMatchProgress.hashCode ^
+      triggerFullTime.hashCode ^
+      playNotificationSound.hashCode;
 }

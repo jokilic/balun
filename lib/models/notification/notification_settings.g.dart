@@ -20,14 +20,18 @@ class NotificationSettingsAdapter extends TypeAdapter<NotificationSettings> {
       showLeagueNotifications: fields[0] as bool,
       showTeamNotifications: fields[1] as bool,
       showMatchNotifications: fields[2] as bool,
-      playNotificationSound: fields[3] as bool,
+      triggerMatchStart: fields[3] as bool,
+      triggerGoal: fields[4] as bool,
+      triggerMatchProgress: fields[5] as bool,
+      triggerFullTime: fields[6] as bool,
+      playNotificationSound: fields[7] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, NotificationSettings obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.showLeagueNotifications)
       ..writeByte(1)
@@ -35,6 +39,14 @@ class NotificationSettingsAdapter extends TypeAdapter<NotificationSettings> {
       ..writeByte(2)
       ..write(obj.showMatchNotifications)
       ..writeByte(3)
+      ..write(obj.triggerMatchStart)
+      ..writeByte(4)
+      ..write(obj.triggerGoal)
+      ..writeByte(5)
+      ..write(obj.triggerMatchProgress)
+      ..writeByte(6)
+      ..write(obj.triggerFullTime)
+      ..writeByte(7)
       ..write(obj.playNotificationSound);
   }
 

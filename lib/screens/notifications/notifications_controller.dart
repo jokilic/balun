@@ -25,12 +25,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
 
   Future<void> onPressedFavoriteLeagues() async {
     await updateState(
-      newNotificationSettings: NotificationSettings(
-        showLeagueNotifications: !value.showLeagueNotifications,
-        showTeamNotifications: value.showTeamNotifications,
-        showMatchNotifications: value.showMatchNotifications,
-        playNotificationSound: value.playNotificationSound,
-      ),
+      newShowLeagueNotifications: !value.showLeagueNotifications,
     );
 
     /// Initialize notifications if necessary
@@ -44,12 +39,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
 
   Future<void> onPressedFavoriteTeams() async {
     await updateState(
-      newNotificationSettings: NotificationSettings(
-        showLeagueNotifications: value.showLeagueNotifications,
-        showTeamNotifications: !value.showTeamNotifications,
-        showMatchNotifications: value.showMatchNotifications,
-        playNotificationSound: value.playNotificationSound,
-      ),
+      newShowTeamNotifications: !value.showTeamNotifications,
     );
 
     /// Initialize notifications if necessary
@@ -63,12 +53,63 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
 
   Future<void> onPressedFavoriteMatches() async {
     await updateState(
-      newNotificationSettings: NotificationSettings(
-        showLeagueNotifications: value.showLeagueNotifications,
-        showTeamNotifications: value.showTeamNotifications,
-        showMatchNotifications: !value.showMatchNotifications,
-        playNotificationSound: value.playNotificationSound,
-      ),
+      newShowMatchNotifications: !value.showMatchNotifications,
+    );
+
+    /// Initialize notifications if necessary
+    await notification.init(
+      overrideInit: true,
+    );
+
+    /// Toggle task, depending on notifications being active
+    await backgroundFetch.toggleTask();
+  }
+
+  Future<void> onPressedTriggerMatchStart() async {
+    await updateState(
+      newTriggerMatchStart: !value.triggerMatchStart,
+    );
+
+    /// Initialize notifications if necessary
+    await notification.init(
+      overrideInit: true,
+    );
+
+    /// Toggle task, depending on notifications being active
+    await backgroundFetch.toggleTask();
+  }
+
+  Future<void> onPressedTriggerGoal() async {
+    await updateState(
+      newTriggerGoal: !value.triggerGoal,
+    );
+
+    /// Initialize notifications if necessary
+    await notification.init(
+      overrideInit: true,
+    );
+
+    /// Toggle task, depending on notifications being active
+    await backgroundFetch.toggleTask();
+  }
+
+  Future<void> onPressedTriggerMatchProgress() async {
+    await updateState(
+      newTriggerMatchProgress: !value.triggerMatchProgress,
+    );
+
+    /// Initialize notifications if necessary
+    await notification.init(
+      overrideInit: true,
+    );
+
+    /// Toggle task, depending on notifications being active
+    await backgroundFetch.toggleTask();
+  }
+
+  Future<void> onPressedTriggerFullTime() async {
+    await updateState(
+      newTriggerFullTime: !value.triggerFullTime,
     );
 
     /// Initialize notifications if necessary
@@ -82,12 +123,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
 
   Future<void> onPressedNotificationSound() async {
     await updateState(
-      newNotificationSettings: NotificationSettings(
-        showLeagueNotifications: value.showLeagueNotifications,
-        showTeamNotifications: value.showTeamNotifications,
-        showMatchNotifications: value.showMatchNotifications,
-        playNotificationSound: !value.playNotificationSound,
-      ),
+      newPlayNotificationSound: !value.playNotificationSound,
     );
 
     /// Initialize notifications if necessary
@@ -108,8 +144,26 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
   );
 
   Future<void> updateState({
-    required NotificationSettings newNotificationSettings,
+    bool? newShowLeagueNotifications,
+    bool? newShowTeamNotifications,
+    bool? newShowMatchNotifications,
+    bool? newTriggerMatchStart,
+    bool? newTriggerGoal,
+    bool? newTriggerMatchProgress,
+    bool? newTriggerFullTime,
+    bool? newPlayNotificationSound,
   }) async {
+    final newNotificationSettings = NotificationSettings(
+      showLeagueNotifications: newShowLeagueNotifications ?? value.showLeagueNotifications,
+      showTeamNotifications: newShowTeamNotifications ?? value.showTeamNotifications,
+      showMatchNotifications: newShowMatchNotifications ?? value.showMatchNotifications,
+      triggerMatchStart: newTriggerMatchStart ?? value.triggerMatchStart,
+      triggerGoal: newTriggerGoal ?? value.triggerGoal,
+      triggerMatchProgress: newTriggerMatchProgress ?? value.triggerMatchProgress,
+      triggerFullTime: newTriggerFullTime ?? value.triggerFullTime,
+      playNotificationSound: newPlayNotificationSound ?? value.playNotificationSound,
+    );
+
     value = newNotificationSettings;
     await hive.writeNotificationSettings(newNotificationSettings);
   }

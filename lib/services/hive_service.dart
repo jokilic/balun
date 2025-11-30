@@ -91,6 +91,10 @@ class HiveService implements Disposable {
         showLeagueNotifications: false,
         showTeamNotifications: false,
         showMatchNotifications: false,
+        triggerMatchStart: true,
+        triggerGoal: true,
+        triggerMatchProgress: false,
+        triggerFullTime: true,
         playNotificationSound: false,
       );
 

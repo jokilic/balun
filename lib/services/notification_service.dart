@@ -100,6 +100,14 @@ class NotificationService {
     /// Get notification settings
     final notificationSettings = hive.getNotificationSettings();
 
+    /// Check notification state from settings
+    final notificationsEnabled = notificationSettings.showLeagueNotifications || notificationSettings.showTeamNotifications || notificationSettings.showMatchNotifications;
+
+    /// Notifications not enabled, don't do anything
+    if (!notificationsEnabled) {
+      return;
+    }
+
     /// Currently within timeframe, run logic
     if (isTesting || isInRange) {
       /// Get today fixtures
@@ -210,7 +218,7 @@ class NotificationService {
           String fixtureLine() => '${mixOrOriginalWords(homeTeamName)} - ${mixOrOriginalWords(awayTeamName)}';
 
           /// Build line for match start notification
-          if (hasMatchStarted) {
+          if (notificationSettings.triggerMatchStart && hasMatchStarted) {
             changes.add(
               NotificationChange(
                 fixtureId: fixtureId,
@@ -226,7 +234,7 @@ class NotificationService {
           }
 
           /// Build line for goal notification
-          if (wasGoal && totalGoals > (prev.lastNotifiedTotalGoals ?? 0)) {
+          if (notificationSettings.triggerGoal && wasGoal && totalGoals > (prev.lastNotifiedTotalGoals ?? 0)) {
             changes.add(
               NotificationChange(
                 fixtureId: fixtureId,
@@ -242,7 +250,7 @@ class NotificationService {
           }
 
           /// Build line for half-time notification
-          if (isHalfTime) {
+          if (notificationSettings.triggerMatchProgress && isHalfTime) {
             changes.add(
               NotificationChange(
                 fixtureId: fixtureId,
@@ -258,7 +266,7 @@ class NotificationService {
           }
 
           /// Build line for extra-time notification
-          if (isExtraTime) {
+          if (notificationSettings.triggerMatchProgress && isExtraTime) {
             changes.add(
               NotificationChange(
                 fixtureId: fixtureId,
@@ -274,7 +282,7 @@ class NotificationService {
           }
 
           /// Build line for penalties notification
-          if (isPenalties) {
+          if (notificationSettings.triggerMatchProgress && isPenalties) {
             changes.add(
               NotificationChange(
                 fixtureId: fixtureId,
@@ -290,7 +298,7 @@ class NotificationService {
           }
 
           /// Build line for full-time notification
-          if (isFullTime) {
+          if (notificationSettings.triggerFullTime && isFullTime) {
             changes.add(
               NotificationChange(
                 fixtureId: fixtureId,

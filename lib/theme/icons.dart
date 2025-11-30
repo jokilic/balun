@@ -34,6 +34,10 @@ class BalunIcons {
   static const notificationTeam = 'assets/icons/notification_team.webp';
   static const notificationMatch = 'assets/icons/notification_match.webp';
   static const notificationSound = 'assets/icons/notification_sound.webp';
+  static const notificationMatchStart = 'assets/icons/notification_match_start.webp';
+  static const notificationGoal = 'assets/icons/notification_goal.webp';
+  static const notificationMatchProgress = 'assets/icons/notification_match_progress.webp';
+  static const notificationFullTime = 'assets/icons/notification_full_time.webp';
   static const apiFootball = 'assets/icons/api_football.webp';
   static const croatia = 'assets/icons/croatia.webp';
   static const unitedKingdom = 'assets/icons/united_kingdom.webp';

@@ -11,6 +11,10 @@ class NotificationsContent extends StatelessWidget {
   final Function() onPressedFavoriteLeagues;
   final Function() onPressedFavoriteTeams;
   final Function() onPressedFavoriteMatches;
+  final Function() onPressedTriggerMatchStart;
+  final Function() onPressedTriggerGoal;
+  final Function() onPressedTriggerMatchProgress;
+  final Function() onPressedTriggerFullTime;
   final Function() onPressedNotificationSound;
   final Function() onPressedTestNotification;
   final Function() onPressedTriggerNotifications;
@@ -20,6 +24,10 @@ class NotificationsContent extends StatelessWidget {
     required this.onPressedFavoriteLeagues,
     required this.onPressedFavoriteTeams,
     required this.onPressedFavoriteMatches,
+    required this.onPressedTriggerMatchStart,
+    required this.onPressedTriggerGoal,
+    required this.onPressedTriggerMatchProgress,
+    required this.onPressedTriggerFullTime,
     required this.onPressedNotificationSound,
     required this.onPressedTestNotification,
     required this.onPressedTriggerNotifications,
@@ -68,6 +76,15 @@ class NotificationsContent extends StatelessWidget {
           style: context.textStyles.titleMd,
         ),
       ),
+      const SizedBox(height: 2),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
+          'notificationsNotificationsSubtitle'.tr(),
+          style: context.textStyles.bodyMdLight,
+        ),
+      ),
+      const SizedBox(height: 12),
 
       ///
       /// FAVORITE LEAGUES
@@ -109,10 +126,84 @@ class NotificationsContent extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Text(
+          'notificationsTriggersTitle'.tr(),
+          style: context.textStyles.titleMd,
+        ),
+      ),
+      const SizedBox(height: 2),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
+          'notificationsTriggersSubtitle'.tr(),
+          style: context.textStyles.bodyMdLight,
+        ),
+      ),
+      const SizedBox(height: 12),
+
+      ///
+      /// MATCH START
+      ///
+      SettingsListTile(
+        onPressed: onPressedTriggerMatchStart,
+        icon: BalunIcons.notificationMatchStart,
+        title: 'notificationMatchStartTitle'.tr(),
+        subtitle: 'notificationMatchStartSubtitle'.tr(),
+        isActive: notificationsState.triggerMatchStart,
+      ),
+
+      ///
+      /// GOAL
+      ///
+      SettingsListTile(
+        onPressed: onPressedTriggerGoal,
+        icon: BalunIcons.notificationGoal,
+        title: 'notificationGoalTitle'.tr(),
+        subtitle: 'notificationGoalSubtitle'.tr(),
+        isActive: notificationsState.triggerGoal,
+      ),
+
+      ///
+      /// MATCH PROGRESS
+      ///
+      SettingsListTile(
+        onPressed: onPressedTriggerMatchProgress,
+        icon: BalunIcons.notificationMatchProgress,
+        title: 'notificationMatchProgressTitle'.tr(),
+        subtitle: 'notificationMatchProgressSubtitle'.tr(),
+        isActive: notificationsState.triggerMatchProgress,
+      ),
+
+      ///
+      /// FULL TIME
+      ///
+      SettingsListTile(
+        onPressed: onPressedTriggerFullTime,
+        icon: BalunIcons.notificationFullTime,
+        title: 'notificationFullTimeTitle'.tr(),
+        subtitle: 'notificationFullTimeSubtitle'.tr(),
+        isActive: notificationsState.triggerFullTime,
+      ),
+      const SizedBox(height: 24),
+
+      ///
+      /// TITLE
+      ///
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
           'notificationsSoundsTitle'.tr(),
           style: context.textStyles.titleMd,
         ),
       ),
+      const SizedBox(height: 2),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
+          'notificationsSoundsSubtitle'.tr(),
+          style: context.textStyles.bodyMdLight,
+        ),
+      ),
+      const SizedBox(height: 12),
 
       ///
       /// NOTIFICATION SOUND
@@ -136,6 +227,15 @@ class NotificationsContent extends StatelessWidget {
           style: context.textStyles.titleMd,
         ),
       ),
+      const SizedBox(height: 2),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
+          'notificationsTestingSubtitle'.tr(),
+          style: context.textStyles.bodyMdLight,
+        ),
+      ),
+      const SizedBox(height: 12),
 
       ///
       /// TEST NOTIFICATION
