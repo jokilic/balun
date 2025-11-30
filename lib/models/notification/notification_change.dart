@@ -14,6 +14,8 @@ class NotificationChange {
   final String? body;
   final String? summaryLine;
   final String? payload;
+  final String? homeLogoUrl;
+  final String? awayLogoUrl;
 
   NotificationChange({
     required this.fixtureId,
@@ -22,10 +24,13 @@ class NotificationChange {
     required this.body,
     required this.summaryLine,
     this.payload,
+    this.homeLogoUrl,
+    this.awayLogoUrl,
   });
 
   @override
-  String toString() => 'NotificationChange(fixtureId: $fixtureId, type: $type, title: $title, body: $body, summaryLine: $summaryLine, payload: $payload)';
+  String toString() =>
+      'NotificationChange(fixtureId: $fixtureId, type: $type, title: $title, body: $body, summaryLine: $summaryLine, payload: $payload, homeLogoUrl: $homeLogoUrl, awayLogoUrl: $awayLogoUrl)';
 
   @override
   bool operator ==(covariant NotificationChange other) {
@@ -33,9 +38,16 @@ class NotificationChange {
       return true;
     }
 
-    return other.fixtureId == fixtureId && other.type == type && other.title == title && other.body == body && other.summaryLine == summaryLine && other.payload == payload;
+    return other.fixtureId == fixtureId &&
+        other.type == type &&
+        other.title == title &&
+        other.body == body &&
+        other.summaryLine == summaryLine &&
+        other.payload == payload &&
+        other.homeLogoUrl == homeLogoUrl &&
+        other.awayLogoUrl == awayLogoUrl;
   }
 
   @override
-  int get hashCode => fixtureId.hashCode ^ type.hashCode ^ title.hashCode ^ body.hashCode ^ summaryLine.hashCode ^ payload.hashCode;
+  int get hashCode => fixtureId.hashCode ^ type.hashCode ^ title.hashCode ^ body.hashCode ^ summaryLine.hashCode ^ payload.hashCode ^ homeLogoUrl.hashCode ^ awayLogoUrl.hashCode;
 }

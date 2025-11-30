@@ -16,13 +16,16 @@ import '../routing.dart';
 import '../util/date_time.dart';
 import '../util/dependencies.dart';
 import '../util/localization.dart';
+import '../util/notifications.dart';
 import '../util/string.dart';
 import '../util/word_mix.dart';
 import 'api_service.dart';
+import 'dio_service.dart';
 import 'hive_service.dart';
 import 'league_storage_service.dart';
 import 'logger_service.dart';
 import 'match_storage_service.dart';
+import 'remote_settings_service.dart';
 import 'team_storage_service.dart';
 
 class NotificationService {
@@ -188,9 +191,16 @@ class NotificationService {
                   )) &&
               !(prev?.fullTimeNotified ?? false);
 
+          /// Store `mixLogos` value
+          final mixLogos = getIt.get<RemoteSettingsService>().value.mixLogos;
+
           /// Store team names
           final homeTeamName = fixture.teams?.home?.name;
           final awayTeamName = fixture.teams?.away?.name;
+
+          /// Store team logos
+          final homeLogoUrl = mixLogos ? null : fixture.teams?.home?.logo;
+          final awayLogoUrl = mixLogos ? null : fixture.teams?.away?.logo;
 
           final isAndroid = defaultTargetPlatform == TargetPlatform.android;
 
@@ -213,6 +223,8 @@ class NotificationService {
                 body: fixtureLine(),
                 summaryLine: '[KICKOFF] ${fixtureLine()}',
                 payload: '$fixtureId',
+                homeLogoUrl: homeLogoUrl,
+                awayLogoUrl: awayLogoUrl,
               ),
             );
           }
@@ -227,6 +239,8 @@ class NotificationService {
                 body: scoreLine(),
                 summaryLine: '[GOAL] ${scoreLine()}',
                 payload: '$fixtureId',
+                homeLogoUrl: homeLogoUrl,
+                awayLogoUrl: awayLogoUrl,
               ),
             );
           }
@@ -241,6 +255,8 @@ class NotificationService {
                 body: scoreLine(),
                 summaryLine: '[HT] ${scoreLine()}',
                 payload: '$fixtureId',
+                homeLogoUrl: homeLogoUrl,
+                awayLogoUrl: awayLogoUrl,
               ),
             );
           }
@@ -255,6 +271,8 @@ class NotificationService {
                 body: scoreLine(),
                 summaryLine: '[ET] ${scoreLine()}',
                 payload: '$fixtureId',
+                homeLogoUrl: homeLogoUrl,
+                awayLogoUrl: awayLogoUrl,
               ),
             );
           }
@@ -269,6 +287,8 @@ class NotificationService {
                 body: scoreLine(),
                 summaryLine: '[PEN] ${scoreLine()}',
                 payload: '$fixtureId',
+                homeLogoUrl: homeLogoUrl,
+                awayLogoUrl: awayLogoUrl,
               ),
             );
           }
@@ -283,6 +303,8 @@ class NotificationService {
                 body: scoreLine(),
                 summaryLine: '[FT] ${scoreLine()}',
                 payload: '$fixtureId',
+                homeLogoUrl: homeLogoUrl,
+                awayLogoUrl: awayLogoUrl,
               ),
             );
           }
@@ -371,6 +393,41 @@ class NotificationService {
   Future<void> showGroupedFixturesNotifications(List<NotificationChange> changes) async {
     final isAndroid = defaultTargetPlatform == TargetPlatform.android;
 
+    final homeLogoUrl = changes
+        .firstWhere(
+          (c) => c.homeLogoUrl != null,
+          orElse: () => changes.first,
+        )
+        .homeLogoUrl;
+
+    final awayLogoUrl = changes
+        .firstWhere(
+          (c) => c.awayLogoUrl != null,
+          orElse: () => changes.first,
+        )
+        .awayLogoUrl;
+
+    final hasLogos = homeLogoUrl != null && awayLogoUrl != null;
+
+    BigPictureStyleInformation? bigPicture;
+    var iosAttachments = const <DarwinNotificationAttachment>[];
+
+    if (hasLogos && defaultTargetPlatform == TargetPlatform.android) {
+      bigPicture = await buildAndroidTeamLogosBigPicture(
+        dio: getIt.get<DioService>().footballDio,
+        homeLogoUrl: homeLogoUrl,
+        awayLogoUrl: awayLogoUrl,
+      );
+    }
+
+    if (hasLogos && defaultTargetPlatform == TargetPlatform.iOS) {
+      iosAttachments = await buildIosTeamLogoAttachments(
+        dio: getIt.get<DioService>().footballDio,
+        homeLogoUrl: homeLogoUrl,
+        awayLogoUrl: awayLogoUrl,
+      );
+    }
+
     /// Individual notifications
     for (var i = 0; i < changes.length; i++) {
       final change = changes[i];
@@ -382,15 +439,18 @@ class NotificationService {
         importance: Importance.max,
         priority: Priority.high,
         groupKey: groupKey,
-        styleInformation: DefaultStyleInformation(
-          isAndroid,
-          isAndroid,
-        ),
+        styleInformation:
+            bigPicture ??
+            DefaultStyleInformation(
+              isAndroid,
+              isAndroid,
+            ),
         ticker: 'ticker',
       );
 
       final iOSDetails = DarwinNotificationDetails(
         threadIdentifier: threadIdentifier,
+        attachments: iosAttachments.isNotEmpty ? iosAttachments : null,
       );
 
       await flutterLocalNotificationsPlugin?.show(
