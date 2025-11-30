@@ -703,5 +703,13 @@
     "footballJoke50": "Why was the defender always calm? Nothing could get past him.",
     "snackbarFavoriteLeague": "League added to favorites",
     "snackbarFavoriteTeam": "Team added to favorites",
-    "snackbarFavoriteMatch": "Match added to favorites"
+    "snackbarFavoriteMatch": "Match added to favorites",
+    "notificationMatchStart": "⏱️ Match start",
+    "notificationGoal": "⚽️ Goal",
+    "notificationHalfTime": "⏱️ Half time",
+    "notificationExtraTime": "⏱️ Extra time",
+    "notificationPenalties": "⏱️ Penalties",
+    "notificationFullTime": "⏱️ Full time",
+    "notificationSummaryText": "Your favourite matches",
+    "notificationUpdates": " updates in your favourite matches"
 }

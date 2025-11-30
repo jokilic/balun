@@ -17,6 +17,7 @@ import '../util/date_time.dart';
 import '../util/dependencies.dart';
 import '../util/localization.dart';
 import '../util/string.dart';
+import '../util/word_mix.dart';
 import 'api_service.dart';
 import 'hive_service.dart';
 import 'league_storage_service.dart';
@@ -191,11 +192,16 @@ class NotificationService {
           final homeTeamName = fixture.teams?.home?.name;
           final awayTeamName = fixture.teams?.away?.name;
 
-          // TODO: Localize all values below & changes values
-          // TODO: Make with bold if Android
+          final isAndroid = defaultTargetPlatform == TargetPlatform.android;
 
-          String scoreLine() => '$homeTeamName $currentHomeGoals - $currentAwayGoals $awayTeamName';
-          String fixtureLine() => '$homeTeamName - $awayTeamName';
+          String formatTeamName(String? teamName) {
+            final name = teamName ?? '--';
+            return isAndroid ? '<b>$name</b>' : name;
+          }
+
+          String scoreLine() => '${mixOrOriginalWords(formatTeamName(homeTeamName))} $currentHomeGoals - $currentAwayGoals ${mixOrOriginalWords(formatTeamName(awayTeamName))}';
+
+          String fixtureLine() => '${mixOrOriginalWords(formatTeamName(homeTeamName))} - ${mixOrOriginalWords(formatTeamName(awayTeamName))}';
 
           /// Build line for match start notification
           if (hasMatchStarted) {
@@ -203,7 +209,7 @@ class NotificationService {
               NotificationChange(
                 fixtureId: fixtureId,
                 type: NotificationChangeType.matchStarted,
-                title: '⏱️ Match start!',
+                title: 'notificationMatchStart'.tr(),
                 body: fixtureLine(),
                 summaryLine: '[KICKOFF] ${fixtureLine()}',
                 payload: '$fixtureId',
@@ -217,7 +223,7 @@ class NotificationService {
               NotificationChange(
                 fixtureId: fixtureId,
                 type: NotificationChangeType.goal,
-                title: '⚽️ Goal!',
+                title: 'notificationGoal'.tr(),
                 body: scoreLine(),
                 summaryLine: '[GOAL] ${scoreLine()}',
                 payload: '$fixtureId',
@@ -231,7 +237,7 @@ class NotificationService {
               NotificationChange(
                 fixtureId: fixtureId,
                 type: NotificationChangeType.halfTime,
-                title: '⏱️ Half time!',
+                title: 'notificationHalfTime'.tr(),
                 body: scoreLine(),
                 summaryLine: '[HT] ${scoreLine()}',
                 payload: '$fixtureId',
@@ -245,7 +251,7 @@ class NotificationService {
               NotificationChange(
                 fixtureId: fixtureId,
                 type: NotificationChangeType.extraTime,
-                title: '⏱️ Extra time!',
+                title: 'notificationExtraTime'.tr(),
                 body: scoreLine(),
                 summaryLine: '[ET] ${scoreLine()}',
                 payload: '$fixtureId',
@@ -259,7 +265,7 @@ class NotificationService {
               NotificationChange(
                 fixtureId: fixtureId,
                 type: NotificationChangeType.penalties,
-                title: '⏱️ Penalties!',
+                title: 'notificationPenalties'.tr(),
                 body: scoreLine(),
                 summaryLine: '[PEN] ${scoreLine()}',
                 payload: '$fixtureId',
@@ -273,7 +279,7 @@ class NotificationService {
               NotificationChange(
                 fixtureId: fixtureId,
                 type: NotificationChangeType.fullTime,
-                title: '⏱️ Full time!',
+                title: 'notificationFullTime'.tr(),
                 body: scoreLine(),
                 summaryLine: '[FT] ${scoreLine()}',
                 payload: '$fixtureId',
@@ -363,6 +369,8 @@ class NotificationService {
   }
 
   Future<void> showGroupedFixturesNotifications(List<NotificationChange> changes) async {
+    final isAndroid = defaultTargetPlatform == TargetPlatform.android;
+
     /// Individual notifications
     for (var i = 0; i < changes.length; i++) {
       final change = changes[i];
@@ -374,6 +382,11 @@ class NotificationService {
         importance: Importance.max,
         priority: Priority.high,
         groupKey: groupKey,
+        styleInformation: DefaultStyleInformation(
+          isAndroid,
+          isAndroid,
+        ),
+        ticker: 'ticker',
       );
 
       final iOSDetails = DarwinNotificationDetails(
@@ -398,9 +411,13 @@ class NotificationService {
 
     final inboxStyle = InboxStyleInformation(
       lines,
-      // TODO: Localize
-      contentTitle: '$count updates in your favourites',
-      summaryText: 'Your favourite matches',
+      htmlFormatLines: isAndroid,
+      htmlFormatContentTitle: isAndroid,
+      htmlFormatSummaryText: isAndroid,
+      htmlFormatContent: isAndroid,
+      htmlFormatTitle: isAndroid,
+      contentTitle: '$count ${'notificationUpdates'.tr()}',
+      summaryText: 'notificationSummaryText'.tr(),
     );
 
     final summaryAndroidDetails = AndroidNotificationDetails(
@@ -418,8 +435,7 @@ class NotificationService {
     final summaryIOSDetails = DarwinNotificationDetails(
       threadIdentifier: threadIdentifier,
       badgeNumber: count,
-      // TODO: Localize
-      subtitle: 'You favorite matches',
+      subtitle: 'notificationSummaryText'.tr(),
     );
 
     /// Generate notification `id`
@@ -427,9 +443,8 @@ class NotificationService {
 
     await flutterLocalNotificationsPlugin?.show(
       id,
-      // TODO: Localize
-      'Match updates',
-      '$count updates in your favourites',
+      'notificationSummaryText'.tr(),
+      '$count ${'notificationUpdates'.tr()}',
       NotificationDetails(
         android: summaryAndroidDetails,
         iOS: summaryIOSDetails,

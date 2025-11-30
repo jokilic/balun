@@ -719,7 +719,15 @@ class CodegenLoader extends AssetLoader{
   "footballJoke50": "Why was the defender always calm? Nothing could get past him.",
   "snackbarFavoriteLeague": "League added to favorites",
   "snackbarFavoriteTeam": "Team added to favorites",
-  "snackbarFavoriteMatch": "Match added to favorites"
+  "snackbarFavoriteMatch": "Match added to favorites",
+  "notificationMatchStart": "⏱️ Match start",
+  "notificationGoal": "⚽️ Goal",
+  "notificationHalfTime": "⏱️ Half time",
+  "notificationExtraTime": "⏱️ Extra time",
+  "notificationPenalties": "⏱️ Penalties",
+  "notificationFullTime": "⏱️ Full time",
+  "notificationSummaryText": "Your favourite matches",
+  "notificationUpdates": " updates in your favourite matches"
 };
 static const Map<String,dynamic> _hr = {
   "appName": "Balun",
@@ -1426,7 +1434,15 @@ static const Map<String,dynamic> _hr = {
   "footballJoke50": "Zašto je branič uvijek smiren? Ništa ne može proći pored njega.",
   "snackbarFavoriteLeague": "Liga dodana u omiljene",
   "snackbarFavoriteTeam": "Tim dodan u omiljene",
-  "snackbarFavoriteMatch": "Utakmica dodana u omiljene"
+  "snackbarFavoriteMatch": "Utakmica dodana u omiljene",
+  "notificationMatchStart": "⏱️ Utakmica počela",
+  "notificationGoal": "⚽️ Gol",
+  "notificationHalfTime": "⏱️ Poluvrijeme",
+  "notificationExtraTime": "⏱️ Produžeci",
+  "notificationPenalties": "⏱️ Jedanaesterci",
+  "notificationFullTime": "⏱️ Kraj utakmice",
+  "notificationSummaryText": "Tvoje omiljene utakmice",
+  "notificationUpdates": " promjena u tvojim omiljenim utakmicama"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "hr": _hr};
 }

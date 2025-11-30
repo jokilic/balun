@@ -703,5 +703,13 @@
     "footballJoke50": "Zašto je branič uvijek smiren? Ništa ne može proći pored njega.",
     "snackbarFavoriteLeague": "Liga dodana u omiljene",
     "snackbarFavoriteTeam": "Tim dodan u omiljene",
-    "snackbarFavoriteMatch": "Utakmica dodana u omiljene"
+    "snackbarFavoriteMatch": "Utakmica dodana u omiljene",
+    "notificationMatchStart": "⏱️ Utakmica počela",
+    "notificationGoal": "⚽️ Gol",
+    "notificationHalfTime": "⏱️ Poluvrijeme",
+    "notificationExtraTime": "⏱️ Produžeci",
+    "notificationPenalties": "⏱️ Jedanaesterci",
+    "notificationFullTime": "⏱️ Kraj utakmice",
+    "notificationSummaryText": "Tvoje omiljene utakmice",
+    "notificationUpdates": " promjena u tvojim omiljenim utakmicama"
 }
