@@ -350,6 +350,18 @@ class NotificationService {
 
         /// `changes` exist, show grouped notification
         if (changes.isNotEmpty) {
+          /// Keep only the latest change per match
+          final latestByMatch = <int?, NotificationChange>{};
+
+          for (final change in changes) {
+            latestByMatch[change.fixtureId] = change;
+          }
+
+          changes
+            ..clear()
+            ..addAll(latestByMatch.values);
+
+          /// Create Android notification channels, just in case they aren't created already
           await createAndroidNotificationChannels();
 
           /// Send one grouped notification if there are changes
@@ -480,7 +492,8 @@ class NotificationService {
 
       /// Show notification
       await flutterLocalNotificationsPlugin?.show(
-        change.fixtureId ?? i,
+        // change.fixtureId ?? i,
+        i,
         change.title,
         change.body,
         NotificationDetails(
