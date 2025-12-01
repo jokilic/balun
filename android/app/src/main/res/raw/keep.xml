@@ -1,2 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@drawable/*" />
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@raw/match_start_sound,@raw/goal_sound,@raw/half_time_sound,@raw/full_time_sound,@drawable/*" />
