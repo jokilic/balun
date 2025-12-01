@@ -417,12 +417,6 @@ class NotificationService {
             changes,
             playNotificationSound: notificationSettings.playNotificationSound,
           );
-
-          /// Send one summary notification with details about `changes`
-          // await showSummaryNotification(
-          //   changes,
-          //   playNotificationSound: notificationSettings.playNotificationSound,
-          // );
         }
 
         /// Show notification if testing is done & no changes
@@ -505,17 +499,19 @@ class NotificationService {
       final hasLogos = (change.homeLogoUrl?.isNotEmpty ?? false) && (change.awayLogoUrl?.isNotEmpty ?? false);
 
       ByteArrayAndroidBitmap? largeIcon;
-      if (isAndroid && hasLogos) {
-        largeIcon = await buildAndroidTeamLogosLargeIcon(
+      if (hasLogos && isAndroid) {
+        largeIcon = await buildAndroidNotificationTeamLogos(
           dio: dio,
           homeLogoUrl: change.homeLogoUrl,
           awayLogoUrl: change.awayLogoUrl,
         );
       }
 
+      final mixLogos = getIt.get<RemoteSettingsService>().value.mixLogos;
+
       List<DarwinNotificationAttachment>? iosAttachments;
-      if (hasLogos && isiOS) {
-        iosAttachments = await buildIosCombinedTeamLogoAttachment(
+      if (!mixLogos && hasLogos && isiOS) {
+        iosAttachments = await buildiOSNotificationTeamLogos(
           dio: dio,
           homeLogoUrl: change.homeLogoUrl,
           awayLogoUrl: change.awayLogoUrl,

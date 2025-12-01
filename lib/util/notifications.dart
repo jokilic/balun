@@ -8,7 +8,7 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
 /// Builds teams image for Android `largeIcon`
-Future<ByteArrayAndroidBitmap?> buildAndroidTeamLogosLargeIcon({
+Future<ByteArrayAndroidBitmap?> buildAndroidNotificationTeamLogos({
   required Dio dio,
   required String? homeLogoUrl,
   required String? awayLogoUrl,
@@ -41,57 +41,8 @@ Future<ByteArrayAndroidBitmap?> buildAndroidTeamLogosLargeIcon({
   return ByteArrayAndroidBitmap(mergedPng);
 }
 
-/// Downloads team logos to temp storage and returns iOS notification attachments
-Future<List<DarwinNotificationAttachment>> buildIosTeamLogoAttachments({
-  required Dio dio,
-  required String? homeLogoUrl,
-  required String? awayLogoUrl,
-  int targetHeight = 256,
-}) async {
-  final attachments = <DarwinNotificationAttachment>[];
-
-  final tempDir = await getTemporaryDirectory();
-  final timestamp = DateTime.now().millisecondsSinceEpoch;
-
-  Future<void> addAttachment(String? url, String label) async {
-    final bytes = await downloadImageBytes(
-      dio: dio,
-      url: url,
-    );
-    if (bytes == null) {
-      return;
-    }
-
-    final pngBytes = ensurePng(
-      bytes,
-      targetHeight: targetHeight,
-    );
-    if (pngBytes == null) {
-      return;
-    }
-
-    final path = p.join(
-      tempDir.path,
-      'balun_${label}_$timestamp.png',
-    );
-    final file = File(path);
-    await file.writeAsBytes(
-      pngBytes,
-      flush: true,
-    );
-    attachments.add(
-      DarwinNotificationAttachment(path),
-    );
-  }
-
-  await addAttachment(homeLogoUrl, 'home');
-  await addAttachment(awayLogoUrl, 'away');
-
-  return attachments;
-}
-
 /// Builds a single combined crest attachment for iOS with transparent background
-Future<List<DarwinNotificationAttachment>> buildIosCombinedTeamLogoAttachment({
+Future<List<DarwinNotificationAttachment>> buildiOSNotificationTeamLogos({
   required Dio dio,
   required String? homeLogoUrl,
   required String? awayLogoUrl,
