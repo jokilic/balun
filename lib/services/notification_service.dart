@@ -551,7 +551,11 @@ class NotificationService {
       final iOSDetails = DarwinNotificationDetails(
         threadIdentifier: threadIdentifier,
         attachments: iosAttachments,
-        sound: playNotificationSound ? 'sound.aiff' : null,
+        sound: getiOSSound(
+          playSound: playNotificationSound,
+          channelConfigs: channelConfigs,
+          type: change.type,
+        ),
         presentSound: playNotificationSound,
       );
 
@@ -567,81 +571,6 @@ class NotificationService {
         payload: change.payload,
       );
     }
-  }
-
-  /// Shows summary notification with `changes`
-  Future<void> showSummaryNotification(
-    List<NotificationChange> changes, {
-    required bool playNotificationSound,
-  }) async {
-    final isAndroid = defaultTargetPlatform == TargetPlatform.android;
-
-    final channelId = getNotificationChannelId(
-      channelConfigs: channelConfigs,
-      playSound: playNotificationSound,
-    );
-    final channelConfig = getAndroidChannelConfig(
-      channelConfigs: channelConfigs,
-      type: null,
-    );
-
-    await createAndroidNotificationChannels();
-
-    /// Summary notification
-    final lines = changes.map((c) => c.summaryLine ?? '--').toList();
-    final count = changes.length;
-
-    final inboxStyle = InboxStyleInformation(
-      lines,
-      htmlFormatLines: isAndroid,
-      htmlFormatContentTitle: isAndroid,
-      htmlFormatSummaryText: isAndroid,
-      htmlFormatContent: isAndroid,
-      htmlFormatTitle: isAndroid,
-      contentTitle: '$count ${'notificationUpdates'.tr()}',
-      summaryText: 'notificationSummaryText'.tr(),
-    );
-
-    final summaryAndroidDetails = AndroidNotificationDetails(
-      channelId,
-      channelName(
-        config: channelConfig,
-        playSound: playNotificationSound,
-      ),
-      channelDescription: channelConfig.description,
-      sound: playNotificationSound
-          ? RawResourceAndroidNotificationSound(
-              channelConfig.soundResource,
-            )
-          : null,
-      playSound: playNotificationSound,
-      styleInformation: inboxStyle,
-      groupKey: groupKey,
-      number: count,
-      setAsGroupSummary: true,
-      importance: Importance.max,
-      priority: Priority.high,
-    );
-
-    final summaryIOSDetails = DarwinNotificationDetails(
-      threadIdentifier: threadIdentifier,
-      badgeNumber: count,
-      sound: playNotificationSound ? 'sound.aiff' : null,
-      presentSound: playNotificationSound,
-    );
-
-    /// Generate notification `id`
-    final id = DateTime.now().millisecondsSinceEpoch % 1000000000;
-
-    await flutterLocalNotificationsPlugin?.show(
-      id,
-      'notificationSummaryText'.tr(),
-      '$count ${'notificationUpdates'.tr()}',
-      NotificationDetails(
-        android: summaryAndroidDetails,
-        iOS: summaryIOSDetails,
-      ),
-    );
   }
 
   /// Initializes [FlutterLocalNotifications] plugin
@@ -821,13 +750,21 @@ class NotificationService {
 
       final iosNotificationDetails = DarwinNotificationDetails(
         categoryIdentifier: 'balun_category_id',
-        sound: playNotificationSound ? 'sound.aiff' : null,
+        sound: getiOSSound(
+          playSound: playNotificationSound,
+          channelConfigs: channelConfigs,
+          type: null,
+        ),
         presentSound: playNotificationSound,
       );
 
       final macOSNotificationDetails = DarwinNotificationDetails(
         categoryIdentifier: 'balun_category_id',
-        sound: playNotificationSound ? 'sound.aiff' : null,
+        sound: getiOSSound(
+          playSound: playNotificationSound,
+          channelConfigs: channelConfigs,
+          type: null,
+        ),
         presentSound: playNotificationSound,
       );
 

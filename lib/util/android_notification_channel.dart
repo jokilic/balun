@@ -1,7 +1,25 @@
 import '../models/android_notification_channel_config/android_notification_channel_config.dart';
 import '../models/notification/notification_change.dart';
 
-/// Returns proper notification `channelId`
+/// Returns proper notification sound for `iOS`
+String? getiOSSound({
+  required bool playSound,
+  required List<AndroidNotificationChannelConfig> channelConfigs,
+  required NotificationChangeType? type,
+}) {
+  if (!playSound) {
+    return null;
+  }
+
+  final config = getAndroidChannelConfig(
+    channelConfigs: channelConfigs,
+    type: type,
+  );
+
+  return '${config.soundResource}.wav';
+}
+
+/// Returns proper notification `channelId` for `Android`
 String getNotificationChannelId({
   required bool playSound,
   required List<AndroidNotificationChannelConfig> channelConfigs,
