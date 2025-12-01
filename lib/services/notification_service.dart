@@ -480,7 +480,7 @@ class NotificationService {
 
       /// Show notification
       await flutterLocalNotificationsPlugin?.show(
-        change.fixtureId ?? i,
+        i,
         change.title,
         change.body,
         NotificationDetails(
@@ -781,6 +781,7 @@ class NotificationService {
     }
 
     final androidPlugin = flutterLocalNotificationsPlugin?.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+
     if (androidPlugin == null) {
       return;
     }
@@ -832,6 +833,7 @@ Future<void> onDidReceiveBackgroundNotificationResponse(NotificationResponse not
   initializeServices(
     enableRemoteSettings: !kDebugMode && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS),
     enablePeriodicFetching: !kDebugMode,
+    useDioInterceptors: false,
   );
 
   /// Wait for initialization to finish

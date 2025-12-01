@@ -86,6 +86,7 @@ class BackgroundFetchService {
         initializeServices(
           enableRemoteSettings: !kDebugMode && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS),
           enablePeriodicFetching: !kDebugMode,
+          useDioInterceptors: false,
         );
 
         /// Wait for initialization to finish
@@ -139,6 +140,7 @@ Future<void> backgroundFetchHeadlessTask(HeadlessTask task) async {
   initializeServices(
     enableRemoteSettings: !kDebugMode && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS),
     enablePeriodicFetching: !kDebugMode,
+    useDioInterceptors: false,
   );
 
   /// Wait for initialization to finish

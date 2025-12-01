@@ -43,6 +43,7 @@ T registerIfNotInitialized<T extends Object>(
 void initializeServices({
   required bool enableRemoteSettings,
   required bool enablePeriodicFetching,
+  required bool useDioInterceptors,
 }) {
   final internetConnection = InternetConnection();
 
@@ -101,6 +102,7 @@ void initializeServices({
     ..registerSingletonAsync(
       () async => DioService(
         logger: getIt.get<LoggerService>(),
+        useInterceptors: useDioInterceptors,
       )..init(),
       dependsOn: [LoggerService],
     )

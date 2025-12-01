@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 import '../constants.dart';
 import '../util/env.dart';
@@ -13,9 +12,11 @@ import 'logger_service.dart';
 
 class DioService {
   final LoggerService logger;
+  final bool useInterceptors;
 
   DioService({
     required this.logger,
+    required this.useInterceptors,
   });
 
   ///
@@ -76,7 +77,7 @@ class DioService {
     /// Add interceptors
     ///
 
-    if (kDebugMode) {
+    if (useInterceptors) {
       footballDio.interceptors.add(
         DioLoggerInterceptor(
           logger: logger,
