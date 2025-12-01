@@ -350,11 +350,25 @@ class NotificationService {
 
         /// `changes` exist, show grouped notification
         if (changes.isNotEmpty) {
-          /// Keep only the latest change per match
+          /// Keep only the latest change per match using explicit priority
+          final changePriority = {
+            NotificationChangeType.matchStarted: 0,
+            NotificationChangeType.halfTime: 1,
+            NotificationChangeType.extraTime: 1,
+            NotificationChangeType.penalties: 1,
+            NotificationChangeType.goal: 2,
+            NotificationChangeType.fullTime: 3,
+          };
+
           final latestByMatch = <int?, NotificationChange>{};
 
           for (final change in changes) {
-            latestByMatch[change.fixtureId] = change;
+            final currentPriority = changePriority[change.type] ?? -1;
+            final existingPriority = changePriority[latestByMatch[change.fixtureId]?.type] ?? -1;
+
+            if (currentPriority >= existingPriority) {
+              latestByMatch[change.fixtureId] = change;
+            }
           }
 
           changes
