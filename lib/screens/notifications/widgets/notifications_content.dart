@@ -64,6 +64,28 @@ class NotificationsContent extends StatelessWidget {
           style: context.textStyles.bodyMdLight,
         ),
       ),
+      const SizedBox(height: 12),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
+          'Keep in mind that for each match, you will get only the latest notification.',
+          style: context.textStyles.bodyMdLight,
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
+          "For example, if you enabled all triggers and relevant match is playing second half with a newly scored goal, you will not get the 'Half-time' & 'goal' notification, just the latest one - the 'Goal' notification.",
+          style: context.textStyles.bodyMdLight,
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(
+          'The logic is set this way to prevent chaotic notifications behaviour.',
+          style: context.textStyles.bodyMdLight,
+        ),
+      ),
       const SizedBox(height: 24),
 
       ///
