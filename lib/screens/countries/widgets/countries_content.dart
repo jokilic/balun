@@ -16,18 +16,21 @@ class CountriesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (countriesState) {
-        Initial() => BalunError(
-            error: 'initialState'.tr(),
-          ),
-        Loading() => CountriesLoading(),
-        Empty() => BalunEmpty(
-            message: 'countriesEmptyState'.tr(),
-          ),
-        Error() => BalunError(
-            error: (countriesState as Error).error ?? 'countriesErrorState'.tr(),
-          ),
-        Success() => CountriesSuccess(
-            countries: (countriesState as Success).data,
-          ),
-      };
+    Initial() => BalunError(
+      error: 'initialState'.tr(),
+      hasBackButton: true,
+    ),
+    Loading() => CountriesLoading(),
+    Empty() => BalunEmpty(
+      message: 'countriesEmptyState'.tr(),
+      hasBackButton: true,
+    ),
+    Error() => BalunError(
+      error: (countriesState as Error).error ?? 'countriesErrorState'.tr(),
+      hasBackButton: true,
+    ),
+    Success() => CountriesSuccess(
+      countries: (countriesState as Success).data,
+    ),
+  };
 }

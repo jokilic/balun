@@ -16,18 +16,21 @@ class CoachContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (coachState) {
-        Initial() => BalunError(
-            error: 'initialState'.tr(),
-          ),
-        Loading() => CoachLoading(),
-        Empty() => BalunEmpty(
-            message: 'coachEmptyState'.tr(),
-          ),
-        Error() => BalunError(
-            error: (coachState as Error).error ?? 'coachErrorState'.tr(),
-          ),
-        Success() => CoachSuccess(
-            coach: (coachState as Success).data,
-          ),
-      };
+    Initial() => BalunError(
+      error: 'initialState'.tr(),
+      hasBackButton: true,
+    ),
+    Loading() => CoachLoading(),
+    Empty() => BalunEmpty(
+      message: 'coachEmptyState'.tr(),
+      hasBackButton: true,
+    ),
+    Error() => BalunError(
+      error: (coachState as Error).error ?? 'coachErrorState'.tr(),
+      hasBackButton: true,
+    ),
+    Success() => CoachSuccess(
+      coach: (coachState as Success).data,
+    ),
+  };
 }

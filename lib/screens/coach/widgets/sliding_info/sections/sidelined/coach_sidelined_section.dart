@@ -52,21 +52,21 @@ class _CoachSidelinedSectionState extends State<CoachSidelinedSection> {
       ],
       child: switch (sidelinedState) {
         Initial() => BalunError(
-            error: 'initialState'.tr(),
-            isSmall: true,
-          ),
+          error: 'initialState'.tr(),
+          isSmall: true,
+        ),
         Loading() => CoachSidelinedLoading(),
         Empty() => BalunEmpty(
-            message: 'coachSidelinedEmptyState'.tr(),
-            isSmall: true,
-          ),
+          message: 'coachSidelinedEmptyState'.tr(),
+          isSmall: true,
+        ),
         Error() => BalunError(
-            error: (sidelinedState as Error).error ?? 'coachSidelinedErrorState'.tr(),
-            isSmall: true,
-          ),
+          error: (sidelinedState as Error).error ?? 'coachSidelinedErrorState'.tr(),
+          isSmall: true,
+        ),
         Success() => CoachSidelinedContent(
-            sidelined: (sidelinedState as Success).data,
-          ),
+          sidelined: (sidelinedState as Success).data,
+        ),
       },
     );
   }

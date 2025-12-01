@@ -16,18 +16,21 @@ class TeamContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (teamState) {
-        Initial() => BalunError(
-            error: 'initialState'.tr(),
-          ),
-        Loading() => TeamLoading(),
-        Empty() => BalunEmpty(
-            message: 'teamEmptyState'.tr(),
-          ),
-        Error() => BalunError(
-            error: (teamState as Error).error ?? 'teamErrorState'.tr(),
-          ),
-        Success() => TeamSuccess(
-            team: (teamState as Success).data,
-          ),
-      };
+    Initial() => BalunError(
+      error: 'initialState'.tr(),
+      hasBackButton: true,
+    ),
+    Loading() => TeamLoading(),
+    Empty() => BalunEmpty(
+      message: 'teamEmptyState'.tr(),
+      hasBackButton: true,
+    ),
+    Error() => BalunError(
+      error: (teamState as Error).error ?? 'teamErrorState'.tr(),
+      hasBackButton: true,
+    ),
+    Success() => TeamSuccess(
+      team: (teamState as Success).data,
+    ),
+  };
 }

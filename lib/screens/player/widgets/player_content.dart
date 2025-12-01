@@ -16,18 +16,21 @@ class PlayerContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (playerState) {
-        Initial() => BalunError(
-            error: 'initialState'.tr(),
-          ),
-        Loading() => PlayerLoading(),
-        Empty() => BalunEmpty(
-            message: 'playerEmptyState'.tr(),
-          ),
-        Error() => BalunError(
-            error: (playerState as Error).error ?? 'playerErrorState'.tr(),
-          ),
-        Success() => PlayerSuccess(
-            player: (playerState as Success).data,
-          ),
-      };
+    Initial() => BalunError(
+      error: 'initialState'.tr(),
+      hasBackButton: true,
+    ),
+    Loading() => PlayerLoading(),
+    Empty() => BalunEmpty(
+      message: 'playerEmptyState'.tr(),
+      hasBackButton: true,
+    ),
+    Error() => BalunError(
+      error: (playerState as Error).error ?? 'playerErrorState'.tr(),
+      hasBackButton: true,
+    ),
+    Success() => PlayerSuccess(
+      player: (playerState as Success).data,
+    ),
+  };
 }

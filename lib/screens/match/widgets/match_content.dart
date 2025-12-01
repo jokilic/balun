@@ -16,18 +16,21 @@ class MatchContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (matchState) {
-        Initial() => BalunError(
-            error: 'initialState'.tr(),
-          ),
-        Loading() => MatchLoading(),
-        Empty() => BalunEmpty(
-            message: 'matchEmptyState'.tr(),
-          ),
-        Error() => BalunError(
-            error: (matchState as Error).error ?? 'matchErrorState'.tr(),
-          ),
-        Success() => MatchSuccess(
-            match: (matchState as Success).data,
-          ),
-      };
+    Initial() => BalunError(
+      error: 'initialState'.tr(),
+      hasBackButton: true,
+    ),
+    Loading() => MatchLoading(),
+    Empty() => BalunEmpty(
+      message: 'matchEmptyState'.tr(),
+      hasBackButton: true,
+    ),
+    Error() => BalunError(
+      error: (matchState as Error).error ?? 'matchErrorState'.tr(),
+      hasBackButton: true,
+    ),
+    Success() => MatchSuccess(
+      match: (matchState as Success).data,
+    ),
+  };
 }

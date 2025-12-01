@@ -16,18 +16,21 @@ class FixturesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (fixturesState) {
-        Initial() => BalunError(
-            error: 'initialState'.tr(),
-          ),
-        Loading() => FixturesLoading(),
-        Empty() => BalunEmpty(
-            message: 'fixturesEmptyState'.tr(),
-          ),
-        Error() => BalunError(
-            error: (fixturesState as Error).error ?? 'fixturesErrorState'.tr(),
-          ),
-        Success() => FixturesSuccess(
-            fixtures: (fixturesState as Success).data,
-          ),
-      };
+    Initial() => BalunError(
+      error: 'initialState'.tr(),
+      hasBackButton: true,
+    ),
+    Loading() => FixturesLoading(),
+    Empty() => BalunEmpty(
+      message: 'fixturesEmptyState'.tr(),
+      hasBackButton: true,
+    ),
+    Error() => BalunError(
+      error: (fixturesState as Error).error ?? 'fixturesErrorState'.tr(),
+      hasBackButton: true,
+    ),
+    Success() => FixturesSuccess(
+      fixtures: (fixturesState as Success).data,
+    ),
+  };
 }

@@ -18,13 +18,16 @@ class StatusContent extends StatelessWidget {
   Widget build(BuildContext context) => switch (statusState) {
     Initial() => BalunError(
       error: 'initialState'.tr(),
+      hasBackButton: true,
     ),
     Loading() => StatusLoading(),
     Empty() => BalunEmpty(
       message: 'statusEmptyState'.tr(),
+      hasBackButton: true,
     ),
     Error() => BalunError(
       error: (statusState as Error).error ?? 'statusErrorState'.tr(),
+      hasBackButton: true,
     ),
     Success() => StatusSuccess(
       status: (statusState as Success).data,

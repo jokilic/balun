@@ -16,18 +16,21 @@ class LeagueContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (leagueState) {
-        Initial() => BalunError(
-            error: 'initialState'.tr(),
-          ),
-        Loading() => LeagueLoading(),
-        Empty() => BalunEmpty(
-            message: 'leagueEmptyState'.tr(),
-          ),
-        Error() => BalunError(
-            error: (leagueState as Error).error ?? 'leagueErrorState'.tr(),
-          ),
-        Success() => LeagueSuccess(
-            league: (leagueState as Success).data,
-          ),
-      };
+    Initial() => BalunError(
+      error: 'initialState'.tr(),
+      hasBackButton: true,
+    ),
+    Loading() => LeagueLoading(),
+    Empty() => BalunEmpty(
+      message: 'leagueEmptyState'.tr(),
+      hasBackButton: true,
+    ),
+    Error() => BalunError(
+      error: (leagueState as Error).error ?? 'leagueErrorState'.tr(),
+      hasBackButton: true,
+    ),
+    Success() => LeagueSuccess(
+      league: (leagueState as Success).data,
+    ),
+  };
 }
