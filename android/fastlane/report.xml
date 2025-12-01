@@ -5,37 +5,37 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000219">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000255">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: puro flutter clean" time="7.983036">
+      <testcase classname="fastlane.lanes" name="1: puro flutter clean" time="7.53412">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: puro flutter pub get" time="3.016564">
+      <testcase classname="fastlane.lanes" name="2: puro flutter pub get" time="3.046729">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: puro flutter build apk --target-platform=android-arm64" time="85.615118">
+      <testcase classname="fastlane.lanes" name="3: puro flutter build apk --target-platform=android-arm64" time="95.231136">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: mv ../../build/app/outputs/flutter-apk/app-release.apk ../../build/app/outputs/flutter-apk/balun.apk" time="0.007159">
+      <testcase classname="fastlane.lanes" name="4: mv ../../build/app/outputs/flutter-apk/app-release.apk ../../build/app/outputs/flutter-apk/balun.apk" time="0.005171">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: set_github_release" time="10.069124">
+      <testcase classname="fastlane.lanes" name="5: set_github_release" time="12.612894">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: notification" time="1.534905">
+      <testcase classname="fastlane.lanes" name="6: notification" time="0.422118">
         
       </testcase>
     
