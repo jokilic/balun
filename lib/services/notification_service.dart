@@ -480,7 +480,7 @@ class NotificationService {
 
       /// Show notification
       await flutterLocalNotificationsPlugin?.show(
-        i,
+        change.fixtureId ?? i,
         change.title,
         change.body,
         NotificationDetails(

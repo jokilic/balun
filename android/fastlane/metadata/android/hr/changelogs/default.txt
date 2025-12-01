@@ -3,5 +3,7 @@
 * New themes
 * Favorite matches
 * Faster image animations
+* UI updates
+* Localization updates
 * Lots of code refactors
 * Upgrade dependencies
