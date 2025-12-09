@@ -7,13 +7,13 @@ class BalunIcons {
   static const matchVenue = 'assets/icons/match_venue.webp';
   static const matchLeague = 'assets/icons/match_league.webp';
   static const matchRound = 'assets/icons/match_round.webp';
-  static const ball = 'assets/icons/ball.webp';
   static const yellowCard = 'assets/icons/yellow_card.webp';
   static const redCard = 'assets/icons/red_card.webp';
   static const cards = 'assets/icons/cards.webp';
   static const playerOut = 'assets/icons/player_out.webp';
   static const playerIn = 'assets/icons/player_in.webp';
   static const varIcon = 'assets/icons/var.webp';
+  static const ball = 'assets/icons/ball.webp';
   static const assist = 'assets/icons/assist.webp';
   static const missedPenalty = 'assets/icons/missed_penalty.webp';
   static const error = 'assets/icons/error.webp';

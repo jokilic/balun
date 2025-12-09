@@ -106,10 +106,11 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     /// ASSISTS
                     ///
                     if ((assists ?? 0) > 0) ...[
-                      const BalunImage(
+                      BalunImage(
                         imageUrl: BalunIcons.assist,
                         height: 32,
                         width: 32,
+                        color: context.colors.primaryForeground,
                       ),
                       const SizedBox(width: 8),
                     ],
@@ -118,10 +119,11 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                     /// GOALS
                     ///
                     if ((goals ?? 0) > 0) ...[
-                      const BalunImage(
+                      BalunImage(
                         imageUrl: BalunIcons.ball,
                         height: 32,
                         width: 32,
+                        color: context.colors.goal,
                       ),
                       const SizedBox(width: 8),
                     ],

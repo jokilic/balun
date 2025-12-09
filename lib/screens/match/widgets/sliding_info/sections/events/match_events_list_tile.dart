@@ -205,10 +205,11 @@ class MatchEventsListTile extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const BalunImage(
+                            BalunImage(
                               imageUrl: BalunIcons.assist,
                               height: 28,
                               width: 28,
+                              color: context.colors.primaryForeground,
                             ),
                             const SizedBox(width: 8),
                             Flexible(
@@ -244,7 +245,7 @@ class MatchEventsListTile extends StatelessWidget {
                         children: [
                           BalunImage(
                             imageUrl: BalunIcons.ball,
-                            color: eventDetail.toLowerCase() == 'own goal' ? context.colors.danger : null,
+                            color: eventDetail.toLowerCase() == 'own goal' ? context.colors.danger : context.colors.goal,
                             height: 28,
                             width: 28,
                           ),

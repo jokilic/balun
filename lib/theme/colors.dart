@@ -96,6 +96,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
   final Color datePickerInactiveIconColor;
   final Color slidingInfoPanelBackground;
   final Color matchField;
+  final Color goal;
   final Color success;
   final Color danger;
   final Color info;
@@ -119,6 +120,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     required this.datePickerInactiveIconColor,
     required this.slidingInfoPanelBackground,
     required this.matchField,
+    required this.goal,
     required this.success,
     required this.danger,
     required this.info,
@@ -144,6 +146,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     Color? datePickerInactiveIconColor,
     Color? slidingInfoPanelBackground,
     Color? matchField,
+    Color? goal,
     Color? success,
     Color? danger,
     Color? info,
@@ -166,6 +169,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
     datePickerInactiveIconColor: datePickerInactiveIconColor ?? this.datePickerInactiveIconColor,
     slidingInfoPanelBackground: slidingInfoPanelBackground ?? this.slidingInfoPanelBackground,
     matchField: matchField ?? this.matchField,
+    goal: goal ?? this.goal,
     success: success ?? this.success,
     danger: danger ?? this.danger,
     info: info ?? this.info,
@@ -199,6 +203,7 @@ class BalunColorsExtension extends ThemeExtension<BalunColorsExtension> {
       datePickerInactiveIconColor: Color.lerp(datePickerInactiveIconColor, other.datePickerInactiveIconColor, t)!,
       slidingInfoPanelBackground: Color.lerp(slidingInfoPanelBackground, other.slidingInfoPanelBackground, t)!,
       matchField: Color.lerp(matchField, other.matchField, t)!,
+      goal: Color.lerp(goal, other.goal, t)!,
       success: Color.lerp(success, other.success, t)!,
       danger: Color.lerp(danger, other.danger, t)!,
       info: Color.lerp(info, other.info, t)!,
