@@ -36,9 +36,10 @@ class YouTubeSearchService {
           'publishedAfter': publishedAfter,
           'type': 'video',
           'maxResults': 5,
-          'videoSyndicated': true,
-          // 'videoEmbeddable': true,
+          'videoEmbeddable': true,
+          // 'videoSyndicated': true,
           'key': BalunConstants.apiYouTubeDataApiKey,
+          'order': 'relevance',
         },
       );
 
