@@ -1,10 +1,4 @@
-* New screens in Settings
-* Notifications
-* New themes
-* Favorite matches
-* Faster image animations
-* UI updates
-* Localization updates
-* Update empty & error UIs
-* Lots of code refactors
-* Upgrade dependencies
+* Don't show back button in error & empty states in main screens
+* Small updates in themes & colors
+* Small updates in notification logic
+* Add subtle vibration in some buttons
