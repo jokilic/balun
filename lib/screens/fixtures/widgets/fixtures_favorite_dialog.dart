@@ -6,9 +6,11 @@ import '../../../widgets/balun_button.dart';
 
 class FixturesFavoriteDialog extends StatelessWidget {
   final Function() onPressed;
+  final String title;
 
   const FixturesFavoriteDialog({
     required this.onPressed,
+    required this.title,
   });
 
   @override
@@ -32,7 +34,7 @@ class FixturesFavoriteDialog extends StatelessWidget {
         /// TITLE
         ///
         Text(
-          'fixturesFavoriteTitle'.tr(),
+          title,
           style: context.textStyles.headlineLg,
         ),
         const SizedBox(height: 8),

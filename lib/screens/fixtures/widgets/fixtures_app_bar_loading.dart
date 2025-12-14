@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../theme/icons.dart';
 import '../../../theme/theme.dart';
+import '../../../util/random.dart';
 import '../../../widgets/balun_button.dart';
 import '../../../widgets/balun_image.dart';
 
-class FixturesAppBar extends StatelessWidget {
-  final Function() onPressed;
-  final String icon;
-  final String text;
-
-  const FixturesAppBar({
-    required this.onPressed,
-    required this.icon,
-    required this.text,
-  });
-
+class FixturesAppBarLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -24,7 +16,6 @@ class FixturesAppBar extends StatelessWidget {
         /// ICON
         ///
         BalunButton(
-          onPressed: onPressed,
           child: Container(
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
@@ -32,7 +23,7 @@ class FixturesAppBar extends StatelessWidget {
               color: context.colors.primaryBackgroundLight,
             ),
             child: BalunImage(
-              imageUrl: icon,
+              imageUrl: BalunIcons.ballNavigation,
               height: 32,
               width: 32,
               color: context.colors.primaryForeground,
@@ -45,12 +36,12 @@ class FixturesAppBar extends StatelessWidget {
         ///
         /// TEXT
         ///
-        Expanded(
-          child: Text(
-            text,
-            style: context.textStyles.titleLgBold,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+        Container(
+          height: 24,
+          width: getRandomNumberFromBase(200),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: context.colors.primaryForeground.withValues(alpha: 0.25),
           ),
         ),
       ],
