@@ -1,7 +1,7 @@
 name: balun
 description: "Simple Flutter application for football scores."
 publish_to: 'none'
-version: 2.0.6+206
+version: 2.1.0+210
 
 #
 # DEPLOYING APP
@@ -22,7 +22,7 @@ version: 2.0.6+206
 #
 
 environment:
-  sdk: 3.10.3
+  sdk: 3.10.4
 
 dependencies:
   flutter:
@@ -44,8 +44,8 @@ dependencies:
   get_it: 9.2.0
   hive_ce: 2.15.1
   hive_ce_flutter: 2.3.3
-  image: 4.5.4
-  internet_connection_checker_plus: 2.9.1
+  image: 4.6.0
+  internet_connection_checker_plus: 2.9.1+1
   intl: 0.20.2
   logger: 2.6.2
   package_info_plus: 9.0.0

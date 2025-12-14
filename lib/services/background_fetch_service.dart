@@ -37,7 +37,7 @@ class BackgroundFetchService {
   Future<void> toggleTask() async {
     final notificationSettings = hive.getNotificationSettings();
 
-    if (notificationSettings.showLeagueNotifications || notificationSettings.showTeamNotifications) {
+    if (notificationSettings.showLeagueNotifications || notificationSettings.showTeamNotifications || notificationSettings.showMatchNotifications) {
       await startTask();
     } else {
       await stopTask();

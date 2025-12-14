@@ -136,7 +136,7 @@ class NotificationService {
     final hour = now.hour;
 
     /// Do logic if within timeframe
-    final isInRange = (hour >= 13) || (hour == 0);
+    final isInRange = (hour >= 10) || (hour <= 2);
 
     /// Get notification settings
     final notificationSettings = hive.getNotificationSettings();
@@ -274,8 +274,10 @@ class NotificationService {
             );
           }
 
+          final prevLastNotifiedTotalGoals = prev?.lastNotifiedTotalGoals ?? 0;
+
           /// Build line for goal notification
-          if (notificationSettings.triggerGoal && wasGoal && totalGoals > (prev.lastNotifiedTotalGoals ?? 0)) {
+          if (notificationSettings.triggerGoal && wasGoal && totalGoals > prevLastNotifiedTotalGoals) {
             changes.add(
               NotificationChange(
                 fixtureId: fixtureId,
