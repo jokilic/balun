@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 
 import '../../../models/countries/country_response.dart';
 import '../../../routing.dart';
@@ -27,10 +27,13 @@ class CountriesSuccess extends StatelessWidget {
         return CountriesListTile(
           country: country,
           countryPressed: country.name != null
-              ? () => openLeagues(
-                  context,
-                  country: country.name!,
-                )
+              ? () {
+                  HapticFeedback.lightImpact();
+                  openLeagues(
+                    context,
+                    country: country.name!,
+                  );
+                }
               : null,
         );
       },

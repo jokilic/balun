@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../models/coaches/coach_response.dart';
@@ -93,11 +94,14 @@ class CoachMainInfo extends WatchingWidget {
             padding: const EdgeInsets.only(top: 4),
             child: BalunButton(
               onPressed: coach.team?.id != null
-                  ? () => openTeam(
-                      context,
-                      teamId: coach.team!.id!,
-                      season: getCurrentSeasonYear().toString(),
-                    )
+                  ? () {
+                      HapticFeedback.lightImpact();
+                      openTeam(
+                        context,
+                        teamId: coach.team!.id!,
+                        season: getCurrentSeasonYear().toString(),
+                      );
+                    }
                   : null,
               child: Container(
                 color: Colors.transparent,

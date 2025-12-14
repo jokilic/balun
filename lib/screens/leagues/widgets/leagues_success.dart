@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../models/leagues/league_response.dart';
 import '../../../routing.dart';
@@ -23,11 +24,14 @@ class LeaguesSuccess extends StatelessWidget {
       return LeaguesListTile(
         league: league,
         leaguePressed: league.league?.id != null
-            ? () => openLeague(
-                context,
-                leagueId: league.league!.id!,
-                season: (league.seasons?.lastOrNull?.year ?? getCurrentSeasonYear()).toString(),
-              )
+            ? () {
+                HapticFeedback.lightImpact();
+                openLeague(
+                  context,
+                  leagueId: league.league!.id!,
+                  season: (league.seasons?.lastOrNull?.year ?? getCurrentSeasonYear()).toString(),
+                );
+              }
             : null,
       );
     },

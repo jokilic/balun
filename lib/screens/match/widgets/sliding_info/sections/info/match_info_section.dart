@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../models/fixtures/fixture/fixture_status.dart';
 import '../../../../../../models/fixtures/fixture/fixture_venue.dart';
@@ -122,11 +123,14 @@ class MatchInfoSection extends StatelessWidget {
           if (league?.id != null) ...[
             BalunButton(
               onPressed: league?.id != null
-                  ? () => openLeague(
-                      context,
-                      leagueId: league!.id!,
-                      season: league?.season ?? getCurrentSeasonYear().toString(),
-                    )
+                  ? () {
+                      HapticFeedback.lightImpact();
+                      openLeague(
+                        context,
+                        leagueId: league!.id!,
+                        season: league?.season ?? getCurrentSeasonYear().toString(),
+                      );
+                    }
                   : null,
               child: Container(
                 color: Colors.transparent,
@@ -181,11 +185,14 @@ class MatchInfoSection extends StatelessWidget {
           if (league?.id != null) ...[
             BalunButton(
               onPressed: league?.id != null
-                  ? () => openLeague(
-                      context,
-                      leagueId: league!.id!,
-                      season: league?.season ?? getCurrentSeasonYear().toString(),
-                    )
+                  ? () {
+                      HapticFeedback.lightImpact();
+                      openLeague(
+                        context,
+                        leagueId: league!.id!,
+                        season: league?.season ?? getCurrentSeasonYear().toString(),
+                      );
+                    }
                   : null,
               child: Container(
                 color: Colors.transparent,

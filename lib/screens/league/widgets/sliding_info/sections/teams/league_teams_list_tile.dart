@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../models/teams/team_response.dart';
 import '../../../../../../routing.dart';
@@ -22,11 +23,14 @@ class LeagueTeamsListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BalunButton(
     onPressed: team.team?.id != null
-        ? () => openTeam(
-            context,
-            teamId: team.team!.id!,
-            season: season,
-          )
+        ? () {
+            HapticFeedback.lightImpact();
+            openTeam(
+              context,
+              teamId: team.team!.id!,
+              season: season,
+            );
+          }
         : null,
     child: Container(
       color: Colors.transparent,

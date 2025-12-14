@@ -2,4 +2,4 @@
 * Don't show back button in error & empty states in main screens
 * Small updates in themes & colors
 * Small updates in notification logic
-* Add subtle vibration in some buttons
+* Add subtle vibration in some places

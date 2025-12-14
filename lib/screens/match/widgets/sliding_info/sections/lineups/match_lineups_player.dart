@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../models/fixtures/lineup/lineup_colors.dart';
 import '../../../../../../models/fixtures/lineup/lineup_player.dart';
@@ -112,11 +113,14 @@ class MatchLineupsPlayer extends StatelessWidget {
         top: adjustedYPosition * fieldHeight! - playerSize / 2,
         child: BalunButton(
           onPressed: player?.player?.id != null
-              ? () => openPlayer(
-                  context,
-                  playerId: player!.player!.id!,
-                  season: season,
-                )
+              ? () {
+                  HapticFeedback.lightImpact();
+                  openPlayer(
+                    context,
+                    playerId: player!.player!.id!,
+                    season: season,
+                  );
+                }
               : null,
           child: Stack(
             alignment: Alignment.center,

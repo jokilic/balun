@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../models/players/player_response.dart';
 import '../../../../../../routing.dart';
@@ -25,11 +26,14 @@ class LeagueTopScorersListTile extends StatelessWidget {
     if ((numberOfGoals ?? 0) > 0) {
       return BalunButton(
         onPressed: scorer?.player?.id != null
-            ? () => openPlayer(
-                context,
-                playerId: scorer!.player!.id!,
-                season: season,
-              )
+            ? () {
+                HapticFeedback.lightImpact();
+                openPlayer(
+                  context,
+                  playerId: scorer!.player!.id!,
+                  season: season,
+                );
+              }
             : null,
         child: Container(
           color: Colors.transparent,

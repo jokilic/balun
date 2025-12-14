@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../models/search/search_countries/search_countries_inner_response.dart';
 import '../../../../../routing.dart';
@@ -13,22 +14,25 @@ class SearchCountriesSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView.separated(
-        padding: const EdgeInsets.only(bottom: 24),
-        physics: const BouncingScrollPhysics(),
-        itemCount: countries.length,
-        itemBuilder: (_, index) {
-          final country = countries[index];
+    padding: const EdgeInsets.only(bottom: 24),
+    physics: const BouncingScrollPhysics(),
+    itemCount: countries.length,
+    itemBuilder: (_, index) {
+      final country = countries[index];
 
-          return SearchCountriesListTile(
-            country: country,
-            countryPressed: country.name != null
-                ? () => openLeagues(
-                      context,
-                      country: country.name!,
-                    )
-                : null,
-          );
-        },
-        separatorBuilder: (_, __) => const SizedBox(height: 4),
+      return SearchCountriesListTile(
+        country: country,
+        countryPressed: country.name != null
+            ? () {
+                HapticFeedback.lightImpact();
+                openLeagues(
+                  context,
+                  country: country.name!,
+                );
+              }
+            : null,
       );
+    },
+    separatorBuilder: (_, __) => const SizedBox(height: 4),
+  );
 }

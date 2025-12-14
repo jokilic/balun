@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -83,11 +84,14 @@ class MatchMainInfo extends WatchingWidget {
               Expanded(
                 child: BalunButton(
                   onPressed: match.teams?.home?.id != null
-                      ? () => openTeam(
-                          context,
-                          teamId: match.teams!.home!.id!,
-                          season: match.league?.season ?? getCurrentSeasonYear().toString(),
-                        )
+                      ? () {
+                          HapticFeedback.lightImpact();
+                          openTeam(
+                            context,
+                            teamId: match.teams!.home!.id!,
+                            season: match.league?.season ?? getCurrentSeasonYear().toString(),
+                          );
+                        }
                       : null,
                   child: Container(
                     color: Colors.transparent,
@@ -159,11 +163,14 @@ class MatchMainInfo extends WatchingWidget {
               Expanded(
                 child: BalunButton(
                   onPressed: match.teams?.away?.id != null
-                      ? () => openTeam(
-                          context,
-                          teamId: match.teams!.away!.id!,
-                          season: match.league?.season ?? getCurrentSeasonYear().toString(),
-                        )
+                      ? () {
+                          HapticFeedback.lightImpact();
+                          openTeam(
+                            context,
+                            teamId: match.teams!.away!.id!,
+                            season: match.league?.season ?? getCurrentSeasonYear().toString(),
+                          );
+                        }
                       : null,
                   child: Container(
                     color: Colors.transparent,
@@ -224,11 +231,14 @@ class MatchMainInfo extends WatchingWidget {
 
                               return BalunButton(
                                 onPressed: event.player?.id != null
-                                    ? () => openPlayer(
-                                        context,
-                                        playerId: event.player!.id!,
-                                        season: match.league?.season ?? getCurrentSeasonYear().toString(),
-                                      )
+                                    ? () {
+                                        HapticFeedback.lightImpact();
+                                        openPlayer(
+                                          context,
+                                          playerId: event.player!.id!,
+                                          season: match.league?.season ?? getCurrentSeasonYear().toString(),
+                                        );
+                                      }
                                     : null,
                                 child: Container(
                                   color: Colors.transparent,
@@ -338,11 +348,14 @@ class MatchMainInfo extends WatchingWidget {
 
                               return BalunButton(
                                 onPressed: event.player?.id != null
-                                    ? () => openPlayer(
-                                        context,
-                                        playerId: event.player!.id!,
-                                        season: match.league?.season ?? getCurrentSeasonYear().toString(),
-                                      )
+                                    ? () {
+                                        HapticFeedback.lightImpact();
+                                        openPlayer(
+                                          context,
+                                          playerId: event.player!.id!,
+                                          season: match.league?.season ?? getCurrentSeasonYear().toString(),
+                                        );
+                                      }
                                     : null,
                                 child: Container(
                                   color: Colors.transparent,

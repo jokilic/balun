@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../models/transfers/transfer/transfer.dart';
 import '../../../../../../routing.dart';
@@ -35,11 +36,14 @@ class PlayerTransferListTile extends StatelessWidget {
             Expanded(
               child: BalunButton(
                 onPressed: transfer.teams?.teamOut?.id != null
-                    ? () => openTeam(
-                        context,
-                        teamId: transfer.teams!.teamOut!.id!,
-                        season: (dateLocal?.year ?? getCurrentSeasonYear()).toString(),
-                      )
+                    ? () {
+                        HapticFeedback.lightImpact();
+                        openTeam(
+                          context,
+                          teamId: transfer.teams!.teamOut!.id!,
+                          season: (dateLocal?.year ?? getCurrentSeasonYear()).toString(),
+                        );
+                      }
                     : null,
                 child: Container(
                   color: Colors.transparent,
@@ -121,11 +125,14 @@ class PlayerTransferListTile extends StatelessWidget {
             Expanded(
               child: BalunButton(
                 onPressed: transfer.teams?.teamIn?.id != null
-                    ? () => openTeam(
-                        context,
-                        teamId: transfer.teams!.teamIn!.id!,
-                        season: (dateLocal?.year ?? getCurrentSeasonYear()).toString(),
-                      )
+                    ? () {
+                        HapticFeedback.lightImpact();
+                        openTeam(
+                          context,
+                          teamId: transfer.teams!.teamIn!.id!,
+                          season: (dateLocal?.year ?? getCurrentSeasonYear()).toString(),
+                        );
+                      }
                     : null,
                 child: Container(
                   color: Colors.transparent,

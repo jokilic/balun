@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../models/fixtures/fixture_response.dart';
@@ -201,10 +202,13 @@ class FixturesSuccess extends WatchingWidget {
                       statusShort: fixture.fixture?.status?.short ?? '--',
                     ),
                     onFixturePressed: fixture.fixture?.id != null
-                        ? () => openMatch(
-                            context,
-                            matchId: fixture.fixture!.id!,
-                          )
+                        ? () {
+                            HapticFeedback.lightImpact();
+                            openMatch(
+                              context,
+                              matchId: fixture.fixture!.id!,
+                            );
+                          }
                         : null,
                     onFixtureLongPressed: () => toggleFavorite(
                       fixture: fixture,
@@ -266,10 +270,13 @@ class FixturesSuccess extends WatchingWidget {
                       statusShort: fixture.fixture?.status?.short ?? '--',
                     ),
                     onFixturePressed: fixture.fixture?.id != null
-                        ? () => openMatch(
-                            context,
-                            matchId: fixture.fixture!.id!,
-                          )
+                        ? () {
+                            HapticFeedback.lightImpact();
+                            openMatch(
+                              context,
+                              matchId: fixture.fixture!.id!,
+                            );
+                          }
                         : null,
                     onFixtureLongPressed: () => toggleFavorite(
                       fixture: fixture,
@@ -319,11 +326,15 @@ class FixturesSuccess extends WatchingWidget {
 
                   return FixturesLeagueCompactListTile(
                     onPressed: league?.id != null
-                        ? () => openLeague(
-                            context,
-                            leagueId: league?.id ?? 0,
-                            season: league?.season ?? fixtures?.firstWhereOrNull((fixture) => fixture.league?.season != null)?.league?.season ?? getCurrentSeasonYear().toString(),
-                          )
+                        ? () {
+                            HapticFeedback.lightImpact();
+                            openLeague(
+                              context,
+                              leagueId: league?.id ?? 0,
+                              season:
+                                  league?.season ?? fixtures?.firstWhereOrNull((fixture) => fixture.league?.season != null)?.league?.season ?? getCurrentSeasonYear().toString(),
+                            );
+                          }
                         : null,
                     onFixtureLongPressed: (fixture) => toggleFavorite(
                       fixture: fixture,
@@ -378,6 +389,7 @@ class FixturesSuccess extends WatchingWidget {
                   return FixturesCountryListTile(
                     onLongPressedListTile: (league) {
                       if (league?.id != null) {
+                        HapticFeedback.lightImpact();
                         openLeague(
                           context,
                           leagueId: league?.id ?? 0,

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../models/fixtures/league/league.dart';
@@ -197,11 +198,14 @@ class _FavoritesContentState extends State<FavoritesContent> {
                     return BalunButton(
                       key: ValueKey(league),
                       onPressed: league.id != null
-                          ? () => openLeague(
-                              context,
-                              leagueId: league.id!,
-                              season: league.season ?? getCurrentSeasonYear().toString(),
-                            )
+                          ? () {
+                              HapticFeedback.lightImpact();
+                              openLeague(
+                                context,
+                                leagueId: league.id!,
+                                season: league.season ?? getCurrentSeasonYear().toString(),
+                              );
+                            }
                           : null,
                       child: Container(
                         color: Colors.transparent,
@@ -282,11 +286,14 @@ class _FavoritesContentState extends State<FavoritesContent> {
                     return BalunButton(
                       key: ValueKey(team),
                       onPressed: team.id != null
-                          ? () => openTeam(
-                              context,
-                              teamId: team.id!,
-                              season: getCurrentSeasonYear().toString(),
-                            )
+                          ? () {
+                              HapticFeedback.lightImpact();
+                              openTeam(
+                                context,
+                                teamId: team.id!,
+                                season: getCurrentSeasonYear().toString(),
+                              );
+                            }
                           : null,
                       child: Container(
                         color: Colors.transparent,
@@ -367,10 +374,13 @@ class _FavoritesContentState extends State<FavoritesContent> {
                     return BalunButton(
                       key: ValueKey(match),
                       onPressed: match.matchId != null
-                          ? () => openMatch(
-                              context,
-                              matchId: match.matchId!,
-                            )
+                          ? () {
+                              HapticFeedback.lightImpact();
+                              openMatch(
+                                context,
+                                matchId: match.matchId!,
+                              );
+                            }
                           : null,
                       child: Container(
                         color: Colors.transparent,

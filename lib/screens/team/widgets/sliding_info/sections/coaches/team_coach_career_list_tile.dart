@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../models/coaches/career/career.dart';
 import '../../../../../../routing.dart';
@@ -28,11 +29,14 @@ class TeamCoachCareerListTile extends StatelessWidget {
 
     return BalunButton(
       onPressed: career.team?.id != null
-          ? () => openTeam(
-              context,
-              teamId: career.team!.id!,
-              season: (endLocal?.year ?? startLocal?.year ?? getCurrentSeasonYear()).toString(),
-            )
+          ? () {
+              HapticFeedback.lightImpact();
+              openTeam(
+                context,
+                teamId: career.team!.id!,
+                season: (endLocal?.year ?? startLocal?.year ?? getCurrentSeasonYear()).toString(),
+              );
+            }
           : null,
       child: Container(
         color: Colors.transparent,

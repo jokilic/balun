@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../models/leagues/league_response.dart';
@@ -93,11 +94,14 @@ class _TeamLeaguesListTileState extends State<TeamLeaguesListTile> {
                           .map(
                             (season) => BalunButton(
                               onPressed: widget.league.league?.id != null
-                                  ? () => openLeague(
-                                      context,
-                                      leagueId: widget.league.league!.id!,
-                                      season: (season.year ?? getCurrentSeasonYear()).toString(),
-                                    )
+                                  ? () {
+                                      HapticFeedback.lightImpact();
+                                      openLeague(
+                                        context,
+                                        leagueId: widget.league.league!.id!,
+                                        season: (season.year ?? getCurrentSeasonYear()).toString(),
+                                      );
+                                    }
                                   : null,
                               child: Container(
                                 padding: const EdgeInsets.symmetric(

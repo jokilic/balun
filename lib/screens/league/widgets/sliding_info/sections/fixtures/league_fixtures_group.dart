@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../models/fixtures/fixture_response.dart';
@@ -78,10 +79,13 @@ class _LeagueFixturesGroupState extends State<LeagueFixturesGroup> {
                       fixturePlaying: isMatchPlaying(
                         statusShort: fixture.fixture?.status?.short ?? '--',
                       ),
-                      fixturePressed: () => openMatch(
-                        context,
-                        matchId: fixture.fixture!.id!,
-                      ),
+                      fixturePressed: () {
+                        HapticFeedback.lightImpact();
+                        openMatch(
+                          context,
+                          matchId: fixture.fixture!.id!,
+                        );
+                      },
                     );
                   },
                   separatorBuilder: (_, __) => const SizedBox(height: 12),

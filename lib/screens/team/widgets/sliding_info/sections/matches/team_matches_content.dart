@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../models/fixtures/fixture_response.dart';
 import '../../../../../../routing.dart';
@@ -51,10 +52,13 @@ class TeamMatchesContent extends StatelessWidget {
                 fixturePlaying: isMatchPlaying(
                   statusShort: fixture.fixture?.status?.short ?? '--',
                 ),
-                fixturePressed: () => openMatch(
-                  context,
-                  matchId: fixture.fixture!.id!,
-                ),
+                fixturePressed: () {
+                  HapticFeedback.lightImpact();
+                  openMatch(
+                    context,
+                    matchId: fixture.fixture!.id!,
+                  );
+                },
               );
             },
             separatorBuilder: (_, __) => const SizedBox(height: 12),
@@ -82,10 +86,13 @@ class TeamMatchesContent extends StatelessWidget {
                 fixturePlaying: isMatchPlaying(
                   statusShort: fixture.fixture?.status?.short ?? '--',
                 ),
-                fixturePressed: () => openMatch(
-                  context,
-                  matchId: fixture.fixture!.id!,
-                ),
+                fixturePressed: () {
+                  HapticFeedback.lightImpact();
+                  openMatch(
+                    context,
+                    matchId: fixture.fixture!.id!,
+                  );
+                },
               );
             },
             separatorBuilder: (_, __) => const SizedBox(height: 12),

@@ -2,17 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'screens/about/about_screen.dart';
 import 'screens/coach/coach_screen.dart';
-import 'screens/countries/countries_screen.dart';
 import 'screens/favorites/favorites_screen.dart';
-import 'screens/fixtures/fixtures_screen.dart';
 import 'screens/language/language_screen.dart';
 import 'screens/league/league_screen.dart';
 import 'screens/leagues/leagues_screen.dart';
 import 'screens/match/match_screen.dart';
 import 'screens/notifications/notifications_screen.dart';
 import 'screens/player/player_screen.dart';
-import 'screens/search/search_screen.dart';
-import 'screens/settings/settings_screen.dart';
 import 'screens/status/status_screen.dart';
 import 'screens/team/team_screen.dart';
 import 'screens/theme/theme_screen.dart';
@@ -50,38 +46,6 @@ void openStatus(BuildContext context) => pushScreen(
   context: context,
 );
 
-/// Opens [FixturesScreen]
-void openFixtures(BuildContext context) => pushScreen(
-  const FixturesScreen(
-    key: ValueKey('fixtures'),
-  ),
-  context: context,
-);
-
-/// Opens [CountriesScreen]
-void openCountries(BuildContext context) => pushScreen(
-  const CountriesScreen(
-    key: ValueKey('countries'),
-  ),
-  context: context,
-);
-
-/// Opens [SearchScreen]
-void openSearch(BuildContext context) => pushScreen(
-  const SearchScreen(
-    key: ValueKey('search'),
-  ),
-  context: context,
-);
-
-/// Opens [SettingsScreen]
-void openSettings(BuildContext context) => pushScreen(
-  const SettingsScreen(
-    key: ValueKey('settings'),
-  ),
-  context: context,
-);
-
 /// Opens [FavoritesScreen]
 void openFavorites(BuildContext context) => pushScreen(
   const FavoritesScreen(
@@ -99,7 +63,10 @@ void openAbout(BuildContext context) => pushScreen(
 );
 
 /// Opens [LeaguesScreen]
-void openLeagues(BuildContext context, {required String country}) => pushScreen(
+void openLeagues(
+  BuildContext context, {
+  required String country,
+}) => pushScreen(
   LeaguesScreen(
     country: country,
     key: ValueKey(country),

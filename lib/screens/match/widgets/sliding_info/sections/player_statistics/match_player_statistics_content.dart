@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../models/fixtures/player_statistic/player_statistic.dart';
@@ -46,11 +47,14 @@ class _MatchPlayerStatisticsContentState extends State<MatchPlayerStatisticsCont
               children: [
                 BalunButton(
                   onPressed: widget.playerStatistic?.team?.id != null
-                      ? () => openTeam(
-                          context,
-                          teamId: widget.playerStatistic!.team!.id!,
-                          season: widget.season,
-                        )
+                      ? () {
+                          HapticFeedback.lightImpact();
+                          openTeam(
+                            context,
+                            teamId: widget.playerStatistic!.team!.id!,
+                            season: widget.season,
+                          );
+                        }
                       : null,
                   child: BalunImage(
                     imageUrl: widget.playerStatistic!.team!.logo!,

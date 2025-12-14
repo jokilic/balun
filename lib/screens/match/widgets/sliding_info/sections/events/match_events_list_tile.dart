@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../models/fixtures/event/event.dart';
 import '../../../../../../routing.dart';
@@ -116,11 +117,14 @@ class MatchEventsListTile extends StatelessWidget {
                 Flexible(
                   child: BalunButton(
                     onPressed: event.player?.id != null
-                        ? () => openPlayer(
-                            context,
-                            playerId: event.player!.id!,
-                            season: season ?? getCurrentSeasonYear().toString(),
-                          )
+                        ? () {
+                            HapticFeedback.lightImpact();
+                            openPlayer(
+                              context,
+                              playerId: event.player!.id!,
+                              season: season ?? getCurrentSeasonYear().toString(),
+                            );
+                          }
                         : null,
                     child: Container(
                       color: Colors.transparent,
@@ -194,11 +198,14 @@ class MatchEventsListTile extends StatelessWidget {
                   Flexible(
                     child: BalunButton(
                       onPressed: event.assist?.id != null
-                          ? () => openPlayer(
-                              context,
-                              playerId: event.assist!.id!,
-                              season: season ?? getCurrentSeasonYear().toString(),
-                            )
+                          ? () {
+                              HapticFeedback.lightImpact();
+                              openPlayer(
+                                context,
+                                playerId: event.assist!.id!,
+                                season: season ?? getCurrentSeasonYear().toString(),
+                              );
+                            }
                           : null,
                       child: Container(
                         color: Colors.transparent,
@@ -232,11 +239,14 @@ class MatchEventsListTile extends StatelessWidget {
                 Flexible(
                   child: BalunButton(
                     onPressed: event.player?.id != null
-                        ? () => openPlayer(
-                            context,
-                            playerId: event.player!.id!,
-                            season: season ?? getCurrentSeasonYear().toString(),
-                          )
+                        ? () {
+                            HapticFeedback.lightImpact();
+                            openPlayer(
+                              context,
+                              playerId: event.player!.id!,
+                              season: season ?? getCurrentSeasonYear().toString(),
+                            );
+                          }
                         : null,
                     child: Container(
                       color: Colors.transparent,
@@ -295,11 +305,14 @@ class MatchEventsListTile extends StatelessWidget {
         Flexible(
           child: BalunButton(
             onPressed: event.player?.id != null
-                ? () => openPlayer(
-                    context,
-                    playerId: event.player!.id!,
-                    season: season ?? getCurrentSeasonYear().toString(),
-                  )
+                ? () {
+                    HapticFeedback.lightImpact();
+                    openPlayer(
+                      context,
+                      playerId: event.player!.id!,
+                      season: season ?? getCurrentSeasonYear().toString(),
+                    );
+                  }
                 : null,
             child: Container(
               color: Colors.transparent,
@@ -365,11 +378,14 @@ class MatchEventsListTile extends StatelessWidget {
         Flexible(
           child: BalunButton(
             onPressed: event.assist?.id != null
-                ? () => openPlayer(
-                    context,
-                    playerId: event.assist!.id!,
-                    season: season ?? getCurrentSeasonYear().toString(),
-                  )
+                ? () {
+                    HapticFeedback.lightImpact();
+                    openPlayer(
+                      context,
+                      playerId: event.assist!.id!,
+                      season: season ?? getCurrentSeasonYear().toString(),
+                    );
+                  }
                 : null,
             child: Container(
               color: Colors.transparent,
@@ -403,11 +419,14 @@ class MatchEventsListTile extends StatelessWidget {
         Flexible(
           child: BalunButton(
             onPressed: event.player?.id != null
-                ? () => openPlayer(
-                    context,
-                    playerId: event.player!.id!,
-                    season: season ?? getCurrentSeasonYear().toString(),
-                  )
+                ? () {
+                    HapticFeedback.lightImpact();
+                    openPlayer(
+                      context,
+                      playerId: event.player!.id!,
+                      season: season ?? getCurrentSeasonYear().toString(),
+                    );
+                  }
                 : null,
             child: Container(
               color: Colors.transparent,

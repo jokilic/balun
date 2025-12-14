@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../../../constants.dart';
 import '../../../../../../models/player_teams/player_team_response.dart';
@@ -82,11 +83,14 @@ class _PlayerTeamsListTileState extends State<PlayerTeamsListTile> {
                           .map(
                             (season) => BalunButton(
                               onPressed: widget.team?.team?.id != null
-                                  ? () => openTeam(
-                                      context,
-                                      teamId: widget.team!.team!.id!,
-                                      season: season.toString(),
-                                    )
+                                  ? () {
+                                      HapticFeedback.lightImpact();
+                                      openTeam(
+                                        context,
+                                        teamId: widget.team!.team!.id!,
+                                        season: season.toString(),
+                                      );
+                                    }
                                   : null,
                               child: Container(
                                 padding: const EdgeInsets.symmetric(

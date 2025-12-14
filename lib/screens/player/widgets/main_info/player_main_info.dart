@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../models/players/player_response.dart';
@@ -114,11 +115,14 @@ class PlayerMainInfo extends WatchingWidget {
               padding: const EdgeInsets.only(top: 4),
               child: BalunButton(
                 onPressed: currentTeam.id != null
-                    ? () => openTeam(
-                        context,
-                        teamId: currentTeam.id!,
-                        season: player.statistics?.firstOrNull?.league?.season ?? getCurrentSeasonYear().toString(),
-                      )
+                    ? () {
+                        HapticFeedback.lightImpact();
+                        openTeam(
+                          context,
+                          teamId: currentTeam.id!,
+                          season: player.statistics?.firstOrNull?.league?.season ?? getCurrentSeasonYear().toString(),
+                        );
+                      }
                     : null,
                 child: Container(
                   color: Colors.transparent,

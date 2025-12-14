@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hive_ce/hive.dart';
 
@@ -219,7 +220,8 @@ class NotificationService {
             );
 
         /// Check if a goal happened
-        final hasNewGoal = ((prev != null && totalGoals > prevTotalGoals) || (prev == null && totalGoals > 0)) &&
+        final hasNewGoal =
+            ((prev != null && totalGoals > prevTotalGoals) || (prev == null && totalGoals > 0)) &&
             isMatchPlaying(
               statusShort: statusShort ?? '--',
             );
@@ -806,6 +808,9 @@ class NotificationService {
 
         /// `fixtureId` is parsed properly, open [MatchScreen]
         if (payloadFixtureId != null) {
+          unawaited(
+            HapticFeedback.lightImpact(),
+          );
           openMatch(
             context,
             matchId: payloadFixtureId,
