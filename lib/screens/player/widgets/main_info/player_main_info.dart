@@ -176,11 +176,14 @@ class PlayerMainInfo extends WatchingWidget {
                     final year = years[index];
 
                     return BalunButton(
-                      onPressed: () => getIt
-                          .get<PlayerSeasonController>(
-                            instanceName: '${player.player?.id}',
-                          )
-                          .updateState(year.toString()),
+                      onPressed: () {
+                        HapticFeedback.lightImpact();
+                        getIt
+                            .get<PlayerSeasonController>(
+                              instanceName: '${player.player?.id}',
+                            )
+                            .updateState(year.toString());
+                      },
                       child: Center(
                         child: Text(
                           '$year',

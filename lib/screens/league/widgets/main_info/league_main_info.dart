@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../models/leagues/league_response.dart';
@@ -54,6 +57,10 @@ class LeagueMainInfo extends WatchingWidget {
             onBackPressed: Navigator.of(context).pop,
             league: league.league!,
             onFavoritePressed: () async {
+              unawaited(
+                HapticFeedback.lightImpact(),
+              );
+
               final leagueAdded = await getIt.get<LeagueStorageService>().toggleLeague(
                 passedLeague: league.league,
               );
@@ -137,11 +144,14 @@ class LeagueMainInfo extends WatchingWidget {
                       final season = league.seasons![index];
 
                       return BalunButton(
-                        onPressed: () => getIt
-                            .get<LeagueSeasonController>(
-                              instanceName: '${league.league?.id}',
-                            )
-                            .updateState(season.year.toString()),
+                        onPressed: () {
+                          HapticFeedback.lightImpact();
+                          getIt
+                              .get<LeagueSeasonController>(
+                                instanceName: '${league.league?.id}',
+                              )
+                              .updateState(season.year.toString());
+                        },
                         child: Center(
                           child: Text(
                             '${season.year ?? '--'}',

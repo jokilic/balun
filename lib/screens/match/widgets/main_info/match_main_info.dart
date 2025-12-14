@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -51,6 +53,10 @@ class MatchMainInfo extends WatchingWidget {
             onBackPressed: Navigator.of(context).pop,
             league: match.league!,
             onFavoritePressed: () async {
+              unawaited(
+                HapticFeedback.lightImpact(),
+              );
+
               final matchAdded = await getIt.get<MatchStorageService>().toggleMatch(
                 passedMatch: getFavoriteMatch(
                   match: match,
