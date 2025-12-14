@@ -157,283 +157,287 @@ class NotificationService {
       );
 
       /// Fixtures fetched successfully, continue
-      if (todayFixtures?.isNotEmpty ?? false) {
-        /// Get favorite leagues, teams & matches
-        final favoriteLeagues = getIt.get<LeagueStorageService>().value;
-        final favoriteTeams = getIt.get<TeamStorageService>().value;
-        final favoriteMatches = getIt.get<MatchStorageService>().value;
+      final fixtures = todayFixtures ?? <FixtureResponse>[];
 
-        /// Get favorite leagues & teams `IDs`
-        final favoriteLeagueIds = favoriteLeagues.map((league) => league.id).whereType<int>().toSet();
-        final favoriteTeamsIds = favoriteTeams.map((team) => team.id).whereType<int>().toSet();
-        final favoriteMatchIds = favoriteMatches.map((match) => match.matchId).whereType<int>().toSet();
+      /// Get favorite leagues, teams & matches
+      final favoriteLeagues = getIt.get<LeagueStorageService>().value;
+      final favoriteTeams = getIt.get<TeamStorageService>().value;
+      final favoriteMatches = getIt.get<MatchStorageService>().value;
 
-        /// Get fixtures which contain favorited leagues & teams
-        final monitoredFixtures = todayFixtures!.where((fixture) {
-          final inFavLeague = favoriteLeagueIds.contains(fixture.league?.id);
-          final hasFavTeam = favoriteTeamsIds.contains(fixture.teams?.home?.id) || favoriteTeamsIds.contains(fixture.teams?.away?.id);
-          final isFavMatch = favoriteMatchIds.contains(fixture.fixture?.id);
+      /// Get favorite leagues & teams `IDs`
+      final favoriteLeagueIds = favoriteLeagues.map((league) => league.id).whereType<int>().toSet();
+      final favoriteTeamsIds = favoriteTeams.map((team) => team.id).whereType<int>().toSet();
+      final favoriteMatchIds = favoriteMatches.map((match) => match.matchId).whereType<int>().toSet();
 
-          return (notificationSettings.showLeagueNotifications && inFavLeague) ||
-              (notificationSettings.showTeamNotifications && hasFavTeam) ||
-              (notificationSettings.showMatchNotifications && isFavMatch);
-        }).toList();
+      /// Get fixtures which contain favorited leagues & teams
+      final monitoredFixtures = fixtures.where((fixture) {
+        final inFavLeague = favoriteLeagueIds.contains(fixture.league?.id);
+        final hasFavTeam = favoriteTeamsIds.contains(fixture.teams?.home?.id) || favoriteTeamsIds.contains(fixture.teams?.away?.id);
+        final isFavMatch = favoriteMatchIds.contains(fixture.fixture?.id);
 
-        /// Get box of [NotificationFixtures] from [Hive]
-        final hiveNotificationFixturesBox = Hive.box<NotificationFixture>('notificationFixturesBox');
+        return (notificationSettings.showLeagueNotifications && inFavLeague) ||
+            (notificationSettings.showTeamNotifications && hasFavTeam) ||
+            (notificationSettings.showMatchNotifications && isFavMatch);
+      }).toList();
 
-        /// Collect all changes here
-        final changes = <NotificationChange>[];
+      /// Get box of [NotificationFixtures] from [Hive]
+      final hiveNotificationFixturesBox = Hive.box<NotificationFixture>('notificationFixturesBox');
 
-        for (final fixture in monitoredFixtures) {
-          /// Get `fixtureId` and value from [Hive] if exists
-          final fixtureId = fixture.fixture?.id;
-          final prev = hiveNotificationFixturesBox.get(fixtureId);
+      /// Collect all changes here
+      final changes = <NotificationChange>[];
 
-          /// Store current state of goals
-          final currentHomeGoals = fixture.goals?.home;
-          final currentAwayGoals = fixture.goals?.away;
+      for (final fixture in monitoredFixtures) {
+        /// Get `fixtureId` and value from [Hive] if exists
+        final fixtureId = fixture.fixture?.id;
 
-          /// Store current fixture status
-          final statusShort = fixture.fixture?.status?.short;
+        if (fixtureId == null) {
+          logger.e('FetchFixturesAndNotify -> fixture without id, skipping notification build');
+          continue;
+        }
 
-          /// Calculate total goals now and before
-          final totalGoals = (currentHomeGoals ?? 0) + (currentAwayGoals ?? 0);
-          final prevTotalGoals = (prev?.homeGoals ?? 0) + (prev?.awayGoals ?? 0);
+        final prev = hiveNotificationFixturesBox.get(fixtureId);
 
-          /// Check if match just started
-          final hasMatchStarted =
-              prev != null &&
-              isMatchNotStarted(
-                statusShort: prev.statusShort ?? '--',
-              ) &&
-              isMatchPlaying(
-                statusShort: statusShort ?? '--',
-              );
+        /// Store current state of goals
+        final currentHomeGoals = fixture.goals?.home;
+        final currentAwayGoals = fixture.goals?.away;
 
-          /// Check if a goal happened
-          final wasGoal =
-              prev != null &&
-              totalGoals > prevTotalGoals &&
-              isMatchPlaying(
-                statusShort: statusShort ?? '--',
-              );
+        /// Store current fixture status
+        final statusShort = fixture.fixture?.status?.short;
 
-          /// Check if half-time happened
-          final isHalfTime = statusShort == 'HT' && (prev == null || prev.statusShort != 'HT') && !(prev?.halfTimeNotified ?? false);
+        /// Calculate total goals now and before
+        final totalGoals = (currentHomeGoals ?? 0) + (currentAwayGoals ?? 0);
+        final prevTotalGoals = (prev?.homeGoals ?? 0) + (prev?.awayGoals ?? 0);
 
-          /// Check if extra-time happened
-          final isExtraTime = statusShort == 'ET' && (prev == null || prev.statusShort != 'ET') && !(prev?.extraTimeNotified ?? false);
-
-          /// Check if penalties happened
-          final isPenalties = statusShort == 'P' && (prev == null || prev.statusShort != 'P') && !(prev?.penaltiesNotified ?? false);
-
-          /// Check if full-time happened
-          final isFullTime =
-              isMatchFinished(
-                statusShort: statusShort ?? '--',
-              ) &&
-              (prev == null ||
-                  !isMatchFinished(
-                    statusShort: prev.statusShort ?? '--',
-                  )) &&
-              !(prev?.fullTimeNotified ?? false);
-
-          /// Store `mixLogos` value
-          final mixLogos = getIt.get<RemoteSettingsService>().value.mixLogos;
-
-          /// Store team names
-          final homeTeamName = fixture.teams?.home?.name;
-          final awayTeamName = fixture.teams?.away?.name;
-
-          /// Store team logos
-          final homeLogoUrl = mixLogos ? null : fixture.teams?.home?.logo;
-          final awayLogoUrl = mixLogos ? null : fixture.teams?.away?.logo;
-
-          final isAndroid = defaultTargetPlatform == TargetPlatform.android;
-
-          String formatGoals(int? currentGoals) => isAndroid ? '<b>$currentGoals</b>' : '$currentGoals';
-
-          String scoreLine() => '${mixOrOriginalWords(homeTeamName)} ${formatGoals(currentHomeGoals)} - ${formatGoals(currentAwayGoals)} ${mixOrOriginalWords(awayTeamName)}';
-
-          String fixtureLine() => '${mixOrOriginalWords(homeTeamName)} - ${mixOrOriginalWords(awayTeamName)}';
-
-          /// Build line for match start notification
-          if (notificationSettings.triggerMatchStart && hasMatchStarted) {
-            changes.add(
-              NotificationChange(
-                fixtureId: fixtureId,
-                type: NotificationChangeType.matchStarted,
-                title: 'notificationMatchStart'.tr(),
-                body: fixtureLine(),
-                summaryLine: '[KICKOFF] ${fixtureLine()}',
-                payload: '$fixtureId',
-                homeLogoUrl: homeLogoUrl,
-                awayLogoUrl: awayLogoUrl,
-              ),
+        /// Check if match just started
+        final hasMatchStarted =
+            prev != null &&
+            isMatchNotStarted(
+              statusShort: prev.statusShort ?? '--',
+            ) &&
+            isMatchPlaying(
+              statusShort: statusShort ?? '--',
             );
-          }
 
-          final prevLastNotifiedTotalGoals = prev?.lastNotifiedTotalGoals ?? 0;
-
-          /// Build line for goal notification
-          if (notificationSettings.triggerGoal && wasGoal && totalGoals > prevLastNotifiedTotalGoals) {
-            changes.add(
-              NotificationChange(
-                fixtureId: fixtureId,
-                type: NotificationChangeType.goal,
-                title: 'notificationGoal'.tr(),
-                body: scoreLine(),
-                summaryLine: '[GOAL] ${scoreLine()}',
-                payload: '$fixtureId',
-                homeLogoUrl: homeLogoUrl,
-                awayLogoUrl: awayLogoUrl,
-              ),
+        /// Check if a goal happened
+        final hasNewGoal = ((prev != null && totalGoals > prevTotalGoals) || (prev == null && totalGoals > 0)) &&
+            isMatchPlaying(
+              statusShort: statusShort ?? '--',
             );
-          }
 
-          /// Build line for half-time notification
-          if (notificationSettings.triggerMatchProgress && isHalfTime) {
-            changes.add(
-              NotificationChange(
-                fixtureId: fixtureId,
-                type: NotificationChangeType.halfTime,
-                title: 'notificationHalfTime'.tr(),
-                body: scoreLine(),
-                summaryLine: '[HT] ${scoreLine()}',
-                payload: '$fixtureId',
-                homeLogoUrl: homeLogoUrl,
-                awayLogoUrl: awayLogoUrl,
-              ),
-            );
-          }
+        /// Check if half-time happened
+        final isHalfTime = statusShort == 'HT' && (prev == null || prev.statusShort != 'HT') && !(prev?.halfTimeNotified ?? false);
 
-          /// Build line for extra-time notification
-          if (notificationSettings.triggerMatchProgress && isExtraTime) {
-            changes.add(
-              NotificationChange(
-                fixtureId: fixtureId,
-                type: NotificationChangeType.extraTime,
-                title: 'notificationExtraTime'.tr(),
-                body: scoreLine(),
-                summaryLine: '[ET] ${scoreLine()}',
-                payload: '$fixtureId',
-                homeLogoUrl: homeLogoUrl,
-                awayLogoUrl: awayLogoUrl,
-              ),
-            );
-          }
+        /// Check if extra-time happened
+        final isExtraTime = statusShort == 'ET' && (prev == null || prev.statusShort != 'ET') && !(prev?.extraTimeNotified ?? false);
 
-          /// Build line for penalties notification
-          if (notificationSettings.triggerMatchProgress && isPenalties) {
-            changes.add(
-              NotificationChange(
-                fixtureId: fixtureId,
-                type: NotificationChangeType.penalties,
-                title: 'notificationPenalties'.tr(),
-                body: scoreLine(),
-                summaryLine: '[PEN] ${scoreLine()}',
-                payload: '$fixtureId',
-                homeLogoUrl: homeLogoUrl,
-                awayLogoUrl: awayLogoUrl,
-              ),
-            );
-          }
+        /// Check if penalties happened
+        final isPenalties = statusShort == 'P' && (prev == null || prev.statusShort != 'P') && !(prev?.penaltiesNotified ?? false);
 
-          /// Build line for full-time notification
-          if (notificationSettings.triggerFullTime && isFullTime) {
-            changes.add(
-              NotificationChange(
-                fixtureId: fixtureId,
-                type: NotificationChangeType.fullTime,
-                title: 'notificationFullTime'.tr(),
-                body: scoreLine(),
-                summaryLine: '[FT] ${scoreLine()}',
-                payload: '$fixtureId',
-                homeLogoUrl: homeLogoUrl,
-                awayLogoUrl: awayLogoUrl,
-              ),
-            );
-          }
+        /// Check if full-time happened
+        final isFullTime =
+            isMatchFinished(
+              statusShort: statusShort ?? '--',
+            ) &&
+            (prev == null ||
+                !isMatchFinished(
+                  statusShort: prev.statusShort ?? '--',
+                )) &&
+            !(prev?.fullTimeNotified ?? false);
 
-          /// Save fixture snapshot to [Hive]
-          await hiveNotificationFixturesBox.put(
-            fixtureId,
-            NotificationFixture(
+        /// Store `mixLogos` value
+        final mixLogos = getIt.get<RemoteSettingsService>().value.mixLogos;
+
+        /// Store team names
+        final homeTeamName = fixture.teams?.home?.name;
+        final awayTeamName = fixture.teams?.away?.name;
+
+        /// Store team logos
+        final homeLogoUrl = mixLogos ? null : fixture.teams?.home?.logo;
+        final awayLogoUrl = mixLogos ? null : fixture.teams?.away?.logo;
+
+        final isAndroid = defaultTargetPlatform == TargetPlatform.android;
+
+        String formatGoals(int? currentGoals) => isAndroid ? '<b>$currentGoals</b>' : '$currentGoals';
+
+        String scoreLine() => '${mixOrOriginalWords(homeTeamName)} ${formatGoals(currentHomeGoals)} - ${formatGoals(currentAwayGoals)} ${mixOrOriginalWords(awayTeamName)}';
+
+        String fixtureLine() => '${mixOrOriginalWords(homeTeamName)} - ${mixOrOriginalWords(awayTeamName)}';
+
+        /// Build line for match start notification
+        if (notificationSettings.triggerMatchStart && hasMatchStarted) {
+          changes.add(
+            NotificationChange(
               fixtureId: fixtureId,
-              homeName: homeTeamName,
-              awayName: awayTeamName,
-              homeGoals: currentHomeGoals,
-              awayGoals: currentAwayGoals,
-              statusShort: statusShort,
-              halfTimeNotified: isHalfTime || (prev?.halfTimeNotified ?? false),
-              extraTimeNotified: isExtraTime || (prev?.extraTimeNotified ?? false),
-              penaltiesNotified: isPenalties || (prev?.penaltiesNotified ?? false),
-              fullTimeNotified: isFullTime || (prev?.fullTimeNotified ?? false),
-              lastNotifiedTotalGoals: wasGoal ? totalGoals : (prev?.lastNotifiedTotalGoals ?? totalGoals),
+              type: NotificationChangeType.matchStarted,
+              title: 'notificationMatchStart'.tr(),
+              body: fixtureLine(),
+              summaryLine: '[KICKOFF] ${fixtureLine()}',
+              payload: '$fixtureId',
+              homeLogoUrl: homeLogoUrl,
+              awayLogoUrl: awayLogoUrl,
             ),
           );
         }
 
-        /// Cleanup old fixture snapshots (yesterday and earlier)
-        final currentFixtureIds = monitoredFixtures.map((fixture) => fixture.fixture?.id).toSet();
+        final prevLastNotifiedTotalGoals = prev?.lastNotifiedTotalGoals ?? 0;
 
-        for (final key in hiveNotificationFixturesBox.keys.toList()) {
-          if (!currentFixtureIds.contains(key)) {
-            await hiveNotificationFixturesBox.delete(key);
-          }
-        }
-
-        /// `changes` exist, show grouped notification
-        if (changes.isNotEmpty) {
-          /// Keep only the latest change per match using explicit priority
-          final changePriority = {
-            NotificationChangeType.matchStarted: 0,
-            NotificationChangeType.halfTime: 1,
-            NotificationChangeType.extraTime: 1,
-            NotificationChangeType.penalties: 1,
-            NotificationChangeType.goal: 2,
-            NotificationChangeType.fullTime: 3,
-          };
-
-          final latestByMatch = <int?, NotificationChange>{};
-
-          for (final change in changes) {
-            final currentPriority = changePriority[change.type] ?? -1;
-            final existingPriority = changePriority[latestByMatch[change.fixtureId]?.type] ?? -1;
-
-            if (currentPriority >= existingPriority) {
-              latestByMatch[change.fixtureId] = change;
-            }
-          }
-
-          changes
-            ..clear()
-            ..addAll(latestByMatch.values);
-
-          /// Create Android notification channels, just in case they aren't created already
-          await createAndroidNotificationChannels();
-
-          /// Send one grouped notification if there are changes
-          await showGroupedFixturesNotifications(
-            changes,
-            playNotificationSound: notificationSettings.playNotificationSound,
+        /// Build line for goal notification
+        if (notificationSettings.triggerGoal && hasNewGoal && totalGoals > prevLastNotifiedTotalGoals) {
+          changes.add(
+            NotificationChange(
+              fixtureId: fixtureId,
+              type: NotificationChangeType.goal,
+              title: 'notificationGoal'.tr(),
+              body: scoreLine(),
+              summaryLine: '[GOAL] ${scoreLine()}',
+              payload: '$fixtureId',
+              homeLogoUrl: homeLogoUrl,
+              awayLogoUrl: awayLogoUrl,
+            ),
           );
         }
 
-        /// Show notification if testing is done & no changes
-        if (isTesting && changes.isEmpty) {
-          /// Generate notification `id`
-          final id = DateTime.now().millisecondsSinceEpoch % 1000000000;
-
-          /// Show notification
-          await showNotification(
-            title: 'notificationsTriggerNotificationsNotificationTitle'.tr(),
-            text: 'notificationsTriggerNotificationsNotificationSubtitle'.tr(),
-            notificationId: id,
-            playNotificationSound: notificationSettings.playNotificationSound,
+        /// Build line for half-time notification
+        if (notificationSettings.triggerMatchProgress && isHalfTime) {
+          changes.add(
+            NotificationChange(
+              fixtureId: fixtureId,
+              type: NotificationChangeType.halfTime,
+              title: 'notificationHalfTime'.tr(),
+              body: scoreLine(),
+              summaryLine: '[HT] ${scoreLine()}',
+              payload: '$fixtureId',
+              homeLogoUrl: homeLogoUrl,
+              awayLogoUrl: awayLogoUrl,
+            ),
           );
         }
+
+        /// Build line for extra-time notification
+        if (notificationSettings.triggerMatchProgress && isExtraTime) {
+          changes.add(
+            NotificationChange(
+              fixtureId: fixtureId,
+              type: NotificationChangeType.extraTime,
+              title: 'notificationExtraTime'.tr(),
+              body: scoreLine(),
+              summaryLine: '[ET] ${scoreLine()}',
+              payload: '$fixtureId',
+              homeLogoUrl: homeLogoUrl,
+              awayLogoUrl: awayLogoUrl,
+            ),
+          );
+        }
+
+        /// Build line for penalties notification
+        if (notificationSettings.triggerMatchProgress && isPenalties) {
+          changes.add(
+            NotificationChange(
+              fixtureId: fixtureId,
+              type: NotificationChangeType.penalties,
+              title: 'notificationPenalties'.tr(),
+              body: scoreLine(),
+              summaryLine: '[PEN] ${scoreLine()}',
+              payload: '$fixtureId',
+              homeLogoUrl: homeLogoUrl,
+              awayLogoUrl: awayLogoUrl,
+            ),
+          );
+        }
+
+        /// Build line for full-time notification
+        if (notificationSettings.triggerFullTime && isFullTime) {
+          changes.add(
+            NotificationChange(
+              fixtureId: fixtureId,
+              type: NotificationChangeType.fullTime,
+              title: 'notificationFullTime'.tr(),
+              body: scoreLine(),
+              summaryLine: '[FT] ${scoreLine()}',
+              payload: '$fixtureId',
+              homeLogoUrl: homeLogoUrl,
+              awayLogoUrl: awayLogoUrl,
+            ),
+          );
+        }
+
+        /// Save fixture snapshot to [Hive]
+        await hiveNotificationFixturesBox.put(
+          fixtureId,
+          NotificationFixture(
+            fixtureId: fixtureId,
+            homeName: homeTeamName,
+            awayName: awayTeamName,
+            homeGoals: currentHomeGoals,
+            awayGoals: currentAwayGoals,
+            statusShort: statusShort,
+            halfTimeNotified: isHalfTime || (prev?.halfTimeNotified ?? false),
+            extraTimeNotified: isExtraTime || (prev?.extraTimeNotified ?? false),
+            penaltiesNotified: isPenalties || (prev?.penaltiesNotified ?? false),
+            fullTimeNotified: isFullTime || (prev?.fullTimeNotified ?? false),
+            lastNotifiedTotalGoals: hasNewGoal ? totalGoals : (prev?.lastNotifiedTotalGoals ?? totalGoals),
+          ),
+        );
+      }
+
+      /// Cleanup old fixture snapshots (yesterday and earlier)
+      final currentFixtureIds = monitoredFixtures.map((fixture) => fixture.fixture?.id).whereType<int>().toSet();
+
+      for (final key in hiveNotificationFixturesBox.keys.toList()) {
+        if (!currentFixtureIds.contains(key)) {
+          await hiveNotificationFixturesBox.delete(key);
+        }
+      }
+
+      /// `changes` exist, show grouped notification
+      if (changes.isNotEmpty) {
+        /// Keep only the latest change per match using explicit priority
+        final changePriority = {
+          NotificationChangeType.matchStarted: 0,
+          NotificationChangeType.halfTime: 1,
+          NotificationChangeType.extraTime: 1,
+          NotificationChangeType.penalties: 1,
+          NotificationChangeType.goal: 2,
+          NotificationChangeType.fullTime: 3,
+        };
+
+        final latestByMatch = <int?, NotificationChange>{};
+
+        for (final change in changes) {
+          final currentPriority = changePriority[change.type] ?? -1;
+          final existingPriority = changePriority[latestByMatch[change.fixtureId]?.type] ?? -1;
+
+          if (currentPriority >= existingPriority) {
+            latestByMatch[change.fixtureId] = change;
+          }
+        }
+
+        changes
+          ..clear()
+          ..addAll(latestByMatch.values);
+
+        /// Create Android notification channels, just in case they aren't created already
+        await createAndroidNotificationChannels();
+
+        /// Send one grouped notification if there are changes
+        await showGroupedFixturesNotifications(
+          changes,
+          playNotificationSound: notificationSettings.playNotificationSound,
+        );
+      }
+
+      /// Show notification if testing is done & no changes
+      if (isTesting && changes.isEmpty) {
+        /// Generate notification `id`
+        final id = DateTime.now().millisecondsSinceEpoch % 1000000000;
+
+        /// Show notification
+        await showNotification(
+          title: 'notificationsTriggerNotificationsNotificationTitle'.tr(),
+          text: 'notificationsTriggerNotificationsNotificationSubtitle'.tr(),
+          notificationId: id,
+          playNotificationSound: notificationSettings.playNotificationSound,
+        );
       }
     }
   }
