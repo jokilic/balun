@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -59,11 +60,14 @@ class MatchSlidingInfo extends WatchingWidget {
               )
               .itemKeys,
           activeMatchSection: matchSection,
-          titlePressed: getIt
-              .get<MatchSectionController>(
-                instanceName: '${match.fixture?.id}',
-              )
-              .updateState,
+          titlePressed: (pressedSection) {
+            HapticFeedback.lightImpact();
+            getIt
+                .get<MatchSectionController>(
+                  instanceName: '${match.fixture?.id}',
+                )
+                .updateState(pressedSection);
+          },
           matchFinished: isMatchFinished(
             statusShort: match.fixture?.status?.short ?? '--',
           ),

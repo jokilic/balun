@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../constants.dart';
@@ -26,9 +27,12 @@ class BalunNavigationBar extends WatchingWidget {
         indicatorColor: Colors.transparent,
         labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
         selectedIndex: watchIt<BalunNavigationBarService>().value.index,
-        onDestinationSelected: (newIndex) => getIt.get<BalunNavigationBarService>().changeNavigationBarIndex(
-          BalunNavigationBarEnum.values[newIndex],
-        ),
+        onDestinationSelected: (newIndex) {
+          HapticFeedback.lightImpact();
+          getIt.get<BalunNavigationBarService>().changeNavigationBarIndex(
+            BalunNavigationBarEnum.values[newIndex],
+          );
+        },
         animationDuration: BalunConstants.animationDuration,
         destinations: [
           ///

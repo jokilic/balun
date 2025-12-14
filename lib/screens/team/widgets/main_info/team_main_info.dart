@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../../models/teams/team_response.dart';
@@ -57,6 +60,10 @@ class TeamMainInfo extends WatchingWidget {
             onBackPressed: Navigator.of(context).pop,
             team: team.team,
             onFavoritePressed: () async {
+              unawaited(
+                HapticFeedback.lightImpact(),
+              );
+
               final teamAdded = await getIt.get<TeamStorageService>().toggleTeam(
                 passedTeam: team.team,
               );

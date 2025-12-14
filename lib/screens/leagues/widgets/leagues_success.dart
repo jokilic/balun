@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../models/leagues/league_response.dart';
 import '../../../routing.dart';
@@ -14,23 +15,26 @@ class LeaguesSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView.separated(
-        padding: const EdgeInsets.only(bottom: 24),
-        physics: const BouncingScrollPhysics(),
-        itemCount: leagues.length,
-        itemBuilder: (_, index) {
-          final league = leagues[index];
+    padding: const EdgeInsets.only(bottom: 24),
+    physics: const BouncingScrollPhysics(),
+    itemCount: leagues.length,
+    itemBuilder: (_, index) {
+      final league = leagues[index];
 
-          return LeaguesListTile(
-            league: league,
-            leaguePressed: league.league?.id != null
-                ? () => openLeague(
-                      context,
-                      leagueId: league.league!.id!,
-                      season: (league.seasons?.lastOrNull?.year ?? getCurrentSeasonYear()).toString(),
-                    )
-                : null,
-          );
-        },
-        separatorBuilder: (_, __) => const SizedBox(height: 4),
+      return LeaguesListTile(
+        league: league,
+        leaguePressed: league.league?.id != null
+            ? () {
+                HapticFeedback.lightImpact();
+                openLeague(
+                  context,
+                  leagueId: league.league!.id!,
+                  season: (league.seasons?.lastOrNull?.year ?? getCurrentSeasonYear()).toString(),
+                );
+              }
+            : null,
       );
+    },
+    separatorBuilder: (_, __) => const SizedBox(height: 4),
+  );
 }
