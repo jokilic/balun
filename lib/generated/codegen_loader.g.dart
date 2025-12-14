@@ -743,7 +743,8 @@ class CodegenLoader extends AssetLoader{
   "notificationPenalties": "⏱️ Penalties",
   "notificationFullTime": "⏱️ Full time",
   "notificationSummaryText": "Your favourite matches",
-  "notificationUpdates": "updates in your favourite matches"
+  "notificationUpdates": "updates in your favourite matches",
+  "fixturesFavoriteMatchesTitle": "Favorite matches"
 };
 static const Map<String,dynamic> _hr = {
   "appName": "Balun",
@@ -1474,7 +1475,8 @@ static const Map<String,dynamic> _hr = {
   "notificationPenalties": "⏱️ Jedanaesterci",
   "notificationFullTime": "⏱️ Kraj utakmice",
   "notificationSummaryText": "Tvoje omiljene utakmice",
-  "notificationUpdates": "promjena u tvojim omiljenim utakmicama"
+  "notificationUpdates": "promjena u tvojim omiljenim utakmicama",
+  "fixturesFavoriteMatchesTitle": "Omiljene utakmice"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "hr": _hr};
 }

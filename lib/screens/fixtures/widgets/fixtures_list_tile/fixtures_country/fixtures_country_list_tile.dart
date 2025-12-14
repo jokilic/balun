@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../../constants.dart';
@@ -52,10 +51,7 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
       /// COUNTRY TITLE
       ///
       BalunButton(
-        onPressed: () {
-          HapticFeedback.lightImpact();
-          toggleExpanded();
-        },
+        onPressed: toggleExpanded,
         child: Container(
           decoration: BoxDecoration(
             color: context.colors.fixtureListTileBackground,
@@ -152,14 +148,8 @@ class _FixturesCountryListTileState extends State<FixturesCountryListTile> {
                   final fixtures = widget.leagues?[league];
 
                   return FixturesLeagueListTile(
-                    onLongPressed: () {
-                      HapticFeedback.lightImpact();
-                      widget.onLongPressedListTile(league);
-                    },
-                    onFixtureLongPressed: (fixture) {
-                      HapticFeedback.lightImpact();
-                      widget.onFixtureLongPressed(fixture);
-                    },
+                    onLongPressed: () => widget.onLongPressedListTile(league),
+                    onFixtureLongPressed: (fixture) => widget.onFixtureLongPressed(fixture),
                     league: league,
                     fixtures: fixtures,
                     initiallyExpanded: widget.initiallyExpanded,

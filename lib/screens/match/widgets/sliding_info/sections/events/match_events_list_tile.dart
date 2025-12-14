@@ -245,7 +245,7 @@ class MatchEventsListTile extends StatelessWidget {
                         children: [
                           BalunImage(
                             imageUrl: BalunIcons.ball,
-                            color: eventDetail.toLowerCase() == 'own goal' ? context.colors.danger : context.colors.navigationBarItemSelectedBackground,
+                            color: eventDetail.toLowerCase() == 'own goal' ? context.colors.danger : context.colors.warning,
                             height: 28,
                             width: 28,
                           ),

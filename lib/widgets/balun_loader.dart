@@ -48,7 +48,7 @@ class _BalunLoaderState extends State<BalunLoader> with SingleTickerProviderStat
         imageUrl: BalunIcons.ball,
         height: widget.size,
         width: widget.size,
-        color: widget.color ?? context.colors.primaryBackground,
+        color: widget.color ?? context.colors.primaryForeground,
       ),
     ),
   );

@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:watch_it/watch_it.dart';
 
 import '../../../theme/icons.dart';
@@ -48,14 +47,11 @@ class FixturesDatePicker extends WatchingWidget {
             /// CHOOSE CUSTOM DATE
             ///
             BalunButton(
-              onPressed: () {
-                HapticFeedback.lightImpact();
-                getIt
-                    .get<FixturesDateController>(
-                      instanceName: 'fixtures',
-                    )
-                    .updateDateViaPickerAndRefetch(context);
-              },
+              onPressed: () => getIt
+                  .get<FixturesDateController>(
+                    instanceName: 'fixtures',
+                  )
+                  .updateDateViaPickerAndRefetch(context),
               child: Container(
                 margin: const EdgeInsets.all(8),
                 padding: const EdgeInsets.all(4),
@@ -100,14 +96,11 @@ class FixturesDatePicker extends WatchingWidget {
                 .dates
                 .map(
                   (date) => BalunButton(
-                    onPressed: () {
-                      HapticFeedback.lightImpact();
-                      getIt
-                          .get<FixturesDateController>(
-                            instanceName: 'fixtures',
-                          )
-                          .updateDateAndRefetch(date);
-                    },
+                    onPressed: () => getIt
+                        .get<FixturesDateController>(
+                          instanceName: 'fixtures',
+                        )
+                        .updateDateAndRefetch(date),
                     child: Container(
                       margin: const EdgeInsets.all(8),
                       padding: const EdgeInsets.all(4),
@@ -152,14 +145,11 @@ class FixturesDatePicker extends WatchingWidget {
             /// CHOOSE CUSTOM DATE
             ///
             BalunButton(
-              onPressed: () {
-                HapticFeedback.lightImpact();
-                getIt
-                    .get<FixturesDateController>(
-                      instanceName: 'fixtures',
-                    )
-                    .updateDateViaPickerAndRefetch(context);
-              },
+              onPressed: () => getIt
+                  .get<FixturesDateController>(
+                    instanceName: 'fixtures',
+                  )
+                  .updateDateViaPickerAndRefetch(context),
               child: Container(
                 margin: const EdgeInsets.all(8),
                 padding: const EdgeInsets.all(4),

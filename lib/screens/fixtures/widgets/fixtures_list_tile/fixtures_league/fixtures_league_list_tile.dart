@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../../constants.dart';
@@ -133,13 +132,10 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
                       statusShort: fixture.fixture?.status?.short ?? '--',
                     ),
                     onFixturePressed: fixture.fixture?.id != null
-                        ? () {
-                            HapticFeedback.lightImpact();
-                            openMatch(
-                              context,
-                              matchId: fixture.fixture!.id!,
-                            );
-                          }
+                        ? () => openMatch(
+                            context,
+                            matchId: fixture.fixture!.id!,
+                          )
                         : null,
                     onFixtureLongPressed: () => widget.onFixtureLongPressed(fixture),
                     isFavorited: widget.favoritedMatches.any(

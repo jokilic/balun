@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -62,14 +61,11 @@ class LeagueSlidingInfo extends WatchingWidget {
               )
               .itemKeys,
           activeLeagueSection: leagueSection,
-          titlePressed: (pressedSection) {
-            HapticFeedback.lightImpact();
-            getIt
-                .get<LeagueSectionController>(
-                  instanceName: '${league.league?.id}',
-                )
-                .updateState(pressedSection);
-          },
+          titlePressed: getIt
+              .get<LeagueSectionController>(
+                instanceName: '${league.league?.id}',
+              )
+              .updateState,
         ),
 
         const SizedBox(height: 24),

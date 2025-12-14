@@ -21,6 +21,7 @@ class BalunIcons {
   static const favoriteYes = 'assets/icons/favorite_yes.webp';
   static const placeholderCountry = 'assets/icons/globe_color.webp';
   static const placeholderPlayer = 'assets/icons/placeholder_player.webp';
+  static const placeholderMatch = 'assets/icons/placeholder_match.webp';
   static const notifications = 'assets/icons/notifications.webp';
   static const theme = 'assets/icons/theme.webp';
   static const language = 'assets/icons/language.webp';

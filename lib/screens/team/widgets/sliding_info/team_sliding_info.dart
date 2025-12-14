@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -62,14 +61,11 @@ class TeamSlidingInfo extends WatchingWidget {
               )
               .itemKeys,
           activeTeamSection: teamSection,
-          titlePressed: (pressedSection) {
-            HapticFeedback.lightImpact();
-            getIt
-                .get<TeamSectionController>(
-                  instanceName: '${team.team?.id}',
-                )
-                .updateState(pressedSection);
-          },
+          titlePressed: getIt
+              .get<TeamSectionController>(
+                instanceName: '${team.team?.id}',
+              )
+              .updateState,
         ),
 
         const SizedBox(height: 24),

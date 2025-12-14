@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -57,14 +56,11 @@ class CoachSlidingInfo extends WatchingWidget {
               )
               .itemKeys,
           activeCoachSection: coachSection,
-          titlePressed: (pressedSection) {
-            HapticFeedback.lightImpact();
-            getIt
-                .get<CoachSectionController>(
-                  instanceName: '${coach.id}',
-                )
-                .updateState(pressedSection);
-          },
+          titlePressed: getIt
+              .get<CoachSectionController>(
+                instanceName: '${coach.id}',
+              )
+              .updateState,
         ),
 
         const SizedBox(height: 24),

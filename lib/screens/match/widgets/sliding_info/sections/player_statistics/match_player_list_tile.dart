@@ -123,7 +123,7 @@ class _MatchPlayerListTileState extends State<MatchPlayerListTile> {
                         imageUrl: BalunIcons.ball,
                         height: 32,
                         width: 32,
-                        color: context.colors.navigationBarItemSelectedBackground,
+                        color: context.colors.warning,
                       ),
                       const SizedBox(width: 8),
                     ],

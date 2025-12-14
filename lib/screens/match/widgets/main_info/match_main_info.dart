@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:watch_it/watch_it.dart';
 
@@ -53,10 +50,6 @@ class MatchMainInfo extends WatchingWidget {
             onBackPressed: Navigator.of(context).pop,
             league: match.league!,
             onFavoritePressed: () async {
-              unawaited(
-                HapticFeedback.lightImpact(),
-              );
-
               final matchAdded = await getIt.get<MatchStorageService>().toggleMatch(
                 passedMatch: getFavoriteMatch(
                   match: match,
@@ -90,14 +83,11 @@ class MatchMainInfo extends WatchingWidget {
               Expanded(
                 child: BalunButton(
                   onPressed: match.teams?.home?.id != null
-                      ? () {
-                          HapticFeedback.lightImpact();
-                          openTeam(
-                            context,
-                            teamId: match.teams!.home!.id!,
-                            season: match.league?.season ?? getCurrentSeasonYear().toString(),
-                          );
-                        }
+                      ? () => openTeam(
+                          context,
+                          teamId: match.teams!.home!.id!,
+                          season: match.league?.season ?? getCurrentSeasonYear().toString(),
+                        )
                       : null,
                   child: Container(
                     color: Colors.transparent,
@@ -169,14 +159,11 @@ class MatchMainInfo extends WatchingWidget {
               Expanded(
                 child: BalunButton(
                   onPressed: match.teams?.away?.id != null
-                      ? () {
-                          HapticFeedback.lightImpact();
-                          openTeam(
-                            context,
-                            teamId: match.teams!.away!.id!,
-                            season: match.league?.season ?? getCurrentSeasonYear().toString(),
-                          );
-                        }
+                      ? () => openTeam(
+                          context,
+                          teamId: match.teams!.away!.id!,
+                          season: match.league?.season ?? getCurrentSeasonYear().toString(),
+                        )
                       : null,
                   child: Container(
                     color: Colors.transparent,

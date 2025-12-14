@@ -33,6 +33,7 @@ List<FixtureResponse> getFavoriteFixtures({
   required List<League> favoritedLeagues,
   required List<Team> favoritedTeams,
   required List<FavoriteMatch> favoritedMatches,
+  bool includeFavoritedMatches = true,
 }) {
   final favoriteLeagueIds = favoritedLeagues.map((league) => league.id).whereType<int>().toSet();
   final favoriteTeamIds = favoritedTeams.map((team) => team.id).whereType<int>().toSet();
@@ -46,10 +47,33 @@ List<FixtureResponse> getFavoriteFixtures({
           final awayId = fixture.teams?.away?.id;
           final matchId = fixture.fixture?.id;
 
-          return (leagueId != null && favoriteLeagueIds.contains(leagueId)) ||
+          final isFavoriteLeagueOrTeam = (leagueId != null && favoriteLeagueIds.contains(leagueId)) ||
               (homeId != null && favoriteTeamIds.contains(homeId)) ||
-              (awayId != null && favoriteTeamIds.contains(awayId)) ||
-              (matchId != null && favoriteMatchIds.contains(matchId));
+              (awayId != null && favoriteTeamIds.contains(awayId));
+          final isFavoriteMatch = matchId != null && favoriteMatchIds.contains(matchId);
+
+          if (!includeFavoritedMatches && isFavoriteMatch && !isFavoriteLeagueOrTeam) {
+            return false;
+          }
+
+          return isFavoriteLeagueOrTeam || (includeFavoritedMatches && isFavoriteMatch);
+        },
+      )
+      .toList();
+}
+
+List<FixtureResponse> getFavoriteMatchFixtures({
+  required List<FixtureResponse> fixtures,
+  required List<FavoriteMatch> favoritedMatches,
+}) {
+  final favoriteMatchIds = favoritedMatches.map((match) => match.matchId).whereType<int>().toSet();
+
+  return fixtures
+      .where(
+        (fixture) {
+          final matchId = fixture.fixture?.id;
+
+          return matchId != null && favoriteMatchIds.contains(matchId);
         },
       )
       .toList();
