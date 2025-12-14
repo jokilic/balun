@@ -557,9 +557,12 @@ class NotificationService {
         presentSound: playNotificationSound,
       );
 
+      /// Generate notification `id`
+      final id = DateTime.now().millisecondsSinceEpoch % 1000000000;
+
       /// Show notification
       await flutterLocalNotificationsPlugin?.show(
-        i,
+        id + i,
         change.title,
         change.body,
         NotificationDetails(
