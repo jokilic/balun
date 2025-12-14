@@ -43,7 +43,9 @@ class CodegenLoader extends AssetLoader{
   "fixturesEmptyState": "Fixtures is empty",
   "fixturesErrorState": "Some weird fixtures error",
   "fixturesDateToday": "Today",
-  "fixturesFavoriteTitle": "Favorite matches",
+  "fixturesFavoriteMatchesTitle": "Favorite matches",
+  "fixturesFavoriteTeamsTitle": "Favorite teams",
+  "fixturesFavoriteLeaguesTitle": "Favorite leagues",
   "fixturesFavoriteDialogText1": "Section which shows your favorited matches, leagues & teams.",
   "fixturesFavoriteDialogText2": "Favorite them by opening and pressing the star icon.",
   "fixturesFavoriteDialogText3": "Reorder them from the Favorites section within settings.",
@@ -743,8 +745,7 @@ class CodegenLoader extends AssetLoader{
   "notificationPenalties": "⏱️ Penalties",
   "notificationFullTime": "⏱️ Full time",
   "notificationSummaryText": "Your favourite matches",
-  "notificationUpdates": "updates in your favourite matches",
-  "fixturesFavoriteMatchesTitle": "Favorite matches"
+  "notificationUpdates": "updates in your favourite matches"
 };
 static const Map<String,dynamic> _hr = {
   "appName": "Balun",
@@ -775,7 +776,9 @@ static const Map<String,dynamic> _hr = {
   "fixturesEmptyState": "Raspored je prazan",
   "fixturesErrorState": "Neka čudna pogreška rasporeda",
   "fixturesDateToday": "Danas",
-  "fixturesFavoriteTitle": "Omiljene utakmice",
+  "fixturesFavoriteMatchesTitle": "Omiljene utakmice",
+  "fixturesFavoriteTeamsTitle": "Omiljeni timovi",
+  "fixturesFavoriteLeaguesTitle": "Omiljene lige",
   "fixturesFavoriteDialogText1": "Odjeljak koja prikazuje tvoje omiljene utakmice, lige i timove.",
   "fixturesFavoriteDialogText2": "Označite ih kao omiljene otvaranjem i pritiskom na ikonu zvijezdice.",
   "fixturesFavoriteDialogText3": "Promijenite njihov redoslijed u odjeljku Omiljeni unutar postavki.",
@@ -1475,8 +1478,7 @@ static const Map<String,dynamic> _hr = {
   "notificationPenalties": "⏱️ Jedanaesterci",
   "notificationFullTime": "⏱️ Kraj utakmice",
   "notificationSummaryText": "Tvoje omiljene utakmice",
-  "notificationUpdates": "promjena u tvojim omiljenim utakmicama",
-  "fixturesFavoriteMatchesTitle": "Omiljene utakmice"
+  "notificationUpdates": "promjena u tvojim omiljenim utakmicama"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "hr": _hr};
 }

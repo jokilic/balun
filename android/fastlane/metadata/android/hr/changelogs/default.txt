@@ -1,4 +1,4 @@
-* Favorite matches go in a seperate tile in [FixtureScreen]
+* Restructure favorite sections in Fixtures
 * Don't show back button in error & empty states in main screens
 * Small updates in themes & colors
 * Small updates in notification logic

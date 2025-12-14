@@ -16,12 +16,14 @@ import '../../../util/dependencies.dart';
 import '../../../util/fixtures.dart';
 import '../../../util/match.dart';
 import '../../../util/snackbars.dart';
+import '../../../util/string.dart';
 import '../../../widgets/ball_refresh_indicator.dart';
 import '../controllers/fixtures_controller.dart';
 import '../controllers/fixtures_date_controller.dart';
 import 'fixtures_all_dialog.dart';
 import 'fixtures_app_bar.dart';
 import 'fixtures_favorite_dialog.dart';
+import 'fixtures_list_tile/fixtures/fixtures_compact_list_tile.dart';
 import 'fixtures_list_tile/fixtures_country/fixtures_country_list_tile.dart';
 import 'fixtures_list_tile/fixtures_league_compact/fixtures_league_compact_list_tile.dart';
 
@@ -31,6 +33,25 @@ class FixturesSuccess extends WatchingWidget {
   const FixturesSuccess({
     required this.fixtures,
   });
+
+  Future<void> toggleFavorite({
+    required FixtureResponse fixture,
+    required BuildContext context,
+  }) async {
+    final matchAdded = await getIt.get<MatchStorageService>().toggleMatch(
+      passedMatch: getFavoriteMatch(
+        match: fixture,
+      ),
+    );
+
+    if (matchAdded ?? false) {
+      showSnackbar(
+        context,
+        icon: BalunIcons.notificationMatch,
+        text: 'snackbarFavoriteMatch'.tr(),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +64,7 @@ class FixturesSuccess extends WatchingWidget {
           ),
         )
         .toList();
-
     final favoritedTeams = watchIt<TeamStorageService>().value;
-
     final favoritedMatches = watchIt<MatchStorageService>().value;
 
     /// Favorite match fixtures
@@ -54,18 +73,26 @@ class FixturesSuccess extends WatchingWidget {
       favoritedMatches: favoritedMatches,
     );
 
-    /// Favorite leagues & teams fixtures
-    final favoriteFixturesLeagueTeam = getFavoriteFixtures(
+    /// Favorite team fixtures
+    final favoriteFixturesTeam = getFavoriteFixtures(
       fixtures: fixtures,
-      favoritedLeagues: favoritedLeagues,
       favoritedTeams: favoritedTeams,
-      favoritedMatches: favoritedMatches,
-      includeFavoritedMatches: false,
+      favoritedLeagues: const [],
+      favoritedMatches: const [],
     );
 
-    final favoriteSortedGroupedFixturesLeagueTeam = sortGroupedFixturesWithLeagues(
+    /// Favorite league fixtures
+    final favoriteFixturesLeague = getFavoriteFixtures(
+      fixtures: fixtures,
+      favoritedLeagues: favoritedLeagues,
+      favoritedTeams: const [],
+      favoritedMatches: const [],
+    );
+
+    /// Sorting
+    final favoriteSortedGroupedFixturesLeague = sortGroupedFixturesWithLeagues(
       groupedFixtures: groupFixturesWithLeagues(
-        fixtures: favoriteFixturesLeagueTeam,
+        fixtures: favoriteFixturesLeague,
       ),
       favoritedLeagues: favoritedLeagues,
       favoritedTeams: favoritedTeams,
@@ -82,7 +109,12 @@ class FixturesSuccess extends WatchingWidget {
       favoritedMatches: favoritedMatches,
     );
 
-    final hasFavoriteFixtures = favoriteSortedGroupedFixturesLeagueTeam.isNotEmpty || favoriteFixturesMatch.isNotEmpty;
+    /// Helpers
+    final hasFavoriteLeagues = favoriteSortedGroupedFixturesLeague.isNotEmpty;
+    final hasFavoriteTeams = favoriteFixturesTeam.isNotEmpty;
+    final hasFavoriteMatches = favoriteFixturesMatch.isNotEmpty;
+
+    final hasFavoriteSections = hasFavoriteLeagues || hasFavoriteTeams || hasFavoriteMatches;
 
     return BallRefreshIndicator(
       ballColors: [
@@ -120,12 +152,17 @@ class FixturesSuccess extends WatchingWidget {
           ),
 
           ///
-          /// FAVORITE FIXTURES COMPACT
+          /// FAVORITES COMPACT
           ///
-          if (hasFavoriteFixtures) ...[
+          if (hasFavoriteSections)
             const SliverToBoxAdapter(
               child: SizedBox(height: 8),
             ),
+
+          ///
+          /// FAVORITE MATCHES
+          ///
+          if (hasFavoriteMatches) ...[
             SliverToBoxAdapter(
               child: FixturesAppBar(
                 onPressed: () => showDialog(
@@ -134,7 +171,7 @@ class FixturesSuccess extends WatchingWidget {
                     onPressed: Navigator.of(context).pop,
                   ),
                 ),
-                text: 'fixturesFavoriteTitle'.tr(),
+                text: 'fixturesFavoriteMatchesTitle'.tr(),
               ),
             ),
             const SliverToBoxAdapter(
@@ -143,43 +180,136 @@ class FixturesSuccess extends WatchingWidget {
             SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               sliver: SliverList.separated(
-                itemCount: favoriteSortedGroupedFixturesLeagueTeam.length + (favoriteFixturesMatch.isNotEmpty ? 1 : 0),
+                itemCount: favoriteFixturesMatch.length,
                 itemBuilder: (_, itemIndex) {
-                  final hasFavoriteMatchesTile = favoriteFixturesMatch.isNotEmpty;
+                  final fixture = favoriteFixturesMatch[itemIndex];
 
-                  if (hasFavoriteMatchesTile && itemIndex == 0) {
-                    return FixturesLeagueCompactListTile(
-                      onPressed: null,
-                      onFixtureLongPressed: (fixture) async {
-                        final matchAdded = await getIt.get<MatchStorageService>().toggleMatch(
-                          passedMatch: getFavoriteMatch(
-                            match: fixture,
-                          ),
-                        );
-
-                        if (matchAdded ?? false) {
-                          showSnackbar(
+                  return FixturesCompactListTile(
+                    fixture: fixture,
+                    scoreText: getCompactFixtureText(
+                      statusShort: fixture.fixture?.status?.short ?? '--',
+                      minutes: fixture.fixture?.status?.elapsed ?? 0,
+                      extra: fixture.fixture?.status?.extra,
+                      timestamp: fixture.fixture?.timestamp,
+                      homeGoals: fixture.goals?.home,
+                      awayGoals: fixture.goals?.away,
+                      context: context,
+                    ),
+                    fixturePlaying: isMatchPlaying(
+                      statusShort: fixture.fixture?.status?.short ?? '--',
+                    ),
+                    onFixturePressed: fixture.fixture?.id != null
+                        ? () => openMatch(
                             context,
-                            icon: BalunIcons.notificationMatch,
-                            text: 'snackbarFavoriteMatch'.tr(),
-                          );
-                        }
-                      },
-                      league: League(
-                        name: 'fixturesFavoriteMatchesTitle'.tr(),
-                      ),
-                      fixtures: favoriteFixturesMatch,
-                      hasLiveFixturesLeague: hasLiveFixturesLeague(
-                        fixtures: favoriteFixturesMatch,
-                      ),
-                      initiallyExpanded: true,
-                      favoritedMatches: favoritedMatches,
-                    );
-                  }
+                            matchId: fixture.fixture!.id!,
+                          )
+                        : null,
+                    onFixtureLongPressed: () => toggleFavorite(
+                      fixture: fixture,
+                      context: context,
+                    ),
+                    isFavorited: favoritedMatches.any(
+                      (match) => match.matchId == fixture.fixture?.id,
+                    ),
+                  );
+                },
+                separatorBuilder: (_, __) => const SizedBox(height: 12),
+              ),
+            ),
+            if (hasFavoriteTeams || hasFavoriteLeagues)
+              const SliverToBoxAdapter(
+                child: SizedBox(height: 24),
+              ),
+          ],
 
-                  final leagueIndex = hasFavoriteMatchesTile ? itemIndex - 1 : itemIndex;
-                  final league = favoriteSortedGroupedFixturesLeagueTeam.keys.elementAtOrNull(leagueIndex);
-                  final fixtures = favoriteSortedGroupedFixturesLeagueTeam[league];
+          ///
+          /// FAVORITE TEAMS
+          ///
+          if (hasFavoriteTeams) ...[
+            SliverToBoxAdapter(
+              child: FixturesAppBar(
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => FixturesFavoriteDialog(
+                    onPressed: Navigator.of(context).pop,
+                  ),
+                ),
+                text: 'fixturesFavoriteTeamsTitle'.tr(),
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 24),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              sliver: SliverList.separated(
+                itemCount: favoriteFixturesTeam.length,
+                itemBuilder: (_, itemIndex) {
+                  final fixture = favoriteFixturesTeam[itemIndex];
+
+                  return FixturesCompactListTile(
+                    fixture: fixture,
+                    scoreText: getCompactFixtureText(
+                      statusShort: fixture.fixture?.status?.short ?? '--',
+                      minutes: fixture.fixture?.status?.elapsed ?? 0,
+                      extra: fixture.fixture?.status?.extra,
+                      timestamp: fixture.fixture?.timestamp,
+                      homeGoals: fixture.goals?.home,
+                      awayGoals: fixture.goals?.away,
+                      context: context,
+                    ),
+                    fixturePlaying: isMatchPlaying(
+                      statusShort: fixture.fixture?.status?.short ?? '--',
+                    ),
+                    onFixturePressed: fixture.fixture?.id != null
+                        ? () => openMatch(
+                            context,
+                            matchId: fixture.fixture!.id!,
+                          )
+                        : null,
+                    onFixtureLongPressed: () => toggleFavorite(
+                      fixture: fixture,
+                      context: context,
+                    ),
+                    isFavorited: favoritedMatches.any(
+                      (match) => match.matchId == fixture.fixture?.id,
+                    ),
+                  );
+                },
+                separatorBuilder: (_, __) => const SizedBox(height: 12),
+              ),
+            ),
+            if (hasFavoriteLeagues)
+              const SliverToBoxAdapter(
+                child: SizedBox(height: 24),
+              ),
+          ],
+
+          ///
+          /// FAVORITE LEAGUES
+          ///
+          if (hasFavoriteLeagues) ...[
+            SliverToBoxAdapter(
+              child: FixturesAppBar(
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => FixturesFavoriteDialog(
+                    onPressed: Navigator.of(context).pop,
+                  ),
+                ),
+                text: 'fixturesFavoriteLeaguesTitle'.tr(),
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 24),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              sliver: SliverList.separated(
+                itemCount: favoriteSortedGroupedFixturesLeague.length,
+                itemBuilder: (_, itemIndex) {
+                  final league = favoriteSortedGroupedFixturesLeague.keys.elementAtOrNull(itemIndex);
+                  final fixtures = favoriteSortedGroupedFixturesLeague[league];
 
                   return FixturesLeagueCompactListTile(
                     onPressed: league?.id != null
@@ -189,21 +319,10 @@ class FixturesSuccess extends WatchingWidget {
                             season: league?.season ?? fixtures?.firstWhereOrNull((fixture) => fixture.league?.season != null)?.league?.season ?? getCurrentSeasonYear().toString(),
                           )
                         : null,
-                    onFixtureLongPressed: (fixture) async {
-                      final matchAdded = await getIt.get<MatchStorageService>().toggleMatch(
-                        passedMatch: getFavoriteMatch(
-                          match: fixture,
-                        ),
-                      );
-
-                      if (matchAdded ?? false) {
-                        showSnackbar(
-                          context,
-                          icon: BalunIcons.notificationMatch,
-                          text: 'snackbarFavoriteMatch'.tr(),
-                        );
-                      }
-                    },
+                    onFixtureLongPressed: (fixture) => toggleFavorite(
+                      fixture: fixture,
+                      context: context,
+                    ),
                     league: league,
                     fixtures: fixtures,
                     hasLiveFixturesLeague: hasLiveFixturesLeague(
@@ -224,7 +343,7 @@ class FixturesSuccess extends WatchingWidget {
           if (sortedGroupedFixtures.isNotEmpty) ...[
             SliverToBoxAdapter(
               child: SizedBox(
-                height: hasFavoriteFixtures ? 40 : 8,
+                height: hasFavoriteSections ? 40 : 8,
               ),
             ),
             SliverToBoxAdapter(
@@ -262,21 +381,10 @@ class FixturesSuccess extends WatchingWidget {
                         );
                       }
                     },
-                    onFixtureLongPressed: (fixture) async {
-                      final matchAdded = await getIt.get<MatchStorageService>().toggleMatch(
-                        passedMatch: getFavoriteMatch(
-                          match: fixture,
-                        ),
-                      );
-
-                      if (matchAdded ?? false) {
-                        showSnackbar(
-                          context,
-                          icon: BalunIcons.notificationMatch,
-                          text: 'snackbarFavoriteMatch'.tr(),
-                        );
-                      }
-                    },
+                    onFixtureLongPressed: (fixture) => toggleFavorite(
+                      fixture: fixture,
+                      context: context,
+                    ),
                     countryLeague: countryLeague,
                     leagues: leagues,
                     hasLiveFixturesCountry: hasLiveFixturesCountry(

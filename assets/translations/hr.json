@@ -27,7 +27,9 @@
     "fixturesEmptyState": "Raspored je prazan",
     "fixturesErrorState": "Neka čudna pogreška rasporeda",
     "fixturesDateToday": "Danas",
-    "fixturesFavoriteTitle": "Omiljene utakmice",
+    "fixturesFavoriteMatchesTitle": "Omiljene utakmice",
+    "fixturesFavoriteTeamsTitle": "Omiljeni timovi",
+    "fixturesFavoriteLeaguesTitle": "Omiljene lige",
     "fixturesFavoriteDialogText1": "Odjeljak koja prikazuje tvoje omiljene utakmice, lige i timove.",
     "fixturesFavoriteDialogText2": "Označite ih kao omiljene otvaranjem i pritiskom na ikonu zvijezdice.",
     "fixturesFavoriteDialogText3": "Promijenite njihov redoslijed u odjeljku Omiljeni unutar postavki.",
@@ -727,6 +729,5 @@
     "notificationPenalties": "⏱️ Jedanaesterci",
     "notificationFullTime": "⏱️ Kraj utakmice",
     "notificationSummaryText": "Tvoje omiljene utakmice",
-    "notificationUpdates": "promjena u tvojim omiljenim utakmicama",
-    "fixturesFavoriteMatchesTitle": "Omiljene utakmice"
+    "notificationUpdates": "promjena u tvojim omiljenim utakmicama"
 }
