@@ -1,5 +1,2 @@
-* Restructure favorite sections in Fixtures
-* Don't show back button in error & empty states in main screens
-* Small updates in themes & colors
-* Small updates in notification logic
-* Add subtle vibration in some places
+* Migrate to workmanager for background tasks
+* Upgrade dependencies
