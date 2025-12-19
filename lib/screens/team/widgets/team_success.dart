@@ -35,36 +35,40 @@ class _TeamSuccessState extends State<TeamSuccess> {
   }
 
   @override
-  Widget build(BuildContext context) => Stack(
-    children: [
-      ///
-      /// TOP CONTENT
-      ///
-      WidgetSize(
-        onChange: (size) => setState(
-          () => panelHeight = (MediaQuery.sizeOf(context).height - size.height) - 80,
-        ),
-        child: TeamMainInfo(
-          team: widget.team,
-        ),
-      ),
+  Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.sizeOf(context).height;
 
-      ///
-      /// SLIDING CONTENT
-      ///
-      SlidingUpPanel(
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(40),
+    return Stack(
+      children: [
+        ///
+        /// TOP CONTENT
+        ///
+        WidgetSize(
+          onChange: (size) => setState(
+            () => panelHeight = (screenHeight - size.height) - 80,
+          ),
+          child: TeamMainInfo(
+            team: widget.team,
+          ),
         ),
-        color: context.colors.slidingInfoPanelBackground,
-        scrollController: scrollController,
-        minHeight: panelHeight,
-        maxHeight: MediaQuery.sizeOf(context).height - 144,
-        panelBuilder: () => TeamSlidingInfo(
-          team: widget.team,
+
+        ///
+        /// SLIDING CONTENT
+        ///
+        SlidingUpPanel(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(40),
+          ),
+          color: context.colors.slidingInfoPanelBackground,
           scrollController: scrollController,
+          minHeight: panelHeight,
+          maxHeight: screenHeight - 144,
+          panelBuilder: () => TeamSlidingInfo(
+            team: widget.team,
+            scrollController: scrollController,
+          ),
         ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }

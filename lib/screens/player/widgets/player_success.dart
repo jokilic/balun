@@ -35,36 +35,40 @@ class _PlayerSuccessState extends State<PlayerSuccess> {
   }
 
   @override
-  Widget build(BuildContext context) => Stack(
-    children: [
-      ///
-      /// TOP CONTENT
-      ///
-      WidgetSize(
-        onChange: (size) => setState(
-          () => panelHeight = (MediaQuery.sizeOf(context).height - size.height) - 80,
-        ),
-        child: PlayerMainInfo(
-          player: widget.player,
-        ),
-      ),
+  Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.sizeOf(context).height;
 
-      ///
-      /// SLIDING CONTENT
-      ///
-      SlidingUpPanel(
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(40),
+    return Stack(
+      children: [
+        ///
+        /// TOP CONTENT
+        ///
+        WidgetSize(
+          onChange: (size) => setState(
+            () => panelHeight = (screenHeight - size.height) - 80,
+          ),
+          child: PlayerMainInfo(
+            player: widget.player,
+          ),
         ),
-        color: context.colors.slidingInfoPanelBackground,
-        scrollController: scrollController,
-        minHeight: panelHeight,
-        maxHeight: MediaQuery.sizeOf(context).height - 144,
-        panelBuilder: () => PlayerSlidingInfo(
-          player: widget.player,
+
+        ///
+        /// SLIDING CONTENT
+        ///
+        SlidingUpPanel(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(40),
+          ),
+          color: context.colors.slidingInfoPanelBackground,
           scrollController: scrollController,
+          minHeight: panelHeight,
+          maxHeight: screenHeight - 144,
+          panelBuilder: () => PlayerSlidingInfo(
+            player: widget.player,
+            scrollController: scrollController,
+          ),
         ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }

@@ -28,37 +28,15 @@ class _LeagueLoadingState extends State<LeagueLoading> {
   }
 
   @override
-  Widget build(BuildContext context) => Stack(
-    children: [
-      ///
-      /// TOP CONTENT
-      ///
-      Animate(
-        onPlay: (controller) => controller.loop(
-          reverse: true,
-          min: 0.6,
-        ),
-        effects: const [
-          FadeEffect(
-            curve: Curves.easeIn,
-            duration: BalunConstants.shimmerDuration,
-          ),
-        ],
-        child: LeagueMainInfoLoading(),
-      ),
+  Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.sizeOf(context).height;
 
-      ///
-      /// SLIDING CONTENT
-      ///
-      SlidingUpPanel(
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(40),
-        ),
-        color: context.colors.slidingInfoPanelBackground,
-        scrollController: scrollController,
-        minHeight: 336,
-        maxHeight: MediaQuery.sizeOf(context).height - 144,
-        panelBuilder: () => Animate(
+    return Stack(
+      children: [
+        ///
+        /// TOP CONTENT
+        ///
+        Animate(
           onPlay: (controller) => controller.loop(
             reverse: true,
             min: 0.6,
@@ -69,11 +47,37 @@ class _LeagueLoadingState extends State<LeagueLoading> {
               duration: BalunConstants.shimmerDuration,
             ),
           ],
-          child: LeagueSlidingInfoLoading(
-            scrollController: scrollController,
+          child: LeagueMainInfoLoading(),
+        ),
+
+        ///
+        /// SLIDING CONTENT
+        ///
+        SlidingUpPanel(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(40),
+          ),
+          color: context.colors.slidingInfoPanelBackground,
+          scrollController: scrollController,
+          minHeight: screenHeight * 0.425,
+          maxHeight: screenHeight - 144,
+          panelBuilder: () => Animate(
+            onPlay: (controller) => controller.loop(
+              reverse: true,
+              min: 0.6,
+            ),
+            effects: const [
+              FadeEffect(
+                curve: Curves.easeIn,
+                duration: BalunConstants.shimmerDuration,
+              ),
+            ],
+            child: LeagueSlidingInfoLoading(
+              scrollController: scrollController,
+            ),
           ),
         ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }

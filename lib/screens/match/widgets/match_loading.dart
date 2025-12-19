@@ -28,30 +28,12 @@ class _MatchLoadingState extends State<MatchLoading> {
   }
 
   @override
-  Widget build(BuildContext context) => Stack(
-    children: [
-      Animate(
-        onPlay: (controller) => controller.loop(
-          reverse: true,
-          min: 0.6,
-        ),
-        effects: const [
-          FadeEffect(
-            curve: Curves.easeIn,
-            duration: BalunConstants.shimmerDuration,
-          ),
-        ],
-        child: MatchMainInfoLoading(),
-      ),
-      SlidingUpPanel(
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(40),
-        ),
-        color: context.colors.slidingInfoPanelBackground,
-        scrollController: scrollController,
-        minHeight: 400,
-        maxHeight: MediaQuery.sizeOf(context).height - 144,
-        panelBuilder: () => Animate(
+  Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.sizeOf(context).height;
+
+    return Stack(
+      children: [
+        Animate(
           onPlay: (controller) => controller.loop(
             reverse: true,
             min: 0.6,
@@ -62,11 +44,33 @@ class _MatchLoadingState extends State<MatchLoading> {
               duration: BalunConstants.shimmerDuration,
             ),
           ],
-          child: MatchSlidingInfoLoading(
-            scrollController: scrollController,
+          child: MatchMainInfoLoading(),
+        ),
+        SlidingUpPanel(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(40),
+          ),
+          color: context.colors.slidingInfoPanelBackground,
+          scrollController: scrollController,
+          minHeight: screenHeight * 0.5,
+          maxHeight: screenHeight - 144,
+          panelBuilder: () => Animate(
+            onPlay: (controller) => controller.loop(
+              reverse: true,
+              min: 0.6,
+            ),
+            effects: const [
+              FadeEffect(
+                curve: Curves.easeIn,
+                duration: BalunConstants.shimmerDuration,
+              ),
+            ],
+            child: MatchSlidingInfoLoading(
+              scrollController: scrollController,
+            ),
           ),
         ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }

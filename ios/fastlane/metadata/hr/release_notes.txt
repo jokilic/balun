@@ -1,2 +1,2 @@
-* Migrate to workmanager for background tasks
-* Upgrade dependencies
+* Update loading screens
+* Small code refactors

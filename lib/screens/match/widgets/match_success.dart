@@ -82,7 +82,7 @@ class _MatchSuccessState extends State<MatchSuccess> {
           color: context.colors.slidingInfoPanelBackground,
           scrollController: scrollController,
           minHeight: panelHeight,
-          maxHeight: MediaQuery.sizeOf(context).height - 144,
+          maxHeight: screenHeight - 144,
           panelBuilder: () => MatchSlidingInfo(
             match: widget.match,
             scrollController: scrollController,
