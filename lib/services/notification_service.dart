@@ -568,10 +568,10 @@ class NotificationService {
 
       /// Show notification
       await flutterLocalNotificationsPlugin?.show(
-        id + i,
-        change.title,
-        change.body,
-        NotificationDetails(
+        id: id + i,
+        title: change.title,
+        body: change.body,
+        notificationDetails: NotificationDetails(
           android: androidDetails,
           iOS: iOSDetails,
         ),
@@ -597,7 +597,7 @@ class NotificationService {
       );
 
       final initialized = await flutterLocalNotificationsPlugin?.initialize(
-        initializationSettings,
+        settings: initializationSettings,
         onDidReceiveNotificationResponse: onDidReceiveNotificationResponse,
         onDidReceiveBackgroundNotificationResponse: onDidReceiveBackgroundNotificationResponse,
       );
@@ -782,10 +782,10 @@ class NotificationService {
       );
 
       await flutterLocalNotificationsPlugin?.show(
-        notificationId,
-        title,
-        text,
-        notificationDetails,
+        id: notificationId,
+        title: title,
+        body: text,
+        notificationDetails: notificationDetails,
         payload: payload,
       );
     } catch (e) {

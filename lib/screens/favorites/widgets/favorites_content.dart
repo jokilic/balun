@@ -184,8 +184,10 @@ class _FavoritesContentState extends State<FavoritesContent> {
                   onReorderStart: (_) => isDragging = true,
                   onReorderEnd: (_) => isDragging = false,
                   onReorder: (oldIndex, newIndex) {
-                    if (newIndex > oldIndex) {
-                      newIndex--;
+                    var index = newIndex;
+
+                    if (index > oldIndex) {
+                      index--;
                     }
 
                     widget.onReorderLeagues(oldIndex, newIndex);
@@ -272,8 +274,10 @@ class _FavoritesContentState extends State<FavoritesContent> {
                   onReorderStart: (_) => isDragging = true,
                   onReorderEnd: (_) => isDragging = false,
                   onReorder: (oldIndex, newIndex) {
-                    if (newIndex > oldIndex) {
-                      newIndex--;
+                    var index = newIndex;
+
+                    if (index > oldIndex) {
+                      index--;
                     }
 
                     widget.onReorderTeams(oldIndex, newIndex);
@@ -360,8 +364,10 @@ class _FavoritesContentState extends State<FavoritesContent> {
                   onReorderStart: (_) => isDragging = true,
                   onReorderEnd: (_) => isDragging = false,
                   onReorder: (oldIndex, newIndex) {
-                    if (newIndex > oldIndex) {
-                      newIndex--;
+                    var index = newIndex;
+
+                    if (index > oldIndex) {
+                      index--;
                     }
 
                     widget.onReorderMatches(oldIndex, newIndex);

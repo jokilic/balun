@@ -1,3 +1,5 @@
+// ignore_for_file: experimental_member_use
+
 import 'dart:math' as math;
 
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
