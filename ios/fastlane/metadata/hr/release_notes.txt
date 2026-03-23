@@ -1,2 +1,8 @@
+* Show match in play when viewing team
+* Update handling of match events
+* UI updates in calendar picker
+* Small UI updates
+* Localization updates
 * Update loading screens
-* Small code refactors
+* Native code updates
+* Update dependencies
