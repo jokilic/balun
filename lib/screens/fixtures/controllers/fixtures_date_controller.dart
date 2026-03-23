@@ -97,6 +97,7 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
 
   Future<void> updateDateViaPickerAndRefetch(BuildContext context) async => showCalendarDatePicker2Dialog(
     context: context,
+    value: [value],
     onValueChanged: (newValue) {
       final chosenDate = newValue.first;
 
@@ -128,8 +129,38 @@ class FixturesDateController extends ValueNotifier<DateTime> implements Disposab
       selectedYearTextStyle: context.textStyles.bodyLgBold.copyWith(
         color: context.colors.primaryBackground,
       ),
-      selectedDayHighlightColor: context.colors.accent,
+      selectedDayHighlightColor: context.colors.datePickerActiveBackground,
       daySplashColor: context.colors.accent,
+      dayBuilder:
+          ({
+            required date,
+            textStyle,
+            decoration,
+            isSelected,
+            isDisabled,
+            isToday,
+          }) {
+            var currentDecoration = decoration;
+
+            if ((isToday ?? false) && !(isSelected ?? false)) {
+              currentDecoration = BoxDecoration(
+                border: Border.all(
+                  color: context.colors.primaryForeground,
+                  width: 1.5,
+                ),
+                shape: BoxShape.circle,
+              );
+            }
+
+            return Container(
+              decoration: currentDecoration,
+              alignment: Alignment.center,
+              child: Text(
+                DateFormat.d().format(date),
+                style: textStyle,
+              ),
+            );
+          },
       firstDayOfWeek: 1,
       useAbbrLabelForMonthModePicker: true,
       cancelButton: BalunButton(
