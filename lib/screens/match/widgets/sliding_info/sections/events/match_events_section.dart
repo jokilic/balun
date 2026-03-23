@@ -27,30 +27,42 @@ class MatchEventsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sortedEvents = getSortedEvents(events);
+
     /// First half events
-    final firstHalfEvents = events?.where(
-      (event) => (event.time?.elapsed ?? 999) <= 45,
-    );
+    final firstHalfEvents = sortedEvents
+        .where(
+          (event) => (event.time?.elapsed ?? 999) <= 45,
+        )
+        .toList();
 
     /// Second half events
-    final secondHalfEvents = events?.where(
-      (event) => (event.time?.elapsed ?? 0) > 45 && (event.time?.elapsed ?? 999) <= 90,
-    );
+    final secondHalfEvents = sortedEvents
+        .where(
+          (event) => (event.time?.elapsed ?? 0) > 45 && (event.time?.elapsed ?? 999) <= 90,
+        )
+        .toList();
 
     /// First extra-time events
-    final firstExtraTimeEvents = events?.where(
-      (event) => (event.time?.elapsed ?? 0) > 90 && (event.time?.elapsed ?? 999) <= 105,
-    );
+    final firstExtraTimeEvents = sortedEvents
+        .where(
+          (event) => (event.time?.elapsed ?? 0) > 90 && (event.time?.elapsed ?? 999) <= 105,
+        )
+        .toList();
 
     /// Second extra-time events
-    final secondExtraTimeEvents = events?.where(
-      (event) => (event.time?.elapsed ?? 0) > 105 && (event.time?.elapsed ?? 999) <= 120,
-    );
+    final secondExtraTimeEvents = sortedEvents
+        .where(
+          (event) => (event.time?.elapsed ?? 0) > 105 && (event.time?.elapsed ?? 999) <= 120,
+        )
+        .toList();
 
     /// Penalty events
-    final penaltyEvents = events?.where(
-      (event) => (event.time?.elapsed ?? 0) > 120,
-    );
+    final penaltyEvents = sortedEvents
+        .where(
+          (event) => (event.time?.elapsed ?? 0) > 120,
+        )
+        .toList();
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -88,13 +100,13 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// FIRST HALF EVENTS
                 ///
-                ...firstHalfEvents!
+                ...firstHalfEvents
                     .map(
                       (event) => MatchEventsListTile(
                         event: event,
                         isAwayTeam: event.team?.id == awayTeamId,
                         isSecondYellowCard: isSecondYellowCard(
-                          events ?? [],
+                          sortedEvents,
                           event,
                         ),
                         season: season,
@@ -128,13 +140,13 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// SECOND HALF EVENTS
                 ///
-                ...secondHalfEvents!
+                ...secondHalfEvents
                     .map(
                       (event) => MatchEventsListTile(
                         event: event,
                         isAwayTeam: event.team?.id == awayTeamId,
                         isSecondYellowCard: isSecondYellowCard(
-                          events ?? [],
+                          sortedEvents,
                           event,
                         ),
                         season: season,
@@ -168,13 +180,13 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// FIRST EXTRA TIME EVENTS
                 ///
-                ...firstExtraTimeEvents!
+                ...firstExtraTimeEvents
                     .map(
                       (event) => MatchEventsListTile(
                         event: event,
                         isAwayTeam: event.team?.id == awayTeamId,
                         isSecondYellowCard: isSecondYellowCard(
-                          events ?? [],
+                          sortedEvents,
                           event,
                         ),
                         season: season,
@@ -185,13 +197,13 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// SECOND EXTRA TIME EVENTS
                 ///
-                ...secondExtraTimeEvents!
+                ...secondExtraTimeEvents
                     .map(
                       (event) => MatchEventsListTile(
                         event: event,
                         isAwayTeam: event.team?.id == awayTeamId,
                         isSecondYellowCard: isSecondYellowCard(
-                          events ?? [],
+                          sortedEvents,
                           event,
                         ),
                         season: season,
@@ -231,13 +243,13 @@ class MatchEventsSection extends StatelessWidget {
                 ///
                 /// PENALTY EVENTS
                 ///
-                ...penaltyEvents!
+                ...penaltyEvents
                     .map(
                       (event) => MatchEventsListTile(
                         event: event,
                         isAwayTeam: event.team?.id == awayTeamId,
                         isSecondYellowCard: isSecondYellowCard(
-                          events ?? [],
+                          sortedEvents,
                           event,
                         ),
                         season: season,

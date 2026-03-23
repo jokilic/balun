@@ -1,5 +1,56 @@
 import '../models/fixtures/event/event.dart';
 
+List<Event> getSortedEvents(List<Event>? events) {
+  final indexedEvents =
+      (events ?? <Event>[])
+          .asMap()
+          .entries
+          .map(
+            (entry) => (
+              event: entry.value,
+              index: entry.key,
+            ),
+          )
+          .toList()
+        ..sort(
+          (a, b) {
+            final elapsedComparison = (a.event.time?.elapsed ?? -1).compareTo(
+              b.event.time?.elapsed ?? -1,
+            );
+
+            if (elapsedComparison != 0) {
+              return elapsedComparison;
+            }
+
+            final extraA = a.event.time?.extra;
+            final extraB = b.event.time?.extra;
+
+            if (extraA == null && extraB != null) {
+              return -1;
+            }
+
+            if (extraA != null && extraB == null) {
+              return 1;
+            }
+
+            final extraComparison = (extraA ?? -1).compareTo(extraB ?? -1);
+
+            if (extraComparison != 0) {
+              return extraComparison;
+            }
+
+            /// Keep API order for otherwise identical timestamps
+            return a.index.compareTo(b.index);
+          },
+        );
+
+  return indexedEvents
+      .map(
+        (indexedEvent) => indexedEvent.event,
+      )
+      .toList();
+}
+
 List<Event> calculatedCardsEvents(List<Event>? events) {
   final playerYellowCards = <String, List<Event>>{};
   final processedEvents = <Event>[];
@@ -15,13 +66,11 @@ List<Event> calculatedCardsEvents(List<Event>? events) {
       if (playerYellowCards[playerKey]?.isNotEmpty ?? false) {
         continue;
       }
-
       /// This is a direct red card, so we keep it
       else {
         processedEvents.add(event);
       }
     }
-
     /// For all other events, we just add them to the processed list
     else {
       processedEvents.add(event);
@@ -75,4 +124,19 @@ bool isSecondYellowCard(List<Event> events, Event currentEvent) {
   }
 
   return count == 2;
+}
+
+String getEventMinuteText(Event event) {
+  final elapsedTime = event.time?.elapsed;
+  final extraTime = event.time?.extra;
+
+  if (elapsedTime == null) {
+    return '--';
+  }
+
+  if (extraTime == null || extraTime <= 0) {
+    return "$elapsedTime'";
+  }
+
+  return "$elapsedTime+$extraTime'";
 }

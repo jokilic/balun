@@ -7,6 +7,7 @@ import '../../../../../../routing.dart';
 import '../../../../../../theme/icons.dart';
 import '../../../../../../theme/theme.dart';
 import '../../../../../../util/date_time.dart';
+import '../../../../../../util/events.dart';
 import '../../../../../../util/string.dart';
 import '../../../../../../util/word_mix.dart';
 import '../../../../../../widgets/balun_button.dart';
@@ -26,75 +27,56 @@ class MatchEventsListTile extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final elapsedTime = event.time?.elapsed;
-    final extraTime = event.time?.extra;
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        mainAxisAlignment: isAwayTeam ?? false ? MainAxisAlignment.end : MainAxisAlignment.start,
-        children: [
-          if (!(isAwayTeam ?? false)) ...[
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  elapsedTime != null ? "$elapsedTime'" : '--',
-                  style: context.textStyles.labelMuted,
-                ),
-                if (extraTime != null)
-                  Text(
-                    '+$extraTime',
-                    style: context.textStyles.labelMuted.copyWith(
-                      fontSize: 12,
-                    ),
-                  ),
-              ],
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8),
+    child: Row(
+      mainAxisAlignment: isAwayTeam ?? false ? MainAxisAlignment.end : MainAxisAlignment.start,
+      children: [
+        if (!(isAwayTeam ?? false)) ...[
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                getEventMinuteText(event),
+                style: context.textStyles.labelMuted,
+              ),
+            ],
+          ),
+          const SizedBox(width: 8),
+        ],
+        Flexible(
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 12,
             ),
-            const SizedBox(width: 8),
-          ],
-          Flexible(
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 12,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: context.colors.primaryForeground.withValues(alpha: 0.075),
-              ),
-              child: getEventWidget(
-                eventType: event.type ?? '',
-                eventDetail: event.detail ?? '',
-                isSecondYellowCard: isSecondYellowCard,
-                context: context,
-              ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: context.colors.primaryForeground.withValues(alpha: 0.075),
+            ),
+            child: getEventWidget(
+              eventType: event.type ?? '',
+              eventDetail: event.detail ?? '',
+              isSecondYellowCard: isSecondYellowCard,
+              context: context,
             ),
           ),
-          if (isAwayTeam ?? false) ...[
-            const SizedBox(width: 8),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  elapsedTime != null ? "$elapsedTime'" : '--',
-                  style: context.textStyles.labelMuted,
-                ),
-                if (extraTime != null)
-                  Text(
-                    '+$extraTime',
-                    style: context.textStyles.labelMuted.copyWith(
-                      fontSize: 12,
-                    ),
-                  ),
-              ],
-            ),
-          ],
+        ),
+        if (isAwayTeam ?? false) ...[
+          const SizedBox(width: 8),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                getEventMinuteText(event),
+                style: context.textStyles.labelMuted,
+              ),
+            ],
+          ),
         ],
-      ),
-    );
-  }
+      ],
+    ),
+  );
 
   Widget getEventWidget({
     required String eventType,
@@ -377,12 +359,12 @@ class MatchEventsListTile extends StatelessWidget {
         ///
         Flexible(
           child: BalunButton(
-            onPressed: event.assist?.id != null
+            onPressed: event.player?.id != null
                 ? () {
                     HapticFeedback.lightImpact();
                     openPlayer(
                       context,
-                      playerId: event.assist!.id!,
+                      playerId: event.player!.id!,
                       season: season ?? getCurrentSeasonYear().toString(),
                     );
                   }
@@ -401,7 +383,7 @@ class MatchEventsListTile extends StatelessWidget {
                   const SizedBox(width: 8),
                   Flexible(
                     child: Text(
-                      mixOrOriginalWords(event.assist?.name) ?? '---',
+                      mixOrOriginalWords(event.player?.name) ?? '---',
                       style: context.textStyles.bodyLgLight,
                     ),
                   ),
@@ -418,12 +400,12 @@ class MatchEventsListTile extends StatelessWidget {
         ///
         Flexible(
           child: BalunButton(
-            onPressed: event.player?.id != null
+            onPressed: event.assist?.id != null
                 ? () {
                     HapticFeedback.lightImpact();
                     openPlayer(
                       context,
-                      playerId: event.player!.id!,
+                      playerId: event.assist!.id!,
                       season: season ?? getCurrentSeasonYear().toString(),
                     );
                   }
@@ -442,7 +424,7 @@ class MatchEventsListTile extends StatelessWidget {
                   const SizedBox(width: 8),
                   Flexible(
                     child: Text(
-                      mixOrOriginalWords(event.player?.name) ?? '---',
+                      mixOrOriginalWords(event.assist?.name) ?? '---',
                       style: context.textStyles.bodyLgLight.copyWith(
                         fontWeight: FontWeight.w500,
                       ),
@@ -464,24 +446,39 @@ class MatchEventsListTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Flexible(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const BalunImage(
-                imageUrl: BalunIcons.varIcon,
-                height: 28,
-                width: 28,
-              ),
-              const SizedBox(width: 8),
-              Flexible(
-                child: Text(
-                  'matchEventsVAR'.tr(),
-                  style: context.textStyles.bodyLgLight.copyWith(
-                    fontWeight: FontWeight.w500,
+          child: BalunButton(
+            onPressed: event.player?.id != null
+                ? () {
+                    HapticFeedback.lightImpact();
+                    openPlayer(
+                      context,
+                      playerId: event.player!.id!,
+                      season: season ?? getCurrentSeasonYear().toString(),
+                    );
+                  }
+                : null,
+            child: Container(
+              color: Colors.transparent,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const BalunImage(
+                    imageUrl: BalunIcons.varIcon,
+                    height: 28,
+                    width: 28,
                   ),
-                ),
+                  const SizedBox(width: 8),
+                  Flexible(
+                    child: Text(
+                      mixOrOriginalWords(event.player?.name) ?? 'matchEventsVAR'.tr(),
+                      style: context.textStyles.bodyLgLight.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
         const SizedBox(height: 4),
