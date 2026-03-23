@@ -14,6 +14,7 @@ import '../../../../theme/icons.dart';
 import '../../../../theme/theme.dart';
 import '../../../../util/date_time.dart';
 import '../../../../util/dependencies.dart';
+import '../../../../util/events.dart';
 import '../../../../util/match.dart';
 import '../../../../util/snackbars.dart';
 import '../../../../util/string.dart';
@@ -253,7 +254,10 @@ class MatchMainInfo extends WatchingWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        event.time?.extra != null ? "${(event.time?.elapsed ?? 0) + (event.time?.extra ?? 0)}'" : "${event.time?.elapsed}'",
+                                        getEventMinuteText(
+                                          event,
+                                          shortExtraTime: true,
+                                        ),
                                         style: context.textStyles.labelMedium.copyWith(
                                           color: context.colors.primaryForeground.withValues(alpha: 0.4),
                                         ),
@@ -382,7 +386,10 @@ class MatchMainInfo extends WatchingWidget {
                                       ),
                                       const SizedBox(width: 8),
                                       Text(
-                                        event.time?.extra != null ? "${(event.time?.elapsed ?? 0) + (event.time?.extra ?? 0)}'" : "${event.time?.elapsed}'",
+                                        getEventMinuteText(
+                                          event,
+                                          shortExtraTime: true,
+                                        ),
                                         style: context.textStyles.labelMedium.copyWith(
                                           color: context.colors.primaryForeground.withValues(alpha: 0.4),
                                         ),

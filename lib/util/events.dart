@@ -126,7 +126,10 @@ bool isSecondYellowCard(List<Event> events, Event currentEvent) {
   return count == 2;
 }
 
-String getEventMinuteText(Event event) {
+String getEventMinuteText(
+  Event event, {
+  bool shortExtraTime = false,
+}) {
   final elapsedTime = event.time?.elapsed;
   final extraTime = event.time?.extra;
 
@@ -138,5 +141,5 @@ String getEventMinuteText(Event event) {
     return "$elapsedTime'";
   }
 
-  return "$elapsedTime+$extraTime'";
+  return shortExtraTime ? "$elapsedTime+'" : "$elapsedTime+$extraTime'";
 }
