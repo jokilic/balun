@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,12 +19,34 @@ class TeamMatchesContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // A live match can occasionally appear in either source list.
+    // Pull it into its own section so it does not get duplicated below.
+    final playingFixture =
+        [
+              ...fixtures.upcomingFixtures,
+              ...fixtures.playedFixtures,
+            ]
+            .where(
+              (fixture) => isMatchPlaying(
+                statusShort: fixture.fixture?.status?.short ?? '--',
+              ),
+            )
+            .firstOrNull;
+
     final sortedUpcomingFixtures = sortTeamFixturesUpcoming(
-      fixtures: fixtures.upcomingFixtures,
+      fixtures: fixtures.upcomingFixtures
+          .where(
+            (fixture) => fixture.fixture?.id != playingFixture?.fixture?.id,
+          )
+          .toList(),
     );
 
     final sortedPlayedFixtures = sortTeamFixturesPlayed(
-      fixtures: fixtures.playedFixtures,
+      fixtures: fixtures.playedFixtures
+          .where(
+            (fixture) => fixture.fixture?.id != playingFixture?.fixture?.id,
+          )
+          .toList(),
     );
 
     return ListView(
@@ -31,6 +54,36 @@ class TeamMatchesContent extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 40),
       physics: const NeverScrollableScrollPhysics(),
       children: [
+        ///
+        /// MATCH IN PLAY
+        ///
+        if (playingFixture != null) ...[
+          Text(
+            'fixturesInPlay'.tr(),
+            style: context.textStyles.headlineMd,
+          ),
+          ListView.separated(
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(top: 16, bottom: 28),
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 1,
+            itemBuilder: (_, index) => TeamMatchesListTile(
+              fixture: playingFixture,
+              fixturePlaying: isMatchPlaying(
+                statusShort: playingFixture.fixture?.status?.short ?? '--',
+              ),
+              fixturePressed: () {
+                HapticFeedback.lightImpact();
+                openMatch(
+                  context,
+                  matchId: playingFixture.fixture!.id!,
+                );
+              },
+            ),
+            separatorBuilder: (_, __) => const SizedBox(height: 12),
+          ),
+        ],
+
         ///
         /// UPCOMING FIXTURES
         ///

@@ -48,6 +48,7 @@
     "leagueFixturesErrorState": "Some weird league fixtures error",
     "leagueNewsEmptyState": "League news are empty",
     "leagueNewsErrorState": "Some weird league news error",
+    "fixturesInPlay": "Match in play",
     "fixturesUpcoming": "Upcoming fixtures",
     "fixturesPlayed": "Played fixtures",
     "fixturesAll": "All fixtures",

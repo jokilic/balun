@@ -48,6 +48,7 @@
     "leagueFixturesErrorState": "Neka čudna pogreška rasporeda lige",
     "leagueNewsEmptyState": "Novosti lige su prazne",
     "leagueNewsErrorState": "Neka čudna pogreška novosti lige",
+    "fixturesInPlay": "Utakmica u tijeku",
     "fixturesUpcoming": "Sljedeće utakmice",
     "fixturesPlayed": "Odigrane utakmice",
     "fixturesAll": "Sve utakmice",
