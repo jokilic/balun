@@ -1,3 +1,6 @@
 source "https://rubygems.org"
 
+# Keep the iOS release toolchain in Bundler so Flutter does not fall back
+# to a broken global `pod` executable during `flutter build ipa`.
 gem "fastlane"
+gem "cocoapods"

@@ -6,7 +6,28 @@ default_platform(:ios)
 platform :ios do
   desc "Build & deploy a new release to the App Store"
   lane :app_store_release do
+    # Fastlane is often started from shells that do not include Homebrew's Ruby
+    # bin paths, which causes Flutter to report CocoaPods as installed but broken.
+    homebrew_ruby_paths = [
+      "/opt/homebrew/lib/ruby/gems/4.0.0/bin",
+      "/opt/homebrew/opt/ruby/bin",
+    ].select { |path| File.directory?(path) }
+
+    ENV["PATH"] = (homebrew_ruby_paths + [ENV["PATH"]]).join(":")
+    ENV["GEM_HOME"] = "/opt/homebrew/lib/ruby/gems/4.0.0"
+    ENV["GEM_PATH"] = [
+      "#{ENV["HOME"]}/.gem/ruby/4.0.0",
+      ENV["GEM_HOME"],
+      "/opt/homebrew/Cellar/ruby/4.0.2/lib/ruby/gems/4.0.0",
+    ].join(":")
+    ENV.delete("BUNDLE_GEMFILE")
+    ENV.delete("BUNDLE_BIN_PATH")
+    # CocoaPods' generated `pod` wrapper auto-detects Gemfiles via RubyGems.
+    # Disable that for release builds so it uses the globally installed gem.
+    ENV["RUBYGEMS_GEMDEPS"] = "-"
+
     # Build Flutter app
+    sh("pod --version")
     sh("puro flutter clean")
     sh("puro flutter pub get")
     sh("puro flutter build ipa")
