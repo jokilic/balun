@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
@@ -45,7 +46,9 @@ void initializeServices({
   required bool enablePeriodicFetching,
   required bool useDioInterceptors,
 }) {
-  final internetConnection = InternetConnection();
+  final internetConnection = InternetConnection.createInstance(
+    triggerStream: Connectivity().onConnectivityChanged,
+  );
 
   getIt
     ..registerSingletonAsync(

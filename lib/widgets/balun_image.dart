@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -133,7 +133,7 @@ class BalunImage extends StatelessWidget {
             color: color,
             radius: radius,
           ),
-          errorWidget: (context, url, error) => BalunImageError(
+          errorBuilder: (_, __, ___) => BalunImageError(
             height: height,
             width: width,
             radius: radius,
