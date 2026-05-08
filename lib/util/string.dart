@@ -61,7 +61,7 @@ String replaceSpecialSymbolsWithStandardLetters(String input) {
   );
 }
 
-String getCompactFixtureText({
+({String? homeScore, String? awayScore, String? status, String? time}) getCompactFixtureText({
   required String statusShort,
   required int minutes,
   required int? extra,
@@ -75,20 +75,38 @@ String getCompactFixtureText({
   );
 
   if (matchNotStarted && timestamp != null) {
-    return DateFormat(
+    final time = DateFormat(
       'HH:mm',
       context.locale.toLanguageTag(),
     ).format(parseTimestamp(timestamp)!);
+
+    return (
+      homeScore: null,
+      awayScore: null,
+      status: null,
+      time: time,
+    );
   }
 
   if (homeGoals != null && awayGoals != null) {
-    return '$homeGoals : $awayGoals';
+    return (
+      homeScore: '$homeGoals',
+      awayScore: '$awayGoals',
+      status: null,
+      time: null,
+    );
   }
 
-  return getMatchStatusShortOrNull(
-        statusShort: statusShort,
-      )?.toUpperCase() ??
-      '---';
+  final status = getMatchStatusShortOrNull(
+    statusShort: statusShort,
+  )?.toUpperCase();
+
+  return (
+    homeScore: null,
+    awayScore: null,
+    status: status,
+    time: null,
+  );
 }
 
 bool isMatchPlaying({

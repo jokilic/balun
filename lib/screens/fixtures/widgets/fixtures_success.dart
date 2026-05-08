@@ -187,17 +187,22 @@ class FixturesSuccess extends WatchingWidget {
                 itemBuilder: (_, itemIndex) {
                   final fixture = favoriteFixturesMatch[itemIndex];
 
+                  final fixtureText = getCompactFixtureText(
+                    statusShort: fixture.fixture?.status?.short ?? '--',
+                    minutes: fixture.fixture?.status?.elapsed ?? 0,
+                    extra: fixture.fixture?.status?.extra,
+                    timestamp: fixture.fixture?.timestamp,
+                    homeGoals: fixture.goals?.home,
+                    awayGoals: fixture.goals?.away,
+                    context: context,
+                  );
+
                   return FixturesCompactListTile(
                     fixture: fixture,
-                    scoreText: getCompactFixtureText(
-                      statusShort: fixture.fixture?.status?.short ?? '--',
-                      minutes: fixture.fixture?.status?.elapsed ?? 0,
-                      extra: fixture.fixture?.status?.extra,
-                      timestamp: fixture.fixture?.timestamp,
-                      homeGoals: fixture.goals?.home,
-                      awayGoals: fixture.goals?.away,
-                      context: context,
-                    ),
+                    homeScore: fixtureText.homeScore,
+                    awayScore: fixtureText.awayScore,
+                    status: fixtureText.status,
+                    time: fixtureText.time,
                     fixturePlaying: isMatchPlaying(
                       statusShort: fixture.fixture?.status?.short ?? '--',
                     ),
@@ -255,17 +260,22 @@ class FixturesSuccess extends WatchingWidget {
                 itemBuilder: (_, itemIndex) {
                   final fixture = favoriteFixturesTeam[itemIndex];
 
+                  final fixtureText = getCompactFixtureText(
+                    statusShort: fixture.fixture?.status?.short ?? '--',
+                    minutes: fixture.fixture?.status?.elapsed ?? 0,
+                    extra: fixture.fixture?.status?.extra,
+                    timestamp: fixture.fixture?.timestamp,
+                    homeGoals: fixture.goals?.home,
+                    awayGoals: fixture.goals?.away,
+                    context: context,
+                  );
+
                   return FixturesCompactListTile(
                     fixture: fixture,
-                    scoreText: getCompactFixtureText(
-                      statusShort: fixture.fixture?.status?.short ?? '--',
-                      minutes: fixture.fixture?.status?.elapsed ?? 0,
-                      extra: fixture.fixture?.status?.extra,
-                      timestamp: fixture.fixture?.timestamp,
-                      homeGoals: fixture.goals?.home,
-                      awayGoals: fixture.goals?.away,
-                      context: context,
-                    ),
+                    homeScore: fixtureText.homeScore,
+                    awayScore: fixtureText.awayScore,
+                    status: fixtureText.status,
+                    time: fixtureText.time,
                     fixturePlaying: isMatchPlaying(
                       statusShort: fixture.fixture?.status?.short ?? '--',
                     ),

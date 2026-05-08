@@ -144,17 +144,22 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
                 itemBuilder: (_, fixtureIndex) {
                   final fixture = widget.fixtures![fixtureIndex];
 
+                  final fixtureText = getCompactFixtureText(
+                    statusShort: fixture.fixture?.status?.short ?? '--',
+                    minutes: fixture.fixture?.status?.elapsed ?? 0,
+                    extra: fixture.fixture?.status?.extra,
+                    timestamp: fixture.fixture?.timestamp,
+                    homeGoals: fixture.goals?.home,
+                    awayGoals: fixture.goals?.away,
+                    context: context,
+                  );
+
                   return FixturesCompactListTile(
                     fixture: fixture,
-                    scoreText: getCompactFixtureText(
-                      statusShort: fixture.fixture?.status?.short ?? '--',
-                      minutes: fixture.fixture?.status?.elapsed ?? 0,
-                      extra: fixture.fixture?.status?.extra,
-                      timestamp: fixture.fixture?.timestamp,
-                      homeGoals: fixture.goals?.home,
-                      awayGoals: fixture.goals?.away,
-                      context: context,
-                    ),
+                    homeScore: fixtureText.homeScore,
+                    awayScore: fixtureText.awayScore,
+                    status: fixtureText.status,
+                    time: fixtureText.time,
                     fixturePlaying: isMatchPlaying(
                       statusShort: fixture.fixture?.status?.short ?? '--',
                     ),
