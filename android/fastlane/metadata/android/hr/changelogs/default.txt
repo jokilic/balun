@@ -1,2 +1,5 @@
-* UI update in Fixtures list tiles
+* Refactor background logic
+* Refactor initialization logic
+* Use proper league placeholder if necessary
+* Small UI updates
 * Update dependencies
