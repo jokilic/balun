@@ -19,16 +19,16 @@ class PeriodicAPIService implements Disposable {
 
   @override
   FutureOr onDispose() {
-    fixturesTimer.cancel();
-    matchTimer.cancel();
+    fixturesTimer?.cancel();
+    matchTimer?.cancel();
   }
 
   ///
   /// VARIABLES
   ///
 
-  late final Timer fixturesTimer;
-  late final Timer matchTimer;
+  Timer? fixturesTimer;
+  Timer? matchTimer;
 
   var shouldFetchFixtures = false;
 
@@ -40,6 +40,9 @@ class PeriodicAPIService implements Disposable {
   ///
 
   void init() {
+    fixturesTimer?.cancel();
+    matchTimer?.cancel();
+
     fixturesTimer = Timer.periodic(
       BalunConstants.periodicAPICallDuration,
       (_) {

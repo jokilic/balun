@@ -41,6 +41,19 @@ T registerIfNotInitialized<T extends Object>(
   return getIt.get<T>(instanceName: instanceName);
 }
 
+/// Registers an async singleton only when the type is not already registered
+void registerSingletonAsyncIfNotInitialized<T extends Object>(
+  FactoryFuncAsync<T> factoryFunc, {
+  Iterable<Type>? dependsOn,
+}) {
+  if (!getIt.isRegistered<T>()) {
+    getIt.registerSingletonAsync<T>(
+      factoryFunc,
+      dependsOn: dependsOn,
+    );
+  }
+}
+
 void initializeServices({
   required bool enableRemoteSettings,
   required bool enablePeriodicFetching,
@@ -50,156 +63,181 @@ void initializeServices({
     triggerStream: Connectivity().onConnectivityChanged,
   );
 
-  getIt
-    ..registerSingletonAsync(
-      () async => LoggerService(),
-    )
-    ..registerSingletonAsync(
-      () async {
-        final packageInfo = PackageInfoService(
-          logger: getIt.get<LoggerService>(),
-        );
-        await packageInfo.init();
-        return packageInfo;
-      },
-      dependsOn: [LoggerService],
-    )
-    ..registerSingletonAsync(
-      () async {
-        final hive = HiveService(
-          logger: getIt.get<LoggerService>(),
-        );
-        await hive.init();
-        return hive;
-      },
-      dependsOn: [LoggerService],
-    )
-    ..registerSingletonAsync(
-      () async => ThemeService(
+  registerSingletonAsyncIfNotInitialized<LoggerService>(
+    () async => LoggerService(),
+  );
+
+  registerSingletonAsyncIfNotInitialized<PackageInfoService>(
+    () async {
+      final packageInfo = PackageInfoService(
+        logger: getIt.get<LoggerService>(),
+      );
+      await packageInfo.init();
+      return packageInfo;
+    },
+    dependsOn: [LoggerService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<HiveService>(
+    () async {
+      final hive = HiveService(
+        logger: getIt.get<LoggerService>(),
+      );
+      await hive.init();
+      return hive;
+    },
+    dependsOn: [LoggerService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<ThemeService>(
+    () async => ThemeService(
+      logger: getIt.get<LoggerService>(),
+      hive: getIt.get<HiveService>(),
+    ),
+    dependsOn: [LoggerService, HiveService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<LeagueStorageService>(
+    () async => LeagueStorageService(
+      logger: getIt.get<LoggerService>(),
+      hiveLeagues: getIt.get<HiveService>().leagues.values.toList(),
+    ),
+    dependsOn: [LoggerService, HiveService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<TeamStorageService>(
+    () async => TeamStorageService(
+      logger: getIt.get<LoggerService>(),
+      hiveTeams: getIt.get<HiveService>().teams.values.toList(),
+    ),
+    dependsOn: [LoggerService, HiveService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<MatchStorageService>(
+    () async => MatchStorageService(
+      logger: getIt.get<LoggerService>(),
+      hiveMatches: getIt.get<HiveService>().matches.values.toList(),
+    ),
+    dependsOn: [LoggerService, HiveService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<DioService>(
+    () async => DioService(
+      logger: getIt.get<LoggerService>(),
+      useInterceptors: useDioInterceptors,
+    )..init(),
+    dependsOn: [LoggerService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<RemoteSettingsService>(
+    () async {
+      final remoteSettings = RemoteSettingsService(
+        logger: getIt.get<LoggerService>(),
+        dio: getIt.get<DioService>().remoteSettingsDio,
+        internetConnection: internetConnection,
+      );
+      if (enableRemoteSettings) {
+        await remoteSettings.init();
+      }
+      return remoteSettings;
+    },
+    dependsOn: [LoggerService, DioService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<YouTubeSearchService>(
+    () async => YouTubeSearchService(
+      logger: getIt.get<LoggerService>(),
+      dio: getIt.get<DioService>().youTubeSearchDio,
+      internetConnection: internetConnection,
+    ),
+    dependsOn: [LoggerService, DioService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<NewsService>(
+    () async => NewsService(
+      logger: getIt.get<LoggerService>(),
+      dio: getIt.get<DioService>().newsDio,
+      internetConnection: internetConnection,
+    ),
+    dependsOn: [LoggerService, DioService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<APIService>(
+    () async => APIService(
+      logger: getIt.get<LoggerService>(),
+      dio: getIt.get<DioService>().footballDio,
+      internetConnection: internetConnection,
+    ),
+    dependsOn: [LoggerService, DioService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<PeriodicAPIService>(
+    () async {
+      final periodicAPI = PeriodicAPIService(
+        logger: getIt.get<LoggerService>(),
+      );
+      if (enablePeriodicFetching) {
+        periodicAPI.init();
+      }
+      return periodicAPI;
+    },
+    dependsOn: [LoggerService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<BackgroundFetchService>(
+    () async {
+      final backgroundFetch = BackgroundFetchService(
         logger: getIt.get<LoggerService>(),
         hive: getIt.get<HiveService>(),
-      ),
-      dependsOn: [LoggerService, HiveService],
-    )
-    ..registerSingletonAsync(
-      () async => LeagueStorageService(
+      );
+      await backgroundFetch.init();
+      return backgroundFetch;
+    },
+    dependsOn: [LoggerService, HiveService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<NotificationService>(
+    () async {
+      final notification = NotificationService(
         logger: getIt.get<LoggerService>(),
-        hiveLeagues: getIt.get<HiveService>().leagues.values.toList(),
-      ),
-      dependsOn: [LoggerService, HiveService],
-    )
-    ..registerSingletonAsync(
-      () async => TeamStorageService(
-        logger: getIt.get<LoggerService>(),
-        hiveTeams: getIt.get<HiveService>().teams.values.toList(),
-      ),
-      dependsOn: [LoggerService, HiveService],
-    )
-    ..registerSingletonAsync(
-      () async => MatchStorageService(
-        logger: getIt.get<LoggerService>(),
-        hiveMatches: getIt.get<HiveService>().matches.values.toList(),
-      ),
-      dependsOn: [LoggerService, HiveService],
-    )
-    ..registerSingletonAsync(
-      () async => DioService(
-        logger: getIt.get<LoggerService>(),
-        useInterceptors: useDioInterceptors,
-      )..init(),
-      dependsOn: [LoggerService],
-    )
-    ..registerSingletonAsync(
-      () async {
-        final remoteSettings = RemoteSettingsService(
-          logger: getIt.get<LoggerService>(),
-          dio: getIt.get<DioService>().remoteSettingsDio,
-          internetConnection: internetConnection,
-        );
-        if (enableRemoteSettings) {
-          await remoteSettings.init();
-        }
-        return remoteSettings;
-      },
-      dependsOn: [LoggerService, DioService],
-    )
-    ..registerSingletonAsync(
-      () async => YouTubeSearchService(
-        logger: getIt.get<LoggerService>(),
-        dio: getIt.get<DioService>().youTubeSearchDio,
-        internetConnection: internetConnection,
-      ),
-      dependsOn: [LoggerService, DioService],
-    )
-    ..registerSingletonAsync(
-      () async => NewsService(
-        logger: getIt.get<LoggerService>(),
-        dio: getIt.get<DioService>().newsDio,
-        internetConnection: internetConnection,
-      ),
-      dependsOn: [LoggerService, DioService],
-    )
-    ..registerSingletonAsync(
-      () async => APIService(
-        logger: getIt.get<LoggerService>(),
-        dio: getIt.get<DioService>().footballDio,
-        internetConnection: internetConnection,
-      ),
-      dependsOn: [LoggerService, DioService],
-    )
-    ..registerSingletonAsync(
-      () async {
-        final periodicAPI = PeriodicAPIService(
-          logger: getIt.get<LoggerService>(),
-        );
-        if (enablePeriodicFetching) {
-          periodicAPI.init();
-        }
-        return periodicAPI;
-      },
-      dependsOn: [LoggerService],
-    )
-    ..registerSingletonAsync(
-      () async {
-        final backgroundFetch = BackgroundFetchService(
-          logger: getIt.get<LoggerService>(),
-          hive: getIt.get<HiveService>(),
-        );
-        await backgroundFetch.init();
-        return backgroundFetch;
-      },
-      dependsOn: [LoggerService, HiveService],
-    )
-    ..registerSingletonAsync(
-      () async {
-        final notification = NotificationService(
-          logger: getIt.get<LoggerService>(),
-          hive: getIt.get<HiveService>(),
-          api: getIt.get<APIService>(),
-        );
-        await notification.init();
-        return notification;
-      },
-      dependsOn: [LoggerService, HiveService, APIService],
-    )
-    ..registerSingletonAsync(
-      () async => BalunNavigationBarService(
-        logger: getIt.get<LoggerService>(),
-      ),
-      dependsOn: [LoggerService],
-    )
-    ..registerSingletonAsync(
-      () async => BalunNavigationBarBadgeService(
-        logger: getIt.get<LoggerService>(),
-      ),
-      dependsOn: [LoggerService],
-    )
-    ..registerSingletonAsync(
-      () async => BalunScreenService(
-        logger: getIt.get<LoggerService>(),
-      ),
-      dependsOn: [LoggerService, BalunNavigationBarService],
-    );
+        hive: getIt.get<HiveService>(),
+        api: getIt.get<APIService>(),
+      );
+      await notification.init();
+      return notification;
+    },
+    dependsOn: [
+      LoggerService,
+      HiveService,
+      LeagueStorageService,
+      TeamStorageService,
+      MatchStorageService,
+      DioService,
+      RemoteSettingsService,
+      APIService,
+    ],
+  );
+
+  registerSingletonAsyncIfNotInitialized<BalunNavigationBarService>(
+    () async => BalunNavigationBarService(
+      logger: getIt.get<LoggerService>(),
+    ),
+    dependsOn: [LoggerService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<BalunNavigationBarBadgeService>(
+    () async => BalunNavigationBarBadgeService(
+      logger: getIt.get<LoggerService>(),
+    ),
+    dependsOn: [LoggerService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<BalunScreenService>(
+    () async => BalunScreenService(
+      logger: getIt.get<LoggerService>(),
+    ),
+    dependsOn: [LoggerService, BalunNavigationBarService],
+  );
 }
 
 void initializeBackgroundServices({
@@ -214,89 +252,96 @@ void initializeBackgroundServices({
     triggerStream: Connectivity().onConnectivityChanged,
   );
 
-  getIt
-    ..registerSingletonAsync(
-      () async => LoggerService(),
-    )
-    ..registerSingletonAsync(
-      () async {
-        final hive = HiveService(
-          logger: getIt.get<LoggerService>(),
-        );
-        await hive.init();
-        return hive;
-      },
-      dependsOn: [LoggerService],
-    )
-    ..registerSingletonAsync(
-      () async => LeagueStorageService(
+  registerSingletonAsyncIfNotInitialized<LoggerService>(
+    () async => LoggerService(),
+  );
+
+  registerSingletonAsyncIfNotInitialized<HiveService>(
+    () async {
+      final hive = HiveService(
         logger: getIt.get<LoggerService>(),
-        hiveLeagues: getIt.get<HiveService>().leagues.values.toList(),
-      ),
-      dependsOn: [LoggerService, HiveService],
-    )
-    ..registerSingletonAsync(
-      () async => TeamStorageService(
+      );
+      await hive.init();
+      return hive;
+    },
+    dependsOn: [LoggerService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<LeagueStorageService>(
+    () async => LeagueStorageService(
+      logger: getIt.get<LoggerService>(),
+      hiveLeagues: getIt.get<HiveService>().leagues.values.toList(),
+    ),
+    dependsOn: [LoggerService, HiveService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<TeamStorageService>(
+    () async => TeamStorageService(
+      logger: getIt.get<LoggerService>(),
+      hiveTeams: getIt.get<HiveService>().teams.values.toList(),
+    ),
+    dependsOn: [LoggerService, HiveService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<MatchStorageService>(
+    () async => MatchStorageService(
+      logger: getIt.get<LoggerService>(),
+      hiveMatches: getIt.get<HiveService>().matches.values.toList(),
+    ),
+    dependsOn: [LoggerService, HiveService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<DioService>(
+    () async => DioService(
+      logger: getIt.get<LoggerService>(),
+      useInterceptors: useDioInterceptors,
+    )..init(),
+    dependsOn: [LoggerService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<RemoteSettingsService>(
+    () async {
+      final remoteSettings = RemoteSettingsService(
         logger: getIt.get<LoggerService>(),
-        hiveTeams: getIt.get<HiveService>().teams.values.toList(),
-      ),
-      dependsOn: [LoggerService, HiveService],
-    )
-    ..registerSingletonAsync(
-      () async => MatchStorageService(
-        logger: getIt.get<LoggerService>(),
-        hiveMatches: getIt.get<HiveService>().matches.values.toList(),
-      ),
-      dependsOn: [LoggerService, HiveService],
-    )
-    ..registerSingletonAsync(
-      () async => DioService(
-        logger: getIt.get<LoggerService>(),
-        useInterceptors: useDioInterceptors,
-      )..init(),
-      dependsOn: [LoggerService],
-    )
-    ..registerSingletonAsync(
-      () async {
-        final remoteSettings = RemoteSettingsService(
-          logger: getIt.get<LoggerService>(),
-          dio: getIt.get<DioService>().remoteSettingsDio,
-          internetConnection: internetConnection,
-        );
-        if (enableRemoteSettings) {
-          await remoteSettings.init();
-        }
-        return remoteSettings;
-      },
-      dependsOn: [LoggerService, DioService],
-    )
-    ..registerSingletonAsync(
-      () async => APIService(
-        logger: getIt.get<LoggerService>(),
-        dio: getIt.get<DioService>().footballDio,
+        dio: getIt.get<DioService>().remoteSettingsDio,
         internetConnection: internetConnection,
-      ),
-      dependsOn: [LoggerService, DioService],
-    )
-    ..registerSingletonAsync(
-      () async {
-        final notification = NotificationService(
-          logger: getIt.get<LoggerService>(),
-          hive: getIt.get<HiveService>(),
-          api: getIt.get<APIService>(),
-        );
-        await notification.init();
-        return notification;
-      },
-      dependsOn: [
-        LoggerService,
-        HiveService,
-        LeagueStorageService,
-        TeamStorageService,
-        MatchStorageService,
-        DioService,
-        RemoteSettingsService,
-        APIService,
-      ],
-    );
+      );
+      if (enableRemoteSettings) {
+        await remoteSettings.init();
+      }
+      return remoteSettings;
+    },
+    dependsOn: [LoggerService, DioService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<APIService>(
+    () async => APIService(
+      logger: getIt.get<LoggerService>(),
+      dio: getIt.get<DioService>().footballDio,
+      internetConnection: internetConnection,
+    ),
+    dependsOn: [LoggerService, DioService],
+  );
+
+  registerSingletonAsyncIfNotInitialized<NotificationService>(
+    () async {
+      final notification = NotificationService(
+        logger: getIt.get<LoggerService>(),
+        hive: getIt.get<HiveService>(),
+        api: getIt.get<APIService>(),
+      );
+      await notification.init();
+      return notification;
+    },
+    dependsOn: [
+      LoggerService,
+      HiveService,
+      LeagueStorageService,
+      TeamStorageService,
+      MatchStorageService,
+      DioService,
+      RemoteSettingsService,
+      APIService,
+    ],
+  );
 }
