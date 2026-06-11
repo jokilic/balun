@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../models/youtube_search/youtube_item.dart';
@@ -9,7 +10,7 @@ import '../../../services/logger_service.dart';
 import '../../../services/youtube_search_service.dart';
 import '../../../util/state.dart';
 
-class MatchHighlightsController extends ValueNotifier<BalunState<({List<YouTubeItem> youTubeItems, YouTubeItem activeYouTubeItem})>> {
+class MatchHighlightsController extends ValueNotifier<BalunState<({List<YouTubeItem> youTubeItems, YouTubeItem activeYouTubeItem})>> implements Disposable {
   final LoggerService logger;
   final YouTubeSearchService youTubeSearch;
 
@@ -17,6 +18,11 @@ class MatchHighlightsController extends ValueNotifier<BalunState<({List<YouTubeI
     required this.logger,
     required this.youTubeSearch,
   }) : super(Initial());
+
+  @override
+  FutureOr onDispose() {
+    youTubeController?.close();
+  }
 
   ///
   /// VARIABLES
@@ -62,8 +68,13 @@ class MatchHighlightsController extends ValueNotifier<BalunState<({List<YouTubeI
 
         youTubeItems = response.youTubeSearch!.items;
 
-        youTubeController = YoutubePlayerController(
-          initialVideoId: youTubeItems.first.id.videoId,
+        youTubeController = YoutubePlayerController.fromVideoId(
+          videoId: youTubeItems.first.id.videoId,
+          autoPlay: true,
+          params: const YoutubePlayerParams(
+            enableCaption: false,
+            showVideoAnnotations: false,
+          ),
         );
 
         value = Success(
@@ -90,7 +101,9 @@ class MatchHighlightsController extends ValueNotifier<BalunState<({List<YouTubeI
 
   void playVideo({required YouTubeItem youTubeItem}) {
     if (value is Success) {
-      youTubeController!.load(youTubeItem.id.videoId);
+      youTubeController!.loadVideoById(
+        videoId: youTubeItem.id.videoId,
+      );
 
       value = Success(
         data: (

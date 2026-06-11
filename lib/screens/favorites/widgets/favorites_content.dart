@@ -183,7 +183,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                   ),
                   onReorderStart: (_) => isDragging = true,
                   onReorderEnd: (_) => isDragging = false,
-                  onReorder: (oldIndex, newIndex) {
+                  onReorderItem: (oldIndex, newIndex) {
                     var index = newIndex;
 
                     if (index > oldIndex) {
@@ -273,7 +273,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                   ),
                   onReorderStart: (_) => isDragging = true,
                   onReorderEnd: (_) => isDragging = false,
-                  onReorder: (oldIndex, newIndex) {
+                  onReorderItem: (oldIndex, newIndex) {
                     var index = newIndex;
 
                     if (index > oldIndex) {
@@ -363,7 +363,7 @@ class _FavoritesContentState extends State<FavoritesContent> {
                   ),
                   onReorderStart: (_) => isDragging = true,
                   onReorderEnd: (_) => isDragging = false,
-                  onReorder: (oldIndex, newIndex) {
+                  onReorderItem: (oldIndex, newIndex) {
                     var index = newIndex;
 
                     if (index > oldIndex) {
