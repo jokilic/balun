@@ -112,10 +112,9 @@ Future<void> runTask() async {
     /// Initialize [EasyLocalization]
     await initializeLocalization();
 
-    /// Initialize services
-    initializeServices(
+    /// Initialize services required for background logic
+    initializeBackgroundServices(
       enableRemoteSettings: !kDebugMode && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS),
-      enablePeriodicFetching: !kDebugMode,
       useDioInterceptors: false,
     );
 
