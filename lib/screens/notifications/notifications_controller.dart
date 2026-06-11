@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
 import '../../models/notification/notification_settings.dart';
+import '../../services/background_fetch_service.dart';
 import '../../services/hive_service.dart';
 import '../../services/logger_service.dart';
 import '../../services/notification_service.dart';
-import '../../services/work_manager_service.dart';
 
 class NotificationsController extends ValueNotifier<NotificationSettings> {
   final LoggerService logger;
   final HiveService hive;
   final NotificationService notification;
-  final WorkManagerService workManager;
+  final BackgroundFetchService backgroundFetch;
 
   NotificationsController({
     required this.logger,
     required this.hive,
     required this.notification,
-    required this.workManager,
+    required this.backgroundFetch,
   }) : super(hive.getNotificationSettings());
 
   ///
@@ -34,7 +34,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     );
 
     /// Toggle task, depending on notifications being active
-    await workManager.toggleTask();
+    await backgroundFetch.toggleTask();
   }
 
   Future<void> onPressedFavoriteTeams() async {
@@ -48,7 +48,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     );
 
     /// Toggle task, depending on notifications being active
-    await workManager.toggleTask();
+    await backgroundFetch.toggleTask();
   }
 
   Future<void> onPressedFavoriteMatches() async {
@@ -62,7 +62,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     );
 
     /// Toggle task, depending on notifications being active
-    await workManager.toggleTask();
+    await backgroundFetch.toggleTask();
   }
 
   Future<void> onPressedTriggerMatchStart() async {
@@ -76,7 +76,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     );
 
     /// Toggle task, depending on notifications being active
-    await workManager.toggleTask();
+    await backgroundFetch.toggleTask();
   }
 
   Future<void> onPressedTriggerGoal() async {
@@ -90,7 +90,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     );
 
     /// Toggle task, depending on notifications being active
-    await workManager.toggleTask();
+    await backgroundFetch.toggleTask();
   }
 
   Future<void> onPressedTriggerMatchProgress() async {
@@ -104,7 +104,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     );
 
     /// Toggle task, depending on notifications being active
-    await workManager.toggleTask();
+    await backgroundFetch.toggleTask();
   }
 
   Future<void> onPressedTriggerFullTime() async {
@@ -118,7 +118,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     );
 
     /// Toggle task, depending on notifications being active
-    await workManager.toggleTask();
+    await backgroundFetch.toggleTask();
   }
 
   Future<void> onPressedNotificationSound() async {
@@ -132,7 +132,7 @@ class NotificationsController extends ValueNotifier<NotificationSettings> {
     );
 
     /// Toggle task, depending on notifications being active
-    await workManager.toggleTask();
+    await backgroundFetch.toggleTask();
   }
 
   void testNotification() => notification.testNotification(

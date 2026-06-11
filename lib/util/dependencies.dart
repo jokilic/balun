@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 import '../services/api_service.dart';
+import '../services/background_fetch_service.dart';
 import '../services/balun_navigation_bar_badge_service.dart';
 import '../services/balun_navigation_bar_service.dart';
 import '../services/balun_screen_service.dart';
@@ -18,7 +19,6 @@ import '../services/periodic_api_service.dart';
 import '../services/remote_settings_service.dart';
 import '../services/team_storage_service.dart';
 import '../services/theme_service.dart';
-import '../services/work_manager_service.dart';
 import '../services/youtube_search_service.dart';
 
 final getIt = GetIt.instance;
@@ -161,12 +161,12 @@ void initializeServices({
     )
     ..registerSingletonAsync(
       () async {
-        final workManager = WorkManagerService(
+        final backgroundFetch = BackgroundFetchService(
           logger: getIt.get<LoggerService>(),
           hive: getIt.get<HiveService>(),
         );
-        await workManager.init();
-        return workManager;
+        await backgroundFetch.init();
+        return backgroundFetch;
       },
       dependsOn: [LoggerService, HiveService],
     )

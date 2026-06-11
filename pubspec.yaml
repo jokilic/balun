@@ -28,6 +28,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  background_fetch: 1.7.0
   cached_network_image_ce: 4.7.0
   cached_network_svg_image: 2.0.0
   collection: 1.19.1
@@ -56,7 +57,6 @@ dependencies:
   video_player: 2.11.1
   visibility_detector: 0.4.0+2
   watch_it: 2.4.2
-  workmanager: 0.9.0+3
   youtube_player_flutter: 10.0.1
 
   calendar_date_picker2:
