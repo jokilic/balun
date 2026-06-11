@@ -59,7 +59,7 @@ class FixturesCompactListTile extends StatelessWidget {
     }
 
     return Text(
-      time ?? status ?? '--',
+      time ?? status ?? '-',
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: context.textStyles.titleLgBoldTight,

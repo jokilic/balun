@@ -79,7 +79,7 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
                       )
                     else
                       BalunImage(
-                        imageUrl: BalunIcons.placeholderMatch,
+                        imageUrl: BalunIcons.placeholderLeague,
                         height: 24,
                         width: 24,
                         color: context.colors.primaryForeground,
