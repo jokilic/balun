@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -47,65 +48,112 @@ class FixturesCompactListTile extends StatelessWidget {
   Widget getTextWidget(BuildContext context) {
     /// Return `scores`
     if ((homeScoreRegular?.isNotEmpty ?? false) && (awayScoreRegular?.isNotEmpty ?? false)) {
-      return Text.rich(
-        TextSpan(
-          children: [
-            TextSpan(text: '$homeScoreRegular'),
-            const WidgetSpan(
-              child: SizedBox(width: 2),
-            ),
-            TextSpan(
-              text: ':',
-              style: context.textStyles.titleLgBoldTight.copyWith(
-                color: context.colors.primaryForeground.withValues(alpha: 0.2),
-              ),
-            ),
-            const WidgetSpan(
-              child: SizedBox(width: 2),
-            ),
-            TextSpan(text: '$awayScoreRegular'),
-          ],
-        ),
-        style: context.textStyles.titleLgBoldTight,
-        textAlign: TextAlign.center,
-      );
-    }
-
-    /// Return `time`
-    if (time?.isNotEmpty ?? false) {
       return Container(
-        decoration: const BoxDecoration(
-          color: Colors.yellow,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: 4,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(100),
         ),
         child: Text(
-          time!,
+          '$homeScoreRegular:$awayScoreRegular',
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: context.textStyles.titleLgBoldTight,
+          style: context.textStyles.bodyLgBoldTight.copyWith(
+            letterSpacing: 2,
+          ),
           textAlign: TextAlign.center,
         ),
       );
     }
 
-    /// Return `status`
-    return Text(
-      status ?? '-',
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      style: context.textStyles.titleLgBoldTight,
-      textAlign: TextAlign.center,
+    /// Return `time` or `status`
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 4,
+      ),
+      decoration: BoxDecoration(
+        color: context.colors.accent,
+        borderRadius: BorderRadius.circular(100),
+      ),
+      child: Text(
+        time ?? status ?? '-',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: context.textStyles.bodyLgBoldTight,
+        textAlign: TextAlign.center,
+      ),
     );
   }
 
   Widget? getBottomTextWidget(BuildContext context) {
-    // TODO: If match is finished in extra time, return Container(color: Colors.red, height: 24, width: 24)
+    /// Return penalties
+    if (fixtureFinishedPenalties && (homeScorePenalties?.isNotEmpty ?? false) && (awayScorePenalties?.isNotEmpty ?? false)) {
+      return Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 2,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: context.colors.success,
+            ),
+            child: Text(
+              'fixturesPenalties'.tr(),
+              style: context.textStyles.captionBold.copyWith(
+                color: context.colors.primaryBackground,
+              ),
+            ),
+          ),
+          const SizedBox(width: 6),
+          Text(
+            '$homeScorePenalties:$awayScorePenalties',
+            style: context.textStyles.captionBold,
+          ),
+        ],
+      );
+    }
 
-    // TODO: If match is finished in penalties, return Container(color: Colors.blue, height: 24, width: 24)
+    /// Return extra time
+    if (fixtureFinishedExtraTime && (homeScoreExtraTime?.isNotEmpty ?? false) && (awayScoreExtraTime?.isNotEmpty ?? false)) {
+      return Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 2,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: context.colors.success,
+            ),
+            child: Text(
+              'fixturesExtraTime'.tr(),
+              style: context.textStyles.captionBold.copyWith(
+                color: context.colors.navigationBarItemBackground,
+              ),
+            ),
+          ),
+          const SizedBox(width: 6),
+          Text(
+            '$homeScoreExtraTime:$awayScoreExtraTime',
+            style: context.textStyles.captionBold,
+          ),
+        ],
+      );
+    }
+
+    return null;
   }
 
   @override
   Widget build(BuildContext context) {
     final textWidget = getTextWidget(context);
+    final bottomTextWidget = getBottomTextWidget(context);
 
     return BalunButton(
       onPressed: onFixturePressed,
@@ -121,10 +169,7 @@ class FixturesCompactListTile extends StatelessWidget {
             /// CONTENT
             ///
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8,
-                vertical: 12,
-              ),
+              padding: const EdgeInsets.all(8),
               child: Row(
                 children: [
                   ///
@@ -132,22 +177,21 @@ class FixturesCompactListTile extends StatelessWidget {
                   ///
                   Expanded(
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Flexible(
-                          child: Text(
-                            mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
-                            style: context.textStyles.bodyMd,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.right,
-                          ),
-                        ),
-                        const SizedBox(width: 6),
                         BalunImage(
                           imageUrl: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
                           height: 28,
                           width: 28,
+                        ),
+                        const SizedBox(width: 8),
+                        Flexible(
+                          child: Text(
+                            mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
+                            style: context.textStyles.labelMedium,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.right,
+                          ),
                         ),
                       ],
                     ),
@@ -157,22 +201,38 @@ class FixturesCompactListTile extends StatelessWidget {
                   /// SCORE
                   ///
                   const SizedBox(width: 12),
-                  if (fixturePlaying)
-                    Animate(
-                      onPlay: (controller) => controller.loop(
-                        reverse: true,
-                        min: 0.3,
-                      ),
-                      effects: const [
-                        FadeEffect(
-                          curve: Curves.easeIn,
-                          duration: BalunConstants.shimmerDuration,
-                        ),
+                  Column(
+                    children: [
+                      ///
+                      /// MAIN TEXT
+                      ///
+                      if (fixturePlaying)
+                        Animate(
+                          onPlay: (controller) => controller.loop(
+                            reverse: true,
+                            min: 0.3,
+                          ),
+                          effects: const [
+                            FadeEffect(
+                              curve: Curves.easeIn,
+                              duration: BalunConstants.shimmerDuration,
+                            ),
+                          ],
+                          child: textWidget,
+                        )
+                      else
+                        textWidget,
+
+                      ///
+                      /// BOTTOM TEXT
+                      ///
+                      if (bottomTextWidget != null) ...[
+                        const SizedBox(height: 2),
+                        bottomTextWidget,
                       ],
-                      child: textWidget,
-                    )
-                  else
-                    textWidget,
+                    ],
+                  ),
+
                   const SizedBox(width: 12),
 
                   ///
@@ -180,21 +240,22 @@ class FixturesCompactListTile extends StatelessWidget {
                   ///
                   Expanded(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        BalunImage(
-                          imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
-                          height: 28,
-                          width: 28,
-                        ),
-                        const SizedBox(width: 6),
                         Flexible(
                           child: Text(
                             mixOrOriginalWords(fixture.teams?.away?.name) ?? '---',
-                            style: context.textStyles.bodyMd,
+                            style: context.textStyles.labelMedium,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.left,
                           ),
+                        ),
+                        const SizedBox(width: 8),
+                        BalunImage(
+                          imageUrl: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
+                          height: 28,
+                          width: 28,
                         ),
                       ],
                     ),

@@ -278,6 +278,9 @@ class BalunTheme {
       BalunTextStyleToken.bodyLgBoldLoose: BalunTextStyles.bodyLgBoldLoose.copyWith(
         color: colors.primaryForeground,
       ),
+      BalunTextStyleToken.bodyLgBoldTight: BalunTextStyles.bodyLgBoldTight.copyWith(
+        color: colors.primaryForeground,
+      ),
       BalunTextStyleToken.bodyLgBold: BalunTextStyles.bodyLgBold.copyWith(
         color: colors.primaryForeground,
       ),

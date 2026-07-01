@@ -1,5 +1,5 @@
 * Refactor background logic
-* Refactor initialization logic
-* Use proper league placeholder if necessary
-* Small UI updates
+* Show penalty or extra time scores properly
+* UI updates in FixtureScreen
+* UI updates in MatchScreen
 * Update dependencies

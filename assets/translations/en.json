@@ -52,6 +52,8 @@
     "fixturesUpcoming": "Upcoming fixtures",
     "fixturesPlayed": "Played fixtures",
     "fixturesAll": "All fixtures",
+    "fixturesPenalties": "P",
+    "fixturesExtraTime": "ET",
     "leagueStandingsPlayed": "P",
     "leagueStandingsWins": "W",
     "leagueStandingsPoints": "PTS",

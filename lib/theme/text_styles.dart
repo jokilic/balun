@@ -125,6 +125,13 @@ class BalunTextStyles {
     height: 1.6,
   );
 
+  static const bodyLgBoldTight = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    height: 1,
+  );
+
   static const bodyLgBold = TextStyle(
     fontFamily: fontFamily,
     fontSize: 18,
@@ -245,6 +252,7 @@ enum BalunTextStyleToken {
   titleMdLight,
   bodyLgExtraBold,
   bodyLgBoldLoose,
+  bodyLgBoldTight,
   bodyLgBold,
   bodyLgMedium,
   bodyLgTight,
@@ -308,6 +316,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   TextStyle get titleMdLight => resolve(BalunTextStyleToken.titleMdLight);
   TextStyle get bodyLgExtraBold => resolve(BalunTextStyleToken.bodyLgExtraBold);
   TextStyle get bodyLgBoldLoose => resolve(BalunTextStyleToken.bodyLgBoldLoose);
+  TextStyle get bodyLgBoldTight => resolve(BalunTextStyleToken.bodyLgBoldTight);
   TextStyle get bodyLgBold => resolve(BalunTextStyleToken.bodyLgBold);
   TextStyle get bodyLgMedium => resolve(BalunTextStyleToken.bodyLgMedium);
   TextStyle get bodyLgTight => resolve(BalunTextStyleToken.bodyLgTight);
