@@ -48,7 +48,7 @@ class FixturesAppBar extends StatelessWidget {
         Expanded(
           child: Text(
             text,
-            style: context.textStyles.titleLgBold,
+            style: context.textStyles.titleMdBold,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

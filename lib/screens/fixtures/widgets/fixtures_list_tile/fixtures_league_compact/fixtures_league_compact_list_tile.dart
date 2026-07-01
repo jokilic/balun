@@ -90,7 +90,7 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
                     Flexible(
                       child: Text(
                         mixOrOriginalWords(widget.league?.name) ?? '---',
-                        style: context.textStyles.bodyLgBold,
+                        style: context.textStyles.bodyMdBold,
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

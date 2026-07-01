@@ -1,4 +1,3 @@
-* Refactor background logic
 * Show penalty or extra time scores properly
 * UI updates in FixtureScreen
 * UI updates in MatchScreen
