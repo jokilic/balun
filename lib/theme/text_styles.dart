@@ -5,228 +5,228 @@ const fontFamily = 'Lufga';
 class BalunTextStyles {
   static const displayXxl = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 56,
+    fontSize: 52,
     fontWeight: FontWeight.w300,
     height: 1,
   );
 
   static const displayXl = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 40,
+    fontSize: 36,
     fontWeight: FontWeight.w300,
     height: 1,
   );
 
   static const headlineXl = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: FontWeight.w600,
   );
 
   static const headlineXlLoose = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: FontWeight.w600,
     height: 1.4,
   );
 
   static const headlineLgBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: FontWeight.w600,
   );
 
   static const headlineLg = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: FontWeight.w500,
   );
 
   static const headlineMdBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: FontWeight.w600,
   );
 
   static const headlineMd = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: FontWeight.w500,
   );
 
   static const headlineMdLight = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: FontWeight.w400,
     height: 1.2,
   );
 
   static const titleLgBoldTight = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: FontWeight.w600,
     height: 1,
   );
 
   static const titleLgBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: FontWeight.w600,
   );
 
   static const titleLgExtraBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: FontWeight.w700,
     height: 1.2,
   );
 
   static const titleLgLight = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: FontWeight.w300,
   );
 
   static const titleMdExtraBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.w700,
   );
 
   static const titleMdBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.w600,
   );
 
   static const titleMd = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.w500,
   );
 
   static const titleMdLight = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.w400,
   );
 
   static const bodyLgExtraBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.w700,
     height: 1.6,
   );
 
   static const bodyLgBoldLoose = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.w600,
     height: 1.6,
   );
 
   static const bodyLgBoldTight = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.w600,
     height: 1,
   );
 
   static const bodyLgBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.w600,
   );
 
   static const bodyLgMedium = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.w500,
   );
 
   static const bodyLgTight = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.w500,
     height: 1,
   );
 
   static const bodyLg = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.w700,
   );
 
   static const bodyLgLight = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.w300,
   );
 
   static const bodyMdExtraBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: FontWeight.w700,
   );
 
   static const bodyMdBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: FontWeight.w600,
   );
 
   static const bodyMd = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: FontWeight.w500,
   );
 
   static const bodyMdLight = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: FontWeight.w400,
   );
 
   static const labelBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: FontWeight.w600,
   );
 
   static const labelMedium = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: FontWeight.w500,
   );
 
   static const label = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: FontWeight.w400,
   );
 
   static const captionBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: FontWeight.w600,
   );
 
   static const caption = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: FontWeight.w500,
     height: 1,
   );
 
   static const microBold = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 10,
+    fontSize: 8,
     fontWeight: FontWeight.w600,
   );
 
   static const micro = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 10,
+    fontSize: 8,
     fontWeight: FontWeight.w500,
     height: 1.4,
   );
