@@ -189,23 +189,31 @@ class FixturesSuccess extends WatchingWidget {
 
                   final fixtureText = getCompactFixtureText(
                     statusShort: fixture.fixture?.status?.short ?? '--',
-                    minutes: fixture.fixture?.status?.elapsed ?? 0,
-                    extra: fixture.fixture?.status?.extra,
                     timestamp: fixture.fixture?.timestamp,
                     homeGoals: fixture.goals?.home,
                     awayGoals: fixture.goals?.away,
-                    context: context,
+                    homeGoalsExtraTime: fixture.score?.extratime?.home,
+                    awayGoalsExtraTime: fixture.score?.extratime?.away,
+                    homeGoalsPenalties: fixture.score?.penalty?.home,
+                    awayGoalsPenalties: fixture.score?.penalty?.away,
+                    languageTag: context.locale.toLanguageTag(),
                   );
 
                   return FixturesCompactListTile(
                     fixture: fixture,
-                    homeScore: fixtureText.homeScore,
-                    awayScore: fixtureText.awayScore,
+                    homeScoreRegular: fixtureText.homeScoreRegular,
+                    awayScoreRegular: fixtureText.awayScoreRegular,
+                    homeScoreExtraTime: fixtureText.homeScoreExtraTime,
+                    awayScoreExtraTime: fixtureText.awayScoreExtraTime,
+                    homeScorePenalties: fixtureText.homeScorePenalties,
+                    awayScorePenalties: fixtureText.awayScorePenalties,
                     status: fixtureText.status,
                     time: fixtureText.time,
                     fixturePlaying: isMatchPlaying(
                       statusShort: fixture.fixture?.status?.short ?? '--',
                     ),
+                    fixtureFinishedExtraTime: fixtureText.isFinishedExtraTime ?? false,
+                    fixtureFinishedPenalties: fixtureText.isFinishedPenalties ?? false,
                     onFixturePressed: fixture.fixture?.id != null
                         ? () {
                             HapticFeedback.lightImpact();
@@ -262,23 +270,31 @@ class FixturesSuccess extends WatchingWidget {
 
                   final fixtureText = getCompactFixtureText(
                     statusShort: fixture.fixture?.status?.short ?? '--',
-                    minutes: fixture.fixture?.status?.elapsed ?? 0,
-                    extra: fixture.fixture?.status?.extra,
                     timestamp: fixture.fixture?.timestamp,
                     homeGoals: fixture.goals?.home,
                     awayGoals: fixture.goals?.away,
-                    context: context,
+                    homeGoalsExtraTime: fixture.score?.extratime?.home,
+                    awayGoalsExtraTime: fixture.score?.extratime?.away,
+                    homeGoalsPenalties: fixture.score?.penalty?.home,
+                    awayGoalsPenalties: fixture.score?.penalty?.away,
+                    languageTag: context.locale.toLanguageTag(),
                   );
 
                   return FixturesCompactListTile(
                     fixture: fixture,
-                    homeScore: fixtureText.homeScore,
-                    awayScore: fixtureText.awayScore,
+                    homeScoreRegular: fixtureText.homeScoreRegular,
+                    awayScoreRegular: fixtureText.awayScoreRegular,
+                    homeScoreExtraTime: fixtureText.homeScoreExtraTime,
+                    awayScoreExtraTime: fixtureText.awayScoreExtraTime,
+                    homeScorePenalties: fixtureText.homeScorePenalties,
+                    awayScorePenalties: fixtureText.awayScorePenalties,
                     status: fixtureText.status,
                     time: fixtureText.time,
                     fixturePlaying: isMatchPlaying(
                       statusShort: fixture.fixture?.status?.short ?? '--',
                     ),
+                    fixtureFinishedExtraTime: fixtureText.isFinishedExtraTime ?? false,
+                    fixtureFinishedPenalties: fixtureText.isFinishedPenalties ?? false,
                     onFixturePressed: fixture.fixture?.id != null
                         ? () {
                             HapticFeedback.lightImpact();

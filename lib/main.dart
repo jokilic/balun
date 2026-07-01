@@ -45,7 +45,7 @@ Future<void> main() async {
   initializeServices(
     enableRemoteSettings: !kDebugMode && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS),
     enablePeriodicFetching: !kDebugMode,
-    useDioInterceptors: false,
+    useDioInterceptors: true,
   );
 
   /// Initialize date formatting and `timeago` messages

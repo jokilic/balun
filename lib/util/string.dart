@@ -1,7 +1,6 @@
 // ignore_for_file: equal_keys_in_map
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 
 import '../models/fixtures/statistic/statistic_data.dart';
 import 'date_time.dart';
@@ -61,61 +60,130 @@ String replaceSpecialSymbolsWithStandardLetters(String input) {
   );
 }
 
-({String? homeScore, String? awayScore, String? status, String? time}) getCompactFixtureText({
+({
+  String? homeScoreRegular,
+  String? awayScoreRegular,
+  String? homeScoreExtraTime,
+  String? awayScoreExtraTime,
+  String? homeScorePenalties,
+  String? awayScorePenalties,
+  String? status,
+  String? time,
+  bool? isFinishedExtraTime,
+  bool? isFinishedPenalties,
+})
+getCompactFixtureText({
   required String statusShort,
-  required int minutes,
-  required int? extra,
   required DateTime? timestamp,
   required int? homeGoals,
   required int? awayGoals,
-  required BuildContext context,
+  required int? homeGoalsExtraTime,
+  required int? awayGoalsExtraTime,
+  required int? homeGoalsPenalties,
+  required int? awayGoalsPenalties,
+  required String languageTag,
 }) {
+  /// Generate `regular score` variables
+  final homeScoreRegular = homeGoals != null && awayGoals != null ? '$homeGoals' : null;
+  final awayScoreRegular = homeGoals != null && awayGoals != null ? '$awayGoals' : null;
+
+  /// Generate `extra time score` variables
+  final homeScoreExtraTime = homeGoalsExtraTime != null && awayGoalsExtraTime != null ? '$homeGoalsExtraTime' : null;
+  final awayScoreExtraTime = homeGoalsExtraTime != null && awayGoalsExtraTime != null ? '$awayGoalsExtraTime' : null;
+
+  /// Generate `penalties score` variables
+  final homeScorePenalties = homeGoalsPenalties != null && awayGoalsPenalties != null ? '$homeGoalsPenalties' : null;
+  final awayScorePenalties = homeGoalsPenalties != null && awayGoalsPenalties != null ? '$awayGoalsPenalties' : null;
+
+  /// Generate `status` variables
   final matchNotStarted = isMatchNotStarted(
     statusShort: statusShort,
   );
+  final finishedExtraTime = isMatchFinishedExtraTime(
+    statusShort: statusShort,
+  );
+  final finishedPenalties = isMatchFinishedPenalties(
+    statusShort: statusShort,
+  );
 
+  /// Return `time`
   if (matchNotStarted && timestamp != null) {
     final time = DateFormat(
       'HH:mm',
-      context.locale.toLanguageTag(),
+      languageTag,
     ).format(parseTimestamp(timestamp)!);
 
     return (
-      homeScore: null,
-      awayScore: null,
+      homeScoreRegular: null,
+      awayScoreRegular: null,
+      homeScoreExtraTime: null,
+      awayScoreExtraTime: null,
+      homeScorePenalties: null,
+      awayScorePenalties: null,
       status: null,
       time: time,
+      isFinishedExtraTime: false,
+      isFinishedPenalties: false,
     );
   }
 
-  if (homeGoals != null && awayGoals != null) {
+  /// Return `scores`
+  if (homeScoreRegular != null && awayScoreRegular != null) {
     return (
-      homeScore: '$homeGoals',
-      awayScore: '$awayGoals',
+      homeScoreRegular: homeScoreRegular,
+      awayScoreRegular: awayScoreRegular,
+      homeScoreExtraTime: finishedExtraTime || finishedPenalties ? homeScoreExtraTime : null,
+      awayScoreExtraTime: finishedExtraTime || finishedPenalties ? awayScoreExtraTime : null,
+      homeScorePenalties: finishedPenalties ? homeScorePenalties : null,
+      awayScorePenalties: finishedPenalties ? awayScorePenalties : null,
       status: null,
       time: null,
+      isFinishedExtraTime: finishedExtraTime,
+      isFinishedPenalties: finishedPenalties,
     );
   }
 
+  /// Return `status`
   final status = getMatchStatusShortOrNull(
     statusShort: statusShort,
   )?.toUpperCase();
 
   return (
-    homeScore: null,
-    awayScore: null,
+    homeScoreRegular: null,
+    awayScoreRegular: null,
+    homeScoreExtraTime: null,
+    awayScoreExtraTime: null,
+    homeScorePenalties: null,
+    awayScorePenalties: null,
     status: status,
     time: null,
+    isFinishedExtraTime: false,
+    isFinishedPenalties: false,
   );
 }
 
 bool isMatchPlaying({
   required String statusShort,
-}) => statusShort == '1H' || statusShort == 'HT' || statusShort == '2H' || statusShort == 'ET' || statusShort == 'BT' || statusShort == 'P' || statusShort == 'LIVE';
+}) =>
+    statusShort.toUpperCase() == '1H' ||
+    statusShort.toUpperCase() == 'HT' ||
+    statusShort.toUpperCase() == '2H' ||
+    statusShort.toUpperCase() == 'ET' ||
+    statusShort.toUpperCase() == 'BT' ||
+    statusShort.toUpperCase() == 'P' ||
+    statusShort.toUpperCase() == 'LIVE';
 
-bool isMatchNotStarted({required String statusShort}) => statusShort == 'TBD' || statusShort == 'NS';
+bool isMatchNotStarted({required String statusShort}) => statusShort.toUpperCase() == 'TBD' || statusShort.toUpperCase() == 'NS';
 
-bool isMatchFinished({required String statusShort}) => statusShort == 'FT' || statusShort == 'AET' || statusShort == 'PEN';
+bool isMatchFinished({required String statusShort}) => statusShort.toUpperCase() == 'FT' || statusShort.toUpperCase() == 'AET' || statusShort.toUpperCase() == 'PEN';
+
+bool isMatchFinishedExtraTime({
+  required String statusShort,
+}) => statusShort.toUpperCase() == 'AET';
+
+bool isMatchFinishedPenalties({
+  required String statusShort,
+}) => statusShort.toUpperCase() == 'PEN';
 
 String getMatchStatusLong(String statusShort) => switch (statusShort.toUpperCase()) {
   'TBD' => 'matchStatusTBD'.tr(),
