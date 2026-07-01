@@ -99,6 +99,13 @@ class BalunTextStyles {
     fontWeight: FontWeight.w600,
   );
 
+  static const titleMdBoldTight = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    height: 1,
+  );
+
   static const titleMd = TextStyle(
     fontFamily: fontFamily,
     fontSize: 18,
@@ -123,13 +130,6 @@ class BalunTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w600,
     height: 1.6,
-  );
-
-  static const bodyLgBoldTight = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 16,
-    fontWeight: FontWeight.w600,
-    height: 1,
   );
 
   static const bodyLgBold = TextStyle(
@@ -247,12 +247,12 @@ enum BalunTextStyleToken {
   titleLgExtraBold,
   titleLgLight,
   titleMdExtraBold,
+  titleMdBoldTight,
   titleMdBold,
   titleMd,
   titleMdLight,
   bodyLgExtraBold,
   bodyLgBoldLoose,
-  bodyLgBoldTight,
   bodyLgBold,
   bodyLgMedium,
   bodyLgTight,
@@ -312,11 +312,11 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
   TextStyle get titleLgLight => resolve(BalunTextStyleToken.titleLgLight);
   TextStyle get titleMdExtraBold => resolve(BalunTextStyleToken.titleMdExtraBold);
   TextStyle get titleMdBold => resolve(BalunTextStyleToken.titleMdBold);
+  TextStyle get titleMdBoldTight => resolve(BalunTextStyleToken.titleMdBoldTight);
   TextStyle get titleMd => resolve(BalunTextStyleToken.titleMd);
   TextStyle get titleMdLight => resolve(BalunTextStyleToken.titleMdLight);
   TextStyle get bodyLgExtraBold => resolve(BalunTextStyleToken.bodyLgExtraBold);
   TextStyle get bodyLgBoldLoose => resolve(BalunTextStyleToken.bodyLgBoldLoose);
-  TextStyle get bodyLgBoldTight => resolve(BalunTextStyleToken.bodyLgBoldTight);
   TextStyle get bodyLgBold => resolve(BalunTextStyleToken.bodyLgBold);
   TextStyle get bodyLgMedium => resolve(BalunTextStyleToken.bodyLgMedium);
   TextStyle get bodyLgTight => resolve(BalunTextStyleToken.bodyLgTight);

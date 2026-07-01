@@ -72,7 +72,7 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
               Expanded(
                 child: Text(
                   mixOrOriginalWords(widget.league?.name) ?? '---',
-                  style: context.textStyles.bodyMdBold,
+                  style: context.textStyles.bodyLgBold,
                   textAlign: TextAlign.left,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

@@ -263,6 +263,9 @@ class BalunTheme {
       BalunTextStyleToken.titleMdExtraBold: BalunTextStyles.titleMdExtraBold.copyWith(
         color: colors.primaryForeground,
       ),
+      BalunTextStyleToken.titleMdBoldTight: BalunTextStyles.titleMdBoldTight.copyWith(
+        color: colors.primaryForeground,
+      ),
       BalunTextStyleToken.titleMdBold: BalunTextStyles.titleMdBold.copyWith(
         color: colors.primaryForeground,
       ),
@@ -276,9 +279,6 @@ class BalunTheme {
         color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyLgBoldLoose: BalunTextStyles.bodyLgBoldLoose.copyWith(
-        color: colors.primaryForeground,
-      ),
-      BalunTextStyleToken.bodyLgBoldTight: BalunTextStyles.bodyLgBoldTight.copyWith(
         color: colors.primaryForeground,
       ),
       BalunTextStyleToken.bodyLgBold: BalunTextStyles.bodyLgBold.copyWith(
