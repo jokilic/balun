@@ -16,14 +16,30 @@ import 'fixtures_list_tile_minute.dart';
 
 class FixturesListTile extends StatelessWidget {
   final FixtureResponse fixture;
+  final String? homeScoreRegular;
+  final String? awayScoreRegular;
+  final String? homeScoreExtraTime;
+  final String? awayScoreExtraTime;
+  final String? homeScorePenalties;
+  final String? awayScorePenalties;
   final bool fixturePlaying;
+  final bool fixtureFinishedExtraTime;
+  final bool fixtureFinishedPenalties;
   final Function()? onFixturePressed;
   final Function()? onFixtureLongPressed;
   final bool isFavorited;
 
   const FixturesListTile({
     required this.fixture,
+    required this.homeScoreRegular,
+    required this.awayScoreRegular,
+    required this.homeScoreExtraTime,
+    required this.awayScoreExtraTime,
+    required this.homeScorePenalties,
+    required this.awayScorePenalties,
     required this.fixturePlaying,
+    required this.fixtureFinishedExtraTime,
+    required this.fixtureFinishedPenalties,
     required this.onFixturePressed,
     required this.onFixtureLongPressed,
     required this.isFavorited,

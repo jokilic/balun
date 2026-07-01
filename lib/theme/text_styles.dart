@@ -5,14 +5,14 @@ const fontFamily = 'Lufga';
 class BalunTextStyles {
   static const displayXxl = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 52,
+    fontSize: 42,
     fontWeight: FontWeight.w300,
     height: 1,
   );
 
   static const displayXl = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 36,
+    fontSize: 32,
     fontWeight: FontWeight.w300,
     height: 1,
   );

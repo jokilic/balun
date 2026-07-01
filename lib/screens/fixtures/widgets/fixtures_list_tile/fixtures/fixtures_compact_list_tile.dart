@@ -100,13 +100,11 @@ class FixturesCompactListTile extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: context.colors.success,
+              color: context.colors.datePickerActiveBackground,
             ),
             child: Text(
               'fixturesPenalties'.tr(),
-              style: context.textStyles.labelBold.copyWith(
-                color: context.colors.primaryBackground,
-              ),
+              style: context.textStyles.labelBold,
             ),
           ),
           const SizedBox(width: 6),
@@ -129,13 +127,11 @@ class FixturesCompactListTile extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: context.colors.success,
+              color: context.colors.datePickerActiveBackground,
             ),
             child: Text(
               'fixturesExtraTime'.tr(),
-              style: context.textStyles.labelBold.copyWith(
-                color: context.colors.navigationBarItemBackground,
-              ),
+              style: context.textStyles.labelBold,
             ),
           ),
           const SizedBox(width: 6),
