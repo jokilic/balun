@@ -80,7 +80,9 @@ class MatchMainInfo extends WatchingWidget {
         ),
       ],
     ),
-    style: context.textStyles.displayXxxl,
+    style: context.textStyles.displayXxxl.copyWith(
+      letterSpacing: 2,
+    ),
     textAlign: TextAlign.center,
   );
 

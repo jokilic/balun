@@ -80,7 +80,9 @@ class FixturesListTile extends StatelessWidget {
           ),
         ],
       ),
-      style: context.textStyles.displayXxl,
+      style: context.textStyles.displayXxl.copyWith(
+        letterSpacing: 2,
+      ),
       textAlign: TextAlign.center,
     ),
   );
