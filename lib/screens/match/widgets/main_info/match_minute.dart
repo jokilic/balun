@@ -17,14 +17,11 @@ class MatchMinute extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(
       horizontal: 16,
-      vertical: 6,
+      vertical: 8,
     ),
     decoration: BoxDecoration(
+      color: context.colors.primaryBackgroundLight,
       borderRadius: BorderRadius.circular(100),
-      border: Border.all(
-        color: context.colors.primaryForeground.withValues(alpha: 0.2),
-        width: 1.5,
-      ),
     ),
     child: Stack(
       alignment: Alignment.center,
@@ -36,7 +33,7 @@ class MatchMinute extends StatelessWidget {
         if (timeBeforeMatch != null)
           Text(
             timeBeforeMatch!,
-            style: context.textStyles.titleLgLightMuted,
+            style: context.textStyles.titleMdBoldTight,
             textAlign: TextAlign.center,
           )
         ///
@@ -45,7 +42,7 @@ class MatchMinute extends StatelessWidget {
         else if (textStatus != null)
           Text(
             textStatus!.toUpperCase(),
-            style: context.textStyles.titleLgLightMuted,
+            style: context.textStyles.titleMdBoldTight,
             textAlign: TextAlign.center,
           )
         ///
@@ -54,14 +51,14 @@ class MatchMinute extends StatelessWidget {
         else if (minutes != null && minutes?.extra == null) ...[
           Text(
             minutes!.minutes.toString(),
-            style: context.textStyles.titleLgLightMuted,
+            style: context.textStyles.titleMdBoldTight,
             textAlign: TextAlign.center,
           ),
           Positioned(
             right: -6,
             child: Text(
               "'",
-              style: context.textStyles.titleLgLightMuted,
+              style: context.textStyles.titleMdBoldTight,
               textAlign: TextAlign.center,
             ),
           ),
@@ -76,12 +73,12 @@ class MatchMinute extends StatelessWidget {
             children: [
               Text(
                 minutes!.minutes.toString(),
-                style: context.textStyles.titleLgLightMuted,
+                style: context.textStyles.titleMdBoldTight,
                 textAlign: TextAlign.center,
               ),
               Text(
                 "'",
-                style: context.textStyles.titleLgLightMuted,
+                style: context.textStyles.titleMdBoldTight,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(width: 2),

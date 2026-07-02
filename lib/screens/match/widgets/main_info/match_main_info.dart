@@ -191,7 +191,7 @@ class MatchMainInfo extends WatchingWidget {
             ),
           ),
 
-          const SizedBox(height: 48),
+          const SizedBox(height: 40),
 
           ///
           /// LOGOS, TEAM NAMES & MINUTE
@@ -225,7 +225,7 @@ class MatchMainInfo extends WatchingWidget {
                           logo: match.teams?.home?.logo ?? BalunIcons.placeholderTeam,
                         ),
 
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 8),
 
                         ///
                         /// HOME NAME
@@ -249,7 +249,7 @@ class MatchMainInfo extends WatchingWidget {
               Expanded(
                 child: Column(
                   children: [
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 24),
                     MatchMinute(
                       minutes: getMatchMinutesOrNull(
                         statusShort: match.fixture?.status?.short ?? '--',
@@ -304,7 +304,7 @@ class MatchMainInfo extends WatchingWidget {
                           logo: match.teams?.away?.logo ?? BalunIcons.placeholderTeam,
                         ),
 
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 8),
 
                         ///
                         /// AWAY NAME
@@ -324,7 +324,7 @@ class MatchMainInfo extends WatchingWidget {
             ],
           ),
 
-          const SizedBox(height: 16),
+          const SizedBox(height: 28),
 
           ///
           /// SCORE & GOALSCORERS
