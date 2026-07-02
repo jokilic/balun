@@ -221,6 +221,9 @@ class BalunTheme {
     required Color onPrimaryColor,
   }) => BalunTextThemesExtension(
     styles: {
+      BalunTextStyleToken.displayXxxl: BalunTextStyles.displayXxxl.copyWith(
+        color: colors.primaryForeground,
+      ),
       BalunTextStyleToken.displayXxl: BalunTextStyles.displayXxl.copyWith(
         color: colors.primaryForeground,
       ),

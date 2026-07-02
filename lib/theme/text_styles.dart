@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 const fontFamily = 'Lufga';
 
 class BalunTextStyles {
+  static const displayXxxl = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 48,
+    fontWeight: FontWeight.w400,
+    height: 1,
+  );
+
   static const displayXxl = TextStyle(
     fontFamily: fontFamily,
     fontSize: 40,
@@ -233,6 +240,7 @@ class BalunTextStyles {
 }
 
 enum BalunTextStyleToken {
+  displayXxxl,
   displayXxl,
   displayXl,
   headlineXl,
@@ -297,6 +305,7 @@ class BalunTextThemesExtension extends ThemeExtension<BalunTextThemesExtension> 
 
   TextStyle resolve(BalunTextStyleToken token) => styles[token]!;
 
+  TextStyle get displayXxxl => resolve(BalunTextStyleToken.displayXxxl);
   TextStyle get displayXxl => resolve(BalunTextStyleToken.displayXxl);
   TextStyle get displayXl => resolve(BalunTextStyleToken.displayXl);
   TextStyle get headlineXl => resolve(BalunTextStyleToken.headlineXl);

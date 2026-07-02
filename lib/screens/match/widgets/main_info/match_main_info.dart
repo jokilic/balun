@@ -26,16 +26,112 @@ import 'match_minute.dart';
 
 class MatchMainInfo extends WatchingWidget {
   final FixtureResponse match;
+  final String? homeScoreRegular;
+  final String? awayScoreRegular;
+  final String? homeScoreExtraTime;
+  final String? awayScoreExtraTime;
+  final String? homeScorePenalties;
+  final String? awayScorePenalties;
   final bool matchPlaying;
+  final bool matchFinishedExtraTime;
+  final bool matchFinishedPenalties;
 
   const MatchMainInfo({
     required this.match,
+    required this.homeScoreRegular,
+    required this.awayScoreRegular,
+    required this.homeScoreExtraTime,
+    required this.awayScoreExtraTime,
+    required this.homeScorePenalties,
+    required this.awayScorePenalties,
     required this.matchPlaying,
+    required this.matchFinishedExtraTime,
+    required this.matchFinishedPenalties,
   });
+
+  Widget getTextWidget(BuildContext context) => Text.rich(
+    TextSpan(
+      children: [
+        TextSpan(text: '${match.goals?.home ?? '-'}'),
+        TextSpan(
+          text: ':',
+          style: context.textStyles.displayXxxl.copyWith(
+            color: context.colors.primaryForeground.withValues(alpha: 0.2),
+          ),
+        ),
+        TextSpan(text: '${match.goals?.away ?? '-'}'),
+      ],
+    ),
+    style: context.textStyles.displayXxxl,
+    textAlign: TextAlign.center,
+  );
+
+  Widget? getBottomTextWidget(BuildContext context) {
+    /// Return penalties
+    if (matchFinishedPenalties && (homeScorePenalties?.isNotEmpty ?? false) && (awayScorePenalties?.isNotEmpty ?? false)) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 2,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: context.colors.datePickerActiveBackground.withValues(alpha: 0.5),
+            ),
+            child: Text(
+              'fixturesPenalties'.tr(),
+              style: context.textStyles.bodyLgBold,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            '$homeScorePenalties:$awayScorePenalties',
+            style: context.textStyles.bodyLgBold,
+          ),
+        ],
+      );
+    }
+
+    /// Return extra time
+    if (matchFinishedExtraTime && (homeScoreExtraTime?.isNotEmpty ?? false) && (awayScoreExtraTime?.isNotEmpty ?? false)) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 2,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: context.colors.datePickerActiveBackground.withValues(alpha: 0.5),
+            ),
+            child: Text(
+              'fixturesExtraTime'.tr(),
+              style: context.textStyles.bodyLgBold,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            '$homeScoreExtraTime:$awayScoreExtraTime',
+            style: context.textStyles.bodyLgBold,
+          ),
+        ],
+      );
+    }
+
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
     final favoritedMatches = watchIt<MatchStorageService>().value;
+
+    final textWidget = getTextWidget(context);
+    final bottomTextWidget = getBottomTextWidget(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -291,8 +387,13 @@ class MatchMainInfo extends WatchingWidget {
               ///
               Expanded(
                 flex: 3,
-                child: matchPlaying
-                    ? Animate(
+                child: Column(
+                  children: [
+                    ///
+                    /// MAIN TEXT
+                    ///
+                    if (matchPlaying)
+                      Animate(
                         onPlay: (controller) => controller.loop(
                           reverse: true,
                           min: 0.3,
@@ -303,39 +404,20 @@ class MatchMainInfo extends WatchingWidget {
                             duration: BalunConstants.shimmerDuration,
                           ),
                         ],
-                        child: Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(text: '${match.goals?.home ?? '-'}'),
-                              TextSpan(
-                                text: ':',
-                                style: context.textStyles.displayXxl.copyWith(
-                                  color: context.colors.primaryForeground.withValues(alpha: 0.2),
-                                ),
-                              ),
-                              TextSpan(text: '${match.goals?.away ?? '-'}'),
-                            ],
-                          ),
-                          style: context.textStyles.displayXxl,
-                          textAlign: TextAlign.center,
-                        ),
+                        child: textWidget,
                       )
-                    : Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(text: '${match.goals?.home ?? '-'}'),
-                            TextSpan(
-                              text: ':',
-                              style: context.textStyles.displayXxl.copyWith(
-                                color: context.colors.primaryForeground.withValues(alpha: 0.2),
-                              ),
-                            ),
-                            TextSpan(text: '${match.goals?.away ?? '-'}'),
-                          ],
-                        ),
-                        style: context.textStyles.displayXxl,
-                        textAlign: TextAlign.center,
-                      ),
+                    else
+                      textWidget,
+
+                    ///
+                    /// BOTTOM TEXT
+                    ///
+                    if (bottomTextWidget != null) ...[
+                      const SizedBox(height: 8),
+                      bottomTextWidget,
+                    ],
+                  ],
+                ),
               ),
 
               ///
