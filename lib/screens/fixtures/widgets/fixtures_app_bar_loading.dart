@@ -37,7 +37,7 @@ class FixturesAppBarLoading extends StatelessWidget {
         /// TEXT
         ///
         Container(
-          height: 24,
+          height: 20,
           width: getRandomNumberFromBase(200),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),

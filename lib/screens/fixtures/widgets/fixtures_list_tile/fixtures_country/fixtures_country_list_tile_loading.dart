@@ -27,7 +27,7 @@ class FixturesCountryListTileLoading extends StatelessWidget {
         ),
         const SizedBox(width: 16),
         Container(
-          height: 24,
+          height: 20,
           width: getRandomNumberFromBase(200),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
