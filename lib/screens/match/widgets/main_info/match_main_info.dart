@@ -344,7 +344,13 @@ class MatchMainInfo extends WatchingWidget {
                     if (match.events?.isNotEmpty ?? false)
                       ...match.events!
                           .where(
-                            (event) => event.team?.id == match.teams?.home?.id && event.type?.toLowerCase() == 'goal' && event.detail?.toLowerCase() != 'missed penalty',
+                            (event) {
+                              final isGoal = event.team?.id == match.teams?.home?.id && event.type?.toLowerCase() == 'goal' && event.detail?.toLowerCase() != 'missed penalty';
+
+                              final isGoalFromPenaltyShootout = isGoal && event.comments?.toLowerCase() == 'penalty shootout';
+
+                              return isGoal && !isGoalFromPenaltyShootout;
+                            },
                           )
                           .map(
                             (event) {
@@ -450,7 +456,13 @@ class MatchMainInfo extends WatchingWidget {
                     if (match.events?.isNotEmpty ?? false)
                       ...match.events!
                           .where(
-                            (event) => event.team?.id == match.teams?.away?.id && event.type?.toLowerCase() == 'goal' && event.detail?.toLowerCase() != 'missed penalty',
+                            (event) {
+                              final isGoal = event.team?.id == match.teams?.away?.id && event.type?.toLowerCase() == 'goal' && event.detail?.toLowerCase() != 'missed penalty';
+
+                              final isGoalFromPenaltyShootout = isGoal && event.comments?.toLowerCase() == 'penalty shootout';
+
+                              return isGoal && !isGoalFromPenaltyShootout;
+                            },
                           )
                           .map(
                             (event) {
