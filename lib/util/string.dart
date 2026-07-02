@@ -75,8 +75,8 @@ String replaceSpecialSymbolsWithStandardLetters(String input) {
 getFixtureListTileText({
   required String statusShort,
   required DateTime? timestamp,
-  required int? homeGoals,
-  required int? awayGoals,
+  required int? homeGoalsRegular,
+  required int? awayGoalsRegular,
   required int? homeGoalsExtraTime,
   required int? awayGoalsExtraTime,
   required int? homeGoalsPenalties,
@@ -84,8 +84,8 @@ getFixtureListTileText({
   required String languageTag,
 }) {
   /// Generate `regular score` variables
-  final homeScoreRegular = homeGoals != null && awayGoals != null ? '$homeGoals' : null;
-  final awayScoreRegular = homeGoals != null && awayGoals != null ? '$awayGoals' : null;
+  final homeScoreRegular = homeGoalsRegular != null && awayGoalsRegular != null ? '$homeGoalsRegular' : null;
+  final awayScoreRegular = homeGoalsRegular != null && awayGoalsRegular != null ? '$awayGoalsRegular' : null;
 
   /// Generate `extra time score` variables
   final homeScoreExtraTime = homeGoalsExtraTime != null && awayGoalsExtraTime != null ? '$homeGoalsExtraTime' : null;

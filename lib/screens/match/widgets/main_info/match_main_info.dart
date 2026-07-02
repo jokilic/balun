@@ -35,6 +35,8 @@ class MatchMainInfo extends WatchingWidget {
   final bool matchPlaying;
   final bool matchFinishedExtraTime;
   final bool matchFinishedPenalties;
+  final bool isHomeWinner;
+  final bool isAwayWinner;
 
   const MatchMainInfo({
     required this.match,
@@ -47,19 +49,35 @@ class MatchMainInfo extends WatchingWidget {
     required this.matchPlaying,
     required this.matchFinishedExtraTime,
     required this.matchFinishedPenalties,
+    required this.isHomeWinner,
+    required this.isAwayWinner,
   });
 
   Widget getTextWidget(BuildContext context) => Text.rich(
     TextSpan(
       children: [
-        TextSpan(text: '${match.goals?.home ?? '-'}'),
+        TextSpan(
+          text: homeScoreRegular ?? '-',
+          style: context.textStyles.displayXxxl.copyWith(
+            color: context.colors.primaryForeground.withValues(
+              alpha: (!isHomeWinner && !isAwayWinner) || isHomeWinner ? 1 : 0.4,
+            ),
+          ),
+        ),
         TextSpan(
           text: ':',
           style: context.textStyles.displayXxxl.copyWith(
             color: context.colors.primaryForeground.withValues(alpha: 0.2),
           ),
         ),
-        TextSpan(text: '${match.goals?.away ?? '-'}'),
+        TextSpan(
+          text: awayScoreRegular ?? '-',
+          style: context.textStyles.displayXxxl.copyWith(
+            color: context.colors.primaryForeground.withValues(
+              alpha: (!isHomeWinner && !isAwayWinner) || isAwayWinner ? 1 : 0.4,
+            ),
+          ),
+        ),
       ],
     ),
     style: context.textStyles.displayXxxl,

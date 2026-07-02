@@ -25,6 +25,8 @@ class FixturesListTile extends StatelessWidget {
   final bool fixturePlaying;
   final bool fixtureFinishedExtraTime;
   final bool fixtureFinishedPenalties;
+  final bool isHomeWinner;
+  final bool isAwayWinner;
   final Function()? onFixturePressed;
   final Function()? onFixtureLongPressed;
   final bool isFavorited;
@@ -40,6 +42,8 @@ class FixturesListTile extends StatelessWidget {
     required this.fixturePlaying,
     required this.fixtureFinishedExtraTime,
     required this.fixtureFinishedPenalties,
+    required this.isHomeWinner,
+    required this.isAwayWinner,
     required this.onFixturePressed,
     required this.onFixtureLongPressed,
     required this.isFavorited,
@@ -52,14 +56,28 @@ class FixturesListTile extends StatelessWidget {
     child: Text.rich(
       TextSpan(
         children: [
-          TextSpan(text: homeScoreRegular ?? '-'),
+          TextSpan(
+            text: homeScoreRegular ?? '-',
+            style: context.textStyles.displayXxl.copyWith(
+              color: context.colors.primaryForeground.withValues(
+                alpha: (!isHomeWinner && !isAwayWinner) || isHomeWinner ? 1 : 0.5,
+              ),
+            ),
+          ),
           TextSpan(
             text: ':',
             style: context.textStyles.displayXxl.copyWith(
               color: context.colors.primaryForeground.withValues(alpha: 0.2),
             ),
           ),
-          TextSpan(text: awayScoreRegular ?? '-'),
+          TextSpan(
+            text: awayScoreRegular ?? '-',
+            style: context.textStyles.displayXxl.copyWith(
+              color: context.colors.primaryForeground.withValues(
+                alpha: (!isHomeWinner && !isAwayWinner) || isAwayWinner ? 1 : 0.4,
+              ),
+            ),
+          ),
         ],
       ),
       style: context.textStyles.displayXxl,
@@ -259,7 +277,7 @@ class FixturesListTile extends StatelessWidget {
                             /// BOTTOM TEXT
                             ///
                             if (bottomTextWidget != null) ...[
-                              const SizedBox(height: 8),
+                              const SizedBox(height: 6),
                               bottomTextWidget,
                             ],
                           ],

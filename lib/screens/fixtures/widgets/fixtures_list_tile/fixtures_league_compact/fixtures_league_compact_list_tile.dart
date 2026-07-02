@@ -148,8 +148,8 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
                   final fixtureText = getFixtureListTileText(
                     statusShort: fixture.fixture?.status?.short ?? '--',
                     timestamp: fixture.fixture?.timestamp,
-                    homeGoals: fixture.goals?.home,
-                    awayGoals: fixture.goals?.away,
+                    homeGoalsRegular: fixture.score?.fulltime?.home ?? fixture.goals?.home,
+                    awayGoalsRegular: fixture.score?.fulltime?.away ?? fixture.goals?.away,
                     homeGoalsExtraTime: fixture.score?.extratime?.home,
                     awayGoalsExtraTime: fixture.score?.extratime?.away,
                     homeGoalsPenalties: fixture.score?.penalty?.home,
@@ -172,6 +172,8 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
                     ),
                     fixtureFinishedExtraTime: fixtureText.isFinishedExtraTime ?? false,
                     fixtureFinishedPenalties: fixtureText.isFinishedPenalties ?? false,
+                    isHomeWinner: fixture.teams?.home?.winner ?? false,
+                    isAwayWinner: fixture.teams?.away?.winner ?? false,
                     onFixturePressed: fixture.fixture?.id != null
                         ? () {
                             HapticFeedback.lightImpact();

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel2/sliding_up_panel2.dart';
 
@@ -55,6 +56,18 @@ class _MatchSuccessState extends State<MatchSuccess> {
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.sizeOf(context).height;
 
+    final matchText = getFixtureListTileText(
+      statusShort: widget.match.fixture?.status?.short ?? '--',
+      timestamp: widget.match.fixture?.timestamp,
+      homeGoalsRegular: widget.match.score?.fulltime?.home ?? widget.match.goals?.home,
+      awayGoalsRegular: widget.match.score?.fulltime?.away ?? widget.match.goals?.away,
+      homeGoalsExtraTime: widget.match.score?.extratime?.home,
+      awayGoalsExtraTime: widget.match.score?.extratime?.away,
+      homeGoalsPenalties: widget.match.score?.penalty?.home,
+      awayGoalsPenalties: widget.match.score?.penalty?.away,
+      languageTag: context.locale.toLanguageTag(),
+    );
+
     return Stack(
       children: [
         ///
@@ -66,9 +79,19 @@ class _MatchSuccessState extends State<MatchSuccess> {
           ),
           child: MatchMainInfo(
             match: widget.match,
+            homeScoreRegular: matchText.homeScoreRegular,
+            awayScoreRegular: matchText.awayScoreRegular,
+            homeScoreExtraTime: matchText.homeScoreExtraTime,
+            awayScoreExtraTime: matchText.awayScoreExtraTime,
+            homeScorePenalties: matchText.homeScorePenalties,
+            awayScorePenalties: matchText.awayScorePenalties,
             matchPlaying: isMatchPlaying(
               statusShort: widget.match.fixture?.status?.short ?? '--',
             ),
+            matchFinishedExtraTime: matchText.isFinishedExtraTime ?? false,
+            matchFinishedPenalties: matchText.isFinishedPenalties ?? false,
+            isHomeWinner: widget.match.teams?.home?.winner ?? false,
+            isAwayWinner: widget.match.teams?.away?.winner ?? false,
           ),
         ),
 
