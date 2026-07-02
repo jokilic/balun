@@ -187,7 +187,7 @@ class FixturesSuccess extends WatchingWidget {
                 itemBuilder: (_, itemIndex) {
                   final fixture = favoriteFixturesMatch[itemIndex];
 
-                  final fixtureText = getCompactFixtureText(
+                  final fixtureText = getFixtureListTileText(
                     statusShort: fixture.fixture?.status?.short ?? '--',
                     timestamp: fixture.fixture?.timestamp,
                     homeGoals: fixture.goals?.home,
@@ -268,7 +268,7 @@ class FixturesSuccess extends WatchingWidget {
                 itemBuilder: (_, itemIndex) {
                   final fixture = favoriteFixturesTeam[itemIndex];
 
-                  final fixtureText = getCompactFixtureText(
+                  final fixtureText = getFixtureListTileText(
                     statusShort: fixture.fixture?.status?.short ?? '--',
                     timestamp: fixture.fixture?.timestamp,
                     homeGoals: fixture.goals?.home,

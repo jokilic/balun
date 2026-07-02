@@ -92,6 +92,7 @@ class FixturesCompactListTile extends StatelessWidget {
     /// Return penalties
     if (fixtureFinishedPenalties && (homeScorePenalties?.isNotEmpty ?? false) && (awayScorePenalties?.isNotEmpty ?? false)) {
       return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             padding: const EdgeInsets.symmetric(
@@ -100,7 +101,7 @@ class FixturesCompactListTile extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: context.colors.datePickerActiveBackground,
+              color: context.colors.datePickerActiveBackground.withValues(alpha: 0.5),
             ),
             child: Text(
               'fixturesPenalties'.tr(),
@@ -119,6 +120,7 @@ class FixturesCompactListTile extends StatelessWidget {
     /// Return extra time
     if (fixtureFinishedExtraTime && (homeScoreExtraTime?.isNotEmpty ?? false) && (awayScoreExtraTime?.isNotEmpty ?? false)) {
       return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             padding: const EdgeInsets.symmetric(
@@ -127,7 +129,7 @@ class FixturesCompactListTile extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: context.colors.datePickerActiveBackground,
+              color: context.colors.datePickerActiveBackground.withValues(alpha: 0.5),
             ),
             child: Text(
               'fixturesExtraTime'.tr(),
@@ -165,7 +167,10 @@ class FixturesCompactListTile extends StatelessWidget {
             /// CONTENT
             ///
             Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 8,
+              ),
               child: Row(
                 children: [
                   ///

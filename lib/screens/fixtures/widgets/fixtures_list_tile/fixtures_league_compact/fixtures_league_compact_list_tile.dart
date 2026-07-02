@@ -145,7 +145,7 @@ class _FixturesLeagueCompactListTileState extends State<FixturesLeagueCompactLis
                 itemBuilder: (_, fixtureIndex) {
                   final fixture = widget.fixtures![fixtureIndex];
 
-                  final fixtureText = getCompactFixtureText(
+                  final fixtureText = getFixtureListTileText(
                     statusShort: fixture.fixture?.status?.short ?? '--',
                     timestamp: fixture.fixture?.timestamp,
                     homeGoals: fixture.goals?.home,

@@ -14,13 +14,10 @@ class FixturesListTileLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    height: 64,
-    width: 64,
-    decoration: BoxDecoration(
-      shape: BoxShape.circle,
-      color: context.colors.accent.withValues(alpha: 0.5),
-    ),
-    padding: const EdgeInsets.all(8),
+    height: 58,
+    width: 58,
+    color: context.colors.accent.withValues(alpha: 0.5),
+    padding: const EdgeInsets.all(6),
     child: BalunImage(
       imageUrl: logo,
       color: !hasProperLogo ? context.colors.primaryForeground : null,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -127,11 +128,31 @@ class _FixturesLeagueListTileState extends State<FixturesLeagueListTile> {
                 itemBuilder: (_, fixtureIndex) {
                   final fixture = widget.fixtures![fixtureIndex];
 
+                  final fixtureText = getFixtureListTileText(
+                    statusShort: fixture.fixture?.status?.short ?? '--',
+                    timestamp: fixture.fixture?.timestamp,
+                    homeGoals: fixture.goals?.home,
+                    awayGoals: fixture.goals?.away,
+                    homeGoalsExtraTime: fixture.score?.extratime?.home,
+                    awayGoalsExtraTime: fixture.score?.extratime?.away,
+                    homeGoalsPenalties: fixture.score?.penalty?.home,
+                    awayGoalsPenalties: fixture.score?.penalty?.away,
+                    languageTag: context.locale.toLanguageTag(),
+                  );
+
                   return FixturesListTile(
                     fixture: fixture,
+                    homeScoreRegular: fixtureText.homeScoreRegular,
+                    awayScoreRegular: fixtureText.awayScoreRegular,
+                    homeScoreExtraTime: fixtureText.homeScoreExtraTime,
+                    awayScoreExtraTime: fixtureText.awayScoreExtraTime,
+                    homeScorePenalties: fixtureText.homeScorePenalties,
+                    awayScorePenalties: fixtureText.awayScorePenalties,
                     fixturePlaying: isMatchPlaying(
                       statusShort: fixture.fixture?.status?.short ?? '--',
                     ),
+                    fixtureFinishedExtraTime: fixtureText.isFinishedExtraTime ?? false,
+                    fixtureFinishedPenalties: fixtureText.isFinishedPenalties ?? false,
                     onFixturePressed: fixture.fixture?.id != null
                         ? () {
                             HapticFeedback.lightImpact();

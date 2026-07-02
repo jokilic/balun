@@ -72,7 +72,7 @@ String replaceSpecialSymbolsWithStandardLetters(String input) {
   bool? isFinishedExtraTime,
   bool? isFinishedPenalties,
 })
-getCompactFixtureText({
+getFixtureListTileText({
   required String statusShort,
   required DateTime? timestamp,
   required int? homeGoals,

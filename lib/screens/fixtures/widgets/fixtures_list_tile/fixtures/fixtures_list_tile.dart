@@ -45,189 +45,266 @@ class FixturesListTile extends StatelessWidget {
     required this.isFavorited,
   });
 
-  @override
-  Widget build(BuildContext context) => BalunButton(
-    onPressed: onFixturePressed,
-    onLongPressed: onFixtureLongPressed,
-    child: Container(
-      decoration: BoxDecoration(
-        color: context.colors.fixtureListTileBackground,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Stack(
+  Widget getTextWidget(BuildContext context) => Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(100),
+    ),
+    child: Text.rich(
+      TextSpan(
         children: [
-          ///
-          /// CONTENT
-          ///
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 16,
-            ),
-            child: Column(
-              children: [
-                ///
-                /// LOGOS & MINUTE
-                ///
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ///
-                    /// HOME LOGO
-                    ///
-                    FixturesListTileLogo(
-                      logo: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
-                      hasProperLogo: fixture.teams?.home?.logo != null,
-                    ),
-
-                    ///
-                    /// MINUTE
-                    ///
-                    Flexible(
-                      child: FixturesListTileMinute(
-                        minutes: getMatchMinutesOrNull(
-                          statusShort: fixture.fixture?.status?.short ?? '--',
-                          minutes: fixture.fixture?.status?.elapsed ?? 0,
-                          extra: fixture.fixture?.status?.extra,
-                        ),
-                        textStatus: getMatchStatusShortOrNull(
-                          statusShort: fixture.fixture?.status?.short ?? '--',
-                        ),
-                        timeBeforeMatch:
-                            isMatchNotStarted(
-                                  statusShort: fixture.fixture?.status?.short ?? '--',
-                                ) &&
-                                fixture.fixture?.timestamp != null
-                            ? DateFormat(
-                                'HH:mm',
-                                context.locale.toLanguageTag(),
-                              ).format(
-                                parseTimestamp(
-                                  fixture.fixture!.timestamp,
-                                )!,
-                              )
-                            : null,
-                      ),
-                    ),
-
-                    ///
-                    /// AWAY LOGO
-                    ///
-                    FixturesListTileLogo(
-                      logo: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
-                      hasProperLogo: fixture.teams?.away?.logo != null,
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 16),
-
-                ///
-                /// NAMES & SCORE
-                ///
-                Row(
-                  children: [
-                    ///
-                    /// HOME NAME
-                    ///
-                    Expanded(
-                      child: Text(
-                        mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
-                        style: context.textStyles.bodyLgBold,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-
-                    ///
-                    /// SCORE
-                    ///
-                    Expanded(
-                      child: fixturePlaying
-                          ? Animate(
-                              onPlay: (controller) => controller.loop(
-                                reverse: true,
-                                min: 0.3,
-                              ),
-                              effects: const [
-                                FadeEffect(
-                                  curve: Curves.easeIn,
-                                  duration: BalunConstants.shimmerDuration,
-                                ),
-                              ],
-                              child: Text.rich(
-                                TextSpan(
-                                  children: [
-                                    TextSpan(text: '${fixture.goals?.home ?? '-'}'),
-                                    TextSpan(
-                                      text: ':',
-                                      style: context.textStyles.displayXxl.copyWith(
-                                        color: context.colors.primaryForeground.withValues(alpha: 0.2),
-                                      ),
-                                    ),
-                                    TextSpan(text: '${fixture.goals?.away ?? '-'}'),
-                                  ],
-                                ),
-                                style: context.textStyles.displayXxl,
-                                textAlign: TextAlign.center,
-                              ),
-                            )
-                          : Text.rich(
-                              TextSpan(
-                                children: [
-                                  TextSpan(text: '${fixture.goals?.home ?? '-'}'),
-                                  TextSpan(
-                                    text: ':',
-                                    style: context.textStyles.displayXxl.copyWith(
-                                      color: context.colors.primaryForeground.withValues(alpha: 0.2),
-                                    ),
-                                  ),
-                                  TextSpan(text: '${fixture.goals?.away ?? '-'}'),
-                                ],
-                              ),
-                              style: context.textStyles.displayXxl,
-                              textAlign: TextAlign.center,
-                            ),
-                    ),
-
-                    ///
-                    /// AWAY NAME
-                    ///
-                    Expanded(
-                      child: Text(
-                        mixOrOriginalWords(fixture.teams?.away?.name) ?? '---',
-                        style: context.textStyles.bodyLgBold,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.right,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+          TextSpan(text: homeScoreRegular ?? '-'),
+          TextSpan(
+            text: ':',
+            style: context.textStyles.displayXxl.copyWith(
+              color: context.colors.primaryForeground.withValues(alpha: 0.2),
             ),
           ),
-
-          ///
-          /// FAVORITE
-          ///
-          Positioned(
-            right: -2,
-            top: -3,
-            child: AnimatedOpacity(
-              opacity: isFavorited ? 1 : 0,
-              duration: BalunConstants.animationDuration,
-              curve: Curves.easeIn,
-              child: BalunImage(
-                imageUrl: BalunIcons.favoriteYes,
-                height: 24,
-                width: 24,
-                color: context.colors.datePickerActiveBackground,
-              ),
-            ),
-          ),
+          TextSpan(text: awayScoreRegular ?? '-'),
         ],
       ),
+      style: context.textStyles.displayXxl,
+      textAlign: TextAlign.center,
     ),
   );
+
+  Widget? getBottomTextWidget(BuildContext context) {
+    /// Return penalties
+    if (fixtureFinishedPenalties && (homeScorePenalties?.isNotEmpty ?? false) && (awayScorePenalties?.isNotEmpty ?? false)) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 2,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: context.colors.datePickerActiveBackground.withValues(alpha: 0.5),
+            ),
+            child: Text(
+              'fixturesPenalties'.tr(),
+              style: context.textStyles.bodyLgBold,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            '$homeScorePenalties:$awayScorePenalties',
+            style: context.textStyles.bodyLgBold,
+          ),
+        ],
+      );
+    }
+
+    /// Return extra time
+    if (fixtureFinishedExtraTime && (homeScoreExtraTime?.isNotEmpty ?? false) && (awayScoreExtraTime?.isNotEmpty ?? false)) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 2,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: context.colors.datePickerActiveBackground.withValues(alpha: 0.5),
+            ),
+            child: Text(
+              'fixturesExtraTime'.tr(),
+              style: context.textStyles.bodyLgBold,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            '$homeScoreExtraTime:$awayScoreExtraTime',
+            style: context.textStyles.bodyLgBold,
+          ),
+        ],
+      );
+    }
+
+    return null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final textWidget = getTextWidget(context);
+    final bottomTextWidget = getBottomTextWidget(context);
+
+    return BalunButton(
+      onPressed: onFixturePressed,
+      onLongPressed: onFixtureLongPressed,
+      child: Container(
+        decoration: BoxDecoration(
+          color: context.colors.fixtureListTileBackground,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Stack(
+          children: [
+            ///
+            /// CONTENT
+            ///
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 8,
+              ),
+              child: Column(
+                children: [
+                  ///
+                  /// LOGOS & MINUTE
+                  ///
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ///
+                      /// HOME LOGO
+                      ///
+                      Flexible(
+                        child: FixturesListTileLogo(
+                          logo: fixture.teams?.home?.logo ?? BalunIcons.placeholderTeam,
+                          hasProperLogo: fixture.teams?.home?.logo != null,
+                        ),
+                      ),
+
+                      ///
+                      /// MINUTE
+                      ///
+                      Flexible(
+                        child: FixturesListTileMinute(
+                          minutes: getMatchMinutesOrNull(
+                            statusShort: fixture.fixture?.status?.short ?? '--',
+                            minutes: fixture.fixture?.status?.elapsed ?? 0,
+                            extra: fixture.fixture?.status?.extra,
+                          ),
+                          textStatus: getMatchStatusShortOrNull(
+                            statusShort: fixture.fixture?.status?.short ?? '--',
+                          ),
+                          timeBeforeMatch:
+                              isMatchNotStarted(
+                                    statusShort: fixture.fixture?.status?.short ?? '--',
+                                  ) &&
+                                  fixture.fixture?.timestamp != null
+                              ? DateFormat(
+                                  'HH:mm',
+                                  context.locale.toLanguageTag(),
+                                ).format(
+                                  parseTimestamp(
+                                    fixture.fixture!.timestamp,
+                                  )!,
+                                )
+                              : null,
+                        ),
+                      ),
+
+                      ///
+                      /// AWAY LOGO
+                      ///
+                      Flexible(
+                        child: FixturesListTileLogo(
+                          logo: fixture.teams?.away?.logo ?? BalunIcons.placeholderTeam,
+                          hasProperLogo: fixture.teams?.away?.logo != null,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  ///
+                  /// NAMES & SCORE
+                  ///
+                  Row(
+                    children: [
+                      ///
+                      /// HOME NAME
+                      ///
+                      Expanded(
+                        child: Text(
+                          mixOrOriginalWords(fixture.teams?.home?.name) ?? '---',
+                          style: context.textStyles.bodyLgBold,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+
+                      ///
+                      /// SCORE
+                      ///
+                      Expanded(
+                        child: Column(
+                          children: [
+                            ///
+                            /// MAIN TEXT
+                            ///
+                            if (fixturePlaying)
+                              Animate(
+                                onPlay: (controller) => controller.loop(
+                                  reverse: true,
+                                  min: 0.3,
+                                ),
+                                effects: const [
+                                  FadeEffect(
+                                    curve: Curves.easeIn,
+                                    duration: BalunConstants.shimmerDuration,
+                                  ),
+                                ],
+                                child: textWidget,
+                              )
+                            else
+                              textWidget,
+
+                            ///
+                            /// BOTTOM TEXT
+                            ///
+                            if (bottomTextWidget != null) ...[
+                              const SizedBox(height: 8),
+                              bottomTextWidget,
+                            ],
+                          ],
+                        ),
+                      ),
+
+                      ///
+                      /// AWAY NAME
+                      ///
+                      Expanded(
+                        child: Text(
+                          mixOrOriginalWords(fixture.teams?.away?.name) ?? '---',
+                          style: context.textStyles.bodyLgBold,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            ///
+            /// FAVORITE
+            ///
+            Positioned(
+              right: -2,
+              top: -3,
+              child: AnimatedOpacity(
+                opacity: isFavorited ? 1 : 0,
+                duration: BalunConstants.animationDuration,
+                curve: Curves.easeIn,
+                child: BalunImage(
+                  imageUrl: BalunIcons.favoriteYes,
+                  height: 24,
+                  width: 24,
+                  color: context.colors.datePickerActiveBackground,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

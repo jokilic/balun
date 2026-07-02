@@ -5,15 +5,15 @@ const fontFamily = 'Lufga';
 class BalunTextStyles {
   static const displayXxl = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 42,
-    fontWeight: FontWeight.w300,
+    fontSize: 40,
+    fontWeight: FontWeight.w400,
     height: 1,
   );
 
   static const displayXl = TextStyle(
     fontFamily: fontFamily,
     fontSize: 32,
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w400,
     height: 1,
   );
 
@@ -84,7 +84,7 @@ class BalunTextStyles {
   static const titleLgLight = TextStyle(
     fontFamily: fontFamily,
     fontSize: 20,
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w400,
   );
 
   static const titleMdExtraBold = TextStyle(
@@ -160,7 +160,7 @@ class BalunTextStyles {
   static const bodyLgLight = TextStyle(
     fontFamily: fontFamily,
     fontSize: 16,
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w400,
   );
 
   static const bodyMdExtraBold = TextStyle(
