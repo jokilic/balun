@@ -53,38 +53,43 @@ class MatchMainInfo extends WatchingWidget {
     required this.isAwayWinner,
   });
 
-  Widget getTextWidget(BuildContext context) => Text.rich(
-    TextSpan(
-      children: [
-        TextSpan(
-          text: homeScoreRegular ?? '-',
-          style: context.textStyles.displayXxxl.copyWith(
-            color: context.colors.primaryForeground.withValues(
-              alpha: (!isHomeWinner && !isAwayWinner) || isHomeWinner ? 1 : 0.4,
+  Widget getTextWidget(BuildContext context) {
+    final homeScore = matchPlaying ? match.goals?.home?.toString() ?? homeScoreRegular : homeScoreRegular;
+    final awayScore = matchPlaying ? match.goals?.away?.toString() ?? awayScoreRegular : awayScoreRegular;
+
+    return Text.rich(
+      TextSpan(
+        children: [
+          TextSpan(
+            text: homeScore ?? '-',
+            style: context.textStyles.displayXxxl.copyWith(
+              color: context.colors.primaryForeground.withValues(
+                alpha: (!isHomeWinner && !isAwayWinner) || isHomeWinner ? 1 : 0.4,
+              ),
             ),
           ),
-        ),
-        TextSpan(
-          text: ':',
-          style: context.textStyles.displayXxxl.copyWith(
-            color: context.colors.primaryForeground.withValues(alpha: 0.2),
-          ),
-        ),
-        TextSpan(
-          text: awayScoreRegular ?? '-',
-          style: context.textStyles.displayXxxl.copyWith(
-            color: context.colors.primaryForeground.withValues(
-              alpha: (!isHomeWinner && !isAwayWinner) || isAwayWinner ? 1 : 0.4,
+          TextSpan(
+            text: ':',
+            style: context.textStyles.displayXxxl.copyWith(
+              color: context.colors.primaryForeground.withValues(alpha: 0.2),
             ),
           ),
-        ),
-      ],
-    ),
-    style: context.textStyles.displayXxxl.copyWith(
-      letterSpacing: 2,
-    ),
-    textAlign: TextAlign.center,
-  );
+          TextSpan(
+            text: awayScore ?? '-',
+            style: context.textStyles.displayXxxl.copyWith(
+              color: context.colors.primaryForeground.withValues(
+                alpha: (!isHomeWinner && !isAwayWinner) || isAwayWinner ? 1 : 0.4,
+              ),
+            ),
+          ),
+        ],
+      ),
+      style: context.textStyles.displayXxxl.copyWith(
+        letterSpacing: 2,
+      ),
+      textAlign: TextAlign.center,
+    );
+  }
 
   Widget? getBottomTextWidget(BuildContext context) {
     /// Return penalties

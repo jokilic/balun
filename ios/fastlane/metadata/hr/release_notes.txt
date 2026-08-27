@@ -1,5 +1,2 @@
-* Show penalty or extra time scores properly
-* Easier way to visualize winner of the match
-* UI updates in FixtureScreen and MatchScreen
-* Remove penalty shootout goals in MatchScreen
+* Show full score while match is running
 * Update dependencies

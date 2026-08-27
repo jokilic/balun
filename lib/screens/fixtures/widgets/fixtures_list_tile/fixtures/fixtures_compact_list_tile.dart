@@ -50,8 +50,11 @@ class FixturesCompactListTile extends StatelessWidget {
   });
 
   Widget getTextWidget(BuildContext context) {
+    final homeScore = fixturePlaying ? fixture.goals?.home?.toString() ?? homeScoreRegular : homeScoreRegular;
+    final awayScore = fixturePlaying ? fixture.goals?.away?.toString() ?? awayScoreRegular : awayScoreRegular;
+
     /// Return `scores`
-    if ((homeScoreRegular?.isNotEmpty ?? false) && (awayScoreRegular?.isNotEmpty ?? false)) {
+    if ((homeScore?.isNotEmpty ?? false) && (awayScore?.isNotEmpty ?? false)) {
       return Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 12,
@@ -64,7 +67,7 @@ class FixturesCompactListTile extends StatelessWidget {
           TextSpan(
             children: [
               TextSpan(
-                text: homeScoreRegular ?? '-',
+                text: homeScore ?? '-',
                 style: context.textStyles.titleMdBoldTight.copyWith(
                   color: context.colors.primaryForeground.withValues(
                     alpha: (!isHomeWinner && !isAwayWinner) || isHomeWinner ? 1 : 0.5,
@@ -78,7 +81,7 @@ class FixturesCompactListTile extends StatelessWidget {
                 ),
               ),
               TextSpan(
-                text: awayScoreRegular ?? '-',
+                text: awayScore ?? '-',
                 style: context.textStyles.titleMdBoldTight.copyWith(
                   color: context.colors.primaryForeground.withValues(
                     alpha: (!isHomeWinner && !isAwayWinner) || isAwayWinner ? 1 : 0.5,

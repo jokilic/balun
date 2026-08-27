@@ -49,43 +49,48 @@ class FixturesListTile extends StatelessWidget {
     required this.isFavorited,
   });
 
-  Widget getTextWidget(BuildContext context) => Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(100),
-    ),
-    child: Text.rich(
-      TextSpan(
-        children: [
-          TextSpan(
-            text: homeScoreRegular ?? '-',
-            style: context.textStyles.displayXxl.copyWith(
-              color: context.colors.primaryForeground.withValues(
-                alpha: (!isHomeWinner && !isAwayWinner) || isHomeWinner ? 1 : 0.5,
+  Widget getTextWidget(BuildContext context) {
+    final homeScore = fixturePlaying ? fixture.goals?.home?.toString() ?? homeScoreRegular : homeScoreRegular;
+    final awayScore = fixturePlaying ? fixture.goals?.away?.toString() ?? awayScoreRegular : awayScoreRegular;
+
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(100),
+      ),
+      child: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(
+              text: homeScore ?? '-',
+              style: context.textStyles.displayXxl.copyWith(
+                color: context.colors.primaryForeground.withValues(
+                  alpha: (!isHomeWinner && !isAwayWinner) || isHomeWinner ? 1 : 0.5,
+                ),
               ),
             ),
-          ),
-          TextSpan(
-            text: ':',
-            style: context.textStyles.displayXxl.copyWith(
-              color: context.colors.primaryForeground.withValues(alpha: 0.2),
-            ),
-          ),
-          TextSpan(
-            text: awayScoreRegular ?? '-',
-            style: context.textStyles.displayXxl.copyWith(
-              color: context.colors.primaryForeground.withValues(
-                alpha: (!isHomeWinner && !isAwayWinner) || isAwayWinner ? 1 : 0.4,
+            TextSpan(
+              text: ':',
+              style: context.textStyles.displayXxl.copyWith(
+                color: context.colors.primaryForeground.withValues(alpha: 0.2),
               ),
             ),
-          ),
-        ],
+            TextSpan(
+              text: awayScore ?? '-',
+              style: context.textStyles.displayXxl.copyWith(
+                color: context.colors.primaryForeground.withValues(
+                  alpha: (!isHomeWinner && !isAwayWinner) || isAwayWinner ? 1 : 0.4,
+                ),
+              ),
+            ),
+          ],
+        ),
+        style: context.textStyles.displayXxl.copyWith(
+          letterSpacing: 2,
+        ),
+        textAlign: TextAlign.center,
       ),
-      style: context.textStyles.displayXxl.copyWith(
-        letterSpacing: 2,
-      ),
-      textAlign: TextAlign.center,
-    ),
-  );
+    );
+  }
 
   Widget? getBottomTextWidget(BuildContext context) {
     /// Return penalties
